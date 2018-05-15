@@ -1,0 +1,27 @@
+{
+  "author": "Edwin Young",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack && F:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",
+    "build": "F:/nwjs-v0.14.7-win-ia32/nw ./app"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-adodb": "^4.2.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "description": "nw app",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "nwjs-builder-phoenix": "^1.14.6",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3"
+  }
+}
