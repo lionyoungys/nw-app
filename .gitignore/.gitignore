@@ -1,7 +1,0 @@
-.idea
-node_modules
-app/node_modules
-src/Api.js
-.svn
-*.ldb
-*.btf
