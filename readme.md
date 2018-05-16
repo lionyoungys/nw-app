@@ -12,6 +12,7 @@ app/vendor               -->    外部引入插件或工具包文件夹
 app/vendor/include.js    -->    全局引用无需babel编译使用的node库
 app/vendor/Tool.js       -->    原型链及工具封装框架
 app/vendor/KeyCode.js    -->    输入法强制转换为英文函数库
+app/node_modules         -->    node模块文件夹
 
 src                      -->    开发目录
 src/Api.js               -->    api请求封装框架
