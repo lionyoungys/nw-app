@@ -42,6 +42,9 @@ class Launch extends Component {
         return (
             <div className='login-launch'>
                 <div className='login-launch-v'>当前版本：{nw.App.manifest.version}</div>
+                <div className='login-launch-check'>
+                    <div>正在检测更新</div>
+                </div>
             </div>
         );
     }
