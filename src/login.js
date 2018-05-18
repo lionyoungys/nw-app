@@ -8,6 +8,7 @@ import './Api';
 import './login.css';
 
 let win = nw.Window.get();
+win.on('loaded', win.show);    //防止窗口渲染未完成时展示
 win.showDevTools();
 class Main extends Component {
     constructor(props) {
@@ -18,11 +19,12 @@ class Main extends Component {
         this.returnLogin = this.returnLogin.bind(this);
         this.findpass = this.findpass.bind(this);
         this.remberPSD = this.remberPSD.bind(this);
-        this.findPSD = this.findPSD.bind(this);
+        this.findPSD = this.findPSD.bind(this);     
     }
 //打开有验证码tab
     click (){
         this.setState({hasCaptcha:'none',noCaptcha:'block',finCaptcha:'none'});
+        
     }
 //找回密码页面
     findpass(){
@@ -41,12 +43,6 @@ class Main extends Component {
     this.setState({className:'passwordN' == this.state.className?'passwordX':'passwordN'})
    }
     componentDidMount() {
-        win.on('new-win-policy', function(frame, url, policy) {
-            policy.setNewWindowManifest({
-                width:1000,
-                height:450,
-            });
-          });
         win.on('close', function() {
             this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
             null !== win && win.close(true);    //虽然关了,但实际上它还在工作
@@ -54,10 +50,9 @@ class Main extends Component {
         });
         win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
     }
-
     //登录成功界面跳转方法
     success() {
-        nw.Window.open('main.html', {}, mainWin => {
+        nw.Window.open('main.html', nw.App.manifest.mainWindow, mainWin => {
             mainWin.on('close', function() {
                 this.hide();
                 null !== mainWin && mainWin.close(true);
@@ -65,15 +60,15 @@ class Main extends Component {
             });
             mainWin.on('closed', function() {mainWin = null});
         });
+
         win.close();
     }
     //关闭窗口
-    close(){
+    close(){       
         win.close();
     }
     render() {
-        return (
-            
+        return (            
         <div>   
              {/*用户密码登录 */}
             <div className="LoginBox" style={{display: this.state.hasCaptcha}}>
@@ -86,7 +81,7 @@ class Main extends Component {
                   <span style={{marginTop:'6px'}}>用户名: <input type='text' /></span>
                   <span>密&nbsp;码: <input type='text' /></span>
                   <span><a className = {this.state.class} onClick = {this.remberPSD}></a><b>记住密码</b></span>
-                  <div className="login" onClick = {this.click}>登录</div>
+                  <div className="login" onClick = {this.success}>登录</div>
                   <div className="login_X">
                       <a onClick={this.findpass}>找回密码</a>
                       <a>申请账号</a>

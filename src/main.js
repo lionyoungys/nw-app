@@ -12,6 +12,7 @@ import './Api';
 import './main.css';
 
 let win = nw.Window.get();
+win.on('loaded', win.show);    //防止窗口渲染未完成时展示
 win.showDevTools();
 class Main extends Component {
     constructor(props) {
@@ -29,9 +30,6 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        win.on('new-win-policy', function(frame, url, policy) {
-            policy.setNewWindowManifest(nw.App.manifest.window);
-        });
         win.on('restore', () => {
             if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化
                 this.setState({isMaxMin:true});

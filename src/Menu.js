@@ -4,7 +4,7 @@ export const topMenu = [
         value:'前台业务', 
         options:[
             {value:'收衣', view:'clothes'},
-            {value:'取衣', view:null},
+            {value:'取衣', view:'take_clothes'},
             {value:'欠款补交', view:null},
             {value:'交期预警', view:null},
             {value:'撤单处理', view:null},
@@ -99,7 +99,7 @@ export const leftMenu = [
         value:'常用任务', 
         options:[
             {value:'收衣',class:'main-clothes',view:'clothes'},
-            {value:'取衣',class:'main-take',view:null},
+            {value:'取衣',class:'main-take',view:'take_clothes'},
             {value:'售卡',class:'main-sale-card',view:null},
             {value:'充值',class:'main-recharge',view:null}
         ]
