@@ -1,0 +1,63 @@
+body{padding:0;margin:0;width:592px;height:442px;}
+.LoginBox{width:592px;height:442px;background:url(img/login.png)  no-repeat;background-size:cover; }
+.boxTitle{width:100%;height:70px;position:relative;padding-top:30px;}
+.boxTitle span{display:block;width:30px;height:30px;background:url(img/close_x.png)  no-repeat;position: absolute;right:0;top:0;cursor: pointer; }
+.boxTitle b{display:block;width:100%;height:40px;line-height:40px;color:#FFF;text-align:center; font-size:30px;font-weight:bold;}
+.boxTitle a{display:block;width:100%;height:40px;line-height:30px;color:#FFF;text-align:center;font-size:24px;}
+.inputBox{width:326px;height:283px;margin:30px auto 0;padding-top:23px;}
+.inputBox span{display:block;width:100%;height:29px;font-size:16px;color:#000;text-indent:24px;line-height: 29px;margin-bottom:21px; }
+.inputBox span input{
+    outline:none;
+    border:1px solid #aec7db;
+    color:#000;
+    display:inline-block;
+    height:27px;
+    width:196px;
+    font-size:16px;
+    text-indent:8px;
+}
+.inputBox span .passwordN{
+    display:block;
+    width:18px;
+    height:18px;
+    background:url(img/password.png) no-repeat;
+    background-size:18px;height:18px;
+    float: left;
+    margin-left:28px;
+    margin-top:5px;
+    cursor: pointer;
+}
+.inputBox span .passwordX{
+    display:block;
+    width:18px;
+    height:18px;
+    background:url(img/passwordX.png) no-repeat;
+    background-size:18px;height:18px; 
+    float: left;
+    margin-left:28px;
+    margin-top:5px;
+    cursor: pointer;
+}
+.inputBox span b{font-size:14px;float: left;display:block;text-indent:8px;font-weight:inherit;}
+.login{width:244px;height:34px;line-height:34px;color:#FFF;font-size:16px;text-align:center;background:#3596e3;font-weight:bold;margin:auto;cursor: pointer;border-radius:4px;}
+.login_X{width:244px;height:70px;margin:auto;}
+.login_X a{
+    width:63px;
+    height:70px;
+    line-height:70px;
+    text-align:center;
+    color:#000;
+    font-size:14px;
+    cursor: pointer;
+}
+.login_X a:first-child{float:left;}
+.login_X a:last-child{float:right;}
+#inputBox span{margin-bottom:12px;}
+#verification{width:96px;}
+#verificationX{width:93px;height:27px;display:block;background:#6997bc;float:right;margin-right:38px;border:1px solid #aec7db;cursor:pointer;}
+#login_X{height:57px;}
+#login_X a{height:57px; line-height:57px;}
+#GetverificationX{width:90px;height:27px;display:block;float:right;margin-right:40px;border:1px solid #aec7db;text-align:center;text-indent:0;cursor: pointer;}
+.returnLogin{height:48px;}
+.returnLogin a{line-height:48px;line-height:48px;}
+.psdresult{color:#ff0000;font-size:12px;display:block;margin-left:90px;margin-top:3px;}

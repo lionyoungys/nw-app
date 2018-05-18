@@ -18,12 +18,29 @@ app/node_modules         -->    node模块文件夹
 src                      -->    开发目录
 src/Api.js               -->    api请求封装框架
 src/Router.js            -->    路由配置
+src/Menu.js              -->    菜单配置
+src/Event.js             -->    事件注册配置
 src/login.js             -->    登录界面开发文件
 src/login.css            -->    登录界面样式文件
 src/main.js              -->    主界面开发文件
 src/main.css             -->    主界面样式文件
 src/UI                   -->    界面开发UI组件文件夹
 src/Module               -->    界面开发界面模块文件夹
+
+
+
+
+src/Module下界面组件的继承方法
+changeView(obj);    
+    切换界面方法：
+        参数方式1
+            obj = {view:'界面路由名称', param:'界面携带参数'}
+        参数方式2
+            支持dataset
+            data-view='界面路由名称' data-param='界面携带参数'
+            
+src/Module下界面组件的继承属性
+param:携带参数
 
 
 

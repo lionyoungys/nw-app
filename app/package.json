@@ -2,15 +2,31 @@
   "name": "main",
   "version": "3.0.0",
   "description": "nw app",
-  "main": "login.html",
+  //"main":"login.html",
+  "main":"main.html",
   "repository": "none",
   "author": "Edwin Young",
   "license": "MIT",
+  // "window": {
+  //   "icon": "img/icon.png",
+  //   "resizable": false,
+  //   "width":592,
+  //   "height":442,
+  //   "frame": false,
+  //   "transparent": true
+  // },
+  //主界面配置
   "window": {
     "icon": "img/icon.png",
-    "resizable": false,
-    "width": 600,
-    "height": 600
+    "min_width": 1024,
+    "min_height": 737,
+    "frame": false
+  },
+  "mainWindow": {
+    "icon": "img/icon.png",
+    "min_width": 1024,
+    "min_height": 737,
+    "frame": false
   },
   "dependencies": {
     "node-adodb": "^4.2.2"
