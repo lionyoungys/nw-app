@@ -1,6 +1,6 @@
 /**
  * 登录界面组件
- * @author fanyerong 
+ * @author Edwin Young 
  */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -9,7 +9,61 @@ import './login.css';
 
 let win = nw.Window.get();
 win.on('loaded', win.show);    //防止窗口渲染未完成时展示
+win.on('close', function() {
+    this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
+    null !== win && win.close(true);    //虽然关了,但实际上它还在工作
+    this.close(true);    //关闭新窗口也关闭主窗口
+});
+win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
 win.showDevTools();
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {index:0};
+        this.step = [<Launch/>];
+    }
+
+    render() {
+        return (
+            <div id='login' className='launch'>
+                <div className='login-drag'><i onClick={() => win.close()}></i></div>
+                {this.step[this.state.index]}
+            </div>
+        );
+    }
+}
+
+class Launch extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className='login-launch'>
+                <div className='login-launch-v'>当前版本：{nw.App.manifest.version}</div>
+            </div>
+        );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -42,25 +96,9 @@ class Main extends Component {
    findPSD (){
     this.setState({className:'passwordN' == this.state.className?'passwordX':'passwordN'})
    }
-    componentDidMount() {
-        win.on('close', function() {
-            this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-            null !== win && win.close(true);    //虽然关了,但实际上它还在工作
-            this.close(true);    //关闭新窗口也关闭主窗口
-        });
-        win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
-    }
     //登录成功界面跳转方法
     success() {
-        nw.Window.open('main.html', nw.App.manifest.mainWindow, mainWin => {
-            mainWin.on('close', function() {
-                this.hide();
-                null !== mainWin && mainWin.close(true);
-                this.close(true);
-            });
-            mainWin.on('closed', function() {mainWin = null});
-        });
-
+        nw.Window.open('main.html', nw.App.manifest.mainWindow);
         win.close();
     }
     //关闭窗口
@@ -130,4 +168,4 @@ class Main extends Component {
         );
     }
 }
-ReactDOM.render(<Main/>, document.getElementById('root'));
+ReactDOM.render(<Login/>, document.getElementById('root'));

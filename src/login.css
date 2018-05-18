@@ -1,4 +1,35 @@
-body{padding:0;margin:0;width:592px;height:442px;}
+*{margin: 0;padding: 0}
+html,body{font-family: 微软雅黑,serif;font-size: 14px;min-width: 600px;min-height: 450px;height: 100%;width: 100%}
+#root, #login{width: 100%;height: 100%}
+#login{position: relative}
+/* 界面顶部可拖动区域 */
+.login-drag{
+    width: 100%;
+    height: 30px;
+    -webkit-app-region: drag;    /*窗口可移动*/
+    position: absolute;
+    top: 0;left: 0;
+}
+/* 界面顶部关闭按钮 */
+.login-drag>i{
+    -webkit-app-region: no-drag;
+    float: right;
+    width: 30px;
+    height: 30px;
+    cursor: default;
+    background: url(img/login-close.png);
+}
+.login-drag>i:hover{background: url(img/login-close-hover.png)}
+/* 检查更新窗口样式 */
+.login-launch{
+    background:url(img/login-launch.png);
+    width: 100%;
+    height: 100%;
+}
+.login-launch-v{text-align: center;color: #fff;padding-top: 250px}
+
+
+
 .LoginBox{width:592px;height:442px;background:url(img/login.png)  no-repeat;background-size:cover; }
 .boxTitle{width:100%;height:70px;position:relative;padding-top:30px;}
 .boxTitle span{display:block;width:30px;height:30px;background:url(img/close_x.png)  no-repeat;position: absolute;right:0;top:0;cursor: pointer; }

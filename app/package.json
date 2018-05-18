@@ -1,6 +1,6 @@
 {
   "name": "main",
-  "version": "3.0.1",
+  "version": "3.0.0",
   "description": "nw app",
   "main":"login.html",
   //"main":"main.html",
@@ -10,8 +10,8 @@
   "window": {
     "icon": "img/icon.png",
     "resizable": false,
-    "width":592,
-    "height":442,
+    "width":600,
+    "height":450,
     "frame": false,
     "show":false,
     "new_instance":true

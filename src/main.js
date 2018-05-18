@@ -13,6 +13,23 @@ import './main.css';
 
 let win = nw.Window.get();
 win.on('loaded', win.show);    //防止窗口渲染未完成时展示
+win.on('restore', () => {
+    if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化
+        this.setState({isMaxMin:true});
+    } else if (this.state.min && this.state.max && this.state.isMaxMin) {    //最小化还原为最大化
+        this.setState({min:false,isMaxMin:false});
+    } else if (this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下非最小化
+        this.setState({max:false});
+    }
+});
+win.on('maximize', () => this.setState({max:true}));
+win.on('minimize', () => this.setState({min:true}));
+win.on('close', function() {
+    this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
+    null !== win && win.close(true);    //虽然关了,但实际上它还在工作
+    this.close(true);    //关闭新窗口也关闭主窗口
+});
+win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
 win.showDevTools();
 class Main extends Component {
     constructor(props) {
@@ -29,26 +46,6 @@ class Main extends Component {
         this.changeView = this.changeView.bind(this);
     }
     
-    componentDidMount() {
-        win.on('restore', () => {
-            if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化
-                this.setState({isMaxMin:true});
-            } else if (this.state.min && this.state.max && this.state.isMaxMin) {    //最小化还原为最大化
-                this.setState({min:false,isMaxMin:false});
-            } else if (this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下非最小化
-                this.setState({max:false});
-            }
-        });
-        win.on('maximize', () => this.setState({max:true}));
-        win.on('minimize', () => this.setState({min:true}));
-        win.on('close', function() {
-            this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-            null !== win && win.close(true);    //虽然关了,但实际上它还在工作
-            this.close(true);    //关闭新窗口也关闭主窗口
-        });
-        win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
-    }
-
     //路由跳转方法
     changeView(e) {
         let view = null,    //视图
