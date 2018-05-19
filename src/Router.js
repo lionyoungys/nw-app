@@ -1,6 +1,6 @@
 //类文件引入
 import Clothes from './Module/Clothes';
-import Data from './Module/Data';
+import Data from './Module/Data/App';
 // import Takeclothes from './Module/Takeclothes';
 //路由对象
 export default {

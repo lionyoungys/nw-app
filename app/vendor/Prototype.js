@@ -5,6 +5,7 @@
 
 (function() {
     var fs = require('fs');
+    var mime = {bmp:'image/bmp',gif:'image/gif',png:'image/png',jpeg:'image/jpeg',jpg:'image/jpeg',jpe:'image/jpeg',txt:'text/plain'};
     /**
      * localStorage数据存储
      * @param key 数据存储键
@@ -29,8 +30,7 @@
         var result = /\.[^\.]+$/.exec(this);
         if (null === result) return null;
         var ext = result[0].replace('.', '').toLowerCase();
-        if ('jpg' === ext) ext = 'jpeg';
-        return 'image/' + ext;
+        return mime[ext];
     }
     /**
      * 文件路径转二进制对象

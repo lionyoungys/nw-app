@@ -6,6 +6,7 @@ const fs = window.require('fs'),
       process = window.require('process'),
       path = window.require('path');
 import React, {Component} from 'react';
+import './App.css';
 
 const data = [
     '收活表','客户信息表','POS_备注','POS_价格表','备注','撤单信息表','处理类别','返洗衣物表','价格表','卡类设置',
@@ -30,7 +31,6 @@ export default class extends Component {
             }
             if (null === this.timeId) {
                 this.timeId = setInterval(() => {
-                    console.log(this.state.data.length);
                     if (this.state.data.length == len) {
                         console.log('done');
                         clearInterval(this.timeId);

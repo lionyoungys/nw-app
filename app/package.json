@@ -32,6 +32,15 @@
     "show":false,
     "new_instance":true
   },
+  "loginWindow": {
+    "icon": "img/icon.png",
+    "resizable": false,
+    "width":600,
+    "height":450,
+    "frame": false,
+    "show":false,
+    "new_instance":true
+  },
   "dependencies": {
     "node-adodb": "^4.2.2"
   }
