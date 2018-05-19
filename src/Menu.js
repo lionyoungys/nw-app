@@ -67,7 +67,7 @@ export const topMenu = [
             {value:'卡券中心', view:null},
             {value:'优惠活动', view:null},
             {value:'密码与安全', view:null},
-            {value:'数据导入', view:null}
+            {value:'数据导入', view:'data'}
         ]
     },
     {

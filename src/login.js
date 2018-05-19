@@ -19,8 +19,11 @@ win.showDevTools();
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:0};
-        this.step = [<Launch/>];
+        this.state = {index:1, version:'3.0.2', log:'dfdfddfdfdf'};
+        this.step = [
+            <Launch/>,
+            <Download version={this.state.version} log={this.state.log}/>
+        ];
     }
 
     render() {
@@ -32,7 +35,7 @@ class Login extends Component {
         );
     }
 }
-
+//检查更新界面
 class Launch extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +52,38 @@ class Launch extends Component {
         );
     }
 }
+//下载更新界面
+class Download extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {progress:50, complete:true};
+    }
 
+    render() {
+        let progress = this.state.progress + '%',
+            complete = this.state.complete ? 
+                (<div className='login-update'>
+                    <div className='login-complete'>
+                        安装完成
+                        <button type='button'>重启程序</button>
+                    </div>
+                </div>)
+                :
+                (<div className='login-update'>
+                    <div className='login-progress-bar'>
+                        <div style={{width:progress}}></div>
+                    </div>
+                    <div className='login-progress'>正在下载并安装更新包<span>{progress}</span></div>
+                </div>)
+        return (
+            <div className='login-download'>
+                <div>发现新版本{this.props.version}</div>
+                <pre className='login-log'>{this.props.log}</pre>
+                {complete}
+            </div>
+        );
+    }
+}
 
 
 

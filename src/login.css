@@ -1,6 +1,8 @@
 *{margin: 0;padding: 0}
 html,body{font-family: 微软雅黑,serif;font-size: 14px;min-width: 600px;min-height: 450px;height: 100%;width: 100%}
 #root, #login{width: 100%;height: 100%}
+button,input{outline: none}
+button{border: none}
 #login{position: relative}
 /* 界面顶部可拖动区域 */
 .login-drag{
@@ -41,6 +43,75 @@ html,body{font-family: 微软雅黑,serif;font-size: 14px;min-width: 600px;min-h
     background: url(img/login-launch-check.gif) no-repeat center 19px;
     font-size: 16px;
 }
+/* 下载更新窗口样式 */
+.login-download{
+    background: url(img/login-download.png);
+    width: 100%;
+    height: 100%;
+}
+.login-download>div:first-child{
+    height: 55px;
+    line-height: 55px;
+    margin-left: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #173959;
+}
+.login-log{
+    height: 312px;
+    margin: 0 4px;
+    padding-left: 12px;
+    overflow: auto;
+}
+.login-update{
+    width: 100%;
+    height: 82px;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.login-progress-bar{
+    width: 554px;
+    height: 21px;
+    margin: 19px auto 11px;
+    background: #d4d9de;
+    border-radius: 10px;
+    box-shadow: -1px -1px #b8bcc1;
+}
+.login-progress-bar>div{
+    background: url(img/login-progress.png) left center;
+    height: 19px;
+    border-top: 1px solid #3c92d3;
+    border-bottom: 1px solid #3c92d3;
+    border-radius: 10px;
+}
+.login-progress{
+    width: 554px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+.login-progress>span{float: right}
+.login-complete{
+    margin: 26px 27px 0 20px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.login-complete>button{
+    float: right;
+    border-radius:3px;
+    height: 30px;
+    padding: 0 18px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: normal;
+    background: #3596e3;
+}
+
+
+
 
 .LoginBox{width:592px;height:442px;background:url(img/login.png)  no-repeat;background-size:cover; }
 .boxTitle{width:100%;height:70px;position:relative;padding-top:30px;}
