@@ -5,3 +5,4 @@ src/Api.js
 .svn
 *.ldb
 *.btf
+*.sql
