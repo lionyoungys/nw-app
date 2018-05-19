@@ -4,7 +4,6 @@
  */
 
 (function() {
-    var fs = require('fs');
     var mime = {bmp:'image/bmp',gif:'image/gif',png:'image/png',jpeg:'image/jpeg',jpg:'image/jpeg',jpe:'image/jpeg',txt:'text/plain'};
     /**
      * localStorage数据存储
@@ -28,13 +27,11 @@
      */
     String.prototype.mime = function () {
         var result = /\.[^\.]+$/.exec(this);
-        if (null === result) return null;
-        var ext = result[0].replace('.', '').toLowerCase();
-        return mime[ext];
+        return null === result ? null : mime[result[0].replace('.', '').toLowerCase()];
     }
     /**
      * 文件路径转二进制对象
      * @return Blob
      */
-    String.prototype.blob = function () {return new Blob([fs.readFileSync(this)], {type: this.mime()})}
+    String.prototype.blob = function (buffer) {return new Blob([buffer], {type: this.mime()})}
 })();

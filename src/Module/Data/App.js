@@ -31,16 +31,13 @@ export default class extends Component {
             }
             if (null === this.timeId) {
                 this.timeId = setInterval(() => {
+                    console.log(this.state.data.length);
                     if (this.state.data.length == len) {
-                        console.log('done');
                         clearInterval(this.timeId);
                         this.timeId = null;
                         let dataFile = path.dirname(process.execPath) + '/data.txt';
-                        if (fs.existsSync(dataFile)) {
-                            fs.writeFileSync(dataFile, JSON.stringify(this.state.data), 'utf8')
-                        } else {
-                            fs.appendFileSync(dataFile, JSON.stringify(this.state.data), 'utf8');
-                        }
+                        fs.writeFileSync(dataFile, JSON.stringify(this.state.data), 'utf8')
+                        console.log(dataFile.blob(fs.readFileSync(dataFile)));
                     }
                 }, 1000);
             }
