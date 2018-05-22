@@ -171,7 +171,7 @@ button{border: none}
 #verificationX{width:93px;height:27px;display:block;background:#6997bc;float:right;margin-right:38px;border:1px solid #aec7db;cursor:pointer;}
 #login_X{height:57px;}
 #login_X a{height:57px; line-height:57px;}
-#GetverificationX{width:90px;height:27px;display:block;float:right;margin-right:40px;border:1px solid #aec7db;text-align:center;text-indent:0;cursor: pointer;}
+#GetverificationX{width:90px;height:27px;display:block;float:right;margin-right:40px;text-align:center;text-indent:0;cursor: pointer;color: #6997bc}
 .returnLogin{height:48px;}
 .returnLogin a{line-height:48px;line-height:48px;}
-.psdresult{color:#ff0000;font-size:12px;display:block;margin-left:90px;margin-top:3px;}
+.psdresult{color:#ff0000;font-size:12px;display:block;margin-left:85px;margin-top:3px;}

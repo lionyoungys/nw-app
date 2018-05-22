@@ -38,7 +38,7 @@ export const topMenu = [
     {
         value:'信息统计', 
         options:[
-            {value:'撤单统计', view:null},
+            {value:'撤单统计', view:'revoke_data'},
             {value:'赔付统计', view:null}
         ]
     },

@@ -191,10 +191,10 @@ class Main extends Component {
                 </div>
                 <div className="inputBox" id="inputBox">
                   <span style={{marginBottom:0}}>新密码: <input type='text' /></span>
-                  <a className='psdresult'>密码为6-18位字母数字组合</a>
+                  <a className='psdresult'>密码要求:6位以上，且不能为纯数字</a>
                   <span style = {{textIndent:'8px'}}>确认密码: <input type='text' /></span>
                   <span>手机号: <input type='text' /></span>
-                  <span>验证码: <input type="text" id="verification"/><i id="GetverificationX">获取验证码</i></span>                  
+                  <span>验证码: <input type="text" id="verification"/><font id="GetverificationX">获取验证码</font></span>                  
                   <div className="login"  style = {{marginTop:'12px'}}>确认</div>
                   <div className="login_X returnLogin">
                       <a onClick = {this.returnLogin}>返回登录</a>
@@ -205,4 +205,4 @@ class Main extends Component {
         );
     }
 }
-ReactDOM.render(<Login/>, document.getElementById('root'));
+ReactDOM.render(<Main/>, document.getElementById('root'));
