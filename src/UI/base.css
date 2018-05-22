@@ -1,7 +1,8 @@
+/* 弹出窗口样式 */
 .ui-window{
     width: 900px;
     height: 624px;
-    background: #fff;
+    background: #e3effd;
     position: absolute;
     top: 50%;left: 50%;
     margin: -312px 0 0 -450px;
@@ -28,3 +29,14 @@
     cursor: default;
 }
 .ui-window>div:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}
+/* 表格样式 */
+.ui-table.full-table{width: 100%}
+.ui-table tr{height:24px;line-height: 24px;font-size: 12px;text-align: center}
+.ui-table.border td,
+.ui-table.border th{
+    border: 1px solid #acc6de;
+    border-top: 0;
+    border-bottom: 0;
+}
+.ui-table.border tr:last-child{border-bottom: 1px solid #acc6de}
+.ui-table>thead>tr{background: #89b0d4;color: #fff;font-weight: bold}
