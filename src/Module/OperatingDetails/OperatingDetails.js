@@ -3,7 +3,8 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import './RevokeData.css';
+import '../RevokeData/RevokeData.css';
+import './OperatingDetails.css';
 export default class extends Component {   
     constructor(props) {
         super(props);           
@@ -15,34 +16,20 @@ export default class extends Component {
         return (             
              <div className="revokedata">
                    <div className='revokedata_box'>
-                      <div className="revokedata_title">经营明细<span className="revokedata_close"></span></div>
-                      <div className="revokedata_data">
-                         <div className="revokedata_dataLeft">
-                            <div>开始日期：<input type="date" value ='2018-05-19'/></div>                           
+                      <div className="revokedata_title">撤单统计<span className="revokedata_close"></span></div>
+                      <div className="revokedata_data OperatingDetails_data">
+                         <div className="revokedata_dataLeft OperatingDetails_dataLeft">
+                            <div>开始日期：<input type="date" value ='2018-05-19'/></div>
+                            <div>类别：<input type="date" value ='2018-05-19'/></div>
                             <div>结束日期：<input type="date" value ='2018-06-19'/></div>
                          </div>
-                         <div className="revokedata_dataright">
+                         <div className="revokedata_dataright OperatingDetails_dataright">
                            {arr}
                          </div>
-                      </div>
-                      <div className="revokedata_list">
-                        <div>撤单合计</div>
-                        <ul className="revokedata_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                <span>合计</span>
-                                <span>衣物合计</span>
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span></span>
-                                <span></span>
-                            </li>
-                        </ul>
-                      </div>
-                      <div className="revokedata_list revokedata_last">
-                        <div>撤单明细<b>共记录 <a>456</a> 条</b><span className="revokedata_prompt"></span></div>
-                        <ul className="revokedata_list_box">
+                      </div>                      
+                      <div className="revokedata_list revokedata_last OperatingDetails_list">
+                        <div>财务明细<b>共记录 <a>456</a> 条</b></div>
+                        <ul className="revokedata_list_box OperatingDetails_list_box">
                             <li id="revokedata_list_box_li">
                                 <span></span>
                                  {revokedata_detail}
@@ -59,9 +46,9 @@ export default class extends Component {
                             </li>
                         </ul>
                       </div>
-                      <div className="revokedata_list revokedata_last">
-                        <div>撤单衣物明细<b>共记录 <a>456</a> 件</b><span className="revokedata_prompt"></span></div>
-                        <ul className="revokedata_list_box">
+                      <div className="revokedata_list revokedata_last OperatingDetails_list">
+                        <div>衣物合计</div>
+                        <ul className="revokedata_list_box OperatingDetails_list_box">
                             <li id="revokedata_list_box_li">
                                  <span></span>
                                  {revokedata_clothes}

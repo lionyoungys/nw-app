@@ -49,7 +49,7 @@ export const topMenu = [
             {value:'经理查询', view:null},
             {value:'经营日报', view:null},
             {value:'营业统计', view:null},
-            {value:'营业明细', view:null},
+            {value:'营业明细', view:'operating_details'},
             {value:'营业分析', view:null},
             {value:'欠款明细', view:null},
             {value:'会员业务统计', view:null},

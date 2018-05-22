@@ -24,8 +24,19 @@
     border-top-right-radius:8px;
     position:relative;
 }
-.revokedata_close{width:11px;height:11px;position:absolute;right:12px;top:12px;background:url(./img/revokedata_close_all.png);cursor: pointer;}
-.revokedata_close:hover{background:url(./img/revokedata_close.png);background-size:100% 100%;}
+.revokedata_close{
+    width:15px;
+    height:15px;
+    position:absolute;
+    right:12px;top:12px;
+    background:url(./img/revokedata_close_all.png);
+    cursor: pointer;
+    background-size:15px 15px;
+}
+.revokedata_close:hover{
+    background:url(./img/revokedata_close.png);
+    background-size:15px 15px;
+}
 .revokedata_data{width:872px;height:59px;margin:13px auto 0px;}
 .revokedata_dataLeft{width:501px;border:1px solid #8db2e3;height:57px;background:#eef4fb;float:left}
 .revokedata_dataLeft div{
@@ -47,12 +58,32 @@
     border:1px solid #c4c2c2;       
     border-radius:3px;
     text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+   opacity: 0;
+ }
+ 
+ /*----------用来移除叉叉按钮----------*/
+ input[type="date"]::-webkit-clear-button{
+    display:none;
+ }
+.revokedata_dataLeft div input:hover{
+    background:url(./img/hoverselect.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
 }
 .revokedata_dataLeft div input:hover{border:1px solid #4589ee}
 .revokedata_dataLeft div span{width:18px;height:22px;background:url(./select.png)}
 .revokedata_dataLeft div:first-child{margin-left:17px;float:left}
 .revokedata_dataLeft div:last-child{float: right;margin-right:17px}
-.revokedata_dataright{float:left;width:255px;height:24px;margin:32px 0 0 6px;}
+.revokedata_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
 .revokedata_dataright button{
     width:71px;
     border:none;
@@ -71,17 +102,18 @@
 .revokedata_list{width:872px;height:126px;margin:auto}
 
 .revokedata_list div{width:100%;height:37px;line-height:37px;color:#000;font-size:14px;font-weight:bold}
-.revokedata_list div b{color:#024ffe;}
+.revokedata_list div b{font-size:12px;margin-left:36px;}
+.revokedata_list div b a{color:#024ffe;}
 .revokedata_list_box{width:100%;height:89px;border:1px solid #8db2e3;clear: both;background:#fff}
 .revokedata_list_box li{width:100%;height:25px;list-style:none;}
 .revokedata_list_box li:nth-of-type(odd){background:#f0f5f9;color:#000}
-.revokedata_list_box li:nth-of-type(even){background:#fff;border-bottom:1px solid #8db2e3;}
-
+.revokedata_list_box li:nth-of-type(even){background:#fff}
+.revokedata_list_box li:last-child{border-bottom:1px solid #acc6de}
 .revokedata_list_box li span{
     display:block;
     height:25px;
     width:87px;
-    border-right:1px solid #8b9299;
+    border-right:1px solid #acc6de;
     line-height:25px;
     font-size:12px;
     text-align:center;   
@@ -95,8 +127,8 @@
     width:31px;
     background:url(./img/revokedata_list_box_span.png) no-repeat;
     background-size:10px 10px;
-    background-position-x:19px;
-    background-position-y:12px;
+    background-position-x:17px;
+    background-position-y:11px;
     display:block;
 }
 .revokedata_last{height:171px;}
