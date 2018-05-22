@@ -182,7 +182,7 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
 }
 .main-container{
     height: 100%;
-    /* position: relative; */
+    position: relative;
     background-image: url(img/main-container.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;

@@ -5,7 +5,7 @@
 
 (function(window) {
     var t = {
-        
+        ui:{},    //ui组件对象
     };    //工具类对象
 
     /**
@@ -32,6 +32,20 @@
         }
         return date;
     }
+
+    //ui方法实现方式
+    /**
+     * 界面弹出层工厂方法
+     * @param name 弹出层名称
+     * @param object 弹出层定义对象
+     */
+    t.ui.LayerFactory = function (name, object) {
+
+    }
+    t.ui.ask = function ask() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
+    t.ui.error = function error() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
+    t.ui.warn = function warn() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
+    t.ui.success = function success() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
 
     window.tool = t;
 })(window);
