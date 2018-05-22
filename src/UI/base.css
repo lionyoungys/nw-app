@@ -16,6 +16,7 @@
     background: url(img/t-ui-layer-title.png) left center;
     font-size: 14px;
     color: #15458d;
+    font-weight: bold;
     overflow: hidden;
 }
 .ui-window>div:first-child>i{
