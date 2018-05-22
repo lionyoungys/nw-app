@@ -8,7 +8,8 @@ export const topMenu = [
             {value:'欠款补交', view:null},
             {value:'交期预警', view:null},
             {value:'撤单处理', view:null},
-            {value:'赔付', view:null}
+            {value:'赔付', view:null},
+            {value:'demo', view:'demo'}
         ]
     },
     {

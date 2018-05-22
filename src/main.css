@@ -206,6 +206,8 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
 .e-btn[readonly]:hover{background: url(img/e-btn-readonly.png)}
 
 /* 工具类ui样式部分 */
+
+/* 弹框样式 */
 .t-ui-layer{
     position: fixed;
     top: 0;left: 0;
@@ -220,7 +222,6 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
     border: 1px solid #8899ad;
     border-radius: 3px;
     overflow: hidden;
-    position: absolute;
 }
 .t-ui-layer-box>:first-child{
     height: 36px;
@@ -237,11 +238,23 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
     height: 15px;
     margin: 14px 12px 0 0;
     background: url(img/t-ui-layer-close.png);
+    cursor: default;
 }
 .t-ui-layer-box>:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}
-.t-ui-layer-box>:nth-child(2){
-    min-height: 77px;
+.t-ui-layer-box>:nth-child(2){min-height: 77px;background: #f9fcff}
+.t-ui-layer-box>:nth-child(2)>:first-child{
+    height: 77px;
+    line-height: 77px;
+    text-align: center;
+    font-size: 12px;
+    color: #15428b;
+    padding: 0 36px;
 }
+.t-ui-layer-box>:nth-child(2)>:nth-child(2){
+    padding: 0 36px 18px;
+    font-size: 12px;
+}
+.t-ui-layer-box>:nth-child(2)>:first-child>img{vertical-align: middle;margin-right: 12px}
 .t-ui-layer-box>:last-child{
     height: 40px;
     border-top: 1px solid #8899ad;
