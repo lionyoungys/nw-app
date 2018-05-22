@@ -11,6 +11,11 @@ export default class extends Component {
     }
 
     render() {
-        return (<h1>这是收衣服界面</h1>);
+        return (
+            <div>
+                <button type='button' className='e-btn'>确认</button>
+                <button type='button' className='e-btn' readOnly>取消</button>
+            </div>
+        );
     }
 }

@@ -33,19 +33,54 @@
         return date;
     }
 
-    //ui方法实现方式
+    //ui对象实现
+
+    /**
+     * DOM节点创建方法
+     * @param nodeName 节点名称
+     * @param className 类名
+     * @param inner 节点内容
+     */
+    t.ui.c = function (nodeName, className, inner) {
+        var node = document.createElement(nodeName);
+        if ('string' === typeof className) node.className = className;
+        if ('string' === typeof inner || 'number' === typeof inner) node.innerHTML = inner;
+        return node
+    }
+
     /**
      * 界面弹出层工厂方法
      * @param name 弹出层名称
      * @param object 弹出层定义对象
      */
     t.ui.LayerFactory = function (name, object) {
+        var bg = this.c('div', 't-ui-layer');
+        var layer = this.c('div', 't-ui-layer-box');
+        var title = this.c('div', null, 'string' === typeof object.title ? object.title : '提示');
+        var close = this.c('i');
+        var content = this.c('div');
+        var bottom = this.c('div');
+        bg.appendChild(layer);    //追加节点
+        layer.appendChild(title);
+        title.appendChild(close);
+        layer.appendChild(content);
+        layer.appendChild(bottom);
 
+        if ('ask' === name) {
+
+        } else if ('error' === name) {
+
+        } else if ('warn' === name) {
+
+        } else {
+
+        }
+        document.body.appendChild(bg);
     }
-    t.ui.ask = function ask() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
-    t.ui.error = function error() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
-    t.ui.warn = function warn() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
-    t.ui.success = function success() {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0])}
+    t.ui.ask = function ask(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
+    t.ui.error = function error(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
+    t.ui.warn = function warn(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
+    t.ui.success = function success(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
 
     window.tool = t;
 })(window);

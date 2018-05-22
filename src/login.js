@@ -205,4 +205,4 @@ class Main extends Component {
         );
     }
 }
-ReactDOM.render(<Main/>, document.getElementById('root'));
+ReactDOM.render(<Login/>, document.getElementById('root'));
