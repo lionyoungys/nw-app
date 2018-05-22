@@ -1,6 +1,7 @@
 *{margin: 0;padding: 0}
-html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-height: 737px;height: 100%;width: 100%}
-#root, #main{width: 100%;height: 100%}
+html{min-width: 1024px;min-height: 737px}
+body{font-family: 微软雅黑,serif;font-size: 16px;line-height:1.5}
+html, body, #root, #main{width: 100%;height: 100%}
 #main{    /* 主界面样式 */
     position: relative;
     -webkit-box-sizing: border-box;
@@ -237,7 +238,7 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
     float: right;
     width: 15px;
     height: 15px;
-    margin: 14px 12px 0 0;
+    margin: 10px 12px 0 0;
     background: url(img/t-ui-layer-close.png);
     cursor: default;
 }
@@ -261,6 +262,6 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
     border-top: 1px solid #8899ad;
     background: #dae6f5;
     padding-right: 12px;
-    line-height: 40px;
+    line-height: 36px;
     text-align: right;
 }
