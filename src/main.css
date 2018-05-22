@@ -219,8 +219,9 @@ html,body{font-family: 微软雅黑,serif;font-size: 16px;min-width: 1024px;min-
 .t-ui-layer-box{
     min-width: 226px;
     min-height: 154px;
+    background: #fff;
     border: 1px solid #8899ad;
-    border-radius: 3px;
+    border-radius: 8px;
     overflow: hidden;
 }
 .t-ui-layer-box>:first-child{
