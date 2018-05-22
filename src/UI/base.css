@@ -1,0 +1,29 @@
+.ui-window{
+    width: 900px;
+    height: 624px;
+    background: #fff;
+    position: absolute;
+    top: 50%;left: 50%;
+    margin: -312px 0 0 -450px;
+    border: 1px solid #8899ad;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ui-window>div:first-child{
+    height: 36px;
+    line-height: 36px;
+    padding-left: 16px;
+    background: url(img/t-ui-layer-title.png) left center;
+    font-size: 14px;
+    color: #15458d;
+    overflow: hidden;
+}
+.ui-window>div:first-child>i{
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin: 10px 12px 0 0;
+    background: url(img/t-ui-layer-close.png);
+    cursor: default;
+}
+.ui-window>div:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}

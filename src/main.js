@@ -10,6 +10,7 @@ import event from './Event';
 import {topMenu, nav, leftMenu} from './Menu';
 import './Api';
 import './main.css';
+import './UI/base.css';
 
 let win = nw.Window.get();
 win.on('loaded', win.show);    //防止窗口渲染未完成时展示

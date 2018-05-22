@@ -3,9 +3,10 @@
  * @author Edwin Young
  */
 
-import React, {Component} from 'react';
+import React from 'react';
+import Window from '../UI/Window';
 
-export default class extends Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -44,7 +45,7 @@ export default class extends Component {
     }
     render() {
         return (
-            <div>
+            <Window title='测试窗口' onClose={this.props.closeView}>
                 正常按钮样式：<button type='button' className='e-btn'>确认</button>
                 <br/>
                 禁用按钮样式：<button type='button' className='e-btn' readOnly>取消</button>
@@ -57,7 +58,7 @@ export default class extends Component {
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>
                 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
-            </div>
+            </Window>
         );
     }
 }
