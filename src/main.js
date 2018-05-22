@@ -32,7 +32,7 @@ class Main extends Component {
             view:null,    //视图路由名称
             param:null    //视图路由携带参数
         }
-        this.changeView = this.changeView.bind(this);
+        this.changeView = this.changeView.bind(this);    //界面跳转方法
     }
     
     componentDidMount() {
@@ -69,8 +69,8 @@ class Main extends Component {
         } else {
             null !== view && this.state.view !== view && this.setState({view:view,param:param});
         }
-        
     }
+
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
 
@@ -92,7 +92,7 @@ class Main extends Component {
                 {/* 界面左侧菜单栏 */}
                 <MainLeftMenu changeView={this.changeView}/>
                 <div className='main-container'>
-                    {null === View ? null : <View changeView={this.changeView}/>}
+                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})}/>}
                 </div>
             </div>
         );

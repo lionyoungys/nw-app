@@ -38,7 +38,11 @@ changeView(obj);
         参数方式2
             支持dataset
             data-view='界面路由名称' data-param='界面携带参数'
-            
+
+closeView();    
+    关闭界面方法：
+
+
 src/Module下界面组件的继承属性
 param:携带参数
 
