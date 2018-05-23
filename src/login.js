@@ -98,9 +98,18 @@ class Login extends Component {
         super(props);
         this.state = {remember:false,merchant:'',name:'',passwd:''}
         this.remember = this.remember.bind(this);
+        this.login = this.login.bind(this);
     }
     remember() {
         this.setState({remember:!this.state.remember});
+    }
+    login() {
+        //3次密码错误提示
+        tool.ui.error({msg:'请5分钟后再重试',info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close) => {
+            close();    //点击按钮或关闭符号时关闭弹窗
+        }});
+        //nw.Window.open('main.html', nw.App.manifest.mainWindow);
+        //win.close();
     }
 
     render() {
@@ -124,7 +133,7 @@ class Login extends Component {
                         <span className={this.state.remember ? 'checked' : null} onClick={this.remember}>记住密码</span>
                         <span onClick={this.props.toggleStep} data-step='3'>找回密码</span>
                     </div>
-                    <div style={{paddingLeft:'10px'}}><button type='button'>登陆</button></div>
+                    <div style={{paddingLeft:'10px'}}><button type='button' onClick={this.login}>登陆</button></div>
                 </div>
             </div>
         );
