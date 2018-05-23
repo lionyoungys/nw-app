@@ -1,0 +1,119 @@
+.memberinfoupdate{width:100%;height:100%;background-color:rgba(0,0,0,.6);position:fixed;top:0;left:0;z-index:10}
+.memberinfoupdate_box{
+    width:646px;
+    height:574px;
+    background:#e3effd;
+    position:absolute;
+    z-index:11;
+    left:50%;
+    margin-left:-323px;
+    margin-top:-287px;
+    top:50%;
+    border-radius:8px;
+}
+.memberinfoupdate_title{
+    width:100%;
+    height:37px;
+    background:url(./img/revokedata_title.png) repeat-x;
+    line-height:37px;
+    font-size:14px;
+    font-weight:bold;
+    text-indent:12px;
+    color:#15458d;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    position:relative;
+}
+.memberinfoupdate_close{
+    width:15px;
+    height:15px;
+    position:absolute;
+    right:12px;top:12px;
+    background:url(./img/revokedata_close_all.png);
+    cursor: pointer;
+    background-size:15px 15px;
+}
+.memberinfoupdate_border{
+   
+    width: 625px;
+    height: 507px;
+    background-color: #eef4fb;
+    border: 1px solid #8db2e3;
+    margin: 0 auto;
+    margin-top: 7px;
+}
+span{
+
+    font-size: 12px;
+    color:#063781; 
+}
+.memberinfoupdate_text{
+    width: 120px;
+    text-align: right;
+}
+.inputborder{
+    width: 151px;
+    height: 21px;
+    margin-left: 9px;
+    outline: none;
+    border:1px solid #aec7db;
+  
+}
+.memberinfoupdate_leftdirection{
+    float: left;
+    width: 261px;
+    margin-top: 10px;
+}
+.memberinfoupdate_leftdirection span{
+    width: 80px;
+    text-align: right;
+    display: inline-block; 
+}
+.memberinfoupdate_leftdirection input{
+    display: inline-block; 
+}
+.memberinfoupdate_rightdirection{
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.inputlongborder{
+    width: 503px;
+    height: 21px;
+    margin-left: 9px;
+    outline: none;
+    border:1px solid #aec7db;
+}
+.memberinfoupdate_longdirection{
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+
+}
+.memberinfoupdate_customerdirection{
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.memberinfoupdate_customerdirection span{
+    width: 80px;
+    text-align: right;
+    display: inline-block; 
+}
+.inputthreeborder{
+    width: 90px;
+    height: 21px;
+    margin-left: 9px;
+    outline: none;
+    border:1px solid #aec7db;
+}
+.memberinfoupdate_button{
+    display: inline-block;
+    margin-top: 32px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.memberinfoupdate_button button{
+    margin-left: 50px;
+}
