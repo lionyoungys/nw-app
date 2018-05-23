@@ -62,3 +62,39 @@
 }
 .ui-table.border tr:last-child{border-bottom: 1px solid #acc6de}
 .ui-table>thead>tr{background: #89b0d4;color: #fff;font-weight: bold}
+
+span{
+    margin-top: 16px;
+    width: 85px;
+    font-size: 14px;
+    display: inline-block;
+    text-align: right;
+    color: black;
+
+}
+input{
+    margin-top: 16px;
+    width: 146px;
+    height: 20px;
+    outline: none;
+    border:1px solid #c4c2c2;  
+}
+.margintop {
+    margin-top: 27px;
+}
+.passlimit{
+   color: red;
+   width: 77%;
+   font-size: 12px;
+   margin-top: 0px;
+   margin-bottom: 0px;
+   float: left;
+}
+.jurisdiction{
+    margin-top: 0px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:128px;
+    background-position-y:0; 
+}

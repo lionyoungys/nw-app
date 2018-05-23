@@ -24,10 +24,10 @@ export default class extends Component {
             </div>
             <div>
         <span className='memberinfoupdate_leftdirection'>
-           <span>卡类型:</span><input type='text' className='inputborder'/>
+           <span>卡类型:</span><input type='text' className='inputselectborder'/>
            </span>
            <span className='memberinfoupdate_rightdirection'>
-           <span>售卡日期:</span><input type='text' className='inputborder'/>
+           <span>售卡日期:</span><input type='text' className='inputselectborder'/>
            </span>
         </div>
         <div>
@@ -35,7 +35,7 @@ export default class extends Component {
            <span>顾客姓名:</span><input type='text' className='inputborder'/>
         </span>
         <span className='memberinfoupdate_rightdirection'>
-           <span>性别:</span><input type='text' className='inputborder'/>
+           <span>性别:</span><input type='text' className='inputselectborder'/>
            </span>
         </div>
         <div>
@@ -60,16 +60,16 @@ export default class extends Component {
         <div>
             <span className='memberinfoupdate_leftdirection'>
            <span>使用区域:</span>
-           <input type='text' className='inputborder'/>
+           <input type='text' className='inputselectborder'/>
            </span>
            <span className='memberinfoupdate_rightdirection'>
-           <span>客人类别:</span><input type='text' className='inputborder'/>
+           <span>客人类别:</span><input type='text' className='inputselectborder'/>
            </span>
             </div>
             <div>
             <span className='memberinfoupdate_leftdirection'>
            <span>顾客生日:</span>
-           <input type='text' className='inputborder'/>
+           <input type='text' className='inputselectborder'/>
            </span>
            <span className='memberinfoupdate_rightdirection'>
            <span>原折扣:</span><input type='text' className='inputborder'/>
@@ -127,9 +127,7 @@ export default class extends Component {
                 <button type='button' className='e-btn'>读卡</button>
                 <button type='button' className='e-btn' readOnly>修改</button>
                 <button type='button' className='e-btn' readOnly>改卡密码</button>
-                <button type='button' className='e-btn'>退出</button>
-               
-            
+                <button type='button' className='e-btn' onClick={this.props.closeView}>退出</button>
             </div>
         </div>
         </div>

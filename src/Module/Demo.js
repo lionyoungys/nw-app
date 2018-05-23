@@ -8,7 +8,6 @@ import Window from '../UI/Window';
 import {Table} from '../UI/Table';
 import LayerBox from '../Ui/LayerBox';
 
-
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -74,8 +73,27 @@ export default class extends React.Component {
                 {
                     this.state.show
                     &&
+                   
                     <LayerBox title='测试标题' onClose={() => this.setState({show:false})} onClick={() => this.setState({show:false})}>
-                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                        {
+                            <div>
+                            <div>
+                            <span className='margintop' >姓名：</span><input className='margintop' type='text'/>
+                            </div>
+                             <div>
+                             <span>手机号：</span><input type='text'/>
+                             </div>
+                              <div>
+                              <span>密码：</span><input type='text'/>
+                              </div>
+                              <div>
+                                  <span className='passlimit'>密码必须6位以上，且不能为纯数字</span>
+                                  </div>
+                               <div >
+                               <span className='jurisdiction'>权限：</span><input type='text' className='jurisdiction'/>
+                               </div>
+                               </div>
+                       /* 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
                         <br/>
                         自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
                         <br/>
@@ -87,8 +105,12 @@ export default class extends React.Component {
                         <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
                         <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
                         <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>  */}
+                     
+                        
+                       
                     </LayerBox>
+                   
                 }
                 {
                     this.state.show2
