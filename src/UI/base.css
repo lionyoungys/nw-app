@@ -30,8 +30,9 @@
 }
 .ui-window>div:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}
 /* 表格样式 */
-.ui-table.full-table{width: 100%}
+.ui-table.ui-full-table{width: 100%}
 .ui-table tr{height:24px;line-height: 24px;font-size: 12px;text-align: center}
+.ui-table th, .ui-table td{min-width: 85px}
 .ui-table.border td,
 .ui-table.border th{
     border: 1px solid #acc6de;

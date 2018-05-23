@@ -21,6 +21,7 @@ export const topMenu = [
             {value:'营业日报', view:null},
             {value:'前台情况', view:null},
             {value:'衣物统计', view:null},
+            {value:'充值统计', view:'recharge_up'},
             {value:'会员消费查询', view:null},
             {value:'未付款统计', view:null}
         ]

@@ -5,6 +5,7 @@
 
 import React from 'react';
 import Window from '../UI/Window';
+import {Table} from '../UI/Table';
 
 export default class extends React.Component {
     constructor(props) {
@@ -58,6 +59,7 @@ export default class extends React.Component {
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>
                 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                <Table border={true} full={true}/>
             </Window>
         );
     }
