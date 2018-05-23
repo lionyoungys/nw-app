@@ -12,7 +12,7 @@ import LayerBox from '../Ui/LayerBox';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show:false}
+        this.state = {show:false, show2:false}
     }
     ask() {
         tool.ui.ask({callback:(close, event) => {
@@ -69,6 +69,7 @@ export default class extends React.Component {
                 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
                 <br/>
                 弹出层容器<button type='button' className='e-btn' onClick={() => this.setState({show:true})}>容器弹框</button>
+                弹出层容器2<button type='button' className='e-btn' onClick={() => this.setState({show2:true})}>容器取消</button>
                 <Table border={true} full={true}/>
                 {
                     this.state.show
@@ -88,6 +89,17 @@ export default class extends React.Component {
                         <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
                         <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
                     </LayerBox>
+                }
+                {
+                    this.state.show2
+                    &&
+                    <LayerBox
+                        title='测试标题'
+                        onClose={() => this.setState({show2:false})}
+                        onClick={() => this.setState({show2:false})}
+                        onCancel={() => this.setState({show2:false})}
+                        hasCancel={true}
+                    ></LayerBox>
                 }
            </Window>
         );

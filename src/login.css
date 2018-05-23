@@ -161,6 +161,18 @@ label{font-size: 16px}
 }
 .back-to-login{cursor: pointer;margin-left: 362px}
 .back-to-login:hover{color: #31648d}
+/* 修改初始密码样式 */
+.update-passwd-row:first-of-type{padding-top: 30px}
+.update-passwd-row>label{
+    display: inline-block;
+    width: 106px;
+    text-align: right;
+    font-size: 14px;
+}
+.update-passwd-row>input{
+    width: 170px;
+    height: 24px;
+}
 
 /* 弹框样式 */
 .t-ui-layer{
@@ -231,3 +243,13 @@ label{font-size: 16px}
     background: url(img/e-btn.png);
 }
 .e-btn:hover{background: url(img/e-btn-hover.png)}
+/* 弹出层遮罩样式 */
+.e-layer-bg{
+    background: rgba(0,0,0,.6);
+    position: fixed;
+    top: 0;left: 0;
+    z-index: 100000;
+    width: 100%;
+    height:100%;
+}
+

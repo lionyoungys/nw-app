@@ -4,8 +4,10 @@
  */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import LayerBox from './UI/LayerBox';
 import './Api';
 import './login.css';
+import './UI/base.css';
 
 let win = nw.Window.get();
 win.on('loaded', win.show);    //防止窗口渲染未完成时展示
@@ -96,20 +98,32 @@ class Download extends Component {
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {remember:false,merchant:'',name:'',passwd:''}
+        this.state = {remember:false,merchant:'',name:'',passwd:'',show:false,init_passwd:'',init_passwd2:''}
         this.remember = this.remember.bind(this);
         this.login = this.login.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     remember() {
         this.setState({remember:!this.state.remember});
     }
     login() {
+        this.setState({show:true});
         //3次密码错误提示
-        tool.ui.error({msg:'请5分钟后再重试',info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close) => {
-            close();    //点击按钮或关闭符号时关闭弹窗
-        }});
+        // tool.ui.error({msg:'请5分钟后再重试',info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close) => {
+        //     close();    //点击按钮或关闭符号时关闭弹窗
+        // }});
         //nw.Window.open('main.html', nw.App.manifest.mainWindow);
         //win.close();
+    }
+    handleClick() {
+        console.log('##########################');
+        this.setState({show:false});
+        if (this.state.init_passwd.length < 6) {
+
+        }
+        if (!isNaN(this.state.init_passwd)) {
+
+        }
     }
 
     render() {
@@ -135,6 +149,27 @@ class Login extends Component {
                     </div>
                     <div style={{paddingLeft:'10px'}}><button type='button' onClick={this.login}>登陆</button></div>
                 </div>
+                {
+                    this.state.show
+                    &&
+                    <LayerBox
+                        hasCancel={true}
+                        title='修改初始密码'
+                        onClose={() => this.setState({show:false})}
+                        onCancel={() => this.setState({show:false})}
+                        onClick={this.handleClick}
+                    >
+                        <div className='update-passwd-row'>
+                            <label htmlFor='init_passwd'>新密码：</label>
+                            <input type='password' id='init_passwd' className='login-input' value={this.state.init_passwd} onChange={e => this.setState({init_passwd:e.target.value})}/>
+                            <div style={{marginLeft:'106px',fontSize:'12px',color:'#ff0000'}}>6位以上，且不能为纯数字</div>
+                        </div>
+                        <div className='update-passwd-row'>
+                            <label htmlFor='init_passwd2'>确认密码：</label>
+                            <input type='password' id='init_passwd2' className='login-input' value={this.state.init_passwd2} onChange={e => this.setState({init_passwd2:e.target.value})}/>
+                        </div>
+                    </LayerBox>
+                }
             </div>
         );
     }
