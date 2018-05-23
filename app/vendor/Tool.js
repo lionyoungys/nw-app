@@ -54,10 +54,10 @@
     t.ui.center = function (node) {
         if (node instanceof Node) {
             node.style.position = 'absolute';
+            node.style.marginTop = -node.offsetHeight / 2 + 'px';
+            node.style.marginLeft = -node.offsetWidth / 2 + 'px';
             node.style.top = '50%';
             node.style.left = '50%';
-            node.style.marginTop = '-' + (node.offsetHeight / 2) + 'px';
-            node.style.marginLeft = '-' + (node.offsetWidth / 2) + 'px';
         }
     }
 

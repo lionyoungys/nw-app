@@ -6,10 +6,13 @@
 import React from 'react';
 import Window from '../UI/Window';
 import {Table} from '../UI/Table';
+import LayerBox from '../Ui/LayerBox';
+
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {show:false}
     }
     ask() {
         tool.ui.ask({callback:(close, event) => {
@@ -44,6 +47,11 @@ export default class extends React.Component {
             close();
         }}); 
     }
+    btn() {
+        tool.ui.success({callback:(close, event) => {
+            close();
+        }}); 
+    }
     render() {
         return (
             <Window title='测试窗口' onClose={this.props.closeView}>
@@ -59,8 +67,29 @@ export default class extends React.Component {
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>
                 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                <br/>
+                弹出层容器<button type='button' className='e-btn' onClick={() => this.setState({show:true})}>容器弹框</button>
                 <Table border={true} full={true}/>
-            </Window>
+                {
+                    this.state.show
+                    &&
+                    <LayerBox title='测试标题' onClose={() => this.setState({show:false})} onClick={() => this.setState({show:false})}>
+                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                        <br/>
+                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                        <br/>
+                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                        <br/>
+                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                        <br/>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                    </LayerBox>
+                }
+           </Window>
         );
     }
 }

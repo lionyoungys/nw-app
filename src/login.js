@@ -94,9 +94,9 @@ class Login extends Component {
     render() {
         return (
             <div className='login'>
-                <div>速洗达洗衣管理系统</div><div>（商家版）</div>
-                <div>
-                    <div><label htmlFor='name'>用户名：</label><input type='text' id='name'/></div>
+                <div className='login-edition'><div>速洗达洗衣管理系统</div><div>（商家版）</div></div>
+                <div className='login-box'>
+                    <div><label htmlFor='name'>用户名：</label><input type='text' id='name' className=''/></div>
                     <div style={{padding:'21px 0 25px'}}><label htmlFor='passwd'>密&emsp;码：</label><input type='password' id='passwd'/></div>
                     <div></div>
                     <div style={{padding:'25px 0 24px 9px'}}></div>
