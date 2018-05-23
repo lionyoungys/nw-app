@@ -2,7 +2,19 @@
 html{min-width: 600px;min-height: 450px}
 body{font-family: 微软雅黑,serif;font-size: 14px}
 html, body, #root, #login{width: 100%;height: 100%}
-button{border: none;outline: none}
+button{
+    border: none;
+    outline: none;
+    height: 34px;
+    line-height: 34px;
+    width: 244px;
+    text-align: center;
+    color: #fff;
+    background: #3596e3;
+    font-size: 16px;
+    border-radius: 5px;
+}
+label{font-size: 16px}
 #login{position: relative}
 /* 通用样式 */
 .login-input{
@@ -113,14 +125,39 @@ button{border: none;outline: none}
 }
 .login-complete>button{
     float: right;
-    border-radius:3px;
     height: 30px;
+    line-height: 30px;
+    width: auto;
     padding: 0 18px;
     font-size: 14px;
-    color: #fff;
     font-weight: normal;
-    background: #3596e3;
 }
 /* 登陆界面窗口 */
-.login{background: url(img/login.png);height: 100%}
-.login-box{padding: 163px 0 0 158px}
+.login, .passwd{background: url(img/login.png);height: 100%}
+.login-box{padding: 163px 0 0 168px}
+.login-passwd-handle{padding:12px 0 19px 2px;cursor: pointer}
+.login-passwd-handle>span{line-height: 18px}
+.login-passwd-handle>span:first-child{
+    padding-left: 26px;
+    background: url(img/login-checkbox.png) no-repeat left center;
+    margin-right: 117px;
+}
+.login-passwd-handle>span.checked:first-child{background: url(img/login-checkbox-checked.png) no-repeat left center}
+.login-box>.login-row{margin-bottom: 14px}
+/* 找回密码界面 */
+.passwd-box{padding-top: 149px}
+.passwd-box label{
+    display: inline-block;
+    width: 242px;
+    text-align: right;
+}
+.sms{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #31648d;
+    margin-left: 12px;
+    cursor: pointer;
+}
+.back-to-login{cursor: pointer;margin-left: 362px}
+.back-to-login:hover{color: #31648d}
