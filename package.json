@@ -2,12 +2,10 @@
   "author": "Edwin Young",
   "license": "MIT",
   "scripts": {
-    "start": "webpack && F:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",
-    "build": "F:/nwjs-v0.14.7-win-ia32/nw ./app",
-    "fyr_start" : "webpack && E:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",
-    "fyr_build" : "E:/nwJs/nwjs-v0.14.7-win-x64/nw ./app",
-    "wj_start" : "webpack && C:/Users/wangjun/Desktop/nwjs-sdk-v0.14.7-win-x64/nw ./app",
-    "wj_build" : "C:/Users/wangjun/Desktop/nwjs-v0.14.7-win-x64/nw ./app"
+    "start": "webpack && E:/nwjs-sdk-v0.14.7-win-x64/nw ./app",
+    "build": "E:/nwjs-v0.14.7-win-x64/nw ./app",
+    "fyr_start" : "webpack && E:/nwjs-sdk-v0.14.7-win-x64/nw ./app",
+    "fyr_build" : "E:/nwjs-v0.14.7-win-x64/nw ./app"
   },
   "dependencies": {
     "axios": "^0.18.0",

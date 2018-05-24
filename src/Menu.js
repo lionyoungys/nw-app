@@ -5,7 +5,7 @@ export const topMenu = [
         options:[
             {value:'收衣', view:'clothes'},
             {value:'取衣', view:'take_clothes'},
-            {value:'欠款补交', view:null},
+            { value: '欠款补交', view:'add_group'},
             {value:'交期预警', view:null},
             {value:'撤单处理', view:null},
             {value:'赔付', view:null},
@@ -65,7 +65,7 @@ export const topMenu = [
             {value:'门店信息', view:null},
             {value:'我的网店', view:null},
             {value:'商品与分类', view:null},
-            {value:'员工管理', view:null},
+            {value:'员工管理', view:'staff_management'},
             {value:'卡券中心', view:null},
             {value:'优惠活动', view:null},
             {value:'密码与安全', view:null},

@@ -9,7 +9,8 @@ export default class extends Component {
         super(props);           
     }; 
     render() {
-        return( <div className="memberinfoupdate">
+        return(
+        <div className="memberinfoupdate">
         <div className='memberinfoupdate_box'>
         <div className="memberinfoupdate_title">会员信息修改<span className="memberinfoupdate_close" onClick={this.props.closeView}></span></div>
         <div className="memberinfoupdate_border">

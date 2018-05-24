@@ -1,0 +1,90 @@
+
+#addGroup-srarch{
+
+    width: 100%;
+    height: 61px;
+    /* background-color: red; */
+    line-height: 61px;
+}
+#addGroup-srarch span{
+
+    color: black;
+    margin:0 2px 0 20px;
+    font-size: 14px;
+}
+#addGroup-srarch input{
+
+    box-sizing:border-box; 
+    height: 24px;
+    width: 153px;
+    padding-left: 5px;
+    margin-right: 17px;
+    border: 1px solid #c2c2c2;
+}
+#addGroup-content{
+    background-color: red;
+    height: 484px;
+    margin: 0 9px;
+}
+.addGroup-content-cell{
+    background-color: #abd0ff;
+    box-sizing: border-box;
+    height: 100%;
+    width: 118px;
+    border: 1px solid #666666;
+    
+}
+.addGroup-content-cell-content{
+
+    background-color: white;
+    height: 477px;
+    margin: 1px 5px 5px;
+    overflow-y: auto;
+}
+.addGroup-content-cell-content ul li{
+    
+    background-color: white;
+    padding-left: 6px;
+    list-style: none;
+}
+.addGroup-content-cell-content input{  
+
+    height: 15px;
+    width: 15px;
+    vertical-align:middle;
+}
+.addGroup-content-cell-content  p{ 
+    display: inline-block;  
+    margin: 0 2px;
+    width: 60px;
+    height: 31px;
+    line-height: 31px;
+}
+#addGroup-content .addGroup-content-cell-content-head{
+    height: 31px;
+    background-color:#abd0ff;
+
+}
+#addGroup-content .addGroup-content-cell-content-head p{
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #15248d;
+
+}
+#addGroup-content .addGroup-content-cell-content-normal{
+
+    height: 28px;
+    color: black;
+    font-size: 12px;
+}
+#addGroup-content .addGroup-content-cell-content-normal p{
+
+    font-size: 12px;
+    color: black;
+
+}
+
+
+
+

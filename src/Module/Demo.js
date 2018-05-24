@@ -76,21 +76,21 @@ export default class extends React.Component {
                    
                     <LayerBox title='测试标题' onClose={() => this.setState({show:false})} onClick={() => this.setState({show:false})}>
                         {
-                            <div>
-                            <div>
-                            <span className='margintop' >姓名：</span><input className='margintop' type='text'/>
+                            <div className='ui-table'>
+                            <div className='margintop'>
+                            <span >姓名:</span><input  type='text'/>
                             </div>
                              <div>
-                             <span>手机号：</span><input type='text'/>
+                             <span>手机号:</span><input type='text'/>
                              </div>
                               <div>
-                              <span>密码：</span><input type='text'/>
+                              <span>密码:</span><input type='text'/>
                               </div>
                               <div>
                                   <span className='passlimit'>密码必须6位以上，且不能为纯数字</span>
                                   </div>
-                               <div >
-                               <span className='jurisdiction'>权限：</span><input type='text' className='jurisdiction'/>
+                               <div  className='jurisdiction'>
+                               <span >权限:</span><input type='text' />
                                </div>
                                </div>
                        /* 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>

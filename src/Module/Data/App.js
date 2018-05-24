@@ -16,7 +16,7 @@ const data = [
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {address:null, data:[]};
+        this.state = {address:null, data:[], error:false};
         this.timeId = null;
         this.handleClick = this.handleClick.bind(this);
     }
@@ -28,7 +28,10 @@ export default class extends Component {
             for (let i = 0;i < len;++i) {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
                     this.state.data.push({'name':data[i], data:tableData});
-                });
+                }).catch(error => {
+                    console.log(error);
+                    this.setState({error:true});
+                });;
             }
             if (null === this.timeId) {
                 this.timeId = setInterval(() => {
@@ -38,6 +41,7 @@ export default class extends Component {
                         this.timeId = null;
                         let dataFile = path.dirname(process.execPath) + '/data.txt';
                         fs.writeFileSync(dataFile, JSON.stringify(this.state.data), 'utf8')
+                        this.setState({data:[]});
                         console.log(dataFile.blob(fs.readFileSync(dataFile)));
                     }
                 }, 1000);

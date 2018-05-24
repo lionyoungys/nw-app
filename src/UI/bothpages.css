@@ -43,7 +43,7 @@
 .bothpages_list div b{color:#ff0000;font-size:14px;margin-left:10px}
 .bothpages_list div:nth-child(1){margin-right:41px}
 .bothpages_list div:nth-child(2){margin-right:75px}
-.bothpages_count{width:875px;border:1px solid #8db2e3;margin:auto;height:auto;}
+.bothpages_count{width:875px;border:1px solid #8db2e3;margin:auto;height:auto;clear: both;}
 .bothpages_count_title{width:875px;height:25px;line-height:25px;border-bottom:1px solid #cccccc;background:#89b0d4;}
 .bothpages_count_title span{display:block;width:200px;height:25px;text-align:center;color:#fff;font-size:14px;float:left}
 .bothpages_count_title span:nth-child(1){
@@ -68,5 +68,11 @@
     text-align:center;
     height:23px;
     line-height:23px;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
 }
 .bothpages_count_list tr td:nth-child(1){width:31px;height:23px;color:#999999;font-size:12px;border-right:1px solid #acc6de;box-sizing:border-box;}
+.bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;}
+.bothpages_count_list tr td i:first-child{color:#063ff7;margin-left:60px;float:left}
+.bothpages_count_list tr td i:last-child{color:#ff0000;margin-right:60px;float:right}
