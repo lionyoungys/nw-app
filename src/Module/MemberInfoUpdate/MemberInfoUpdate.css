@@ -152,3 +152,42 @@ span{
     outline: none;
     border: 1px solid #6f9ec2;
   }
+  .memberinfoupdate_inputleftline{
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .memberinfoupdate_inputleftline span{
+    width: 80px;
+    text-align: right;
+    display: inline-block; 
+}
+  .memberinfoupdate_inputrightline {
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.memberinfoupdate_lefttopdirection{
+    float: left;
+    width: 261px;
+    margin-top: 45px;
+}
+.memberinfoupdate_lefttopdirection span{
+    width: 80px;
+    text-align: right;
+    display: inline-block; 
+}
+.memberinfoupdate_rightbutton{
+    margin-top: 427px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 40%;
+    float: right;
+    position: absolute;
+    right: 0;
+
+}
+.memberinfoupdate_rightbutton button{
+    margin-left: 50px;
+   
+}

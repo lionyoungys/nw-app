@@ -63,44 +63,7 @@
 .ui-table.border tr:last-child{border-bottom: 1px solid #acc6de}
 .ui-table>thead>tr{background: #89b0d4;color: #fff;font-weight: bold}
 
-.ui-table span{
-    margin-top: 6px;
-    width: 85px;
-    height: 14px;
-    display: inline-block;
-    text-align: right;
-    color: black;
 
-}
-.ui-table span.passlimit{
-    color: red;
-    width: 78%;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    float: left;
- }
-.ui-table input{
-    margin-left: 8px;
-    margin-top: 16px;
-    width: 146px;
-    height: 20px;
-    outline: none;
-    border:1px solid #c4c2c2;  
-}
-.ui-table .jurisdiction input{
-    margin-top: 0px;
-    text-indent:4px;
-    cursor: pointer;
-    background:url(./img/select.png) no-repeat;
-    background-size:18px 24px;
-    background-position: right center; 
-}
-.ui-table .margintop{
-    margin-top: 11px;
-}
-.ui-table .jurisdiction{
-    margin-top: 0px;
-}
 
 /* 附带下拉框的搜索框样式 */
 .ui-select-search{
@@ -184,13 +147,4 @@
 .ui-select-search-grey>button{
     background: url(img/ui-search-grey.png) no-repeat center center;
     border-color: #c2c2c2;
-}
-.ui-table .mobilephone input{
-    margin-left: 8px;
-    margin-top: 16px;
-    width: 146px;
-    height: 20px;
-    outline: none;
-    border:1px solid #c4c2c2;  
-    background-color: #ebebeb
 }

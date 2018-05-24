@@ -28,7 +28,7 @@ export default class extends Component {
                    
                     <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={() => this.setState({show:false})}>
                         {
-                            <div className='ui-table'>
+                            <div className='addstaffborder'>
                             <div className='margintop'>
                             <span >姓名:</span><input  type='text'/>
                             </div>
@@ -77,15 +77,15 @@ export default class extends Component {
                    
                     <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={() => this.setState({show1:false})}>
                         {
-                            <div className='ui-table'>
+                            <div className='updatestaffborder'>
                             <div className='margintop'>
                             <span >姓名:</span><input  type='text'/>
                             </div>
                              <div className='mobilephone'>
-                             <span>手机号:</span><input type='text'/><span>修改手机号</span>
+                             <span>手机号:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改手机号</span>
                              </div>
                               <div>
-                              <span>密码:</span><input type='text'/><span>修改密码</span>
+                              <span>密码:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改密码</span>
                               </div>
                                <div >
                                <span >权限:</span><input type='text' />

@@ -6,7 +6,7 @@ export const topMenu = [
             {value:'收衣', view:'clothes'},
             {value:'取衣', view:'take_clothes'},
             { value: '欠款补交', view:'add_group'},
-            {value:'交期预警', view:null},
+            {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
             {value:'赔付', view:null},
             {value:'demo', view:'demo'}

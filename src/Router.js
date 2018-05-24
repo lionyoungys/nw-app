@@ -9,6 +9,7 @@ import AddGroup from './Module/AddGroup/AddGroup.js'//ranchong
 import Demo from './Module/Demo';
 import RechargeUp from './Module/RechargeUp/RechargeUp.js';
 import StaffManagement from './Module/StaffManagement/StaffManagement.js';  //员工管理
+import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -21,4 +22,5 @@ export default {
     recharge_up:RechargeUp,   //充值统计
     demo:Demo,
     staff_management:StaffManagement,  //员工管理
+    member_card_consume:MemberCardConsume//会员卡消费
 };

@@ -71,4 +71,75 @@
 }
 .StaffAuthority_count_list tbody tr td i:first-child{margin-left:24px;}
 .StaffAuthority_count_list tbody tr td i:last-child{margin-right:24px;}
+.addstaffborder  input{
+    margin-left: 8px;
+    margin-top: 16px;
+    width: 146px;
+    height: 20px;
+    outline: none;
+    border:1px solid #c4c2c2;  
+}
+.addstaffborder  span{
+    margin-top: 6px;
+    width: 85px;
+    height: 14px;
+    display: inline-block;
+    text-align: right;
+    color: black;
+
+}
+.addstaffborder span.passlimit{
+    color: red;
+    width: 78%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    float: left;
+ }
+.jurisdiction input{
+    margin-top: 0px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;
+    background-size:18px 24px;
+    background-position: right center; 
+}
+margintop{
+    margin-top: 11px;
+}
+.jurisdiction{
+    margin-top: 0px;
+}
+.updatestaffborder span.updatemobile{
+    color:#0637f7;
+    height: 14px;
+    width: 150px;
+    margin-left: 10px;
+    text-align: left
+}
+.updatestaffborder input.updatemobileinput{
+    margin-left: 8px;
+    margin-top: 16px;
+    width: 146px;
+    height: 20px;
+    outline: none;
+    border:1px solid #c4c2c2;  
+    background-color: #ebebeb;
+}
+.updatestaffborder input{
+    margin-left: 8px;
+    margin-top: 16px;
+    width: 146px;
+    height: 20px;
+    outline: none;
+    border:1px solid #c4c2c2;  
+}
+.updatestaffborder  span{
+    margin-top: 6px;
+    width: 85px;
+    height: 14px;
+    display: inline-block;
+    text-align: right;
+    color: black;
+
+}
 

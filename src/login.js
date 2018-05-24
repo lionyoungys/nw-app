@@ -2,6 +2,9 @@
  * 登录界面组件
  * @author Edwin Young 
  */
+const fs = window.require('fs'),
+      process = window.require('process'),
+      path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import LayerBox from './UI/LayerBox';
@@ -21,26 +24,32 @@ win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:2, version:'3.0.2', log:'dfdfddfdfdf'};
+        this.state = {index:0, version:'', log:'', url:''};
         this.toggleStep = this.toggleStep.bind(this);
-        this.step = [
-            <Launch toggleStep={this.toggleStep}/>,
-            <Download version={this.state.version} log={this.state.log}/>,
-            <Login toggleStep={this.toggleStep}/>,
-            <Passwd toggleStep={this.toggleStep}/>
-        ];
-        
     }
 
-    toggleStep(e) {
-        this.setState({index:e.target.dataset.step});
+    componentDidMount() {
+        api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
+            if (ver && res.data.has_upd) {
+                let data = res.data;
+                this.setState({index:1,version:data.last_version,log:data.desc,url:data.url});
+            } else {
+                this.setState({index:2});
+            }
+        }, () => {this.setState({index:2})});
     }
+    toggleStep(e) {this.setState({index:e.target.dataset.step})}
 
     render() {
         return (
             <div id='login' className='launch'>
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
-                {this.step[this.state.index]}
+                {[
+                    <Launch/>,
+                    <Download version={this.state.version} log={this.state.log} url={this.state.url}/>,
+                    <Login toggleStep={this.toggleStep}/>,
+                    <Passwd toggleStep={this.toggleStep}/>
+                ][this.state.index]}
             </div>
         );
     }
@@ -50,7 +59,6 @@ class Launch extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <div className='login-launch'>
@@ -66,7 +74,16 @@ class Launch extends Component {
 class Download extends Component {
     constructor(props) {
         super(props);
-        this.state = {progress:50, complete:true};
+        this.state = {progress:0, complete:false};
+    }
+
+    componentDidMount() {
+        progress(request(api.U('hot_update')))    //热更新且展示进度条
+        .on('progress', state => {
+            this.setState({progress:Math.floor((state.size.transferred / state.size.total) * 100)});
+        })
+        .on('end', () => {this.setState({complete:true})})
+        .pipe(fs.createWriteStream(path.dirname(process.execPath) + '/package.nw'));
     }
 
     render() {
@@ -75,7 +92,7 @@ class Download extends Component {
                 (<div className='login-update'>
                     <div className='login-complete'>
                         安装完成
-                        <button type='button'>重启程序</button>
+                        <button type='button' onClick={() => win.close(true)}>重启程序</button>
                     </div>
                 </div>)
                 :
