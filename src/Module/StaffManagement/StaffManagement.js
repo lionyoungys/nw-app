@@ -1,6 +1,6 @@
 /**
  * 充值统计界面组件
- * @author Edwin Young
+ * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';
 import './StaffManagement.css';

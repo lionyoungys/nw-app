@@ -1,6 +1,6 @@
 /**
  * 充值统计界面组件
- * @author Edwin Young
+ * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';
  import '../../../UI/bothpages.css'  //公共样式
@@ -13,7 +13,7 @@ export default class extends Component {
         this.state = {show:false,show1:false}        
     }; 
     ask2() {
-        tool.ui.ask({info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close, event) => {
+        tool.ui.ask({title:'删除员工',info:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
             console.log(event);
             close();    //点击按钮或关闭符号时关闭弹窗
         }});

@@ -1,6 +1,6 @@
 /**
  * 撤单统计界面组件
- * @author Edwin Young
+ * @author fanyerong
  */
 import React, {Component} from 'react';
 import './RevokeData.css';
