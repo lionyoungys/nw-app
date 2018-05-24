@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack && E:/nwjs-sdk-v0.14.7-win-x64/nw ./app",
     "build": "E:/nwjs-v0.14.7-win-x64/nw ./app",
+    "Edwin": "webpack && F:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",
     "fyr_start" : "webpack && E:/nwjs-sdk-v0.14.7-win-x64/nw ./app",
     "fyr_build" : "E:/nwjs-v0.14.7-win-x64/nw ./app"
   },

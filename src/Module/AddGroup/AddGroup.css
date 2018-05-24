@@ -22,17 +22,19 @@
     border: 1px solid #c2c2c2;
 }
 #addGroup-content{
-    background-color: red;
-    height: 484px;
+    /* background-color: red; */
+    height: 506px;
     margin: 0 9px;
+    overflow-x: auto;
 }
 .addGroup-content-cell{
     background-color: #abd0ff;
     box-sizing: border-box;
-    height: 100%;
+    height: 484px;
     width: 118px;
     border: 1px solid #666666;
-    
+    display: inline-block;
+    margin-right: 5px; 
 }
 .addGroup-content-cell-content{
 
@@ -40,6 +42,7 @@
     height: 477px;
     margin: 1px 5px 5px;
     overflow-y: auto;
+
 }
 .addGroup-content-cell-content ul li{
     
