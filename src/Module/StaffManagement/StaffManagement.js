@@ -9,18 +9,28 @@ import Addstaff from './Addstaff/Addstaff';
 import StaffAuthority from './StaffAuthority/StaffAuthority';
 export default class extends Component {   
     constructor(props) {
-        super(props);           
+        super(props);   
+    this.state={show:false};
+    this.switchpermission=this.switchpermission.bind(this);
+    this.switchstaff=this.switchstaff.bind(this);      
     }; 
+    switchpermission(){
+        this.setState({show:true})
+    }
+    switchstaff(){
+        this.setState({show:false})
+    }
     render() {      
         return ( 
+
                <Window title='员工管理' onClose={this.props.closeView}>   
                    <div className="StaffManagement_title">
-                      <div id="staff">员工</div>
-                      <div>权限</div>
+                      <div id="staff" onClick={this.switchstaff}>员工</div>
+                      <div onClick={this.switchpermission}>权限</div>
                    </div> 
-                    
-                   {/* <Addstaff /> */}
-                  <StaffAuthority />
+                    {
+                        this.state.show?<StaffAuthority/>:<Addstaff/>
+                    }
                </Window> 
         );            
     };

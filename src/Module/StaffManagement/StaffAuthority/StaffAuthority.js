@@ -5,14 +5,18 @@
 import React, {Component} from 'react';
 import '../../../UI/bothpages.css'  //公共样式
 import '../StaffManagement.css';
+import {Table} from '../../../UI/Table';
+import LayerBox from '../../../Ui/LayerBox';
 export default class extends Component {   
     constructor(props) {
-        super(props);           
+        super(props);   
+        this.state = {show:false}        
     }; 
     render() {      
         return ( 
                 <div>
-                    <div className="StaffAuthority">新增组</div> 
+                    <div className="StaffAuthority" >新增组</div> 
+               
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list StaffAuthority_count_list">
                             

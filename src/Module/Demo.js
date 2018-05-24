@@ -7,6 +7,7 @@ import React from 'react';
 import Window from '../UI/Window';
 import {Table} from '../UI/Table';
 import LayerBox from '../Ui/LayerBox';
+import SelectSearch from '../UI/SelectSearch';
 
 export default class extends React.Component {
     constructor(props) {
@@ -69,6 +70,10 @@ export default class extends React.Component {
                 <br/>
                 弹出层容器<button type='button' className='e-btn' onClick={() => this.setState({show:true})}>容器弹框</button>
                 弹出层容器2<button type='button' className='e-btn' onClick={() => this.setState({show2:true})}>容器取消</button>
+                <br/>
+                <SelectSearch placeholder='测试搜索' value='23333' option={['手机号','用户名','密码']} callback={(value, select) => {console.log(value);console.log(select)}}/>
+                <SelectSearch placeholder='测试搜索2' theme='grey' value='23333' option={['手机号','用户名','密码']} callback={(value, select) => {console.log(value);console.log(select)}}/>
+                <div style={{padding:'30px'}}></div>
                 <Table border={true} full={true}/>
                 {
                     this.state.show
@@ -93,22 +98,8 @@ export default class extends React.Component {
                                <span >权限:</span><input type='text' />
                                </div>
                                </div>
-                       /* 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
-                        <br/>
-                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
-                        <br/>
-                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
-                        <br/>
-                        自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
-                        <br/>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-                        <p>dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>  */}
+                    }
                      
-                        
-                       
                     </LayerBox>
                    
                 }
