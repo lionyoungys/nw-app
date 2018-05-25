@@ -5,6 +5,7 @@
 
 import React from 'react';
 import Window from '../../UI/Window';
+import Select from '../../UI/Select';
 import './App.css';
 
 export default class extends React.Component {
@@ -52,8 +53,16 @@ export default class extends React.Component {
                     </div>
                 </div>
                 <div className='recharge recharge-third'>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <div><label className='e-label'>充值卡类型：</label><Select option={['手机号','用户名','密码']} selected='密码' onChange={value => console.log(value)}/></div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label>&yen;100.00</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label>&yen;100.00</div>
+                        <div><label className='e-label'>&emsp;&emsp;新折扣：</label>90%</div>
+                    </div>
+                    <div>
+                        <div style={{color:'#ff0000',marginBottom:'22px',fontSize:'14px',fontWeight:'bold'}}>应收：&yen;120.00</div>
+                        <button type='button' className='e-btn'>收银</button>
+                    </div>
                 </div>
             </Window>
         );

@@ -32,6 +32,7 @@
     margin-top: 8px;
     padding-top: 14px;
     padding-bottom: 14px;
+    font-size: 12px;
 }
 .recharge-third>:first-child{
     height: 100%;
@@ -39,8 +40,11 @@
     border-right: 1px solid #8db2e3;
     float: left;
 }
+.recharge-third>:first-child>div{line-height: 28px}
 .recharge-third>:last-child{
     height: 100%;
     width: 277.5px;
+    padding-top: 50px;
+    text-align: right;
     float: right;
 }
