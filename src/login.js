@@ -87,8 +87,13 @@ class Download extends Component {
     }
 
     restart() {    //程序重启
-        let child = 'darwin' === process.platform ? spawn('open', ['-n', '-a', process.execPath.match(/^([^\0]+?\.app)\//)[1]], {detached: true}) : spawn(process.execPath, [], {detached: true});
-        child.unref();
+        (
+            'darwin' === process.platform
+            ?
+            spawn('open', ['-n', '-a', process.execPath.match(/^([^\0]+?\.app)\//)[1]], {detached: true})
+            :
+            spawn(process.execPath, [], {detached: true})
+        ).unref();
         nw.App.quit();
     }
 
