@@ -1,0 +1,34 @@
+.salecard div{
+    background: #eef4fb;
+}
+.salecard div.top{
+    width: 492px;
+    height: 85px;
+    margin: 9px auto;
+    border: 1px solid #8db2e3;  
+}
+.salecard div span{
+    width: 68px;
+    text-align: right;
+    display: inline-block;
+ }
+ .salecard div input{
+    margin-top: 14px;
+    margin-left: 9px;
+    width: 151px;
+    height: 20px;
+    outline: none;
+    border:1px solid #c4c2c2;  
+ }
+.salecard div.middle{
+    width: 492px;
+    height: 154px;
+    margin: 9px auto;
+    border: 1px solid #8db2e3;  
+}
+.salecard div.bottom{
+    width: 492px;
+    height: 124px;
+    margin: 9px auto;
+    border: 1px solid #8db2e3;  
+}

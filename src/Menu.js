@@ -30,7 +30,7 @@ export const topMenu = [
     {
         value:'客户管理', 
         options:[
-            {value:'售卡', view:null},
+            {value:'售卡', view:'sale_card'},
             {value:'充值', view:'recharge'},
             {value:'会员信息修改', view:'member_info_update'},
             {value:'挂失、解挂', view:null},
@@ -92,7 +92,7 @@ export const topMenu = [
 //顶部导航栏配置    value:导航名称;class:样式名称;view:展示的视图组件名称
 export const nav = [
     {value:'收衣',class:'main-clothes',view:'clothes'},
-    {value:'售卡',class:'main-sale-card',view:null},
+    {value:'售卡',class:'main-sale-card',view:'sale_card'},
     {value:'充值',class:'main-recharge',view:'recharge'},
     {value:'营业日报',class:'main-income',view:null},
     {value:'退出',class:'main-quit',view:null, event:'quit'},

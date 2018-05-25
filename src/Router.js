@@ -16,6 +16,7 @@ import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
 import Recharge from './Module/Recharge/App';
 
 import OperateIncome from './Module/OperateIncome/OperateIncome';
+import SaleCard from './Module/SaleCard/SaleCard.js'
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -37,5 +38,6 @@ export default {
 
     staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume,//会员卡消费
-    operate_income:OperateIncome //营业收入
+    operate_income:OperateIncome, //营业收入
+    sale_card:SaleCard //售卡
 };

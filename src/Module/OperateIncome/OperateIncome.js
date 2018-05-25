@@ -41,6 +41,17 @@ export default class extends Component {
                                 <td>微信</td>
                                 <td>支付宝</td>
                                 <td>优惠卷</td>
+                            </tr>                           
+                            <tr>
+                                <td>衣物类别</td>
+                                <td>应收</td>
+                                <td>实收</td>
+                                <td>数量</td>
+                                <td>会员卡</td>
+                                <td>现金</td>
+                                <td>微信</td>
+                                <td>支付宝</td>
+                                <td>优惠卷</td>
                             </tr>
                             <tr>
                                 <td>衣物类别</td>
@@ -53,21 +64,17 @@ export default class extends Component {
                                 <td>支付宝</td>
                                 <td>优惠卷</td>
                             </tr>
+                            <tr>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                                <td>合计</td>
+                            </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td>合计</td>
-                                    <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                    </tr>
-                                
-                                </tfoot>
                         </table>
                     </div>
 
