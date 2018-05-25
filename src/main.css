@@ -207,6 +207,21 @@ table{border-collapse: collapse}
 .e-btn[readonly]{background: url(img/e-btn-readonly.png);color: #b2b2b2}
 .e-btn:hover{background: url(img/e-btn-hover.png)}
 .e-btn[readonly]:hover{background: url(img/e-btn-readonly.png)}
+/* 输入框样式 */
+.e-label{
+    font-size: 14px;
+    color: #063781;
+}
+.e-input{
+    width: 150px;
+    height: 22px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 6px;
+    font-size: 12px;
+    border: 1px solid #c2c2c2;
+    outline-color: #6f9ec2;
+}
 /* 弹出层遮罩样式 */
 .e-layer-bg{
     background: rgba(0,0,0,.6);

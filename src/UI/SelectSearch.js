@@ -13,6 +13,9 @@ export default class extends React.Component {
             value:'string' === typeof this.props.value ? this.props.value : '', 
             selected:'string' === typeof this.props.selected && '' !== this.props.selected ? this.props.selected : this.props.option[0], 
             show:false,
+            height_light:false,
+            focus:false,
+            hover:false,
             minWidth:null
         };
         this.handleChange = this.handleChange.bind(this);
@@ -23,7 +26,7 @@ export default class extends React.Component {
         this.input.onkeydown = ( e => {'Enter' === e.code && this.props.callback(this.state.value, this.state.selected)} );
         this.setState({minWidth:this.div.offsetWidth});
     }
-    handleChange(e) {this.setState({selected:e.target.innerText, show:false})}
+    handleChange(e) {this.setState({selected:e.target.innerText, show:false, height_light:false})}
     toggleShow() {this.setState({show:!this.state.show})}
     
     render() {
@@ -39,7 +42,11 @@ export default class extends React.Component {
             );
         }
         return (
-            <div className={`ui-select-search${'string' === typeof this.props.theme ? (' ui-select-search-' + this.props.theme) : ''}`}>
+            <div 
+                className={`ui-select-search${this.state.height_light ? ' ui-select-search-blue' : ''}`} 
+                onMouseOver={() => this.setState({height_light:true, hover:true})}
+                onMouseOut={() => this.setState({hover:false, height_light:this.state.focus})}
+            >
                 <div
                     className={this.state.show ? 'ui-select-search-option-show' : null}
                     style={{minWidth:this.state.minWidth}}
@@ -57,6 +64,8 @@ export default class extends React.Component {
                     value={this.state.value}
                     ref={input => this.input = input}
                     onChange={e => this.setState({value:e.target.value})}
+                    onFocus={() => this.setState({focus:true})}
+                    onBlur={() => this.setState({focus:false, height_light:this.state.hover})}
                 />
                 <button type='button' onClick={() => this.props.callback(this.state.value, this.state.selected)}></button>
             </div>

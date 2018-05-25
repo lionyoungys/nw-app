@@ -1,0 +1,42 @@
+.operateincome table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width:875px;
+    border:1px solid #8db2e3;
+    margin:auto;
+    height:auto;
+    clear: both;
+}
+.operateincome table tr th {
+    width: 88px;
+    height: 25px;
+    border:1px solid #8db2e3;
+    text-align: center;
+    background:#89b0d4;
+    color: white;
+    font-weight: normal; 
+    font-size: 12px;
+  
+}
+.operateincome table tr td {
+    width: 88px;
+    height: 25px;
+    text-align: center;  
+    font-size: 12px;
+    
+  
+}
+.operateincome table tr:nth-child(odd){
+
+    background: white;
+    
+    }
+.operateincome div.blacktext{
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 20px;
+}
+.operateincome table tfoot td{
+    color: azure;
+}

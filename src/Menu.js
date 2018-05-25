@@ -5,7 +5,7 @@ export const topMenu = [
         options:[
             {value:'收衣', view:'clothes'},
             {value:'取衣', view:'take_clothes'},
-            { value: '欠款补交', view:'add_group'},
+            {value:'欠款补交', view:'add_group'},
             {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
             {value:'赔付', view:null},
@@ -18,7 +18,7 @@ export const topMenu = [
             {value:'格架查询', view:null},
             {value:'衣物查询', view:null},
             {value:'交班', view:null},
-            {value:'营业日报', view:null},
+            {value:'营业日报', view:'operate_income'},
             {value:'前台情况', view:'foreground_statistics'},
             {value:'衣物统计', view:null},
             {value:'充值统计', view:'recharge_up'},
@@ -31,7 +31,7 @@ export const topMenu = [
         value:'客户管理', 
         options:[
             {value:'售卡', view:null},
-            {value:'充值', view:null},
+            {value:'充值', view:'recharge'},
             {value:'会员信息修改', view:'member_info_update'},
             {value:'挂失、解挂', view:null},
             {value:'退卡', view:null},
@@ -93,7 +93,7 @@ export const topMenu = [
 export const nav = [
     {value:'收衣',class:'main-clothes',view:'clothes'},
     {value:'售卡',class:'main-sale-card',view:null},
-    {value:'充值',class:'main-recharge',view:null},
+    {value:'充值',class:'main-recharge',view:'recharge'},
     {value:'营业日报',class:'main-income',view:null},
     {value:'退出',class:'main-quit',view:null, event:'quit'},
 ];
@@ -105,7 +105,7 @@ export const leftMenu = [
             {value:'收衣',class:'main-clothes',view:'clothes'},
             {value:'取衣',class:'main-take',view:'take_clothes'},
             {value:'售卡',class:'main-sale-card',view:null},
-            {value:'充值',class:'main-recharge',view:null}
+            {value:'充值',class:'main-recharge',view:'recharge'}
         ]
     },
     {

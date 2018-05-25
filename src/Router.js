@@ -13,7 +13,9 @@ import BalanceStatistics from './Module/BalanceStatistics/BalanceStatistics.js';
 import MemberConsumptionStatistics from './Module/MemberConsumptionStatistics/MemberConsumptionStatistics.js';  //会员消费统计
 import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics.js';  //前台统计
 import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
+import Recharge from './Module/Recharge/App';
 
+import OperateIncome from './Module/OperateIncome/OperateIncome';
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -29,8 +31,11 @@ export default {
     balance_statistics:BalanceStatistics,  //余额统计
     member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
     foreground_statistics:ForegroundStatistics, //前台统计
-    
+    staff_management:StaffManagement,  //员工管理
+    member_card_consume:MemberCardConsume,//会员卡消费
+    recharge:Recharge,    //充值
 
     staff_management:StaffManagement,  //员工管理
-    member_card_consume:MemberCardConsume//会员卡消费
+    member_card_consume:MemberCardConsume,//会员卡消费
+    operate_income:OperateIncome //营业收入
 };
