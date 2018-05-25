@@ -4,6 +4,7 @@
  */
 const fs = window.require('fs'),
       process = window.require('process'),
+      { spawn } = window.require('child_process'),
       path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -86,13 +87,19 @@ class Download extends Component {
         .pipe(fs.createWriteStream(path.dirname(process.execPath) + '/package.nw'));
     }
 
+    restart() {    //程序重启
+        let child = 'darwin' === process.platform ? spawn('open', ['-n', '-a', process.execPath.match(/^([^\0]+?\.app)\//)[1]], {detached: true}) : spawn(process.execPath, [], {detached: true});
+        child.unref();
+        nw.App.quit();
+    }
+
     render() {
         let progress = this.state.progress + '%',
             complete = this.state.complete ? 
                 (<div className='login-update'>
                     <div className='login-complete'>
                         安装完成
-                        <button type='button' onClick={() => win.close(true)}>重启程序</button>
+                        <button type='button' onClick={this.restart}>重启程序</button>
                     </div>
                 </div>)
                 :
