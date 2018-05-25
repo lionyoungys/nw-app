@@ -1,11 +1,8 @@
 /* 弹出窗口样式 */
 .ui-window{
-    width: 900px;
-    height: 624px;
     background: #e3effd;
     position: absolute;
     top: 50%;left: 50%;
-    margin: -312px 0 0 -450px;
     border: 1px solid #8899ad;
     border-radius: 8px;
     overflow: hidden;
