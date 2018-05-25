@@ -31,9 +31,8 @@ class Main extends Component {
 
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
-            if (ver && res.data.has_upd) {
-                let data = res.data;
-                this.setState({index:1,version:data.last_version,log:data.desc,url:data.url});
+            if (ver && res.has_upd) {
+                this.setState({index:1,version:res.last_version,log:res.desc,url:res.url});
             } else {
                 this.setState({index:2});
             }

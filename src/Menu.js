@@ -19,9 +19,10 @@ export const topMenu = [
             {value:'衣物查询', view:null},
             {value:'交班', view:null},
             {value:'营业日报', view:null},
-            {value:'前台情况', view:null},
+            {value:'前台情况', view:'foreground_statistics'},
             {value:'衣物统计', view:null},
             {value:'充值统计', view:'recharge_up'},
+            {value:'余额统计', view:'balance_statistics'},
             {value:'会员消费查询', view:null},
             {value:'未付款统计', view:null}
         ]
@@ -56,6 +57,7 @@ export const topMenu = [
             {value:'欠款明细', view:null},
             {value:'会员业务统计', view:null},
             {value:'会员分类统计', view:null},
+            {value:'会员消费统计', view:'member_consumption_statistics'},
             {value:'衣物统计', view:null}
         ]
     },

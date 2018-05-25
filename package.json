@@ -12,12 +12,8 @@
     "wj_build": "C:/Users/wangjun/Desktop/nwjs-v0.14.7-win-x64/nw ./app"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "node-adodb": "^4.2.2",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "request": "^2.87.0",
-    "request-progress": "^3.0.0"
+    "react-dom": "^16.3.2"
   },
   "description": "nw app",
   "devDependencies": {

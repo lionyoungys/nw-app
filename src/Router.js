@@ -2,14 +2,18 @@
 import Clothes from './Module/Clothes';
 import Data from './Module/Data/App';
 // import Takeclothes from './Module/Takeclothes';
-import RevokeData from './Module/RevokeData/RevokeData';
-import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js';
+import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
+import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
 import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate.js'
 import AddGroup from './Module/AddGroup/AddGroup.js'//ranchong
 import Demo from './Module/Demo';
-import RechargeUp from './Module/RechargeUp/RechargeUp.js';
+import RechargeUp from './Module/RechargeUp/RechargeUp.js'; //充值统计
 import StaffManagement from './Module/StaffManagement/StaffManagement.js';  //员工管理
+import BalanceStatistics from './Module/BalanceStatistics/BalanceStatistics.js';  //余额统计
+import MemberConsumptionStatistics from './Module/MemberConsumptionStatistics/MemberConsumptionStatistics.js';  //会员消费统计
+import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics.js';  //前台统计
 import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
+
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -21,6 +25,12 @@ export default {
     add_group: AddGroup,//新增组(ranchong)
     recharge_up:RechargeUp,   //充值统计
     demo:Demo,
+    staff_management:StaffManagement, //员工管理
+    balance_statistics:BalanceStatistics,  //余额统计
+    member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
+    foreground_statistics:ForegroundStatistics, //前台统计
+    
+
     staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume//会员卡消费
 };

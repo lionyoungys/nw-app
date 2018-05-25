@@ -1,5 +1,5 @@
 /**
- * 充值统计界面组件
+ * 新增员工界面组件
  * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';

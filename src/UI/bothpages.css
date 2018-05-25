@@ -37,15 +37,49 @@
     background:url(./img/revokedata_close.png);
     background-size:15px 15px;
 } */
-
-.bothpages_list{width:100%;height:46px}
-.bothpages_list div{width:auto;height:46px;font-size:12px;color:#063781;float:right;line-height:46px}
+/* 页面tab上方 样式*/
+.bothpages_list{
+    width:100%;
+    height:46px;
+}
+.bothpages_list div{
+    width:auto;
+    height:46px;
+    font-size:12px;
+    color:#063781;
+    float:right;
+    line-height:46px;
+}
 .bothpages_list div b{color:#ff0000;font-size:14px;margin-left:10px}
 .bothpages_list div:nth-child(1){margin-right:41px}
 .bothpages_list div:nth-child(2){margin-right:75px}
-.bothpages_count{width:875px;border:1px solid #8db2e3;margin:auto;height:auto;clear: both;}
-.bothpages_count_title{width:875px;height:25px;line-height:25px;border-bottom:1px solid #cccccc;background:#89b0d4;}
-.bothpages_count_title span{display:block;width:200px;height:25px;text-align:center;color:#fff;font-size:14px;float:left}
+.bothpages_count{
+    width:875px;
+    border:1px solid #8db2e3;
+    margin:auto;
+    height:auto;
+    clear: both;
+}
+.bothpages_count_title{
+    width:875px;
+    height:25px;
+    line-height:25px;
+    border-bottom:1px solid #cccccc;
+    background:#89b0d4;
+}
+.bothpages_count_title span{
+    display:block;
+    width:200px;
+    height:25px;
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    float:left;
+    overflow:hidden;
+    white-space:nowrap;     
+    text-overflow:ellipsis;
+}
+/* tab标题样式 */
 .bothpages_count_title span:nth-child(1){
     width:31px;
     background:url(./img/revokedata_list_box_span.png) no-repeat;
@@ -54,7 +88,15 @@
     background-position-y:11px;
     border-right:1px solid #acc6de;
 }
-.bothpages_count_list{width:100%;height:auto;max-height:490px;display:block;overflow-y:auto;background:#fff;}
+/* tab内容样式 table的样式 */
+.bothpages_count_list{
+    width:100%;
+    height:auto;
+    max-height:490px;
+    display:block;
+    overflow-y:auto;
+    background:#fff;
+}
 .bothpages_count_list tbody{width:100%;height:auto;display:block;}
 .bothpages_count_list tr{height:25px;width:100%;display:block}
 .bothpages_count_list tr:nth-of-type(even){
@@ -76,3 +118,147 @@
 .bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;}
 .bothpages_count_list tr td i:first-child{color:#063ff7;margin-left:60px;float:left}
 .bothpages_count_list tr td i:last-child{color:#ff0000;margin-right:60px;float:right}
+
+
+/* 第二种分块样式 如同撤单统计页面样式 */
+
+.tableye_data{width:872px;height:59px;margin:13px auto 0px;}
+.tableye_dataLeft{width:501px;border:1px solid #8db2e3;height:57px;background:#eef4fb;float:left}
+.tableye_dataLeft div{
+    width:207px;
+    height:20px;
+    margin-top:18px;
+    line-height:20px;
+    color:#000;
+    font-size:12px;
+    color:#063781;    
+    cursor: pointer;
+}
+.tableye_dataLeft div input{
+    width:133px;
+    height:20px;
+    background:#fff;;
+    background-size:100% 100%;
+    outline:none;border:none;
+    border:1px solid #c4c2c2;       
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+   opacity: 0;
+ }
+ 
+ /*----------用来移除叉叉按钮----------*/
+ input[type="date"]::-webkit-clear-button{
+    display:none;
+ }
+.tableye_dataLeft div input:hover{
+    background:url(./img/hoverselect.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+.tableye_dataLeft div input:hover{border:1px solid #4589ee}
+.tableye_dataLeft div span{width:18px;height:22px;background:url(./select.png)}
+.tableye_dataLeft div:first-child{margin-left:17px;float:left}
+.tableye_dataLeft div:last-child{float: right;margin-right:17px}
+.tableye_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
+.tableye_dataright button{
+    width:71px;
+    border:none;
+    background:none;
+    height:24px;
+    margin-left:10px;
+    background:url(./img/surebtn.png);
+    text-align: center;
+    line-height:24px;
+    color:#000;
+    font-size:12px;
+    outline:none;
+    cursor: pointer;
+}
+.tableye_dataright button:hover{background:url(./img/hoverbtn.png)}
+
+
+
+/* 第三种公共样式 如同前台统计界面 */
+.tableC_title{width:872px;height:43px;margin:auto;}
+.tableC_box{width:872px;height:530px;margin:auto;clear:both}
+.tableC_box_div{width:100%;}
+.tableC_box_div span{
+    display:block;
+    width:100%;
+    height:34px;
+    line-height:34px;
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+    text-indent:4px;
+    line-height:34px;
+}
+.tableC_box_div table{
+    width:100%;
+    height:auto;
+    border:1px solid #8db2e3;
+    overflow-x:auto;
+    background: #fff;
+    display:block;
+    overflow-y:hidden; 
+    clear:both;
+}
+.tableC_box_div table thead{background:#89b0d4;min-width:100%;width:auto;height:25px;display:inline-block}
+.tableC_box_div table thead tr{width:auto;height:25px}
+.tableC_box_div table thead tr th{
+    width:88px;
+    min-width:88px;
+    height:25px;
+    color:#fff;
+    border-right:1px solid #acc6de;
+    line-height:25px;
+    font-size:12px;
+    text-align:center;   
+    overflow: hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap;   
+}
+
+.tableC_box_div table thead tr th:nth-child(1){
+    width:31px;
+    min-width:31px;
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:17px;
+    background-position-y:11px;
+}
+.tableC_box_div table tbody tr{width:auto;height:25px;}
+.tableC_box_div table tbody tr td{ 
+    width:88px;
+    min-width:88px;
+    height:25px;
+    color:#9a9a9a;
+    border-right:1px solid #acc6de;
+    line-height:25px;
+    font-size:12px;
+    text-align:center;   
+    overflow: hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    border-bottom:1px solid #acc6de;        
+}
+.tableC_box_div table tbody tr td:first-child{
+    width:31px;
+   min-width:31px;
+   
+}
+.tableC_box_div span b{color:#000;margin-left:40px;font-size:14px}
+.tableC_box_div span b a{color:#024ffe;font-size:12px;}
+.tableC_box_div table tbody tr:nth-of-type(even){background:#f0f5f9}
+
+
+

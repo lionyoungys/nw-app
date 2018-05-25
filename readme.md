@@ -47,4 +47,19 @@ src/Module下界面组件的继承属性
 param:携带参数
 
 
+AddGroup   新增组 ->会员管理
+BalanceStatistics   余额统计
+MemberConsumptionStatistics  会员消费
+MemberInfoUpdate    会员信息修改
+OperatingDetails  营业明细
+RechargeUp    充值统计
+RevokeData   撤单统计
+StaffManagement 会员管理
+Addstaff  新增员工 -> 会员管理
+StaffManagement 员工权限 ->会员管理
+ForegroundStatistics   前台统计
+BusinessDaily   营业日报
+
+
+
 

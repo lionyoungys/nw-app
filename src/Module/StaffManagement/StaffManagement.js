@@ -1,5 +1,5 @@
 /**
- * 充值统计界面组件
+ * 员工管理界面组件
  * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';
@@ -25,7 +25,7 @@ export default class extends Component {
 
                <Window title='员工管理' onClose={this.props.closeView}>   
                    <div className="StaffManagement_title">
-                      <div id="staff" onClick={this.switchstaff}>员工</div>
+                      <div onClick={this.switchstaff}>员工</div>
                       <div onClick={this.switchpermission}>权限</div>
                    </div> 
                     {
