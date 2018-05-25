@@ -78,12 +78,12 @@ class Download extends Component {
     }
 
     componentDidMount() {
-        progress(request(api.U('hot_update')))    //热更新且展示进度条
-        .on('progress', state => {
-            this.setState({progress:Math.floor((state.size.transferred / state.size.total) * 100)});
-        })
-        .on('end', () => {this.setState({complete:true})})
-        .pipe(fs.createWriteStream(path.dirname(process.execPath) + '/package.nw'));
+        api.download(
+            this.props.url, 
+            fs.createWriteStream(path.dirname(process.execPath) + '/package.nw'), 
+            state => this.setState({progress:state.progress_rate}), 
+            () => this.setState({complete:true})
+        );
     }
 
     restart() {    //程序重启
