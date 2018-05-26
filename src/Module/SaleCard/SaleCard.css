@@ -7,7 +7,7 @@
     margin: 9px auto;
     border: 1px solid #8db2e3;  
 }
-.salecard div span{
+.salecard .top div span{
     width: 68px;
     text-align: right;
     display: inline-block;
@@ -32,3 +32,24 @@
     margin: 9px auto;
     border: 1px solid #8db2e3;  
 }
+.salecard_leftdirection{
+    float: left;
+    width: 254px;
+}
+.salecard .middle .salecard_leftdirection span{
+    width: 68px;
+    text-align: right;
+    display: inline-block; 
+}
+.salecard .salecard_leftdirection input{
+    display: inline-block; 
+}
+.salecard .salecard_rightdirection{
+    float: right;
+    margin-right: 30px;
+}
+.salecard .bottom div span{
+    width: 68px;
+    text-align: right;
+    display: inline-block;
+ }

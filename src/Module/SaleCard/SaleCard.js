@@ -25,11 +25,35 @@ export default class extends Component {
                     </div>
                     <div className='middle'>
                     <div>
-                        <span>姓名:</span><input/>
-                        </div>
-                        <div>
-                        <span>手机号:</span><input/>
-                        </div>
+                        <span className='salecard_leftdirection'>
+                        <span>姓名:</span>
+                        <input type='text' className='inputborder'/>
+                        </span>
+                        <span className='salecard_rightdirection'>
+                        <span>密码1次:</span><input type='text' className='inputborder'/>
+                         </span>
+                     </div>
+                    <div>
+                        <span className='salecard_leftdirection'>
+                        <span>手机号:</span><input type='text' className='inputborder'/>
+                        </span>
+                         <span className='salecard_rightdirection'>
+                        <span>密码2次:</span><input type='text' className='inputborder'/>
+                    </span>
+                    </div>
+                <div>
+                     <span className='salecard_leftdirection'>
+                    <span>性别:</span><input type='text' className='inputselectborder'/>
+                    </span>
+                 <span className='salecard_rightdirection'>
+                    <span>生日:</span><input type='text' className='inputselectborder'/>
+                </span>
+                </div>
+            <div>
+            <span className='salecard_leftdirection'>
+            <span>地址:</span><input type='text' className='inputlongborder'/>
+            </span>
+            </div>
                     </div>
                     <div className='bottom'>
                     <div>
