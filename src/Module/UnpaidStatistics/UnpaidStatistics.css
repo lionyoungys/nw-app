@@ -1,0 +1,181 @@
+.unpaidstatistics_data{
+
+    margin: 13px 13px 0;
+    height: 59px;
+
+}
+.unpaidstatistics_dataLeft{
+    width:60%;
+    border:1px solid #8db2e3;
+    height:57px;
+    background:#eef4fb;
+    float: left;
+}
+
+.unpaidstatistics_dataLeft div{
+    float: left;
+    width:50%;
+    height: 100%;
+    line-height: 57px;
+    font-size: 12px;
+    color: #063781;
+    text-indent: 18px;
+}
+.unpaidstatistics_dataright{
+
+    height: 57px;
+    width: 35%;
+    float: left;
+    line-height: 57px;
+}
+.unpaidstatistics_dataLeft div input{
+    width:133px;
+    height:20px;
+    background:#fff;
+    background-size:100% 100%;
+    outline:none;
+    border:1px solid #c4c2c2;       
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+input[type=date]:-webkit-inner-spin-button {
+
+    visibility: hidden; 
+}
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+   opacity: 0;
+ }
+ /*----------用来移除叉叉按钮----------*/
+ input[type="date"]:-webkit-clear-button{
+    display:none;
+ }
+.unpaidstatistics_dataLeft div input:hover{
+    background:url(./img/hoverselect.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+
+.unpaidstatistics_dataright button{
+
+    margin-left: 16px;
+}
+.unpaidstatistics_Statistics{
+
+    border:1px solid #8db2e3;
+    height:33px;
+    background:#eef4fb;
+    margin: 5px 13px 0;
+    line-height: 33px;
+}
+.unpaidstatistics_Statistics span{
+
+    width: 33%;
+    height: 100%;
+    text-indent: 18px;
+    font-size: 12px;
+    color: #063781;
+    float: left;
+}
+.unpaidstatistics_Statistics span a{
+
+    color: #ff0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 表格区域 */
+.unpaidstatistics_title{
+
+    display: block;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    margin: 0 13px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.unpaidstatistics_title a{
+
+    font-size: 14px;
+    color: black;
+}
+.unpaidstatistics_title .span-a-one{
+
+    margin-left: 10px
+}
+
+.unpaidstatistics_title .span-a-two{
+
+    font-size: 12px;
+    color: blue;
+}
+
+.unpaidstatistics_table_part{
+
+    margin-left:13px;
+    height: 195px;
+    width: 874px;
+    border:1px solid #8db2e3;
+    overflow: scroll;
+
+}
+.unpaidstatistics_table_Arrearage{
+    width:auto;
+    height:auto;
+    margin-left: 0;
+    margin-top: 0;
+    border-bottom: 1px solid #8db2e3;
+}
+.unpaidstatistics_table_Arrearage tr td{
+
+    /* 只设置最小即可设置固定的宽度 */
+    min-width: 95px;
+    height: 26px;
+    font-size: 12px;
+    border-right: 1px solid #acc6de;
+    text-align: center;
+    word-wrap:break-word;
+}
+.unpaidstatistics_table_Arrearage tr td:first-child{   
+
+    min-width: 33px; 
+}
+
+
+.unpaidstatistics_table_Arrearage tr td:last-child{
+   border-right: none;
+}
+
+.unpaidstatistics_table_Arrearage thead tr{
+    background-color: #89b0d4;
+    color: white;
+}
+.unpaidstatistics_table_Arrearage thead tr td:first-child{
+    /* background: url(./img/e-btn-hover.png); */
+    background-size: contain;
+}
+
+.unpaidstatistics_table_Arrearage tbody tr{
+
+    background-color: #f0f5f9;
+    color: black;
+
+}
+.unpaidstatistics_table_Arrearage tbody tr:nth-child(odd){
+
+    background-color: #fff;
+    color: black;
+}
+
+.unpaidstatistics_table_Arrearage tbody tr td:first-child{
+    color: #9f9f9f;
+}
+

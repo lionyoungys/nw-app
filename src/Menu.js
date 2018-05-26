@@ -24,7 +24,7 @@ export const topMenu = [
             {value:'充值统计', view:'recharge_up'},
             {value:'余额统计', view:'balance_statistics'},
             {value:'会员消费查询', view:null},
-            {value:'未付款统计', view:null}
+            {value: '未付款统计', view:'unpaid_statistics'}
         ]
     },
     {

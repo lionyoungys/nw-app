@@ -1,6 +1,16 @@
 
-.revokedata_data{width:872px;height:59px;margin:13px auto 0px;}
-.revokedata_dataLeft{width:501px;border:1px solid #8db2e3;height:57px;background:#eef4fb;float:left}
+.revokedata_data{
+    width:872px;
+    height:59px;
+    margin:13px auto 0px;
+}
+.revokedata_dataLeft{
+    width:501px;
+    border:1px solid #8db2e3;
+    height:57px;
+    background:#eef4fb;
+    float:left
+}
 .revokedata_dataLeft div{
     width:207px;
     height:20px;
