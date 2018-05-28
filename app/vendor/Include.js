@@ -9,5 +9,6 @@
     }
     window.request = require('request');
     window.progress = require('request-progress');
+    window.ffi = require('ffi');
     
 })(window);

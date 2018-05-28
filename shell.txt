@@ -1,0 +1,2 @@
+nw-gyp rebuild --target=0.14.7 --arch=ia32
+npm install --global --production windows-build-tools
