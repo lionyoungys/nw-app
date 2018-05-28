@@ -49,7 +49,7 @@ param:携带参数
 
 AddGroup   新增组 ->会员管理
 BalanceStatistics   余额统计
-MemberConsumptionStatistics  会员消费
+MemberConsumptionStatistics  会员消费统计
 MemberInfoUpdate    会员信息修改
 OperatingDetails  营业明细
 RechargeUp    充值统计
@@ -58,7 +58,12 @@ StaffManagement 会员管理
 Addstaff  新增员工 -> 会员管理
 StaffManagement 员工权限 ->会员管理
 ForegroundStatistics   前台统计
-BusinessDaily   营业日报
+OperateIncome   营业日报
+UnpaidStatistics  未付款统计
+SaleCard   售卡
+ReportLoss  挂失
+MemberCardConsume 会员卡消费
+Recharge   充值页面
 
 
 

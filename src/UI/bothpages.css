@@ -206,10 +206,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:100%;
     height:auto;
     border:1px solid #8db2e3;
-    overflow-x:auto;
+    overflow:auto;
     background: #fff;
     display:block;
-    overflow-y:hidden; 
     clear:both;
 }
 .tableC_box_div table thead{background:#89b0d4;min-width:100%;width:auto;height:25px;display:inline-block}
@@ -253,7 +252,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .tableC_box_div table tbody tr td:first-child{
     width:31px;
-   min-width:31px;
+    min-width:31px;
    
 }
 .tableC_box_div span b{color:#000;margin-left:40px;font-size:14px}

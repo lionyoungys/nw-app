@@ -6,9 +6,10 @@
     border:1px solid #8db2e3;
     margin:auto;
     clear: both;
-    max-height:103px;
+    max-height:503px;
     overflow-y:auto;
     display: block;
+    height:auto;
 }
 .operateincome table tr th {
     width: 96px;

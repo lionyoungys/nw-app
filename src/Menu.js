@@ -33,8 +33,8 @@ export const topMenu = [
             {value:'售卡', view:'sale_card'},
             {value:'充值', view:'recharge'},
             {value:'会员信息修改', view:'member_info_update'},
-            {value:'挂失、解挂', view:null},
-            {value:'退卡', view:null},
+            { value: '挂失、解挂', view:'report_loss_main'},
+            { value: '退卡', view:'exchange_card'},
             {value:'客户信息查询', view:null}
         ]
     },

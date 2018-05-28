@@ -1,16 +1,4 @@
-.memberinfoupdate{width:100%;height:100%;background-color:rgba(0,0,0,.6);position:fixed;top:0;left:0;z-index:10}
-.memberinfoupdate_box{
-    width:646px;
-    height:574px;
-    background:#e3effd;
-    position:absolute;
-    z-index:11;
-    left:50%;
-    margin-left:-323px;
-    margin-top:-287px;
-    top:50%;
-    border-radius:8px;
-}
+input{text-indent:8px}
 .memberinfoupdate_title{
     width:100%;
     height:37px;
@@ -24,23 +12,14 @@
     border-top-right-radius:8px;
     position:relative;
 }
-.memberinfoupdate_close{
-    width:15px;
-    height:15px;
-    position:absolute;
-    right:12px;top:12px;
-    background:url(./img/revokedata_close_all.png);
-    cursor: pointer;
-    background-size:15px 15px;
-}
-.memberinfoupdate_border{
+.memberinfoupdate_bottomborder{
    
-    width: 625px;
-    height: 507px;
+    width: 607px;
+    height: 194px;
     background-color: #eef4fb;
     border: 1px solid #8db2e3;
     margin: 0 auto;
-    margin-top: 7px;
+    margin-top: 13px;
 }
 span{
 
@@ -62,10 +41,10 @@ span{
 .memberinfoupdate_leftdirection{
     float: left;
     width: 261px;
-    margin-top: 10px;
+    margin-top: 14px;
 }
 .memberinfoupdate_leftdirection span{
-    width: 80px;
+    width: 68px;
     text-align: right;
     display: inline-block; 
 }
@@ -74,29 +53,34 @@ span{
 }
 .memberinfoupdate_rightdirection{
     float: right;
-    margin-right: 30px;
-    margin-top: 10px;
+    margin-right: 42px;
+    margin-top: 14px;
+    position:relative;
 }
 .inputlongborder{
-    width: 503px;
+    width: 508px;
     height: 21px;
     margin-left: 9px;
     outline: none;
     border:1px solid #c4c2c2;  
 }
 .memberinfoupdate_longdirection{
-    float: right;
-    margin-right: 30px;
-    margin-top: 10px;
+    float: left;
+    margin-top: 14px;
 
+}
+.memberinfoupdate_longdirection span{
+    width: 68px;
+    text-align: right;
+    display: inline-block; 
 }
 .memberinfoupdate_customerdirection{
     float: left;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 14px;
 }
 .memberinfoupdate_customerdirection span{
-    width: 80px;
+    width: 68px;
     text-align: right;
     display: inline-block; 
 }
@@ -108,10 +92,8 @@ span{
     border:1px solid #c4c2c2; 
 }
 .memberinfoupdate_button{
-    display: inline-block;
-    margin-top: 32px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-top: 20px;
+    margin-left: 340px;
 
 }
 .memberinfoupdate_button button{
@@ -121,14 +103,13 @@ span{
      width: 151px;
     height: 21px;
     margin-left: 9px;
-    background:#fff;;
     background-size:100% 100%;
     outline:none;border:none;
     border:1px solid #c4c2c2;       
     border-radius:3px;
     text-indent:4px;
     cursor: pointer;
-    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background:#fff url(./img/select.png) no-repeat;background-size:18px 24px;
     background-position-x:133px;
     background-position-y:0; 
 }
@@ -139,7 +120,7 @@ span{
     border: 1px solid #6f9ec2;
  }
   .inputlongborder:focus{
-    width: 503px;
+    width: 508px;
     height: 21px;
     margin-left: 9px;
     outline: none;
@@ -165,7 +146,7 @@ span{
   .memberinfoupdate_inputrightline {
     float: right;
     margin-right: 30px;
-    margin-top: 10px;
+    margin-top: 14px;
 }
 .memberinfoupdate_lefttopdirection{
     float: left;
@@ -190,4 +171,12 @@ span{
 .memberinfoupdate_rightbutton button{
     margin-left: 50px;
    
+}
+.memberinfoupdate img{
+    background: url(./img/rightarrows.png);
+    width:15px;
+    top:0;
+    position: absolute;
+    left: 216px;
+    height: 22px;
 }

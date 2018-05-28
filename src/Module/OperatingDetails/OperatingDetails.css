@@ -5,5 +5,5 @@
 .OperatingDetails_dataLeft div:last-child{float: left;margin-left:17px;}
 .OperatingDetails_list{height:233px;}
 .OperatingDetails_list div{clear: both;}
-.OperatingDetails_list .OperatingDetails_list_box{height:193px;}
+.OperatingDetails_list .OperatingDetails_list_box{height:193px;max-height:193px}
 

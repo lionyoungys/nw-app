@@ -18,6 +18,8 @@ import Recharge from './Module/Recharge/App';
 
 import OperateIncome from './Module/OperateIncome/OperateIncome';
 import SaleCard from './Module/SaleCard/SaleCard.js'
+import ChangeCard from './Module/ChangeCard/ChangeCard.js'//换卡
+import ReportLossMain from './Module/ReportLossMain/ReportLossMain.js'//挂失主页面
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -42,5 +44,7 @@ export default {
     staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume,//会员卡消费
     operate_income:OperateIncome, //营业收入
+    exchange_card: ChangeCard, //换卡
+    report_loss_main: ReportLossMain,//挂失主页面
     sale_card:SaleCard //售卡
 };

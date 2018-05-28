@@ -3,8 +3,8 @@
  * @author Edwin Young
  * @desc option:选项列表[value,value,value];onChange:回调操作(value);selected:默认选中的选项
  */
-import React from 'react';
 
+import React from 'react';
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
-    }
+    } 
 
     componentDidMount() {
         this.setState({minWidth:this.div.offsetWidth});
@@ -68,10 +68,10 @@ export default class extends React.Component {
                 className={`ui-select${this.state.show ? ' ui-select-show' : ''}`}
                 style={{minWidth:this.state.minWidth}}
             >
-                <i onClick={this.toggleShow}></i>
+                <i onClick = {this.toggleShow}></i>
                 <div
                     className='ui-select-selected'
-                    onClick={this.toggleShow}
+                    onClick = {this.toggleShow}
                 >{selected}</div>
                 <div ref={div => this.div = div} className='ui-select-option'>{option}</div>
             </div>

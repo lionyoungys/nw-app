@@ -6,3 +6,4 @@ src/Api.js
 *.ldb
 *.btf
 *.sql
+*.log

@@ -19,7 +19,7 @@ export default class extends Component {
                         <span>卡类型:</span><input/>
                         </div>
                         <div>
-                        <span>卡号:</span><input/>
+                        <span>卡号:</span><input/><label>卡号为空时，仅创建电子卡</label>
                         </div>
 
                     </div>
@@ -51,23 +51,25 @@ export default class extends Component {
                 </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>地址:</span><input type='text' className='inputlongborder'/>
+            <span>地址:</span><input type='text' className='inputborder'/>
             </span>
             </div>
                     </div>
                     <div className='bottom'>
                     <div>
-                    <span>充值:</span><span></span>
+                    <span>充值:</span><label>34234234324</label>
                     </div>
                     <div>
-                    <span>赠送:</span><span></span>
+                    <span>赠送:</span><label>34234234324</label>
                     </div>
                     <div>
-                        <span>折扣率</span><span></span>
+                        <span>折扣率:</span><label>34234234324</label>
                     </div>
                     <div>
-                        <span>制卡费:</span><span></span>
+                        <span>制卡费:</span><label>34234234324</label>
                     </div>
+                        <span className='textred'>应收合计：￥323</span>
+                        <button type='button' className='e-btn'>收银</button>
                     </div>
                     </div>
                    

@@ -14,5 +14,5 @@
     cursor: pointer;
 }
 .tableC_title_right button:hover{background:url(./img/e-btn-hover.png)}
-.tableC_box .tableC_box_div table{height:88px;}
-.tableC_box .tableC_box_div:last-child table{height:247px}
+.tableC_box .tableC_box_div table{height:88px;max-height:94px}
+.tableC_box .tableC_box_div:last-child table{height:247px;max-height:247px}
