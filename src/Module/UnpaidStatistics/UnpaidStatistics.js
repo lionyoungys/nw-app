@@ -21,7 +21,7 @@ export default class extends Component {
                     <div className="unpaidstatistics_dataright">
                         <button type='button' className='e-btn '>查询</button>
                         <button type='button' className='e-btn '>打印</button>
-                        <button type='button' className='e-btn '>退出</button>
+                        <button type='button' className='e-btn ' onClick={this.props.closeView}>退出</button>
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">

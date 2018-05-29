@@ -129,3 +129,21 @@
     color: #1b51f1;
     cursor:pointer;
 }
+
+.reportloss .cardnumber{
+    margin-top: 26px;
+    margin-left: 17px;
+    color: #15458d;
+    font-size: 12px;
+}
+.reportloss .border{
+    margin: 15px auto;
+    border-top: 1px solid #8db2e3;
+    height: 174px;
+    width: 607px;
+}
+.reportloss .button{
+    margin-top: 22px;
+    margin-right: 12px;
+    float: right;
+}

@@ -34,7 +34,7 @@ export const topMenu = [
             {value:'充值', view:'recharge'},
             {value:'会员信息修改', view:'member_info_update'},
             { value: '挂失、解挂', view:'report_loss_main'},
-            { value: '退卡', view:'exchange_card'},
+            { value: '退卡', view:'return_card'},
             {value:'客户信息查询', view:null}
         ]
     },
@@ -94,7 +94,7 @@ export const nav = [
     {value:'收衣',class:'main-clothes',view:'clothes'},
     {value:'售卡',class:'main-sale-card',view:'sale_card'},
     {value:'充值',class:'main-recharge',view:'recharge'},
-    {value:'营业日报',class:'main-income',view:null},
+    {value:'营业日报',class:'main-income',view:'operate_income'},
     {value:'退出',class:'main-quit',view:null, event:'quit'},
 ];
 //左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
