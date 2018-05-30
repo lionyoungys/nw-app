@@ -127,15 +127,41 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {remember:false,merchant:'',name:'',passwd:'',show:false,init_passwd:'',init_passwd2:''}
-        this.remember = this.remember.bind(this);
         this.login = this.login.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.remember = this.remember.bind(this);
+       
+    }
+    componentDidMount() {
+        if('mid'.getData!=''){
+            this.setState({merchant:'mid'.getData(),name:'name'.getData(),passwd:'passwd'.getData()})
+        }
     }
     remember() {
+      
         this.setState({remember:!this.state.remember});
+        console.log(this.state.remember)
+        
     }
     login() {
-        this.setState({show:true});
+           api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
+            if (ver && res) {
+               console.log(res);
+            var aname = res.aname;
+            var mname = res.mname;
+            var token = res.token;
+            this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
+            console.log(this.state.remember)
+            aname.setData('aname');
+            mname.setData('mname');
+            token.setData('token');
+            nw.Window.open('main.html', nw.App.manifest.mainWindow);
+            win.close();
+            } else {
+                this.setState({index:2});
+            }
+        }, () => {this.setState({index:2})});
+        // this.setState({show:true});
         //3次密码错误提示
         // tool.ui.error({msg:'请5分钟后再重试',info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close) => {
         //     close();    //点击按钮或关闭符号时关闭弹窗

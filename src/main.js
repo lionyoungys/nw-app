@@ -2,7 +2,7 @@
  * 主界面组件
  * @author Edwin Young
  */
-
+const process = window.require('process'), path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
@@ -28,8 +28,8 @@ class Main extends Component {
             max:false, 
             min:false,
             isMaxMin:false,    //是否为最大化的情况下最小化
-            name:'开发测试店铺', 
-            employee:'EdwinYoung',
+            name:'mname'.getData(), 
+            employee:'aname'.getData(),
             view:null,    //视图路由名称
             param:null    //视图路由携带参数
         }
@@ -52,15 +52,20 @@ class Main extends Component {
     
     //路由跳转方法
     changeView(e) {
-        var com = ffi.Library('F:/nw-app/app/ext/API_COM.DLL', {
-            'com_init': ['boolean', ['int', 'int']],
-            'com_send': ['boolean', ['string', 'long']],
-            'com_rest': ['boolean', []]
-        });
-        let PDStr = Chr(27) + Chr(81) + Chr(65) + "1234.56" + Chr(13);
-        console.log(com.com_init(1, 2400));
-        console.log(com.com_send(PDStr, length));
-        console.log(com.com_rest());
+        // var com = ffi.Library('F:/nw-app/app/ext/API_COM.DLL', {
+        //     'com_init': ['boolean', ['int', 'int']],
+        //     'com_send': ['boolean', ['string', 'long']],
+        //     'com_rest': ['boolean', []]
+        // });
+        // let PDStr = Chr(27) + Chr(81) + Chr(65) + "1234.56" + Chr(13);
+        // console.log(com.com_init(1, 2400));
+        // console.log(com.com_send(PDStr, length));
+        // console.log(com.com_rest());
+        console.log(ffi);
+        let test = ffi.Library(path.dirname(process.execPath) + '/ext/test.dll', {'add':['int', ['int', 'int']]});
+        console.log(test.add(100, 100));
+        // console.log(hello);
+        // console.log(hello.hello());
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;
