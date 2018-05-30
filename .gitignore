@@ -9,3 +9,5 @@ src/Api.js
 *.log
 nwjs-sdk-v0.14.7-win-ia32
 nwjs-v0.14.7-win-ia32
+ProductionDir
+node-ext

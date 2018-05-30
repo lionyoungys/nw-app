@@ -61,9 +61,14 @@ class Main extends Component {
         // console.log(com.com_init(1, 2400));
         // console.log(com.com_send(PDStr, length));
         // console.log(com.com_rest());
-        console.log(ffi);
-        let test = ffi.Library(path.dirname(process.execPath) + '/ext/test.dll', {'add':['int', ['int', 'int']]});
-        console.log(test.add(100, 100));
+        //console.log(open_case);
+        //console.log(open_case.open_case());
+        // console.log('#############################');
+        // console.log(hello);
+        // console.log(hello.hello());
+        // console.log(ffi);
+        let test = ffi.Library(path.dirname(process.execPath) + '/ext/opcsbx.dll', {'OpenDrawer':['void', ['string']]});
+        console.log(test.OpenDrawer('Zonerich AB-58D'));
         // console.log(hello);
         // console.log(hello.hello());
         let view = null,    //视图

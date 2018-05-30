@@ -9,6 +9,5 @@
     }
     window.request = require('request');
     window.progress = require('request-progress');
-    window.ffi = require('./build/Release/ffi_bindings');
-    
+    //window.ffi = require('ffi');
 })(window);
