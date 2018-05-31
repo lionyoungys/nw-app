@@ -67,10 +67,18 @@ MemberCardConsume 会员卡消费
 Recharge   充值页面
 
 Payandrecharge 支付充值
+Solutiontohang 解挂英语
 
 #############################################################################
 生产环境在软件文件夹下须安装的扩展:ms,node-adodb,request,request-progress
 解决windows xp 下ffi扩展找不到的问题:在node_modules\ffi\src\win32-dlfcn.cc文件中，将里面的地96行和第99行的两行代码，对应的代码应该是：
     errorMode = GetErrorMode();  
     SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
-将这两行代码注释掉，然后重新rebuild
+将这两行代码注释掉，然后重新rebuild||||||| .r197
+
+
+
+
+
+
+

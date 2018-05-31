@@ -10,7 +10,7 @@ import Select from '../../UI/Select';
 export default class extends Component {   
     constructor(props) {
         super(props);     
-    this.state={'cardtype':[],'cardnumber':'',name:'',passwd1:'',mobilephone:'',passwd2:''};    
+    this.state={cardtype:[],cardnumber:'',name:'',passwd1:'',mobilephone:'',passwd2:'',birthday:'1970-01-01'};    
     this.cashier=this.cashier.bind(this)  
     }; 
     componentDidMount() {
@@ -31,7 +31,7 @@ export default class extends Component {
                     <div className='salecard'>
                     <div className='top'>
                         <div>
-                        <span>卡类型:</span>&nbsp;&nbsp;<Select option={this.state.cardtype}  onChange={value => console.log(value)}/>
+                        <span>卡类型:</span>&nbsp;&nbsp;<Select option={this.state.cardtype} selected={this.state.cardtype[0]} onChange={index => console.log(index)}/>
                         </div>
                         <div>
                         <span>卡号:</span><input value={this.state.cardnumber} onChange={e => this.setState({cardnumber:e.target.value})}/><label>卡号为空时，仅创建电子卡</label>
@@ -58,10 +58,10 @@ export default class extends Component {
                     </div>
                 <div>
                      <span className='salecard_leftdirection'>
-                    <span>性别:</span><input type='text' className='inputselectborder'/>
+                    <span>性别:</span>&nbsp;&nbsp;<Select option={['未知','男','女']} selected='未知' onChange={value => console.log(value)}/>
                     </span>
                  <span className='salecard_rightdirection'>
-                    <span>生日:</span><input type='date' className='inputselectborder'/>
+                    <span>生日:</span><input type='date' className='inputselectborder' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>
                 </span>
                 </div>
             <div>

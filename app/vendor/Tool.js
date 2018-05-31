@@ -5,7 +5,18 @@
 
 (function(window) {
     var t = {
-        ui:{},    //ui组件对象
+        ui: {},    //ui组件对象
+        include:function (moduleName){    //引入模块方法
+            if ('node-adodb' === moduleName) {
+                var ADODB = require('node-adodb');
+                ADODB.connection = function(address, password) {
+                    password = password || '';
+                    return ADODB.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + address + ';Persist Security Info=False;Jet OLEDB:Database Password=' + password);
+                }
+                return ADODB;
+            }
+            return require(moduleName);
+        }
     };    //工具类对象
 
     /**

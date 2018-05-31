@@ -23,7 +23,7 @@ export default class extends Component {
 
     handleClick() {
         if (this.state.address && !this.state.data.length) {
-            let connection = ADODB.connection(this.state.address, 'betterlife126126');
+            let connection = tool.include('node-adodb').connection(this.state.address, 'betterlife126126');
             let len = data.length;
             for (let i = 0;i < len;++i) {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {

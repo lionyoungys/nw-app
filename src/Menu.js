@@ -5,6 +5,7 @@ export const topMenu = [
         options:[
             {value:'收衣', view:'clothes'},
             {value:'取衣', view:'take_clothes'},
+            {value:'商品销售', view:null},
             {value:'欠款补交', view:'add_group'},
             {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
@@ -20,11 +21,15 @@ export const topMenu = [
             {value:'交班', view:null},
             {value:'营业日报', view:'operate_income'},
             {value:'前台情况', view:'foreground_statistics'},
-            {value:'衣物统计', view:null},
-            {value:'充值统计', view:'recharge_up'},
-            {value:'余额统计', view:'balance_statistics'},
             {value:'会员消费查询', view:null},
-            {value: '未付款统计', view:'unpaid_statistics'}
+            {value: '未付款统计', view:'unpaid_statistics'},
+            {value:'余额统计', view:'balance_statistics'},
+            {value:'充值统计', view:'recharge_up'},
+            {value:'消费统计', view:null},
+           
+           
+           
+           
         ]
     },
     {
@@ -33,10 +38,12 @@ export const topMenu = [
             { value:'售卡', view:'sale_card'},
             { value:'充值', view:'recharge'},
             { value:'会员信息修改', view:'member_info_update'},
-            { value: '换卡', view:'exchange_card'},
             { value: '挂失', view:'report_loss_main'},
+            { value:'解除挂失', view:'Solut_ionto_hang'},
+            { value: '换卡', view:'exchange_card'}, 
             { value: '退卡', view:'return_card'},
-            { value:'解挂', view:'Solut_ionto_hang'},
+            { value: '挂失查询', view:null},
+            { value: '退卡查询', view:null},
             { value:'客户信息查询', view:null},            
         ]
     },
@@ -59,34 +66,34 @@ export const topMenu = [
             {value:'欠款明细', view:null},
             {value:'会员业务统计', view:null},
             {value:'会员分类统计', view:null},
-            {value:'会员消费统计', view:'member_consumption_statistics'},
+            // {value:'会员消费统计', view:'member_consumption_statistics'},
             {value:'衣物统计', view:null}
         ]
     },
+    // {
+    //     value:'店铺管理', 
+    //     options:[
+    //         {value:'门店信息', view:null},
+    //         {value:'我的网店', view:null},
+    //         {value:'商品与分类', view:null},
+    //         {value:'员工管理', view:'staff_management'},
+    //         {value:'卡券中心', view:null},
+    //         {value:'优惠活动', view:null},
+    //         {value:'密码与安全', view:null},
+    //         {value:'数据导入', view:'data'}
+    //     ]
+    // },
     {
-        value:'店铺管理', 
+        value:'设置', 
         options:[
-            {value:'门店信息', view:null},
-            {value:'我的网店', view:null},
-            {value:'商品与分类', view:null},
-            {value:'员工管理', view:'staff_management'},
-            {value:'卡券中心', view:null},
-            {value:'优惠活动', view:null},
-            {value:'密码与安全', view:null},
-            {value:'数据导入', view:'data'}
-        ]
-    },
-    {
-        value:'系统设置', 
-        options:[
-            {value:'帮助与反馈', view:null},
-            {value:'打印', view:null},
-            {value:'格架', view:null},
-            {value:'品牌', view:null},
-            {value:'颜色', view:null},
-            {value:'瑕疵', view:null},
-            {value:'洗后预估', view:null},
-            {value: '其他设置', view:'cleaning_price_setting'},
+            {value:'门店管理', view:null},
+            {value:'员工与权限', view:null},
+            {value:'价格设置', view:null},
+            {value:'参数设置', view:null},
+            {value:'设备管理', view:null},
+            {value:'数据导入', view:null},
+            {value:'密码修改', view:null},
+            // {value: '其他设置', view:'cleaning_price_setting'},
             {value:'关于速洗达', view:null}
         ]
     }
