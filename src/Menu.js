@@ -87,11 +87,11 @@ export const topMenu = [
         value:'设置', 
         options:[
             {value:'门店管理', view:null},
-            {value:'员工与权限', view:null},
+            {value:'员工与权限', view:'staff_management'},
             {value:'价格设置', view:null},
             {value:'参数设置', view:null},
             {value:'设备管理', view:null},
-            {value:'数据导入', view:null},
+            {value:'数据导入',  view:'data'},
             {value:'密码修改', view:null},
             // {value: '其他设置', view:'cleaning_price_setting'},
             {value:'关于速洗达', view:null}
