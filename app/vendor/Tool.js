@@ -43,6 +43,21 @@
         }
         return date;
     }
+    /**
+     * 数组或对象转url参数字符串
+     * @param {*object} object 
+     * @return {*string} url string
+     */
+    t.toUrlString = function(object) {
+        var str = '';
+        if ('object' === typeof object) {
+            for (var k in object) {
+                //使用encodeURIComponent将参数值中的特殊字符进行转义防止发送请求时缺省掉特殊字符
+                str += ( k + '=' + encodeURIComponent(object[k]) + '&' );
+            }
+        }
+        return str.substr(0, (str.length - 1) );
+    }
 
     //ui对象实现
 
