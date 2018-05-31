@@ -25,7 +25,7 @@ export default class extends Component {
         }else if(e.target.dataset.index==1){
 
         }else{
-            closeView();   
+            this.props.closeView();
         }
     }
     render() {
@@ -59,12 +59,9 @@ export default class extends Component {
            <span>{item.sign}</span>
            <span>{item.discount_price}</span>
            <span>{item.deal_time}</span>
-           
             <span>{item.remark}</span>
             <span>{item.status}</span>
             <span>{item.collect_time}</span>
-          
-            <span>{item.discount_price}</span>
             <span>{item.grid_num}</span>
             <span>{item.addition_remark}</span>
             <span>{item.work_number}</span>

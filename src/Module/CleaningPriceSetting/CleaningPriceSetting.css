@@ -1,0 +1,107 @@
+.cleaning_price_set_btn{
+
+    /* background-color: red; */
+    margin: 0 13px;
+    height: 39px;
+    line-height: 39px;
+}
+.cleaning_price_set_btn button{
+
+    font-size: 12px;
+    color: black;
+    margin: 9px 10px;
+    height: 22px;
+    width: 110px;
+    float: right;
+    border:none;
+    background:none;
+    background:url(./img/surebtn.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height:22px;
+    outline:none;
+    cursor: pointer;
+}
+
+.cleaning_price_set_btn button:hover{
+    background:url(./img/hoverbtn.png);
+    background-size: 100% 100%;
+}
+.cleaning_price_set_left_table_div{
+
+    margin-top: 0;
+    margin-left: 13px;
+    width: 90px;
+    height: 534px;
+    border:1px solid #8db2e3;
+    overflow: hidden;
+    float: left;
+    /* background: red; */
+}
+.cleaning_price_set_left_table{
+
+    float: left;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    width: 107px;
+    height: 534px;
+    overflow-y: auto;
+    /* 用于隐藏横向滑块 */
+    overflow-x:hidden;
+}
+.cleaning_price_set_left_table:-webkit-scrollbar{
+
+    display: none;
+}
+.cleaning_price_set_left_table span{
+    display: block;
+    margin: 0;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    color: black;
+    background:url(./img/cleaning_price_set.png) no-repeat;
+    background-size:77px 2px;
+    background-position: bottom center;
+    width:100%;
+}
+.cleaning_price_set_left_table span.selected_row{
+
+    background: #5f9dfa;
+    color: white;
+    font-weight: bold;
+    
+}
+
+.right_table{
+
+    float: left;
+    margin-top: 0;
+    margin-left: 10px;
+    min-width: 770px;
+    max-width: 770px;
+    max-height: 533px;
+    overflow: auto;
+    border:1px solid #8db2e3;
+    
+}
+.right_table tr td{
+    /* 将会根据字数大小进行宽度设定 */
+    /* min-width: auto; */
+    min-width: 61px;
+    height: 25px;
+    border-right: 1px solid #acc6de;
+    word-wrap:break-word;
+    padding: 0 5px;
+}
+.right_table tr td:first-child{
+
+    min-width: 50px;
+    padding: 0;
+}
+.right_table tr td:last-child{
+   border-right: none;
+}

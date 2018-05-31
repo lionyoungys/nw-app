@@ -22,10 +22,12 @@
     text-indent: 10px;
     float: left;
 }
+
 .change_card_date button{
 
     margin-left: 18px; 
 }
+
 .change_card_date_left input{
 
     width:133px;

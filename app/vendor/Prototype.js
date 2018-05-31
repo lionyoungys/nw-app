@@ -34,4 +34,21 @@
      * @return Blob
      */
     String.prototype.blob = function (buffer) {return new Blob([buffer], {type: this.mime()})}
+
+    /**
+     * 通过数组对象获取指定属性的数组
+     * @param {*string} key 数组对象将要提取的属性
+     * @return {*array} 属性列表数组
+     */
+    Array.prototype.typeArray = function (key) {
+        var len = this.length, arr = [];
+        for (var i = 0;i < len;++i) {
+            if (this[i] instanceof Object && 'undefined' !== this[i][key]) {
+                arr.push(this[i][key]);
+            } else {
+                break;
+            }
+        }
+        return arr;
+    }
 })();

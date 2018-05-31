@@ -207,6 +207,9 @@ table{border-collapse: collapse}
 .e-btn[readonly]{background: url(img/e-btn-readonly.png);color: #b2b2b2}
 .e-btn:hover{background: url(img/e-btn-hover.png)}
 .e-btn[readonly]:hover{background: url(img/e-btn-readonly.png)}
+/* 大按钮样式 */
+.e-btn.large{width: 130px;background: url(img/e-btn-8.png)}
+.e-btn.large:hover{background: url(img/e-btn-8-hover.png)}
 /* 输入框样式 */
 .e-label{
     font-size: 14px;

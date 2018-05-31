@@ -11,17 +11,26 @@ import './App.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {card_id:''}
+        this.state = {cardNumber:'',user_info:[]}
+        this.query=this.query.bind(this);
     }
-
+    query(){
+        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardNumber}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({user_info:res.result[0]});
+            }
+        }
+        );
+    }
     render() {
         return (
             <Window title='充值' onClose={this.props.closeView} width='632' height='430'>
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.card_id} onChange={e => this.setState({card_id:e.target.value})}/>&nbsp;
-                        <button type='button' className='e-btn'>查询</button>&nbsp;
+                        <input id='card_id' className='e-input' type='text' value={this.state.cardNumber} onChange={e => this.setState({cardNumber:e.target.value})}/>&nbsp;
+                        <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
                         <button type='button' className='e-btn'>读卡</button>
                     </div>
                     <div><label className='e-label'>卡编号：</label>11874572954745</div>

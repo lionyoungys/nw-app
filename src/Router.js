@@ -17,10 +17,15 @@ import UnpaidStatistics from './Module/UnpaidStatistics/UnpaidStatistics.js';//�
 import Recharge from './Module/Recharge/App';
 
 import OperateIncome from './Module/OperateIncome/OperateIncome';
-import SaleCard from './Module/SaleCard/SaleCard.js'
-import ChangeCard from './Module/ChangeCard/ChangeCard.js'//换卡
-import ReportLossMain from './Module/ReportLossMain/ReportLossMain.js'//挂失主页面
-import ReturnCard from './Module/ReturnCard/ReturnCard';
+import SaleCard from './Module/SaleCard/SaleCard.js';
+import ChangeCard from './Module/ChangeCard/ChangeCard.js';//换卡
+import ReportLossMain from './Module/ReportLossMain/ReportLossMain.js';//挂失主页面
+import ReturnCard from './Module/ReturnCard/ReturnCard.js';
+import ManagerGathering from './Module/ManagerGathering/ManagerGathering.js';//经理收款
+
+import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge.js'; // 支付充值页面
+import CleaningPriceSetting from './Module/CleaningPriceSetting/CleaningPriceSetting.js'; // 洗护价格设置
+import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js' // 支付充值页面
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -44,5 +49,9 @@ export default {
     operate_income:OperateIncome, //营业收入
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面
+    pay_and_recharge:Payandrecharge,// 支付充值    
     return_card:ReturnCard,//退卡
+    manager_gathering:ManagerGathering,//经理收款
+    cleaning_price_setting:CleaningPriceSetting,//洗护价格设置
+    Solut_ionto_hang:Solutiontohang,  //解除挂失
 };

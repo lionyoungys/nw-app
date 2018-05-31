@@ -66,6 +66,7 @@ ReportLoss  挂失
 MemberCardConsume 会员卡消费
 Recharge   充值页面
 
+Payandrecharge 支付充值
 
 #############################################################################
 生产环境在软件文件夹下须安装的扩展:ms,node-adodb,request,request-progress
@@ -73,8 +74,3 @@ Recharge   充值页面
     errorMode = GetErrorMode();  
     SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
 将这两行代码注释掉，然后重新rebuild
-
-
-<!-- var name = 'dfdfdffd';
-name.setData('merchant');
-'merchant'.getData(); -->

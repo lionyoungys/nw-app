@@ -8,7 +8,7 @@ export const topMenu = [
             {value:'欠款补交', view:'add_group'},
             {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
-            {value:'赔付', view:null},
+            {value:'赔付', view:'pay_and_recharge'},
             {value:'demo', view:'demo'}
         ]
     },
@@ -30,12 +30,14 @@ export const topMenu = [
     {
         value:'客户管理', 
         options:[
-            {value:'售卡', view:'sale_card'},
-            {value:'充值', view:'recharge'},
-            {value:'会员信息修改', view:'member_info_update'},
-            { value: '挂失、解挂', view:'report_loss_main'},
+            { value:'售卡', view:'sale_card'},
+            { value:'充值', view:'recharge'},
+            { value:'会员信息修改', view:'member_info_update'},
+            { value: '换卡', view:'exchange_card'},
+            { value: '挂失', view:'report_loss_main'},
             { value: '退卡', view:'return_card'},
-            {value:'客户信息查询', view:null}
+            { value:'解挂', view:'Solut_ionto_hang'},
+            { value:'客户信息查询', view:null},            
         ]
     },
     {
@@ -48,7 +50,7 @@ export const topMenu = [
     {
         value:'财务统计', 
         options:[
-            {value:'经理收款', view:null},
+            { value: '经理收款', view:'manager_gathering'},
             {value:'经理查询', view:null},
             {value:'经营日报', view:null},
             {value:'营业统计', view:null},
@@ -84,7 +86,7 @@ export const topMenu = [
             {value:'颜色', view:null},
             {value:'瑕疵', view:null},
             {value:'洗后预估', view:null},
-            {value:'其他设置', view:null},
+            {value: '其他设置', view:'cleaning_price_setting'},
             {value:'关于速洗达', view:null}
         ]
     }

@@ -78,7 +78,7 @@
     min-width: 33px; 
     border-right: 1px solid #acc6de;
 }
-.report_loss_main_table thead{
+.report_loss_main_table thead{ 
 
     display: block;
     overflow-x: hidden;
@@ -95,7 +95,6 @@
     /* background: url(./img/e-btn-hover.png); */
     background-size: contain;
 }
-
 
 .report_loss_main_table tbody{
     

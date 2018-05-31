@@ -52,25 +52,6 @@ class Main extends Component {
     
     //路由跳转方法
     changeView(e) {
-        // var com = ffi.Library('F:/nw-app/app/ext/API_COM.DLL', {
-        //     'com_init': ['boolean', ['int', 'int']],
-        //     'com_send': ['boolean', ['string', 'long']],
-        //     'com_rest': ['boolean', []]
-        // });
-        // let PDStr = Chr(27) + Chr(81) + Chr(65) + "1234.56" + Chr(13);
-        // console.log(com.com_init(1, 2400));
-        // console.log(com.com_send(PDStr, length));
-        // console.log(com.com_rest());
-        //console.log(open_case);
-        //console.log(open_case.open_case());
-        // console.log('#############################');
-        // console.log(hello);
-        // console.log(hello.hello());
-        // console.log(ffi);
-        let test = ffi.Library(path.dirname(process.execPath) + '/ext/opcsbx.dll', {'OpenDrawer':['void', ['string']]});
-        console.log(test.OpenDrawer('Zonerich AB-58D'));
-        // console.log(hello);
-        // console.log(hello.hello());
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;
