@@ -32,10 +32,12 @@
     margin-top: 0;
     margin-left: 13px;
     width: 90px;
-    height: 534px;
+    height: auto;
+    max-height: 534px;
     border:1px solid #8db2e3;
     overflow: hidden;
     float: left;
+    
     /* background: red; */
 }
 .cleaning_price_set_left_table{
@@ -45,8 +47,8 @@
     margin-left: 0;
     margin-bottom: 0;
     width: 107px;
-    height: 534px;
-    overflow-y: auto;
+    max-height: 534px;
+    overflow-y: scroll;
     /* 用于隐藏横向滑块 */
     overflow-x:hidden;
 }
@@ -67,6 +69,10 @@
     background-size:77px 2px;
     background-position: bottom center;
     width:100%;
+}
+.cleaning_price_set_left_table span:last-child{
+
+    background: none;
 }
 .cleaning_price_set_left_table span.selected_row{
 

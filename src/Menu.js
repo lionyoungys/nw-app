@@ -10,7 +10,9 @@ export const topMenu = [
             {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
             {value:'赔付', view:'pay_and_recharge'},
-            {value:'demo', view:'demo'}
+            {value:'demo', view:'demo'},
+            {value:'编辑商品价格', view:'edit_shop_prices'},
+            {value:'编辑洗护价格', view:'edit_cleaning_prices'},
         ]
     },
     {
@@ -93,7 +95,7 @@ export const topMenu = [
             {value:'设备管理', view:null},
             {value:'数据导入',  view:'data'},
             {value:'密码修改', view:null},
-            // {value: '其他设置', view:'cleaning_price_setting'},
+            {value: '其他设置', view:'commodity_classify_management'},
             {value:'关于速洗达', view:null}
         ]
     }

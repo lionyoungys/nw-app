@@ -111,9 +111,7 @@
 .change_card_table tbody tr td:first-child{
     color: #9f9f9f;
 }
-.change_card_table tbody tr td:last-child{
-    color: #1b51f1;
-}
+
 .change_card_table tbody tr td:last-child{
     color: #1b51f1;
     cursor:pointer;

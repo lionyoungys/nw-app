@@ -4,17 +4,29 @@
  */
 import React, { Component } from 'react';
 import '../ReportLossMain/ReportLossMain.css';
+import './Solutiontohang.css'
 import Window from '../../UI/Window';
 import {Table} from '../../UI/Table';
 import LayerBox from '../../Ui/LayerBox';
-import Solutiontohang from './Solutiontohang.css'
+
 export default class extends Component {
     constructor(props) {
-        super(props);       
-    };      
+        super(props);
+        this.losecard = this.losecard.bind(this);      
+    }; 
+    losecard() {
+        api.post('removeLossCard', {token:'token'.getData(),id:'56756'}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+            }else{
+                console.log(res)
+            }
+        }
+        );
+    }     
     render() {
         return (
-            <Window title='接除挂失( 仅实体店卡 )' onClose={this.props.closeView} width='632' height='337'>           
+            <Window title='解除挂失( 仅实体店卡 )' onClose={this.props.closeView} width='632' height='337'>           
                 <div className='reportloss'>
                         <div className='cardnumber'>卡编号：1254879652 <b>(已挂失)</b></div>
                         <div className='border'>
@@ -41,15 +53,15 @@ export default class extends Component {
                                     </div>
                                     <div>
                                         <label className='e-label'>地址：</label><div>大望路</div>
-                                        <label className='e-label'>&emsp;&emsp;余额：</label><div>&yen;￥254852.00</div>
+                                        <label className='e-label'>&emsp;&emsp;余额：</label><div>￥254852.00</div>
                                     </div>
                             </div>
                             <div className="card-detail">
-                               <button className="e-btn">读卡</button>
+                               <button className="e-btn" onClick = {this.losecard()}>读卡</button>
                             </div>
                             <div className='button'>                            
-                                <button type='button' className='e-btn'>取消</button>&nbsp;&nbsp;
-                                <button type='button' className='e-btn'>解除挂失</button>
+                                <button type='button' className='e-btn' onClick={this.props.closeView}>取消</button>&nbsp;&nbsp;
+                                <button type='button' className='e-btn'  readOnly>解除挂失</button>
                             </div>
                         </div>
                     </div>        

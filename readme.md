@@ -26,7 +26,6 @@ src/main.js              -->    主界面开发文件
 src/main.css             -->    主界面样式文件
 src/UI                   -->    界面开发UI组件文件夹
 src/Module               -->    界面开发界面模块文件夹
-ProductionDir            -->    生产环境下的依赖包，将该文件夹下的文件/文件夹放置在软件目录下
 
 
 
@@ -67,18 +66,8 @@ MemberCardConsume 会员卡消费
 Recharge   充值页面
 
 Payandrecharge 支付充值
-Solutiontohang 解挂英语
-
-#############################################################################
-生产环境在软件文件夹下须安装的扩展:ms,node-adodb,request,request-progress
-解决windows xp 下ffi扩展找不到的问题:在node_modules\ffi\src\win32-dlfcn.cc文件中，将里面的地96行和第99行的两行代码，对应的代码应该是：
-    errorMode = GetErrorMode();  
-    SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
-将这两行代码注释掉，然后重新rebuild||||||| .r197
-
-
-
-
+Solutiontohang 解除挂失
+Editshopprices 编辑商品价格
 
 
 

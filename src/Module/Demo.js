@@ -79,8 +79,9 @@ export default class extends React.Component {
                 弹出层容器2<button type='button' className='e-btn' onClick={() => this.setState({show2:true})}>容器取消</button>
                 <br/>
                 <SelectSearch placeholder='测试搜索' value='23333' option={['手机号','用户名','密码']} callback={(value, select) => {console.log(value);console.log(select)}}/>
-                <div style={{padding:'30px'}}></div>
-                &emsp;&emsp;&emsp;<Select option={['手机号','用户名','密码']} selected='密码' onChange={value => console.log(value)}/>
+                <Select option={['手机号','用户名','密码']} selected='密码' onChange={value => console.log(value)}/>
+                &emsp;
+                <Select option={['手机号','用户名','密码']} selected='密码' readOnly={true} onChange={value => console.log(value)}/>
                 <div style={{padding:'30px'}}></div>
                 <label className='e-label'>label样式：</label><input type='text' className='e-input'/>
                 <div style={{padding:'30px'}}></div>

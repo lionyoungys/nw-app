@@ -17,9 +17,14 @@ export default class extends Component {
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardnumber}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({card_number:res.result[0].card_number,user_mobile:res.result[0].user_mobile
-                ,user_name:res.result[0].user_name,sex:res.result[0].sex,birthday:res.result[0].birthday,address:res.result[0].address
-                ,id:res.result[0].id,user_type:res.result[0].user_type
+                this.setState({card_number:res.result[0].card_number,
+                    user_mobile:res.result[0].user_mobile,
+                    user_name:res.result[0].user_name,
+                    sex:res.result[0].sex,
+                    birthday:res.result[0].birthday,
+                    address:res.result[0].address
+                ,id:res.result[0].id,
+                user_type:res.result[0].user_type
                 });
             }
         }

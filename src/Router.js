@@ -25,7 +25,9 @@ import ManagerGathering from './Module/ManagerGathering/ManagerGathering.js';//�
 
 import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge.js'; // 支付充值页面
 import CleaningPriceSetting from './Module/CleaningPriceSetting/CleaningPriceSetting.js'; // 洗护价格设置
-import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js' // 支付充值页面
+import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js' // 解除挂失页面
+import Editshopprices from'./Module/Editshopprices/Editshopprices.js' // 编辑商品价格
+import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js' // 编辑洗护价格
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -41,15 +43,23 @@ export default {
     balance_statistics:BalanceStatistics,  //余额统计
     member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
     foreground_statistics:ForegroundStatistics, //前台统计
+    staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume,//会员卡消费
     unpaid_statistics: UnpaidStatistics,//未付款统计
     recharge:Recharge,    //充值
+    staff_management:StaffManagement,  //员工管理
     operate_income:OperateIncome, //营业收入
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面
+    sale_card:SaleCard, //售卡
     pay_and_recharge:Payandrecharge,// 支付充值    
     return_card:ReturnCard,//退卡
     manager_gathering:ManagerGathering,//经理收款
     cleaning_price_setting:CleaningPriceSetting,//洗护价格设置
     Solut_ionto_hang:Solutiontohang,  //解除挂失
+    sale_card:SaleCard,//售卡
+    
+    edit_shop_prices:Editshopprices, //编辑商品价格
+    edit_cleaning_prices:EditCleaningPrices  //编辑洗护价格
+
 };

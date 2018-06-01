@@ -154,7 +154,9 @@
     vertical-align: middle;
     border-radius: 3px;
     font-size: 12px;
+    background: #fff;
 }
+.ui-select.ui-select-readonly{background: #efefef}
 .ui-select.ui-select-show{overflow: visible}
 .ui-select>i{
     height: 100%;
@@ -166,6 +168,7 @@
     cursor: default;
 }
 .ui-select:hover>i{background: url(img/ui-select-blue.png) no-repeat center center}
+.ui-select.ui-select-readonly>i, .ui-select.ui-select-readonly:hover>i{background: url(img/ui-select-readonly.png) no-repeat center center}
 .ui-select-selected{
     padding: 0 24px 0 6px;
     border-top-left-radius:3px;
@@ -174,6 +177,7 @@
     cursor: default;
 }
 .ui-select:hover>.ui-select-selected{border: 1px solid #6f9ec2}
+.ui-select.ui-select-readonly:hover>.ui-select-selected{border: 1px solid #c2c2c2}
 .ui-select-option{
     background: #fff;
     border: 1px solid #c2c2c2;

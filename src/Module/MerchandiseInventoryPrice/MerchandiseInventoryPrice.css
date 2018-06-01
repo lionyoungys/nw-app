@@ -1,0 +1,33 @@
+.merchandise_inventory_price_table{
+
+    float: left;
+    margin-top: 0;
+    margin-left: 10px;
+    min-width: 770px;
+    max-width: 770px;
+    max-height: 533px;
+    overflow: auto;
+    border:1px solid #8db2e3;
+    
+}
+.merchandise_inventory_price_table tr td{
+    /* 将会根据字数大小进行宽度设定 */
+    /* min-width: auto; */
+    min-width: 109px;
+    max-width: 140px;
+    height: 25px;
+    border-right: 1px solid #acc6de;
+    word-wrap:break-word;
+}
+.merchandise_inventory_price_table tbody tr td{
+    color: black;
+}
+.merchandise_inventory_price_table tr td:first-child{
+
+    min-width: 110px;
+    max-width: 140px;
+    padding: 0;
+}
+.merchandise_inventory_price_table tr td:last-child{
+   border-right: none;
+}

@@ -1,0 +1,123 @@
+.commodity_classify_management_left{
+
+    margin-top: 16px;
+    margin-left: 16px;
+    width: 307px;
+    height: 338px;
+    /* background: yellow; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    float: left;
+    border:1px solid #8db2e3;
+}
+.commodity_classify_management_left_table{
+
+    float: left;
+    margin-top:0;
+    margin-left:0;
+    /* background-color: red; */
+    box-sizing: border-box;
+}
+.commodity_classify_management_left_table tr td{
+
+    text-align: center;
+    font-size: 12px;
+    /* background-color: red; */
+    min-width: 96px;
+    height: 24px;
+    border-right: 1px solid #acc6de;
+    word-wrap:break-word;
+}
+.commodity_classify_management_left_table tr{
+
+    background-color: #f0f5f9;
+    color: black;
+
+}
+.commodity_classify_management_left_table tbody tr:nth-child(odd){
+
+    background-color: #fff;
+    color: black;
+}
+
+.commodity_classify_management_left_table tr td:last-child{
+
+    border-right: none;
+        color: #1b51f1;
+    cursor:pointer;
+
+}
+
+.commodity_classify_management_right{
+
+    float: left;
+    margin-top: 16px;
+    margin-left:16px;
+    height: 339px;
+    width: 276px;
+    max-width: 300px;
+}
+
+.commodity_classify_management_right_btn{
+
+    margin: 0;
+    height: 54px;
+}
+.commodity_classify_management_right_btn button{
+
+    float: right;
+    font-size: 12px;
+    color: black;
+    margin-top: 15px;
+    height: 23px;
+    width: 110px;
+    float: right;
+    border:none;
+    background:none;
+    background:url(./img/surebtn.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height:22px;
+    outline:none;
+    cursor: pointer;
+}
+
+.commodity_classify_management_right_bottom{
+
+    margin: 0;
+    height: 285px;
+    border:1px solid #8db2e3;
+    box-sizing: border-box;
+}
+.commodity_classify_management_right_bottom a:first-child{
+
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #15458d;
+    height: 31px;
+    line-height:31px;
+    margin: 0;
+    text-indent: 15px;
+    background-color: #d7e8fc;
+}
+.commodity_classify_management_right_bottom p{
+
+    font-size: 12px;
+    color: black;
+    margin: 49px 0 8px 0;
+    text-indent: 28px;
+}
+.commodity_classify_management_right_bottom input{
+
+    display: block;
+    margin-top: 0;
+    margin-left: 28px;
+    width: 216px;
+    height: 25px;
+}
+.commodity_classify_management_right_bottom button{
+
+
+    margin: 83px 10px 10px 45px;
+}

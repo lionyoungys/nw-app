@@ -29,7 +29,7 @@ export default class extends React.Component {
             'string' === typeof dataValue ? this.props.onChange(dataValue) : this.props.onChange(value);
         }
     }
-    toggleShow() {this.setState({show:!this.state.show})}
+    toggleShow() {!this.props.readOnly && this.setState({show:!this.state.show})}
     
     render() {
         let len = this.props.option.length,
@@ -65,7 +65,7 @@ export default class extends React.Component {
         }
         return (
             <div
-                className={`ui-select${this.state.show ? ' ui-select-show' : ''}`}
+                className={`ui-select${this.state.show ? ' ui-select-show' : ''}${this.props.readOnly ? ' ui-select-readonly' : ''}`}
                 style={{minWidth:this.state.minWidth}}
             >
                 <i onClick = {this.toggleShow}></i>

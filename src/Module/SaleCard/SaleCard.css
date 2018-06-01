@@ -35,6 +35,8 @@
 .salecard_leftdirection{
     float: left;
     width: 254px;
+    height: 36px;
+    line-height: 50px;
 }
 .salecard .middle .salecard_leftdirection span{
     width: 68px;
@@ -58,8 +60,14 @@
      margin-left: 16px;
      line-height: 14px;
      font-size: 12px;
+    
      
  }
+ .salecard label span .imghelp{
+    background-image: url(img/salecardhelp.png);
+    width:20px;
+    height: 20px;
+}
  .salecard .bottom button{
      position: absolute;
      right: 20px;
@@ -78,3 +86,6 @@
  .salecard .top div span{
      margin-top: 14px;
  }
+ .salecard_leftdirection>span>label{
+   color: red
+}
