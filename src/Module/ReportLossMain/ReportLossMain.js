@@ -10,7 +10,7 @@ import LayerBox from '../../Ui/LayerBox';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[],id:''};
+        this.state = {show:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[],id:'',index:0};
         this.query=this.query.bind(this);
         this.reportLoss=this.reportLoss.bind(this);
     };
@@ -39,7 +39,7 @@ export default class extends Component {
         <td>{item.user_mobile}</td>
         <td>{item.card_name}</td>
         <td>{item.balance}</td>
-        <td onClick={() => this.setState({show:true,id:item.id})}>挂失</td>
+        <td onClick={() => this.setState({show:true,id:item.id,index:index})}>挂失</td>
                 {
                     this.state.show
                     &&
@@ -47,32 +47,32 @@ export default class extends Component {
                     <Window title='挂失-卡信息详情' onClose={() => this.setState({show:false})} width='632' height='337'>
                         {
                     <div className='reportloss'>
-                    <div className='cardnumber'>卡编号：{this.state.user_info[index].card_number} </div>
+                    <div className='cardnumber'>卡编号：{this.state.user_info[this.state.index].card_number} </div>
                     <div className='border'>
                     <div className='recharge recharge-second'>
                          <div>
-                             <label className='e-label'>卡号：</label><div>{this.state.user_info[index].recharge_number}</div>
-                             <label className='e-label'>&emsp;卡类型：</label><div>{this.state.user_info[index].card_name}</div>
+                             <label className='e-label'>卡号：</label><div>{this.state.user_info[this.state.index].recharge_number}</div>
+                             <label className='e-label'>&emsp;卡类型：</label><div>{this.state.user_info[this.state.index].card_name}</div>
                          </div>
                          <div>
-                             <label className='e-label'>姓名：</label><div>{this.state.user_info[index].user_name}</div>
-                             <label className='e-label'>&emsp;折扣率：</label><div>{this.state.user_info[index].discount}</div>
+                             <label className='e-label'>姓名：</label><div>{this.state.user_info[this.state.index].user_name}</div>
+                             <label className='e-label'>&emsp;折扣率：</label><div>{this.state.user_info[this.state.index].discount}</div>
                          </div>
                          <div>
-                             <label className='e-label'>电话：</label><div>{this.state.user_info[index].user_mobile}</div>
+                             <label className='e-label'>电话：</label><div>{this.state.user_info[this.state.index].user_mobile}</div>
             
                          </div>
                          <div>
-                             <label className='e-label'>性别：</label><div>{this.state.user_info[index].sex}</div>
-                             <label className='e-label'>售卡日期：</label><div>{this.state.user_info[index].time}</div>
+                             <label className='e-label'>性别：</label><div>{this.state.user_info[this.state.index].sex}</div>
+                             <label className='e-label'>售卡日期：</label><div>{this.state.user_info[this.state.index].time}</div>
                          </div>
                          <div>
                              <label className='e-label'>生日：</label><div>{this.state.user_info[index].birthday}</div>
                              <label className='e-label'>&emsp;&emsp;积分：</label><div>{this.state.user_info[index].integral}</div>
                          </div>
                          <div>
-                             <label className='e-label'>地址：</label><div>{this.state.user_info[index].address}</div>
-                             <label className='e-label'>&emsp;&emsp;余额：</label><div>&yen;{this.state.user_info[index].balance}</div>
+                             <label className='e-label'>地址：</label><div>{this.state.user_info[this.state.index].address}</div>
+                             <label className='e-label'>&emsp;&emsp;余额：</label><div>&yen;{this.state.user_info[this.state.index].balance}</div>
                          </div>
                      </div>
                      <div className='button'>

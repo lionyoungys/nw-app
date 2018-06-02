@@ -11,7 +11,7 @@ import './NewCardbinding.css';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false,show1:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[]} 
+        this.state = {show:false,show1:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[],index:0} 
         this.query = this.query.bind(this)   
         
     };    
@@ -32,7 +32,7 @@ export default class extends Component {
         <td>{item.user_mobile}</td>
         <td>{item.card_name}</td>
         <td>{item.balance}</td>
-        <td onClick={() => this.setState({show:true,id:item.id})}>换卡</td>
+        <td onClick={() => this.setState({show:true,id:item.id,index:index})}>换卡</td>
         {
                     this.state.show
                     &&
@@ -42,25 +42,25 @@ export default class extends Component {
                                <span>原卡信息</span>
                                <div>
                                   <div>
-                                    <span>卡类型：</span><b>{this.state.user_info[index].card_name} </b>
+                                    <span>卡类型：</span><b>{this.state.user_info[this.state.index].card_name} </b>
                                   </div>
                                   <div>
-                                    <span>卡号：</span><b>{this.state.user_info[index].recharge_number}</b>
+                                    <span>卡号：</span><b>{this.state.user_info[this.state.index].recharge_number}</b>
                                   </div>
                                   <div>
-                                    <span>卡编号：</span><b>{this.state.user_info[index].card_number}</b>
+                                    <span>卡编号：</span><b>{this.state.user_info[this.state.index].card_number}</b>
                                   </div>
                                   <div>
-                                    <span>姓名：</span><b>{this.state.user_info[index].user_name}</b>
+                                    <span>姓名：</span><b>{this.state.user_info[this.state.index].user_name}</b>
                                   </div>
                                   <div>
-                                    <span>电话：</span><b>{this.state.user_info[index].user_mobile}</b>
+                                    <span>电话：</span><b>{this.state.user_info[this.state.index].user_mobile}</b>
                                   </div>
                                   <div>
-                                    <span>折扣率：</span><b>{this.state.user_info[index].discount}%</b>
+                                    <span>折扣率：</span><b>{this.state.user_info[this.state.index].discount}%</b>
                                   </div>
                                   <div>
-                                    <span>余额：</span><b>￥{this.state.user_info[index].balance}</b>
+                                    <span>余额：</span><b>￥{this.state.user_info[this.state.index].balance}</b>
                                   </div>
                                </div>
                             </div>

@@ -19,7 +19,7 @@ export const topMenu = [
         value:'信息查询', 
         options:[
             {value:'格架查询', view:null},
-            {value:'衣物查询', view:null},
+            {value:'衣物查询', view:'clothes_query'},
             {value:'交班', view:null},
             {value:'营业日报', view:'operate_income'},
             {value:'前台情况', view:'foreground_statistics'},
