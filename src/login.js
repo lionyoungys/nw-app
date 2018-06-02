@@ -25,14 +25,18 @@ win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:0, version:'', log:'', url:''};
+        this.state = {index:0, version:'', log:'', packages:[]};
         this.toggleStep = this.toggleStep.bind(this);
     }
 
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
             if (ver && res.has_upd) {
-                this.setState({index:1,version:res.last_version,log:res.desc,url:res.url});
+                let packages = [];
+                try {
+                    packages = JSON.parse(res.package);
+                } catch (e) {}
+                this.setState({index:1,version:res.last_version,log:res.desc,packages:packages});
             } else {
                 this.setState({index:2});
             }
@@ -46,7 +50,7 @@ class Main extends Component {
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
                 {[
                     <Launch/>,
-                    <Download version={this.state.version} log={this.state.log} url={this.state.url}/>,
+                    <Download version={this.state.version} log={this.state.log} packages={this.state.packages}/>,
                     <Login toggleStep={this.toggleStep}/>,
                     <Passwd toggleStep={this.toggleStep}/>
                 ][this.state.index]}
@@ -78,12 +82,39 @@ class Download extends Component {
     }
 
     componentDidMount() {
-        api.download(
-            this.props.url, 
-            fs.createWriteStream(path.dirname(process.execPath) + '/package.nw'), 
-            state => this.setState({progress:state.progress_rate}), 
-            () => this.setState({complete:true})
-        );
+        let total = 0
+        ,   count = 0
+        ,   realPath = path.dirname(process.execPath)
+        ,   packages = this.props.packages
+        ,   len = packages.length
+        ,   tempLen
+        ,   tempPath;
+
+        for (let i = 0;i < len;++i) {
+            tempLen = packages[i].resource.length;
+            tempPath = ('' == packages[i].local) ? (realPath + '/') : (realPath + '/' + packages[i].local + '/');
+            total += tempLen;
+            count = total;
+            for (let j = 0;j < tempLen;++j) {
+                api.download(
+                    packages[i].resource[j], 
+                    fs.createWriteStream(tempPath + packages[i].resource[j].split('/').pop()), 
+                    state => {}, 
+                    () => --count
+                );
+            }
+        }
+        let timeId = setInterval(() => {
+            let progress = Math.floor(count / total * 100);
+            if (this.state.progress !== progress) {
+                if (100 == progress) {
+                    clearInterval(timeId);
+                    this.setState({complete:true, progress:0});
+                } else {
+                    this.setState({progress:progress});
+                }
+            }
+        }, 500);
     }
 
     restart() {    //程序重启

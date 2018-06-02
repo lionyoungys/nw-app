@@ -12,13 +12,16 @@ import LayerBox from '../../Ui/LayerBox';
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state = {judge:true}
         this.losecard = this.losecard.bind(this);      
     }; 
     losecard() {
         api.post('removeLossCard', {token:'token'.getData(),id:'56756'}, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                console.log(res);
+                this.setState({judge:false})
             }else{
+                this.setState({judge:true})
                 console.log(res)
             }
         }
@@ -61,7 +64,7 @@ export default class extends Component {
                             </div>
                             <div className='button'>                            
                                 <button type='button' className='e-btn' onClick={this.props.closeView}>取消</button>&nbsp;&nbsp;
-                                <button type='button' className='e-btn'  readOnly>解除挂失</button>
+                                <button type='button' className='e-btn' readOnly = {this.state.judge}>解除挂失</button>
                             </div>
                         </div>
                     </div>        
