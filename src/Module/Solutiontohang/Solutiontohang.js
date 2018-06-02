@@ -1,5 +1,5 @@
 /**
- * 接除挂失页面
+ * 解除挂失页面
  * @author  fanyerong
  */
 import React, { Component } from 'react';

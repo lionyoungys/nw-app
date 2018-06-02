@@ -2,7 +2,8 @@
  * 主界面组件
  * @author Edwin Young
  */
-const process = window.require('process'), path = window.require('path');
+const process = window.require('process')
+,     path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
@@ -74,7 +75,6 @@ class Main extends Component {
 
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
-
         return (
             <div id='main'>
                 {/* 界面顶部菜单栏 */}

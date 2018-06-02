@@ -8,7 +8,21 @@ import './Payandrecharge.css';
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state={selectcash:true,selectwechat:false,selectalipay:false}
+        this.cash=this.cash.bind(this)
+        this.wechat=this.wechat.bind(this)
+        this.alipay=this.alipay.bind(this)
     };   
+    cash(){
+        this.setState({selectcash:true,selectwechat:false,selectalipay:false})
+    }
+    wechat(){
+        this.setState({selectcash:false,selectwechat:true,selectalipay:false})
+    } 
+    alipay(){
+        console.log("aaa");
+        this.setState({selectcash:false,selectwechat:false,selectalipay:true})
+    } 
     render() {
         return (            
             <Window title='收银' width="630" height="430" onClose={this.props.closeView}>
@@ -34,33 +48,40 @@ export default class extends Component {
                       <div className="Payandrecharge-payment-title">收款方式</div>
                       <div className="payment-method">
                          <div className="payment-method-div">
-                            <div  className="payment-method-money pay-success">
+                            <div  className={this.state.selectcash?'payment-method-money pay-success':'payment-method-money'} onClick={this.cash} >
                                <div>现金</div>
                             </div>
-                            <div  className="payment-method-money">
+                            <div  className={this.state.selectwechat?'payment-method-money pay-success':'payment-method-money'} onClick={this.wechat}>
                                <div>微信</div>
                             </div>
-                            <div className="payment-method-money">
+                            <div className={this.state.selectalipay?'payment-method-money pay-success':'payment-method-money'} onClick={this.alipay}>
                                <div>支付宝</div>
                             </div>
                          </div>
                          <div className="pay-money">
                             {/* 第一种现金支付方式 */}
-                            <div className="cash-payment">实收金额：<input type="text" />元</div>
-                            {/* 第二种微信支付方式 */}
-                            <div className="we-chatPay">
-                                <div>请扫描或输入微信付款码</div>
-                                <div>
-                                    <input /><input /><input /><input />
+                            {this.state.selectcash?
+                                <div className="cash-payment">实收金额：<input type="text" />元</div>:this.state.selectwechat?
+                                    <div className="we-chatPay">
+                                         <div>请扫描或输入微信付款码</div>
+                                     <div>
+                                 <input /><input /><input /><input />
                                 </div>
-                            </div>
-                            {/* 第三种支付宝支付方式  ali-pay*/}
-                            <div className="we-chatPay ali-pay ">
+                              </div>:
+                            <div className="we-chatPay">
                                 <div>请扫描或输入支付宝付款码</div>
                                 <div>
                                     <input /><input /><input /><input />
                                 </div>
-                            </div>
+                            </div> 
+                        
+                        
+                        }
+                            
+                            {/* 第二种微信支付方式 */}
+                           
+                            {/* 第三种支付宝支付方式  ali-pay*/}
+                           
                          </div>
                          <div className="payment-method-foot">
                                 <div>应收:<b>￥2523.00</b></div>

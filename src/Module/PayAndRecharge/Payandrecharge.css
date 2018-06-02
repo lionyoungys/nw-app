@@ -85,7 +85,7 @@
     float:left;
     margin-left:49px;
 }
-.pay-success{
+.payment-method-div div.pay-success{
     background: url(./img/payment-method-hover.png) no-repeat;
     background-size:142px 41px;
 }
@@ -126,7 +126,6 @@
     font-size:14px;
     line-height:22px;
     font-weight:bold;
-    display:none;
 }
 .cash-payment input{
     width:149px;
@@ -147,8 +146,6 @@
     margin:16px 0 16px 49px;
    
 }
-/* 支付宝付款 */
-.ali-pay{display:none;}
 /* 支付宝，微信付款共同样式 */
 .we-chatPay div{
     width:auto;

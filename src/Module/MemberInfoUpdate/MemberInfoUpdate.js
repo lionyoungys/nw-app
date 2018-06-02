@@ -11,7 +11,13 @@ export default class extends Component {
         super(props);       
         this.state = {id:'',cardnumber:'',card_number:'',user_mobile:'',user_name:'',sex:'',birthday:'',address:'',user_type:''};    
         this.query = this.query.bind(this);
+        this.onchange=this.onchange.bind(this);
     }; 
+    
+        onchange(value){
+            this.setState({sex:value});
+        }
+    
     query(){
         console.log(this.state.cardnumber)
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardnumber}, (res, ver) => {
@@ -73,7 +79,7 @@ export default class extends Component {
         </div>
         <div>
         <span className='memberinfoupdate_customerdirection'>
-           <span>性别:</span><input type='text' className='inputselectborder' value={this.state.sex} onChange={e => this.setState({sex:e.target.value})}/>
+           <span>性别:</span><Select  option = {['男','女']} selected = {this.state.sex} onChange={this.onchange}/>
         </span>
         <span className='memberinfoupdate_leftdirection'>
            <span>生日:</span><input type='date' className='inputselectborder' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>

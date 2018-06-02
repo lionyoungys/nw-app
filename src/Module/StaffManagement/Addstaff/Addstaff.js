@@ -10,7 +10,7 @@ import LayerBox from '../../../Ui/LayerBox';
 export default class extends Component {   
     constructor(props) {
         super(props);     
-        this.state = {show:false,show1:false}        
+        this.state = {show:false,show1:false,operatorlist:[]}        
     }; 
     ask2() {
         tool.ui.ask({title:'删除员工',info:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
@@ -18,7 +18,48 @@ export default class extends Component {
             close();    //点击按钮或关闭符号时关闭弹窗
         }});
     }
+    componentDidMount() {
+        api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({operatorlist:res.result});
+            }
+        }
+        );
+    }
     render() {      
+        let operatorlist= this.state.operatorlist.map((item,index) => 
+        <tr>
+        <td>{index+1}</td>
+        <td>{item.aname}</td>
+        <td>{item.account}</td>
+        <td>{item.auth}</td>
+        <td ><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2}>删除</i></td>
+        {
+                    this.state.show1
+                    &&
+                   
+                    <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={() => this.setState({show1:false})}>
+                        {
+                            <div className='updatestaffborder'>
+                            <div className='margintop'>
+                            <span >姓名:</span><input  type='text'/>
+                            </div>
+                             <div className='mobilephone'>
+                             <span>手机号:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改手机号</span>
+                             </div>
+                              <div>
+                              <span>密码:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改密码</span>
+                              </div>
+                               <div >
+                               <span >权限:</span><input type='text' />
+                               </div>
+                               </div>
+                     }
+                    </LayerBox>
+                }
+    </tr>
+        );
         return ( 
                 <div>
                     <div className="addstaff" onClick={() => this.setState({show:true})}>新增员工</div> 
@@ -58,43 +99,7 @@ export default class extends Component {
                         </div>                                        
                         <table className="bothpages_count_list " cellPadding="0" cellSpacing="0" border="0">  
                             <tbody>                            
-                                <tr>
-                                    <td>1</td>
-                                    <td>王先生</td>
-                                    <td>18525698541</td>
-                                    <td>管理员</td>
-                                    <td ><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2}>删除</i></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>李先生</td>
-                                    <td>18525698541</td>
-                                    <td>管理员</td>
-                                    <td ><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2}>删除</i></td>
-                                    {
-                    this.state.show1
-                    &&
-                   
-                    <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={() => this.setState({show1:false})}>
-                        {
-                            <div className='updatestaffborder'>
-                            <div className='margintop'>
-                            <span >姓名:</span><input  type='text'/>
-                            </div>
-                             <div className='mobilephone'>
-                             <span>手机号:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改手机号</span>
-                             </div>
-                              <div>
-                              <span>密码:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改密码</span>
-                              </div>
-                               <div >
-                               <span >权限:</span><input type='text' />
-                               </div>
-                               </div>
-                     }
-                    </LayerBox>
-                }
-                                </tr>
+                               {operatorlist}
                             </tbody>
                         </table>
                     </div>

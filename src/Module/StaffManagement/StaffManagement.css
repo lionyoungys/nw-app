@@ -9,9 +9,11 @@
     float:left;
     cursor: pointer;
 }
-.StaffManagement_title div:first-child{color:#15458d;margin-left:16px;border-bottom:2px solid #15458d}
-.StaffManagement_title div:last-child {margin-left:71px}
-.StaffManagement_title div:last-child:hover {color:#15458d;border-bottom:2px solid #15458d}
+.StaffManagement_title .selectstaff{color:#15458d;margin-left:16px;border-bottom:2px solid #15458d}
+.StaffManagement_title .staff{margin-left:16px}
+.StaffManagement_title .authority{margin-left:71px}
+.StaffManagement_title .selectauthority{margin-left:71px;color:#15458d;border-bottom:2px solid #15458d}
+/* .StaffManagement_title div:last-child:hover {color:#15458d;border-bottom:2px solid #15458d} */
 /* 增加员工样式 */
 .Addstaff_count_list span:first-child{background:none}
 .addstaff{

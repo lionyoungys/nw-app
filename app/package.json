@@ -30,5 +30,6 @@
     "frame": false,
     "show": false,
     "new_instance": true
-  }
+  },
+  "dependencies": {}
 }

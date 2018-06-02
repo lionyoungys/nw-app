@@ -1,5 +1,7 @@
 package.json             -->    脚本运行文件
 webpack.config.js        -->    编译配置文件
+production-dir           -->    内部包含生产环境软件同级目录扩展
+script-src               -->    扩展文件源码
 
 app                      -->    运行目录
 app/package.json         -->    系统配置文件
@@ -46,6 +48,9 @@ closeView();
 src/Module下界面组件的继承属性
 param:携带参数
 
+####
+生产环境软件同级目录须安装的node扩展:node-adodb, request, request-progress
+####
 
 AddGroup   新增组 ->会员管理
 BalanceStatistics   余额统计

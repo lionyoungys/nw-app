@@ -8,12 +8,34 @@ import '../StaffManagement.css';
 import Window from '../../../UI/Window';
 import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
+import {topMenu} from '../../../Menu.js';
 export default class extends Component {   
     constructor(props) {
         super(props);   
         this.state = {show:false,show1:false}        
     }; 
-    render() {      
+    render() {     
+        let menuList = topMenu.map((obj, index) => 
+        <div className ='addGroup-content-cell'>
+        <div className='addGroup-content-cell-content'>
+            <ul>
+                <li className='addGroup-content-cell-content-head'>
+                    <input type='checkbox' />
+                    <p>{obj.value}</p>
+                </li>
+                {
+                    obj.options.map(obj2 =>
+                        <li className='addGroup-content-cell-content-normal' key={obj2.value}>
+                            <input type='checkbox' />
+                            <p>{obj2.value}</p>
+                        </li>
+                    )
+                }
+                {/* {submenuList} */}
+                                          
+            </ul>
+        </div>  
+    </div>);
         return ( 
                 <div>
                     <div className="StaffAuthority" onClick={() => this.setState({show:true})}>新增组</div> 
@@ -27,122 +49,7 @@ export default class extends Component {
                    <button type='button' className='e-btn sureBtn'>确认</button>
                </div>
                <div id = 'addGroup-content'>
-                  
-                   <div className ='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>                               
-                           </ul>
-                       </div>  
-                   </div>
-
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   
+                   {menuList}
                </div>
            </Window>
                     }
@@ -171,123 +78,8 @@ export default class extends Component {
                    <input  type='text'/>
                    <button type='button' className='e-btn sureBtn'>确认</button>
                </div>
-               <div id = 'addGroup-content'>
-                  
-                   <div className ='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>                               
-                           </ul>
-                       </div>  
-                   </div>
-
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div className='addGroup-content-cell'>
-                       <div className='addGroup-content-cell-content'>
-                           <ul>
-                               <li className='addGroup-content-cell-content-head'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                               <li className='addGroup-content-cell-content-normal'>
-                                   <input type='checkbox' />
-                                   <p>前台业务</p>
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-                   
+               <div id = 'addGroup-content'>   
+               {menuList}  
                </div>
            </Window>
                     }

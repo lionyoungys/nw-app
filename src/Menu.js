@@ -115,7 +115,7 @@ export const leftMenu = [
         options:[
             {value:'收衣',class:'main-clothes',view:'clothes'},
             {value:'取衣',class:'main-take',view:'take_clothes'},
-            {value:'售卡',class:'main-sale-card',view:null},
+            {value:'售卡',class:'main-sale-card',view:'sale_card'},
             {value:'充值',class:'main-recharge',view:'recharge'}
         ]
     },
@@ -130,7 +130,7 @@ export const leftMenu = [
     {
         value:'其他', 
         options:[
-            {value:'开钱箱',class:'main-open-case',view:null}
+            {value:'开钱箱',class:'main-open-case',view:null, event:'open_case'}
         ]
     },
 ];

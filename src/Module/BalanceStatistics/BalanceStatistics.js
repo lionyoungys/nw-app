@@ -15,7 +15,7 @@ export default class extends Component {
         api.post('balanceTotal', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-              this.setState({user_total:res.result.user_total,balance_total:res.result.balance_total,list:res.result.list});
+               this.setState({user_total:res.result.user_total,balance_total:res.result.balance_total,list:res.result.list});
             }
         }
         );
