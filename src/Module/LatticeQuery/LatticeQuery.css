@@ -1,0 +1,53 @@
+/* 第一个div table */
+.LatticeQuery-div{
+    width:873px;
+    height:auto;
+    margin:16px auto 16px;
+    border:1px solid #8db2e3;
+    max-height:93px;
+    overflow-y:auto  ;
+    overflow-x:hidden;
+}
+/* 头部样式 */
+.LatticeQuery-div table thead{width:100%;height:25px;background:#89b0d4}
+.LatticeQuery-div table thead tr{width:100%;height:25px}
+.LatticeQuery-div table thead tr th{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    border-right:1px solid #acc6de;
+    padding:0 49.5px;
+    text-align:center;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+.LatticeQuery-div table thead tr th:last-child{border-right:none}
+
+/* .LatticeQuery-div table thead tr th:nth-child(1){width:120px;}
+.LatticeQuery-div table thead tr th:nth-child(2){width:150px;}
+.LatticeQuery-div table thead tr th:nth-child(3){width:137px;}
+.LatticeQuery-div table thead tr th:nth-child(4){width:113px;}
+.LatticeQuery-div table thead tr th:nth-child(5){width:179px;}
+.LatticeQuery-div table thead tr th:nth-child(1){width:173px;} */
+
+/* 身体部分 */
+.LatticeQuery-div table tbody tr{width:100%;height:25px;}
+.LatticeQuery-div table tbody tr:nth-of-type(odd){background:#fff}
+.LatticeQuery-div table tbody tr:nth-of-type(even){background:#f0f5f9}
+.LatticeQuery-div table tbody tr td{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#000;
+    font-size:12px;
+    border-right:1px solid #acc6de;
+    padding:0 49.5px;
+    text-align:center;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}

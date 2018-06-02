@@ -21,12 +21,15 @@ export default class extends Component {
             id:'',
             auth_name:[],
             auto:[],
-            index:0
+            index:0,
+            write:''
+           
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
         this.ask2 = this.ask2.bind(this);
         this.addstaff = this.addstaff.bind(this);
-        this.onchange = this.onchange.bind(this)
+        this.onchange = this.onchange.bind(this);
+        this.modOperator = this.modOperator.bind(this);
     }; 
     //员工与权限 新增员工
     operatorAdd () {
@@ -44,6 +47,12 @@ export default class extends Component {
                 }
             }
         );
+    }
+    // 编辑员工
+    modOperator (e){
+        var write = e.target.dataset.write
+        this.setState({show1:true,write:write});  
+
     }
     ask2(e) {
         var id = e.target.dataset.id;
@@ -99,7 +108,7 @@ export default class extends Component {
         <td>{item.aname}</td>
         <td>{item.account}</td>
         <td>{item.auth_name}</td>
-        <td ><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
+        <td ><i onClick={this.modOperator} data-write={index}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
         {
                     this.state.show1
                     &&
@@ -108,16 +117,16 @@ export default class extends Component {
                         {
                             <div className='updatestaffborder'>
                             <div className='margintop'>
-                            <span >姓名:</span><input  type='text'/>
+                            <span >姓名:</span><input  type='text' value = {this.state.operatorlist[this.state.write].aname} />
                             </div>
                              <div className='mobilephone'>
-                             <span>手机号:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改手机号</span>
+                             <span>手机号:</span><input type='text' className='updatemobileinput' value={this.state.operatorlist[this.state.write].account}/><span className='updatemobile'>修改手机号</span>
                              </div>
                               <div>
                               <span>密码:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改密码</span>
                               </div>
-                               <div >
-                               <span >权限:</span><input type='text' />
+                               <div>
+                               <span >权限:</span><input type='text' value={this.state.operatorlist[this.state.write].auth}/>
                                </div>
                                </div>
                      }

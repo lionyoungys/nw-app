@@ -28,7 +28,8 @@ import CleaningPriceSetting from './Module/CleaningPriceSetting/CleaningPriceSet
 import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js' // 解除挂失页面
 import Editshopprices from'./Module/Editshopprices/Editshopprices.js' // 编辑商品价格
 import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js' // 编辑洗护价格
-import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js' // 编辑洗护价格
+import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js' // 衣物查询
+import LatticeQuery from'./Module/LatticeQuery/LatticeQuery.js' // 格架查询
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -62,6 +63,7 @@ export default {
     
     edit_shop_prices:Editshopprices, //编辑商品价格
     edit_cleaning_prices:EditCleaningPrices,  //编辑洗护价格
-    clothes_query:ClothesQuery       //衣物查询
+    clothes_query:ClothesQuery,      //衣物查询
+    lattice_query:LatticeQuery,    //格架查询
 
 };

@@ -66,10 +66,9 @@ export default class extends Component {
                             </div>
                             <div className="NewCardbinding-box-div">
                                <span>新卡信息</span>
-                               <div>
-                                  <div>
-                                    <span>卡类型</span><Select option={['金卡','银卡','平台卡']} selected='银卡' onChange={value => console.log(value)} />
-                                  </div>
+                               <div id='select'>                                  
+                                    <span >卡类型</span>                      
+                                    <Select option={['金卡','银卡','平台卡']} selected='银卡' onChange={value => console.log(value)} />                                   
                                   <div>
                                     <span>卡号：</span><input type="text"/>
                                   </div>
@@ -131,10 +130,8 @@ export default class extends Component {
                     <tbody>
                        { userinfo}
                     </tbody>
-                </table>   
-              
-            </Window>
-           
+                </table>                  
+            </Window>           
         </div>    
         );
     }

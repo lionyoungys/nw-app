@@ -18,7 +18,7 @@ export default class extends React.Component {
     } 
 
     componentDidMount() {
-        this.setState({minWidth:this.div.offsetWidth});
+        this.setState({minWidth:68+'px'});
     }
 
     handleChange(e) {
