@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import '../StaffManagement.css';
 import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
+import Select from '../../../UI/Select';
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -17,24 +18,29 @@ export default class extends Component {
             user_name : '',
             user_phone : '', 
             user_permissions :'',  
-            id:''
+            id:'',
+            auth_name:[],
+            auto:[],
+            index:0
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
-        this.ask2 = this.ask2.bind(this)
+        this.ask2 = this.ask2.bind(this);
+        this.addstaff = this.addstaff.bind(this);
+        this.onchange = this.onchange.bind(this)
     }; 
     //员工与权限 新增员工
     operatorAdd () {
-        this.setState({show1:false});
+       
         api.post('OperatorAdd', {
             token:'token'.getData(),
             aname:this.state.user_name,
             account:this.state.user_phone,
-            auth:this.state.user_permissions,
+            auth:this.state.auth[this.state.index].id,
            
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
-                    
+                    this.setState({show:false});
                 }
             }
         );
@@ -44,13 +50,8 @@ export default class extends Component {
         var index = e.target.dataset.index;
         var operatorlist=this.state.operatorlist;
         tool.ui.ask({title:'删除员工',info:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
-          
               //点击按钮或关闭符号时关闭弹窗
               //删除员工
-             
-             
-              
-            //   close(); 
               api.post('delOperator', {
                 token:'token'.getData(),
                 id:id,
@@ -58,14 +59,10 @@ export default class extends Component {
                         if (ver && res) {
                             console.log(res);
                             close();
-                            // alert(1) 
                             operatorlist.splice(index,1)  
                             this.setState({operatorlist:operatorlist})                        
                         }else{
                             close();
-
-                           
-                //  alert(1)
                         }
                     }
                );
@@ -73,22 +70,35 @@ export default class extends Component {
                
         }});
     }
-    componentDidMount() {
+    onchange(value){
+        this.setState({index:value.inObjArray(this.state.auth, 'auth_name')});
+    }
+    addstaff(){
+        this.setState({show:true});
+        api.post('authList', {
+            token:'token'.getData(),
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    this.setState({auth_name:res.result.typeArray('auth_name'),auth:res.result});
+                }
+            }
+        );
+    }
+    render() {  
         api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({operatorlist:res.result});
             }
         }
-        );
-    }
-    render() {      
+        );    
         let operatorlist= this.state.operatorlist.map((item,index) => 
         <tr>
         <td>{index+1}</td>
         <td>{item.aname}</td>
         <td>{item.account}</td>
-        <td>{item.auth}</td>
+        <td>{item.auth_name}</td>
         <td ><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
         {
                     this.state.show1
@@ -117,7 +127,7 @@ export default class extends Component {
         );
         return ( 
                 <div>
-                    <div className="addstaff" onClick={() => this.setState({show:true})}>新增员工</div> 
+                    <div className="addstaff" onClick={this.addstaff}>新增员工</div> 
                     {
                     this.state.show
                     &&                  
@@ -130,8 +140,8 @@ export default class extends Component {
                              <div>
                              <span>手机号:</span><input type='text' onChange={e => this.setState({user_phone:e.target.value})}/>
                              </div>                             
-                               <div  className='jurisdiction'>
-                               <span >权限:</span><input type='text' onChange={e => this.setState({user_permissions:e.target.value})}/>
+                               <div >
+                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>
                                </div>
                                </div>
                         }

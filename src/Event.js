@@ -5,6 +5,11 @@ export default {
         nw.Window.open('login.html', nw.App.manifest.loginWindow);
         win.close();
     },
+    print:function() {    //退出
+        let win = nw.Window.get();
+        nw.Window.open('print/index.html');
+        //win.close();
+    },
     open_case:function() {    //打开钱箱
         let os = window.require('os')
         ,   { execFileSync } = window.require('child_process')

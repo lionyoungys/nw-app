@@ -4,13 +4,13 @@
     border:1px solid #8db2e3;
     margin: 13px;
 }
-.clothesquery>div{
+.clothesquery>div>div{
     margin-left: 17px;
     font-size: 14px;
     line-height: 14px;
     font-weight: bold
 }
-.clothesquery>div>label{
+.clothesquery>div>div>label{
     font-size: 14px;
     color: #024ffe;
     font-weight: bold
@@ -23,11 +23,23 @@
     margin: 13px;
 }
 
-.clothesquery_top>div>div>span{
+.clothesquery_top>div>div>div>span{
+    display: inline-block;
     text-align: right;
-    width: 76px;
+    width: 76px;  
+    font-size: 14px;
+    font-weight: normal
 }
-/* .clothesquery_top>div>div>input{
-    width: 128px;
-    height: 22px;
-} */
+.clothesquery_top>div>div>div input{
+   width: 128px;
+   height: 21px;
+   border:1px solid #c4c2c2;
+   margin-left: 10px;
+}
+.clothesquery_top>div>div>div{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.clothesinline{
+    display: inline;
+}
