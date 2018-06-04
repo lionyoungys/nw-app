@@ -12,9 +12,68 @@ import {topMenu} from '../../../Menu.js';
 export default class extends Component {   
     constructor(props) {
         super(props);   
-        this.state = {show:false,show1:false}        
+        this.state = {show:false,show1:false,authlist:[]}        
     }; 
+    componentDidMount() {
+        api.post('authList', {token:'token'.getData()}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({authlist:res.result});
+            }
+        }
+        );  
+    }
+    ask2(e) {
+        var id = e.target.dataset.id;
+        var index = e.target.dataset.index;
+        var operatorlist=this.state.operatorlist;
+        tool.ui.ask({title:'删除权限',info:'提示:该操作不可逆转。删除权限后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
+              //点击按钮或关闭符号时关闭弹窗
+              //删除员工
+              api.post('delOperator', {
+                token:'token'.getData(),
+                id:id,
+                }, (res, ver) => {
+                        if (ver && res) {
+                            console.log(res);
+                            close();
+                            operatorlist.splice(index,1)  
+                            this.setState({operatorlist:operatorlist})   
+                            this.componentDidMount();                     
+                        }else{
+                            close();
+                        }
+                    }
+               );
+            
+               
+        }});
+    }
     render() {     
+        
+        var authlist=this.state.authlist.map((item,index) =>
+        <tr key={index}>
+            <td>{index+1}</td>
+            <td>{item.auth_name}</td>
+            <td>收衣,取衣,管理,配送收衣,取衣,管理,配送</td>                                   
+            <td><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
+                                    {
+                    this.state.show1
+                    &&
+                <Window title='编辑组' onClose={() => this.setState({show1:false})}>
+               <div id="addGroup-srarch">
+                   <span>组名称:</span>
+                   <input  type='text'/>
+                   <button type='button' className='e-btn sureBtn'>确认</button>
+               </div>
+               <div id = 'addGroup-content'>   
+               {menuList}  
+               </div>
+           </Window>
+           }
+        </tr>
+        );
+
         let menuList = topMenu.map((obj, index) => 
         <div className ='addGroup-content-cell'>
         <div className='addGroup-content-cell-content'>
@@ -64,32 +123,7 @@ export default class extends Component {
                                         
                         <table className="bothpages_count_list StaffAuthority_count_list" cellPadding="0" cellSpacing="0" border="0">  
                             <tbody>                                                            
-                                <tr>
-                                    <td>1</td>
-                                    <td>前台业务</td>
-                                    <td>收衣,取衣,管理,配送</td>                                   
-                                    <td><i onClick={() => this.setState({show1:true})}>编辑</i><i>删除</i></td>
-                                    {
-                    this.state.show1
-                    &&
-                <Window title='编辑组' onClose={() => this.setState({show1:false})}>
-               <div id="addGroup-srarch">
-                   <span>组名称:</span>
-                   <input  type='text'/>
-                   <button type='button' className='e-btn sureBtn'>确认</button>
-               </div>
-               <div id = 'addGroup-content'>   
-               {menuList}  
-               </div>
-           </Window>
-                    }
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>前台业务</td>
-                                    <td>收衣,取衣,管理,配送收衣,取衣,管理,配送</td>                                   
-                                    <td><i>编辑</i><i>删除</i></td>
-                                </tr>
+                               {authlist}
                             </tbody>
                         </table>
                     </div>

@@ -53,6 +53,7 @@ class Main extends Component {
     
     //路由跳转方法
     changeView(e) {
+        M1Reader.init();
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;

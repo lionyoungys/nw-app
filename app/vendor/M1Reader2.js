@@ -5,7 +5,14 @@
  */
 
 (function(window) {
-    var ffi = require('ffi')    //引入ffi node模块
+    var r = {
+        USBInit: false,    //USB是否已经初始化
+        ID: -1,          //设备id
+        Antenna: false,    //天线是否已经开启
+        inited: false,    //M1Reader是否已被初始化
+        type: 0x4400,
+    }
+    ,   ffi = require('ffi')    //引入ffi node模块
     ,   SDT = ffi.Library('ext/SDT.dll', {
         'YW_GetDLLVersion': ['int', []],    //读取库函数内部版本号;大于0为版本号,小于0为错误 
         'DES': ['int', ['char', 'char *', 'char *', 'char *']],    //DES加解密函数;param:加解密方向,0为加密,1为解密;param2:加解密秘钥,8个字节;param3:原始数据,8个字节;param4:加解密后的数据,8个字节;1成功,0失败
@@ -47,5 +54,24 @@
         'YW_SAM_COS': ['int', ['int', 'int', 'int', 'char *', 'char *', 'char *']],    //SAM卡执行COS命令;param:所要获取的设备标示ID,范围0x0000-0xFFFF,如果未知,则param=0;param2:SAM卡序号;param3:向SAM卡要发送的COS命令的长度;param4:向SAM卡要发送的COS命令;param5:SAM执行COS命令后返回的数据的长度;param6:SAM执行COS命令后返回的数据;大于0成功,小于0失败
         'YW_SAM_PPSBaud': ['int', ['int', 'int', 'int']],    //SAM卡PPS波特率设置;param:所要获取的设备标示ID,范围0x0000-0xFFFF,如果未知,则param=0;param2:SAM卡序号;param3:0x00->9600(默认复位波特率),0x01->19200,0x02->38400,0x03->55800,0x04->57600,0x05->115200;大于0成功,小于0失败
     });
-    window.SDT = SDT;
+    r.init = function () {
+        if (this.inited) return false;
+        this.USBInit = SDT.YW_USBHIDInitial() > 0;
+        if (!this.USBInit) throw '初始化USB失败';
+        this.ID = SDT.YW_GetReaderID(0);
+        if (0 > this.ID) throw '设备标示ID获取失败';
+        this.Antenna = SDT.YW_AntennaStatus(this.ID, true) > 0;
+        if (!this.Antenna) throw '天线打开失败';
+        console.log('初始化USB', this.USBInit);
+        console.log('设备id', this.ID);
+        console.log('打开天线', this.Antenna);
+        console.log('type before', this.type);
+        console.log(typeof this.type);
+        let type = this.type;
+        console.log('寻卡', SDT.YW_RequestCard(this.ID, 0x52, type));    //0x52-所有卡,0x26-激活卡
+        console.log('type after', this.type);
+        this.inited = true;
+        return this.inited;
+    }
+    window.M1Reader = r;
 })(window);

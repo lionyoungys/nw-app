@@ -34,7 +34,7 @@ export default class extends Component {
     //员工与权限 新增员工
     operatorAdd () {
        
-        api.post('OperatorAdd', {
+        api.post('operatorAdd', {
             token:'token'.getData(),
             aname:this.state.user_name,
             account:this.state.user_phone,
@@ -44,6 +44,7 @@ export default class extends Component {
                 if (ver && res) {
                     console.log(res)
                     this.setState({show:false});
+                    this.componentDidMount();   
                 }
             }
         );
@@ -69,7 +70,8 @@ export default class extends Component {
                             console.log(res);
                             close();
                             operatorlist.splice(index,1)  
-                            this.setState({operatorlist:operatorlist})                        
+                            this.setState({operatorlist:operatorlist})   
+                            this.componentDidMount();                     
                         }else{
                             close();
                         }
@@ -94,7 +96,7 @@ export default class extends Component {
             }
         );
     }
-    render() {  
+    componentDidMount() {
         api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -102,6 +104,9 @@ export default class extends Component {
             }
         }
         );    
+    }
+    render() {  
+      
         let operatorlist= this.state.operatorlist.map((item,index) => 
         <tr>
         <td>{index+1}</td>
