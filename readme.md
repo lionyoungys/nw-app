@@ -58,6 +58,11 @@ param:携带参数
      errorMode = GetErrorMode();  
      SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
 将这两行代码注释掉，然后重新运行:nw-gyp rebuild --target=0.14.7 --arch=ia32
+########
+使用到的命令
+npm install --global --production windows-build-tools
+nw-gyp rebuild --target=0.14.7 --arch=ia32
+node-pre-gyp rebuild --runtime=node-webkit --target=0.14.7 --target_arch=ia32
 
 
 
