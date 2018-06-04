@@ -1,3 +1,8 @@
+/**
+ * 键盘按键英文输入监听
+ * @author Edwin Young
+ */
+
 (function(window) {
     var k = {
         code:new Array(),    //英文键盘编码

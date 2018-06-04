@@ -16,6 +16,7 @@ app/media                -->    媒体文件夹
 app/vendor               -->    外部引入插件或工具包文件夹
 app/vendor/include.js    -->    全局引用无需babel编译使用的node库
 app/vendor/Tool.js       -->    工具封装库
+app/vendor/Reader.js     -->    读卡器操作对象封装
 app/vendor/Prototype.js  -->    原型函数库
 app/vendor/KeyCode.js    -->    输入法强制转换为英文函数库
 app/node_modules         -->    node模块文件夹

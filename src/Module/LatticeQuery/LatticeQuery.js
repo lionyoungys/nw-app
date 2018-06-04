@@ -34,9 +34,149 @@ export default class extends Component {
                               <td>1</td>
                               <td>1</td>
                           </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>2</td>
+                              <td>2</td>
+                              <td>2</td>
+                              <td>2</td>
+                              <td>2</td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>3</td>
+                              <td>3</td>
+                              <td>3</td>
+                              <td>3</td>
+                              <td>3</td>
+                          </tr>
                       </tbody>
-                  </table>              
+                  </table>         
                </div>
+               <div className="LatticeQuery-Bdiv">
+                    <ul>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                            <li>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span>1#空</span>
+                                <span className="span-div">1#35件</span>
+                            </li>
+                        </ul> 
+                </div>    
             </Window>
         );
     }
