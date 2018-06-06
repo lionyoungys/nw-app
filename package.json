@@ -6,7 +6,7 @@
     "build": "F:/nwsdk/nw ./app",
     "Edwin": "webpack && F:/nwsdk/nw ./app",
     "Edwin_build": "F:/nwsdk/nw ./app",
-    "p" : "webpack",
+    "p": "webpack",
     "fyr_start": "webpack && E:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",
     "fyr_build": "E:/nwJs/nwjs-v0.14.7-win-x64/nw ./app",
     "wj_start": "webpack && C:/Users/wangjun/Desktop/nwjs-sdk-v0.14.7-win-x64/nw ./app",
@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "text-encoding": "^0.6.4"
   },
   "description": "nw app",
   "devDependencies": {

@@ -5,24 +5,24 @@
  */
 
 (function(window) {
-    /**
-     * 常量指令配置
-     */
+    //引入模块
+    var ref = require('ref')
+    ,   ffi = require('ffi');    //引入ffi node模块
+    
+    //常量指令配置
     var ALL = 0x52    //寻卡：所有卡
     ,   ACTIVE = 0x26    //寻卡：激活卡
-    ,   KeyAModel = 0x60    //A密钥
-    ,   KeyBModel = 0x61    //B密钥
+    ,   KeyModelA = 0x60    //A密钥
+    ,   KeyModelB = 0x61    //B密钥
     ,   KeyA = 'A6C2D6A69286'    //A密钥值
     ,   KeyB = 'FFFFFFFFFFFF'    //B密钥值
-    ,   BlockID = 9;    //绝对块号地址
+    ,   BlockID = 4;    //绝对块号地址
     var r = {
         USBInit: false,    //USB是否已经初始化
         ID: 0,          //设备id
         Antenna: false,    //天线是否已经开启
         inited: false,    //M1Reader是否已被初始化
     }
-    ,   ref = require('ref')
-    ,   ffi = require('ffi')    //引入ffi node模块
     ,   charPtr = ref.refType('char')
     ,   intPtr = ref.refType('int')
     ,   shortPtr = ref.refType('short')
@@ -86,34 +86,24 @@
         console.log('memory', memory.deref());
         console.log('snLen', snLen.deref());
         console.log('sn', sn.deref());
-        var keyArr = this.keyHandle(KeyB);
-        console.log('验证某扇区密钥', SDT.YW_KeyAuthorization(this.ID, KeyBModel, BlockID, keyArr));
+        var keyArr = tool.data2Buf(KeyB);
+        console.log('验证某扇区密钥', SDT.YW_KeyAuthorization(this.ID, KeyModelB, BlockID, keyArr));
         console.log('keyArr', keyArr);
+        var str = '写入成功了哈哈哈';
+        var writeData = tool.iconv(str, 'gbk', true);
+        console.log(typeof writeData);
+        console.log('写入前', writeData);
+        console.log('写入前', writeData.length);
+        console.log('写入', SDT.YW_WriteaBlock(this.ID, BlockID, 16, writeData));
+        console.log('写入后', writeData);
         var readData = new Buffer(16);
         console.log('读卡', SDT.YW_ReadaBlock(this.ID, BlockID, 16, readData));
         console.log('readData arr', readData);
         console.log('readData', tool.iconv(readData, 'gbk'));
-        // console.log('after deref', type.deref());
-        // var memory = charPtr
-        // ,   len = intPtr
-        // ,   sn  = charPtr;
-        // console.log('memory', memory);
-        // console.log('len', len);
-        // console.log('sn', sn);
-        // console.log('选卡', SDT.YW_AntiCollideAndSelect(this.ID, '1', memory, len, sn));
-        // console.log('memory', memory);
-        // console.log('len', len);
-        // console.log('sn', sn);
+        var encode = tool.iconv('恭喜云龙写入成功', 'gbk', true);
+        console.log('encode', encode);
         //this.inited = true;
         return this.inited;
-    }
-
-    r.keyHandle = function (key) {
-        var keyArr = new Buffer(6);
-        for (var i = 0;i < 6;++i) {
-            keyArr.writeIntLE(parseInt('0x' + key.substring(i * 2, i * 2 + 2)), i);
-        }
-        return keyArr;
     }
     window.M1Reader = r;
 })(window);

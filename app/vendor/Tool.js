@@ -1,6 +1,7 @@
 /**
  * 工具函数库
  * @author Edwin Young
+ * @desc iconv方法依赖node模块text-encoding;
  */
 
 (function(window) {
@@ -62,11 +63,28 @@
     /**
      * 字符编码解析处理
      * @param {*mixd} data 字符编码转换的数据
-     * @param {*string} encoding 解析的字符编码 
+     * @param {*string} code 解析的字符编码 
+     * @param {*bool} encoding 是否为编码,默认解码
      */
-    t.iconv = function (data, encoding) {
-        return new TextDecoder(encoding).decode(new Uint8Array(data));
+    t.iconv = function (data, code, encoding) {
+        var {TextEncoder} = require('text-encoding');
+        return encoding ? new TextEncoder(code, {NONSTANDARD_allowLegacyEncoding: true}).encode(data) : new TextDecoder(code).decode(new Uint8Array(data));
     }
+
+    /**
+     * 16进制数据转buffer
+     * @param {*string} data 
+     */
+    t.data2Buf = function(data) {
+        if ('string' !== typeof data) return null;
+        var len = (data.length / 2)
+        ,   buf = new Buffer(len);
+        for (var i = 0;i < len;++i) {
+            buf.writeIntLE(parseInt('0x' + data.substring(i * 2, i * 2 + 2)), i);
+        }
+        return buf;
+    }
+
 
     //ui对象实现
 
