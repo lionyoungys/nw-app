@@ -7,18 +7,8 @@
 (function(window) {
     //引入模块
     var ref = require('ref')
-    ,   ffi = require('ffi');    //引入ffi node模块
-    
-    //常量指令配置
-    var ALL = 0x52    //寻卡：所有卡
-    ,   ACTIVE = 0x26    //寻卡：激活卡
-    ,   KeyModelA = 0x60    //A密钥
-    ,   KeyModelB = 0x61    //B密钥
-    ,   KeyA = 'A6C2D6A69286'    //A密钥值
-    ,   KeyB = 'FFFFFFFFFFFF'    //B密钥值
-    ,   BlockID = 4;    //绝对块号地址
-
-    var r = {
+    ,   ffi = require('ffi')    //引入ffi node模块
+    ,   r = {
         USBInit: false,    //USB是否已经初始化
         ID: 0        //设备id
     }
@@ -28,8 +18,7 @@
         KeyModelA: 0x60,    //A密钥
         KeyModelB: 0x61,    //B密钥
         KeyA: 'A6C2D6A69286',    //A密钥值
-        KeyB: 'FFFFFFFFFFFF',    //B密钥值
-        BlockID: 4    //绝对块号地址
+        KeyB: 'FFFFFFFFFFFF'    //B密钥值
     }
     ,   charPtr = ref.refType('char')
     ,   intPtr = ref.refType('int')
@@ -92,35 +81,37 @@
     }
     r.authorization = function(model, blockId) {
         if (isNaN(blockId)) throw '绝对块号地址错误';
-        model = ('string' !== typeof model || model.toUpperCase() !== 'A') ? 'B' : 'A';
+        model = (!isNaN(model) && 1 == model) ? 'A' : 'B';
         this.init();       
-        if (!SDT.YW_AntennaStatus(this.ID, true) > 0) throw '天线打开失败';
+        if (!(SDT.YW_AntennaStatus(this.ID, true) > 0)) throw '天线打开失败';
         var type = ref.alloc('short');
-        if (!SDT.YW_RequestCard(this.ID, config.ALL, type) > 0) throw '寻卡失败';
+        if (!(SDT.YW_RequestCard(this.ID, config.ALL, type) > 0)) throw '寻卡失败';
         var memory = ref.alloc('char')
         ,   sn  = ref.alloc('char')
         ,   snLen = ref.alloc('int');
-        if (!SDT.YW_AntiCollideAndSelect(this.ID, 1, memory, snLen, sn) > 0) throw '选卡失败';
+        if (!(SDT.YW_AntiCollideAndSelect(this.ID, 1, memory, snLen, sn) > 0)) throw '选卡失败';
         var keyBuf = tool.data2Buf(config['Key' + model]);
-        if (!SDT.YW_KeyAuthorization(this.ID, config['KeyModel' + model], BlockID, keyBuf) > 0) throw '扇区密钥验证失败';
+        if (!(SDT.YW_KeyAuthorization(this.ID, config['KeyModel' + model], blockId, keyBuf) > 0)) throw '扇区密钥验证失败';
     }
 
     /**
      * 读取卡数据
-     * @param {*string} model 所读区域:值为A或B
+     * @param {*number} model 所读区域:值为1=A或2=B
      * @param {*number} blockId 绝对块号地址
      * @return {*string} 数据结果
      */
     r.read = function(model, blockId) {
         this.authorization(model, blockId);
         var buf = new Buffer(16);
-        if (!SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) > 0) throw '读卡失败';
+        console.log(SDT.YW_ReadaBlock(this.ID, blockId, 16, buf));
+        if (!(SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) > 0)) throw '读卡失败';
+        console.log(buf);
         return tool.iconv(buf, 'gbk');
     }
 
     /**
      * 写入卡数据
-     * @param {*string} model 所读区域:值为A或B
+     * @param {*number} model 所读区域:值为1=A或2=B
      * @param {*number} blockId 绝对块号地址
      * @param {*string} data 要写入的数据最大长度为8
      * @return {*bool} 写入成功与否
@@ -130,10 +121,13 @@
         if (len > 8) {
             data = data.substr(0, 8);
         } else if (len < 8) {
-            data += tool.repeat(' ', 8 - len);
+            data += tool.repeat('\0', (8 - len) * 2);
         }
         this.authorization(model, blockId);
+        console.log(data);
+        console.log(data.length)
         var buf = tool.iconv(data, 'gbk', true);
+        console.log(buf);
         return SDT.YW_WriteaBlock(this.ID, blockId, 16, buf) > 0;
     }
     window.M1Reader = r;
