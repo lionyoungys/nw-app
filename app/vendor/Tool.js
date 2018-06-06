@@ -59,6 +59,15 @@
         return str.substr(0, (str.length - 1) );
     }
 
+    /**
+     * 字符编码解析处理
+     * @param {*mixd} data 字符编码转换的数据
+     * @param {*string} encoding 解析的字符编码 
+     */
+    t.iconv = function (data, encoding) {
+        return new TextDecoder(encoding).decode(new Uint8Array(data));
+    }
+
     //ui对象实现
 
     /**

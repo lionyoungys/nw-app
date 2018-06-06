@@ -92,7 +92,7 @@
         var readData = new Buffer(16);
         console.log('读卡', SDT.YW_ReadaBlock(this.ID, BlockID, 16, readData));
         console.log('readData arr', readData);
-        console.log('readData', readData.toString('ascii'));
+        console.log('readData', tool.iconv(readData, 'gbk'));
         // console.log('after deref', type.deref());
         // var memory = charPtr
         // ,   len = intPtr
@@ -115,46 +115,5 @@
         }
         return keyArr;
     }
-    r.pointer = function (type, value, size) {
-        size = 'number' === typeof size ? size : 4;
-        var buf = new Buffer(size);
-        buf.writeInt32LE(value, 0);
-        buf.type = ref.types[type];
-        return buf;
-    }
-    function strToHexCharCode(str) {
-        　if(str === "") return "";
-        var hexCharCode = [];
-        hexCharCode.push("0x"); 
-        for(var i = 0; i < str.length; i++) {
-        　　hexCharCode.push((str.charCodeAt(i)).toString(16));
-        }
-        return hexCharCode.join("");
-    }
-        
-         
-        
-        
-        function hexCharCodeToStr(hexCharCodeStr) {
-        　　var trimedStr = hexCharCodeStr.trim();
-        　　var rawStr = 
-        　　trimedStr.substr(0,2).toLowerCase() === "0x"
-        　　? 
-        　　trimedStr.substr(2) 
-        　　: 
-        　　trimedStr;
-        　　var len = rawStr.length;
-        　　if(len % 2 !== 0) {
-        　　　　alert("Illegal Format ASCII Code!");
-        　　　　return "";
-        　　}
-        　　var curCharCode;
-        　　var resultStr = [];
-        　　for(var i = 0; i < len;i = i + 2) {
-        　　　　curCharCode = parseInt(rawStr.substr(i, 2), 16); // ASCII Code Value
-        　　　　resultStr.push(String.fromCharCode(curCharCode));
-        　　}
-        　　return resultStr.join("");
-        }
     window.M1Reader = r;
 })(window);
