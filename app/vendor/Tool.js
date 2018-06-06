@@ -73,7 +73,8 @@
 
     /**
      * 16进制数据转buffer
-     * @param {*string} data 
+     * @param {*string} data
+     * @return {*Buffer}
      */
     t.data2Buf = function(data) {
         if ('string' !== typeof data) return null;
@@ -85,6 +86,19 @@
         return buf;
     }
 
+    /**
+     * 字符串填充
+     * @param {*string} str 使用填充的字符串 
+     * @param {*number} len 填充长度
+     * @return {*string}
+     */
+    t.repeat = function(str, len) {
+        var retStr = '';
+        for (var i = 0;i < len;++i) {
+            retStr += str;
+        }
+        return retStr;
+    }
 
     //ui对象实现
 
