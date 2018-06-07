@@ -1,0 +1,107 @@
+
+
+.Succession_data{
+    width:875px;
+    height:59px;
+    margin:13px auto 0px;
+}
+.Succession_dataLeft{
+    width:873px;
+    border:1px solid #8db2e3;
+    height:57px;
+    background:#eef4fb;
+    float:left
+}
+.Succession_dataLeft div{
+    width:207px;
+    height:20px;
+    margin-top:18px;
+    line-height:20px;
+    color:#000;
+    font-size:12px;
+    color:#063781;    
+    cursor: pointer;
+    float: left;
+    margin-left:14px;
+}
+.Succession_dataLeft div input{
+    width:133px;
+    height:20px;
+    background:#fff;;
+    background-size:100% 100%;
+    outline:none;border:none;
+    border:1px solid #c4c2c2;       
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+   opacity: 0;
+ }
+ 
+ /*----------用来移除叉叉按钮----------*/
+ input[type="date"]::-webkit-clear-button{
+    display:none;
+ }
+.Succession_dataLeft div input:hover{
+    background:url(./img/hoverselect.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+.Succession_dataLeft div input:hover{border:1px solid #4589ee}
+
+.Succession-name{
+    width:875px;
+    height:40px;
+    line-height:40px;
+    color:#063781;
+    font-size:14px;
+    margin:0 auto;
+    text-indent:3px;
+}
+.Succession-tab{
+    width:873px;
+    height:auto;
+    max-height:440px;
+    max-width:873px;  
+    border:1px solid #a4c0da;
+    margin:0 auto;
+    overflow-y:hidden;
+    overflow-x: hidden;
+}
+.Succession-tab table{width:873px;height:auto;overflow-x:hidden}
+.Succession-tab table thead{width:875px;height:25px;background:#7fa8cf}
+.Succession-tab table thead tr{width:auto;height:25px;display:block;}
+.Succession-tab table thead tr th{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#fff;
+    font-size:12px;
+    text-align:center;
+    padding:0 25px;
+    border-right:1px solid #a4c0da;
+    min-width:95px;
+}
+.Succession-tab table tbody{max-height:410px;overflow-y:auto;display:block;overflow-x: hidden}
+.Succession-tab table tbody tr{width:auto;height:25px;display: block;min-width:873px;}
+.Succession-tab table tbody tr:nth-of-type(odd){background:#fff;}
+.Succession-tab table tbody tr:nth-of-type(even){background:#f0f5f9;}
+.Succession-tab table tbody tr td{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#000;
+    font-size:12px;
+    padding:0 25px;
+    border-right:1px solid #a4c0da;
+    text-align:center;
+    min-width:95px;
+    
+}

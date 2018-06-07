@@ -30,6 +30,14 @@ import Editshopprices from'./Module/Editshopprices/Editshopprices.js' // 编辑�
 import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js' // 编辑洗护价格
 import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js' // 衣物查询
 import LatticeQuery from'./Module/LatticeQuery/LatticeQuery.js' // 格架查询
+import Succession from'./Module/Succession/Succession.js' // 交班
+import ConsumptionStatistics from './Module/ConsumptionStatistics/ConsumptionStatistics.js' //消费统计
+import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery.js' //挂失查询
+import CardQueries from './Module/CardQueries/CardQueries.js' //退卡查询
+import ParameterSettings from './Module/ParameterSettings/ParameterSettings.js' //参数设置
+import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate.js' //密码修改
+import StoreManagement from './Module/StoreManagement/StoreManagement.js' //门店管理
+
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
@@ -45,9 +53,11 @@ export default {
     balance_statistics:BalanceStatistics,  //余额统计
     member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
     foreground_statistics:ForegroundStatistics, //前台统计
+    staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume,//会员卡消费
     unpaid_statistics: UnpaidStatistics,//未付款统计
     recharge:Recharge,    //充值
+    staff_management:StaffManagement,  //员工管理
     operate_income:OperateIncome, //营业收入
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面
@@ -57,9 +67,18 @@ export default {
     manager_gathering:ManagerGathering,//经理收款
     cleaning_price_setting:CleaningPriceSetting,//洗护价格设置
     Solut_ionto_hang:Solutiontohang,  //解除挂失
+    sale_card:SaleCard,//售卡
+    
     edit_shop_prices:Editshopprices, //编辑商品价格
     edit_cleaning_prices:EditCleaningPrices,  //编辑洗护价格
     clothes_query:ClothesQuery,      //衣物查询
     lattice_query:LatticeQuery,    //格架查询
+    Succession:Succession ,   //交班
+    ConsumptionStatistics:ConsumptionStatistics, //消费统计
+    ReportLossQuery:ReportLossQuery, //挂失查询
+    CardQueries:CardQueries,  //退卡查询
+    ParameterSettings:ParameterSettings, //参数设置
+    passwd_update:PasswdUpdate,//密码修改
 
+    store_management:StoreManagement,//门店管理
 };

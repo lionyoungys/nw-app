@@ -55,7 +55,7 @@ export default class extends Component {
         <tr key={index}>
             <td>{index+1}</td>
             <td>{item.auth_name}</td>
-            <td>收衣,取衣,管理,配送收衣,取衣,管理,配送</td>                                   
+            <td>收衣,取衣,管理,配送收衣,取衣</td>                                   
             <td><i onClick={() => this.setState({show1:true})}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
                                     {
                     this.state.show1

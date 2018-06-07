@@ -14,7 +14,7 @@ export default class extends Component {
         this.state = {show:false,show1:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[],index:0} 
         this.query = this.query.bind(this)   
         
-    };    
+    };
     query(){
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardNumber,user_name:this.state.user_name,user_mobile:this.state.user_mobile}, (res, ver) => {
             if (ver && res) {
@@ -92,7 +92,7 @@ export default class extends Component {
                             <div id="NewCardbinding_foot">
                                <div>制卡手续费：<span>￥20</span></div>
                                <div>
-                                   <button>取消</button>
+                                   <button onClick={() => this.setState({show:false})}>取消</button>
                                    <button>换卡</button>
                                 </div>
                             </div>

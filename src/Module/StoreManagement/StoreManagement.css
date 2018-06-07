@@ -1,0 +1,467 @@
+/* 全局设置 */
+.store_management{
+
+    margin: 13px 14px;
+    height: 557px;
+    border:1px solid #8db2e3;
+    background-color: #fff;
+}
+
+/* tab部分 */
+.store_management_tabbar{
+
+    margin: 0;
+    height: 32px;
+    border-bottom: 1px solid #8db2e3;
+    background-color: #e1ebf6;
+}
+
+.store_management_tabbar ul{
+
+    height: 24px;
+    border-top: 3px solid #e1ebf6;
+    border-bottom: 1px solid #8db2e3;
+}
+.store_management_tabbar ul li{
+
+    float: left;
+    text-align: center;
+    margin: 0 5px;
+    width: 100px;
+    height: 23px;
+    line-height: 23px;
+    border:1px solid #8db2e3;
+    font-size: 12px;
+    color: #15458d;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px ;
+    list-style: none;
+}
+
+.store_management_tabbar ul li.store_management_tab_selected{
+    border-bottom:1px solid #e1ebf6;
+    font-weight: bold;
+}
+
+/* 内容部分 */
+.store_management_content_all{
+
+    margin: 19px 0 0 19px;
+    height: 505px;
+    /* background-color: purple; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.store_management_content_all div{
+
+    margin: 0;
+    /* height: 300px; */
+}
+.store_management_content_title{
+
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #15458d; 
+    /* background-color: palegreen; */
+}
+.store_management_content_all .store_management_able_input{
+
+    width: 353px;
+}
+/* 基本信息 */
+.store_management_content_baseInfo{
+
+    height: 300px;
+    /* background-color: palegreen; */
+}
+.store_management_content_baseInfo div{
+
+    margin:0;
+    height: 34px;
+    line-height: 34px;
+    font-size: 12px;
+    color: #15458d;
+    /* background: yellow; */
+}
+.store_management_content_baseInfo a{
+
+    font-size: 12px;
+    color: black;
+}
+
+.store_management_content_baseInfo span{
+
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #c2c2c2;
+    background: #efefef;
+    vertical-align:middle;
+}
+.store_management_content_baseInfo div span.store_management_disable_span{
+
+    width:352px;
+}
+.store_management_content_baseInfo div span.store_management_select_span{
+
+    width: 125px;
+    margin-right: 5px;
+    position: relative;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.store_management_content_baseInfo div span.store_management_select_span i{
+
+    height: 100%;
+    width: 18px;
+    background: url(img/ui-selectsearch-grey.png) no-repeat center center;
+    position: absolute;
+    top: 0;right: 0;
+    z-index: 1;
+    background-color:#cfd0d1;
+    border-left:1px solid #c2c2c2;
+}
+
+.store_management_content_baseInfo button{
+    float: left;
+    margin-left: 71px;
+    margin-top: 7px
+}
+
+/* 银联卡 */
+.store_management_content_UnionPaycard{
+
+    height: 200px;
+    /* background-color: rgb(29, 201, 52); */
+}
+.store_management_content_UnionPaycard div{
+
+    margin:0;
+    height: 34px;
+    line-height: 34px;
+    font-size: 12px;
+    color: #15458d;
+    /* background: yellow; */
+}
+.store_management_content_UnionPaycard button{
+    float: left;
+    margin-left: 71px;
+    margin-top: 7px
+}
+/* 网店 */
+.store_management_content_onlineStore{
+
+    height: 500px;
+    /* background-color: rgb(139, 17, 54); */
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_no_open{
+
+    margin: 0;
+    height: 290px;
+    /* background-color: red; */
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_no_open img{
+
+    margin-top: 146px;
+    margin-left: 316px;
+    background-image: url(img/storeManagement_netstore_not_open.png) ;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_no_open p{
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    /* color: lightgray; */
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open{
+
+    margin: 0;
+    height: 210px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open{
+
+    margin: 0;
+    height: 210px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div{
+
+    margin:0;
+    height: 34px;
+    line-height: 34px;
+    font-size: 12px;
+    color: #15458d;
+    /* background: yellow; */
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div input{
+
+    margin-right: 3px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div a{
+
+   color: black;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input{
+    width: 17px;
+    height: 17px;
+    vertical-align:middle;
+}
+
+.store_management_content_onlineStore .store_management_content_onlineStore_open button{
+
+    float: left;
+    margin-left: 83px;
+    margin-top: 7px
+}
+   
+
+  
+/* 优惠活动 */
+.store_management_content_specialOffer{
+
+    height: 200px;   
+    /* background-color: rgb(102, 34, 212); */
+
+}
+
+/* 联营店 */
+.store_management_content_associatedShop{
+    height: 1000px;
+    /* background-color: yellow; */
+}
+
+.store_management_content_associatedShop .store_management_content_associatedShop_none{
+
+    margin: 0;
+    height: 270px;
+    /* background-color: gray; */
+
+}
+.store_management_content_ass_non_left{
+
+    float: left;
+    width: 288px;
+    height: 200px;
+    /* background-color:yellow; */
+    padding-right:76px;
+
+}
+.store_management_content_ass_non_left_bot{
+
+    margin: 0;
+    height: 168px;
+    background-color: #fcfcfc;
+    border:1px solid #c2c2c2;
+}
+
+.store_management_content_ass_non_left p{
+
+    font-size: 12px;
+    color: black;
+}
+.store_management_content_ass_non_left .tore_management_content_ass_non_left_p{
+
+    margin: 0;
+    height: 30px;
+    line-height: 30px;
+}
+.store_management_content_ass_non_left .store_management_content_ass_non_left_bot p:first-child{
+
+    margin-top: 20px;
+}
+.store_management_content_ass_non_left .store_management_content_ass_non_left_bot p{
+
+    text-indent: 25px;
+    height: 30px;
+}
+
+.store_management_content_ass_non_left_bot button{
+
+    float: left;
+    margin-left: 25px;
+    margin-top: 10px
+}
+.store_management_content_ass_non_left_bot input.store_management_content_ass_non_right_input{
+
+    display: block;
+    margin-left: 25px;
+    margin-top: 2px;
+    margin-bottom: 18px;
+}
+
+/* 联营店总店 */
+.store_management_content_associatedShop_head{
+
+    margin: 0;
+    height: 505px;
+    /* background-color:purple; */
+}
+.store_management_content_associatedShop_head div{
+
+    margin: 0;
+    height: 40px;
+    /* background-color: yellow; */
+
+}
+.store_management_content_associatedShop_head div a{
+
+    font-size: 10px;
+    font-weight: bold;
+    color: #15458d; 
+    margin-right: 40px;
+    float: left;
+    margin-top: 18px;
+
+}
+.store_management_content_associatedShop_head div button{
+
+    margin-right: 0;
+}
+.store_management_assShop_table{
+
+    display: block;
+    margin: 0;
+    max-height: 415px;
+    width: 830px;
+    border: 1px solid #8db2e3;
+    overflow: hidden;
+}
+.store_management_assShop_table tr td{
+
+    /* 只设置最小即可设置固定的宽度 */
+    height: 25px;
+    font-size: 12px;
+    border-right: 1px solid #acc6de;
+    text-align: center;
+    word-wrap:break-word;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.store_management_assShop_table tr td:last-child{
+   border-right: none;
+}
+.store_management_assShop_table thead tr{
+    background-color: #89b0d4;
+    color: white;
+}
+.store_management_assShop_table tbody{
+
+    display:inline-block;
+    max-height: 361px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.store_management_assShop_table tbody::-webkit-scrollbar{
+
+    width: 0;
+}
+
+.store_management_assShop_table tbody tr{
+    background-color: #f0f5f9;
+    color: black;
+
+}
+.store_management_assShop_table tbody tr:nth-child(odd){
+
+    background-color: #fff;
+    color: black;
+}
+.store_management_assShop_table tbody tr td:last-child{
+    color: blue;
+    cursor: pointer;
+}
+
+.store_management_assShop_table tr .store_management_assShop_table_id{
+
+    min-width: 60px;
+    max-width: 60px;
+
+}
+.store_management_assShop_table  tr .store_management_assShop_table_shopName{
+
+    min-width: 130px;
+    max-width: 130px;
+
+}
+.store_management_assShop_table tr .store_management_assShop_table_shortName{
+
+    min-width: 109px;
+    max-width: 109px;
+}
+.store_management_assShop_table tr .store_management_assShop_table_mname{
+
+    min-width: 80px;
+    max-width: 80px;
+}
+.store_management_assShop_table tr .store_management_assShop_table_add{
+
+    min-width: 220px;
+    max-width: 220px;
+}
+.store_management_assShop_table tr .store_management_assShop_table_phone{
+
+    min-width: 100px;
+    max-width: 100px;
+}
+.store_management_assShop_table tr .store_management_assShop_table_hamdle{
+
+    min-width: 97px;
+    max-width: 97px;
+}
+
+/* 申请列表 */
+.store_management_content_associatedShop_applyList{
+
+    margin: 0;
+    height: 505px;
+    /* background-color:purple; */
+
+}
+.store_management_content_associatedShop_applyList .store_management_assShop_applyList_table{
+
+    max-height: 455px;
+}
+.store_management_assShop_applyList_table tbody{
+
+    max-height: 429px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.store_management_assShop_applyList_table tbody tr td:last-child a:first-child{
+
+    color: red;
+}
+
+/* 分店 */
+.store_management_content_associatedShop_part{
+
+    margin: 0;
+    height: 505px;
+    
+}
+.store_management_content_associatedShop_part div{
+
+    margin: 0;
+    height: 40px;
+    /* background-color: yellow; */
+}
+.store_management_content_associatedShop_part div a{
+
+    font-size: 10px;
+    font-weight: bold;
+    color: #15458d; 
+    margin-right: 40px;
+    float: left;
+    margin-top: 18px;
+
+}
+.store_management_content_associatedShop_part div button{
+
+    margin-right: 0;
+}
+   
+
+

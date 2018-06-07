@@ -56,8 +56,14 @@ export default class extends Component {
             obj, (res, ver) => {
             if (ver && res) {
                 console.log(res)
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                }}); 
             }else{
                 console.log(res)
+                tool.ui.error({callback:(close, event) => {
+                    close();
+                }});
             }
         }
         );

@@ -4,9 +4,8 @@
     height:auto;
     margin:16px auto 16px;
     border:1px solid #8db2e3;
-    max-height:93px;
-    overflow-y:auto  ;
-    overflow-x:auto;
+    max-height:111px;
+    overflow-x:hidden;
 }
 /* 头部样式 */
 .LatticeQuery-div table thead{width:auto;height:25px;background:#89b0d4;}
@@ -35,6 +34,7 @@
 .LatticeQuery-div table thead tr th:nth-child(1){width:173px;} */
 
 /* 身体部分 */
+
 .LatticeQuery-div table tbody tr{width:auto;height:25px;}
 .LatticeQuery-div table tbody tr:nth-of-type(odd){background:#fff}
 .LatticeQuery-div table tbody tr:nth-of-type(even){background:#f0f5f9}
@@ -88,5 +88,6 @@
      line-height:27px;
      margin-top:8px;
      background:#fff;
+     font-weight:bold;
 }
 .LatticeQuery-Bdiv ul li span.span-div{color:#ff0000}

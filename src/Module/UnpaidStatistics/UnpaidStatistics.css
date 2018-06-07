@@ -139,7 +139,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .unpaidstatistics_table_Arrearage tr td{
 
     /* 只设置最小即可设置固定的宽度 */
-    min-width: 95px;
+    min-width:102px;
     height: 26px;
     font-size: 12px;
     border-right: 1px solid #acc6de;

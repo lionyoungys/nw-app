@@ -103,9 +103,7 @@
     r.read = function(model, blockId) {
         this.authorization(model, blockId);
         var buf = new Buffer(16);
-        console.log(SDT.YW_ReadaBlock(this.ID, blockId, 16, buf));
         if (!(SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) > 0)) throw '读卡失败';
-        console.log(buf);
         return tool.iconv(buf, 'gbk');
     }
 
@@ -124,10 +122,7 @@
             data += tool.repeat('\0', (8 - len) * 2);
         }
         this.authorization(model, blockId);
-        console.log(data);
-        console.log(data.length)
         var buf = tool.iconv(data, 'gbk', true);
-        console.log(buf);
         return SDT.YW_WriteaBlock(this.ID, blockId, 16, buf) > 0;
     }
     window.M1Reader = r;

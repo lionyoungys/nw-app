@@ -7,6 +7,7 @@ const fs = window.require('fs'),
       path = window.require('path');
 import React, {Component} from 'react';
 import './App.css';
+import Window from '../../UI/Window';
 
 const data = [
     '收活表','客户信息表','POS_备注','POS_价格表','备注','撤单信息表','处理类别','返洗衣物表','价格表','卡类设置',
@@ -55,11 +56,19 @@ export default class extends Component {
 
     render() {
         return (
-            <div>
-                选择数据库文件：
-                <input type='file' onChange={e => this.setState({address:e.target.value})}/>
-                <button type='button' onClick={this.handleClick}>数据导入</button>
+            <Window title='数据导入' onClose={this.props.closeView} width='352' height='293'>
+            <div className='data'>
+            <div className='data_border'>
+                <div>
+                <span>新版本:</span> <input type='text' className='inputselectborder'/>
+                </div>
+                <div>
+                <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({address:e.target.value}) }/>
+                </div>
             </div>
+            <button type='button' onClick={this.handleClick} className='e-btn'>开始导入</button>
+            </div>
+            </Window>
         );
     }
 }

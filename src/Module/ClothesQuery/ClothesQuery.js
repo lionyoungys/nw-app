@@ -10,8 +10,8 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {show:false,
-            start_time:'',
-            end_time:'',
+            start_time:tool.date('Y-m-d'),
+            end_time:tool.date('Y-m-d'),
             status:'',
             serialsn:'',
             user_name:'',
@@ -24,7 +24,11 @@ export default class extends Component {
             count:0
         }
         this.query = this.query.bind(this)
-    };   
+        this.clear = this.clear.bind(this)
+    }; 
+    clear(){
+        this.setState({clothes:[],count:0})
+    }  
     query(){
         api.post('clothesQuery', {token:'token'.getData(),
         start_time:this.state.start_time,
@@ -93,7 +97,7 @@ export default class extends Component {
                     </div>
                     <div >
                         <div>
-                         <span>收衣时间:</span><input type='date' className='e-input'/><label>—</label><input type='date' className='e-input'/>
+                         <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time}/><input type='date' className='inputselectborder' value = {this.state.start_time}/>
                         </div> 
                         <div>
                         <span>&emsp;&emsp;电话:</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
@@ -103,7 +107,7 @@ export default class extends Component {
                         
                         </div>
                         <div className='find_reset'>
-                        <button className='e-btn'>清空</button>
+                        <button className='e-btn' onClick={this.clear}>清空</button>
                         <button className='e-btn' onClick={this.query}>查询</button>
                         </div>
                     </div>

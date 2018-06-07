@@ -2,14 +2,15 @@
   "name": "main",
   "version": "3.0.0",
   "description": "nw app",
-  "main": "main.html",
+  "main": "login.html",
   "repository": "none",
   "author": "Edwin Young",
   "license": "MIT",
   "window": {
     "icon": "img/icon.png",
-    "min_width": 1024,
-    "min_height": 737,
+    "resizable": false,
+    "width": 600,
+    "height": 450,
     "frame": false,
     "show": false,
     "new_instance": true
@@ -22,15 +23,15 @@
     "show": false,
     "new_instance": true
   },
-  "loginWindow": {
-    "icon": "img/icon.png",
-    "resizable": false,
-    "width": 600,
-    "height": 450,
-    "frame": false,
-    "show": false,
-    "new_instance": true
-  },
+  // "loginWindow": {
+  //   "icon": "img/icon.png",
+  //   "resizable": false,
+  //   "width": 600,
+  //   "height": 450,
+  //   "frame": false,
+  //   "show": false,
+  //   "new_instance": true
+  // },
   "dependencies": {
     "ffi": "^2.2.0",
     "ms": "^2.1.1",

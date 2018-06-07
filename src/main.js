@@ -53,9 +53,9 @@ class Main extends Component {
     
     //路由跳转方法
     changeView(e) {
-        console.log(M1Reader.write(2, 4, '你好啊'));
-        var result = M1Reader.read(2, 4);
-        console.log(result);
+        // console.log(M1Reader.write(2, 4, '你好啊'));
+        // var result = M1Reader.read(2, 4);
+        // console.log(result);
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;

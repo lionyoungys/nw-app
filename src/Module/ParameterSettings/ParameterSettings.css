@@ -1,0 +1,45 @@
+
+.brand{width:845px;height:auto;margin:auto}
+.brand-btn{
+    width:71px;
+    height:24px;    
+    text-align:center;
+    line-height:24px;
+    color:#000;
+    font-size:12px;
+    float:right;
+    background:url(./img/e-btn.png) no-repeat;
+    background-size:71px 24px;
+    outline:none;
+    border:none;
+    margin:8px 0;
+    cursor:pointer;
+}
+.brand-btn:hover{background:url(./img/e-btn-hover.png) no-repeat;color:#fff}
+.brand-tab{
+    width:843px;
+    height:auto;
+    max-height:473px;
+    border:1px solid #8db2e3;
+    clear:both;
+}
+.brand-tab table thead{
+    width:100%;
+    height:25px;
+    background:#89b0d4;
+}
+.brand-tab table thead tr{
+    width:100%;
+    height:25px;
+    line-height:25px;
+}
+.brand-tab table thead tr th{
+    width:281px;
+    height:25px;
+    line-height:25px;
+    color:#fff;
+    border-right:1px solid #acc6de;
+    text-align:center;
+    font-size:12px;
+}
+.brand-tab table thead tr th:last-child{border-right:none}

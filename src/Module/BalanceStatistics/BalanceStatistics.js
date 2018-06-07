@@ -35,8 +35,8 @@ export default class extends Component {
                <Window title='余额统计' onClose={this.props.closeView}>   
                    <div className="balancestatistics_title">
                       <div className="balancestatistics_title_left">
-                         <span>累计会员数: <b>{this.state.user_total}</b></span>
-                         <span>累计会员余额: <b>￥{this.state.balance_total}</b></span>
+                         <span>累计会员数 ： <b>{this.state.user_total}</b></span>
+                         <span>累计会员余额 ： <b>￥{this.state.balance_total}</b></span>
                          <button>下载</button>
                       </div>
                       <div className="balancestatistics_title_right"></div>

@@ -27,6 +27,13 @@ export default class extends Component {
         api.post('lossCard', {token:'token'.getData(),id:this.state.id}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                }}); 
+            }else{
+                tool.ui.error({callback:(close, event) => {
+                    close();
+                }});
             }
         }
         );
@@ -117,9 +124,6 @@ export default class extends Component {
                     <tbody>
                         {userinfo}
 
-
-              
-                    
                     </tbody>
                 </table>
             </Window>

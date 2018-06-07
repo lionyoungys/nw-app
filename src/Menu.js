@@ -20,18 +20,13 @@ export const topMenu = [
         options:[
             {value:'格架查询', view:'lattice_query'},
             {value:'衣物查询', view:'clothes_query'},
-            {value:'交班', view:null},
+            {value:'交班', view:'Succession'},
             {value:'营业日报', view:'operate_income'},
-            {value:'前台情况', view:'foreground_statistics'},
-            {value:'会员消费查询', view:null},
+            {value:'前台情况', view:'foreground_statistics'},           
             {value: '未付款统计', view:'unpaid_statistics'},
             {value:'余额统计', view:'balance_statistics'},
             {value:'充值统计', view:'recharge_up'},
-            {value:'消费统计', view:null},
-           
-           
-           
-           
+            {value:'消费统计', view:'consumption_statistics'},     
         ]
     },
     {
@@ -44,8 +39,9 @@ export const topMenu = [
             { value:'解除挂失', view:'Solut_ionto_hang'},
             { value: '换卡', view:'exchange_card'}, 
             { value: '退卡', view:'return_card'},
-            { value: '挂失查询', view:null},
-            { value: '退卡查询', view:null},
+            { value: '挂失查询', view:'report_loss_query'},
+            { value: '退卡查询', view:'card_queries'},
+            {value:'会员消费查询', view:'member_consume_query'},
             { value:'客户信息查询', view:null},            
         ]
     },
@@ -65,8 +61,8 @@ export const topMenu = [
             {value:'营业统计', view:null},
             {value:'营业明细', view:'operating_details'},
             {value:'营业分析', view:null},
-            {value:'欠款明细', view:null},
-            {value:'会员业务统计', view:null},
+            {value:'欠款明细', view:'unpaid_statistics'},
+            {value:'会员业务统计', view:'member_business_statistics'},
             {value:'会员分类统计', view:null},
             // {value:'会员消费统计', view:'member_consumption_statistics'},
             {value:'衣物统计', view:null}
@@ -88,14 +84,14 @@ export const topMenu = [
     {
         value:'设置', 
         options:[
-            {value:'门店管理', view:null},
+            {value:'门店管理', view:'store_management'},
             {value:'员工与权限', view:'staff_management'},
             {value:'价格设置', view:null},
-            {value:'参数设置', view:null},
+            {value:'参数设置', view:'ParameterSettings'},
             {value:'设备管理', view:null},
             {value:'数据导入',  view:'data'},
-            {value:'密码修改', view:null},
-            {value: '其他设置', view:'commodity_classify_management'},
+            {value:'密码修改', view:'passwd_update'},
+            { value: '其他设置', view:'colthes_classify_managment'},
             {value:'关于速洗达', view:null}
         ]
     }

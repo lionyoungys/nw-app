@@ -1,0 +1,25 @@
+.passwdupdate{
+    width: 360px;
+    height: 216px;
+}
+.passwdupdateborder{
+    margin-top: 21px
+}
+.passwdupdateborder>div>:first-child{
+    margin-top: 20px;
+}
+.passwdupdateborder>div:last-child{
+    margin-top: 0px;
+}
+.passwdupdateborder label{
+    margin: 0px;
+    font-size: 14px;
+    color: red;
+    margin-left: 90px;
+}
+.passwdupdate_pass{
+   margin-top: 20px;
+}
+.passwdupdateborder>div{
+    margin-left: 39px;
+}

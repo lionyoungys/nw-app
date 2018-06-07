@@ -9,9 +9,10 @@ import Select from '../../UI/Select';
 export default class extends Component {   
     constructor(props) {
         super(props);       
-        this.state = {id:'',cardnumber:'',card_number:'',user_mobile:'',user_name:'',sex:'',birthday:'',address:'',user_type:''};    
+        this.state = {id:'',cardnumber:'',card_number:'',user_mobile:'',user_name:'',sex:'',birthday:'1970-01-01',address:'',user_type:'',passwd:''};    
         this.query = this.query.bind(this);
         this.onchange=this.onchange.bind(this);
+        this.modCardInfo=this.modCardInfo.bind(this);
     }; 
     
         onchange(value){
@@ -28,9 +29,10 @@ export default class extends Component {
                     user_name:res.result[0].user_name,
                     sex:res.result[0].sex,
                     birthday:res.result[0].birthday,
-                    address:res.result[0].address
-                ,id:res.result[0].id,
-                user_type:res.result[0].user_type
+                    address:res.result[0].address,
+                    id:res.result[0].id,
+                    user_type:res.result[0].user_type,
+                    passwd:res.result[0].password
                 });
             }
         }
@@ -42,7 +44,13 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                alert("保存成功");
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                }}); 
+            }else{
+                tool.ui.error({callback:(close, event) => {
+                    close();
+                }});
             }
         }
         );

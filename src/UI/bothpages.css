@@ -69,7 +69,7 @@
 }
 .bothpages_count_title span{
     display:block;
-    width:200px;
+    width:209px;
     height:25px;
     text-align:center;
     color:#fff;
@@ -78,7 +78,9 @@
     overflow:hidden;
     white-space:nowrap;     
     text-overflow:ellipsis;
+    /* border-right:1px solid #acc6de; */
 }
+.bothpages_count_title span:last-child{border-right:none}
 /* tab标题样式 */
 .bothpages_count_title span:nth-child(1){
     width:31px;
@@ -96,8 +98,9 @@
     display:block;
     overflow-y:auto;
     background:#fff;
+    overflow-x:hidden;
 }
-.bothpages_count_list tbody{width:100%;height:auto;display:block;}
+.bothpages_count_list tbody{min-width:875px;height:auto;display:block;overflow-x:hidden;}
 .bothpages_count_list tr{height:25px;width:100%;display:block}
 .bothpages_count_list tr:nth-of-type(even){
     background:#f0f5f9;
@@ -105,16 +108,26 @@
 .bothpages_count_list tr td{
     color:#000;
     font-size:12px;
-    display:inline-block;
-    width:200px;
+   
+    width:210px;
     text-align:center;
-    height:23px;
-    line-height:23px;
+    height:25px;
+    line-height:25px;
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    border-right:1px solid #acc6de;
+    box-sizing:border-box;
 }
-.bothpages_count_list tr td:nth-child(1){width:31px;height:23px;color:#999999;font-size:12px;border-right:1px solid #acc6de;box-sizing:border-box;}
+.bothpages_count_list tr td:last-child{border-right:none}
+.bothpages_count_list tr td:nth-child(1){
+    width:31px;
+    height:25px;
+    color:#999999;
+    font-size:12px;
+    border-right:1px solid #acc6de;
+    box-sizing:border-box;
+}
 .bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;}
 .bothpages_count_list tr td i:first-child{color:#063ff7;margin-left:60px;float:left}
 .bothpages_count_list tr td i:last-child{color:#ff0000;margin-right:60px;float:right}
@@ -259,5 +272,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .tableC_box_div span b a{color:#024ffe;font-size:12px;}
 .tableC_box_div table tbody tr:nth-of-type(even){background:#f0f5f9}
 
-
-
+/* 导航设置相同样式 */
+.Settings{
+    width:868px;
+    height:555px;
+    border:1px solid #8db2e3;
+    margin:12px auto 0;
+    background:#f0f5f9
+}
+.Settings-title{
+    width:100%;
+    height:27px;
+    border-bottom:1px solid #8db2e3;
+}
+.Settings-title span{
+    display:block;
+    float:left;
+    width:auto;
+    height:23px;
+    line-height:23px;
+    text-align:center;
+    color:#15458d;
+    font-size:12px;
+    border-top:1px solid #8db2e3;
+    border-left:1px solid #8db2e3;
+    border-right:1px solid #8db2e3;
+    border-top-right-radius:3px;
+    border-top-left-radius:3px;
+    margin:3px 0 0 5px;
+    padding:0 20px;
+    background:-moz-linear-gradient(top,#eff5fc,#d9e5f2);
+    background:-webkit-gradient(linear, 0% 20%,20% 100%,from(#eff5fc), to(#d9e5f2));
+    background: -webkit-gradient(linear, 0% 20%, 20% 100%, from(#eff5fc), to(#d9e5f2));
+    font-weight:bold;
+    cursor:pointer;      
+}
+.Settings-title span:hover{height:24px;z-index:9;color:#15458d}
+.Settings-div{width:868px;height:528px;margin-top:3px;border-top:1px solid #8db2e3}

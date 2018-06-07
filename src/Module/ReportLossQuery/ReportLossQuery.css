@@ -1,0 +1,28 @@
+
+.ReportLossQuery-tab{overflow-x: hidden}
+
+.ReportLossQuery-tab table thead tr th{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#fff;
+    font-size:12px;
+    text-align:center;
+    padding:0 25px;
+    border-right:1px solid #a4c0da;
+    min-width:59px;
+}
+
+.ReportLossQuery-tab table tbody tr td{
+    width:auto;
+    height:25px;
+    line-height:25px;
+    color:#000;
+    font-size:12px;
+    padding:0 25px;
+    border-right:1px solid #a4c0da;
+    text-align:center;
+    min-width:59px;
+    
+}
+.ReportLossQuery b{color:#ff0000}

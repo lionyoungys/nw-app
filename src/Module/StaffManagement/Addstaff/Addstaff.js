@@ -53,7 +53,6 @@ export default class extends Component {
     modOperator (e){
         var write = e.target.dataset.write
         this.setState({show1:true,write:write});  
-
     }
     ask2(e) {
         var id = e.target.dataset.id;

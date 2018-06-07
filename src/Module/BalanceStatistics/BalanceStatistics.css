@@ -1,9 +1,9 @@
 /* 充值统计页面样式  顶部*/
 .balancestatistics_title{width:875px;margin:auto;height:47px}
 .balancestatistics_title_left{width:auto;height:47px;line-height:47px;float:left}
-.balancestatistics_title_left span{color:#063781;font-size:12px}
+.balancestatistics_title_left span{color:#063781;font-size:12px;margin-right:13px}
 .balancestatistics_title_left span:last-child{margin-left:53px}
-.balancestatistics_title_left span b{color:#ff0000;font-size:14px;margin-left:13px}
+.balancestatistics_title_left span b{color:#ff0000;font-size:14px;margin-left:3px}
 .balancestatistics_title_left button{   
     width:71px;
     height:24px;
@@ -23,10 +23,10 @@
 
 /* 充值统计tab页面样式 */
 .balancestatistics_count_title span:nth-child(2){width:132px}
-.balancestatistics_count_title span:nth-child(3){width:105px}
-.balancestatistics_count_title span:nth-child(4){width:135px}
-.balancestatistics_count_title span:nth-child(5){width:105px}
-.balancestatistics_count_title span:nth-child(6){width:215px}
+.balancestatistics_count_title span:nth-child(3){width:107px}
+.balancestatistics_count_title span:nth-child(4){width:136px}
+.balancestatistics_count_title span:nth-child(5){width:106px}
+.balancestatistics_count_title span:nth-child(6){width:216px}
 .balancestatistics_count_title span:nth-child(7){width:132px}
 
 .balancestatistics_count_list tbody tr td:last-child{color:#2151ed;cursor: pointer;}

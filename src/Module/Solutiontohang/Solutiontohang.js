@@ -60,11 +60,11 @@ export default class extends Component {
                                     </div>
                             </div>
                             <div className="card-detail">
-                               <button className="e-btn" onClick = {this.losecard()}>读卡</button>
+                               <button className="e-btn" >读卡</button>
                             </div>
                             <div className='button'>                            
                                 <button type='button' className='e-btn' onClick={this.props.closeView}>取消</button>&nbsp;&nbsp;
-                                <button type='button' className='e-btn' readOnly = {this.state.judge}>解除挂失</button>
+                                <button type='button' className='e-btn' readOnly = {this.state.judge} onClick = {this.losecard}>解除挂失</button>
                             </div>
                         </div>
                     </div>        
