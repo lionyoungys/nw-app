@@ -165,6 +165,11 @@
         return obj;
     }
 
+    /**
+     * 逻辑设置卡数据
+     * @param {*object} data sn:卡号,cid:卡ID,mid:商户id
+     * @return {*object}
+     */
     r.set = function(data) {
         if ('object' !== typeof data) throw '参数格式错误';
         if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
