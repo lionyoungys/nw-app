@@ -18,7 +18,13 @@
         KeyModelA: 0x60,    //A密钥
         KeyModelB: 0x61,    //B密钥
         KeyA: 'A6C2D6A69286',    //A密钥值
-        KeyB: 'FFFFFFFFFFFF'    //B密钥值
+        KeyB: 'FFFFFFFFFFFF',    //B密钥值
+        writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB15FF',    //写入密钥值
+        KeyAList:['CBFBCFFEB6FF', 'A6C2D6A69286'],    //A密钥值列表,0:平台密钥;1:菜篮子密钥
+        Blocks:[
+            {sn:4, cid:5, mid:6},    //默认数据对应块:卡号,卡ID,店铺ID,密钥key:7
+            {sn:8, phone:9, balance:10, discount:13, name:14, end:21, type:22, cooperator:28, birthday:29, cid:30, passwd:32, mid:33, mname:36},    //菜篮子数据对应块:卡号,电话,余额,折扣率,姓名,截至日期,卡类型,合作单位,生日,卡编号,店密码,企业代码,店铺简称
+        ],
     }
     ,   charPtr = ref.refType('char')
     ,   intPtr = ref.refType('int')
@@ -79,19 +85,23 @@
             }
         }
     }
-    r.authorization = function(model, blockId) {
+    r.authorization = function(model, key, blockId) {
+        if ('undefined' === typeof key || key.length !== 12) throw '密钥格式错误';
         if (isNaN(blockId)) throw '绝对块号地址错误';
-        model = (!isNaN(model) && 1 == model) ? 'A' : 'B';
         this.init();       
-        if (!(SDT.YW_AntennaStatus(this.ID, true) > 0)) throw '天线打开失败';
+        if (SDT.YW_AntennaStatus(this.ID, true) < 0) throw '天线打开失败';
         var type = ref.alloc('short');
-        if (!(SDT.YW_RequestCard(this.ID, config.ALL, type) > 0)) throw '寻卡失败';
+        if (SDT.YW_RequestCard(this.ID, config.ALL, type) < 0) throw '寻卡失败';
         var memory = ref.alloc('char')
         ,   sn  = ref.alloc('char')
         ,   snLen = ref.alloc('int');
-        if (!(SDT.YW_AntiCollideAndSelect(this.ID, 1, memory, snLen, sn) > 0)) throw '选卡失败';
-        var keyBuf = tool.data2Buf(config['Key' + model]);
-        if (!(SDT.YW_KeyAuthorization(this.ID, config['KeyModel' + model], blockId, keyBuf) > 0)) throw '扇区密钥验证失败';
+        if (SDT.YW_AntiCollideAndSelect(this.ID, 1, memory, snLen, sn) < 0) throw '选卡失败';
+        if (SDT.YW_KeyAuthorization(
+            this.ID, 
+            ( (!isNaN(model) && 1 == model) ? config.KeyModelA : config.KeyModelB ), 
+            blockId, 
+            tool.data2Buf(key)
+        ) < 0) throw '扇区密钥验证失败';
     }
 
     /**
@@ -100,10 +110,10 @@
      * @param {*number} blockId 绝对块号地址
      * @return {*string} 数据结果
      */
-    r.read = function(model, blockId) {
-        this.authorization(model, blockId);
+    r.read = function(model, key, blockId) {
+        this.authorization(model, key, blockId);
         var buf = new Buffer(16);
-        if (!(SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) > 0)) throw '读卡失败';
+        if (SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) < 0) throw '读卡失败';
         return tool.iconv(buf, 'gbk');
     }
 
@@ -114,16 +124,68 @@
      * @param {*string} data 要写入的数据最大长度为8
      * @return {*bool} 写入成功与否
      */
-    r.write = function(model, blockId, data) {
-        var len = data.length;
-        if (len > 8) {
-            data = data.substr(0, 8);
-        } else if (len < 8) {
-            data += tool.repeat('\0', (8 - len) * 2);
-        }
-        this.authorization(model, blockId);
-        var buf = tool.iconv(data, 'gbk', true);
+    r.write = function(model, key, blockId, data) {
+        this.authorization(model, key, blockId);
+        var buf = tool.iconv(data + tool.repeat('\0', 16), 'gbk', true);
         return SDT.YW_WriteaBlock(this.ID, blockId, 16, buf) > 0;
+    }
+
+    /**
+     * 逻辑获取卡数据
+     * @return {*object}
+     */
+    r.get = function() {
+        var len = config.KeyAList.length
+        ,   index = null;
+        for (var i = 0;i < len;++i) {
+            try {
+                this.authorization(1, config.KeyAList[i], config.Blocks[i].sn);
+                index = i;
+                break;
+            } catch (e) {}
+        }
+        var obj = {empty:true, hasUpdate:false};
+        if (null !== index) {
+            for (var k in config.Blocks[index]) {
+                obj[k] = this.read(1, config.KeyAList[index], config.Blocks[index][k]);
+            }
+            obj.hasUpdate = (0 === index);
+            obj.empty = false;
+            return obj;
+        }
+        try {
+            this.authorization(2, config.KeyB, config.Blocks[0].sn);
+        } catch (e) {
+            return obj;
+        }
+        for (var k in config.Blocks[0]) {
+            obj[k] = this.read(2, config.KeyB, config.Blocks[0][k]);
+            if (obj[k].length > 0) obj.empty = false;
+        }
+        return obj;
+    }
+
+    r.set = function(data) {
+        if ('object' !== typeof data) throw '参数格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.cid)) throw 'cid格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.mid)) throw 'mid格式错误';
+        var verify = false
+        try {
+            this.authorization(1, config.KeyA, config.Blocks[1].sn);
+            verify = true;
+        } catch (e) {}
+        if (verify) {
+            if (!this.write(1, config.KeyA, 7, config.writeKey)) return false;
+        } else {
+            if (!this.write(2, config.KeyB, 7, config.writeKey)) return false;
+        }
+        var tempArr = [];
+        for (var k in config.Blocks[0]) {
+            if (!this.write(1, config.KeyAList[0], config.Blocks[0][k], data[k])) tempArr.push(k);
+        }
+        if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
+        return true;
     }
     window.M1Reader = r;
 })(window);
