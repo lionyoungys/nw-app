@@ -8,7 +8,26 @@ import './StoreManagement.css'
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            id:'',
+            mname:'',
+            phone_number:'',
+            province:'',
+            city:'',
+            mstatus:'',
+            maddress:''
+        }
     };
+    componentDidMount() {
+        api.post('merchantInfo', {token:'token'.getData()}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({id:res.result.id,mname:res.result.mname,phone_number:res.result.phone_number,
+                province:res.result.province,city:res.result.city,mstatus:res.result.mstatus,maddress:res.result.maddress});
+            }
+        }
+        );
+    }
     render() {
         return (
             <div>
@@ -27,20 +46,20 @@ export default class extends Component {
                         {/* 基本信息 */}
                         <div className='store_management_content_baseInfo store_management_content_selected'>
                                 <p className='store_management_content_title'>门店基本信息</p>
-                                <div>门店编号：&emsp;<a>xxxxxxx</a></div>
-                                <div>网店状态：&emsp;<a>未开通</a></div>
-                                <div>门店名称：&emsp;<span className='store_management_disable_span'></span></div>
+                                <div>门店编号：&emsp;<a>{this.state.id}</a></div>
+                                <div>网店状态：&emsp;<a>{this.state.mstatus}</a></div>
+                                <div>门店名称：&emsp;<span className='store_management_disable_span'>{this.state.mname}</span></div>
                                 <div>
                                     所在区域：&emsp;
                                     <span className='store_management_select_span'>
-                                        <i></i>
+                                        <i></i>{this.state.province}
                                     </span>
                                     <span className='store_management_select_span'>
-                                        <i></i>
+                                        <i></i>{this.state.city}
                                     </span>
                                 </div>
-                                <div>详细地址：&emsp;<span className='store_management_disable_span'></span></div>
-                                <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input'/></div>
+                                <div>详细地址：&emsp;<span className='store_management_disable_span'>{this.state.maddress}</span></div>
+                                <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.phone_number} /></div>
                                 <button className='e-btn'>保存</button>
                         </div> 
                         {/* 银联卡 */}
