@@ -1,0 +1,241 @@
+
+/* 收衣顶部 */
+.clothes-title{
+    width:870px;
+    height:49px;
+    border:1px solid #8db2e3;
+    background:#eef4fb;
+    margin:14px auto 0;
+}
+
+.clothes-title div{
+    width:auto;
+    height:22px;
+    float:left;
+    margin-left:5px;
+    margin-top:14px;
+}
+.clothes-title div b{color:#063781;font-size:12px;display:block;float:left}
+.clothes-title div span{
+    background:#f9f9f9;
+    border:1px solid #ced3d9;
+    height:20px;
+    color:#063781;
+    font-size:12px;
+    line-height:20px;
+    display:inline-block;
+}
+.clothes-title div:nth-child(1) span {
+    width:125px;
+}
+.clothes-title div:nth-child(2) span {
+    width:99px;
+}
+.clothes-title div:nth-child(3) span {
+    width:125px;
+}
+.clothes-title div:nth-child(4) span {
+    width:195px;
+}
+#clothes-title-btn{
+    float:right;
+    margin-top:12px;
+    margin-right:15px;
+}
+
+/* 收衣div */
+.clothes-tab{
+    width:870px;
+    max-height:350px;
+    overflow:hidden;
+    margin:13px auto;
+}
+/* 收衣table */
+.clothes-tab table{
+    width:868px;
+    height:auto;
+    max-height:348px;
+    border:1px solid #8db2e3;
+    overflow-x:auto;
+    display:block;
+    overflow-y:hidden;
+    overflow-x:hidden;
+}
+
+/* 收衣头部 */
+.clothes-tab table thead{
+    width:auto;
+    height:25px;
+    border-bottom:1px solid #cccccc;
+    background:#89b0d4;
+    display:inline-block;
+}
+.clothes-tab table thead tr{width:auto;height:25px}
+.clothes-tab table thead tr th{
+    min-width:86px;
+    height:25px;
+    text-align: center;
+    color:#fff;
+    font-size:12px;
+    border-right:1px solid #acc6de;
+}
+.clothes-tab table thead tr th:last-child{border-right:none}
+.clothes-tab table thead tr th i{font-style:normal;color:#f00;margin-right:2px}
+
+/* 收衣内容 */
+.clothes-tab table tbody{
+    width:auto;
+    height:auto;
+    max-height:317px;
+    overflow-y:auto;
+    display:inline-block;
+    overflow-x:hidden;
+}
+.clothes-tab table tbody tr{
+    width:auto;
+    height:25px;
+}
+.clothes-tab table tbody tr:nth-child(odd){background:#fff}
+.clothes-tab table tbody tr:nth-child(even){background:#f0f5f9}
+.clothes-tab table tbody tr td{
+    height:25px;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    min-width:86px;
+    border-right:1px solid #acc6de;
+    cursor:pointer;
+}
+.clothes-tab table tbody tr td:last-child{color:#2151ed}
+.clothes-tab table tbody tr td:last-child{
+    border-right:none;
+}
+.clothes-tab table tbody tr td:hover{background:#cce8ff}
+
+.clothes-tab table tbody tr td span{
+    width:14px;
+    height:14px;
+    margin-top:3px;
+}
+
+.clothes-tab table tbody tr td span:nth-child(1){
+    background:url(./img/---.png);   
+    float:left;
+    margin-left:5px;
+}
+.clothes-tab table tbody tr td span:nth-child(2){
+    background:url(./img/+++.png);
+    float:right;   
+    margin-right:5px;
+}
+#add-clothes{margin-left:15px;margin-top:0;cursor:pointer}
+
+/* 收衣底部 */
+.clothes-footer{
+    width:870px;
+    height:88px;
+    border:1px solid #8db2e3;
+    margin:13px auto;
+    background:#eef4fb;
+}
+.clothes-footer-left{
+    width:610px;
+    height:88px;
+    float:left;
+}
+.clothes-footer-left-both{
+    width:auto;
+    float:left;
+    height:88px;
+    margin-left:5px;
+}
+.clothes-footer-left-both>div{
+    width:auto;
+    height:22px;
+    clear:both;
+    margin-top:15px;
+}
+.clothes-footer-left-both>div b{
+    width:72px;
+    height:22px;
+    color:#063781;
+    font-size:12px;
+    text-align:right;
+    display:block;
+    float:left;
+    font-weight:inherit;
+}
+.clothes-footer-left-both>div span{color:#063781;font-size:12px;float:left;cursor: pointer;}
+
+.clothes-footer-left-both .clothes-footer-left-both-red b{color:#f00}
+.clothes-footer-left-both .clothes-footer-left-both-red span{color:#f00}
+.clothes-foorer-tacketime{
+    font-size:12px;
+    width:133px;
+    height:20px;
+    line-height:20px;
+    float: left;
+    color:#063781;
+    background-size:100% 100%;
+    outline:none;border:none;
+    border:1px solid #c4c2c2;       
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;
+    background:#f9f9f9 url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+    margin-left:5px;
+}
+.clothes-foorer-tacketime:hover{
+    background:#fff url(./img/hoverselect.png) no-repeat;
+    background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+
+.clothes-footer-right{width:240px;height:88px;margin-right:10px;float:right;}
+.clothes-footer-right .take-money{
+    width:240px;
+    height:34px;
+    margin-top:12px;
+}
+.clothes-footer-right .take-money button{
+    margin:0 auto;
+    width:111px;
+    height:34px;
+    text-align:center;
+    line-height:34px;
+    color:#000;
+    font-size:12px;
+    background:url(./img/take-money.png) no-repeat;
+    background-size:111px 34px;
+    display:block;
+    cursor: pointer;
+}
+.clothes-footer-right .take-money button:hover{
+    background:url(./img/take-money-hover.png) no-repeat;
+    background-size:111px 34px;
+}
+.money-btn {
+    width:240px;
+    height:24px;
+    margin-top:8px;
+}
+.money-btn button{
+    width:71px;
+    height:24px;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    line-height:24px;
+    background:url(./img/e-btn.png) no-repeat;
+    background-size:71px 24px;
+    margin-left:8px;
+    cursor: pointer;
+}
+.money-btn button:hover{background:url(./img/e-btn-hover.png) no-repeat}
+button{
+    outline:none;
+    border:none;
+}

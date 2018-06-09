@@ -5,32 +5,39 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Brand from './brand';
-import bothpages from '../../UI/bothpages.css';
+import Lattice from './Lattice';
 import './ParameterSettings.css'
 
 export default class extends Component {   
     constructor(props) {
-        super(props);           
+        super(props);     
+        this.state={index:0};     
+        this. handleClick = this.handleClick.bind(this);
+        this.tab=['流程','格架','品牌','颜色','瑕疵','洗后预估','档次','材料','处理类别','工艺加价','包类别'];
+        this.views = [<Lattice />,<Lattice />, <Brand />];
     }; 
-    render() {      
+    handleClick(e){
+        this.setState({index:e.target.dataset.index});
+    }
+    render() {   
+        let tabs=this.tab.map((item,index)=>
+                <span
+                    key={item} 
+                    data-index={index} 
+                    className={this.state.index==index?'hover':null}
+                    onClick={this.handleClick}
+                >{item}</span>
+        );
         return ( 
                 <Window title='参数设置' onClose={this.props.closeView}>   
                     <div className="Settings">
                        <div className="Settings-title">
-                          <span>流程</span>
-                          <span>格架</span>
-                          <span>品牌</span>
-                          <span>颜色</span>
-                          <span>瑕疵</span>
-                          <span>洗后预估</span>
-                          <span>档次</span>
-                          <span>材料</span>
-                          <span>处理类别</span>
-                          <span>工艺加价</span>
-                          <span>包类别</span>
+                         {tabs}
                        </div>
                        <div className="Settings-div">
-                          <Brand />
+                           {'undefined' !== typeof this.views[this.state.index] && this.views[this.state.index]}
+                          {/* <Brand /> */}
+                          {/* <Lattice /> */}
                        </div>
                     </div>                                                                                 
                 </Window> 

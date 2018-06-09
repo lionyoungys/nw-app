@@ -3,10 +3,10 @@
  * @author  ranchong
  */
 import React, { Component } from 'react';
-import './ChangeCard.css';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select'
 import './NewCardbinding.css';
+import './ChangeCard.css';
 
 export default class extends Component {
     constructor(props) {

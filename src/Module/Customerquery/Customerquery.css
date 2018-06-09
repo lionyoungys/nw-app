@@ -1,0 +1,166 @@
+.Customerquery{
+    width:870px;
+    height:97px;
+    margin:13px auto 0px;
+}
+.Customerquery-title{
+    width:535px;
+    height:95px;
+    border:1px solid #8db2e3;
+    float:left;
+    background:#eef4fb;
+}
+.Customerquery-title div{
+    width:242px;
+    height:24px;
+    margin-top:6px;
+    float:left;
+}
+.Customerquery-title div span{
+    width:90px;
+    line-height:24px;
+    color:#063781;
+    font-size:12px;
+    text-align:right;
+    float: left;
+}
+.Customerquery-title div input{
+    width:146px;
+    height:20px;
+    border:1px solid #c2c2c2;
+    background:#f9f9f9;
+    
+    color:#000;
+    font-size:12px;
+    float: left;
+    margin-left:3px;
+}
+.Customerquery-title div input:hover{border:1px solid #8db2e3;}
+.Customerquery-title div .select{         
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;    
+    background:#f9f9f9 url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:129px;
+    background-position-y:0; 
+}
+input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+   opacity: 0;
+ }
+ 
+ /*----------用来移除叉叉按钮----------*/
+ input[type="date"]::-webkit-clear-button{
+    display:none;
+ }
+ .Customerquery-right{width:302px;height:26px;float:right;margin:39px 0;}
+ .Customerquery-right button{
+     width:71px;
+     height:24px;
+     color:#000;
+     font-size:12px;
+     line-height: 24px;
+     text-align:center;
+     background:url(./img/e-btn.png);
+     outline:none;
+     border:none;
+     margin-top:2px;
+     cursor: pointer;
+    }
+.Customerquery-right button:hover{background:url(./img/e-btn-hover.png)}
+.Customerquery-right b{
+    display:block;
+    width:31px;
+    height:29px;
+    margin-left:12px;
+    float: left;
+    background:url(./img/.Customerquery-right.png);
+    background-size:31px 29px;
+    cursor: pointer;
+  }
+.Customerquery-query{float:left;margin-left: 19px;}
+.Customerquery-over{
+     float:right;
+     margin-right:19px;
+ }
+.Customerquery-tab{
+    width:870px;
+    height:auto;
+    max-height:457px;
+    margin:auto;  
+ }
+.Customerquery-tab-title{
+    color:#000;
+    font-size:12px;
+    width:868px;
+    height:34px;
+    line-height:34px;
+}
+.Customerquery-tab-title b{color:#024ffe}
+.Customerquery-tab table{
+    width:868px;
+    height:auto;
+    max-height:425px;
+    border:1px solid #b5ceef;
+    display:block;
+    overflow-x: auto;overflow-y:hidden;
+}
+.Customerquery-tab table thead{
+    min-width:868px;
+    height:25px;
+    background:#89b0d4;
+    display:inline-block;
+
+}
+.Customerquery-tab table thead tr{min-width:868px;height:25px;}
+.Customerquery-tab table thead tr th{   
+    height:25px;
+    line-height:25px;    
+    width:91px;
+    color:#fff;
+    font-size:12px;
+    text-align:center;
+    border-right:1px solid #b5ceef;
+    max-width:91px;
+}
+.Customerquery-tab table thead tr th:last-child{border-right:none}
+.Customerquery-tab table thead tr th:first-child{
+    width:31px;
+    max-width:31px;
+    min-width:31px;
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:17px;
+    background-position-y:11px;
+}
+.Customerquery-tab table tbody{
+   min-width:868px;
+    height:auto;
+    max-height:395px;
+    overflow-y: auto;
+    display:inline-block;
+  overflow-x: hidden;
+}
+.Customerquery-tab table tbody tr{
+    min-width:868px;
+    height:25px;
+    display:inline-block;
+}
+.Customerquery-tab table tbody tr:nth-child(odd){background: #fff;}
+.Customerquery-tab table tbody tr:nth-child(even){background: #f0f5f9;}
+.Customerquery-tab table tbody tr td{     
+    height:25px;
+    line-height:25px;  
+    width:91px;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    border-right:1px solid #b5ceef;      
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    max-width:91px;
+}
+.Customerquery-tab table tbody tr td:last-child{border-right:none;}
+.Customerquery-tab table tbody tr td:first-child{width:31px;min-width: 31px;}

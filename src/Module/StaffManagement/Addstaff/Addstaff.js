@@ -22,7 +22,9 @@ export default class extends Component {
             auth_name:[],
             auto:[],
             index:0,
-            write:''
+            write:'',
+            mobile:'',
+            password:''
            
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
@@ -30,10 +32,13 @@ export default class extends Component {
         this.addstaff = this.addstaff.bind(this);
         this.onchange = this.onchange.bind(this);
         this.modOperator = this.modOperator.bind(this);
+        this.updatemobile = this.updatemobile.bind(this);
+        this.updatepassword = this.updatepassword.bind(this);
+        this.modOperatorSuccess = this.modOperatorSuccess.bind(this);
     }; 
     //员工与权限 新增员工
     operatorAdd () {
-       
+      
         api.post('operatorAdd', {
             token:'token'.getData(),
             aname:this.state.user_name,
@@ -47,23 +52,36 @@ export default class extends Component {
                     this.componentDidMount();   
                 }
             }
-        );
+        );4
     }
     // 编辑员工
     modOperator (e){
-        var write = e.target.dataset.write
-        this.setState({show1:true,write:write});  
+        var write = e.target.dataset.index
+        this.setState({
+            show1:true,
+            write:write,
+            aname:this.state.operatorlist[write].aname,
+            mobile:this.state.operatorlist[write].account,
+            auth:this.state.operatorlist[write].auth_name
+
+        });  
+        this.staffauthlist();
+       
     }
     ask2(e) {
-        var id = e.target.dataset.id;
+
         var index = e.target.dataset.index;
         var operatorlist=this.state.operatorlist;
         tool.ui.ask({title:'删除员工',info:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
               //点击按钮或关闭符号时关闭弹窗
               //删除员工
+              console.log(event)
+              if(event=='close'){
+                  close();
+              }else{
               api.post('delOperator', {
                 token:'token'.getData(),
-                id:id,
+                id:this.state. operatorlist[index].id,
                 }, (res, ver) => {
                         if (ver && res) {
                             console.log(res);
@@ -76,15 +94,21 @@ export default class extends Component {
                         }
                     }
                );
-            
+            }
                
         }});
     }
     onchange(value){
         this.setState({index:value.inObjArray(this.state.auth, 'auth_name')});
     }
+    //员工列表显示
     addstaff(){
         this.setState({show:true});
+        this.staffauthlist();
+       
+    }
+    //请求员工权限列表
+    staffauthlist(){
         api.post('authList', {
             token:'token'.getData(),
         }, (res, ver) => {
@@ -94,6 +118,33 @@ export default class extends Component {
                 }
             }
         );
+    }
+    modOperatorSuccess(){
+        this.setState({show1:false})
+        api.post('modOperator', {
+            token:'token'.getData(),
+            id:this.state.operatorlist[this.state.write].id,
+            aname:this.state.aname,
+            account:this.state.mobile,
+            auth:this.state.auth[this.state.index].id,
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                   this.componentDidMount();
+                }
+            }
+        );
+    }
+    updatepassword(){
+        // this.setState({show1:true,write:write}); 
+        console.log('aaa')
+        this.input2.removeAttribute('disabled'); 
+        
+    }
+    updatemobile(){
+        console.log(this.input);
+        this.input.removeAttribute('disabled');
+        console.log(this.input);
     }
     componentDidMount() {
         api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
@@ -112,30 +163,7 @@ export default class extends Component {
         <td>{item.aname}</td>
         <td>{item.account}</td>
         <td>{item.auth_name}</td>
-        <td ><i onClick={this.modOperator} data-write={index}>编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
-        {
-                    this.state.show1
-                    &&
-                   
-                    <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={() => this.setState({show1:false})}>
-                        {
-                            <div className='updatestaffborder'>
-                            <div className='margintop'>
-                            <span >姓名:</span><input  type='text' value = {this.state.operatorlist[this.state.write].aname} />
-                            </div>
-                             <div className='mobilephone'>
-                             <span>手机号:</span><input type='text' className='updatemobileinput' value={this.state.operatorlist[this.state.write].account}/><span className='updatemobile'>修改手机号</span>
-                             </div>
-                              <div>
-                              <span>密码:</span><input type='text' className='updatemobileinput' disabled='disabled'/><span className='updatemobile'>修改密码</span>
-                              </div>
-                               <div>
-                               <span >权限:</span><input type='text' value={this.state.operatorlist[this.state.write].auth}/>
-                               </div>
-                               </div>
-                     }
-                    </LayerBox>
-                }
+        <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index = {index}>删除</i></td>
     </tr>
         );
         return ( 
@@ -174,6 +202,29 @@ export default class extends Component {
                             </tbody>
                         </table>
                     </div>
+                    {
+                    this.state.show1
+                    &&
+                   
+                    <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
+                        {
+                            <div className='updatestaffborder'>
+                            <div className='margintop'>
+                            <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})}/>
+                            </div>
+                             <div className='mobilephone'>
+                             <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
+                             </div>
+                              <div>
+                              <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
+                              </div>
+                               <div>
+                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange}/>
+                               </div>
+                               </div>
+                     }
+                    </LayerBox>
+                }
                 </div>
         );            
     };

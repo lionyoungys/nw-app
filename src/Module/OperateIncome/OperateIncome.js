@@ -4,7 +4,9 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import '../RevokeData/RevokeData.css';
 import './OperateIncome.css';
+
 export default class extends Component {   
     constructor(props) {
         super(props);           

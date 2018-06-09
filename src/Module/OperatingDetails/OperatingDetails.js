@@ -1,11 +1,11 @@
 /**
- * 营业明细界面组件
+ * 经营明细界面组件
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import '../RevokeData/RevokeData.css';
-import './OperatingDetails.css';
 import Window from '../../UI/Window';
+import './OperatingDetails.css';
+
 export default class extends Component {   
     constructor(props) {
         super(props);           
@@ -15,12 +15,12 @@ export default class extends Component {
        var revokedata_detail = ['流水号','撤单日期','撤单时间','操作店员','撤单原因','撤单类型','原金额','金额','撤单日期','客户电话','客户姓名','上传'].map((item,index)=><span>{item}</span>)
        var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价格','备注','状态','日期','时间','交货定期','交货日期','格架号','是否上传','附加服务','衣物件数','客户姓名'].map((item,index)=><span>{item}</span>)
         return (             
-            <Window title='营业明细' onClose={this.props.closeView}>
-                      <div className="revokedata_data OperatingDetails_data">
-                         <div className="revokedata_dataLeft OperatingDetails_dataLeft">
+            <Window title='经营明细' onClose={this.props.closeView}>
+                      <div className=" revokedata_data OperatingDetails_data">
+                         <div className="revokedata_dataLeft" id="OperatingDetails_dataLeft">
                             <div>开始日期：<input type="date" value ='2018-05-19'/></div>
                             <div>类别：<input type="date" value ='2018-05-19'/></div>
-                            <div>结束日期：<input type="date" value ='2018-06-19'/></div>
+                            <div >结束日期：<input type="date" value ='2018-06-19'/></div>
                          </div>
                          <div className="revokedata_dataright OperatingDetails_dataright">
                            {arr}

@@ -189,9 +189,36 @@
     position: absolute;
     top: 22px;
     left: 0;
-    z-index: 1;
+    z-index: 10;
     cursor: default;
 }
 .ui-select:hover .ui-select-option{border: 1px solid #6f9ec2}
 .ui-select-option>div{padding: 0 24px 0 6px}
 .ui-select-option>div:hover{background: #66b8f8;color: #fff}
+/* 时间选择框的样式（右侧带箭头） */
+.ui-date{
+
+    width: 140px;
+    height: 20px;
+    background: rgb(31, 28, 28);
+    background-size: 100% 100%;
+    outline: none;
+    border: 1px solid #c4c2c2;
+    border-radius: 3px;
+    text-indent: 4px;
+    cursor: pointer;
+    background: url(./img/select.png) no-repeat;
+    background-size: 20px 24px;
+    background-position: 101% -1px;
+
+}
+.ui-date:hover{
+
+    background: url(./img/hoverselect.png) no-repeat;
+    background-size: 20px 24px;
+    background-position: 101% -1px;
+    border: 1px solid #4589ee;
+}
+
+/*  等宽左右上下滑动*/
+/*  不等宽左右上下滑动*/

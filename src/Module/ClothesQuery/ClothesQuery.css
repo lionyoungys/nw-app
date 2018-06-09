@@ -4,11 +4,44 @@
     border:1px solid #8db2e3;
     margin: 13px;
 }
-.clothesquery>div>label{
-    font-size: 14px;
+.clothesquery_top_one,.clothesquery_top_two{
+
+    width: 230px;
+    height: 100%;
+    float: left;
+}
+
+.clothesquery_top_one div,.clothesquery_top_two div,.clothesquery_top_three div{
+
+    margin-top: 6px;
+}
+.clothesquery_top_three{
+
+    width: 412px;
+    height: 100%;
+    float: left;
+}
+.clothesquery_top_three div{
+
+    float: left;
+}
+.clothesquery_top_three  div.clothesquery_top_btn{
+
+    margin-top: -16px;
+} 
+.clothesquery_top_three div button{
+
+    margin-left: 20px;
+}
+.clothesquery_top div span{
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.clothesquery_text label{
+    font-size: 13px;
     color: #024ffe;
     font-weight: bold
-
 }
 .clothesquery_text>label{
     font-size: 14px;
@@ -28,19 +61,7 @@
     margin: 13px;
 }
 
-.clothesquery_top>div>div>div>span{
-    font-size: 13px;
-    font-weight: normal;
-    margin-right: 8px;
-  
-}
-.clothesquery_top>div>div>div{
-    margin-top: 6px;
-    margin-left: 18px;
-}
-.clothesquery_top>div>div{
-    display: inline-block;
-}
+
 .OperatingDetails_list .clothesquery_bottom_list_box{
     height:415px;max-height:415px
 }

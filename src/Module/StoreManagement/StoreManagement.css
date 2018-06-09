@@ -100,10 +100,11 @@
     border: 1px solid #c2c2c2;
     background: #efefef;
     vertical-align:middle;
+    text-indent: 10px
 }
 .store_management_content_baseInfo div span.store_management_disable_span{
 
-    width:352px;
+    width:361px;
 }
 .store_management_content_baseInfo div span.store_management_select_span{
 

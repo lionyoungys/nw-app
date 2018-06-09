@@ -1,0 +1,9 @@
+
+
+.balancedetail-div{
+    height:auto;
+    width:auto;
+    overflow-y: hidden;
+}
+.balancedetail-div table thead{display:inline-block}
+.balancedetail-div table tbody{display:inline-block;overflow-y: auto;max-height:340px;overflow-x:hidden}

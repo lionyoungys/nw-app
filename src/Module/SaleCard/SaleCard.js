@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import './SaleCard.css'
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
-
+import Payandrecharge from '../PayAndRecharge/Payandrecharge'
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -21,11 +21,16 @@ export default class extends Component {
         birthday:'1970-01-01',
         sex:'',
         address:'',
-        cards:[]
+        cards:[],
+        show:false,
     };    
     this.cashier=this.cashier.bind(this);
-    this.onchange=this.onchange.bind(this)
+    this.onchange=this.onchange.bind(this);
+    this.onclose=this.onclose.bind(this);
     }; 
+    onclose(){
+        this.setState({show:false});
+    }
     componentDidMount() {
         api.post('cardType', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
@@ -36,37 +41,10 @@ export default class extends Component {
         );
     }
     cashier(){
-        let obj = {
-            token:'token'.getData(),
-            user_name:this.state.username,
-            user_mobile:this.state.mobilephone,
-            recharge_number:this.state.cardnumber,
-            card_name:this.state.cards[this.state.index].card_type,
-            discount:this.state.cards[this.state.index].discount,
-            sex:this.state.sex,
-            birthday:this.state.birthday,
-            address:this.state.address,
-            password:this.state.passwd1,
-            price:this.state.cards[this.state.index].price,
-            balance:Number(this.state.cards[this.state.index].price)+Number(this.state.cards[this.state.index].give_price)
-        };
-        console.log(obj);
-        api.post(
-            'saleCard', 
-            obj, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                }}); 
-            }else{
-                console.log(res)
-                tool.ui.error({callback:(close, event) => {
-                    close();
-                }});
-            }
-        }
-        );
+        this.setState({show:true});
+        console.log(this.state.show)
+        // this.props.closeView();
+       
     }
     onchange(value){
         this.setState({index:value.inObjArray(this.state.cards, 'card_type')});
@@ -131,9 +109,27 @@ export default class extends Component {
                     </div>
                         <span className='textred'>应收合计：￥{card.real_price}</span>
                         <button type='button' className='e-btn' onClick={this.cashier}>收银</button>
+                        {this.state.show&&<Payandrecharge onclose={this.onclose} info={{
+                        user_name:this.state.username,
+                        user_mobile:this.state.mobilephone,
+                        recharge_number:this.state.cardnumber,
+                        card_name:this.state.cards[this.state.index].card_type,
+                        discount:this.state.cards[this.state.index].discount,
+                        sex:this.state.sex,
+                        birthday:this.state.birthday,
+                        address:this.state.address,
+                        password:this.state.passwd1,
+                        price:'0.01',
+                        // this.state.cards[this.state.index].price,
+                        give_price:this.state.cards[this.state.index].give_price,
+                        made_price:'0.01',
+                        // this.state.cards[this.state.index].made_price,
+                        
+                        balance:'0.01',
+                        // Number(this.state.cards[this.state.index].price)+Number(this.state.cards[this.state.index].give_price)
+                        }}/>}
                     </div>
                     </div>
-                   
                </Window>
         )
     }

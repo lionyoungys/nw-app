@@ -11,9 +11,7 @@
     margin-top:12px;
    
 }    
-.addnewprice-div div{width:auto;height:22px;font-size:12px;color:#000}      
-.addnewprice-div div:first-child{float:left}  
-.addnewprice-div div:last-child{float:right}       
+.addnewprice-div div{width:auto;height:22px;font-size:12px;color:#000}         
 
 .addnewprice-div div span{
     width:75px;
@@ -52,28 +50,8 @@
     margin-left:55px;
     margin-right:2px;
 }
-.e-btn{float:right;margin-right:17px;margin-top:13px}
-
+.e-addnewprice-e-btn{float:right;margin-right:17px;margin-top:13px}
 /* 下拉框 */
-.addnewprice-div div .ui-select{
-    width:100px;
-    display:inline-block;
-    background:#fff;
-    border:1px solid #c2c2c2;
+.addnewprice-div div .ui-select-define{
+    width:135px;
 }
-.addnewprice-div div .ui-select-show .ui-select-selected{
-    width:100px;
-    border:none;
-}
-.addnewprice-div div .ui-select .ui-select-option{
-    height:auto;
-    z-index:10;
-}
-.addnewprice-div div .ui-select .ui-select-option div{width:100px;margin-right:0}
-.addnewprice-div div .ui-select .ui-select-selected{width:100px;margin:0;}
-.addnewprice-div div .ui-select:hover>.ui-select-selected {
-    border:none;
-}
-.addnewprice-div div .ui-select:hover{border:1px solid #6f9ec2;}
-.addnewprice-div div:last-child{margin-right:5px}
-.addnewprice-div div input.addnewprice-dicount{width:122px}

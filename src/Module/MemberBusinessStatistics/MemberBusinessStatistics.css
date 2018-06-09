@@ -1,0 +1,78 @@
+.mem_bus_sta_top{
+
+    margin: 13px;
+    height: 80px;
+    border: 1px solid #8db2e3;
+    background-color: #fff;
+    font-size: 12px;
+    color: #063781;
+}
+.mem_bus_sta_top_one,.mem_bus_sta_top_two{
+
+    margin: 0;
+    height: 30px;
+    line-height: 30px;
+}
+.mem_bus_sta_top_one{
+    margin-top: 10px;
+}
+.mem_bus_sta_top_two{
+     margin-top: 0px;
+}
+.mem_bus_sta_top_one div,.mem_bus_sta_top_two div{
+
+    float: left;
+    margin-right: 10px;
+    
+}
+.mem_bus_sta_top button{
+
+    float: right;
+    margin-top: 3px;
+    margin-right: 16px;
+}
+.mem_bus_sta_top input{
+
+   width: 140px;
+}
+p{
+    margin: 0 13px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+}
+.mem_bus_sta_tab_one{
+    margin-left: 13px;
+    border: 1px solid #8db2e3;
+}
+.mem_bus_sta_tab_one tr td{
+
+    min-width: 100px;
+}
+.mem_bus_sta_tab_one tr td:first-child{
+
+    min-width: 140px;
+}
+.mem_bus_sta_table_two{
+
+    margin-left: 13px;
+    margin-right: 13px;
+    border: 1px solid #8db2e3;
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.mem_bus_sta_table_two tbody{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.mem_bus_sta_table_two tr td{
+
+    min-width: 96px;
+}
+.mem_bus_sta_table_two tr td:first-child{
+
+    min-width: 100px;
+}

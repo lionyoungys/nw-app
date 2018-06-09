@@ -91,10 +91,10 @@
     background-color: #89b0d4;
     color: white;
 }
-.change_card_table thead tr td:first-child{
-    /* background: url(./img/e-btn-hover.png); */
+/* .change_card_table thead tr td:first-child{
+    background: url(./img/e-btn-hover.png); 
     background-size: contain;
-}
+} */
 
 .change_card_table tbody tr{
 

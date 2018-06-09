@@ -1,0 +1,57 @@
+.clothestat-tab table{
+    width:870px;
+    height:176px;
+    border:1px solid #8db2e3;
+    max-width:870px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    display:block;
+}
+.clothestat-tab table thead{
+    width:870px;
+    height:25px;
+    background:#89b0d4;
+}
+.clothestat-tab table thead tr{width:870px;height:25px;}
+.clothestat-tab table thead tr th{
+    width:88px;
+    height:25px;
+    border-right:1px solid #acc6de;
+    color:#fff;
+    font-size:12px;
+    min-width:88px;
+    text-align:center;
+}
+.clothestat-tab table thead tr th:first-child{
+    width:31px;
+    min-width:31px;
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:17px;
+    background-position-y:11px;
+}
+.clothestat-tab table tbody{
+    width:auto;
+    height:156px;
+    max-height:156px;
+    overflow-y:auto;  
+    display:inline-block;
+    overflow-x:hidden;
+}
+.clothestat-tab table tbody tr{width:870px;height:25px;}
+.clothestat-tab table tbody tr:nth-child(odd){background:#fff;}
+.Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
+
+.clothestat-tab table tbody tr td{
+    width:88px;
+    height:25px;
+    border-right:1px solid #acc6de;
+    color:#000;
+    font-size:12px;
+    min-width:88px;
+    text-align:center;
+}
+.clothestat-tab table tbody tr td:first-child{
+    width:31px;
+    min-width:31px;
+}

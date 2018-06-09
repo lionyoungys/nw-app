@@ -3,7 +3,6 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import '../../UI/bothpages.css'
 import Window from '../../UI/Window';
 
 export default class extends Component {   
@@ -12,10 +11,15 @@ export default class extends Component {
     }; 
     render() {      
         return ( 
-               <Window title='充值统计' onClose={this.props.closeView}>                  
-                        <div className="bothpages_list">
-                            <div>累计充值金额 :<b>256485元</b></div>
-                            <div>累计赠送金额 :<b>123456485元</b></div>
+               <Window title='充值统计' onClose={this.props.closeView}>  
+                                        
+                        <div className="bothpages_list">                                
+                            <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
+                                <div>开始日期：<input type="date"  /></div>
+                                <div>结束日期：<input type="date"  /></div>
+                            </div>
+                            <div id="balancestatistics-leiji">累计充值金额 :<b>256485元</b></div>
+                            <div id="balancestatistics-zengsong">累计赠送金额 :<b>123456485元</b></div>
                         </div>
                         <div className="bothpages_count">                           
                               <div className="bothpages_count_title">

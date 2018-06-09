@@ -10,9 +10,9 @@ import StaffAuthority from './StaffAuthority/StaffAuthority';
 export default class extends Component {   
     constructor(props) {
         super(props);   
-    this.state={show:false,selectstaff:true};
-    this.switchpermission=this.switchpermission.bind(this);
-    this.switchstaff=this.switchstaff.bind(this);      
+        this.state={show:false,selectstaff:true};
+        this.switchpermission=this.switchpermission.bind(this);
+        this.switchstaff=this.switchstaff.bind(this);      
     }; 
     switchpermission(){
         this.setState({show:true,selectstaff:false})

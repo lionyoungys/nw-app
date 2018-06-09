@@ -82,6 +82,8 @@ export default class extends React.Component {
                 <Select option={['手机号','用户名','密码']} selected='密码' onChange={value => console.log(value)}/>
                 &emsp;
                 <Select option={['手机号','用户名','密码']} selected='密码' readOnly={true} onChange={value => console.log(value)}/>
+                <div>&emsp;结束时间：<input type="date" className='ui-date' value={this.state.enddate} onChange={e => this.setState({ enddate: e.target.value })} /></div>
+
                 <div style={{padding:'30px'}}></div>
                 <label className='e-label'>label样式：</label><input type='text' className='e-input'/>
                 <div style={{padding:'30px'}}></div>

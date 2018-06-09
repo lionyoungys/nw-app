@@ -3,7 +3,6 @@
  * @author  fanyerong
  */
 import React, { Component } from 'react';
-import '../ReportLossMain/ReportLossMain.css';
 import './Solutiontohang.css'
 import Window from '../../UI/Window';
 import {Table} from '../../UI/Table';

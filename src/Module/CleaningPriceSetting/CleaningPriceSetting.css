@@ -7,26 +7,11 @@
 }
 .cleaning_price_set_btn button{
 
-    font-size: 12px;
-    color: black;
-    margin: 9px 10px;
-    height: 22px;
-    width: 110px;
     float: right;
-    border:none;
-    background:none;
-    background:url(./img/surebtn.png);
-    background-size: 100% 100%;
-    text-align: center;
-    line-height:22px;
-    outline:none;
-    cursor: pointer;
+    margin-top: 7px;
+    margin-right: 9px;
 }
 
-.cleaning_price_set_btn button:hover{
-    background:url(./img/hoverbtn.png);
-    background-size: 100% 100%;
-}
 .cleaning_price_set_left_table_div{
 
     margin-top: 0;
@@ -92,7 +77,13 @@
     max-height: 533px;
     overflow: auto;
     border:1px solid #8db2e3;
+   
     
+    
+}
+#right_table{
+    margin:0 11px;
+    float:right;
 }
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */

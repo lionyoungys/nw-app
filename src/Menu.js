@@ -6,10 +6,10 @@ export const topMenu = [
             {value:'收衣', view:'clothes'},
             {value:'取衣', view:'take_clothes'},
             {value:'商品销售', view:null},
-            {value:'欠款补交', view:'add_group'},
+            {value:'欠款补交', view:null},
             {value:'交期预警', view:'member_card_consume'},
             {value:'撤单处理', view:null},
-            {value:'赔付', view:'pay_and_recharge'},
+            {value:'赔付', view:null},
             {value:'demo', view:'demo'},
             {value:'编辑商品价格', view:'edit_shop_prices'},
             {value:'编辑洗护价格', view:'edit_cleaning_prices'},
@@ -26,7 +26,7 @@ export const topMenu = [
             {value: '未付款统计', view:'unpaid_statistics'},
             {value:'余额统计', view:'balance_statistics'},
             {value:'充值统计', view:'recharge_up'},
-            {value:'消费统计', view:'consumption_statistics'},     
+            {value:'消费统计', view:'consum_ption_statistics'},     
         ]
     },
     {
@@ -41,31 +41,31 @@ export const topMenu = [
             { value: '退卡', view:'return_card'},
             { value: '挂失查询', view:'report_loss_query'},
             { value: '退卡查询', view:'card_queries'},
-            {value:'会员消费查询', view:'member_consume_query'},
-            { value:'客户信息查询', view:null},            
+            {value:'会员消费查询', view:'Member_ship_query'},
+            { value:'客户信息查询', view:'customer_query'},            
         ]
     },
     {
         value:'信息统计', 
         options:[
             {value:'撤单统计', view:'revoke_data'},
-            {value:'赔付统计', view:null}
+            {value:'赔付统计', view:'payout_stats'}
         ]
     },
     {
         value:'财务统计', 
         options:[
             { value: '经理收款', view:'manager_gathering'},
-            {value:'经理查询', view:null},
-            {value:'经营日报', view:null},
-            {value:'营业统计', view:null},
-            {value:'营业明细', view:'operating_details'},
-            {value:'营业分析', view:null},
-            {value:'欠款明细', view:'unpaid_statistics'},
+            {value:'经理查询', view:'manager_query'},
+            {value:'经营日报', view:'Business_daily'},
+            {value:'营业统计', view:'Busines_stats'},
+            {value:'经营明细', view:'operating_details'},
+            {value: '营业分析', view:'operation_analysis'},
+            {value:'欠款明细', view:'Balance_detail'},
             {value:'会员业务统计', view:'member_business_statistics'},
-            {value:'会员分类统计', view:null},
+            {value:'会员分类统计', view:'vip_stats'},
             // {value:'会员消费统计', view:'member_consumption_statistics'},
-            {value:'衣物统计', view:null}
+            {value:'衣物统计', view:'clothe_stat'}
         ]
     },
     // {
@@ -86,9 +86,9 @@ export const topMenu = [
         options:[
             {value:'门店管理', view:'store_management'},
             {value:'员工与权限', view:'staff_management'},
-            {value:'价格设置', view:null},
-            {value:'参数设置', view:'ParameterSettings'},
-            {value:'设备管理', view:null},
+            { value: '价格设置', view:'cleaning_price_setting'},
+            {value:'参数设置', view:'Parameter_Settings'},
+            {value:'设备管理', view:'equipment_management'},
             {value:'数据导入',  view:'data'},
             {value:'密码修改', view:'passwd_update'},
             { value: '其他设置', view:'colthes_classify_managment'},

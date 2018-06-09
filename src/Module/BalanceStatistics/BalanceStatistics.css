@@ -1,5 +1,5 @@
 /* 充值统计页面样式  顶部*/
-.balancestatistics_title{width:875px;margin:auto;height:47px}
+.balancestatistics_title{width:875px;margin:auto;height:59px;margin-top:15px}
 .balancestatistics_title_left{width:auto;height:47px;line-height:47px;float:left}
 .balancestatistics_title_left span{color:#063781;font-size:12px;margin-right:13px}
 .balancestatistics_title_left span:last-child{margin-left:53px}
@@ -36,5 +36,7 @@
 .balancestatistics_count_list tbody tr td:nth-child(5){width:105px}
 .balancestatistics_count_list tbody tr td:nth-child(6){width:215px}
 .balancestatistics_count_list tbody tr td:nth-child(7){width:132px}
+
+#balancestatistics_title_left{width:51%;margin-right:17px;float:left;margin-left: 12px;height:57px;margin-bottom:12px}
 
 

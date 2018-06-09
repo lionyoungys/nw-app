@@ -1,4 +1,4 @@
-
+/* 品牌样式 */
 .brand{width:845px;height:auto;margin:auto}
 .brand-btn{
     width:71px;
@@ -15,13 +15,15 @@
     margin:8px 0;
     cursor:pointer;
 }
-.brand-btn:hover{background:url(./img/e-btn-hover.png) no-repeat;color:#fff}
+.brand-btn:hover{background:url(./img/e-btn-hover.png) no-repeat}
 .brand-tab{
     width:843px;
     height:auto;
     max-height:473px;
     border:1px solid #8db2e3;
     clear:both;
+    max-height:485px;
+    overflow: hidden;
 }
 .brand-tab table thead{
     width:100%;
@@ -32,6 +34,7 @@
     width:100%;
     height:25px;
     line-height:25px;
+    display: inline-block;
 }
 .brand-tab table thead tr th{
     width:281px;
@@ -43,3 +46,185 @@
     font-size:12px;
 }
 .brand-tab table thead tr th:last-child{border-right:none}
+
+.brand-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.brand-tab table tbody tr{
+    width:100%;
+    height:25px;
+}
+.brand-tab table tbody tr:nth-of-type(odd){background:#fff}
+.brand-tab table tbody tr td{
+    width:281px;
+    height:25px; 
+    border-right:1px solid #acc6de;
+    text-align:center;
+    font-size:12px;
+    color:#000;
+    line-height:25px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    min-width:281px;
+}
+.brand-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
+.brand-tab table tbody tr td b{
+    font-weight:inherit;
+    color: #2151ed;
+    margin-left:73px;
+    float:left;
+}
+.brand-tab table tbody tr td i{
+    font-style:normal;
+    color:#f00;
+    margin-right:73px;
+    float:right;
+}
+.addbrand-div{width:230px;height:80px;background:#f9fcff}
+.brand-name{
+    width:auto;
+    height:32px;
+    line-height:49px;
+    color:#063781;
+    font-size:12px;
+    margin:0px 0 9px 41px;
+}
+.brand-text{
+    width:150px;
+    height:19px;
+    background:#f9f9f9;
+    border:1px solid #c2c2c2;
+    margin-left:41px;
+}
+.addbrand-footer{width:230px;height:39px;border-top:1px solid #8899ad}
+.addbrand-footer button{
+    width:71px;
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    color:#000;
+    font-size:12px;
+    outline:none;
+    border:none;
+    background:url(./img/e-btn.png);
+    float:right;
+    margin:8px 12px 0 0;
+    cursor:pointer;
+}
+.addbrand-footer button:hover{background:url(./img/e-btn-hover.png)}
+
+
+/* 格架样式 */
+.lattic{width:845px;height:auto;margin:auto}
+.lattic-btn{
+    width:71px;
+    height:24px;    
+    text-align:center;
+    line-height:24px;
+    color:#000;
+    font-size:12px;
+    float:right;
+    background:url(./img/e-btn.png) no-repeat;
+    background-size:71px 24px;
+    outline:none;
+    border:none;
+    margin:8px 0;
+    cursor:pointer;
+}
+.lattic-btn:hover{background:url(./img/e-btn-hover.png) no-repeat}
+.lattic-tab{
+    width:843px;
+    height:auto;
+    max-height:473px;
+    border:1px solid #8db2e3;
+    clear:both;
+    max-height:485px;
+    overflow: hidden;
+}
+.lattic-tab table thead{
+    width:100%;
+    height:25px;
+    background:#89b0d4;
+}
+.lattic-tab table thead tr{
+    width:100%;
+    height:25px;
+    line-height:25px;
+    display: inline-block;
+}
+.lattic-tab table thead tr th{
+    width:104px;
+    height:25px;
+    border-right:1px solid #acc6de;
+    line-height:25px;
+    text-align:center;color:#fff;
+    font-size:12px;
+    min-width:104px;
+}
+.lattic-tab table thead tr th:last-child{border-right:none}
+.lattic-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.lattic-tab table tbody tr{
+    width:100%;
+    height:25px;
+}
+.lattic-tab table tbody tr:nth-of-type(odd){background:#fff}
+.lattic-tab table tbody tr td{
+    width:104px;
+    height:25px; 
+    border-right:1px solid #acc6de;
+    text-align:center;
+    font-size:12px;
+    color:#000;
+    line-height:25px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    min-width:104px;
+    
+}
+.lattic-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
+.lattic-tab table tbody tr td b{
+    font-weight:inherit;
+    color: #2151ed;
+    margin-left:13px;
+    float:left;
+}
+.lattic-tab table tbody tr td i{
+    font-style:normal;
+    color:#f00;
+    margin-right:12px;
+    float:right;
+}
+.addlattice-div{
+   width:319px;
+   height:167px;
+   border:1px solid #8db2e3;
+   margin:13px auto;
+   background:#eef4fb;
+}
+.addlattice-div div{width:319px;height:24px;margin-top:12px}
+.addlattice-div div span{
+    width:120px;
+    text-align:right;
+    color:#063781;
+    font-size:12px;
+    line-height:24px;
+    display:inline-block;
+}
+.addlattice-div div input{width:149px;height:20px;border:1px solid #c2c2c2;backgorund:#fff;}
+.addlattice-footer{width:340px;height:39px;}
+.addlattice-footer button{
+    width:71px;
+    height:24px;
+    line-height:24px;
+    text-align:center;
+    color:#000;
+    font-size:12px;
+    outline:none;
+    border:none;
+    background:url(./img/e-btn.png);
+    float:right;
+    margin:0 12px 0 0;
+    cursor:pointer;
+}
+.addlattice-footer button:hover{background:url(./img/e-btn-hover.png)}
+.e-btn{margin-top:8px}

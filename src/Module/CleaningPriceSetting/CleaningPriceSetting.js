@@ -3,10 +3,11 @@
  * @author  ranchong
  */
 import React, { Component } from 'react';
-import './CleaningPriceSetting.css';
-import './addnewprice.css';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import './CleaningPriceSetting.css';
+import './addnewprice.css';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -16,9 +17,9 @@ export default class extends Component {
         return (
             <Window title='洗护价格设置' onClose={this.props.closeView}>
                 <div className="cleaning_price_set_btn">
-                    <button>洗护分类管理</button>
-                    <button>衣物类别管理</button>
-                    <button onClick={() => this.setState({show:true})}>+新增洗护价格</button>
+                    <button className='e-btn middle'>洗护分类管理</button>
+                    <button className='e-btn middle'>衣物类别管理</button>
+                    <button className='e-btn middle' onClick={() => this.setState({show:true})}>+新增洗护价格</button>
                 </div >
                 <div className='cleaning_price_set_left_table_div'>
                     <div className='cleaning_price_set_left_table'>
@@ -47,10 +48,10 @@ export default class extends Component {
 
                 {/* 表格部分 欠费衣物信息*/}
 
-                <table className='change_card_table right_table'>
+                <table className='change_card_table right_table' id="right_table">
                     <thead>
                         <tr>
-                            <td>id</td>
+                            <td></td>
                             <td>名称</td>
                             <td>衣物类别</td>
                             <td>档次</td>
@@ -173,7 +174,7 @@ export default class extends Component {
                             </div>
               
                         </div>
-                        <button className="e-btn">保存</button>
+                        <button className="e-btn addnewprice-e-btn">保存</button>
                     </Window>
                 }
 

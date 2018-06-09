@@ -3,10 +3,8 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import '../../UI/bothpages.css'
 import './ConsumptionStatistics.css'
 import Window from '../../UI/Window';
-
 
 export default class extends Component {   
     constructor(props) {
@@ -14,10 +12,15 @@ export default class extends Component {
     }; 
     render() {      
         return ( 
-               <Window title='消费统计' onClose={this.props.closeView}>                  
+               <Window title='消费统计' onClose={this.props.closeView}>  
+                                        
                         <div className="bothpages_list">
-                            <div>累计订单数 :<b>256485</b></div>
-                            <div>累计订单总额 :<b>123456485元</b></div>
+                            <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
+                                <div>开始日期：<input type="date"  /></div>
+                                <div>结束日期：<input type="date"  /></div>
+                            </div>
+                            <div id="balancestatistics-leiji">累计订单数 :<b>256485</b></div>
+                            <div id="balancestatistics-zengsong">累计订单总额 :<b>123456485元</b></div>
                         </div>
                         <div className="bothpages_count">                           
                               <div className="bothpages_count_title">

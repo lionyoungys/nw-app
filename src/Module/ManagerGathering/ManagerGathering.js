@@ -3,8 +3,9 @@
  * @author  ranchong
  */
 import React, { Component } from 'react';
-import './ManagerGathering.css';
 import Window from '../../UI/Window';
+import './ManagerGathering.css';
+
 export default class extends Component {
     constructor(props) {
         super(props);

@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+
 export default class extends Component {
     constructor(props) {
         super(props);

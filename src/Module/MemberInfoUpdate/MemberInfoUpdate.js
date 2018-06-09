@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import './MemberInfoUpdate.css';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+
 export default class extends Component {   
     constructor(props) {
         super(props);       

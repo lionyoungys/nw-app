@@ -1,7 +1,6 @@
 //类文件引入
-import Clothes from './Module/Clothes';
 import Data from './Module/Data/App';
-// import Takeclothes from './Module/Takeclothes';
+import Clothes from './Module/Clothes/Clothes.js' //收衣界面
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
 import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
 import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate.js'
@@ -25,18 +24,32 @@ import ManagerGathering from './Module/ManagerGathering/ManagerGathering.js';//�
 
 import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge.js'; // 支付充值页面
 import CleaningPriceSetting from './Module/CleaningPriceSetting/CleaningPriceSetting.js'; // 洗护价格设置
-import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js' // 解除挂失页面
-import Editshopprices from'./Module/Editshopprices/Editshopprices.js' // 编辑商品价格
-import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js' // 编辑洗护价格
-import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js' // 衣物查询
-import LatticeQuery from'./Module/LatticeQuery/LatticeQuery.js' // 格架查询
-import Succession from'./Module/Succession/Succession.js' // 交班
-import ConsumptionStatistics from './Module/ConsumptionStatistics/ConsumptionStatistics.js' //消费统计
-import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery.js' //挂失查询
-import CardQueries from './Module/CardQueries/CardQueries.js' //退卡查询
-import ParameterSettings from './Module/ParameterSettings/ParameterSettings.js' //参数设置
-import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate.js' //密码修改
-import StoreManagement from './Module/StoreManagement/StoreManagement.js' //门店管理
+import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js';// 解除挂失页面
+import Editshopprices from'./Module/Editshopprices/Editshopprices.js'; // 编辑商品价格
+import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js'; // 编辑洗护价格
+import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js'; // 衣物查询
+import LatticeQuery from'./Module/LatticeQuery/LatticeQuery.js'; // 格架查询
+import Succession from'./Module/Succession/Succession.js'; // 交班
+import ConsumptionStatistics from './Module/ConsumptionStatistics/ConsumptionStatistics.js'; //消费统计
+import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery.js'; //挂失查询
+import CardQueries from './Module/CardQueries/CardQueries.js'; //退卡查询
+import ParameterSettings from './Module/ParameterSettings/ParameterSettings.js'; //参数设置
+import Equipmentmanagement from './Module/Equipmentmanagement/Equipmentmanagement.js'; //设备管理
+import Membershipquery from './Module/Membershipquery/Membershipquery.js'; //会员消费查询
+import Customerquery from './Module/Customerquery/Customerquery.js'; //客户消费查询
+import Payoutstats from './Module/Payoutstats/Payoutstats.js'; //赔付统计
+import Vipstats from './Module/Vipstats/Vipstats.js'; //会员分类统计
+import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate.js'; //密码修改
+import StoreManagement from './Module/StoreManagement/StoreManagement.js'; //门店管理
+import Clothestat from './Module/Clothestat/Clothestat.js'; //衣物统计
+import managerquery from './Module/managerquery/managerquery.js'; //衣物统计
+import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBusinessStatistics.js'; //会员业务统计
+import Businessdaily from './Module/Businessdaily/Businessdaily.js'; //经营日报
+import Businesstats from './Module/Businesstats/Businesstats.js'; //营业统计
+import Balancedetail from './Module/Balancedetail/Balancedetail.js'; //欠款明细
+import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js'; //营业分析
+
+
 
 //路由对象
 export default {
@@ -74,11 +87,26 @@ export default {
     clothes_query:ClothesQuery,      //衣物查询
     lattice_query:LatticeQuery,    //格架查询
     Succession:Succession ,   //交班
+    consum_ption_statistics:ConsumptionStatistics, //消费统计
+    report_loss_query:ReportLossQuery, //挂失查询
+    card_queries:CardQueries,  //退卡查询
+    Parameter_Settings:ParameterSettings, //参数设置
+    equipment_management:Equipmentmanagement , //设备管理
+    Member_ship_query:Membershipquery, //会员消费查询
+    customer_query:Customerquery, // 客户信息查询
+    payout_stats:Payoutstats, //赔付统计
+    vip_stats:Vipstats , //会员分类统计
     ConsumptionStatistics:ConsumptionStatistics, //消费统计
     ReportLossQuery:ReportLossQuery, //挂失查询
     CardQueries:CardQueries,  //退卡查询
     ParameterSettings:ParameterSettings, //参数设置
     passwd_update:PasswdUpdate,//密码修改
-
-    store_management:StoreManagement,//门店管理
+    clothe_stat:Clothestat ,// 衣物统计
+    manager_query:managerquery, //经理查询
+    Business_daily:Businessdaily , // 营业日报
+    Busines_stats:Businesstats, //营业统计
+    Balance_detail:Balancedetail,//欠款明细
+    operation_analysis:OperationAnalysis,//营业分析
+    member_business_statistics: MemberBusinessStatistics,//会员业务统计
+    store_management: StoreManagement,//门店管理
 };

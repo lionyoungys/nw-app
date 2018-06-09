@@ -4,8 +4,6 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-
-import Succession from '../Succession/Succession.css'
 import ReportLossQuery from './ReportLossQuery.css'
 
 export default class extends Component {   

@@ -1,0 +1,9 @@
+
+.businesstats-div{overflow-y:hidden}
+.businesstats-div .businesstats-tab tbody{max-height:354px;overflow-y:auto;display: inline-block;overflow-x:hidden;width:auto}
+.businesstats-div .businesstats-tab thead{display: inline-block;}
+.businesstats-div .businesstats-tab thead tr td:first-child{color:#fff;min-width:95px}
+.businesstats-div .businesstats-tab tbody tr td:first-child{color:#000;}
+.businesstats-div .businesstats-tab thead tr td{min-width:94px;}
+.businesstats-div .businesstats-tab thead tr td:last-child{border-right:none;}
+.businesstats-div .businesstats-tab tbody tr td{min-width:94px;}

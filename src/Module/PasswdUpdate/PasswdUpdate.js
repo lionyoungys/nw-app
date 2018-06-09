@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import LayerBox from '../../UI/LayerBox';
 import './PasswdUpdate.css';
+
 export default class extends Component {   
     constructor(props) {
         super(props);  

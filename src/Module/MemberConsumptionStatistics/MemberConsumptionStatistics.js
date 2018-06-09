@@ -4,7 +4,6 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import '../../UI/bothpages.css'
 
 export default class extends Component {   
     constructor(props) {

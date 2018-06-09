@@ -65,7 +65,7 @@ export default class extends React.Component {
         }
         return (
             <div
-                className={`ui-select${this.state.show ? ' ui-select-show' : ''}${this.props.readOnly ? ' ui-select-readonly' : ''}`}
+                className={`ui-select-define ui-select${this.state.show ? ' ui-select-show' : ''}${this.props.readOnly ? ' ui-select-readonly' : ''}`}
                 style={{minWidth:this.state.minWidth}}
             >
                 <i onClick = {this.toggleShow}></i>

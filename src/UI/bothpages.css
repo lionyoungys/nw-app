@@ -40,7 +40,8 @@
 /* 页面tab上方 样式*/
 .bothpages_list{
     width:100%;
-    height:46px;
+    height:59px;
+    margin-top:15px;
 }
 .bothpages_list div{
     width:auto;
@@ -51,8 +52,8 @@
     line-height:46px;
 }
 .bothpages_list div b{color:#ff0000;font-size:14px;margin-left:10px}
-.bothpages_list div:nth-child(1){margin-right:41px}
-.bothpages_list div:nth-child(2){margin-right:75px}
+.bothpages_list div:nth-child(1){margin-right:0px}
+.bothpages_list div:nth-child(2){margin-right:0px}
 .bothpages_count{
     width:875px;
     border:1px solid #8db2e3;
@@ -94,7 +95,7 @@
 .bothpages_count_list{
     width:100%;
     height:auto;
-    max-height:490px;
+    max-height:445px;
     display:block;
     overflow-y:auto;
     background:#fff;
@@ -304,8 +305,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background:-moz-linear-gradient(top,#eff5fc,#d9e5f2);
     background:-webkit-gradient(linear, 0% 20%,20% 100%,from(#eff5fc), to(#d9e5f2));
     background: -webkit-gradient(linear, 0% 20%, 20% 100%, from(#eff5fc), to(#d9e5f2));
-    font-weight:bold;
     cursor:pointer;      
 }
-.Settings-title span:hover{height:24px;z-index:9;color:#15458d}
+.Settings-title span.hover{height:24px;z-index:9;color:#15458d;font-weight:bold;}
 .Settings-div{width:868px;height:528px;margin-top:3px;border-top:1px solid #8db2e3}
+
+#balancestatistics-leiji{margin-right:23px}
+#balancestatistics-zengsong{margin-right:12px;}

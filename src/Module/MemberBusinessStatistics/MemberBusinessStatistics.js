@@ -1,9 +1,12 @@
 /**
  * 会员业务统计
- * @author wangjun
+ * @author ranchong
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import './MemberBusinessStatistics.css';
+import { Table } from '../../UI/Table';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -15,53 +18,122 @@ export default class extends Component {
     render() {
         
         return (
-            <Window title='会员业务统计'  onClose={this.props.closeView}>
-            <div>      
-                     <div className="revokedata_data">
-                         <div className="revokedata_dataLeft">
-                            <div>开始时间：<input type="date" value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
-                            <div>结束时间：<input type="date" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+            <Window title='会员业务统计'  onClose={this.props.closeView}>    
+                <div className="mem_bus_sta_top">
+                    <div className='mem_bus_sta_top_one'>
+                        <div>&emsp;开始时间：<input type="date" className='ui-date' value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
+                        <div>&emsp;结束时间：<input type="date" className='ui-date' value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+                            <button className='e-btn'>清空</button>
                          </div>
-                         <div className="revokedata_dataLeft">
-                            <div>姓名：<input type="text" value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
-                            <div>手机：<input type="text" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
-                            <div>卡号：<input type="text" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
-                        
-                         </div>
-                         <div className="revokedata_dataright">
-                         </div>
-                         <div className="revokedata_list">
-                        <div>撤单合计</div>
-                        <ul className="revokedata_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                <span>合计</span>
-                                <span>衣物合计</span>
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span>435435</span>
-                                <span>4324324</span>
-                            </li>
-                        </ul>
-                      </div>
-                      <div className="revokedata_list revokedata_last">
-                        <div>撤单明细<b>共记录 <a>fsdf</a> 条</b><span className="revokedata_prompt"></span></div>
-                        <ul className="revokedata_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                4324234
-                            </li>
-                        
-                            <li>
-                              4324234
-                            </li>
-                        </ul>
-                      </div>
-                         </div>
-
-
-            </div>
+                    <div className='mem_bus_sta_top_two'>
+                        <div>&emsp;&emsp;&emsp;姓名：<input type="text" /></div>                           
+                        <div>&emsp;&emsp;&emsp;手机：<input type="text" /></div>
+                        <div>&emsp;&emsp;&emsp;卡号：<input type="text" /></div>
+                        <button className='e-btn'>查询</button>
+                    </div>
+                </div>
+                <p>财务合计</p>
+                <table className='unpaidstatistics_table_Arrearage mem_bus_sta_tab_one' >
+                        <thead>
+                            <tr>
+                                <td>合计</td>
+                                <td>发卡</td>
+                                <td>充值</td>
+                                <td>刷卡</td>
+                                <td>刷卡补交</td>
+                                <td>退卡</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>消费明细</p>
+                <table className='unpaidstatistics_table_Arrearage mem_bus_sta_table_two'>
+                        <thead>
+                            <tr>
+                                <td>卡编号</td>
+                                <td>卡号</td>
+                                <td>发卡店</td>
+                                <td>客户电话</td>
+                                <td>店员姓名</td>
+                                <td>金额</td>
+                                <td>类别</td>
+                                <td>日期</td>
+                                <td>时间</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>11</td>
+                                <td></td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                         
             </Window>
         );
     }

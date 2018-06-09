@@ -7,9 +7,10 @@
     max-height:111px;
     overflow-x:hidden;
 }
+.LatticeQuery-div table{width:875px}
 /* 头部样式 */
-.LatticeQuery-div table thead{width:auto;height:25px;background:#89b0d4;}
-.LatticeQuery-div table thead tr{width:auto;height:25px}
+.LatticeQuery-div table thead{width:875px;height:25px;background:#89b0d4;}
+.LatticeQuery-div table thead tr{width:875px;height:25px;}
 .LatticeQuery-div table thead tr th{
     width:auto;
     height:25px;
@@ -35,7 +36,7 @@
 
 /* 身体部分 */
 
-.LatticeQuery-div table tbody tr{width:auto;height:25px;}
+.LatticeQuery-div table tbody tr{width:875px;height:25px;}
 .LatticeQuery-div table tbody tr:nth-of-type(odd){background:#fff}
 .LatticeQuery-div table tbody tr:nth-of-type(even){background:#f0f5f9}
 .LatticeQuery-div table tbody tr td{

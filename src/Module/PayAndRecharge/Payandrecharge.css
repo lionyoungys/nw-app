@@ -116,12 +116,12 @@
 }
 
 /* 支付方式不同变化的内容大div */
-.pay-money {width:100%;height:65px}
+.pay-money {width:100%;height:60px}
 /* 现金额支付 */
 .cash-payment{
     width:auto;
     height:22px;
-    margin:32px 0 32px 49px;
+    margin:23px 0 32px 49px;
     color:#000;
     font-size:14px;
     line-height:22px;

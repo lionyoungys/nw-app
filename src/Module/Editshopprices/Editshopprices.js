@@ -15,19 +15,19 @@ export default class extends Component {
         return (             
             <Window title='编辑商品价格' onClose={this.props.closeView} width='279' height='291'>   
                 <div className="Editshopprices">
-                     <div>
-                         <span>商品类别：</span><Select option={['外套','裤子']} selected='外套' onChange={value => console.log(value)}/>
+                    <div className='Editshopprices-select'>
+                         <span>商品类别：</span><Select option={['外套','裤子']} selected='外套' onChange={value =>console.log(value)}/>
                      </div>
-                     <div>
+                    <div className='Editshopprices-nor'>
                          <span>名称：</span><input type="text" />
                      </div>
-                     <div>
+                    <div className='Editshopprices-nor'>
                          <span>库存：</span><input type="text" />
                      </div>
-                     <div>
+                    <div className='Editshopprices-nor'>
                          <span>价格：</span><input type="text" />
                      </div>
-                     <div>
+                    <div className='Editshopprices-nor'>
                          <input type="checkbox" /><b>允许折扣</b>
                      </div>
                 </div>    

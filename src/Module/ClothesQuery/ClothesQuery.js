@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './ClothesQuery.css';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -70,52 +71,51 @@ export default class extends Component {
        
         return (
             <Window title='衣物查询' onClose={this.props.closeView} width='901' height='623'>
-            <div className='clothesquery'>
                 <div className='clothesquery_top'>
-                    <div className='clothesinline'>
-                    <div >
-                        <div>
-                        <span>&emsp;&emsp;状态:</span><input type='text' className='e-input' onChange={e => this.setState({status:e.target.value})}/>
-                        </div> 
-                        <div>
-                        <span>&emsp;&emsp;姓名:</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
+                    <div className='clothesquery_top_one'>
+                            <div>
+                                <span>&emsp;&emsp;状态：</span><input type='text' className='e-input' onChange={e => this.setState({status:e.target.value})}/>
+                            </div> 
+                            <div>
+                            <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
+                            </div>
+                            <div>
+                            <span>衣物名称：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_name:e.target.value})} />
+                            </div>
                         </div>
-                        <div>
-                        <span>衣物名称:</span><input type='text' className='e-input' onChange={e => this.setState({clothing_name:e.target.value})} />
+                    <div className='clothesquery_top_two'>
+                            <div>
+                                <span>&emsp;流水号：</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
+                            </div> 
+                            <div>
+                                <span>&emsp;&emsp;卡号：</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
+                            </div>
+                            <div>
+                                <span>&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                       <div>
-                        <span>&emsp;流水号:</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
-                        </div> 
-                        <div>
-                        <span>&emsp;&emsp;卡号:</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
+                    <div className='clothesquery_top_three'>
+                            <div>
+                                <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time}/><input type='date' className='inputselectborder' value = {this.state.start_time}/>
+                            </div> 
+                            <div>
+                                <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
+                            </div>   
+                            <div>
+                                <span>&emsp;格架号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
+                            </div>
+                        <div className='clothesquery_top_btn'>
+                                <button className='e-btn' onClick={this.clear}>清空</button>
+                                <button className='e-btn' onClick={this.query}>查询</button>
+                            </div>
+                            
                         </div>
-                        <div>
-                        <span>&emsp;&emsp;颜色:</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
-                        </div>
-                    </div>
-                    <div >
-                        <div>
-                         <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time}/><input type='date' className='inputselectborder' value = {this.state.start_time}/>
-                        </div> 
-                        <div>
-                        <span>&emsp;&emsp;电话:</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
-                        </div>   
-                        <div>
-                        <span>&emsp;格架号:</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
-                        
-                        </div>
-                        <div className='find_reset'>
-                        <button className='e-btn' onClick={this.clear}>清空</button>
-                        <button className='e-btn' onClick={this.query}>查询</button>
-                        </div>
-                    </div>
-                      
-                    </div>
-                    </div>
+                    
                 </div>
-                <div className='clothesquery_text'>已为您找到<label>{this.state.count}</label>条数据</div>
+                <div className='clothesquery_text'>
+                    已为您找到
+                    <label>{this.state.count}</label>条数据
+                </div>
                 <div className='clothesquery_bottom'>
                         <div className="revokedata_list revokedata_last OperatingDetails_list">
                         <ul className="revokedata_list_box clothesquery_bottom_list_box">
