@@ -1,2 +1,51 @@
 .Equipmentmanagement{width:433px;height:305px}
 .Equipmentmanagement-div{width:433px;height:275px}
+
+
+/* 条码打印 */
+.barcodeprinting{
+    width:100%;
+    height:43px;
+    line-height:43px;
+    color:#15458d;
+    font-weight:bold;
+    text-indent:22px;
+    font-size:12px;
+}
+.barcodeprinting-div{
+    widows:auto;;
+    height:auto;
+    margin-left:22px;
+}
+.barcodeprinting-div span{
+    width:auto;
+    color:#15458d;
+    font-size:12px;
+    line-height:24px;
+    
+}
+.barcodeprinting-div .ui-select-define{width:144px;margin-left:5px;margin-right:5px;}
+
+.barcodeprinting-div button{
+    width:111px;
+    height:24px;
+    background:url(./img/e-btn-6.png) no-repeat;
+    background-size:111px 24px;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    line-height:24px;    
+    cursor:pointer;
+}
+.barcodeprinting-div button:hover{
+    background: url(./img/e-btn-6-hover.png) no-repeat;
+}
+
+/* 小票打印 */
+.Receiptsprint-span{margin-left:36px}
+.Receiptsprint-btn{margin-left:74px;}
+
+/* 读卡测试 */
+.cardreader-div{margin:12px 0 0 22px}
+/* 客显 */
+.Guestshow-div{margin:23px 0 0 66px}

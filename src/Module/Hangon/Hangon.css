@@ -1,0 +1,89 @@
+/* 上挂 */
+.Hangon-div{
+    width:269px;
+    height:139px;
+    margin:14px  auto 4px;
+    border:1px solid #8db2e3;
+}
+.Hangon-div span{color:#063781;font-size:12px;margin:38px 0 13px 21px;display: block }
+.Hangon-div input{
+    border:1px solid #c2c2c2;
+    background:#f9f9f9;
+    width:221px;
+    height:20px;
+    color:#000;
+    font-size:12px;
+    line-height:20px;
+    margin-left:22px;
+}
+.hangon-btn{
+    float:right;
+    margin-right:5px;
+}
+.Hangon-left{
+    width:287px;
+    height:318px;
+    float:left;
+    border:1px solid #8db2e3;
+    margin:11px 0 0 11px;
+    background:#eef4fb;
+}
+.Hangon-left-title{
+    width:98px;
+    float: left;
+    border-right:1px solid #8db2e3;
+    max-height:318px;
+    overflow-y:auto;
+
+}
+.Hangon-left-title::-webkit-scrollbar{
+  width: 0px;
+}
+.Hangon-left-title span{
+    display:block;
+    width:98px;
+    height:28px;
+    line-height:28px;
+    color:#063781;
+    font-weight:bold;
+    font-size:12px;
+    text-indent:14px;
+    border-bottom:1px solid #8db2e3;
+}
+.Hangon-left-title span:last-child{border-bottom:none;}
+.Hangon-left-count{
+    width:188px;
+    max-height:318px;
+    float: left;
+    text-indent:8px;
+    overflow-y:auto;
+}
+.Hangon-left-count::-webkit-scrollbar{
+    width: 0px;
+  }
+.Hangon-left-count span{
+    display:block;
+    width:188px;
+    height:28px;
+    line-height:28px;
+    color:#063781;
+    font-weight:bold;
+    font-size:12px;
+    text-indent:14px;
+    border-bottom:1px solid #8db2e3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.Hangon-left-count span:nth-child(10){
+    color:#f00;
+}
+.Hangon-left-count span:last-child{border-bottom:none}
+.Hangon-right{
+    height:318px;
+    width:242px;
+    float:right;
+    margin:11px 11px 0 0;
+    margin-left:11px 0 0 11px;
+    background:#eef4fb;
+}

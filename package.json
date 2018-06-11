@@ -15,6 +15,7 @@
     "rc_build": "E:/nwjs-v0.14.7-win-x64/nw ./app"
   },
   "dependencies": {
+    "ffi": "^2.2.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "text-encoding": "^0.6.4"

@@ -150,8 +150,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     min-width: 33px; 
 }
-
-
 .unpaidstatistics_table_Arrearage tr td:last-child{
    border-right: none;
 }

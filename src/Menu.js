@@ -4,6 +4,7 @@ export const topMenu = [
         value:'前台业务', 
         options:[
             {value:'收衣', view:'clothes'},
+            {value:'上挂', view:'hangon'},           
             {value:'取衣', view:'take_clothes'},
             {value:'商品销售', view:null},
             {value:'欠款补交', view:null},

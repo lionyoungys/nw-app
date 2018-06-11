@@ -84,6 +84,7 @@
 #right_table{
     margin:0 11px;
     float:right;
+    overflow-x:auto;
 }
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */

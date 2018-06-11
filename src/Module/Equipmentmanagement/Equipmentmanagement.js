@@ -4,6 +4,12 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Barcodeprinting from './Barcodeprinting';
+import Receiptsprint from './Receiptsprint';
+import Cardreader from './Cardreader';
+import Guestshow from './Guestshow';
+import Cashbox from './Cashbox';
+
 import Equipmentmanagement from './Equipmentmanagement.css';
 
 export default class extends Component {   
@@ -11,7 +17,7 @@ export default class extends Component {
         super(props);  
         this.state = {index : 0}    
         this.tab=['条码打印','小票打印','读卡器','客显','钱箱'];
-        this.views=[];  
+        this.views=[<Barcodeprinting />,<Receiptsprint />,<Cardreader />,<Guestshow />,<Cashbox />];  
         this.handleClick = this.handleClick.bind(this) ;  
     }; 
     handleClick (e){
@@ -29,12 +35,12 @@ export default class extends Component {
         return ( 
                 <Window title='设备管理' onClose={this.props.closeView} width="459" height='369'>   
                     <div className="Settings Equipmentmanagement">
-                       <div className="Settings-title">
-                          {tabs}                         
-                       </div>
-                       <div className="Settings-div Equipmentmanagement-div">
-                           {this.views[this.state.index]}
-                       </div>
+                        <div className="Settings-title">
+                            {tabs}                         
+                        </div>
+                        <div className="Settings-div Equipmentmanagement-div">
+                            {this.views[this.state.index]}
+                        </div>
                     </div>                                                                                 
                 </Window> 
         );            

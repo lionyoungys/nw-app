@@ -43,36 +43,20 @@ p{
     font-weight: bold;
     color: black;
 }
-.mem_bus_sta_tab_one{
-    margin-left: 13px;
-    border: 1px solid #8db2e3;
-}
-.mem_bus_sta_tab_one tr td{
 
-    min-width: 100px;
-}
-.mem_bus_sta_tab_one tr td:first-child{
+#mem_bus_sta_table_two{
 
-    min-width: 140px;
+    max-height: 350px;
 }
-.mem_bus_sta_table_two{
+#mem_bus_sta_table_two tr td{
 
-    margin-left: 13px;
-    margin-right: 13px;
-    border: 1px solid #8db2e3;
-    max-height: 300px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    min-width:91px;
 }
-.mem_bus_sta_table_two tbody{
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-.mem_bus_sta_table_two tr td{
+#mem_bus_sta_table_two tr th{
 
-    min-width: 96px;
+    min-width:91px;
 }
-.mem_bus_sta_table_two tr td:first-child{
+#mem_bus_sta_table_two tbody{
 
-    min-width: 100px;
+    max-height: 325px;
 }

@@ -4,8 +4,15 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Brand from './brand';
+import Brand from './Brand';
 import Lattice from './Lattice';
+import Color from './Color';
+import Defect from './Defect'
+import AfterWashEstimates from './AfterWashEstimates'
+import Grade from './Grade'
+import Materials from './Materials'
+import Type from './Type'
+import Addition from './Addition'
 import './ParameterSettings.css'
 
 export default class extends Component {   
@@ -13,8 +20,8 @@ export default class extends Component {
         super(props);     
         this.state={index:0};     
         this. handleClick = this.handleClick.bind(this);
-        this.tab=['流程','格架','品牌','颜色','瑕疵','洗后预估','档次','材料','处理类别','工艺加价','包类别'];
-        this.views = [<Lattice />,<Lattice />, <Brand />];
+        this.tab=['格架','品牌','颜色','瑕疵','洗后预估','档次','材料','处理类别','工艺加价'];
+        this.views = [<Lattice />, <Brand />,<Color/>,<Defect/>,<AfterWashEstimates/>,<Grade/>,<Materials/>,<Type/>,<Addition/>];
     }; 
     handleClick(e){
         this.setState({index:e.target.dataset.index});

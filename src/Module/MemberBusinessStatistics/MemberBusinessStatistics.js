@@ -33,7 +33,7 @@ export default class extends Component {
                     </div>
                 </div>
                 <p>财务合计</p>
-                <table className='unpaidstatistics_table_Arrearage mem_bus_sta_tab_one' >
+                <table className='ui-table-base auto-width' >
                         <thead>
                             <tr>
                                 <td>合计</td>
@@ -56,7 +56,7 @@ export default class extends Component {
                         </tbody>
                     </table>
                     <p>消费明细</p>
-                <table className='unpaidstatistics_table_Arrearage mem_bus_sta_table_two'>
+                <table id='mem_bus_sta_table_two' className='ui-table-base'>
                         <thead>
                             <tr>
                                 <td>卡编号</td>
@@ -105,36 +105,65 @@ export default class extends Component {
                                 <td>11</td>
                             </tr>
                             <tr>
-                                <td>4</td>
+                                <td>1</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td>11</td>
                                 <td></td>
+                                <td>11</td>
                             </tr>
                             <tr>
-                                <td>5</td>
+                                <td>1</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td>11</td>
                                 <td></td>
+                                <td>11</td>
                             </tr>
                             <tr>
-                                <td>6</td>
+                                <td>1</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td>11</td>
                                 <td></td>
+                                <td>11</td>
                             </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>11</td>
+                            <td></td>
+                            <td>11</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>11</td>
+                        </tr>
+                       
                         </tbody>
                     </table>
                          
             </Window>
         );
     }
-}
+}  

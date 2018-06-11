@@ -1,7 +1,7 @@
 /* 品牌样式 */
 .brand{width:845px;height:auto;margin:auto}
 .brand-btn{
-    width:71px;
+    width:72px;
     height:24px;    
     text-align:center;
     line-height:24px;
@@ -227,4 +227,3 @@
     cursor:pointer;
 }
 .addlattice-footer button:hover{background:url(./img/e-btn-hover.png)}
-.e-btn{margin-top:8px}

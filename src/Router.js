@@ -1,6 +1,7 @@
 //类文件引入
 import Data from './Module/Data/App';
 import Clothes from './Module/Clothes/Clothes.js' //收衣界面
+import Hangon from './Module/Hangon/Hangon.js'; //上挂
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
 import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
 import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate.js'
@@ -54,6 +55,7 @@ import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js';
 //路由对象
 export default {
     clothes:Clothes,    //收衣界面
+    hangon:Hangon, // 取衣界面
     data:Data,
     // take_clothes:Takeclothes,   //取衣界面
     revoke_data:RevokeData,//撤单统计
