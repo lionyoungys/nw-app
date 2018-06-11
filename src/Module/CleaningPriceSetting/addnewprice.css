@@ -7,13 +7,19 @@
 }
 .addnewprice-div{
     width:100%;
-    height:20px;
-    margin-top:12px;
-   
+    height:24px;
+    margin-top:10px;
 }    
-.addnewprice-div div{width:auto;height:22px;font-size:12px;color:#000}         
+.addnewprice-div .addnewprice-div-select,.addnewprice-div .addnewprice-div-nor{
+    width:244px;
+    height:22px;
+    font-size:12px;
+    color:#000;
+    float: left;
+    
+}         
 
-.addnewprice-div div span{
+.addnewprice-div span{
     width:75px;
     text-align:right;
     line-height:20px;
@@ -50,8 +56,8 @@
     margin-left:55px;
     margin-right:2px;
 }
-.e-addnewprice-e-btn{float:right;margin-right:17px;margin-top:13px}
+.addnewprice-e-btn{float:right;margin-right:17px;margin-top:13px}
 /* 下拉框 */
-.addnewprice-div div .ui-select-define{
-    width:135px;
+.addnewprice-div .addnewprice-div-select .ui-select-define{
+    width:140px;
 }
