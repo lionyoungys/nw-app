@@ -24,7 +24,15 @@ export default class extends Component {
                      {count}
                    </div>
                 </div>
-                <div className="Hangon-right"></div>
+                <div className="Hangon-right">
+                   <div className="Hangon-right-select">
+                      <span>格架: </span><Select option={['1#234','2#456','3#654']} selected='2#456'  onChange={value => console.log(value)}/>
+                   </div>
+                   <div className="Hangon-right-select">
+                      <span>衣挂号: </span><input type="text" />
+                   </div>
+                   <button className="e-btn Hangon-right-btn">取消</button><button className="e-btn Hangon-right-btn">上挂</button>
+                </div>
             </Window>
            
         );

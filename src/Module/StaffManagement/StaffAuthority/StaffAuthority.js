@@ -115,7 +115,7 @@ export default class extends Component {
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list StaffAuthority_count_list">
                             
-                            <span>ID</span>
+                            <span></span>
                             <span>组名称</span>
                             <span>权限</span>                          
                             <span>操作</span>

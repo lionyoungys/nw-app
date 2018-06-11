@@ -190,7 +190,7 @@ export default class extends Component {
                 }
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list">
-                            <span>ID</span>
+                            <span></span>
                             <span>姓名</span>
                             <span>手机号</span>
                             <span>权限</span>

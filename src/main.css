@@ -209,7 +209,9 @@ table{border-collapse: collapse}
 .e-btn[readonly]:hover{background: url(img/e-btn-readonly.png);color: #b2b2b2}
 /* 中按钮样式 */
 .e-btn.middle{width: 111px;background: url(img/e-btn-6.png)}
+.e-btn.middle.high{height:34px;font-size: 14px;background: url(img/e-btn-6-high.png)}
 .e-btn.middle:hover{background: url(img/e-btn-6-hover.png)}
+.e-btn.middle.high:hover{background: url(img/e-btn-6-high-hover.png)}
 .e-btn.middle[readonly], 
 .e-btn.middle[readonly]:hover{background: url(img/e-btn-6-readonly.png);color: #b2b2b2}
 /* 大按钮样式 */

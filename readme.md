@@ -2,7 +2,6 @@ package.json             -->    脚本运行文件
 webpack.config.js        -->    编译配置文件
 pc.sql                   -->    热更新数据表
 shell.txt                -->    node扩展所需的脚本命令
-production-dir           -->    内部包含生产环境软件同级目录扩展
 script-src               -->    扩展文件源码
 print                    -->    打印界面文件夹
 

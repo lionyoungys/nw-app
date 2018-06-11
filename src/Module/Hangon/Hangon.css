@@ -18,7 +18,8 @@
 }
 .hangon-btn{
     float:right;
-    margin-right:5px;
+    margin-right:12px;
+    margin-top:8px;
 }
 .Hangon-left{
     width:287px;
@@ -80,10 +81,42 @@
 }
 .Hangon-left-count span:last-child{border-bottom:none}
 .Hangon-right{
-    height:318px;
+    height:256px;
     width:242px;
     float:right;
     margin:11px 11px 0 0;
     margin-left:11px 0 0 11px;
     background:#eef4fb;
+    padding-top:62px;
+    border:1px solid #8db2e3
 }
+.Hangon-right .Hangon-right-select{
+    width:207px;
+    height:24px;
+    margin:18px auto 0;
+}
+.Hangon-right .Hangon-right-select span{
+    display:block;
+    float:left;
+    height:22px;
+    line-height:22px;
+    color:#15458d;
+    font-size:12px;
+    text-align:right;
+    width:53px;
+    margin-right:5px;
+}
+.Hangon-right .Hangon-right-select .ui-select-define{
+    width:146px;
+}
+.Hangon-right .Hangon-right-select input{
+    width:146px;
+    heght:20px;
+    border:1px solid #c2c2c2;
+    background:#fff;
+    color:#000;
+    font-size:12px;
+    display:block;
+    float:left;
+}
+.Hangon-right .Hangon-right-btn{float:right; margin:38px 16px 0 0}

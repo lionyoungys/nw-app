@@ -59,6 +59,7 @@ export default class extends React.Component {
                 正常按钮样式：
                 <button type='button' className='e-btn'>确认</button>
                 <button type='button' className='e-btn middle'>确认</button>
+                <button type='button' className='e-btn middle high'>确认</button>
                 <button type='button' className='e-btn large'>确认</button>
                 <br/>
                 禁用按钮样式：

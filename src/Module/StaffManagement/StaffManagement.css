@@ -44,7 +44,7 @@
 /* 增加组 */
 /* 列表title样式 */
 .StaffAuthority_count_list span:nth-child(1){
-    width:50px;
+    width:31px;
 }
 .StaffAuthority_count_list span:nth-child(2){
     width:80px;
@@ -59,7 +59,7 @@
 .StaffAuthority_count_list tbody tr td{border-right:1px solid #acc6de}
 .StaffAuthority_count_list tbody tr td:last-child{border-right:none}
 .StaffAuthority_count_list tbody tr td:first-child{
-    width:50px;
+    width:31px;
 }
 .StaffAuthority_count_list tbody tr td:nth-child(2){
     width:80px;
