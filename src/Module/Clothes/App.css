@@ -18,9 +18,14 @@
     border-right: 1px solid #acc6de;
     background: #89b0d4;
 }
-.clothes-header>div, .clothes-body>div>div{border-right: 1px solid #acc6de}
+.clothes-header>div, .clothes-body>div>div{
+    border-right: 1px solid #acc6de;
+    min-height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+}
 .clothes-header>:last-child, .clothes-body>div>:last-child{border-right: none}
-.clothes-header>div, .clothes-body>div>div{min-height: 26px;line-height: 26px;text-align: center;font-size: 12px}
 .clothes-header>:nth-child(1), .clothes-body>div>:nth-child(1){width: 92px}
 .clothes-header>:nth-child(2), .clothes-body>div>:nth-child(2){width: 174px}
 .clothes-header>:nth-child(3), .clothes-body>div>:nth-child(3){width: 76px}
@@ -64,3 +69,70 @@
 .clothes-footer-left>:last-child>:nth-child(2){width: 176px}
 .clothes-footer-right{width: 226px;text-align: center}
 .clothes-footer-right>:first-child{padding: 12px 0 10px}
+
+/* category.js编辑衣物顶部样式 */
+.clothes-editor-top{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 14px;
+    height: 48px;
+}
+.clothes-editor-top>span{font-size: 16px;color: #15458d;font-weight: bold}
+.clothes-editor-body{
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 350px;
+    border: 1px solid #8db2e3;
+    margin: 0 14px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 12px 10px;
+}
+.clothes-editor-body>i{
+    font-style: normal;
+    height: 28px;
+    line-height: 28px;
+    width: 92px;
+    background: #cde1f7;
+    text-align: center;
+    overflow: hidden;
+    font-size: 12px;
+    margin: 0 9px 8px 0;
+    cursor: default;
+}
+.clothes-editor-body>i:hover{background: #6bb1f8;color: #fff;font-weight: bold}
+.clothes-editor-body>i:nth-child(6n){margin-right: 0}
+/* item.js衣物项目样式 */
+.clothes-item-body{
+    height: 350px;
+    border: 1px solid #8db2e3;
+    margin: 0 14px;
+}
+.clothes-item-header{
+    display: -webkit-flex;
+    display: flex;
+    font-weight: bold;
+    color: #fff;
+    background: #89b0d4;
+}
+.clothes-item-header>div, .clothes-items>div>div{
+    border-right: 1px solid #acc6de;
+    min-height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+}
+.clothes-item-header>:last-child, .clothes-items>div>:last-child{border-right: none}
+.clothes-item-header>div, .clothes-items>div>div{width: 99.2px}
+.clothes-items{
+    max-height: 324px;
+    border: 1px solid #acc6de;
+    border-top: none;
+    overflow: auto;
+}
+.clothes-items>div{display: -webkit-flex;display: flex;cursor: default}
+.clothes-items>div:hover{background: #cce8ff}
