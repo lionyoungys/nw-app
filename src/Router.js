@@ -24,7 +24,7 @@ import ReturnCard from './Module/ReturnCard/ReturnCard.js';
 import ManagerGathering from './Module/ManagerGathering/ManagerGathering.js';//经理收款
 
 import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge.js'; // 支付充值页面
-import CleaningPriceSetting from './Module/CleaningPriceSetting/CleaningPriceSetting.js'; // 洗护价格设置
+import PriceSetting from './Module/PriceSetting/PriceSetting.js'; // 洗护价格设置
 import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js';// 解除挂失页面
 import Editshopprices from'./Module/Editshopprices/Editshopprices.js'; // 编辑商品价格
 import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js'; // 编辑洗护价格
@@ -80,7 +80,7 @@ export default {
     pay_and_recharge:Payandrecharge,// 支付充值    
     return_card:ReturnCard,//退卡
     manager_gathering:ManagerGathering,//经理收款
-    cleaning_price_setting:CleaningPriceSetting,//洗护价格设置
+    price_setting:PriceSetting,//价格设置
     Solut_ionto_hang:Solutiontohang,  //解除挂失
     sale_card:SaleCard,//售卡
     

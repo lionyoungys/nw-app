@@ -12,7 +12,8 @@
     text-align: right;
     display: inline-block;
  }
- .salecard div input{
+
+ .salecard>div span input{
     margin-top: 14px;
     margin-left: 9px;
     width: 151px;
@@ -80,7 +81,7 @@
      position: absolute;
      bottom: 62px;
  }
- .salecard .bottom div{
+ .salecard>.bottom>div{
      margin-top: 5px;
  }
  .salecard .top div span{
@@ -88,4 +89,7 @@
  }
  .salecard_leftdirection>span>label{
    color: red
+}
+.salecard .top .cardnumber{
+    margin-left: 9px;
 }

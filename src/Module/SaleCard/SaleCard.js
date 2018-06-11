@@ -59,7 +59,7 @@ export default class extends Component {
                         <span>卡类型:</span>&nbsp;&nbsp;<Select option={this.state.cardtype} selected={this.state.cardtype[0]}  onChange={this.onchange}/>
                         </div>
                         <div>
-                        <span>卡号:</span><input value={this.state.cardnumber} onChange={e => this.setState({cardnumber:e.target.value})}/><label>卡号为空时，仅创建电子卡&nbsp;&nbsp;<span className='imghelp'></span></label>
+                        <span>卡号:</span><input className='cardnumber' value={this.state.cardnumber} onChange={e => this.setState({cardnumber:e.target.value})}/><label>卡号为空时，仅创建电子卡&nbsp;&nbsp;<span className='imghelp'></span></label>
                         </div>
                     </div>
                     <div className='middle'>

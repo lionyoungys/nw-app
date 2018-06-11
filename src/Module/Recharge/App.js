@@ -7,7 +7,7 @@ import React from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './App.css';
-
+import Payandrecharge from '../PayAndRecharge/Payandrecharge'
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -28,9 +28,17 @@ export default class extends React.Component {
         card_name:'',//卡类型
         discount:'',//折扣
         time:'',//售卡日期
+        show:false,//是否显示
+        cid:''//卡id
     }
         this.query=this.query.bind(this);
         this.onchange=this.onchange.bind(this);
+        this.cashier=this.cashier.bind(this);
+        this.onclose=this.onclose.bind(this);
+    }
+    cashier(){
+        this.setState({show:true});
+        console.log(this.state.show)
     }
     componentDidMount() {
         api.post('cardType', {token:'token'.getData()}, (res, ver) => {
@@ -43,6 +51,9 @@ export default class extends React.Component {
     }
     onchange(value){
         this.setState({index:value.inObjArray(this.state.cards, 'card_type')});
+    }
+    onclose(){
+        this.setState({show:false});
     }
     query(){
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardNumber}, (res, ver) => {
@@ -59,7 +70,8 @@ export default class extends React.Component {
                     recharge_number:res.result[0].recharge_number,
                     card_name:res.result[0].card_name,
                     discount:res.result[0].discount,
-                    time:res.result[0].time
+                    time:res.result[0].time,
+                    cid:res.result[0].id
                 });
             }
         }
@@ -110,9 +122,25 @@ export default class extends React.Component {
                         <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label>&yen;{card.give_price}</div>
                         <div><label className='e-label'>&emsp;&emsp;新折扣：</label>{card.discount}%</div>
                     </div>
-                    <div>
+                    <div className="recharge-four">
                         <div style={{color:'#ff0000',marginBottom:'22px',fontSize:'14px',fontWeight:'bold'}}>应收：&yen;{card.real_price}</div>
-                        <button type='button' className='e-btn'>收银</button>
+                        <button type='button' className='e-btn recharge-btn' onClick={this.cashier}>收银</button>
+                        {this.state.show&&<Payandrecharge onclose={this.onclose} info={{
+                        user_mobile:this.state.user_mobile,
+                        user_name:this.state.user_name,
+                        sex:this.state.sex,
+                        birthday:this.state.birthday,
+                        address:this.state.address,
+                        integrals:this.state.integrals,
+                        balance:this.state.balance,
+                        recharge_number:this.state.recharge_number,
+                        card_name:this.state.card_name,
+                        discount:this.state.discount,
+                        time:this.state.time,
+                        price:card.price,
+                        give_price:card.give_price,
+                        cid:this.state.cid
+                        }}/>}
                     </div>
                 </div>
             </Window>

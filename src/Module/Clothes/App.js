@@ -7,6 +7,10 @@ import Window from '../../UI/Window';
 import Math from '../../UI/Math';
 import Category from './Category';
 import Item from './Item';
+import Brand from './Brand';
+import Color from './Color';
+import Problem from './Problem';
+import Forcast from './Forecast';
 import './App.css';
 
 export default class extends Component {
@@ -14,8 +18,8 @@ export default class extends Component {
         super(props);
         this.state = {
             phone:'',name:'',number:'',addr:'',time:'',
-            category:[],item:[],
-            show:0, itemIndex:0
+            category:[],item:[],brand:[],color:[],problem:[],forecast:[],
+            show:0, itemIndex:0,tempIndex:0,data:[]
         };
         this.M1read = this.M1read.bind(this);    //读卡
         this.add = this.add.bind(this);    //添加衣物
@@ -23,10 +27,15 @@ export default class extends Component {
         this.recharge = this.recharge.bind(this);    //充值
         this.dec = this.dec.bind(this);    //卡扣款
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
+        this.setBrand = this.setBrand.bind(this);    //设置品牌
+        this.setColor = this.setColor.bind(this);    //设置颜色
+        this.setProblem = this.setProblem.bind(this);    //设置瑕疵
+        this.setForcast = this.setForcast.bind(this);    //设置洗后预估
     }
 
     componentDidMount() {
-        api.post('clothes', {token:'token'.getData()}, (res, ver, handle) => {
+        let token = 'token'.getData();
+        api.post('clothes', {token:token}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 let len = res.result.length;
                 for (let i = 0;i < len;++i) {
@@ -34,10 +43,32 @@ export default class extends Component {
                     this.state.item.push(res.result[i].server);
                 }
                 this.setState({category:this.state.category, item:this.state.item});
-                console.log(this.state.item);
-            } else {
-               handle();
-            }
+                console.log('item', this.state.item);
+            } else {handle()}
+        });
+        api.post('brandList', {token:token}, (res, ver, handle) => {    //获取品牌列表
+            if (ver) {
+                this.setState({brand:res.result});
+                console.log('brand', this.state.brand);
+            } else {handle()}
+        });
+        api.post('colorList', {token:token}, (res, ver, handle) => {    //获取颜色列表
+            if (ver) {
+                this.setState({color:res.result});
+                console.log('color', this.state.color);
+            } else {handle()}
+        });
+        api.post('flawList', {token:token}, (res, ver, handle) => {    //获取瑕疵列表
+            if (ver) {
+                this.setState({problem:res.result});
+                console.log('problem', this.state.problem);
+            } else {handle()}
+        });
+        api.post('forecastList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+            if (ver) {
+                this.setState({forecast:res.result});
+                console.log('forecast', this.state.forecast);
+            } else {handle()}
         });
     }
 
@@ -45,8 +76,12 @@ export default class extends Component {
 
     }
     add() {
-
+        this.setState({show:3, tempIndex:(this.state.data.length - 1)});
     }
+    setBrand(value) {this.setState({show:4})}
+    setColor(value) {this.setState({show:5})}
+    setProblem(value) {this.setState({show:6})}
+    setForcast(value) {this.setState({show:7})}
     cost() {
 
     }
@@ -109,7 +144,27 @@ export default class extends Component {
                 {
                     2 === this.state.show
                     &&
-                    <Item onClose={this.handleClose} onCancle={() => this.setState({show:1})} data={this.state.item[this.state.itemIndex]}/>
+                    <Item onClose={this.handleClose} onCancle={() => this.setState({show:1})} data={this.state.item[this.state.itemIndex]} callback={this.add}/>
+                }
+                {
+                    3 === this.state.show
+                    &&
+                    <Brand onClose={this.handleClose} data={this.state.brand} callback={this.setBrand}/>
+                }
+                {
+                    4 === this.state.show
+                    &&
+                    <Color onClose={this.handleClose} data={this.state.color} callback={this.setColor} />
+                }
+                {
+                    5 === this.state.show
+                    &&
+                    <Problem onClose={this.handleClose} data={this.state.problem} callback={this.setProblem} />
+                }
+                {
+                    6 === this.state.show
+                    &&
+                    <Forcast onClose={this.handleClose} data={this.state.forecast} callback={this.setForcast} />
                 }
             </Window>
         );

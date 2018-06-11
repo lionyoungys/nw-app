@@ -87,7 +87,7 @@ export const topMenu = [
         options:[
             {value:'门店管理', view:'store_management'},
             {value:'员工与权限', view:'staff_management'},
-            { value: '价格设置', view:'cleaning_price_setting'},
+            { value: '价格设置', view:'price_setting'},
             {value:'参数设置', view:'Parameter_Settings'},
             {value:'设备管理', view:'equipment_management'},
             {value:'数据导入',  view:'data'},

@@ -79,7 +79,7 @@
     margin: 0 14px;
     height: 48px;
 }
-.clothes-editor-top>span{font-size: 16px;color: #15458d;font-weight: bold}
+.clothes-editor-top>span{font-size: 14px;color: #15458d;font-weight: bold}
 .clothes-editor-body{
     display: -webkit-flex;
     display: flex;
@@ -136,3 +136,40 @@
 }
 .clothes-items>div{display: -webkit-flex;display: flex;cursor: default}
 .clothes-items>div:hover{background: #cce8ff}
+/* brand.js problem.js color.js 界面样式*/
+.clothes-problem-top{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    margin: 0 14px;
+    height: 48px;
+}
+.clothes-problem-top>span{font-size: 14px;color: #15458d;font-weight: bold}
+.clothes-problem-top>.e-input{width: 442px;height: 24px;margin-right: 12px}
+.clothes-problem-body{
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 350px;
+    border: 1px solid #8db2e3;
+    margin: 0 14px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 8px;
+    overflow: auto;
+}
+.clothes-problem-body>i{
+    font-style: normal;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+    width: 90px;
+    text-align: center;
+    margin: 0 8px 8px 0;
+    background: #cde1f7;
+    overflow: hidden;
+    cursor: default;
+}
+.clothes-problem-body>i:nth-child(6n){margin-right: 0}
+.clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold}

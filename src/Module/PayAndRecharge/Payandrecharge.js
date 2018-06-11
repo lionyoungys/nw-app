@@ -9,11 +9,10 @@ import './Payandrecharge.css';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state={selectcash:true,selectwechat:false,selectalipay:false}
         this.cash=this.cash.bind(this)
         this.wechat=this.wechat.bind(this)
         this.alipay=this.alipay.bind(this)
-        this.state = {authCode:['','','','']}
+        this.state = {authCode:['','','',''],selectcash:true,selectwechat:false,selectalipay:false}
         this.input = [];
         this.setAuthCode = this.setAuthCode.bind(this);
         this.payment = this.payment.bind(this)
@@ -48,6 +47,34 @@ export default class extends Component {
         }else{
             gateway ='3'
         }
+        if(this.props.info.password=='')
+        {
+         let obj ={
+             token:'token'.getData(),
+             amount:this.props.price,
+             give:this.props.give_price,
+             cid:this.props.cid,
+             gateway:gateway,
+             authcode:authCode[0] + authCode[1] + authCode[2] + authCode[3]
+         }
+         api.post(
+            'recharge', 
+            obj, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                }}); 
+            }else{
+                console.log(res)
+                tool.ui.error({callback:(close, event) => {
+                    close();
+                }});
+            }
+        }
+        );
+        }
+        else{
          let obj = {
             token:'token'.getData(),
             user_name:this.props.info.user_name,
@@ -83,8 +110,10 @@ export default class extends Component {
         }
         );
     }
+    }
     componentDidMount() {
-        this.input[3].onkeydown = ( e => {'Enter' === e.code && this.payment()} )
+        // this.input[3].onkeydown = ( e => {'Enter' === e.code && this.payment()} )
+        // console.log(this.state.selectcash)
     }
     
     setAuthCode(e) {
@@ -110,11 +139,11 @@ export default class extends Component {
                           </div>
                           <div>
                               <p><i>充值金额：</i><b>￥{this.props.info.price}</b></p>
-                              <p><i>原金额：</i><b>￥0.00</b></p>
+                              <p><i>原金额：</i><b>￥{this.props.info.balance}</b></p>
                           </div>
                           <div>
                               <p><i>赠送金额：</i><b>￥{this.props.info.give_price}</b></p>
-                              <p><i>充后余额额：</i><b>￥{this.props.info.balance}</b></p>
+                              <p><i>充后余额额：</i><b>￥{Number(this.props.info.balance)+Number(this.props.info.give_price)+Number(this.props.info.price)}</b></p>
                           </div>
                       </div>
                    </div>

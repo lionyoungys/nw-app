@@ -155,7 +155,7 @@
     line-height:20px;
     margin-bottom:5px;
 }
-.we-chatPay div input{
+.we-chatPay>div>input{
     width:69px;
     height:20px;
     color:#000;
