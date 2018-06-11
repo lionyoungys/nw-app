@@ -11,6 +11,7 @@ import Brand from './Brand';
 import Color from './Color';
 import Problem from './Problem';
 import Forcast from './Forecast';
+import Price from './Price';
 import './App.css';
 
 export default class extends Component {
@@ -18,7 +19,7 @@ export default class extends Component {
         super(props);
         this.state = {
             phone:'',name:'',number:'',addr:'',time:'',
-            category:[],item:[],brand:[],color:[],problem:[],forecast:[],
+            category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, itemIndex:0,tempIndex:0,data:[]
         };
         this.M1read = this.M1read.bind(this);    //读卡
@@ -31,6 +32,7 @@ export default class extends Component {
         this.setColor = this.setColor.bind(this);    //设置颜色
         this.setProblem = this.setProblem.bind(this);    //设置瑕疵
         this.setForcast = this.setForcast.bind(this);    //设置洗后预估
+        this.setPrice = this.setPrice.bind(this);    //设置工艺加价
     }
 
     componentDidMount() {
@@ -70,6 +72,12 @@ export default class extends Component {
                 console.log('forecast', this.state.forecast);
             } else {handle()}
         });
+        api.post('additionList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+            if (ver) {
+                this.setState({price:res.result});
+                console.log('price', this.state.price);
+            } else {handle()}
+        });
     }
 
     M1read() {
@@ -82,6 +90,7 @@ export default class extends Component {
     setColor(value) {this.setState({show:5})}
     setProblem(value) {this.setState({show:6})}
     setForcast(value) {this.setState({show:7})}
+    setPrice(value) {this.setState({show:8})}
     cost() {
 
     }
@@ -165,6 +174,11 @@ export default class extends Component {
                     6 === this.state.show
                     &&
                     <Forcast onClose={this.handleClose} data={this.state.forecast} callback={this.setForcast} />
+                }
+                {
+                    7 === this.state.show
+                    &&
+                    <Price onClose={this.handleClose} data={this.state.price} callback={this.setPrice} />
                 }
             </Window>
         );

@@ -7,7 +7,6 @@ import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
-
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -30,10 +29,10 @@ export default class extends Component {
     );
         return (
             // <Window title='洗护价格设置' onClose={this.props.closeView} >
-            <div>
+            <div className='cleaning_price_all'>
                 <div className="cleaning_price_set_btn">
                     <button className='e-btn middle'>洗护分类管理</button>
-                    <button className='e-btn middle'>衣物类别管理</button>
+                    <button className='e-btn middle' onClick={<ClothesCategoryManage/>}>衣物类别管理</button>
                     <button className='e-btn middle' onClick={() => this.setState({show:true})}>+新增洗护价格</button>
                 </div >
                 <div className='cleaning_price_set_left_table_div'>
@@ -46,7 +45,7 @@ export default class extends Component {
 
                 {/* 表格部分 欠费衣物信息*/}
 
-                <table className='change_card_table right_table' id="right_table">
+                <table className='change_card_table right_table'>
                     <thead>
                         <tr>
                             <td></td>

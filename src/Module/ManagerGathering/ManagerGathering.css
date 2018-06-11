@@ -1,5 +1,5 @@
 
-input{
+.manager_gathering_part input{
     width: 110px;
     height: 21px;
     background:#fff;
@@ -9,7 +9,7 @@ input{
     /* 设置选中的边框颜色 */
     outline-color: #6f9ec2;
 }
-input:focus{
+.manager_gathering_part input:focus{
     border:1px solid #6f9ec2;       
 }
 

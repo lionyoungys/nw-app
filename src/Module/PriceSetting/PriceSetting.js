@@ -34,7 +34,7 @@ export default class extends Component {
                            {tabs}
                         </ul>
                     </div>
-                    <div className='store_management_content_all'>
+                    <div >
                         {this.views[1]}
                       </div>
                      

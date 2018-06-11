@@ -1,7 +1,12 @@
+.cleaning_price_all{
+
+    margin: 0;
+    height: 521px;
+}
 .cleaning_price_set_btn{
 
     /* background-color: red; */
-    margin: 0 13px;
+    margin: 2px 13px;
     height: 39px;
     line-height: 39px;
 }
@@ -18,7 +23,7 @@
     margin-left: 13px;
     width: 90px;
     height: auto;
-    max-height: 534px;
+    max-height: 448px;
     border:1px solid #8db2e3;
     overflow: hidden;
     float: left;
@@ -32,7 +37,7 @@
     margin-left: 0;
     margin-bottom: 0;
     width: 107px;
-    max-height: 534px;
+    max-height: 448px;
     overflow-y: scroll;
     /* 用于隐藏横向滑块 */
     overflow-x:hidden;
@@ -67,25 +72,18 @@
     
 }
 
-.right_table{
+.change_card_table.right_table{
 
-    float: left;
-    margin-top: 0;
-    margin-left: 10px;
-    min-width: 770px;
-    max-width: 770px;
-    max-height: 533px;
-    overflow: auto;
-    border:1px solid #8db2e3;
-   
-    
-    
-}
-#right_table{
-    margin:0 11px;
     float:right;
-    overflow-x:auto;
+    margin:0 11px;
+    max-height: 448px;
+    max-width: 741px;
+    height: auto;
+    overflow: auto;
+    border:1px solid #8db2e3; 
+    
 }
+
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */
     /* min-width: auto; */

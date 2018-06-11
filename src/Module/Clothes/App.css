@@ -173,3 +173,20 @@
 }
 .clothes-problem-body>i:nth-child(6n){margin-right: 0}
 .clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold}
+/* price.js工艺加价界面样式 */
+.clothes-problem-body>.clothes-price{
+    display: -webkit-flex;
+    display: flex;
+    width: 560px;
+    height: 36px;
+    line-height: 36px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 12px;
+    border: 1px solid #8db2e3;
+    padding: 0 25px 0 10px;
+}
+.clothes-price .e-input{width: 100px}
+.clothes-price>:first-child{width: 114px}
+.clothes-price>:nth-child(2){width: 150px}
+.clothes-price>:nth-child(3){width: 112px}
