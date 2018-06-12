@@ -14,6 +14,7 @@ import Forcast from './Forecast';
 import Price from './Price';
 import Temp from './Temp';
 import UpdatePrice from './UpdatePrice';
+import Deduct from './Deduct';
 import './App.css';
 
 export default class extends Component {
@@ -28,7 +29,6 @@ export default class extends Component {
         this.add = this.add.bind(this);    //添加衣物
         this.cost = this.cost.bind(this);    //收银
         this.recharge = this.recharge.bind(this);    //充值
-        this.dec = this.dec.bind(this);    //卡扣款
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
         this.handleCancel = this.handleCancel.bind(this);    //取消处理
         this.setBrand = this.setBrand.bind(this);    //设置品牌
@@ -105,9 +105,6 @@ export default class extends Component {
     recharge() {
 
     }
-    dec() {
-
-    }
     handleClose() {this.setState({show:0})}
     handleCancel() {this.setState({show:1})}
     onClose() {
@@ -156,7 +153,7 @@ export default class extends Component {
                         <div>
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
                             <button type='button' className='e-btn' onClick={this.recharge}>充值</button>&nbsp;
-                            <button type='button' className='e-btn' onClick={this.dec}>卡扣款</button>
+                            <button type='button' className='e-btn' onClick={() => this.setState({show:13})}>卡扣款</button>
                         </div>
                     </div>
                 </div>
@@ -204,6 +201,11 @@ export default class extends Component {
                     12 === this.state.show
                     &&
                     <UpdatePrice onClose={this.handleClose} callback={this.updatePrice}/>
+                }
+                {
+                    13 === this.state.show
+                    &&
+                    <Deduct onClose={this.handleClose} callback={this.handleClose}/>
                 }
             </Window>
         );

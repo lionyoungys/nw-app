@@ -229,3 +229,37 @@
 }
 .clothes-update-price>div>:first-child{width: 116px;text-align: right;color: #15458d}
 .clothes-update-price>div input{width: 131px}
+.clothes-deduct-top{
+    height: 74px;
+    margin: 10px 12px 9px;
+    border: 1px solid #8db2e3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 13px 0 0 13px;
+    font-size: 12px;
+    color: #000;
+}
+.clothes-deduct-body{
+    height: 272px;
+    margin: 0 12px;
+    border: 1px solid #8db2e3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 12px;
+    color: #15458d;
+    padding-top: 14px;
+}
+.clothes-deduct-body>div{
+    margin-bottom: 12px;
+    display: -webkit-flex;
+    display: flex;
+}
+.clothes-deduct-body>div>span:first-child{width: 86px;text-align: right}
+.clothes-deduct-body>div>textarea{
+    width: 405px;
+    height: 87px;
+    border-radius: 3px;
+    border: 1px solid #bfc3c7;
+    outline: none;
+    resize: none;
+}
