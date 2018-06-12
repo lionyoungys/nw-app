@@ -190,3 +190,32 @@
 .clothes-price>:first-child{width: 114px}
 .clothes-price>:nth-child(2){width: 150px}
 .clothes-price>:nth-child(3){width: 112px}
+/* temp.js临时衣物界面样式 */
+.clothes-temp-top{
+    height: 40px;
+    line-height: 40px;
+    margin: 0 12px;
+    font-size: 14px;
+    color: #15458d;
+    font-weight: bold;
+}
+.clothes-temp-body{
+    height: 183px;
+    margin: 0 12px 12px;
+    border: 1px solid #8db2e3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 24px;
+
+}
+.clothes-temp-body>div{
+    display: -webkit-flex;
+    display: flex;
+    font-size: 12px;
+    padding-bottom: 13px;
+}
+.clothes-temp-body>div>:first-child{width: 136px;text-align: right;color: #15458d}
+.clothes-temp-footer{
+    margin: 0 16px;
+    text-align: right;
+}

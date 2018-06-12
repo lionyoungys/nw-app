@@ -56,14 +56,14 @@
 }
 .clothesquery_bottom{
     width: 872px;
-    height: 417px;
+    height: 373px;
     border:1px solid #8db2e3;
-    margin: 13px;
+    margin:9px auto;
 }
 
 
 .OperatingDetails_list .clothesquery_bottom_list_box{
-    height:415px;max-height:415px
+    height:372px;max-height:372px
 }
 .find_reset{
     position: relative;

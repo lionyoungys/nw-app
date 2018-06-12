@@ -1,0 +1,186 @@
+/* 取衣 */
+.Takeclothes-title{
+    width:872px;
+    height:24px;
+    margin:13px auto;
+}
+.Takeclothes-title .Takeclothes-title-btn{float:right;margin-right:7px;cursor:pointerss}
+.Takeclothes-title .Takeclothes-title-text{
+    width:232px;
+    height:22px;
+    border:1px solid #c2c2c2;
+    background:#f9f9f9;
+    color:#999999;
+    font-size:12px;
+    margin-right:8px;
+    line-height:22px;
+    float:right;
+}
+
+.Takeclothes-div-title{
+    width:872px;
+    height:23px;
+    line-height:23px;
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+    margin:0 auto;
+}
+.Takeclothes-div-title b{
+    color:#024ffe;
+}
+
+/* table */
+.Takeclothes-tab{
+    width:870px;
+    height:auto;
+    max-height:445px;    
+    margin:auto;
+    border:1px solid #8db2e3;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+.Takeclothes-tab table{width:870px;height:auto;max-height:444px;}
+.Takeclothes-tab table thead{min-width:870px;height:25px;background:#89b0d4;display:inline-block;}
+.Takeclothes-tab table thead tr{width:auto;height:25px}
+.Takeclothes-tab table thead tr th{
+    width:auto;
+    text-align:center;
+    /* padding:0 49px; */
+    color:#fff;
+    font-size:12px;
+    height:25px;
+    line-height:25px;
+    border-right:1px solid #acc6de;
+    min-width:128px;
+}
+.Takeclothes-tab table thead tr th:first-child{
+    min-width:31px;
+    width:31px;
+    padding:0;    
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:17px;
+    background-position-y:11px;
+    padding:0px;
+}
+.Takeclothes-tab table th:last-child{border-right:none}
+.Takeclothes-tab table tbody{
+    width:auto;
+    max-height:420px;
+    overflow-y:auto;
+    display:inline-block;
+   
+}
+.Takeclothes-tab table tbody tr{width:auto;height:25px;}
+.Takeclothes-tab table tbody tr:nth-child(odd){background:#fff}
+.Takeclothes-tab table tbody tr:nth-child(even){background:#f0f5f9}
+.Takeclothes-tab table tbody tr td{
+    width:auto;
+    text-align:center;
+    /* padding:0 49px; */
+    color:#000;
+    font-size:12px;
+    height:25px;
+    line-height:25px;
+    border-right:1px solid #acc6de;
+    min-width:128px;
+    cursor: pointer;
+}
+.Takeclothes-tab table tbody tr td:first-child{
+    min-width:31px;
+    width:31px;
+    padding:0px;
+}
+.Takeclothes-tab table tbody tr td:last-child{
+    border-right:none;
+}
+
+/* 取衣详情 */
+.Takeclothesdetail-title{
+    width:872px;
+    height:47px;
+    margin:0 auto;
+}
+.Takeclothesdetail-title-left{
+    float: left;
+    width:280px;
+    height:47px;
+}
+.Takeclothesdetail-title-left div{
+    width:auto;
+    height:47px;
+    line-height:47px;
+    color:#000;
+    font-size:12px;
+}
+.Takeclothesdetail-title-left div:first-child{
+    float:left;
+}
+.Takeclothesdetail-title-left div:last-child{
+    float:right;
+}
+
+.Takeclothesdetail-title-right{
+    float:right;
+    height:47px;
+}
+.Takeclothesdetail-title-right div{
+    width:auto;
+    margin-right:21px;
+    height:47px;
+    line-height:47px;
+    color:#000;
+    font-size:12px;
+    float:right;
+}
+.Takeclothesdetail-tab table tbody tr td{
+    padding:0px 5px;
+    line-height:0;
+}
+.Takeclothesdetail-tab table thead tr th{
+    padding:0px 5px;
+    line-height:0;
+}
+.Takeclothesdetail-tab table tbody{
+    overflow-x:hidden;
+}
+.Takeclothesdetail-tab table tbody tr td input{width:15px;height:15px;cursor:pointer}
+.Takeclothesdetail-footer{
+    width:872px;
+    height:24px;
+    margin:8px auto 0px;
+}
+.Takeclothesdetail-footer-left{
+    width:120px;
+    height:24px;
+    float:left;
+    color:#000;
+    font-size:12px;
+    line-height:24px;
+}
+.Takeclothesdetail-footer-left input{
+    width:14px;
+    height:14px;
+    float: left;
+    margin-top:5px;
+    cursor:pointer;
+}
+
+.Takeclothesdetail-footer-right{
+    float:right;
+    height:24px;
+}
+.Takeclothesdetail-footer-right .Takeclothesdetail-footer-right-btn{
+    float:right;
+    margin-right:8px;
+    cursor:pointer;
+}
+.Takeclothesdetail-footer-right div{
+    float: right;
+    height:24px;
+    lien-height:24px;
+    color:#f00;
+    font-size:12px;
+    margin-right:12px;
+}

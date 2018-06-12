@@ -53,7 +53,7 @@ export default class extends Component {
                             <td>衣物类别</td>
                             <td>档次</td>
                             <td>价格</td>
-                            <td>折扣下限</td>
+                            <td>折扣下限</td> 
                             <td>可调</td>
                             <td>可折</td>
                             <td>交活天数</td>

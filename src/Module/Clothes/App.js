@@ -12,6 +12,7 @@ import Color from './Color';
 import Problem from './Problem';
 import Forcast from './Forecast';
 import Price from './Price';
+import Temp from './Temp';
 import './App.css';
 
 export default class extends Component {
@@ -28,11 +29,13 @@ export default class extends Component {
         this.recharge = this.recharge.bind(this);    //充值
         this.dec = this.dec.bind(this);    //卡扣款
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
+        this.handleCancel = this.handleCancel.bind(this);    //取消处理
         this.setBrand = this.setBrand.bind(this);    //设置品牌
         this.setColor = this.setColor.bind(this);    //设置颜色
         this.setProblem = this.setProblem.bind(this);    //设置瑕疵
         this.setForcast = this.setForcast.bind(this);    //设置洗后预估
         this.setPrice = this.setPrice.bind(this);    //设置工艺加价
+        this.setTemp = this.setTemp.bind(this);    //设置临时衣物
     }
 
     componentDidMount() {
@@ -91,6 +94,7 @@ export default class extends Component {
     setProblem(value) {this.setState({show:6})}
     setForcast(value) {this.setState({show:7})}
     setPrice(value) {this.setState({show:8})}
+    setTemp(value) {this.setState({show:4})}
     cost() {
 
     }
@@ -101,6 +105,7 @@ export default class extends Component {
 
     }
     handleClose() {this.setState({show:0})}
+    handleCancel() {this.setState({show:1})}
 
 
     render() {
@@ -148,12 +153,12 @@ export default class extends Component {
                 {
                     1 === this.state.show 
                     && 
-                    <Category onClose={this.handleClose} data={this.state.category} callback={index => this.setState({show:2,itemIndex:index})}/>
+                    <Category onClose={this.handleClose} data={this.state.category} callback={index => this.setState({show:2,itemIndex:index})} onClick={() => this.setState({show:11})}/>
                 }
                 {
                     2 === this.state.show
                     &&
-                    <Item onClose={this.handleClose} onCancle={() => this.setState({show:1})} data={this.state.item[this.state.itemIndex]} callback={this.add}/>
+                    <Item onClose={this.handleClose} onCancel={this.handleCancel} data={this.state.item[this.state.itemIndex]} callback={this.add}/>
                 }
                 {
                     3 === this.state.show
@@ -179,6 +184,11 @@ export default class extends Component {
                     7 === this.state.show
                     &&
                     <Price onClose={this.handleClose} data={this.state.price} callback={this.setPrice} />
+                }
+                {
+                    11 === this.state.show
+                    &&
+                    <Temp onClose={this.handleClose} onCancel={this.handleCancel} callback={this.setTemp}/>
                 }
             </Window>
         );

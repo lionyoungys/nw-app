@@ -13,7 +13,9 @@
     min-width:95px;
 }
 .managerquery-div .managerquery-tab tbody tr td{min-width:95px;}
-.Succession_dataLeft div .ui-select-define{width:135px;}
-
+.Succession_dataLeft div .ui-select-define{
+    width:135px;    
+    margin-top: -2px;
+}
 .managerquery-btn {width:auto;float:right;margin-top:9px;}
 .managerquery-btn button{margin:8px 8px}

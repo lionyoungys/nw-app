@@ -42,7 +42,7 @@ export const topMenu = [
             { value: '退卡', view:'return_card'},
             { value: '挂失查询', view:'report_loss_query'},
             { value: '退卡查询', view:'card_queries'},
-            {value:'会员消费查询', view:'Member_ship_query'},
+            // {value:'会员消费查询', view:'Member_ship_query'},
             { value:'客户信息查询', view:'customer_query'},            
         ]
     },

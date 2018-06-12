@@ -58,15 +58,15 @@ export default class extends Component {
         return (
             <Window title='数据导入' onClose={this.props.closeView} width='352' height='293'>
             <div className='data'>
-            <div className='data_border'>
-                <div>
-                <span>新版本:</span> <input type='text' className='inputselectborder'/>
+                <div className='data_border'>
+                    <div>
+                        <span>新版本:</span> <input type='text' className='inputselectborder'/>
+                    </div>
+                    <div>
+                        <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({address:e.target.value}) }/>
+                    </div>
                 </div>
-                <div>
-                <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({address:e.target.value}) }/>
-                </div>
-            </div>
-            <button type='button' onClick={this.handleClick} className='e-btn'>开始导入</button>
+                <button onClick={this.handleClick} className='e-btn'>开始导入</button>
             </div>
             </Window>
         );

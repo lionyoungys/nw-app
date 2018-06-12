@@ -8,9 +8,10 @@ import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {value:''};
+        this.state = {value:'', checked:[]};    //checked:[{id:string,name:string,discount:bool}]
         this.handleClick = this.handleClick.bind(this);
-        this.onChoice = this.onChoice.bind(this);
+        this.handleChecked = this.handleChecked.bind(this);    //项目选中事件处理
+        this.handleDiscount = this.handleDiscount.bind(this);    //打折处理
     }
 
     handleClick() {
@@ -20,22 +21,60 @@ export default class extends Component {
         &&
         this.props.callback(this.state.value);
     }
+    handleChecked(e) {
+        let data = e.target.parentNode.parentNode.dataset
+        ,   id = data.id
+        ,   name = data.name
+        ,   index = id.inObjArray(this.state.checked, 'id');
+        if (-1 === index) {
+            this.state.checked.push({id:id, name:name, discount:false});
+        } else {
+            this.state.checked.splice(index, 1);
+        }
+        this.setState({checked:this.state.checked});
+    }
 
-    onChoice(e) {this.setState({value:e.target.innerText + '；' + this.state.value})}
+    handleDiscount(e) {
+        let id = e.target.parentNode.parentNode.dataset.id
+        ,   index = id.inObjArray(this.state.checked, 'id');
+        if (-1 !== index) {
+            this.state.checked[index].discount = !this.state.checked[index].discount;
+            this.setState({checked:this.state.checked});
+        }
+    }
+
 
     render() {
         if ('undefined' === typeof this.props.data || !(this.props.data instanceof Array)) return null;
-        let html = this.props.data.map(obj =>
-            <div className='clothes-price' key={obj.id}>
-                <div><input type='checkbox' className='e-checkbox'/>&nbsp;{obj.name}</div>
-                <div><input type='text' className='e-input'/>&nbsp;元</div>
-                <div><input type='checkbox' className='e-checkbox'/>&nbsp;允许打折</div>
-                <div>
-                    <button type='button' className='e-btn'>取消</button>&nbsp;
-                    <button type='button' className='e-btn'>确认</button>
+        let html = this.props.data.map(obj => {
+            let index = obj.id.inObjArray(this.state.checked, 'id')
+            ,   hasChecked = (-1 !== index);
+            return (
+                <div className='clothes-price' key={obj.id} data-id={obj.id} data-name={obj.name}>
+                    <div>
+                        <input 
+                            type='checkbox' 
+                            className='e-checkbox' 
+                            checked={hasChecked ? 'checked' : ''} 
+                            onClick={this.handleChecked}
+                        />&nbsp;{obj.name}
+                    </div>
+                    <div><input type='text' className='e-input'/>&nbsp;元</div>
+                    <div>
+                        <input
+                            type='checkbox' 
+                            className='e-checkbox' 
+                            checked={hasChecked && this.state.checked[index].discount ? 'checked' : ''}
+                            onClick={this.handleDiscount}
+                        />&nbsp;允许打折
+                    </div>
+                    <div>
+                        <button type='button' className='e-btn'>取消</button>&nbsp;
+                        <button type='button' className='e-btn'>确认</button>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        });
         return (
             <Window title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'>

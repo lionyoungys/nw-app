@@ -312,3 +312,56 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #balancestatistics-leiji{margin-right:23px}
 #balancestatistics-zengsong{margin-right:12px;}
+
+
+
+/* 底部分页 */
+.bothpages-footer{
+    width:872px;
+    height:36px;
+}
+.bothpages-footer-btn{
+    float:right;
+    height:34px;
+    width:auto;
+    margin-top:12px;
+}
+.bothpages-footer-btn span{
+    padding:2px 11px;
+    color:#000;
+    text-align:center;
+    height:18px;
+    border:1px solid #9a9a9a;
+    border-radius:5px;
+    line-height:18px;
+    display:block;
+    float:left;
+    font-size:12px;
+    background: #eee;
+    margin-right:5px;
+    cursor:pointer;
+}
+.bothpages-footer-all{
+    width:auto;
+    line-height:18px;
+    color:#000;
+    font-size:12px;
+    float:right;
+    margin-right:13px;
+    line-height: 34px;
+    margin-top: 8px;
+}
+.bothpages-footer-all span{
+    color:#f00;
+}
+.bothpages-footer-both{
+    float:right;
+    margin-right:13px;
+    color:#000;
+    font-size:12px;
+    line-height: 34px;
+    margin-top: 8px;
+}
+.bothpages-footer-both span{
+    color:#f00;
+}

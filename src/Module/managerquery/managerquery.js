@@ -17,7 +17,7 @@ export default class extends Component {
             <Window title='经理查询' onClose={this.props.closeView}>
                <div className="Succession_data">
                          <div className="Succession_dataLeft">
-                            <div>操作员<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
+                        <div>操作员：<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
                             <div>结束日期：<input type="date" /></div>
                             <div>结束日期：<input type="date" /></div>
                          </div>                         

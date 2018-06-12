@@ -2,6 +2,8 @@
 import Data from './Module/Data/App';
 import Clothes from './Module/Clothes/App' //收衣界面
 import Hangon from './Module/Hangon/Hangon.js'; //上挂
+import Takeclothes from './Module/Takeclothes/Takeclothes.js'; //取衣
+
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
 import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
 import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate.js'
@@ -56,6 +58,7 @@ import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js';
 export default {
     clothes:Clothes,    //收衣界面
     hangon:Hangon, // 上挂界面
+    take_clothes:Takeclothes, //取衣
     data:Data,
     // take_clothes:Takeclothes,   //取衣界面
     revoke_data:RevokeData,//撤单统计

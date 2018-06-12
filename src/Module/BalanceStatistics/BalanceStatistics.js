@@ -48,19 +48,29 @@ export default class extends Component {
                    <div className="bothpages_count">                           
                               <div className="bothpages_count_title balancestatistics_count_title">
                                  <span></span>
-                                 <span>会员手机号</span>
+                                 <span>卡号</span>
                                  <span>姓名</span>
                                  <span>会员类型</span>
                                  <span>余额</span>
                                  <span>办理时间</span>
-                                 <span>操作</span>
+                                 <span>折扣率</span>
                               </div>                                                     
                             <table className="bothpages_count_list balancestatistics_count_list" cellPadding="0" cellSpacing="0" border="0">  
                                 <tbody>                            
                                    {list}
                                 </tbody>
                             </table>
-                        </div>   
+                    </div>   
+                    <div className="bothpages-footer">
+                       <div className="bothpages-footer-btn">
+                            <span>首页</span>
+                            <span>上一页</span>
+                            <span>下一页</span>
+                            <span>尾页</span>
+                       </div>
+                       <div className="bothpages-footer-all">第<span>一</span>页/共<span>四</span>页</div>
+                       <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
+                    </div>
                </Window> 
             </div>
         );            

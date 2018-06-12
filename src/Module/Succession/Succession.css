@@ -12,7 +12,7 @@
     background:#eef4fb;
     float:left
 }
-.Succession_dataLeft div{
+.Succession_dataLeft > div{
     width:207px;
     height:20px;
     margin-top:18px;

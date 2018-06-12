@@ -1,0 +1,74 @@
+.Membersdetail{
+    width:870px;
+    height:58px;
+    border:1px solid #8db2e3;
+    background:#eef4fb;
+    margin:13px auto 0;
+}
+.Membersdetail div{
+    width:auto;
+    margin-left:47px;
+    line-height:58px;
+    color:#063781;
+    font-size:12px;
+    float: left;
+}
+.Membersdetail-tab{
+    width:870px;
+    max-height:497px;
+    margin:auto;
+}
+.Membersdetail-tab-title{
+    width:870px;
+    height:35px;
+    line-height:35px;
+    color:#000;
+    font-size:12px;
+}
+.Membersdetail-tab-title span{color:#063781}
+
+.Membersdetail-tab table {width:870px;max-height:466px;border:1px solid #acc6de}
+.Membersdetail-tab table thead{width:869px;height:25px;background:#89b0d4;display:inline-block}
+.Membersdetail-tab table thead tr{width:869px;height:25px}
+.Membersdetail-tab table thead tr th{
+    width:94px;
+    max-width:94px;
+    border-right:1px solid #acc6de;
+    line-height:25px;
+    color:#fff;
+    font-size:12px;text-align:center;
+}
+.Membersdetail-tab table thead tr th:first-child{
+    width:31px;
+    max-width:31px;
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:17px;
+    background-position-y:11px;
+}
+.Membersdetail-tab table tbody{
+    width:870px;
+    height:auto;
+    max-height:432px;
+    display:inline-block;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+.Membersdetail-tab table tbody tr{width:870px;height:25px;display: inline-block}
+.Membersdetail-tab table tbody tr:nth-child(odd) {background:#fff}
+.Membersdetail-tab table tbody tr:nth-child(even) {background:#f0f5f9}
+.Membersdetail-tab table tbody tr td{
+    width:94px;
+    height:25px;
+    border-right:1px solid #acc6de;
+    text-align:center;
+    line-height:25px;
+    color:#000;
+    max-width:94px;
+    font-size:12px;    
+}
+.Membersdetail-tab table tbody tr td:first-child{
+    width:31px;
+    max-width:31px;
+}
+.Membersdetail-tab table tbody tr td:last-child{border-right:none}

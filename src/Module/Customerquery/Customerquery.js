@@ -5,10 +5,12 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import './Customerquery.css';
+import './Membersdetail.css';
 
 export default class extends Component {
     constructor(props) {
-        super(props);                
+        super(props);  
+        this.state = {show:false}              
     };  
     render() {               
         return (       
@@ -49,7 +51,7 @@ export default class extends Component {
                       <tbody>
                           <tr>
                               <td></td>
-                              <td>15555555</td>
+                              <td onClick = {e =>this.setState({show:true})}>15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
@@ -266,8 +268,280 @@ export default class extends Component {
                       </tbody>
                   </table>
                 </div>
-                                 
-            </Window>        
+                <div className="bothpages-footer">
+                       <div className="bothpages-footer-btn">
+                            <span>首页</span>
+                            <span>上一页</span>
+                            <span>下一页</span>
+                            <span>尾页</span>
+                       </div>
+                       <div className="bothpages-footer-all">第<span>一</span>页/共<span>四</span>页</div>
+                       <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
+                </div>                                
+            </Window>  
+            {
+                    this.state.show
+                    &&
+                    <Window title='客户信息详情' onClose={this.props.closeView}>
+                        <div className="Membersdetail">
+                            <div>卡号：<span>158475254582</span></div>
+                            <div>姓名：<span>旺旺旺</span></div>
+                            <div>手机号：<span>158475254582</span></div>
+                            <div>卡类型：<span>平台会员卡</span></div>
+                            <div>余额：<span>158475254582</span></div>                  
+                        </div> 
+                        <div className="Membersdetail-tab">
+                            <div className="Membersdetail-tab-title">已为您找到<span>25485</span>条记录</div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>流水号</th>
+                                        <th>店铺ID</th>
+                                        <th>店员姓名</th>
+                                        <th>衣物件数</th>
+                                        <th>金额</th>
+                                        <th>实收金额</th>
+                                        <th>折扣率 </th>
+                                        <th>收银类型</th>
+                                        <th>日期</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>4555584751</td>
+                                        <td>45</td>
+                                        <td>旺旺旺</td>
+                                        <td>43</td>
+                                        <td>564</td>
+                                        <td>455</td>
+                                        <td>56%</td>
+                                        <td>3245</td>
+                                        <td>2015-05-23</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                              
+                </Window>
+                 }       
         </div>    
         );
     }
