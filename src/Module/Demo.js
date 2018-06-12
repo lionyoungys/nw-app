@@ -40,6 +40,12 @@ export default class extends React.Component {
     warn() {
         tool.ui.warn({callback:(close, event) => {
             close();
+        }});
+    }
+    warn2() { 
+        tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
+            console.log(event);
+            close();
         }}); 
     }
 
@@ -75,6 +81,8 @@ export default class extends React.Component {
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>
                 自定义弹窗信息及标题和按钮：<button type='button' className='e-btn' onClick={this.error2}>错误弹框</button>
+                <br/>
+                自定义按钮：<button type='button' className='e-btn' onClick={this.warn2}>警告弹框</button>
                 <br/>
                 弹出层容器<button type='button' className='e-btn' onClick={() => this.setState({show:true})}>容器弹框</button>
                 弹出层容器2<button type='button' className='e-btn' onClick={() => this.setState({show2:true})}>容器取消</button>

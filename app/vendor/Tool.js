@@ -160,18 +160,35 @@
             ('string' === typeof object.info ? '<div>' + object.info + '</div>' : '')
         );
         var bottom = this.c('div');
-        var button = this.c('button', 'e-btn', 'string' === typeof object.button ? object.button : '确认')
-        button.type = 'button';
         bg.appendChild(layer);    //追加节点
         layer.appendChild(title);
         title.appendChild(close);
+        close.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'close')}
         layer.appendChild(content);
         layer.appendChild(bottom);
-        bottom.appendChild(button);
+        var button;
+        if ('object' === typeof object.button && object.button instanceof Array) {
+            var btnLen = (object.button.length - 1);
+            button = [];
+            for (var i = 0;i <= btnLen;++i) {
+                button.push(this.c('button', 'e-btn', 'string' === typeof object.button[i] ? object.button[i] : i));
+                button[i].type = 'button';
+                button[i].setAttribute('data-i', i);
+                if (i !== btnLen) button[i].style.marginRight = '8px';
+                bottom.appendChild(button[i]);
+                button[i].onclick = function() {
+                    'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, this.dataset.i);
+                }
+            }
+        } else {
+            button = this.c('button', 'e-btn', 'string' === typeof object.button ? object.button : '确认');
+            button.type = 'button';
+            bottom.appendChild(button);
+            button.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'click')}
+        }
         document.body.appendChild(bg);
         this.center(layer);
-        close.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'close')}
-        button.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'click')}
+        
     }
     t.ui.ask = function ask(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.error = function error(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}

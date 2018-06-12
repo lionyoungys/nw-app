@@ -38,6 +38,7 @@ export default class extends Component {
         this.setPrice = this.setPrice.bind(this);    //设置工艺加价
         this.setTemp = this.setTemp.bind(this);    //设置临时衣物
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
+        this.onClose = this.onClose.bind(this);
     }
 
     componentDidMount() {
@@ -109,11 +110,17 @@ export default class extends Component {
     }
     handleClose() {this.setState({show:0})}
     handleCancel() {this.setState({show:1})}
+    onClose() {
+        tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
+            0 == event && this.props.closeView();
+            close();
+        }}); 
+    }
 
 
     render() {
         return (
-            <Window title='收衣' onClose={this.props.closeView} >
+            <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>
                     手机：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.phone} readOnly/>
                     姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly/>
