@@ -13,6 +13,7 @@ import Problem from './Problem';
 import Forcast from './Forecast';
 import Price from './Price';
 import Temp from './Temp';
+import UpdatePrice from './UpdatePrice';
 import './App.css';
 
 export default class extends Component {
@@ -36,6 +37,7 @@ export default class extends Component {
         this.setForcast = this.setForcast.bind(this);    //设置洗后预估
         this.setPrice = this.setPrice.bind(this);    //设置工艺加价
         this.setTemp = this.setTemp.bind(this);    //设置临时衣物
+        this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
     }
 
     componentDidMount() {
@@ -95,6 +97,7 @@ export default class extends Component {
     setForcast(value) {this.setState({show:7})}
     setPrice(value) {this.setState({show:8})}
     setTemp(value) {this.setState({show:4})}
+    updatePrice() {this.setState({show:0})}
     cost() {
 
     }
@@ -124,7 +127,7 @@ export default class extends Component {
                 </div>
                 <div className='clothes-body'>
                     <div>
-                        <div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div><Math>5</Math></div><div>2</div>
+                        <div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div>2</div><div onClick={() => this.setState({show:12})}>2</div><div><Math>5</Math></div><div>2</div>
                     </div>
                 </div>
                 <div style={{padding:'10px 20px'}}><button type='button' className='e-btn' onClick={() => this.setState({show:1})}>添加衣物</button></div>
@@ -189,6 +192,11 @@ export default class extends Component {
                     11 === this.state.show
                     &&
                     <Temp onClose={this.handleClose} onCancel={this.handleCancel} callback={this.setTemp}/>
+                }
+                {
+                    12 === this.state.show
+                    &&
+                    <UpdatePrice onClose={this.handleClose} callback={this.updatePrice}/>
                 }
             </Window>
         );

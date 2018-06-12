@@ -208,7 +208,7 @@
     padding-top: 24px;
 
 }
-.clothes-temp-body>div{
+.clothes-temp-body>div, .clothes-update-price>div{
     display: -webkit-flex;
     display: flex;
     font-size: 12px;
@@ -219,3 +219,13 @@
     margin: 0 16px;
     text-align: right;
 }
+.clothes-update-price{
+    height: 136px;
+    margin: 0 12px 8px;
+    border: 1px solid #8db2e3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 32px;
+}
+.clothes-update-price>div>:first-child{width: 116px;text-align: right;color: #15458d}
+.clothes-update-price>div input{width: 131px}

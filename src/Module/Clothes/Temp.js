@@ -24,9 +24,18 @@ export default class extends Component {
             <Window title='编辑衣物信息' height='315' width='362' onClose={this.props.onClose}>
                 <div className='clothes-temp-top'>临时衣物</div>
                 <div className='clothes-temp-body'>
-                    <div><span>临时衣物名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/></div>
-                    <div><span>价格：</span><input type='text' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/></div>
-                    <div><span>交活天数：</span><input type='text' value={this.state.day} onChange={e => this.setState({day:e.target.value})}/></div>
+                    <div>
+                        <span>临时衣物名称：</span>
+                        <input type='text' style={{width:'148px'}} value={this.state.name} onChange={e => this.setState({name:e.target.value})}/>
+                    </div>
+                    <div>
+                        <span>价格：</span>
+                        <input type='text' style={{width:'121px'}} value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;&nbsp;元
+                    </div>
+                    <div>
+                        <span>交活天数：</span>
+                        <input type='text' style={{width:'121px'}} value={this.state.day} onChange={e => this.setState({day:e.target.value})}/>&nbsp;&nbsp;天
+                    </div>
                     <div style={{paddingTop:'7px'}}><span></span>
                         <input 
                             type='checkbox' 
