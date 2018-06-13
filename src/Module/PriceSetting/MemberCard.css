@@ -1,0 +1,66 @@
+.membercard-tab table thead tr th:last-child {
+    border-right: none;
+}
+.membercard-tab table thead tr th {
+    width: 138px;
+    height: 25px;
+    border-right: 1px solid #acc6de;
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    min-width: 104px;
+}
+.membercard-tab{
+    width:843px;
+    height:auto;
+    max-height:473px;
+    border:1px solid #8db2e3;
+    clear:both;
+    max-height:485px;
+    overflow: hidden;
+}
+.membercard-tab table thead{
+    width:100%;
+    height:25px;
+    background:#89b0d4;
+}
+.membercard-tab table thead tr{
+    width:100%;
+    height:25px;
+    line-height:25px;
+    display: inline-block;
+}
+.membercard-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.membercard-tab table tbody tr{
+    width:100%;
+    height:25px;
+}
+.membercard-tab table tbody tr:nth-of-type(odd){background:#fff}
+.membercard-tab table tbody tr td{
+    width: 138px;
+    height:25px; 
+    border-right:1px solid #acc6de;
+    text-align:center;
+    font-size:12px;
+    color:#000;
+    line-height:25px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    min-width:104px;
+    
+}
+.membercard-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
+.membercard-tab table tbody tr td b{
+    font-weight:inherit;
+    color: #2151ed;
+    margin-left:13px;
+    float:left;
+}
+.membercard-tab table tbody tr td i{
+    font-style:normal;
+    color:#f00;
+    margin-right:12px;
+    float:right;
+}

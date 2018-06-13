@@ -1,5 +1,5 @@
 /**
- * 取衣详情界面
+ * 取衣界面
  * @author fanyerong
  */
 import React, {Component} from 'react';

@@ -5,12 +5,13 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import CleaningPriceSetting from './CleaningPriceSetting'
+import MemberCard from './MemberCard'
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={index:0};
         this.tab=['会员卡','洗护服务','库存商品'];
-        this.views=[<CleaningPriceSetting/>,<CleaningPriceSetting/>];
+        this.views=[<MemberCard/>,<CleaningPriceSetting/>];
         this.handleClick=this.handleClick.bind(this);
     };  
     handleClick(e){
@@ -35,7 +36,7 @@ export default class extends Component {
                         </ul>
                     </div>
                     <div >
-                        {this.views[1]}
+                        {this.views[this.state.index]}
                       </div>
                      
                     </div>

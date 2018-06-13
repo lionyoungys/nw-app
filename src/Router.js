@@ -3,6 +3,7 @@ import Data from './Module/Data/App';
 import Clothes from './Module/Clothes/App' //收衣界面
 import Hangon from './Module/Hangon/Hangon.js'; //上挂
 import Takeclothes from './Module/Takeclothes/Takeclothes.js'; //取衣
+import Commoditysales from './Module/Commoditysales/Commoditysales.js'; //商品销售
 
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
 import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
@@ -38,7 +39,7 @@ import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery.js'; //挂
 import CardQueries from './Module/CardQueries/CardQueries.js'; //退卡查询
 import ParameterSettings from './Module/ParameterSettings/ParameterSettings.js'; //参数设置
 import Equipmentmanagement from './Module/Equipmentmanagement/Equipmentmanagement.js'; //设备管理
-import Membershipquery from './Module/Membershipquery/Membershipquery.js'; //会员消费查询
+// import Membershipquery from './Module/Membershipquery/Membershipquery.js'; //会员消费查询
 import Customerquery from './Module/Customerquery/Customerquery.js'; //客户消费查询
 import Payoutstats from './Module/Payoutstats/Payoutstats.js'; //赔付统计
 import Vipstats from './Module/Vipstats/Vipstats.js'; //会员分类统计
@@ -51,7 +52,7 @@ import Businessdaily from './Module/Businessdaily/Businessdaily.js'; //经营日
 import Businesstats from './Module/Businesstats/Businesstats.js'; //营业统计
 import Balancedetail from './Module/Balancedetail/Balancedetail.js'; //欠款明细
 import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js'; //营业分析
-
+import Debtpay from './Module/Debtpay/Debtpay.js'; //欠款补交
 
 
 //路由对象
@@ -59,6 +60,9 @@ export default {
     clothes:Clothes,    //收衣界面
     hangon:Hangon, // 上挂界面
     take_clothes:Takeclothes, //取衣
+    debt_pay:Debtpay,// 欠款补交
+    commodity_sales:Commoditysales ,//商品销售
+
     data:Data,
     // take_clothes:Takeclothes,   //取衣界面
     revoke_data:RevokeData,//撤单统计
@@ -97,7 +101,7 @@ export default {
     card_queries:CardQueries,  //退卡查询
     Parameter_Settings:ParameterSettings, //参数设置
     equipment_management:Equipmentmanagement , //设备管理
-    Member_ship_query:Membershipquery, //会员消费查询
+    // Member_ship_query:Membershipquery, //会员消费查询
     customer_query:Customerquery, // 客户信息查询
     payout_stats:Payoutstats, //赔付统计
     vip_stats:Vipstats , //会员分类统计

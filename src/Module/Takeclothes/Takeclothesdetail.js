@@ -4,12 +4,14 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import LayerBox from '../..//UI/LayerBox';
 import { WSAEINVALIDPROCTABLE } from 'constants';
 import './Takeclothes.css';
 
 export default class extends Component {   
     constructor(props) {
-        super(props);              
+        super(props);     
+        this.state = {show2:false}         
     };    
     render() {           
            return (
@@ -57,11 +59,31 @@ export default class extends Component {
                     <div className="Takeclothesdetail-footer">
                         <div className="Takeclothesdetail-footer-left"><input type="checkbox" />全选/全不选</div>
                         <div className="Takeclothesdetail-footer-right">
-                           <button className="e-btn Takeclothesdetail-footer-right-btn">立即收款</button>
+                           <button className="e-btn Takeclothesdetail-footer-right-btn">立即收款</button> 
+                           <button className="take-over" onClick={() => this.setState({show2:true})}>取衣</button>
+                           <button className="take-no" >取衣</button>
+                           {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                            <div>欠款: ￥122.52</div>
                            <div>价格: ￥524.12</div>
                         </div>                       
                     </div>
+                    {
+                    this.state.show2
+                    &&
+                    <LayerBox
+                        title='取衣'
+                        onClose={() => this.setState({show2:false})}
+                        onClick={() => this.setState({show2:false})}
+                        onCancel={() => this.setState({show2:false})}
+                        hasCancel={true} width='278' height='200'>
+                        {
+                            <div className="takeclothes-people">
+                                该客户确定要取走衣物
+                            </div>
+                        }
+                   
+                    </LayerBox>
+                }
                 </Window> 
         )
     }

@@ -175,6 +175,36 @@
     float:right;
     margin-right:8px;
     cursor:pointer;
+    display: none;
+}
+.take-over{
+    width:71px;
+    height:24px;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    line-height:24px;
+    float:right;
+    margin-right:8px;
+    cursor: pointer;
+    background:#89b0d4;
+    outline:none;
+    border:none;
+}
+.take-no{
+    width:71px;
+    height:24px;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    line-height:24px;
+    float:right;
+    margin-right:8px;
+    cursor: pointer;
+    background:#c2c2c2;   
+    outline:none;
+    border:none;
+    display: none;
 }
 .Takeclothesdetail-footer-right div{
     float: right;
@@ -184,3 +214,13 @@
     font-size:12px;
     margin-right:12px;
 }
+.takeclothes-people{
+    width:100%;
+    text-align: center;
+    line-height:200px;
+    color:#000;
+    font-size:14px;
+}
+
+/* 欠款补交样式 */
+.debtpay-tab table tbody tr td:last-child{color:#024ffe}

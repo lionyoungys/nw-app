@@ -6,7 +6,7 @@
 import React from 'react';
 import Window from '../UI/Window';
 import {Table} from '../UI/Table';
-import LayerBox from '../Ui/LayerBox';
+import LayerBox from '../UI/LayerBox';
 import SelectSearch from '../UI/SelectSearch';
 import Select from '../UI/Select';
 
@@ -135,6 +135,7 @@ export default class extends React.Component {
                         onClick={() => this.setState({show2:false})}
                         onCancel={() => this.setState({show2:false})}
                         hasCancel={true}
+                        
                     ></LayerBox>
                 }
            </Window>

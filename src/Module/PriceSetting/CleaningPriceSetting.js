@@ -7,26 +7,75 @@ import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
+import ClothesCategoryManage from './ClothesCategoryManage'
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false,serveTypes:[]}
+        this.state = {show:false,
+            // serveTypes:[],
+            index:0,
+            itemLists:[],
+            itemList:[]
+        }
+        this.handleClick=this.handleClick.bind(this);
     };   
+    handleClick(e){
+        this.setState({index:e.target.dataset.index});
+    } 
     componentDidMount(){
-        api.post('serveType', {
+    //     api.post('serveType', {
+    //         token:'token'.getData()
+    // }, (res, ver) => {
+    //         if (ver && res) {
+    //             console.log(res)
+    //             this.setState({serveTypes:res.result})
+    //         }
+    //     }
+    //     ); 
+        api.post('itemList', {
             token:'token'.getData()
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({serveTypes:res.result})
+                this.setState({itemLists:res.result})
             }
         }
         ); 
+       
     }
     render() {
-        let serveTypes = this.state.serveTypes.map((item,index)=>
-        <span >{item.name}</span>
+        let itemLists = this.state.itemLists.map((item,index)=>
+        <span  key={item} 
+        data-index={index} 
+        className={this.state.index==index?'selected_row':null}
+        onClick={this.handleClick}>{item.name}</span>
+      
     );
+    let itemList;
+    if(
+        'undefined' !== typeof this.state.itemLists[this.state.index]
+        && 
+        'undefined' !== typeof this.state.itemLists[this.state.index].server
+    ) {
+        itemList = this.state.itemLists[this.state.index].server.map((item,index)=>
+            <tr>
+                <td>{index+1}</td>
+                <td>{item.item_name}</td>
+                <td>{item.dispose_type}</td>
+                <td>{item.materials}</td>
+                <td>{item.grade}</td>
+                <td>{item.item_off_price}</td>
+                <td>{item.item_online_price}</td>
+                <td>{item.item_discount}</td>
+                <td></td>
+                <td></td>
+                <td>{item.has_discount}</td>
+                <td>{item.cate_name}</td>
+                <td>{item.item_cycle}</td>
+                <td>{item.grid}</td>
+            </tr>
+        );
+    }
         return (
             // <Window title='洗护价格设置' onClose={this.props.closeView} >
             <div className='cleaning_price_all'>
@@ -38,8 +87,7 @@ export default class extends Component {
                 <div className='cleaning_price_set_left_table_div'>
                     <div className='cleaning_price_set_left_table'>
                         {/* <span className='selected_row'>外套类</span> */}
-                        {serveTypes}
-
+                        {itemLists}
                     </div> 
                 </div>
 
@@ -48,21 +96,25 @@ export default class extends Component {
                 <table className='change_card_table right_table'>
                     <thead>
                         <tr>
-                            <td></td>
-                            <td>名称</td>
-                            <td>衣物类别</td>
+                            <td>id</td>
+                            <td>衣物名称</td>
+                            <td>处理类别</td>
+                            <td>材料</td>
                             <td>档次</td>
-                            <td>价格</td>
-                            <td>折扣下限</td> 
-                            <td>可调</td>
-                            <td>可折</td>
-                            <td>交活天数</td>
-                            <td>格架系列</td>
-                            <td>操作</td>
+                            <td>线下价格</td>
+                            <td>线上价格</td>
+                            <td>折扣率</td>
+                            <td>在线接单</td>
+                            <td>价格可调</td>
+                            <td>允许折扣</td>
+                            <td>衣物类别</td>
+                            <td>洗护周期</td>
+                             <td>格架</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {itemList}
+                        {/* <tr>
                             <td>1</td>
                             <td>wwkskskskk看书看书看书看</td>
                             <td></td>
@@ -74,72 +126,7 @@ export default class extends Component {
                             <td></td>
                             <td></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </table> 
                 {

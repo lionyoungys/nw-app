@@ -166,6 +166,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-overflow:ellipsis;
     white-space: nowrap;
     max-width:91px;
+    cursor:pointer;
 }
 .Customerquery-tab table tbody tr td:last-child{border-right:none;}
 .Customerquery-tab table tbody tr td:first-child{width:31px;min-width: 31px;}

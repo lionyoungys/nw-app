@@ -6,6 +6,7 @@
     color: #063781;
     padding-left: 18px;
     font-size: 12px;
+    background: #eef4fb;
 }
 .clothes-user>input{margin-right: 18px}
 .clothes-header{
@@ -53,6 +54,7 @@
     height: 90px;
     width: 870px;
     border: 1px solid #89b0d4;
+    background: #eef4fb;
 }
 .clothes-footer-left{
     width: 612px;
@@ -91,6 +93,7 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 12px 10px;
+    background: #eef4fb;
 }
 .clothes-editor-body>i{
     font-style: normal;
@@ -111,6 +114,7 @@
     height: 350px;
     border: 1px solid #8db2e3;
     margin: 0 14px;
+    background: #eef4fb;
 }
 .clothes-item-header{
     display: -webkit-flex;
@@ -159,6 +163,8 @@
     padding: 8px;
     overflow: auto;
 }
+.clothes-body>div:nth-child(odd){background: #fff}
+.clothes-body>div:nth-child(even){background: #f0f5f9}
 .clothes-problem-body>i{
     font-style: normal;
     font-size: 12px;

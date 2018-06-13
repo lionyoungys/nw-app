@@ -14,6 +14,7 @@ export default class extends Component {
         this.state = {
             show:false,
             show1:false,
+            show2:false,
             operatorlist:[],
             user_name : '',
             user_phone : '', 
@@ -35,6 +36,8 @@ export default class extends Component {
         this.updatemobile = this.updatemobile.bind(this);
         this.updatepassword = this.updatepassword.bind(this);
         this.modOperatorSuccess = this.modOperatorSuccess.bind(this);
+        this.updatepasswd = this.updatepasswd.bind(this);
+        this.modpasswdSuccess = this.modpasswdSuccess.bind(this);
     }; 
     //员工与权限 新增员工
     operatorAdd () {
@@ -120,7 +123,7 @@ export default class extends Component {
         );
     }
     modOperatorSuccess(){
-        this.setState({show1:false})
+       
         api.post('modOperator', {
             token:'token'.getData(),
             id:this.state.operatorlist[this.state.write].id,
@@ -129,6 +132,7 @@ export default class extends Component {
             auth:this.state.auth[this.state.index].id,
         }, (res, ver) => {
                 if (ver && res) {
+                    this.setState({show1:false})
                     console.log(res)
                    this.componentDidMount();
                 }
@@ -141,10 +145,28 @@ export default class extends Component {
         this.input2.removeAttribute('disabled'); 
         
     }
+    modpasswdSuccess(){
+      
+        api.post('resetPasswd', {
+            token:'token'.getData(),
+            id:this.state.operatorlist[this.state.index].id
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    this.setState({show2:false})
+                   this.componentDidMount();
+                }
+            }
+        );
+    }
     updatemobile(){
         console.log(this.input);
         this.input.removeAttribute('disabled');
         console.log(this.input);
+    }
+    updatepasswd(e){
+        this.setState({show2:true,index:e.target.dataset.index});
+
     }
     componentDidMount() {
         api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
@@ -163,7 +185,7 @@ export default class extends Component {
         <td>{item.aname}</td>
         <td>{item.account}</td>
         <td>{item.auth_name}</td>
-        <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index = {index}>删除</i></td>
+        <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index = {index}>删除</i><i onClick={this.updatepasswd} data-index={index}>修改密码</i></td>
     </tr>
         );
         return ( 
@@ -215,12 +237,29 @@ export default class extends Component {
                              <div className='mobilephone'>
                              <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
                              </div>
-                              <div>
+                              {/* <div>
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
-                              </div>
+                              </div> */}
                                <div>
                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange}/>
                                </div>
+                               </div>
+                     }
+                    </LayerBox>
+                }
+                  {
+                    this.state.show2
+                    &&
+                   
+                    <LayerBox title='修改员工密码' onClose={() => this.setState({show2:false})} onClick={this.modpasswdSuccess} >
+                        {
+                            <div className='updatestaffborder'>
+                            <div className='margintop'>
+                              <div>
+                              <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} />
+                              {/* <span className='updatemobile' onClick={this.updatepassword}>修改密码</span> */}
+                              </div>
+                            </div>
                                </div>
                      }
                     </LayerBox>

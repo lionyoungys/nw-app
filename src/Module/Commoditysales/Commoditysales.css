@@ -1,0 +1,95 @@
+
+
+/* 商品销售 */
+.commoditysales-div{
+    width:870px;
+    height:285px;
+    border:1px solid #8db2e3;
+    margin:9px auto;
+    background: #eef4fb
+}
+.commoditysales-div-left{
+    float:left;
+    width:93px;
+    height:263px;
+    margin-left:9px;
+    margin-top:10px;
+}
+.commoditysales-left-title{
+    width:93px;
+    height:28px;
+    line-height:28px;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+}
+.commoditysales-left-count{
+    width:93px;
+    height:auto;
+    max-height:236px;
+    overflow-y:auto; 
+    border:1px solid #8db2e3;
+}
+.commoditysales-left-count span{
+    display:block;
+    width:93px;
+    height:28px;
+    line-height:28px;
+    text-align:center;
+    color:#000;
+    font-size:12px;
+    background:url(./img/cleaning_price_set.png) no-repeat;
+    background-size:77px 2px;
+    background-position:bottom center;
+}
+.commoditysales-left-count span:last-child{
+    background-image:none;
+}
+.commoditysales-left-count span.commoditysales-left-hover{
+    background:#5f9dfa;
+    color:#fff;
+}
+.commoditysales-div-right{
+    width:753px;
+    height:273px;
+    float:right;
+    margin-right:9px;
+    
+}
+.commoditysales-right-top{
+    width:753px;
+    height:38px;
+}
+.commoditysales-right-btn{
+    float:right;
+    margin:7px 3px;
+    cursor:pointer;
+}
+.commoditysales-right-text{
+    float:right;
+    width:200px;
+    height:22px;
+    border:1px solid #c2c2c2;
+    background:#f9f9f9;
+    color:#9a9a9a;
+    font-size:12px;
+    line-height:22px;
+    margin-right:8px;
+    margin-top:7px;
+    text-indent:12px;
+    
+}
+.commoditysales-right-tab{
+    width:751px;
+    height:auto;
+    max-height:236px;
+    border:1px solid #8db2e3;
+}
+.commoditysales-right-tab table{
+    width:751px;
+    height:auto;
+    max-height:236px;
+}
+.commoditysales-right-tab table thead{
+    
+}
