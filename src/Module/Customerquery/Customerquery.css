@@ -10,7 +10,7 @@
     float:left;
     background:#eef4fb;
 }
-.Customerquery-title .Customerquery-title-nor,.Customerquery-title .Customerquery-title-select{
+.Customerquery-title > div{
     width:242px;
     height:24px;
     margin-top:5px;
@@ -34,7 +34,7 @@
     float: left;
     margin-left:3px;
 }
-.Customerquery-title .Customerquery-title-select .ui-select-define{
+.Customerquery-title div .ui-select-define{
 
     margin-left:3px;
     width: 146px;
@@ -83,6 +83,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background:url(./img/.Customerquery-right.png);
     background-size:31px 29px;
     cursor: pointer;
+    margin-left: 50px;
   }
 .Customerquery-query{float:left;margin-left: 19px;}
 .Customerquery-over{

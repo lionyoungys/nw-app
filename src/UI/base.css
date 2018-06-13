@@ -170,6 +170,7 @@
 .ui-select:hover>i{background: url(img/ui-select-blue.png) no-repeat center center}
 .ui-select.ui-select-readonly>i, .ui-select.ui-select-readonly:hover>i{background: url(img/ui-select-readonly.png) no-repeat center center}
 .ui-select-selected{
+    height: 20px;
     padding: 0 24px 0 6px;
     border-top-left-radius:3px;
     border-top-right-radius:3px;
@@ -396,4 +397,4 @@
     padding-right: 50px;
 }
 .ui-payment-amount span{color: red}
-.ui-payment-pay-handle{height: 54px}
+.ui-payment-pay-handle{height: 54px;margin-top: 16px}
