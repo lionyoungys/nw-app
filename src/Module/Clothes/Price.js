@@ -68,20 +68,17 @@ export default class extends Component {
                             onClick={this.handleDiscount}
                         />&nbsp;允许打折
                     </div>
-                    <div>
-                        <button type='button' className='e-btn'>取消</button>&nbsp;
-                        <button type='button' className='e-btn'>确认</button>
-                    </div>
                 </div>
             );
         });
         return (
-            <Window title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
-                <div className='clothes-editor-top'>
-                    <span>工艺加价</span>
-                    <button type='button' className='e-btn' onClick={this.props.onClick}>确定</button>
+            <Window title='编辑衣物信息' height='360' width='436' onClose={this.props.onClose}>
+                <div className='clothes-price-main'>{html}</div>
+                <div className='clothes-price-bottom'>
+                    <button type='button' className='e-btn' onClick={this.props.onClose}>取消</button>
+                    &nbsp;&nbsp;
+                    <button type='button' className='e-btn' onClick={this.handleClick}>确认</button>
                 </div>
-                <div className='clothes-problem-body'>{html}</div>
             </Window>
         );
     }

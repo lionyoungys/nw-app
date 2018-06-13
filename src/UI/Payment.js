@@ -122,6 +122,9 @@ export default class extends Component {
                         <div>欠费：<span>&yen;500</span></div>
                     </div>
                 </div>
+                <div className='ui-payment-confirm'>
+                    <button type='button' className='e-btn'>立即收款</button>
+                </div>
             </Window>
         );
     }

@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Math from '../../UI/Math';
 import './Commoditysales.css';
 
 export default class extends Component {
@@ -34,14 +35,272 @@ export default class extends Component {
                       </div>
                       <div className="commoditysales-right-tab">
                          <table>
-                             <thead></thead>
-
-
+                             <thead>
+                                 <tr>
+                                     <th>商品编码</th>
+                                     <th>商品名称</th>
+                                     <th>折扣</th>
+                                     <th>库存</th>
+                                     <th>单价</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                                 <tr>
+                                     <td><input type="checkbox" />2547854512</td>
+                                     <td>裤子鞋子袜子好多衣服</td>
+                                     <td>0.8%</td>
+                                     <td>90</td>
+                                     <td>￥89</td>
+                                 </tr>
+                             </tbody>
                          </table>
                       </div>
                   </div>
-               </div>                            
+               </div> 
+               <div className="commoditysales-footerdiv">
+                   <div className="commoditysales-footerdiv-left">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>商品编号</th>
+                                  <th>商品名称</th>
+                                  <th>折扣率</th>
+                                  <th>单价</th>
+                                  <th>数量</th>
+                                  <th>操作</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                              <tr>
+                                  <td>235666666</td>
+                                  <td>裤子外套衬衫鞋袜子</td>
+                                  <td>0.3%</td>
+                                  <td>45</td>
+                                  <td><Math>2</Math></td>
+                                  <td>删除</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                   </div>   
+                   <div className="commoditysales-footerdiv-right">
+                      <div className="commoditysales-footerdiv-rightboth">总金额: ￥89.00</div>
+                      <div className="commoditysales-footerdiv-rightboth">折扣率: 5%</div>
+                      <div className="commoditysales-footerdiv-rightboth">总件数: 89</div>
+                      <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥89.00</div>                    
+                      <div className="commoditysales-footerdiv-rightboth">
+                          <button type='button' className='e-btn middle high'>收银</button>
+                      </div>
+                      <div className="commoditysales-button">
+                        <button type='button' className='e-btn' >开钱箱</button>&nbsp;
+                        <button type='button' className='e-btn' >充值</button>&nbsp;
+                        <button type='button' className='e-btn' >卡扣款</button>
+                     </div>                  
+                   </div>                           
+               </div>                           
             </Window>  
         );
     }
 }
+
+{/* <div className="commoditysales-footerbtn"><button>收银</button></div> 
+                   <div className="commoditysales-footerbtn commoditysales-footerbtnboth">
+                      <button className="e-btn">开钱箱</button>
+                      <button className="e-btn">充值</button>
+                      <button className="e-btn">卡扣款</button>
+</div>  */}

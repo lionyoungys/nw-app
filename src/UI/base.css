@@ -398,3 +398,7 @@
 }
 .ui-payment-amount span{color: red}
 .ui-payment-pay-handle{height: 54px;margin-top: 16px}
+.ui-payment-confirm{
+    margin: 16px 40px 0 0;
+    text-align: right;
+}
