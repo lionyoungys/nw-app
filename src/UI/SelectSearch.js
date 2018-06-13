@@ -11,7 +11,7 @@ export default class extends React.Component {
         super(props);
         this.state = {
             value:'string' === typeof this.props.value ? this.props.value : '', 
-            selected:'string' === typeof this.props.selected && '' !== this.props.selected ? this.props.selected : this.props.option[0], 
+            selected:('string' === typeof this.props.selected && '' !== this.props.selected) ? this.props.selected : this.props.option[0], 
             show:false,
             height_light:false,
             focus:false,
@@ -30,15 +30,16 @@ export default class extends React.Component {
     toggleShow() {this.setState({show:!this.state.show})}
     
     render() {
-        let len = this.props.option.length,
-            option = [];
+        let propsOption = ('object' === typeof this.props.option && this.props.option instanceof Array) ? this.props.option : []
+        ,   len = propsOption.length
+        ,   option = [];
         for (let i = 0;i < len;++i) {
-            if (this.state.selected === this.props.option[i]) continue;
+            if (this.state.selected === propsOption[i]) continue;
             option.push(
                 <div
-                    key={this.props.option[i]}
+                    key={propsOption[i]}
                     onClick={this.handleChange}
-                >{this.props.option[i]}</div>
+                >{propsOption[i]}</div>
             );
         }
         return (

@@ -72,7 +72,7 @@ export default class extends Component {
             );
         });
         return (
-            <Window title='编辑衣物信息' height='360' width='436' onClose={this.props.onClose}>
+            <Window title='工艺加价' height='360' width='436' onClose={this.props.onClose}>
                 <div className='clothes-price-main'>{html}</div>
                 <div className='clothes-price-bottom'>
                     <button type='button' className='e-btn' onClick={this.props.onClose}>取消</button>

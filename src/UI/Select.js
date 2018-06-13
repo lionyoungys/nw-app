@@ -32,34 +32,35 @@ export default class extends React.Component {
     toggleShow() {!this.props.readOnly && this.setState({show:!this.state.show})}
     
     render() {
-        let len = this.props.option.length,
-            option = [];
-        let selected = this.state.selected;
+        let propsOption = ('object' === typeof this.props.option && this.props.option instanceof Array) ? this.props.option : []
+        ,   len = propsOption.length
+        ,   option = []
+        ,   selected = this.state.selected;
         if (null === selected && len > 0) {
-            selected = 'string' === typeof this.props.option[0] ? this.props.option[0] : this.props.option[0].value;
+            selected = 'string' === typeof propsOption[0] ? propsOption[0] : propsOption[0].value;
         }
         for (let i = 0;i < len;++i) {
             if (null === this.state.selected && 0 === i) {
                 continue;
-            } else if ('string' === typeof this.props.option[i] && this.state.selected === this.props.option[i]) {
+            } else if ('string' === typeof propsOption[i] && this.state.selected === propsOption[i]) {
                 continue;
             } else {
-                if (this.state.selected === this.props.option[i].value) continue;
+                if (this.state.selected === propsOption[i].value) continue;
             }
-            if ('string' === typeof this.props.option[i]) {
+            if ('string' === typeof propsOption[i]) {
                 option.push(
                     <div
-                        key={this.props.option[i] + i}
+                        key={propsOption[i] + i}
                         onClick={this.handleChange}
-                    >{this.props.option[i]}</div>
+                    >{propsOption[i]}</div>
                 );
             } else {
                 option.push(
                     <div
-                        key={this.props.option[i].key}
-                        data-value={this.props.option[i].key}
+                        key={propsOption[i].key}
+                        data-value={propsOption[i].key}
                         onClick={this.handleChange}
-                    >{this.props.option[i].value}</div>
+                    >{propsOption[i].value}</div>
                 );
             }
         }
