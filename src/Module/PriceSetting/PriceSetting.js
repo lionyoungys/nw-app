@@ -6,12 +6,13 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import CleaningPriceSetting from './CleaningPriceSetting'
 import MemberCard from './MemberCard'
+import FinishedGoods from './FinishedGoods'
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={index:0};
         this.tab=['会员卡','洗护服务','库存商品'];
-        this.views=[<MemberCard/>,<CleaningPriceSetting/>];
+        this.views=[<MemberCard/>,<CleaningPriceSetting/>,<FinishedGoods/>];
         this.handleClick=this.handleClick.bind(this);
     };  
     handleClick(e){

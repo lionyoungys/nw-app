@@ -9,10 +9,26 @@ export default class extends Component {
     constructor(props) {
         super(props);
     };
+    componentDidMount(){
+        api.post('goodtypeList', {
+            token:'token'.getData(),
+            fid:'',
+            name:'',
+            price:'',
+            stock:'',
+            discount:''
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({itemLists:res.result,typeList:res.result.typeArray('name'),})
+            }
+        }
+        ); 
+    }
     render() {
         return (
 
-            <Window title='商品分类管理' onClose={this.props.closeView} width='632' height='411'>
+            <Window title='商品分类管理' onClose={this.props.onclose} width='632' height='411'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 

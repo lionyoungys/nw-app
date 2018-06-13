@@ -16,6 +16,7 @@ import Temp from './Temp';
 import UpdatePrice from './UpdatePrice';
 import Deduct from './Deduct';
 import Payment from '../../UI/Payment';
+import User from './User';
 import './App.css';
 
 export default class extends Component {
@@ -40,6 +41,7 @@ export default class extends Component {
         this.setTemp = this.setTemp.bind(this);    //设置临时衣物
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
         this.onClose = this.onClose.bind(this);
+        this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
     }
 
     componentDidMount() {
@@ -108,6 +110,7 @@ export default class extends Component {
     }
     handleClose() {this.setState({show:0})}
     handleCancel() {this.setState({show:1})}
+    tempUser() {this.setState({show:15})}
     onClose() {
         tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
             0 == event && this.props.closeView();
@@ -120,10 +123,10 @@ export default class extends Component {
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>
-                    手机：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.phone} readOnly/>
-                    姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly/>
-                    卡号：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.number} readOnly/>
-                    地址：<input type='text' className='e-input' style={{width:'196px'}} value={this.state.addr} readOnly/>
+                    手机：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.phone} readOnly onClick={this.tempUser}/>
+                    姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly onClick={this.tempUser}/>
+                    卡号：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.number} readOnly onClick={this.tempUser}/>
+                    地址：<input type='text' className='e-input' style={{width:'196px'}} value={this.state.addr} readOnly onClick={this.tempUser}/>
                     <button type='button' className='e-btn' onClick={this.M1read}>读卡</button>
                 </div>
                 <div className='clothes-header'>
@@ -212,6 +215,11 @@ export default class extends Component {
                     14 === this.state.show
                     &&
                     <Payment onClose={this.handleClose}/>
+                }
+                {
+                    15 === this.state.show
+                    &&
+                    <User onClose={this.handleClose}/>
                 }
             </Window>
         );

@@ -89,7 +89,6 @@ export default {
     manager_gathering:ManagerGathering,//经理收款
     price_setting:PriceSetting,//价格设置
     Solut_ionto_hang:Solutiontohang,  //解除挂失
-    sale_card:SaleCard,//售卡
     
     edit_shop_prices:Editshopprices, //编辑商品价格
     edit_cleaning_prices:EditCleaningPrices,  //编辑洗护价格

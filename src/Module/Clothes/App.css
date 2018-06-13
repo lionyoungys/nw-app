@@ -297,3 +297,55 @@
     outline: none;
     resize: none;
 }
+/* user.js填写客户信息界面搭建 */
+.clothes-user-top{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    margin: 10px 26px 10px 10px;
+}
+.clothes-user-top>:first-child{
+    height: 70px;
+    width: 640px;
+    margin-right: 26px;
+    border: 1px solid #8db2e3;
+    color: #063781;
+}
+.clothes-user-top>:first-child i{color: red}
+.clothes-user-top>:first-child>:first-child{padding: 10px 0;}
+.clothes-user-top>:first-child>div{display: -webkit-flex;display: flex}
+.clothes-user-top>:first-child>div .e-input{width: 126px;margin-right: 38px}
+.clothes-user-top>:first-child>div>:first-child{width: 66px;text-align: right}
+.clothes-user-main{
+    max-height: 388px;
+    margin: 0 10px;
+    border: 1px solid #8db2e3;
+}
+.clothes-user-main-body{max-height:360px;overflow: auto}
+.clothes-user-main>:first-child{
+    display: -webkit-flex;
+    display: flex;
+    min-height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    color: #fff;
+    background: #89b0d4;
+    text-align: center;
+}
+.clothes-user-main-body>div{
+    display: -webkit-flex;
+    display: flex;
+    min-height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+}
+.clothes-user-main>:first-child>div, .clothes-user-main-body>div>div{border-right: 1px solid #acc6de}
+.clothes-user-main>:first-child>div:last-child,
+.clothes-user-main-body>div>div:last-child{border-right: none}
+.clothes-user-main>:first-child>div,
+.clothes-user-main-body>div>div{width: 94px}
+.clothes-user-main>:first-child>div:nth-child(1),
+.clothes-user-main-body>div>div:nth-child(1) {width: 84px}
+.clothes-user-main>:first-child>div:nth-child(7),
+.clothes-user-main-body>div>div:nth-child(7) {width: 180px}
