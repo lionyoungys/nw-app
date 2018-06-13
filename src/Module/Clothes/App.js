@@ -15,6 +15,7 @@ import Price from './Price';
 import Temp from './Temp';
 import UpdatePrice from './UpdatePrice';
 import Deduct from './Deduct';
+import Payment from '../../UI/Payment';
 import './App.css';
 
 export default class extends Component {
@@ -100,7 +101,7 @@ export default class extends Component {
     setTemp(value) {this.setState({show:4})}
     updatePrice() {this.setState({show:0})}
     cost() {
-
+        this.setState({show:14});
     }
     recharge() {
 
@@ -206,6 +207,11 @@ export default class extends Component {
                     13 === this.state.show
                     &&
                     <Deduct onClose={this.handleClose} callback={this.handleClose}/>
+                }
+                {
+                    14 === this.state.show
+                    &&
+                    <Payment onClose={this.handleClose}/>
                 }
             </Window>
         );

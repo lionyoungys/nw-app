@@ -312,6 +312,7 @@
 
     max-width: 80px;
 }
+/* 数学计算组件样式 */
 .ui-math{
     position: relative;
     display: inline-block;
@@ -331,3 +332,68 @@
 }
 .ui-math-sub{left: 0;background: url(img/ui-subtract.png)}
 .ui-math-add{right: 0;background: url(img/ui-add.png)}
+/* 支付组件样式 */
+.ui-payment-title, .ui-payment-title2{
+    height: 40px;
+    line-height: 40px;
+    margin-left: 16px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.ui-payment-title2{height: 32px;line-height: 32px}
+.ui-payment-order{
+    display: -webkit-flex;
+    display: flex;
+    height: 66px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 12px 0;
+    border: 1px solid #8db2e3;
+    font-size: 12px;
+}
+.ui-payment-order>:first-child{width: 206px}
+.ui-payment-order>:nth-child(2){width: 205px;border-left: 1px solid #8db2e3;border-right: 1px solid #8db2e3}
+.ui-payment-order>:nth-child(3){width: 192px}
+.ui-payment-order>div>div{display: -webkit-flex;display: flex}
+.ui-payment-order>div>:first-child{margin-bottom: 6px}
+.ui-payment-order>div>div>span{
+    color: #063781;
+    width: 104px;
+    text-align: right;
+}
+.ui-payment-reduce{
+    height: 88px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 12px;
+    border: 1px solid #8db2e3;
+}
+.ui-payment-reduce>div{display: -webkit-flex;display: flex}
+.ui-payment-reduce>:first-child{margin: 14px 0}
+.ui-payment-reduce>div>:first-child{width: 106px;text-align: right;color: #063781}
+.ui-payment-pay{
+    height: 180px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #8db2e3;
+    padding: 17px 24px;
+}
+.ui-payment-gateway{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+.ui-payment-amount{
+    margin-top: 16px;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 50px;
+}
+.ui-payment-amount span{color: red}
+.ui-payment-pay-handle{height: 54px}
