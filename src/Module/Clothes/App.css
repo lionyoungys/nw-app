@@ -180,6 +180,29 @@
 .clothes-problem-body>i:nth-child(6n){margin-right: 0}
 .clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold}
 /* price.js工艺加价界面样式 */
+.clothes-price-data{
+    margin: 0 14px;
+    max-height: 352px;
+    overflow: auto;
+    border: 1px solid #8db2e3;
+}
+.clothes-price-data>div{
+    min-height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+}
+.clothes-price-data>div:first-child{
+    background: #89b0d4;
+    color: #fff;
+    font-weight: bold;
+}
+.clothes-price-data>div>div:nth-child(1){width: 146px}
+.clothes-price-data>div>div:nth-child(2){border-left: 1px solid #acc6de;border-right: 1px solid #acc6de;width: 370px}
+.clothes-price-data>div>div:nth-child(3){width: 84px;color: #2151ed;cursor: default}
+.clothes-price-data>div:first-child>div:nth-child(3){color: #fff;cursor: auto}
 .clothes-price-main{
     margin: 12px;
     height: 262px;
@@ -200,7 +223,6 @@
 .clothes-price .e-input{width: 102px}
 .clothes-price>:first-child{width: 130px}
 .clothes-price>:nth-child(2){width: 148px}
-/* .clothes-price>:nth-child(3){width: 112px} */
 .clothes-price-bottom{margin-right: 18px;text-align: right}
 /* temp.js临时衣物界面样式 */
 .clothes-temp-top{

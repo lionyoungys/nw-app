@@ -5,7 +5,37 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 
+
 export default class extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {show:false};
+    }
+
+    render() {
+        return (
+            <Window title='编辑衣物信息' width='648' height='452' onClose={this.props.onClose}>
+                <div className='clothes-editor-top'><span>工艺加价</span></div>
+                <div className='clothes-price-data'>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                </div>
+                {this.state.show && <Layer data={this.props.data} onClose={() => this.setState({show:false})}/>}
+            </Window>
+        );
+    }
+}
+
+
+
+
+
+class Layer extends Component {
     constructor(props) {
         super(props);
         this.state = {value:'', checked:[]};    //checked:[{id:string,name:string,discount:bool}]
