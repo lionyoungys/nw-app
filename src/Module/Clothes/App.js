@@ -42,6 +42,7 @@ export default class extends Component {
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
         this.onClose = this.onClose.bind(this);
         this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
+        this.setUser = this.setUser.bind(this);    //设置用户信息
     }
 
     componentDidMount() {
@@ -102,6 +103,10 @@ export default class extends Component {
     setPrice(value) {this.setState({show:8})}
     setTemp(value) {this.setState({show:4})}
     updatePrice() {this.setState({show:0})}
+    setUser(obj) {
+        obj.show = 0;
+        this.setState(obj);
+    }
     cost() {
         this.setState({show:14});
     }
@@ -219,7 +224,7 @@ export default class extends Component {
                 {
                     15 === this.state.show
                     &&
-                    <User onClose={this.handleClose}/>
+                    <User onClose={this.handleClose} addr={this.state.addr} name={this.state.name} number={this.state.number} phone={this.state.phone} callback={this.setUser}/>
                 }
             </Window>
         );

@@ -14,8 +14,14 @@ export default class extends React.Component {
             name:'string' === typeof this.props.name ? this.props.name : '',
             number:'string' === typeof this.props.number ? this.props.number : ''
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
+    handleClick() {
+        if ('' == this.state.phone) return tool.ui.warn({msg:'手机不能为空', callback:close => close()});
+        if ('' == this.state.name) return tool.ui.warn({msg:'姓名不能为空', callback:close => close()});
+        'function' === typeof this.props.callback && this.props.callback(this.state);
+    }
     render() {
         return (
             <Window title='填写客户信息' height='532' width='782' onClose={this.props.onClose}>
@@ -50,7 +56,7 @@ export default class extends React.Component {
                             <input type='text' className='e-input' style={{width:'549px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
                         </div>
                     </div>
-                    <button type='button' className='e-btn'>确定</button>
+                    <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
                 </div>
                 <div className='clothes-user-main'>
                     <div><div>用户ID</div><div>姓名</div><div>手机</div><div>卡号</div><div>余额</div><div>消费金额</div><div>地址</div></div>

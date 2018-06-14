@@ -3,7 +3,7 @@
  * @author  ranchong
  */
 import React, { Component } from 'react';
-import MemberCard from'./MemberCard.css'
+import './MemberCard.css'
 import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {

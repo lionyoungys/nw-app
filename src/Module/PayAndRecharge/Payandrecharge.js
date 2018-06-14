@@ -1,7 +1,7 @@
 /**
  * 支付充值
  * @author  fanyerong
- * @desc 支付界面  card_name:卡类型;discount:折扣率;price:充值金额;balance:原金额;give_price:'赠送余额';give_price+balance+price:充后余额额;
+ * @desc 支付界面  card_name:卡类型;discount:折扣率;price:充值金额;balance:原金额;give_price:'赠送余额';give_price+balance:充后余额额;
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';

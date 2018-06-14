@@ -5,20 +5,26 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
 import ClothesCategoryManage from './ClothesCategoryManage'
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false,
+        this.state = {
+            show:false,
             // serveTypes:[],
             index:0,
             itemLists:[],
-            itemList:[]
+            itemList:[],
+            selectImg:false,
         }
+
         this.handleClick=this.handleClick.bind(this);
+        this.onClose=this.onClose.bind(this);
     };   
+
     handleClick(e){
         this.setState({index:e.target.dataset.index});
     } 
@@ -42,6 +48,9 @@ export default class extends Component {
         }
         ); 
        
+    }
+    onClose(){
+        this.setState({selectImg:false})
     }
     render() {
         let itemLists = this.state.itemLists.map((item,index)=>
@@ -144,7 +153,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-right">
                                 <img></img>
-                                <button className="e-btn">取消</button>
+                                <button className="e-btn" onClick={()=>this.setState({selectImg:true})}>修改图片</button>
                             </div>
                             <div className="addnewprice-one-bootom">
                                 <span><i>*</i>格架：</span>
@@ -178,6 +187,10 @@ export default class extends Component {
                             <button className="e-btn">确定</button>
                         </div>
                     </Window>
+
+                }
+                {
+                    this.state.selectImg && <PhotoGallery onClose={this.onClose}/>
                 }
             </div>
             // </Window>

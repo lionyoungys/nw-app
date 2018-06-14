@@ -16,12 +16,15 @@ export default class extends Component {
             index:0,
             itemLists:[],
             itemList:[],
-            typeList:[]
+            typeList:[],
+            typeLists:[],
+            typeindex:0
         }
         this.handleClick=this.handleClick.bind(this);
         this.add=this.add.bind(this);
         this.typemanage=this.typemanage.bind(this);
         this.onclose=this.onclose.bind(this);
+        this.addYES=this.addYES.bind(this);
     };  
     add(){
         this.setState({show:true});
@@ -30,23 +33,29 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemLists:res.result,typeList:res.result.typeArray('name'),})
+                this.setState({typeLists:res.result,typeList:res.result.typeArray('name'),})
             }
         }
         ); 
     } 
+    onchange(value){
+        this.setState({typeindex:value.inObjArray(this.state.typeLists, 'id')});
+    } 
     addYES(){
-        api.post('goodtypeList', {
+        api.post('addGoods', {
             token:'token'.getData(),
-            fid:'',
-            name:'',
-            price:'',
-            stock:'',
-            discount:''
+            fid:this.state.typeLists[this.state.typeindex].id,
+            name:this.state.name,
+            price:this.state.price,
+            stock:this.state.stock,
+            has_discount:'1'
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemLists:res.result,typeList:res.result.typeArray('name'),})
+                this.setState({show:false,name:'',price:'',stock:''});
+                this.componentDidMount();
+            }else{
+                console.log(res)
             }
         }
         ); 
@@ -60,6 +69,9 @@ export default class extends Component {
     handleClick(e){
         this.setState({index:e.target.dataset.index});
     } 
+    delete(e){
+        let write = e.target.dataset.write;
+    }
     componentDidMount(){
         api.post('goodsList', {
             token:'token'.getData()
@@ -88,7 +100,6 @@ export default class extends Component {
     ) {
         itemList = this.state.itemLists[this.state.index].goods.map((item,index)=>
             <tr key={item}>
-                <td></td>
                 <td>{index+1}</td>
                 <td>{item.name}</td>
                 <td>{item.discount}</td>
@@ -117,7 +128,6 @@ export default class extends Component {
                 <table className='change_card_table right_table'>
                     <thead>
                         <tr>
-                            <td></td>
                             <td>商品编号</td>
                             <td>商品名称</td>
                             <td>允许折扣</td>
@@ -139,15 +149,15 @@ export default class extends Component {
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={value => console.log(value)}/></div>
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})}/></div>
+                                <div className="addnewprice-div-nor"><span>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="text" onChange={e=>this.setState({stock:e.target.value})}/></div>
+                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="text" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="text" onChange={e=>this.setState({price:e.target.value})}/></div>
+                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="text" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-money">
