@@ -30,7 +30,7 @@ export default class extends Component {
                       <button className="Customerquery-query">查询</button>
                       <b></b>
                       <button className="Customerquery-over">退出</button>
-                   </div>
+                    </div>
                 </div>
                 <div className="Customerquery-tab">
                   <div className="Customerquery-tab-title">共记录<b>564</b>条</div>
@@ -41,7 +41,7 @@ export default class extends Component {
                               <th>卡编号</th>
                               <th>充值卡号</th>
                               <th>客户电话 </th>
-                              <th>充值卡金额 </th>
+                                <th>充值卡金额 </th>
                               <th>折扣率</th>
                               <th>客户姓名 </th>
                               <th>消费总额</th>
@@ -97,7 +97,7 @@ export default class extends Component {
                               <td>5555555</td>
                               <td>555555555555</td>
                               <td>平台会员卡</td>
-                          </tr>
+                          </tr>1111
                           <tr>
                               <td></td>
                               <td>15555555</td>

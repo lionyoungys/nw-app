@@ -211,8 +211,8 @@
     background: url(./img/select.png) no-repeat;
     background-size: 20px 24px;
     background-position: 101% -1px;
-
 }
+
 .ui-date:hover{
 
     background: url(./img/hoverselect.png) no-repeat;

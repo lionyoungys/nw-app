@@ -25,8 +25,9 @@
     line-height: 26px;
     text-align: center;
     font-size: 12px;
+    word-break: break-all;
 }
-.clothes-header>:last-child, .clothes-body>div>:last-child{border-right: none}
+.clothes-header>:last-child, .clothes-body>div>:last-child{border-right: none;width: 60px}
 .clothes-header>:nth-child(1), .clothes-body>div>:nth-child(1){width: 92px}
 .clothes-header>:nth-child(2), .clothes-body>div>:nth-child(2){width: 174px}
 .clothes-header>:nth-child(3), .clothes-body>div>:nth-child(3){width: 76px}
@@ -36,7 +37,7 @@
 .clothes-header>:nth-child(7), .clothes-body>div>:nth-child(7){width: 74px}
 .clothes-header>:nth-child(8), .clothes-body>div>:nth-child(8){width: 70px}
 .clothes-header>:nth-child(9), .clothes-body>div>:nth-child(9){width: 72px}
-.clothes-header>:nth-child(10), .clothes-body>div>:nth-child(10){width: 60px}
+.clothes-body>div>:nth-child(10){cursor: default;color: #2152ed}
 .clothes-body{
     margin: 0 12px;
     max-height: 328px;

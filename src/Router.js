@@ -53,6 +53,8 @@ import Businesstats from './Module/Businesstats/Businesstats.js'; //营业统计
 import Balancedetail from './Module/Balancedetail/Balancedetail.js'; //欠款明细
 import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js'; //营业分析
 import Debtpay from './Module/Debtpay/Debtpay.js'; //欠款补交
+import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking.js'; //支付宝微信统计
+
 
 
 //路由对象
@@ -117,4 +119,5 @@ export default {
     operation_analysis:OperationAnalysis,//营业分析
     member_business_statistics: MemberBusinessStatistics,//会员业务统计
     store_management: StoreManagement,//门店管理
+    alipayWechat_checking: AlipayWechatChecking,//支付宝微信对账
 };

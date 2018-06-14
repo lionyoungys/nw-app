@@ -109,9 +109,20 @@
         if ('object' !== typeof object) return {};
         var obj = {};
         for (var k in object) {
-            obj[k] = ('object' === typeof object[k]) ? this.clone(object[k]) : object[k];
+            obj[k] = ('object' === typeof object[k] && null !== object[k]) ? this.clone(object[k]) : object[k];
         }
         return obj;
+    }
+
+    /**
+     * 获取指定天数后的事件戳
+     * @param {number} number 天数
+     * @return {number} 事件戳
+     */
+    t.timestamp = function(number) {
+        var timestamp = new Date().getTime();
+        if (isNaN(number)) return timestamp;
+        return Math.floor( (number * 1000 * 3600 * 24 + timestamp) / 1000 );
     }
 
     //ui对象实现

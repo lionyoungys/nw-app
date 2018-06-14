@@ -12,10 +12,7 @@ export default class extends Component {
     }
 
     handleClick(e) {
-        let dataset = e.target.dataset
-        ,   index = 'undefined' === typeof dataset.index ? e.target.parentNode.dataset.index : dataset.index;
-        console.log(index);
-        'function' === typeof this.props.callback && this.props.callback();
+        'function' === typeof this.props.callback && this.props.callback(e.target.dataset.index || e.target.parentNode.dataset.index);
     }
 
     render() {

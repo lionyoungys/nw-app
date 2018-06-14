@@ -104,12 +104,40 @@
     }
 
     /**
+     * 根据数值生成当前毫秒级别的编码号
+     * @return {string} 编码号
+     */
+    Number.prototype.timeCode = function() {
+        var timestamp = new Date().getTime().toString();
+        if (this < 10) return timestamp + '00' + this;
+        if (this < 100) return timestamp + '0' + this;
+        return  timestamp + this;
+    }
+
+    /**
+     * 数值加法
+     * @param {number} 数值列表
+     * @return {number}
+     */
+    Number.prototype.add = function() {
+        var len = arguments.length
+        ,   precision = 1000000
+        ,   value = Math.floor(this * precision);
+        if (len < 1) return this;
+        for (var i = 0;i < len;++i) {
+            value += Math.floor(arguments[i] * precision);
+        }
+        return (value / precision);
+    }
+
+    /**
      * 通过数组对象获取指定属性的数组
      * @param {*string} key 数组对象将要提取的属性
      * @return {*array} 属性列表数组
      */
     Array.prototype.typeArray = function (key) {
-        var len = this.length, arr = [];
+        var len = this.length
+        ,   arr = [];
         for (var i = 0;i < len;++i) {
             if (this[i] instanceof Object && 'undefined' !== this[i][key]) {
                 arr.push(this[i][key]);
@@ -118,5 +146,50 @@
             }
         }
         return arr;
+    }
+
+    /**
+     * 获取数组中与指定对象参数匹配的值的数组
+     * @param {object} obj 对象参数
+     * @return {array} 
+     */
+    Array.prototype.intersection = function(obj) {
+        var len = this.length
+        ,   arr = []
+        ,   match = true
+        ,   k;
+        for (var i = 0;i < len;++i) {
+            if ('object' === typeof this[i] && this[i] instanceof Object) {
+                for (k in obj) {
+                    if ('undefined' === typeof this[i][k] || this[i][k] != obj[k]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match) {
+                    arr.push(this[i]);
+                } else {
+                    match = true;
+                }
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 通过键值获取数组对象中匹配值的数量
+     * @param {string} key 
+     * @param {string} value 
+     * @return {number} 
+     */
+    Array.prototype.keyValCount = function(key, value) {
+        var len = this.length
+        ,   count = 0;
+        for (var i = 0;i < len;++i) {
+            if ('object' === typeof this[i]) {
+                if ('undefined' !== typeof this[i][key] && this[i][key] === value) ++count;
+            }
+        }
+        return count;
     }
 })();

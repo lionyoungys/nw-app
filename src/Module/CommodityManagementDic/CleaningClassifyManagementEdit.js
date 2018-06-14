@@ -8,11 +8,62 @@ import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            goodtypelist:[],
+            name:''
+        
+        }
+        this.delete=this.delete.bind(this);
+        this.save=this.save.bind(this);
     };
+    componentDidMount(){
+        api.post('goodtypeList', {
+            token:'token'.getData(),
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({goodtypelist:res.result})
+            }
+        }
+        ); 
+    }
+    save(){
+        api.post('goodmodType', {
+            token:'token'.getData(),
+            id:this.props.id,
+            name:this.state.name
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.componentDidMount();
+                // this.setState({goodtypelist:res.result})
+            }
+        }
+        ); 
+    }
+    delete(){
+        api.post('gooddelType', {
+            token:'token'.getData(),
+            id:this.props.id
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.componentDidMount();
+            }
+        }
+        ); 
+    }
     render() {
+        let goodtypelist=this.state.goodtypelist.map((item,index)=>
+        <tr>
+             <td>{index+1}</td>
+             <td>{item.name}</td>
+             <td data-write={index} onClick={this.update}>编辑</td>
+        </tr>
+        );
         return (
 
-            <Window title='洗护分类管理' onClose={this.props.closeView} width='632' height='411'>
+            <Window title='商品分类管理' onClose={this.props.onclose} width='632' height='411'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 
@@ -20,41 +71,12 @@ export default class extends Component {
                         <thead>
                             <tr>
                                 <td>id</td>
-                                <td></td>
-                                <td></td>
+                                <td>分类名称</td>
+                                <td>操作</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>wwk</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                           {goodtypelist}
                         </tbody>
                     </table>
                 </div>
@@ -66,10 +88,10 @@ export default class extends Component {
                     <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                         <a>编辑分类</a>
                         <p>分类名称:</p>
-                        <input className='e-input'></input>
-                        <button className='e-btn'>保存</button>
-                        <button className='e-btn'>取消</button>
-                        <button className='e-btn'>删除</button>
+                        <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
+                        <button className='e-btn' onClick={this.save}>保存</button>
+                        <button className='e-btn' onClick={this.props.onclose}>取消</button>
+                        <button className='e-btn' onClick={this.delete}>删除</button>
 
                     </div>
                 </div>

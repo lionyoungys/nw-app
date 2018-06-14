@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-import Math from '../../UI/Math';
+import MathUI from '../../UI/MathUI';
 import './Commoditysales.css';
 
 export default class extends Component {
@@ -167,7 +167,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -175,7 +175,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -183,7 +183,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -191,7 +191,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -199,7 +199,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -207,7 +207,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -215,7 +215,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -223,7 +223,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
 
@@ -232,7 +232,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -240,7 +240,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -248,7 +248,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -256,7 +256,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -264,7 +264,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                               <tr>
@@ -272,7 +272,7 @@ export default class extends Component {
                                   <td>裤子外套衬衫鞋袜子</td>
                                   <td>0.3%</td>
                                   <td>45</td>
-                                  <td><Math>2</Math></td>
+                                  <td><MathUI>2</MathUI></td>
                                   <td>删除</td>
                               </tr>
                           </tbody>

@@ -66,7 +66,8 @@ export const topMenu = [
             {value:'会员业务统计', view:'member_business_statistics'},
             {value:'会员分类统计', view:'vip_stats'},
             // {value:'会员消费统计', view:'member_consumption_statistics'},
-            {value:'衣物统计', view:'clothe_stat'}
+            {value:'衣物统计', view:'clothe_stat'},
+            { value: '微信、支付宝对账', view:'alipayWechat_checking'},
         ]
     },
     // {

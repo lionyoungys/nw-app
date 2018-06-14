@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import '../CleaningPriceSetting/addnewprice.css';
+import '../ChangeCard/ChangeCard.css'
 import { ETIME } from 'constants';
 import CommodityClassifyManagement from '../CommodityManagementDic/CommodityClassifyManagement'
 export default class extends Component {
@@ -18,13 +20,15 @@ export default class extends Component {
             itemList:[],
             typeList:[],
             typeLists:[],
-            typeindex:0
+            typeindex:0,
+            id:'',
         }
         this.handleClick=this.handleClick.bind(this);
         this.add=this.add.bind(this);
         this.typemanage=this.typemanage.bind(this);
         this.onclose=this.onclose.bind(this);
         this.addYES=this.addYES.bind(this);
+        this.delete=this.delete.bind(this);
     };  
     add(){
         this.setState({show:true});
@@ -39,7 +43,8 @@ export default class extends Component {
         ); 
     } 
     onchange(value){
-        this.setState({typeindex:value.inObjArray(this.state.typeLists, 'id')});
+        this.setState({typeindex:value.inObjArray(this.state.typeLists, 'name')});
+        
     } 
     addYES(){
         api.post('addGoods', {
@@ -71,6 +76,27 @@ export default class extends Component {
     } 
     delete(e){
         let write = e.target.dataset.write;
+        this.setState({id:this.state.itemLists[this.state.index].goods[write].id});
+        tool.ui.error({title:'提示',msg:'将删除档次,档次上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
+            api.post('delGoods', {token:'token'.getData(),
+            id:this.state.id
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    tool.ui.success({callback:(close, event) => {
+                        close();
+                    }}); 
+                }else{
+                    console.log(res)
+                    tool.ui.error({callback:(close, event) => {
+                        close();
+                    }});
+                }
+                close();
+                this.componentDidMount();
+            }
+            );
+        }});
     }
     componentDidMount(){
         api.post('goodsList', {
@@ -83,6 +109,31 @@ export default class extends Component {
         }
         ); 
        
+    }
+    mod(){
+       this.setState({show2:true});
+       let write = e.target.dataset.write;
+    //    this.setState({id:this.state.itemLists[this.state.index].goods[write].id});
+    }
+    modYES(){
+        api.post('modGoods', {
+            token:'token'.getData(),
+            id:'',
+            fid:this.state.typeLists[this.state.typeindex].id,
+            name:this.state.name,
+            price:this.state.price,
+            stock:this.state.stock,
+            has_discount:'1'
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({show:false,name:'',price:'',stock:''});
+                this.componentDidMount();
+            }else{
+                console.log(res)
+            }
+        }
+        ); 
     }
     render() {
         let itemLists = this.state.itemLists.map((item,index)=>
@@ -125,7 +176,7 @@ export default class extends Component {
 
                 {/* 表格部分 欠费衣物信息*/}
 
-                <table className='change_card_table right_table'>
+                 <table className='change_card_table right_table'>
                     <thead>
                         <tr>
                             <td>商品编号</td>
@@ -166,6 +217,34 @@ export default class extends Component {
               
                         </div>
                         <button className="e-btn addnewprice-e-btn" onClick={this.addYES}>保存</button>
+                    </Window>
+                }
+                   {
+                    this.state.show2
+                    &&
+                    <Window title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
+                        <div className="addnewprice">
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={value => console.log(value)}/></div>
+                            </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-nor"><span>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
+        
+                            </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="text" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                            
+                            </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="text" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                
+                            </div>
+                            <div className="addnewprice-money">
+                                <input type="checkbox" />允许折扣
+                            </div>
+              
+                        </div>
+                        <button className="e-btn addnewprice-e-btn" onClick={this.modYES}>保存</button>
                     </Window>
                 }
                  {

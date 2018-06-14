@@ -56,7 +56,9 @@ export default class extends React.Component {
     handleClick() {
         if ('' == this.state.phone) return tool.ui.warn({msg:'手机不能为空', callback:close => close()});
         if ('' == this.state.name) return tool.ui.warn({msg:'姓名不能为空', callback:close => close()});
-        'function' === typeof this.props.callback && this.props.callback(this.state);
+        let data = this.state;
+        delete data.data;
+        'function' === typeof this.props.callback && this.props.callback(data);
     }
 
     setUser(e) {

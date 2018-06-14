@@ -5,14 +5,23 @@
 import React, { Component } from 'react';
 import './CommodityClassifyManagement.css';
 import Window from '../../UI/Window';
+import CleaningClassifyManagementEdit from '../CommodityManagementDic/CleaningClassifyManagementEdit'
 import { isThisMonth } from 'date-fns';
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={
-            goodtypelist:[]
+            goodtypelist:[],
+            show:false,
+            id:'',
+            addshow:false,
+            modshow:false
         };
         this.addYES=this.addYES.bind(this);
+        this.update=this.update.bind(this);
+        this.onclose=this.onclose.bind(this);
+        this.delete=this.delete.bind(this);
+        this.save=this.save.bind(this);
     };
     componentDidMount(){
         api.post('goodtypeList', {
@@ -32,8 +41,42 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({name:''})
+                this.setState({name:'',addshow:false})
                 this.componentDidMount()
+            }
+        }
+        ); 
+    }
+    update(e){
+        let index=e.target.dataset.write;
+        this.setState({show:true,id:this.state.goodtypelist[index].id,name:this.state.goodtypelist[index].name});
+    }
+    onclose(){
+        this.setState({show:false})
+    }
+    save(){
+        api.post('goodmodType', {
+            token:'token'.getData(),
+            id:this.state.id,
+            name:this.state.name
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({name:'',show:false})
+                this.componentDidMount();
+            }
+        }
+        ); 
+    }
+    delete(){
+        api.post('gooddelType', {
+            token:'token'.getData(),
+            id:this.state.id
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({show:false})
+                this.componentDidMount();
             }
         }
         ); 
@@ -43,7 +86,7 @@ export default class extends Component {
         <tr>
              <td>{index+1}</td>
              <td>{item.name}</td>
-             <td>编辑</td>
+             <td data-write={index} onClick={this.update}>编辑</td>
         </tr>
     );
         return (
@@ -68,18 +111,33 @@ export default class extends Component {
                 {/* 右侧板块 */}
                 <div className="commodity_classify_management_right">
                     <div className='commodity_classify_management_right_btn'>
-                        <button>+添加分类</button>
+                        <button onClick={()=>this.setState({addshow:true})}>+添加分类</button>
                     </div>
-                    <div className='commodity_classify_management_right_bottom'>
-                        <a>新增分类</a>
+                    {}
+                </div>
+                {this.state.show&&<Window title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
+                <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                         <p>分类名称:</p>
                         <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
-                        <button className='e-btn'>取消</button>
+                        <button className='e-btn' onClick={this.save}>保存</button>
+                        <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
+                        <button className='e-btn' onClick={this.delete}>删除</button>
+
+                    </div>
+                </Window>
+                }
+                {this.state.addshow&&<Window title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>
+                    <div className='commodity_classify_management_right_bottom'>
+                        <p>分类名称:</p>
+                        <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
+                        <button className='e-btn' onClick={()=>this.setState({addshow:false})}>取消</button>
                         <button className='e-btn' onClick={this.addYES}>保存</button>
 
                     </div>
-                </div>
+                    </Window>
+                 }
             </Window>
+            
         );
     }
 }
