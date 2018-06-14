@@ -23,9 +23,51 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            phone:'',name:'',number:'',addr:'',time:'',
+            phone:'',name:'',number:'',addr:'',time:'',type:'',total:0,amount:0,balance:0,discount:'',
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
-            show:0, itemIndex:0,tempIndex:0,data:[]
+            show:0, itemIndex:0,tempIndex:0,    
+            data:[],    //本地存储数据
+            /*
+            {
+	"user_name": "姓名",
+	"user_mobile": "手机号",
+	"clothing_number": "衣物编码",
+	"clothing_id": "衣物id",
+	"clothing_name": "衣物名称",
+	"clothing_color": "衣物颜色",
+	"clothing_grids": "衣物网格",
+	"clothing_type": "衣物类型",
+	"raw_price": "衣物原价",
+	"remark": "瑕疵",
+	"deal_time": 交活时间戳,
+    "grid_num": "格架号",
+    "addition_remark":附加服务（工艺加价）
+    "addition_price":附加服务费
+    "addition_discount":附加服务费是否打折(0,不打折。1，打折)
+    "forecast":洗后预估效果
+    "work_number":件数
+    "sign":衣物品牌
+    "card_type":卡类型
+    "address":住址
+            */
+        };
+        this.tempData = {    //临时单项项目数据
+            clothing_number:'', 
+            clothing_id:'', 
+            clothing_name:'', 
+            clothing_color:'', 
+            clothing_grids:'',
+            clothing_type:'',
+            raw_price:'',
+            remark:'',
+            deal_time:'',
+            grid_num:'',
+            addition_remark:'',
+            addition_price:'',
+            addition_discount:'',
+            forecast:'',
+            work_number:1,
+            sign:'',
         };
         this.M1read = this.M1read.bind(this);    //读卡
         this.add = this.add.bind(this);    //添加衣物
@@ -117,10 +159,14 @@ export default class extends Component {
     handleCancel() {this.setState({show:1})}
     tempUser() {this.setState({show:15})}
     onClose() {
-        tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
-            0 == event && this.props.closeView();
-            close();
-        }}); 
+        if (this.state.data.length > 0) {
+            tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
+                0 == event && this.props.closeView();
+                close();
+            }});
+        } else {
+            this.props.closeView();
+        }
     }
 
 
@@ -147,13 +193,13 @@ export default class extends Component {
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>
-                            <div>总件数：1件</div>
-                            <div>总金额：&yen;18.00</div>
-                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;12.00</div>
+                            <div>总件数：{this.state.data.length}件</div>
+                            <div>总金额：&yen;{this.state.total}</div>
+                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;{this.state.amount}</div>
                         </div>
                         <div>
-                            <div>卡余额：&yen;0.00</div>
-                            <div>折扣率：80%</div>
+                            <div>卡余额：&yen;{this.state.balance}</div>
+                            <div>折扣率：{'' === this.state.discount ? '' : (this.state.discount + '%')}</div>
                             <div>取衣时间：<input type="date" className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
                     </div>
@@ -224,7 +270,16 @@ export default class extends Component {
                 {
                     15 === this.state.show
                     &&
-                    <User onClose={this.handleClose} addr={this.state.addr} name={this.state.name} number={this.state.number} phone={this.state.phone} callback={this.setUser}/>
+                    <User
+                        onClose={this.handleClose} 
+                        addr={this.state.addr} 
+                        name={this.state.name} 
+                        number={this.state.number} 
+                        phone={this.state.phone} 
+                        balance={this.state.balance} 
+                        discount={this.state.discount} 
+                        callback={this.setUser}
+                    />
                 }
             </Window>
         );

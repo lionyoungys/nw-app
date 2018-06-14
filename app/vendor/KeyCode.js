@@ -1,9 +1,10 @@
 /**
  * 键盘按键英文输入监听
  * @author Edwin Young
+ * @desc 依赖Tool.js，需在tool.js之后引入
  */
 
-(function(window) {
+(function() {
     var k = {
         code:new Array(),    //英文键盘编码
         chCode:{
@@ -69,6 +70,11 @@
     k.code[89] = 'Y';k.code[121] = 'y';
     k.code[90] = 'Z';k.code[122] = 'z';
 
+    /**
+     * 键盘输入法强制英文监听 tool.KeyCode.listen
+     * @param {*object} node 元素节点对象
+     * @param {*function} callback 输入回调函数
+     */
     k.listen = function(node, callback) {
         if (node instanceof Node) {
             node.onkeydown = this.onkeydown;
@@ -119,5 +125,5 @@
     k.onkeyup = function(e) {
         if (e instanceof KeyboardEvent && 20 == (e.keyCode||e.which)) k.CapsLock = !k.CapsLock;
     }
-    window.KeyCode = k;
-})(window);
+    tool.KeyCode = k;
+})();

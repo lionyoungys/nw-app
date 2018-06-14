@@ -88,9 +88,9 @@
 
     /**
      * 字符串填充
-     * @param {*string} str 使用填充的字符串 
-     * @param {*number} len 填充长度
-     * @return {*string}
+     * @param {string} str 使用填充的字符串 
+     * @param {number} len 填充长度
+     * @return {string}
      */
     t.repeat = function(str, len) {
         var retStr = '';
@@ -98,6 +98,20 @@
             retStr += str;
         }
         return retStr;
+    }
+
+    /**
+     * 对象克隆方法
+     * @param {object} object 需要克隆的对象
+     * @return {object} object
+     */
+    t.clone = function(object) {
+        if ('object' !== typeof object) return {};
+        var obj = {};
+        for (var k in object) {
+            obj[k] = ('object' === typeof object[k]) ? this.clone(object[k]) : object[k];
+        }
+        return obj;
     }
 
     //ui对象实现
