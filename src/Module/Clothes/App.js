@@ -56,7 +56,8 @@ export default class extends Component {
         this.M1read = this.M1read.bind(this);    //读卡
         this.add = this.add.bind(this);    //添加衣物
         this.cost = this.cost.bind(this);    //收银
-        this.clone = this.clone.bind(this);
+        this.clone = this.clone.bind(this);    //数量增加
+        this.destory = this.destory.bind(this);    //数量减少
         this.recharge = this.recharge.bind(this);    //充值
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
         this.handleCancel = this.handleCancel.bind(this);    //取消处理
@@ -89,25 +90,21 @@ export default class extends Component {
         api.post('brandList', {token:token}, (res, ver, handle) => {    //获取品牌列表
             if (ver) {
                 this.setState({brand:res.result});
-                console.log('brand', this.state.brand);
             } else {handle()}
         });
         api.post('colorList', {token:token}, (res, ver, handle) => {    //获取颜色列表
             if (ver) {
                 this.setState({color:res.result});
-                console.log('color', this.state.color);
             } else {handle()}
         });
         api.post('flawList', {token:token}, (res, ver, handle) => {    //获取瑕疵列表
             if (ver) {
                 this.setState({problem:res.result});
-                console.log('problem', this.state.problem);
             } else {handle()}
         });
         api.post('forecastList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
                 this.setState({forecast:res.result});
-                console.log('forecast', this.state.forecast);
             } else {handle()}
         });
         api.post('additionList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
@@ -185,9 +182,15 @@ export default class extends Component {
         this.state.data.push(data);
         this.setState({data:this.state.data});
     }
+    destory(param) {
+        this.state.data.spliceByKeyVal('parent', this.state.data[param].clothing_number, {last:true});
+        this.setState({data:this.state.data});
+    }
     del(e) {
-        let index = e.target.parentNode.dataset.index;
-        this.state.data.splice(e.target.parentNode.dataset.index, 1);
+        let index = e.target.parentNode.dataset.index
+        ,   number = this.state.data[index].clothing_number;
+        this.state.data.splice(index, 1);
+        this.state.data.spliceByKeyVal('parent', number);
         this.setState({data:this.state.data});
     }
     
@@ -264,7 +267,6 @@ export default class extends Component {
                 </div>
             );
         });
-        console.log(discount);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>

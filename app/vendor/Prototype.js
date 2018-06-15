@@ -187,9 +187,48 @@
         ,   count = 0;
         for (var i = 0;i < len;++i) {
             if ('object' === typeof this[i]) {
-                if ('undefined' !== typeof this[i][key] && this[i][key] === value) ++count;
+                if ('undefined' !== typeof this[i][key] && this[i][key] == value) ++count;
             }
         }
         return count;
+    }
+
+    /**
+     * 删除指定键值对匹配值的数组对象
+     * @param {string} key 
+     * @param {string} value 
+     * @param {object} obj 删除额外条件:是否只删除首个、末个{last:true,first:true}
+     * @return {void}
+     */
+    Array.prototype.spliceByKeyVal = function(key, value, obj) {
+        var len = this.length
+        ,   firstIndex = null    //匹配的首个索引
+        ,   lastIndex = null;    //匹配的末个索引
+        if ('object' === typeof obj) {
+            obj.first = obj.first || false;
+            obj.last = obj.last || false;
+        } else {
+            obj = {first:false, last:false};
+        }
+        for (var i = 0;i < len;++i) {
+            if ('object' === typeof this[i] && this[i][key] == value) {
+                if (null === firstIndex) firstIndex = i;
+                lastIndex = i;
+                if (!obj.first && !obj.last) {
+                    this.splice(i, 1);
+                    --i;
+                    --len;
+                }
+            }
+        }
+        var delFirst = obj.first && null !== firstIndex;
+        if (delFirst) this.splice(firstIndex, 1);
+        if (obj.last && null !== lastIndex && firstIndex !== lastIndex) {
+            if (delFirst) {
+                this.splice( (lastIndex - 1), 1 );
+            } else {
+                this.splice(lastIndex, 1);
+            }
+        }
     }
 })();
