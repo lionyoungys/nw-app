@@ -11,10 +11,28 @@ export default class extends Component {
         super(props);
         this.state = {show:false, tempIndex:null};
         this.editor = this.editor.bind(this);
+        this.callback = this.callback.bind(this);
     }
 
     editor(e) {
         this.setState({show:true, tempIndex:e.target.parentNode.dataset.index});
+    }
+    callback(checked) {
+        let len = checked.length
+        ,   remark = ''
+        ,   disPrice = 0
+        ,   price = 0;
+        for (let i = 0;i < len;++i) {
+            if ('' == checked[i].value || checked[i].value <= 0) continue;
+            if (checked[i].name) {
+                disPrice = disPrice.add(checked[i].value);
+            } else {
+                price = price.add(checked[i].value);
+            }
+            remark += checked[i].name + checked[i].value + '元;';
+        }
+        this.props.callback({index:this.state.tempIndex, remark:remark, disPrice:disPrice, price:price});
+        this.setState({show:false});
     }
 
     render() {
@@ -23,7 +41,7 @@ export default class extends Component {
                 <div
                     key={'data' + index}
                     data-index={index}
-                    style={(this.props.currentIndex != index && obj.parent != this.props.data[this.state.currentIndex].clothing_number) ? {display:'none'} : null}
+                    style={(this.props.currentIndex != index && obj.parent != this.props.data[this.props.currentIndex].clothing_number) ? {display:'none'} : null}
                 >
                     <div>{obj.clothing_number}</div>
                     <div>{obj.addition_remark}</div>
@@ -38,31 +56,25 @@ export default class extends Component {
                     <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
                     {html}
                 </div>
-                {this.state.show && <Layer price={this.props.price} onClose={() => this.setState({show:false})}/>}
+                {this.state.show && <Layer price={this.props.price} onClose={() => this.setState({show:false})} callback={this.callback}/>}
             </Window>
         );
     }
 }
 
 
-
-
-
 class Layer extends Component {
     constructor(props) {
         super(props);
-        this.state = {value:'', checked:[]};    //checked:[{id:string,name:string,discount:bool}]
+        this.state = {checked:[]};    //checked:[{id:string,name:string,discount:bool}]
         this.handleClick = this.handleClick.bind(this);
         this.handleChecked = this.handleChecked.bind(this);    //项目选中事件处理
         this.handleDiscount = this.handleDiscount.bind(this);    //打折处理
+        this.handleChange = this.handleChange.bind(this);    //加价金额处理
     }
 
     handleClick() {
-        '' !== this.state.value
-        &&
-        'function' === typeof this.props.callback
-        &&
-        this.props.callback(this.state.value);
+        'function' === typeof this.props.callback && this.props.callback(this.state.checked);
     }
     handleChecked(e) {
         let data = e.target.parentNode.parentNode.dataset
@@ -70,16 +82,24 @@ class Layer extends Component {
         ,   name = data.name
         ,   index = id.inObjArray(this.state.checked, 'id');
         if (-1 === index) {
-            this.state.checked.push({id:id, name:name, discount:false});
+            this.state.checked.push({id:id, name:name, value:'', discount:false});
         } else {
             this.state.checked.splice(index, 1);
         }
         this.setState({checked:this.state.checked});
     }
 
+    handleChange(e) {
+        let index = e.target.parentNode.parentNode.dataset.id.inObjArray(this.state.checked, 'id')
+        ,   value = e.target.value;
+        if (-1 !== index && !isNaN(value)) {
+            this.state.checked[index].value = value;
+            this.setState({checked:this.state.checked});
+        }
+    }
+
     handleDiscount(e) {
-        let id = e.target.parentNode.parentNode.dataset.id
-        ,   index = id.inObjArray(this.state.checked, 'id');
+        let index = e.target.parentNode.parentNode.dataset.id.inObjArray(this.state.checked, 'id');
         if (-1 !== index) {
             this.state.checked[index].discount = !this.state.checked[index].discount;
             this.setState({checked:this.state.checked});
@@ -103,7 +123,13 @@ class Layer extends Component {
                             onClick={this.handleChecked}
                         />&nbsp;{obj.name}
                     </div>
-                    <div><input type='text' className='e-input'/>&nbsp;元</div>
+                    <div>
+                        <input 
+                            type='text' 
+                            className='e-input' 
+                            value={hasChecked ? this.state.checked[tempIndex].value : ''} 
+                            onChange={this.handleChange}
+                        />&nbsp;元</div>
                     <div>
                         <input
                             type='checkbox' 

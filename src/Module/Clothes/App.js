@@ -28,6 +28,7 @@ export default class extends Component {
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
+            update:false,    //用于判断衣物为添加还是修改
         };
         this.counter = 1;    //编码累加计数属性
         /*
@@ -55,6 +56,7 @@ export default class extends Component {
             */
         this.M1read = this.M1read.bind(this);    //读卡
         this.add = this.add.bind(this);    //添加衣物
+        this.showItem = this.showItem.bind(this);    //展示添加衣物组件
         this.cost = this.cost.bind(this);    //收银
         this.clone = this.clone.bind(this);    //数量增加
         this.destory = this.destory.bind(this);    //数量减少
@@ -62,10 +64,15 @@ export default class extends Component {
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
         this.handleCancel = this.handleCancel.bind(this);    //取消处理
         this.setBrand = this.setBrand.bind(this);    //设置品牌
+        this.showBrand = this.showBrand.bind(this);    //展示设置品牌组件
         this.setColor = this.setColor.bind(this);    //设置颜色
+        this.showColor = this.showColor.bind(this);    //展示设置颜色组件
         this.setProblem = this.setProblem.bind(this);    //设置瑕疵
+        this.showProblem = this.showProblem.bind(this);    //展示设置瑕疵
         this.setForcast = this.setForcast.bind(this);    //设置洗后预估
+        this.showForcast = this.showForcast.bind(this);    //展示设置洗后预估
         this.setPrice = this.setPrice.bind(this);    //设置工艺加价
+        this.showPrice = this.showPrice.bind(this);    //展示修改工艺加价界面
         this.setTemp = this.setTemp.bind(this);    //设置临时衣物
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
         this.showUpdatePrice = this.showUpdatePrice.bind(this);    //展示修改衣物单价组件
@@ -120,60 +127,79 @@ export default class extends Component {
 
     }
     add(index) {
-        let item = this.state.item[this.state.categoryIndex][index]
-        ,   data = {
-            clothing_number: this.counter.timeCode(), 
-            clothing_id: item.id, 
-            clothing_name: item.item_name, 
-            clothing_color: '', 
-            clothing_grids: '',
-            clothing_type: item.cate_name,
-            raw_price: item.item_off_price,
-            remark: item.item_flaw || '',
-            deal_time: tool.timestamp(item.item_cycle),
-            grid_num: '',
-            addition_remark:'',
-            addition_price: 0,
-            addition_no_price: 0,
-            addition_discount:'',
-            forecast:'',
-            work_number:1,
-            sign:'',
-            min_discount: item.min_discount,    //最低折扣率
-            has_discount: item.has_discount,    //是否打折
-            parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
-        };
-        ++this.counter;
-        this.state.data.push(data);
-        this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1)});
+        let item = this.state.item[this.state.categoryIndex][index];
+        if (this.state.update) {
+            this.state.data[this.state.currentIndex].clothing_id = item.id
+            this.state.data[this.state.currentIndex].clothing_name = item.item_name;
+            this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
+            this.state.data[this.state.currentIndex].raw_price = item.item_off_price;
+            this.state.data[this.state.currentIndex].remark = item.item_flaw || '';
+            this.state.data[this.state.currentIndex].deal_time = tool.timestamp(item.item_cycle);
+            this.state.data[this.state.currentIndex].min_discount = item.min_discount;
+            this.state.data[this.state.currentIndex].has_discount = item.has_discount;
+        } else {
+            let data = {
+                clothing_number: this.counter.timeCode(), 
+                clothing_id: item.id, 
+                clothing_name: item.item_name, 
+                clothing_color: '', 
+                clothing_grids: '',
+                clothing_type: item.cate_name,
+                raw_price: item.item_off_price,
+                remark: item.item_flaw || '',
+                deal_time: tool.timestamp(item.item_cycle),
+                grid_num: '',
+                addition_remark:'',
+                addition_price: 0,
+                addition_no_price: 0,
+                addition_discount:'',
+                forecast:'',
+                work_number:1,
+                sign:'',
+                min_discount: item.min_discount,    //最低折扣率
+                has_discount: item.has_discount,    //是否打折
+                parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
+            };
+            ++this.counter;
+            this.state.data.push(data);
+        }
+        this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false});
     }
     setTemp(value) {
-        let data = {
-            clothing_number: this.counter.timeCode(), 
-            clothing_id: '', 
-            clothing_name: value.name, 
-            clothing_color: '', 
-            clothing_grids: '',
-            clothing_type: '',
-            raw_price: value.price,
-            remark: '',
-            deal_time: tool.timestamp(value.day),
-            grid_num: '',
-            addition_remark:'',
-            addition_price: 0,
-            addition_no_price: 0,
-            addition_discount:'',
-            forecast:'',
-            work_number:1,
-            sign:'',
-            min_discount: 1,    //最低折扣率
-            has_discount: value.discount ? 1 : 0,    //是否打折
-            parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
-        };
-        ++this.counter;
-        this.state.data.push(data);
-        this.setState({show:4, data:this.state.data, currentIndex:(this.state.data.length - 1)});
+        if (this.state.update) {
+            this.state.data[this.state.currentIndex].clothing_name = value.name;
+            this.state.data[this.state.currentIndex].raw_price = value.price;
+            this.state.data[this.state.currentIndex].deal_time = tool.timestamp(value.day);
+            this.state.data[this.state.currentIndex].has_discount = value.discount ? 1 : 0;
+        } else {
+            let data = {
+                clothing_number: this.counter.timeCode(), 
+                clothing_id: '', 
+                clothing_name: value.name, 
+                clothing_color: '', 
+                clothing_grids: '',
+                clothing_type: '',
+                raw_price: value.price,
+                remark: '',
+                deal_time: tool.timestamp(value.day),
+                grid_num: '',
+                addition_remark:'',
+                addition_price: 0,
+                addition_no_price: 0,
+                addition_discount:'',
+                forecast:'',
+                work_number:1,
+                sign:'',
+                min_discount: 1,    //最低折扣率
+                has_discount: value.discount ? 1 : 0,    //是否打折
+                parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
+            };
+            ++this.counter;
+            this.state.data.push(data);
+        }
+        this.setState({show:4, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false});
     }
+    showItem(e) {this.setState({show:1,currentIndex:e.target.parentNode.dataset.index,update:true})}
     clone(param) {
         let data = tool.clone(this.state.data[param]);
         data.clothing_number = this.counter.timeCode();
@@ -199,26 +225,35 @@ export default class extends Component {
         this.state.data[this.state.currentIndex].sign = value;
         this.setState({show:4, data:this.state.data});
     }
+    showBrand(e) {this.setState({show:3,currentIndex:e.target.parentNode.dataset.index})}
     setColor(value) {
         this.state.data[this.state.currentIndex].clothing_color = value;
         this.setState({show:5, data:this.state.data});
     }
+    showColor(e) {this.setState({show:4,currentIndex:e.target.parentNode.dataset.index})}
     setProblem(value) {
         this.state.data[this.state.currentIndex].remark = value;
         this.setState({show:6, data:this.state.data});
     }
+    showProblem(e) {this.setState({show:5,currentIndex:e.target.parentNode.dataset.index})}
     setForcast(value) {
         this.state.data[this.state.currentIndex].forecast = value;
         this.setState({show:7, data:this.state.data});
     }
-    setPrice(value) {this.setState({show:8})}
-    showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
+    showForcast(e){this.setState({show:6,currentIndex:e.target.parentNode.dataset.index})}
+    setPrice(obj) {
+        this.state.data[obj.index].addition_remark = obj.remark;
+        this.state.data[obj.index].addition_price = obj.disPrice;
+        this.state.data[obj.index].addition_no_price = obj.price;
+        this.setState({show:0, data:this.state.data})
+    }
+    showPrice(e) {this.setState({show:7,currentIndex:e.target.parentNode.dataset.index})}
     updatePrice(value) {
         this.state.data[this.state.currentIndex].raw_price = value;
         this.state.data.setByIntersection({parent:this.state.data[this.state.currentIndex].clothing_number},{raw_price:value});
         this.setState({show:0, data:this.state.data});
-        console.log(this.state.data);
     }
+    showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
     setUser(obj) {
         obj.show = 0;
         this.setState(obj);
@@ -254,17 +289,17 @@ export default class extends Component {
             amount = amount.add( 
                 (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
                 obj.addition_no_price, 
-                (Math.floor( obj.addition_price * Math.floor(discount * 100) ) / 100)
+                (Math.floor(obj.addition_price * discount) / 100)
             );
             return (
                 <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
                     <div>{obj.clothing_number}</div>
-                    <div>{obj.clothing_name}</div>
-                    <div>{obj.clothing_color}</div>
-                    <div>{obj.remark}</div>
-                    <div>{obj.sign}</div>
-                    <div>{obj.forecast}</div>
-                    <div>{obj.addition_remark}</div>
+                    <div onClick={this.showItem}>{obj.clothing_name}</div>
+                    <div onClick={this.showColor}>{obj.clothing_color}</div>
+                    <div onClick={this.showProblem}>{obj.remark}</div>
+                    <div onClick={this.showBrand}>{obj.sign}</div>
+                    <div onCLick={this.showForcast}>{obj.forecast}</div>
+                    <div onClick={this.showPrice}>{obj.addition_remark}</div>
                     <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div onClick={this.del}>删除</div>
@@ -321,22 +356,22 @@ export default class extends Component {
                 {
                     3 === this.state.show
                     &&
-                    <Brand onClose={this.handleClose} data={this.state.brand} callback={this.setBrand}/>
+                    <Brand onClose={this.handleClose} default={this.state.data[this.state.currentIndex].sign} data={this.state.brand} callback={this.setBrand}/>
                 }
                 {
                     4 === this.state.show
                     &&
-                    <Color onClose={this.handleClose} data={this.state.color} callback={this.setColor} />
+                    <Color onClose={this.handleClose} default={this.state.data[this.state.currentIndex].clothing_color} data={this.state.color} callback={this.setColor} />
                 }
                 {
                     5 === this.state.show
                     &&
-                    <Problem onClose={this.handleClose} data={this.state.problem} callback={this.setProblem} />
+                    <Problem onClose={this.handleClose} default={this.state.data[this.state.currentIndex].remark} data={this.state.problem} callback={this.setProblem} />
                 }
                 {
                     6 === this.state.show
                     &&
-                    <Forcast onClose={this.handleClose} data={this.state.forecast} callback={this.setForcast} />
+                    <Forcast onClose={this.handleClose} default={this.state.data[this.state.currentIndex].forecast} data={this.state.forecast} callback={this.setForcast} />
                 }
                 {
                     7 === this.state.show

@@ -8,7 +8,7 @@ import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {value:''};
+        this.state = {value:this.props.default || ''};
         this.handleClick = this.handleClick.bind(this);
         this.onChoice = this.onChoice.bind(this);
     }
