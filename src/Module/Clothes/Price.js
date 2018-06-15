@@ -9,23 +9,36 @@ import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false};
+        this.state = {show:false, tempIndex:null};
+        this.editor = this.editor.bind(this);
+    }
+
+    editor(e) {
+        this.setState({show:true, tempIndex:e.target.parentNode.dataset.index});
     }
 
     render() {
+        let html = this.props.data.map((obj, index) => {
+            return (
+                <div
+                    key={'data' + index}
+                    data-index={index}
+                    style={(this.props.currentIndex != index && obj.parent != this.props.data[this.state.currentIndex].clothing_number) ? {display:'none'} : null}
+                >
+                    <div>{obj.clothing_number}</div>
+                    <div>{obj.addition_remark}</div>
+                    <div onClick={this.editor}>编辑</div>
+                </div>
+            );
+        });
         return (
             <Window title='编辑衣物信息' width='648' height='452' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'><span>工艺加价</span></div>
                 <div className='clothes-price-data'>
                     <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    {html}
                 </div>
-                {this.state.show && <Layer data={this.props.data} onClose={() => this.setState({show:false})}/>}
+                {this.state.show && <Layer price={this.props.price} onClose={() => this.setState({show:false})}/>}
             </Window>
         );
     }
@@ -75,10 +88,11 @@ class Layer extends Component {
 
 
     render() {
-        if ('undefined' === typeof this.props.data || !(this.props.data instanceof Array)) return null;
-        let html = this.props.data.map(obj => {
-            let index = obj.id.inObjArray(this.state.checked, 'id')
-            ,   hasChecked = (-1 !== index);
+        if ('undefined' === typeof this.props.price || !(this.props.price instanceof Array)) return null;
+        let tempIndex, hasChecked
+        ,   html = this.props.price.map(obj => {
+            tempIndex = obj.id.inObjArray(this.state.checked, 'id');
+            hasChecked = (-1 !== tempIndex);
             return (
                 <div className='clothes-price' key={obj.id} data-id={obj.id} data-name={obj.name}>
                     <div>
@@ -94,7 +108,7 @@ class Layer extends Component {
                         <input
                             type='checkbox' 
                             className='e-checkbox' 
-                            checked={hasChecked && this.state.checked[index].discount ? 'checked' : ''}
+                            checked={hasChecked && this.state.checked[tempIndex].discount ? 'checked' : ''}
                             onClick={this.handleDiscount}
                         />&nbsp;允许打折
                     </div>

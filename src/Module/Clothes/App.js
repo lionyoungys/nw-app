@@ -68,6 +68,7 @@ export default class extends Component {
         this.setPrice = this.setPrice.bind(this);    //设置工艺加价
         this.setTemp = this.setTemp.bind(this);    //设置临时衣物
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
+        this.showUpdatePrice = this.showUpdatePrice.bind(this);    //展示修改衣物单价组件
         this.onClose = this.onClose.bind(this);
         this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
         this.setUser = this.setUser.bind(this);    //设置用户信息
@@ -211,9 +212,12 @@ export default class extends Component {
         this.setState({show:7, data:this.state.data});
     }
     setPrice(value) {this.setState({show:8})}
+    showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
     updatePrice(value) {
         this.state.data[this.state.currentIndex].raw_price = value;
+        this.state.data.setByIntersection({parent:this.state.data[this.state.currentIndex].clothing_number},{raw_price:value});
         this.setState({show:0, data:this.state.data});
+        console.log(this.state.data);
     }
     setUser(obj) {
         obj.show = 0;
@@ -261,7 +265,7 @@ export default class extends Component {
                     <div>{obj.sign}</div>
                     <div>{obj.forecast}</div>
                     <div>{obj.addition_remark}</div>
-                    <div>{obj.raw_price}</div>
+                    <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div onClick={this.del}>删除</div>
                 </div>
@@ -337,7 +341,7 @@ export default class extends Component {
                 {
                     7 === this.state.show
                     &&
-                    <Price onClose={this.handleClose} data={this.state.price} callback={this.setPrice} />
+                    <Price onClose={this.handleClose} data={this.state.data} currentIndex={this.state.currentIndex} price={this.state.price} callback={this.setPrice}/>
                 }
                 {
                     11 === this.state.show
@@ -350,7 +354,7 @@ export default class extends Component {
                     <UpdatePrice
                         onClose={this.handleClose}
                         callback={this.updatePrice}
-                        price={this.state.data[this.state.currentIndex]} 
+                        price={this.state.data[this.state.currentIndex].raw_price} 
                         discount={this.state.data[this.state.currentIndex].min_discount}
                     />
                 }

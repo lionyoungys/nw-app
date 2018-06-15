@@ -15,11 +15,12 @@ export default class extends Component {
     }
     handleChange(e) {
         let value = e.target.value;
-        if (isNaN(value) || value > this.minPrice) return;
+        if (isNaN(value)) return;
         this.setState({value:value})
     }
     handleClick() {
-        'function' === typeof this.props.callback && this.props.callback(this.state.value);
+        let value = this.state.value;
+        '' !== value && value >= this.minPrice && 'function' === typeof this.props.callback && this.props.callback(value);
     }
 
     render() {

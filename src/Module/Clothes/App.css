@@ -26,6 +26,7 @@
     text-align: center;
     font-size: 12px;
     word-break: break-all;
+    cursor: default;
 }
 .clothes-header>:last-child, .clothes-body>div>:last-child{border-right: none;width: 60px}
 .clothes-header>:nth-child(1), .clothes-body>div>:nth-child(1){width: 92px}

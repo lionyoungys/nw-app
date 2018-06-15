@@ -231,4 +231,33 @@
             }
         }
     }
+
+    /**
+     * 通过对象交集设置数组中匹配的值
+     * @param {object} obj 判断对象
+     * @param {object} setObj 设置对象
+     * @return {void}
+     */
+    Array.prototype.setByIntersection = function(obj, setObj) {
+        if ('object' !== typeof obj || 'object' !== typeof setObj) return;
+        var len = this.length
+        ,   k
+        ,   sk
+        ,   match = true;
+        for (var i = 0;i < len;++i) {
+            for (k in obj) {
+                if (this[i][k] != obj[k]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                for (sk in setObj) {
+                    this[i][sk] = setObj[sk];
+                }
+            } else {
+                match = true;
+            }
+        }
+    }
 })();
