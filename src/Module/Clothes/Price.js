@@ -41,7 +41,7 @@ export default class extends Component {
                 <div
                     key={'data' + index}
                     data-index={index}
-                    style={(this.props.currentIndex != index && obj.parent != this.props.data[this.props.currentIndex].clothing_number) ? {display:'none'} : null}
+                    style={(this.props.currentIndex != index && obj.parent != this.props.data[this.props.currentIndex].DATATAG) ? {display:'none'} : null}
                 >
                     <div>{obj.clothing_number}</div>
                     <div>{obj.addition_remark}</div>

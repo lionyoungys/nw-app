@@ -18,6 +18,7 @@ import UpdatePrice from './UpdatePrice';
 import Deduct from './Deduct';
 import Payment from '../../UI/Payment';
 import User from './User';
+import Code from './Code';
 import './App.css';
 
 export default class extends Component {
@@ -55,6 +56,8 @@ export default class extends Component {
     "address":住址
             */
         this.M1read = this.M1read.bind(this);    //读卡
+        this.setCode = this.setCode.bind(this);    //设置衣物编码
+        this.showCode = this.showCode.bind(this);    //展示设置衣物编码
         this.add = this.add.bind(this);    //添加衣物
         this.showItem = this.showItem.bind(this);    //展示添加衣物组件
         this.cost = this.cost.bind(this);    //收银
@@ -133,13 +136,14 @@ export default class extends Component {
             this.state.data[this.state.currentIndex].clothing_name = item.item_name;
             this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
             this.state.data[this.state.currentIndex].raw_price = item.item_off_price;
-            this.state.data[this.state.currentIndex].remark = item.item_flaw || '';
             this.state.data[this.state.currentIndex].deal_time = tool.timestamp(item.item_cycle);
             this.state.data[this.state.currentIndex].min_discount = item.min_discount;
             this.state.data[this.state.currentIndex].has_discount = item.has_discount;
         } else {
-            let data = {
-                clothing_number: this.counter.timeCode(), 
+            let timeCode = this.counter.timeCode()
+            ,   data = {
+                DATATAG:timeCode,
+                clothing_number: timeCode, 
                 clothing_id: item.id, 
                 clothing_name: item.item_name, 
                 clothing_color: '', 
@@ -158,7 +162,7 @@ export default class extends Component {
                 sign:'',
                 min_discount: item.min_discount,    //最低折扣率
                 has_discount: item.has_discount,    //是否打折
-                parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
+                parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
             ++this.counter;
             this.state.data.push(data);
@@ -173,8 +177,10 @@ export default class extends Component {
             this.state.data[this.state.currentIndex].deal_time = tool.timestamp(value.day);
             this.state.data[this.state.currentIndex].has_discount = value.discount ? 1 : 0;
         } else {
-            let data = {
-                clothing_number: this.counter.timeCode(), 
+            let timeCode = this.counter.timeCode()
+            ,   data = {
+                DATATAG:timeCode,
+                clothing_number: timeCode, 
                 clothing_id: '', 
                 clothing_name: value.name, 
                 clothing_color: '', 
@@ -193,7 +199,7 @@ export default class extends Component {
                 sign:'',
                 min_discount: 1,    //最低折扣率
                 has_discount: value.discount ? 1 : 0,    //是否打折
-                parent:null    //判断是否为子级数据，值为复制父级数据的衣物编码
+                parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
             ++this.counter;
             this.state.data.push(data);
@@ -204,24 +210,31 @@ export default class extends Component {
     clone(param) {
         let data = tool.clone(this.state.data[param]);
         data.clothing_number = this.counter.timeCode();
-        data.parent = this.state.data[param].clothing_number;
+        data.parent = this.state.data[param].DATATAG;
         data.addition_remark = data.addition_price = data.addition_discount = '';
         ++this.counter;
         this.state.data.push(data);
         this.setState({data:this.state.data});
     }
     destory(param) {
-        this.state.data.spliceByKeyVal('parent', this.state.data[param].clothing_number, {last:true});
+        this.state.data.spliceByKeyVal('parent', this.state.data[param].DATATAG, {last:true});
         this.setState({data:this.state.data});
     }
     del(e) {
         let index = e.target.parentNode.dataset.index
-        ,   number = this.state.data[index].clothing_number;
+        ,   number = this.state.data[index].DATATAG;
         this.state.data.splice(index, 1);
         this.state.data.spliceByKeyVal('parent', number);
         this.setState({data:this.state.data});
     }
-    
+    setCode(data){
+        let len = data.length;
+        for (let i = 0;i < len;++i) {
+            this.state.data[data[i].index].clothing_number = data[i].number;
+        }
+        this.setState({data:this.state.data,show:0});
+    }
+    showCode(e){this.setState({show:16,currentIndex:e.target.parentNode.dataset.index})}
     setBrand(value) {
         this.state.data[this.state.currentIndex].sign = value;
         this.setState({show:4, data:this.state.data});
@@ -251,7 +264,7 @@ export default class extends Component {
     showPrice(e) {this.setState({show:7,currentIndex:e.target.parentNode.dataset.index})}
     updatePrice(value) {
         this.state.data[this.state.currentIndex].raw_price = value;
-        this.state.data.setByIntersection({parent:this.state.data[this.state.currentIndex].clothing_number},{raw_price:value});
+        this.state.data.setByIntersection({parent:this.state.data[this.state.currentIndex].DATATAG},{raw_price:value});
         this.setState({show:0, data:this.state.data});
     }
     showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
@@ -265,7 +278,7 @@ export default class extends Component {
     recharge() {
 
     }
-    handleClose() {this.setState({show:0})}
+    handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
     tempUser() {this.setState({show:15})}
     onClose() {
@@ -285,7 +298,7 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   discount = '' == this.state.discount ? 100 : this.state.discount
         ,   html = this.state.data.map((obj, index) => {
-            let count = this.state.data.keyValCount('parent', obj.clothing_number);
+            let count = this.state.data.keyValCount('parent', obj.DATATAG);
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
                 (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
@@ -294,7 +307,7 @@ export default class extends Component {
             );
             return (
                 <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
-                    <div>{obj.clothing_number}</div>
+                    <div onClick={this.showCode}>{obj.clothing_number}</div>
                     <div onClick={this.showItem}>{obj.clothing_name}</div>
                     <div onClick={this.showColor}>{obj.clothing_color}</div>
                     <div onClick={this.showProblem}>{obj.remark}</div>
@@ -417,6 +430,11 @@ export default class extends Component {
                         discount={this.state.discount} 
                         callback={this.setUser}
                     />
+                }
+                {
+                    16 === this.state.show
+                    &&
+                    <Code onClose={this.handleClose} data={this.state.data} currentIndex={this.state.currentIndex} callback={this.setCode}/>
                 }
             </Window>
         );

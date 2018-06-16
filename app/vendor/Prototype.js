@@ -212,12 +212,13 @@
         }
         for (var i = 0;i < len;++i) {
             if ('object' === typeof this[i] && this[i][key] == value) {
-                if (null === firstIndex) firstIndex = i;
-                lastIndex = i;
                 if (!obj.first && !obj.last) {
                     this.splice(i, 1);
                     --i;
                     --len;
+                } else {
+                    if (obj.first && null === firstIndex) firstIndex = i;
+                    if (obj.last) lastIndex = i;
                 }
             }
         }

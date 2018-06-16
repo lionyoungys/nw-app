@@ -351,3 +351,25 @@
 .clothes-user-main-body>div>div:nth-child(1) {width: 84px}
 .clothes-user-main>:first-child>div:nth-child(7),
 .clothes-user-main-body>div>div:nth-child(7) {width: 180px}
+/* code.js衣物编码界面 */
+.clothes-code{
+    margin: 12px;
+    border: 1px solid #8db2e3;
+    font-size: 12px;
+    text-align: center;
+    line-height: 26px;
+}
+.clothes-code>:last-child{
+    max-height: 216px;
+    overflow: auto;
+}
+.clothes-code>:first-child, .clothes-code>:last-child>div{
+    display: -webkit-flex;
+    display: flex;
+    border-bottom: 1px solid #8db2e3;
+    height: 26px;
+}
+.clothes-code>:first-child{background: #89b0d4;color: #fff}
+.clothes-code>:first-child, .clothes-code>:last-child>:last-child{border: none}
+.clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 188px}
+.clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 192px}
