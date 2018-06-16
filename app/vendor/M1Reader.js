@@ -132,7 +132,7 @@
 
     /**
      * 逻辑获取卡数据
-     * @return {*object} {empty:是否为空卡,hasUpdate:会员卡是否已经更新为本平台的卡}
+     * @return {*object} {empty:是否为空卡,hasUpdate:会员卡是否已经更新为本平台的卡,error:是否为读卡错误}
      */
     r.get = function() {
         var len = config.KeyAList.length
@@ -144,7 +144,7 @@
                 break;
             } catch (e) {}
         }
-        var obj = {empty:true, hasUpdate:false};
+        var obj = {empty:true, hasUpdate:false, error:false};
         if (null !== index) {
             for (var k in config.Blocks[index]) {
                 obj[k] = this.read(1, config.KeyAList[index], config.Blocks[index][k]);
@@ -156,11 +156,11 @@
         try {
             this.authorization(2, config.KeyB, config.Blocks[0].sn);
         } catch (e) {
+            obj.error = true;
             return obj;
         }
-        for (var k in config.Blocks[0]) {
+        for (var k in config.Blocks[0]) {    //读取块B为空白卡
             obj[k] = this.read(2, config.KeyB, config.Blocks[0][k]);
-            if (obj[k].length > 0) obj.empty = false;
         }
         return obj;
     }

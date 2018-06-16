@@ -25,36 +25,13 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
             update:false,    //用于判断衣物为添加还是修改
         };
         this.counter = 1;    //编码累加计数属性
-        /*
-    "user_name": "姓名",
-	"user_mobile": "手机号",
-	"clothing_number": "衣物编码",
-	"clothing_id": "衣物id",
-	"clothing_name": "衣物名称",
-	"clothing_color": "衣物颜色",
-	"clothing_grids": "衣物网格",
-	"clothing_type": "衣物类型",
-	"raw_price": "衣物原价",
-	"remark": "瑕疵",
-	"deal_time": 交活时间戳,
-    "grid_num": "格架号",
-    "addition_remark":附加服务（工艺加价）
-    "addition_price":附加服务费
-    addition_no_price:不可折金额
-    "addition_discount":附加服务费是否打折(0,不打折。1，打折)
-    "forecast":洗后预估效果
-    "work_number":件数
-    "sign":衣物品牌
-    "card_type":卡类型
-    "address":住址
-            */
         this.M1read = this.M1read.bind(this);    //读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
@@ -129,9 +106,11 @@ export default class extends Component {
     M1read() {
         //phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',
         let card = M1Reader.get();
-        if (card.empty) return tool.ui.error({msg:'读卡失败',callback:close => close()});
+        if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
+        if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
         if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-
+            //sn,cid,mid
+            //需提供通过sn,cid参数查询卡数据的接口
         } else {
             this.setState({
                 phone:card.phone,
@@ -184,7 +163,7 @@ export default class extends Component {
                 addition_remark:'',
                 addition_price: 0,
                 addition_no_price: 0,
-                addition_discount:'',
+                addition_discount: '',
                 forecast:'',
                 work_number:1,
                 sign:'',
@@ -227,7 +206,7 @@ export default class extends Component {
                 addition_remark:'',
                 addition_price: 0,
                 addition_no_price: 0,
-                addition_discount:'',
+                addition_discount: '',
                 forecast:'',
                 work_number:1,
                 sign:'',
@@ -307,7 +286,54 @@ export default class extends Component {
         this.setState(obj);
     }
     cost() {
-        this.setState({show:14});
+        /**"user_name": "姓名",
+	"user_mobile": "手机号",
+	"clothing_number": "衣物编码",
+	"clothing_id": "衣物id",
+	"clothing_name": "衣物名称",
+	"clothing_color": "衣物颜色",
+	"clothing_grids": "衣物网格",
+	"clothing_type": "衣物类型",
+	"raw_price": "衣物原价",
+	"remark": "瑕疵",
+	"deal_time": 交活时间戳,
+    "grid_num": "格架号",
+    "addition_remark":附加服务（工艺加价）
+    "addition_price":附加服务费
+    addition_no_price:不可折金额
+    "addition_discount":附加服务费是否打折(0,不打折。1，打折)
+    "forecast":洗后预估效果
+    "work_number":件数
+    "sign":衣物品牌
+    "card_type":卡类型
+    "address":住址 */
+    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+        if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
+        let data = this.state.data
+        ,   len = data.length
+        ,   pay_amount = 0
+        ,   craft_price = 0
+        for (let i = 0;i < len;++i) {
+            if ('' == data[i].raw_price || 0 == data[i].raw_price) return tool.ui.error({msg:(data[i].clothing_name + '价格为空'),callback:close => close()});
+            pay_amount = pay_amount.add(data[i].raw_price, data[i].addition_price, data[i].addition_no_price);
+            craft_price = craft_price.add(data[i].addition_price, data[i].addition_no_price);
+            data[i].user_name = this.state.name;
+            data[i].user_mobile = this.state.phone;
+            data[i].card_type = this.state.type;
+            data[i].address = this.state.addr;
+        }
+        api.post(
+            'get_clothes',
+            {token:'token'.getData(), uid:this.state.uid, pay_amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            (res, ver) => {
+                console.log(res);
+                if (ver) {
+                    this.setState({show:14});
+                }
+            }
+        );
+        
     }
     recharge() {
 
