@@ -219,6 +219,16 @@
     t.ui.error = function error(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.warn = function warn(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.success = function success(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
-
+    /**
+     * 加载框
+     * @param {function} callback 回调函数，回传参数为加载结束方法
+     */
+    t.ui.loading = function(callback) {
+        var bg = this.c('div', 't-ui-layer')
+        ,   loading = this.c('div', 't-ui-loading');
+        bg.appendChild(loading);
+        document.body.appendChild(bg);
+        'function' === typeof callback && callback(function() {document.body.removeChild(bg)});
+    }
     window.tool = t;
 })(window);

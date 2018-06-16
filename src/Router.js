@@ -1,60 +1,60 @@
 //类文件引入
 import Data from './Module/Data/App';
 import Clothes from './Module/Clothes/App' //收衣界面
-import Hangon from './Module/Hangon/Hangon.js'; //上挂
-import Takeclothes from './Module/Takeclothes/Takeclothes.js'; //取衣
-import Commoditysales from './Module/Commoditysales/Commoditysales.js'; //商品销售
+import Hangon from './Module/Hangon/Hangon'; //上挂
+import Takeclothes from './Module/Takeclothes/Takeclothes'; //取衣
+import Commoditysales from './Module/Commoditysales/Commoditysales'; //商品销售
 
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
-import OperatingDetails from './Module/OperatingDetails/OperatingDetails.js'; //营业明细
-import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate.js'
-import AddGroup from './Module/AddGroup/AddGroup.js'//新增组
+import OperatingDetails from './Module/OperatingDetails/OperatingDetails'; //营业明细
+import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate'
+import AddGroup from './Module/AddGroup/AddGroup'//新增组
 import Demo from './Module/Demo';
-import RechargeUp from './Module/RechargeUp/RechargeUp.js'; //充值统计
-import StaffManagement from './Module/StaffManagement/StaffManagement.js';  //员工管理
-import BalanceStatistics from './Module/BalanceStatistics/BalanceStatistics.js';  //余额统计
-import MemberConsumptionStatistics from './Module/MemberConsumptionStatistics/MemberConsumptionStatistics.js';  //会员消费统计
-import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics.js';  //前台统计
+import RechargeUp from './Module/RechargeUp/RechargeUp'; //充值统计
+import StaffManagement from './Module/StaffManagement/StaffManagement';  //员工管理
+import BalanceStatistics from './Module/BalanceStatistics/BalanceStatistics';  //余额统计
+import MemberConsumptionStatistics from './Module/MemberConsumptionStatistics/MemberConsumptionStatistics';  //会员消费统计
+import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics';  //前台统计
 import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
-import UnpaidStatistics from './Module/UnpaidStatistics/UnpaidStatistics.js';//未付款统计
+import UnpaidStatistics from './Module/UnpaidStatistics/UnpaidStatistics';//未付款统计
 import Recharge from './Module/Recharge/App';
 
 import OperateIncome from './Module/OperateIncome/OperateIncome';
-import SaleCard from './Module/SaleCard/SaleCard.js';
-import ChangeCard from './Module/ChangeCard/ChangeCard.js';//换卡
-import ReportLossMain from './Module/ReportLossMain/ReportLossMain.js';//挂失主页面
-import ReturnCard from './Module/ReturnCard/ReturnCard.js';
-import ManagerGathering from './Module/ManagerGathering/ManagerGathering.js';//经理收款
+import SaleCard from './Module/SaleCard/SaleCard';
+import ChangeCard from './Module/ChangeCard/ChangeCard';//换卡
+import ReportLossMain from './Module/ReportLossMain/ReportLossMain';//挂失主页面
+import ReturnCard from './Module/ReturnCard/ReturnCard';
+import ManagerGathering from './Module/ManagerGathering/ManagerGathering';//经理收款
 
-import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge.js'; // 支付充值页面
-import PriceSetting from './Module/PriceSetting/PriceSetting.js'; // 洗护价格设置
-import Solutiontohang from'./Module/Solutiontohang/Solutiontohang.js';// 解除挂失页面
-import Editshopprices from'./Module/Editshopprices/Editshopprices.js'; // 编辑商品价格
-import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices.js'; // 编辑洗护价格
-import ClothesQuery from'./Module/ClothesQuery/ClothesQuery.js'; // 衣物查询
-import LatticeQuery from'./Module/LatticeQuery/LatticeQuery.js'; // 格架查询
-import Succession from'./Module/Succession/Succession.js'; // 交班
-import ConsumptionStatistics from './Module/ConsumptionStatistics/ConsumptionStatistics.js'; //消费统计
-import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery.js'; //挂失查询
-import CardQueries from './Module/CardQueries/CardQueries.js'; //退卡查询
-import ParameterSettings from './Module/ParameterSettings/ParameterSettings.js'; //参数设置
-import Equipmentmanagement from './Module/Equipmentmanagement/Equipmentmanagement.js'; //设备管理
-// import Membershipquery from './Module/Membershipquery/Membershipquery.js'; //会员消费查询
-import Customerquery from './Module/Customerquery/Customerquery.js'; //客户消费查询
-import Payoutstats from './Module/Payoutstats/Payoutstats.js'; //赔付统计
-import Vipstats from './Module/Vipstats/Vipstats.js'; //会员分类统计
-import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate.js'; //密码修改
-import StoreManagement from './Module/StoreManagement/StoreManagement.js'; //门店管理
-import Clothestat from './Module/Clothestat/Clothestat.js'; //衣物统计
-import managerquery from './Module/managerquery/managerquery.js'; //衣物统计
-import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBusinessStatistics.js'; //会员业务统计
-import Businessdaily from './Module/Businessdaily/Businessdaily.js'; //经营日报
-import Businesstats from './Module/Businesstats/Businesstats.js'; //营业统计
-import Balancedetail from './Module/Balancedetail/Balancedetail.js'; //欠款明细
-import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js'; //营业分析
-import Debtpay from './Module/Debtpay/Debtpay.js'; //欠款补交
-import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking.js'; //支付宝微信统计
-import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard.js'; //挂失补换卡
+import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge'; // 支付充值页面
+import PriceSetting from './Module/PriceSetting/PriceSetting'; // 洗护价格设置
+import Solutiontohang from'./Module/Solutiontohang/Solutiontohang';// 解除挂失页面
+import Editshopprices from'./Module/Editshopprices/Editshopprices'; // 编辑商品价格
+import EditCleaningPrices from'./Module/EditCleaningPrices/EditCleaningPrices'; // 编辑洗护价格
+import ClothesQuery from'./Module/ClothesQuery/ClothesQuery'; // 衣物查询
+import LatticeQuery from'./Module/LatticeQuery/LatticeQuery'; // 格架查询
+import Succession from'./Module/Succession/Succession'; // 交班
+import ConsumptionStatistics from './Module/ConsumptionStatistics/ConsumptionStatistics'; //消费统计
+import ReportLossQuery from './Module/ReportLossQuery/ReportLossQuery'; //挂失查询
+import CardQueries from './Module/CardQueries/CardQueries'; //退卡查询
+import ParameterSettings from './Module/ParameterSettings/ParameterSettings'; //参数设置
+import Equipmentmanagement from './Module/Equipmentmanagement/Equipmentmanagement'; //设备管理
+// import Membershipquery from './Module/Membershipquery/Membershipquery'; //会员消费查询
+import Customerquery from './Module/Customerquery/Customerquery'; //客户消费查询
+import Payoutstats from './Module/Payoutstats/Payoutstats'; //赔付统计
+import Vipstats from './Module/Vipstats/Vipstats'; //会员分类统计
+import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate'; //密码修改
+import StoreManagement from './Module/StoreManagement/StoreManagement'; //门店管理
+import Clothestat from './Module/Clothestat/Clothestat'; //衣物统计
+import managerquery from './Module/managerquery/managerquery'; //衣物统计
+import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBusinessStatistics'; //会员业务统计
+import Businessdaily from './Module/Businessdaily/Businessdaily'; //经营日报
+import Businesstats from './Module/Businesstats/Businesstats'; //营业统计
+import Balancedetail from './Module/Balancedetail/Balancedetail'; //欠款明细
+import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis'; //营业分析
+import Debtpay from './Module/Debtpay/Debtpay'; //欠款补交
+import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking'; //支付宝微信统计
+import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard'; //挂失补换卡
 
 
 

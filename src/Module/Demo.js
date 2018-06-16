@@ -54,6 +54,11 @@ export default class extends React.Component {
             close();
         }}); 
     }
+    loading() {
+        let done;
+        tool.ui.loading(handle => done = handle);
+        setTimeout(done, 3000);
+    }
     btn() {
         tool.ui.success({callback:(close, event) => {
             close();
@@ -77,6 +82,7 @@ export default class extends React.Component {
                 <button type='button' className='e-btn' onClick={this.error}>错误弹框</button>
                 <button type='button' className='e-btn' onClick={this.warn}>警告弹框</button>
                 <button type='button' className='e-btn' onClick={this.success}>成功弹框</button>
+                <button type='button' className='e-btn' onClick={this.loading}>加载框</button>
                 <br/>
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>

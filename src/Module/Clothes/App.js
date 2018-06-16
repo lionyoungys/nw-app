@@ -310,7 +310,7 @@ export default class extends Component {
     //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
         if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
         if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
-        let data = this.state.data
+        let data = tool.clone(this.state.data)
         ,   len = data.length
         ,   pay_amount = 0
         ,   craft_price = 0
@@ -322,6 +322,8 @@ export default class extends Component {
             data[i].user_mobile = this.state.phone;
             data[i].card_type = this.state.type;
             data[i].address = this.state.addr;
+            delete data[i].DATATAG;
+            delete data[i].parent;
         }
         api.post(
             'get_clothes',

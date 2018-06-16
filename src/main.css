@@ -262,7 +262,16 @@ table{border-collapse: collapse}
 .e-fieldset.checked{background: url(img/e-fieldset-checked.png)}
 
 /* 工具类ui样式部分 */
-
+/* 加载框样式 */
+.t-ui-loading{
+    width: 124px;
+    height: 124px;
+    position: fixed;
+    top: 50%;left: 50%;
+    z-index: 999999;
+    background: url(img/t-ui-loading.gif) no-repeat;
+    margin: -62px 0 0 -62px;
+}
 /* 弹框样式 */
 .t-ui-layer{
     position: fixed;
