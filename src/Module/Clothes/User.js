@@ -110,7 +110,7 @@ export default class extends React.Component {
                             <input
                                 type='text'
                                 className='e-input'
-                                value={this.state.number}
+                                defaultValue={this.state.number}
                                 style={{marginRight:'0'}}
                                 ref={input => this.numberInput = input}
                             />

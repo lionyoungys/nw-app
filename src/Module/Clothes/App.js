@@ -25,7 +25,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',
+            phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
@@ -127,18 +127,46 @@ export default class extends Component {
     }
 
     M1read() {
+        //phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',
+        let card = M1Reader.get();
+        if (card.empty) return tool.ui.error({msg:'读卡失败',callback:close => close()});
+        if (card.hasUpdate) {    //会员卡已更新为本平台的卡
 
+        } else {
+            this.setState({
+                phone:card.phone,
+                name:card.name,
+                number:card.sn,
+                type:card.type,
+                balance:parseFloat(card.balance),
+                discount:(parseFloat(card.discount) * 100)
+            });
+        }
+        console.log(card);
     }
     add(index) {
         let item = this.state.item[this.state.categoryIndex][index];
         if (this.state.update) {
+            let day = tool.timestamp(item.item_cycle);
             this.state.data[this.state.currentIndex].clothing_id = item.id
             this.state.data[this.state.currentIndex].clothing_name = item.item_name;
             this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
             this.state.data[this.state.currentIndex].raw_price = item.item_off_price;
-            this.state.data[this.state.currentIndex].deal_time = tool.timestamp(item.item_cycle);
+            this.state.data[this.state.currentIndex].deal_time = day;
             this.state.data[this.state.currentIndex].min_discount = item.min_discount;
             this.state.data[this.state.currentIndex].has_discount = item.has_discount;
+            this.state.data.setByIntersection(
+                {parent:this.state.data[this.state.currentIndex].DATATAG}, 
+                {
+                    clothing_id:item.id, 
+                    clothing_name:item.item_name, 
+                    clothing_type:item.cate_name, 
+                    raw_price:item.item_off_price, 
+                    deal_time:day, 
+                    min_discount:item.min_discount,
+                    has_discount:item.has_discount
+                }
+            );
         } else {
             let timeCode = this.counter.timeCode()
             ,   data = {
@@ -171,11 +199,17 @@ export default class extends Component {
     }
     setTemp(value) {
         if (this.state.update) {
+            let day = tool.timestamp(value.day)
+            ,   has_discount = value.discount ? 1 : 0;
             this.state.data[this.state.currentIndex].clothing_id = '';
             this.state.data[this.state.currentIndex].clothing_name = value.name;
             this.state.data[this.state.currentIndex].raw_price = value.price;
-            this.state.data[this.state.currentIndex].deal_time = tool.timestamp(value.day);
-            this.state.data[this.state.currentIndex].has_discount = value.discount ? 1 : 0;
+            this.state.data[this.state.currentIndex].deal_time = day;
+            this.state.data[this.state.currentIndex].has_discount = has_discount;
+            this.state.data.setByIntersection(
+                {parent:this.state.data[this.state.currentIndex].DATATAG}, 
+                {clothing_id:'', clothing_name:value.name, raw_price:value.price, deal_time:day, has_discount:has_discount}
+            );
         } else {
             let timeCode = this.counter.timeCode()
             ,   data = {

@@ -4,7 +4,7 @@
  * @desc 依赖Tool.js，需在tool.js之后引入
  */
 
-(function() {
+(function(window) {
     var k = {
         code:new Array(),    //英文键盘编码
         chCode:{
@@ -125,5 +125,6 @@
     k.onkeyup = function(e) {
         if (e instanceof KeyboardEvent && 20 == (e.keyCode||e.which)) k.CapsLock = !k.CapsLock;
     }
+    if ('object' !== typeof tool) window.tool = {};
     tool.KeyCode = k;
-})();
+})(window);

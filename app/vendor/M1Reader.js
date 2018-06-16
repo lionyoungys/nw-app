@@ -132,7 +132,7 @@
 
     /**
      * 逻辑获取卡数据
-     * @return {*object}
+     * @return {*object} {empty:是否为空卡,hasUpdate:会员卡是否已经更新为本平台的卡}
      */
     r.get = function() {
         var len = config.KeyAList.length
@@ -167,8 +167,8 @@
 
     /**
      * 逻辑设置卡数据
-     * @param {*object} data sn:卡号,cid:卡ID,mid:商户id
-     * @return {*object}
+     * @param {object} data sn:卡号,cid:卡ID,mid:商户id
+     * @return {bool}
      */
     r.set = function(data) {
         if ('object' !== typeof data) throw '参数格式错误';
