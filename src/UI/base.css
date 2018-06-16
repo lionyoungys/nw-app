@@ -235,7 +235,7 @@
 }
 .ui-table-base tr td,.ui-table-base tr th{
 
-    padding: 0 3px;
+    padding: 0;
     width: auto;
     height: 25px;
     line-height: 25px;

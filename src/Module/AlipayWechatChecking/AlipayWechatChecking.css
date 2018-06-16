@@ -82,26 +82,32 @@
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-1{
 
     min-width: 170px;
+    max-width: 170px;
 }
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-2{
 
-    min-width: 210px;
+    min-width: 245px;
+    max-width: 245px;
 }
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-3{
 
     min-width: 94px;
+    max-width: 94px;
 }
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-4{
 
     min-width: 94px;
+    max-width: 94px;
 }
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-5{
 
     min-width: 94px;
+    max-width: 94px;
 }
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-6{
 
     min-width: 172px;
+    max-width: 172px;
 }
 
 

@@ -16,7 +16,11 @@ export default class extends Component {
     arrbutton(e){
         console.log(e.target.dataset.index)
         if(e.target.dataset.index==0){
-            api.post('orderBack', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver) => {
+            api.post('orderBack', {
+                start_time:this.state.startdate,
+                end_time:this.state.enddate,
+                token:'token'.getData(),
+            }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
                     this.setState({orderCount:res.result.orderCount,itemCount:res.result.itemCount,orderBack:res.result.orderBack,item:res.result.item});

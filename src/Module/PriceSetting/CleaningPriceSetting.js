@@ -8,7 +8,7 @@ import Select from '../../UI/Select';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
-import ClothesCategoryManage from './ClothesCategoryManage'
+import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment'
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -19,31 +19,29 @@ export default class extends Component {
             itemLists:[],
             itemList:[],
             selectImg:false,
+            type:[],
+            typeList:[],
+            typeLists:[],
+            clothestypemanageshow:false
         }
 
         this.handleClick=this.handleClick.bind(this);
         this.onClose=this.onClose.bind(this);
+        this.addcheanprice=this.addcheanprice.bind(this);
+        this.clothestypemanage=this.clothestypemanage.bind(this);
     };   
 
     handleClick(e){
         this.setState({index:e.target.dataset.index});
     } 
     componentDidMount(){
-    //     api.post('serveType', {
-    //         token:'token'.getData()
-    // }, (res, ver) => {
-    //         if (ver && res) {
-    //             console.log(res)
-    //             this.setState({serveTypes:res.result})
-    //         }
-    //     }
-    //     ); 
+
         api.post('itemList', {
             token:'token'.getData()
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemLists:res.result})
+                this.setState({itemLists:res.result,type:res.result.typeArray('name'),})
             }
         }
         ); 
@@ -51,6 +49,21 @@ export default class extends Component {
     }
     onClose(){
         this.setState({selectImg:false})
+    }
+    clothestypemanage(){
+        this.setState({clothestypemanageshow:true});
+    }
+    addcheanprice(){
+        this.setState({show:true})
+        api.post('typeList', {
+            token:'token'.getData()
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({typeLists:res.result,typeList:res.result.typeArray('name')})
+            }
+        }
+        ); 
     }
     render() {
         let itemLists = this.state.itemLists.map((item,index)=>
@@ -67,7 +80,7 @@ export default class extends Component {
         'undefined' !== typeof this.state.itemLists[this.state.index].server
     ) {
         itemList = this.state.itemLists[this.state.index].server.map((item,index)=>
-            <tr>
+            <tr key={item}>
                 <td>{index+1}</td>
                 <td>{item.item_name}</td>
                 <td>{item.dispose_type}</td>
@@ -89,9 +102,8 @@ export default class extends Component {
             // <Window title='洗护价格设置' onClose={this.props.closeView} >
             <div className='cleaning_price_all'>
                 <div className="cleaning_price_set_btn">
-                    <button className='e-btn middle'>洗护分类管理</button>
-                    <button className='e-btn middle' onClick={<ClothesCategoryManage/>}>衣物类别管理</button>
-                    <button className='e-btn middle' onClick={() => this.setState({show:true})}>+新增洗护价格</button>
+                    <button className='e-btn middle' onClick={this.clothestypemanage}>衣物类别管理</button>
+                    <button className='e-btn middle' onClick={this.addcheanprice}>+新增洗护价格</button>
                 </div >
                 <div className='cleaning_price_set_left_table_div'>
                     <div className='cleaning_price_set_left_table'>
@@ -123,19 +135,6 @@ export default class extends Component {
                     </thead>
                     <tbody>
                         {itemList}
-                        {/* <tr>
-                            <td>1</td>
-                            <td>wwkskskskk看书看书看书看</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr> */}
                     </tbody>
                 </table> 
                 {
@@ -144,9 +143,9 @@ export default class extends Component {
                     <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={['干洗', '水洗', '烘干']} selected='干洗' onChange={value => console.log(value)} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.type} selected={this.state.type[0]} onChange={value => console.log(value)} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text" /></div>
-                                <div><span>处理类别：</span><Select option={['上衣', '裤装', '小件']} selected='上衣' onChange={value => console.log(value)} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={value => console.log(value)} /></div>
                                 <div><span>档次：</span><Select option={['上衣', '裤装', '小件']} selected='上衣' onChange={value => console.log(value)} /></div>
                                 <div><span>材料：</span><Select option={['上衣', '裤装', '小件']} selected='上衣' onChange={value => console.log(value)} /></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" />天</div>
@@ -191,6 +190,9 @@ export default class extends Component {
                 }
                 {
                     this.state.selectImg && <PhotoGallery onClose={this.onClose}/>
+                }
+                {
+                    this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})}/>
                 }
             </div>
             // </Window>

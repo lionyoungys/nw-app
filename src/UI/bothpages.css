@@ -376,3 +376,55 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .bothpages-footer-both span{
     color:#f00;
 }
+
+/* 占位图片显示空数据等 */
+/* <div className='bothpages-place'>
+    <div className='bothpages-block-center'>
+        <img src='./img/no_data_place.png' />
+        <p>没有找到符合条件的数据</p>
+    </div>
+</div> */
+.bothpages-place{
+
+    margin: 0;
+    height: 400px;
+    position: relative;
+}
+/* 块级元素居中 */
+.bothpages-block-center{
+
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.bothpages-block-center img{
+
+    width: 96px;
+    height: 76px;
+    /* 这样使用会有一个灰色的边框，只能在Html时候src 添加个占位空白或者直接写需要的图片 */
+    /* background:url(./img/no_data_place.png) no-repeat; */
+}
+.bothpages-block-center p{
+
+    font-size: 14px;
+    color: #333;
+}
+/* 列表底部多个按钮向右、向左对齐 （注意正确的排序 向右则倒叙）*/
+/* <div className='bothpages-btn-part'>
+    
+    <button type='button' className='e-btn'>挂失</button>
+    <button type='button' className='e-btn'>解除挂失</button>
+    <button type='button' className='e-btn'>换卡</button>
+    <button type='button' className='e-btn'>补卡</button>
+</div> */
+.bothpages-btn-part{
+    margin: 15px 13px 0;
+    height: 30px;
+}
+.bothpages-btn-part button{
+
+    float: right;
+    margin-left: 8px;
+}

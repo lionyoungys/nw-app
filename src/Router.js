@@ -54,6 +54,7 @@ import Balancedetail from './Module/Balancedetail/Balancedetail.js'; //欠款明
 import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis.js'; //营业分析
 import Debtpay from './Module/Debtpay/Debtpay.js'; //欠款补交
 import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking.js'; //支付宝微信统计
+import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard.js'; //挂失补换卡
 
 
 
@@ -120,4 +121,5 @@ export default {
     member_business_statistics: MemberBusinessStatistics,//会员业务统计
     store_management: StoreManagement,//门店管理
     alipayWechat_checking: AlipayWechatChecking,//支付宝微信对账
+    loss_reissue_change_card: LossReissueChangeCard,//挂失补换卡
 };

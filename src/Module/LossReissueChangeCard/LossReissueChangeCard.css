@@ -1,0 +1,21 @@
+.ui-table-base.lrc-card-tab{
+
+    margin-top: 10px;
+    max-height: 430px;
+}
+.ui-table-base.lrc-card-tab tbody{
+
+    max-height: 405px;
+}
+.ui-table-base.lrc-card-tab tr td{
+
+    min-width: 122px;
+}.ui-table-base.lrc-card-tab tr td input{
+
+   margin-right: 3px;
+}
+.ui-table-base.lrc-card-tab tr td:first-child{
+
+    min-width: 140px;
+    max-width: 140px
+}

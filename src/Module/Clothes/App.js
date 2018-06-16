@@ -167,6 +167,7 @@ export default class extends Component {
     }
     setTemp(value) {
         if (this.state.update) {
+            this.state.data[this.state.currentIndex].clothing_id = '';
             this.state.data[this.state.currentIndex].clothing_name = value.name;
             this.state.data[this.state.currentIndex].raw_price = value.price;
             this.state.data[this.state.currentIndex].deal_time = tool.timestamp(value.day);
@@ -298,7 +299,7 @@ export default class extends Component {
                     <div onClick={this.showColor}>{obj.clothing_color}</div>
                     <div onClick={this.showProblem}>{obj.remark}</div>
                     <div onClick={this.showBrand}>{obj.sign}</div>
-                    <div onCLick={this.showForcast}>{obj.forecast}</div>
+                    <div onClick={this.showForcast}>{obj.forecast}</div>
                     <div onClick={this.showPrice}>{obj.addition_remark}</div>
                     <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
