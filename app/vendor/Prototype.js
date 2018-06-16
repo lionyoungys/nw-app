@@ -119,13 +119,30 @@
      * @param {number} 数值列表
      * @return {number}
      */
+    String.prototype.add = 
     Number.prototype.add = function() {
         var len = arguments.length
         ,   precision = 1000000
-        ,   value = Math.floor(this * precision);
+        ,   value = Math.floor(parseFloat(this) * precision);
         if (len < 1) return this;
         for (var i = 0;i < len;++i) {
             value += Math.floor(arguments[i] * precision);
+        }
+        return (value / precision);
+    }
+    /**
+     * 数值减法
+     * @param {number} 数值列表
+     * @return {number}
+     */
+    String.prototype.subtract = 
+    Number.prototype.subtract = function() {
+        var len = arguments.length
+        ,   precision = 1000000
+        ,   value = Math.floor(parseFloat(this) * precision);
+        if (len < 1) return this;
+        for (var i = 0;i < len;++i) {
+            value -= Math.floor(arguments[i] * precision);
         }
         return (value / precision);
     }

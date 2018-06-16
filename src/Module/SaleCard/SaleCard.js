@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import './SaleCard.css'
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import {Recharge} from '../../UI/Payment';
 import Payandrecharge from '../PayAndRecharge/Payandrecharge'
 export default class extends Component {   
     constructor(props) {
@@ -109,27 +110,9 @@ export default class extends Component {
                     </div>
                         <span className='textred'>应收合计：￥{card.real_price}</span>
                         <button type='button' className='e-btn' onClick={this.cashier}>收银</button>
-                        {this.state.show&&<Payandrecharge onclose={this.onclose} info={{
-                        user_name:this.state.username,
-                        user_mobile:this.state.mobilephone,
-                        recharge_number:this.state.cardnumber,
-                        card_name:this.state.cards[this.state.index].card_type,
-                        discount:this.state.cards[this.state.index].discount,
-                        sex:this.state.sex,
-                        birthday:this.state.birthday,
-                        address:this.state.address,
-                        password:this.state.passwd1,
-                        price:'0.01',
-                        // this.state.cards[this.state.index].price,
-                        give_price:this.state.cards[this.state.index].give_price,
-                        made_price:'0.01',
-                        // this.state.cards[this.state.index].made_price,
-                        
-                        balance:'0.01',
-                        // Number(this.state.cards[this.state.index].price)+Number(this.state.cards[this.state.index].give_price)
-                        }}/>}
                     </div>
                     </div>
+                    {this.state.show&&<Recharge onClose={this.onclose}/>}
                </Window>
         )
     }
