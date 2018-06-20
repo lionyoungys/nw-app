@@ -126,7 +126,7 @@
         ,   value = Math.floor(parseFloat(this) * precision);
         if (len < 1) return this;
         for (var i = 0;i < len;++i) {
-            value += Math.floor(arguments[i] * precision);
+            value += Math.floor(parseFloat(arguments[i]) * precision);
         }
         return (value / precision);
     }
@@ -142,7 +142,7 @@
         ,   value = Math.floor(parseFloat(this) * precision);
         if (len < 1) return this;
         for (var i = 0;i < len;++i) {
-            value -= Math.floor(arguments[i] * precision);
+            value -= Math.floor(parseFloat(arguments[i]) * precision);
         }
         return (value / precision);
     }

@@ -20,7 +20,7 @@ import UnpaidStatistics from './Module/UnpaidStatistics/UnpaidStatistics';//未�
 import Recharge from './Module/Recharge/App';
 
 import OperateIncome from './Module/OperateIncome/OperateIncome';
-import SaleCard from './Module/SaleCard/SaleCard';
+import SaleCard from './Module/SaleCard/App';
 import ChangeCard from './Module/ChangeCard/ChangeCard';//换卡
 import ReportLossMain from './Module/ReportLossMain/ReportLossMain';//挂失主页面
 import ReturnCard from './Module/ReturnCard/ReturnCard';

@@ -106,8 +106,8 @@
      * @return {object} object
      */
     t.clone = function(object) {
-        if ('object' !== typeof object) return {};
-        var obj = {};
+        if ('object' !== typeof object) return null;
+        var obj = (object instanceof Array) ? [] : {};
         for (var k in object) {
             obj[k] = ('object' === typeof object[k] && null !== object[k]) ? this.clone(object[k]) : object[k];
         }

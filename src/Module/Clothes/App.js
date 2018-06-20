@@ -325,6 +325,7 @@ export default class extends Component {
             delete data[i].DATATAG;
             delete data[i].parent;
         }
+        console.log({token:'token'.getData(), uid:this.state.uid, pay_amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)});
         api.post(
             'get_clothes',
             {token:'token'.getData(), uid:this.state.uid, pay_amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
