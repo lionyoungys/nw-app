@@ -245,7 +245,7 @@ export default class extends Component {
                 
                             </div>
                             <div className="addnewprice-money">
-                                <input type="checkbox" onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
+                                <input type="checkbox" value={this.state.discount} onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
                             </div>
               
                         </div>

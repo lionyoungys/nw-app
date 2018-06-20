@@ -36,6 +36,9 @@
     text-align:center;
     line-height:24px;    
     cursor:pointer;
+    outline:none;
+    border:none;
+
 }
 .barcodeprinting-div button:hover{
     background: url(./img/e-btn-6-hover.png) no-repeat;

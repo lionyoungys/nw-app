@@ -1,5 +1,5 @@
 /**
- * 客户消费查询页面
+ * 客户信息查询页面
  * @author  fanyerong
  */
 import React, { Component } from 'react';
@@ -16,7 +16,7 @@ export default class extends Component {
     render() {               
         return (       
         <div>
-            <Window title='客户消费查询' onClose={this.props.closeView}>
+            <Window title='客户信息查询' onClose={this.props.closeView}>
                 <div className="Customerquery">
                    <div className="Customerquery-title">
                         <div><span>客户电话：</span><input type="text" /></div>

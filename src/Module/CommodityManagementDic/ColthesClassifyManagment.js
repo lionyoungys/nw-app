@@ -10,12 +10,16 @@ export default class extends Component {
         super(props);
         this.state={
             itemLists:[],
-            type:[]
+            type:[],
+            id:'',
+            name:''
         }
+        this.update=this.update.bind(this);
+        this.modYES=this.modYES.bind(this);
     };
     update(e){
         let index=e.target.dataset.write;
-        this.setState({show:true,id:this.state.goodtypelist[index].id,name:this.state.goodtypelist[index].name});
+        this.setState({show:true,id:this.state.itemLists[index].id,name:this.state.itemLists[index].name});
     }
     addYES(){
         api.post('goodaddType', {
@@ -29,6 +33,24 @@ export default class extends Component {
             }
         }
         ); 
+    }
+    modYES(){   
+        console.log("####")
+        api.post('goodmodType', {
+            token:'token'.getData(),
+            name:this.state.name,
+            id:this.state.id
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({name:'',show:false})
+                this.componentDidMount()
+            }
+        }
+        ); 
+    }
+    deleteYES(){
+        console.log("35454")
     }
     componentDidMount(){
         api.post('itemList', {
@@ -77,9 +99,9 @@ export default class extends Component {
                 <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                         <p>分类名称:</p>
                         <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
-                        <button className='e-btn' onClick={this.save}>保存</button>
+                        <button className='e-btn' onClick={this.modYES}>保存</button>
                         <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
-                        <button className='e-btn' onClick={this.delete}>删除</button>
+                        <button className='e-btn' onClick={this.deleteYES}>删除</button>
 
                     </div>
                 </Window>

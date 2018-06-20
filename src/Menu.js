@@ -8,9 +8,9 @@ export const topMenu = [
             {value:'取衣', view:'take_clothes'},
             {value:'商品销售', view:'commodity_sales'},
             {value:'欠款补交', view:'debt_pay'},
-            {value:'交期预警', view:'member_card_consume'},
-            {value:'撤单处理', view:null},
-            {value:'赔付', view:null},
+            {value:'交期预警', view:'delivery_warning'},
+            {value:'撤单处理', view:'its_processing'},
+            {value:'赔付', view:'pay'},
             {value:'demo', view:'demo'},
             {value:'编辑商品价格', view:'edit_shop_prices'},
             {value:'编辑洗护价格', view:'edit_cleaning_prices'},
@@ -121,9 +121,9 @@ export const leftMenu = [
     {
         value:'信息查询', 
         options:[
-            {value:'衣物查询',class:'main-clothes-search',view:null},
-            {value:'客户信息查询',class:'main-member-search',view:null},
-            {value:'营业日报',class:'main-income-today',view:null}
+            {value:'衣物查询',class:'main-clothes-search',view:'clothes_query'},
+            {value:'客户信息查询',class:'main-member-search',view:'customer_query'},
+            {value:'营业日报',class:'main-income-today',view:'operate_income'}
         ]
     },
     {

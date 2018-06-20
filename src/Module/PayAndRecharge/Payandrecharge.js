@@ -184,14 +184,9 @@ export default class extends Component {
                                     <input type='text' value={this.state.authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                                 </div>
                             </div> 
-                        
-                        
-                        }
-                            
-                            {/* 第二种微信支付方式 */}
-                           
-                            {/* 第三种支付宝支付方式  ali-pay*/}
-                           
+                        }                            
+                            {/* 第二种微信支付方式 */}                          
+                            {/* 第三种支付宝支付方式  ali-pay*/}                          
                          </div>
                          <div className="payment-method-foot">
                                 <div>应收:<b>￥2523.00</b></div>

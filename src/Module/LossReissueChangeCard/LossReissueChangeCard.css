@@ -17,5 +17,5 @@
 .ui-table-base.lrc-card-tab tr td:first-child{
 
     min-width: 140px;
-    max-width: 140px
+    max-width: 140px 
 }

@@ -145,6 +145,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text{
     width:435px;
     height:68px;  
+    margin-top: 64px;
 }
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text span{
     width:72px;
@@ -288,8 +289,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .Payout-detail table tbody{
     width:auto;
-    height:156px;
-    max-height:156px;
+    height:130px;
+    max-height:130px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;

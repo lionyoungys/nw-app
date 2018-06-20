@@ -1,0 +1,24 @@
+
+
+/* 赔退样式 */
+
+.pay-why{width:602px;height:22px;margin:3px auto 0;clear: both;}
+.pay-why span{color:#15458d;font-size:12px;line-height:22px;}
+.pay-why .ui-select-define{width:135px;}
+
+.pay-footer{width:602px;height:76px;margin:5px auto 0}
+.pay-footer-left{width:275px;height:76px;float:left;}
+.pay-footer-title{
+    width:auto;
+    height:20px;
+    line-height:20px;
+    color:#15458d;
+    font-size:12px;
+}
+.pay-footer-text{
+    width:273px;
+    height:48px;
+    border:1px solid #8db2e3;
+    background: #eef4fb;
+}
+.pay-footer-right{float:right;}

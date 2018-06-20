@@ -1,0 +1,15 @@
+.ui-table-base.hangon-sear-res-tab{
+
+    max-height: 530px
+
+}
+.ui-table-base.hangon-sear-res-tab tr td{
+
+   min-width: 124px; 
+   max-width: 124px;
+
+}
+.ui-table-base.hangon-sear-res-tab tbody{
+
+    max-height: 505px;
+}

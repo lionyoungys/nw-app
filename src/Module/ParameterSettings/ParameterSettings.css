@@ -1,21 +1,21 @@
 /* 品牌样式 */
 .brand{width:845px;height:auto;margin:auto}
 .brand-btn{
-    width:72px;
+    width:111px;
     height:24px;    
     text-align:center;
     line-height:24px;
     color:#000;
     font-size:12px;
     float:right;
-    background:url(./img/e-btn.png) no-repeat;
-    background-size:71px 24px;
+    background:url(./img/e-btn-6.png) no-repeat;
+    background-size:111px 24px;
     outline:none;
     border:none;
     margin:8px 0;
     cursor:pointer;
 }
-.brand-btn:hover{background:url(./img/e-btn-hover.png) no-repeat}
+.brand-btn:hover{background:url(./img/e-btn-6-hover.png) no-repeat}
 .brand-tab{
     width:843px;
     height:auto;
@@ -116,21 +116,21 @@
 /* 格架样式 */
 .lattic{width:845px;height:auto;margin:auto}
 .lattic-btn{
-    width:71px;
+    width:111px;
     height:24px;    
     text-align:center;
     line-height:24px;
     color:#000;
     font-size:12px;
     float:right;
-    background:url(./img/e-btn.png) no-repeat;
-    background-size:71px 24px;
+    background:url(./img/e-btn-6.png) no-repeat;
+    background-size:111px 24px;
     outline:none;
     border:none;
     margin:8px 0;
     cursor:pointer;
 }
-.lattic-btn:hover{background:url(./img/e-btn-hover.png) no-repeat}
+.lattic-btn:hover{background:url(./img/e-btn-6-hover.png) no-repeat}
 .lattic-tab{
     width:843px;
     height:auto;
@@ -213,7 +213,7 @@
 .addlattice-div div input{width:149px;height:20px;border:1px solid #c2c2c2;backgorund:#fff;}
 .addlattice-footer{width:340px;height:39px;}
 .addlattice-footer button{
-    width:71px;
+    width:111px;
     height:24px;
     line-height:24px;
     text-align:center;

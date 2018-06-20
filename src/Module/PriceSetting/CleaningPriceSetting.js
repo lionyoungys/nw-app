@@ -19,21 +19,77 @@ export default class extends Component {
             itemLists:[],
             itemList:[],
             selectImg:false,
-            type:[],
-            typeList:[],
-            typeLists:[],
-            clothestypemanageshow:false
+            clothestypemanageshow:false,
+            cate_type:[],
+            cate_types:[],
+            dispose_type:[],
+            dispose_types:[],
+            grade:[],
+            grades:[],
+            materials:[],
+            materialss:[],
+            grid:[],
+            grids:[],
         }
 
         this.handleClick=this.handleClick.bind(this);
         this.onClose=this.onClose.bind(this);
         this.addcheanprice=this.addcheanprice.bind(this);
         this.clothestypemanage=this.clothestypemanage.bind(this);
+        this.addYES=this.addYES.bind(this); 
     };   
+    clothestypemanage(){
+        this.setState({clothestypemanageshow:true});
+    }
+    addcheanprice(){
+        api.post('needInfo', {
+            token:'token'.getData()
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({
+                    show:true,
+                    cate_type:res.result.cate_type.typeArray('name'),
+                    cate_types:res.result.cate_type,
+                    dispose_type:res.result.dispose_type.typeArray('name'),
+                    dispose_types:res.result.dispose_type,
+                    grade:res.result.grade.typeArray('grade'),
+                    grades:res.result.grade,
+                    materials:res.result.materials.typeArray('name'),
+                    materialss:res.result.materials,
+                    grid:res.result.grid.typeArray('name'),
+                    grids:res.result.grid
 
+                })
+            }
+        }
+        ); 
+    }
     handleClick(e){
         this.setState({index:e.target.dataset.index});
     } 
+    addYES(){
+        api.post('addItem', {
+            token:'token'.getData(),
+            cate_id:'',
+            cate_name:'',
+            dispose_type:'',
+            item_name:'',
+            item_off_price:'',
+            grade:'',
+            materials:'',
+            grid:'',
+            transfer:'',
+            has_discount:'',
+            min_discount:'',
+            item_cycle:''
+    }, (res, ver) => {
+            if (ver && res) {
+
+            }
+        }
+    );
+    }
     componentDidMount(){
 
         api.post('itemList', {
@@ -49,21 +105,6 @@ export default class extends Component {
     }
     onClose(){
         this.setState({selectImg:false})
-    }
-    clothestypemanage(){
-        this.setState({clothestypemanageshow:true});
-    }
-    addcheanprice(){
-        this.setState({show:true})
-        api.post('typeList', {
-            token:'token'.getData()
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({typeLists:res.result,typeList:res.result.typeArray('name')})
-            }
-        }
-        ); 
     }
     render() {
         let itemLists = this.state.itemLists.map((item,index)=>
@@ -96,8 +137,18 @@ export default class extends Component {
                 <td>{item.item_cycle}</td>
                 <td>{item.grid}</td>
             </tr>
-        );
-    }
+        );  
+}
+     let gridss;
+        if(
+         'undefined' !== typeof this.state.grid[this.state.index]
+         && 
+         'undefined' !== typeof this.state.grids[this.state.index].name
+        ) {
+        gridss=this.state.grid.map((item,index)=>
+        <div><input type="checkbox" />{item}</div>
+      );
+}
         return (
             // <Window title='洗护价格设置' onClose={this.props.closeView} >
             <div className='cleaning_price_all'>
@@ -143,11 +194,11 @@ export default class extends Component {
                     <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.type} selected={this.state.type[0]} onChange={value => console.log(value)} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_type[0]} onChange={value => console.log(value)} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text" /></div>
-                                <div><span>处理类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={value => console.log(value)} /></div>
-                                <div><span>档次：</span><Select option={['上衣', '裤装', '小件']} selected='上衣' onChange={value => console.log(value)} /></div>
-                                <div><span>材料：</span><Select option={['上衣', '裤装', '小件']} selected='上衣' onChange={value => console.log(value)} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.dispose_type} selected={this.state.dispose_type[0]} onChange={value => console.log(value)} /></div>
+                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.grade[0]} onChange={value => console.log(value)} /></div>
+                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materials[0]} onChange={value => console.log(value)} /></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" />天</div>
                             </div>
                             <div className="addnewprice-one-right">
@@ -157,14 +208,7 @@ export default class extends Component {
                             <div className="addnewprice-one-bootom">
                                 <span><i>*</i>格架：</span>
                                 <div className="add-select-part">
-                                    <div><input type="checkbox" />A</div>
-                                    <div><input type="checkbox" />B</div>
-                                    <div><input type="checkbox" />C</div>
-                                    <div><input type="checkbox" />皮衣区</div>
-                                    <div><input type="checkbox" />奢侈品区</div>
-                                    <div><input type="checkbox" />裤装</div>
-                                    <div><input type="checkbox" />上装</div>
-                                    <div><input type="checkbox" />内衣区</div>
+                                {gridss}
                                 </div>
                             </div>
                         </div>
@@ -183,7 +227,7 @@ export default class extends Component {
                         </div>
                         <div className="addnewprice-btn">
                             <button className="e-btn">取消</button>
-                            <button className="e-btn">确定</button>
+                            <button className="e-btn" onClick={this.addYES}>确定</button>
                         </div>
                     </Window>
 

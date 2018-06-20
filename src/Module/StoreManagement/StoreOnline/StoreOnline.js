@@ -49,7 +49,7 @@ export default class extends Component {
             <div className='store_management_content_onlineStore_open' style={{display:'true'}}>
                 <div>
                     &emsp;接单状态：&emsp;
-                    <input type="radio" name="sex" value="start" checked={this.state.mstatus=='10'?'true':'false'} /> 开始接单&emsp;<input type="radio" name="sex" value="start" checked={this.state.mstatus=='10'?'false':'true'} /> 停止接单
+                    <input type="radio" name="take_order"  /> 开始接单&emsp;<input type="radio" name="take_order"  /> 停止接单
                 </div>
                 <div>&emsp;服务范围：&emsp;<input type='text' className='e-input' value={this.state.mrange}/><a>km</a></div>
                 <div>上门服务费：&emsp;<input type='text' className='e-input' value={this.state.freight_price}/><a>元</a></div>

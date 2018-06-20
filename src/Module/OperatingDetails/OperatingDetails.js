@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Select from '../../UI/Select';
 import './OperatingDetails.css';
 
 export default class extends Component {   
@@ -11,59 +12,360 @@ export default class extends Component {
         super(props);           
     }; 
     render() {
-       var arr = ['查询','打印','退出'].map((item,index) =><button key={index} data-text={item}>{item}</button>);
-       var revokedata_detail = ['流水号','撤单日期','撤单时间','操作店员','撤单原因','撤单类型','原金额','金额','撤单日期','客户电话','客户姓名','上传'].map((item,index)=><span>{item}</span>)
-       var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价格','备注','状态','日期','时间','交货定期','交货日期','格架号','是否上传','附加服务','衣物件数','客户姓名'].map((item,index)=><span>{item}</span>)
+      
         return (             
             <Window title='经营明细' onClose={this.props.closeView}>
-                      <div className=" revokedata_data OperatingDetails_data">
-                         <div className="revokedata_dataLeft" id="OperatingDetails_dataLeft">
-                            <div>开始日期：<input type="date" value ='2018-05-19'/></div>
-                            <div>类别：<input type="date" value ='2018-05-19'/></div>
-                            <div >结束日期：<input type="date" value ='2018-06-19'/></div>
-                         </div>
-                         <div className="revokedata_dataright OperatingDetails_dataright">
-                           {arr}
-                         </div>
-                      </div>                      
-                      <div className="revokedata_list revokedata_last OperatingDetails_list">
-                        <div>财务明细<b>共记录 <a>456</a> 条</b></div>
-                        <ul className="revokedata_list_box OperatingDetails_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                 {revokedata_detail}
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span></span>
-                                <span></span>
-                            </li>
-                            <li>
-                                <span>2</span>
-                                <span></span>
-                                <span></span>
-                            </li>
-                        </ul>
-                      </div>
-                      <div className="revokedata_list revokedata_last OperatingDetails_list">
-                        <div>衣物合计</div>
-                        <ul className="revokedata_list_box OperatingDetails_list_box">
-                            <li id="revokedata_list_box_li">
-                                 <span></span>
-                                 {revokedata_clothes}
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span></span>
-                                <span></span>
-                            </li>
-                            <li>
-                                <span>2</span>
-                                <span>hhhhhhhhhhhhhhhhhh</span>
-                                <span></span>
-                            </li>
-                        </ul>
-                      </div>
+                 <div className="Succession_data">
+                            <div className="Succession_dataLeft managerquery_dataLeft">
+                                <div>操作员：<Select option={['支付宝','微信','现金']} selected='现金'  onChange={value => console.log(value)}/></div>                           
+                                <div>结束日期：<input type="date" /></div>
+                                <div>结束日期：<input type="date" /></div>
+                            </div>
+                            <button className="e-btn managerquery_btn">查询</button> 
+                </div>  
+                <div className="Takeclothes-div-title">已为您找到<b>4535</b>条数据</div>
+                    <div className="Takeclothes-tab Takeclothesdetail-tab">
+                        <table cellPadding="0" cellSpacing="0" border="0">
+                           <thead>
+                               <tr>
+                                   <th></th>
+                                   <th>流水号</th>
+                                   <th>店员姓名</th>
+                                   <th>衣物件数</th>
+                                   <th>金额</th>
+                                   <th>实收金额</th>
+                                   <th>折扣率</th>
+                                   <th>收款类型</th>
+                                   <th>客户电话</th>
+                                   <th>客户姓名</th>
+                                   <th>时间</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr><tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr><tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr><tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr><tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                  
+                               </tr>
+                               
+                               
+                           </tbody>
+                        </table> 
+                    </div>                   
+                    <div className="bothpages-footer">
+                            <div className="bothpages-footer-btn">
+                                    <span>首页</span>
+                                    <span>上一页</span>
+                                    <span>下一页</span>
+                                    <span>尾页</span>
+                            </div>
+                            <div className="bothpages-footer-all">第<span>一</span>页/共<span>四</span>页</div>
+                            <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
+                    </div>  
+                      
             </Window>  
         );
     }

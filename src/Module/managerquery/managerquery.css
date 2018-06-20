@@ -17,5 +17,13 @@
     width:135px;    
     margin-top: -2px;
 }
-.managerquery-btn {width:auto;float:right;margin-top:9px;}
-.managerquery-btn button{margin:8px 8px}
+.managerquery_dataLeft{
+    width:699px;
+    float:left;
+}
+.managerquery_btn{
+    margin-top:13px;
+    margin-left:18px;
+    float:left;
+    cursor:pointer;
+}

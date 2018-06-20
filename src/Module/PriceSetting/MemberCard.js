@@ -9,7 +9,9 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state={cardtypes:[],
-        show:false}
+        show:false,
+        colorid:''
+    }
         this.addMemberCardYes=this.addMemberCardYes.bind(this);
         this.delete=this.delete.bind(this);
         this.mod=this.mod.bind(this);
@@ -25,8 +27,9 @@ export default class extends Component {
         );
     }
     delete(e){
-        let index=e.target.dataset.index;
-        this.setState({index:index,colorid:this.state.colorlist[index].id});
+        let index=e.target.dataset.write;
+        console.log(index);
+        this.setState({index:index,colorid:this.state.cardtypes[index].id});
         tool.ui.error({title:'提示',msg:'将删除档次,档次上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
             api.post('delGrade', {token:'token'.getData(),
             id:this.state.colorid
@@ -67,7 +70,6 @@ export default class extends Component {
         );
     }
     updateMemberCardYes(){   
-        console.log('###')
         api.post('modCardType', {
             token:'token'.getData(),
             card_type:this.state.card_type,

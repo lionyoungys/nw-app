@@ -1,11 +1,10 @@
 /* 上挂 */
 .Hangon-div{
-    width:269px;
-    height:139px;
-    margin:14px  auto 4px;
-    border:1px solid #8db2e3;
+    width:874px;
+    height:48px;
+    margin-left: 13px;
 }
-.Hangon-div span{color:#063781;font-size:12px;margin:38px 0 13px 21px;display: block }
+.Hangon-div span{color:#063781;font-size:12px;margin:38px 0 0;display: block }
 .Hangon-div input{
     border:1px solid #c2c2c2;
     background:#f9f9f9;
@@ -14,12 +13,10 @@
     color:#000;
     font-size:12px;
     line-height:20px;
-    margin-left:22px;
+    margin-left:0;
 }
-.hangon-btn{
-    float:right;
-    margin-right:12px;
-    margin-top:8px;
+.e-btn.hangon-btn{
+    margin-left:12px;
 }
 .Hangon-left{
     width:287px;
@@ -111,7 +108,7 @@
 }
 .Hangon-right .Hangon-right-select input{
     width:146px;
-    heght:20px;
+    height:20px;
     border:1px solid #c2c2c2;
     background:#fff;
     color:#000;
@@ -119,4 +116,20 @@
     display:block;
     float:left;
 }
-.Hangon-right .Hangon-right-btn{float:right; margin:38px 16px 0 0}
+
+
+.ui-table-base.hangon-sear-res-tab{
+
+    max-height: 530px
+
+}
+.ui-table-base.hangon-sear-res-tab tr td{
+
+   min-width: 124px; 
+   max-width: 124px;
+
+}
+.ui-table-base.hangon-sear-res-tab tbody{
+
+    max-height: 505px;
+}

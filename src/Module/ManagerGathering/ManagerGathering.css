@@ -74,7 +74,6 @@
     display: inline-flex;
 }
 .manager_gathering_part_btn{
-
     float: left;
     width: 230px;
     height: 88px;
@@ -83,13 +82,10 @@
     margin-left: 10px;
 }
 .manager_gathering_part_btn button{
-
     margin:8px 16px;
     float: left;
-
 }
 .manager_gathering_part_open_file_btn{
-
     width: 71px;
     height: 30px;
     background:url(./img/ManagerGathering_file.png) no-repeat;
@@ -98,3 +94,24 @@
     /* 设置点击后无边框 */
     outline: none;
 }
+.ManagerGathering-div{height:235px;}
+.ManagerGathering-tab{border-bottom:none}
+.ManagerGathering-tab thead tr td:first-child{
+    min-width:122px;
+    background:none;
+}
+.ManagerGathering-tab tbody tr td:first-child{
+    min-width:122px;
+    color:#000;
+}
+.manager_gathering_part_row s{color:#f00;font-size:12px}
+
+/* 经理收款明细 */
+#ManagerGathering-detail{margin-top:25px;height:auto;}
+#ManagerGathering-detail table thead tr th:first-child{min-width:100px;background: none}
+#ManagerGathering-detail table thead tr th{min-width:100px}
+#ManagerGathering-detail table tbody tr td{
+    min-width:100px;
+}
+#ManagerGathering-detail table{height:auto}
+#ManagerGathering-detail table tbody{max-height:482px;height:auto}
