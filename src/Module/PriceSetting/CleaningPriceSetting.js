@@ -30,6 +30,8 @@ export default class extends Component {
             materialss:[],
             grid:[],
             grids:[],
+            item_name:'',
+            item_cycle:''
         }
 
         this.handleClick=this.handleClick.bind(this);
@@ -39,9 +41,11 @@ export default class extends Component {
         this.addYES=this.addYES.bind(this); 
     };   
     clothestypemanage(){
+      
         this.setState({clothestypemanageshow:true});
     }
     addcheanprice(){
+       
         api.post('needInfo', {
             token:'token'.getData()
     }, (res, ver) => {
@@ -69,6 +73,8 @@ export default class extends Component {
         this.setState({index:e.target.dataset.index});
     } 
     addYES(){
+        if(''==this.state.item_name) return tool.ui.error({msg:'衣物名称不能为空！',callback:close => close()});
+        if(''==this.state.item_cycle) return tool.ui.error({msg:'洗护周期不能为空！',callback:close => close()});
         api.post('addItem', {
             token:'token'.getData(),
             cate_id:'',
@@ -195,11 +201,11 @@ export default class extends Component {
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_type[0]} onChange={value => console.log(value)} /></div>
-                                <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text" /></div>
+                                <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text" value={this.state.item_name} onChange={e=>this.setState({item_name:e.target.value})}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} selected={this.state.dispose_type[0]} onChange={value => console.log(value)} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.grade[0]} onChange={value => console.log(value)} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materials[0]} onChange={value => console.log(value)} /></div>
-                                <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" />天</div>
+                                <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img></img>

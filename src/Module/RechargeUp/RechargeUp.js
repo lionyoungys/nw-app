@@ -7,7 +7,11 @@ import Window from '../../UI/Window';
 
 export default class extends Component {   
     constructor(props) {
-        super(props);           
+        super(props);  
+        this.state={
+            startdate:tool.date('Y-m-d'),
+            enddate:tool.date('Y-m-d'),
+        }         
     }; 
     render() {      
         return ( 
@@ -15,8 +19,8 @@ export default class extends Component {
                                         
                         <div className="bothpages_list">                                
                             <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
-                                <div>开始日期：<input type="date"  /></div>
-                                <div>结束日期：<input type="date"  /></div>
+                                <div>开始日期：<input type="date"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
+                                <div>结束日期：<input type="date"  value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                             </div>
                             <div id="balancestatistics-leiji">累计充值金额 :<b>256485元</b></div>
                             <div id="balancestatistics-zengsong">累计赠送金额 :<b>123456485元</b></div>

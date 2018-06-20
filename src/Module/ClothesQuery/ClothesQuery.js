@@ -74,7 +74,7 @@ export default class extends Component {
                 <div className='clothesquery_top'>
                     <div className='clothesquery_top_one'>
                             <div>
-                                <span>&emsp;&emsp;状态：</span><input type='text' className='e-input' onChange={e => this.setState({status:e.target.value})}/>
+                                <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={e => this.setState({status:e.target.value})}/>
                             </div> 
                             <div>
                             <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
@@ -96,7 +96,7 @@ export default class extends Component {
                         </div>
                     <div className='clothesquery_top_three'>
                             <div>
-                                <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time}/><input type='date' className='inputselectborder' value = {this.state.start_time}/>
+                                <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/><input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                             </div> 
                             <div>
                                 <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>

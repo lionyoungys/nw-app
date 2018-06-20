@@ -26,12 +26,12 @@ export default class extends Component {
         );
     }
     handleclick(e){
-        console.log(e.target.dataset.index);
-        this.setState({index:e.target.dataset.index});
+        console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
+        this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
     }
     render() {
         let grid = this.state.grid.map((item,index)=>
-        <tr key={index} data-index={index} onClick={this.handleclick}  
+        <tr key={'item'+index} data-index={index} onClick={this.handleclick}  
         >
                 <td>{item.name}</td>
                 <td>{item.start_number}</td>

@@ -10,7 +10,14 @@ export default class extends Component {
         super(props);
         this.state={cardtypes:[],
         show:false,
-        colorid:''
+        colorid:'',
+        card_type:'',
+        price:'',
+        give_price:'',
+        made_price:'',
+        discount:'',
+        index:0,
+        id:''
     }
         this.addMemberCardYes=this.addMemberCardYes.bind(this);
         this.delete=this.delete.bind(this);
@@ -29,10 +36,10 @@ export default class extends Component {
     delete(e){
         let index=e.target.dataset.write;
         console.log(index);
-        this.setState({index:index,colorid:this.state.cardtypes[index].id});
+        this.setState({index:index,id:this.state.cardtypes[index].id});
         tool.ui.error({title:'提示',msg:'将删除档次,档次上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
             api.post('delGrade', {token:'token'.getData(),
-            id:this.state.colorid
+            id:this.state.id
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
@@ -51,7 +58,8 @@ export default class extends Component {
         }});
 
     }
-    addMemberCardYes(){   
+    addMemberCardYes(){ 
+        this.format();
         api.post('addCardType', {
             token:'token'.getData(),
             card_type:this.state.card_type,
@@ -67,11 +75,26 @@ export default class extends Component {
                 
             }
         }
+    
         );
-    }
+     }
+     format(){
+        if(''==this.state.card_type)
+        return tool.ui.error({msg:'请输入卡类型',callback:(close) =>close()}); 
+        if(''==this.state.price)
+        return tool.ui.error({msg:'请输入充值金额',callback:(close) =>close()}); 
+        if(''==this.state.give_price)
+        return tool.ui.error({msg:'请输入赠送金额',callback:(close) =>close()}); 
+        if(''==this.state.made_price)
+        return tool.ui.error({msg:'请输入制卡费',callback:(close) =>close()}); 
+        if(''==this.state.discount)
+        return tool.ui.error({msg:'请输入折扣率',callback:(close) => close()}); 
+     }
     updateMemberCardYes(){   
+        this.format();
         api.post('modCardType', {
             token:'token'.getData(),
+            id:this.state.id,
             card_type:this.state.card_type,
             discount:this.state.discount,
             price:this.state.price,
@@ -81,13 +104,18 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({show:false})
+            }else{
+                console.log(res)
             }
         }
         );
     }
     mod(e){
         let index=e.target.dataset.write;
-        this.setState({show1:true,
+        this.setState({
+            show1:true,
+            index:index,
+            id:this.state.cardtypes[index].id,
             card_type:this.state.cardtypes[index].card_type,
             discount:this.state.cardtypes[index].discount,
             price:this.state.cardtypes[index].price,
@@ -111,7 +139,7 @@ export default class extends Component {
         return( 
         <div>
             <div className="brand">
-               <button className="brand-btn" onClick={e => this.setState({show:true})}>增加卡类型</button>
+               <button className="brand-btn" onClick={e => this.setState({show:true,card_type:'',price:'',give_price:'',made_price:'',discount:''})}>增加卡类型</button>
                <div className="membercard-tab">
                   <table border='0' cellPadding="0" cellSpacing="0">
                       <thead>
