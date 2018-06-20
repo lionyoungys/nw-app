@@ -21,6 +21,7 @@ import User from './User';
 import Code from './Code';
 import './App.css';
 
+const token = 'token'.getData();
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -63,7 +64,6 @@ export default class extends Component {
     }
 
     componentDidMount() {
-        let token = 'token'.getData();
         api.post('clothes', {token:token}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 let len = res.result.length;
@@ -111,6 +111,13 @@ export default class extends Component {
         if (card.hasUpdate) {    //会员卡已更新为本平台的卡
             //sn,cid,mid
             //需提供通过sn,cid参数查询卡数据的接口
+            api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
+                if (ver) {
+                    
+                } else {
+
+                }
+            });
         } else {
             this.setState({
                 phone:card.phone,
