@@ -55,7 +55,9 @@ import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis'; //
 import Debtpay from './Module/Debtpay/Debtpay'; //欠款补交
 import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking'; //支付宝微信统计
 import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard'; //挂失补换卡
-
+import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期预警
+import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
+import pay from './Module/pay/pay'; //赔付
 
 
 //路由对象
@@ -122,4 +124,7 @@ export default {
     store_management: StoreManagement,//门店管理
     alipayWechat_checking: AlipayWechatChecking,//支付宝微信对账
     loss_reissue_change_card: LossReissueChangeCard,//挂失补换卡
+    delivery_warning:Deliverywarning ,// 交期预警
+    its_processing:Itsprocessing, //撤单处理
+    pay:pay //赔付
 };

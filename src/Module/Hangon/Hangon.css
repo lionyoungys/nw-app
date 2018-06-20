@@ -117,7 +117,12 @@
     float:left;
 }
 
+.e-btn.Hangon-right-btn{
 
+    margin-top: 100px;
+    margin-left: 38px;
+    margin-right: 0px;
+}
 .ui-table-base.hangon-sear-res-tab{
 
     max-height: 530px

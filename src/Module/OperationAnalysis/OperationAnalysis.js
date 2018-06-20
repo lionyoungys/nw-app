@@ -5,7 +5,9 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import '../../UI/echarts.common.min';
 import './OperationAnalysis.css';
+import Monthlyturnover from './Monthlyturnover';
 
 export default class extends Component {
     constructor(props) {
@@ -33,9 +35,8 @@ export default class extends Component {
                         </ul>
                     </div>
                     <div className='oper_ana_content'>
-
+                        <Monthlyturnover />
                     </div>
-
                 </div>
             </Window>
         );

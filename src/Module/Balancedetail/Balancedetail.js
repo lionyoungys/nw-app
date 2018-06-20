@@ -176,7 +176,6 @@ export default class extends Component {
                                 <td>客户姓名</td>
                                 <td>日期</td>
                             </tr>
-
                             <tr>
                                 <td>2</td>
                                 <td>店员姓名</td>

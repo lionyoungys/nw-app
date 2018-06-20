@@ -16,13 +16,15 @@ export default class extends Component {
         }
         this.update=this.update.bind(this);
         this.modYES=this.modYES.bind(this);
+        this.addYES=this.addYES.bind(this);
+        this.deleteYES=this.deleteYES.bind(this);
     };
     update(e){
         let index=e.target.dataset.write;
         this.setState({show:true,id:this.state.itemLists[index].id,name:this.state.itemLists[index].name});
     }
     addYES(){
-        api.post('goodaddType', {
+        api.post('addServeType', {
             token:'token'.getData(),
             name:this.state.name
     }, (res, ver) => {
@@ -36,7 +38,7 @@ export default class extends Component {
     }
     modYES(){   
         console.log("####")
-        api.post('goodmodType', {
+        api.post('modServeType', {
             token:'token'.getData(),
             name:this.state.name,
             id:this.state.id
@@ -51,9 +53,20 @@ export default class extends Component {
     }
     deleteYES(){
         console.log("35454")
+        api.post('delServeType', {
+            token:'token'.getData(),
+            id:this.state.id
+    }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({name:'',show:false})
+                this.componentDidMount()
+            }
+        }
+        ); 
     }
     componentDidMount(){
-        api.post('itemList', {
+        api.post('serveType', {
             token:'token'.getData()
     }, (res, ver) => {
             if (ver && res) {
@@ -93,7 +106,7 @@ export default class extends Component {
                 {/* 右侧板块 */}
                 <div className="commodity_classify_management_right">
                     <div className='commodity_classify_management_right_btn'>
-                        <button onClick={()=>this.setState({addshow:true})}>+添加分类</button>
+                        <button onClick={()=>this.setState({addshow:true,name:''})}>+添加分类</button>
                     </div>
                     {this.state.show&&<Window title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
                 <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>

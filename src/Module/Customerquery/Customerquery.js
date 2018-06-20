@@ -97,7 +97,7 @@ export default class extends Component {
                               <td>5555555</td>
                               <td>555555555555</td>
                               <td>平台会员卡</td>
-                          </tr>1111
+                          </tr>
                           <tr>
                               <td></td>
                               <td>15555555</td>

@@ -40,13 +40,23 @@ export default class extends Component {
         this.modYES=this.modYES.bind(this);
     };  
     add(){
-        this.setState({show:true});
+        this.setState({
+            show:true,
+            name:'',
+            stock:'',
+            discount:0,
+            price:'' 
+        });
         api.post('goodtypeList', {
             token:'token'.getData()
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({typeLists:res.result,typeList:res.result.typeArray('name')})
+                this.setState({
+                    typeLists:res.result,
+                    typeList:res.result.typeArray('name'),
+                  
+                })
             }
         }
         ); 

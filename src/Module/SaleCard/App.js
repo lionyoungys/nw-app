@@ -12,8 +12,24 @@ const token = 'token'.getData();
 export default class extends React.Component {   
     constructor(props) {
         super(props);     
-        this.state={cards:[], types:[], index:0, number:'', name:'', passwd:'', passwd2:'', phone:'', birthday:'1970-01-01', sex:'男', addr:'', show:false};
+        this.state={
+            cards:[], 
+            types:[], 
+            index:0, 
+            number:'', 
+            name:'', 
+            passwd:'', 
+            passwd2:'', 
+            phone:'', 
+            birthday:'1970-01-01', 
+            sex:'男', 
+            addr:'', 
+            show:false,
+            writeData:{}
+        };
         this.handleClick = this.handleClick.bind(this);
+        this.writeCard = this.writeCard.bind(this);
+        this.callback = this.callback.bind(this);
     }; 
     componentDidMount() {
         api.post('cardType', {token:token}, (res, ver) => {
@@ -31,11 +47,75 @@ export default class extends React.Component {
         if (this.state.passwd != this.state.passwd2) return tool.ui.error({msg:'2次密码不正确！',callback:close => close()});
         this.setState({show:true})
     }
+
+    writeCard(obj) {
+        obj = obj || this.state.writeData;
+        console.log(obj);
+        let result = true;
+        try {
+            result = M1Reader.set(obj);
+            console.log('false');
+        } catch (e) {
+            console.log(e);
+            result = false;
+        }
+        if (!result) {
+            tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
+                if ('click' == event) {
+                    close();
+                    this.writeCard();
+                } else {
+                    close();
+                }
+            }});
+        } else {
+            tool.ui.success({callback:close => {
+                close();
+                this.setState({show:false});
+            }});
+        }
+    }
+
+    callback(obj) {
+        let card = this.state.cards[this.state.index];
+        obj.token = token;
+        obj.user_name = this.state.name;
+        obj.user_mobile = this.state.phone;
+        obj.recharge_number = this.state.number;
+        obj.card_name = card.card_type;
+        obj.discount = card.discount;
+        obj.sex = this.state.sex;
+        obj.birthday = this.state.birthday;
+        obj.address = this.state.addr;
+        obj.password = this.state.passwd;
+        obj.price = card.price;
+        obj.made_price = card.made_price;
+        obj.balance = card.price.add(card.give_price);
+        api.post('saleCard', obj, (res, ver, handle) => {
+            if (ver) {
+                console.log(res);
+                if ('' == this.state.number) {
+                    tool.ui.success({callback:close => {
+                        close();
+                        this.setState({show:false});
+                    }});
+                } else {
+                    //sn:卡号,cid:卡ID,mid:商户id
+                    let writeData = {cid:res.result.card_id,mid:res.result.mid,sn:this.state.number};
+                    this.setState({writeData:writeData});
+                    this.writeCard(writeData);
+                }
+            }else{
+                handle();
+            }
+        });
+    }
+
     render() {
-        let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};      
+        let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}
+        ,   amount = card.real_price ? card.real_price.add(card.made_price) : 0; 
         return ( 
                 <Window title='售卡' onClose={this.props.closeView} width='512' height='440'>
-            
                     <div className='salecard'>
                        <div className='top'>
                         <div>
@@ -94,11 +174,27 @@ export default class extends React.Component {
                     <div>
                         <span>制卡费:</span><label>&yen;{card.made_price}</label>
                     </div>
-                        <span className='textred'>应收合计：&yen;{'undefined' === typeof card.real_price ? 0 : card.real_price.add(card.made_price)}</span>
+                        <span className='textred'>应收合计：&yen;{amount}</span>
                         <button type='button' className='e-btn' onClick={this.handleClick}>收银</button>
                     </div>
                     </div>
-                    {this.state.show && <Recharge onClose={() => this.setState({show:false})}/>}
+                    {
+                        this.state.show 
+                        && 
+                        <Recharge
+                            data={{
+                                type:card.card_type,
+                                discount:card.discount,
+                                recharge:card.price,
+                                balance:0,
+                                give:card.give_price,
+                                price:card.made_price,
+                                amount:amount
+                            }}
+                            callback={this.callback}
+                            onClose={() => this.setState({show:false})}
+                        />
+                    }
                 </Window>
         )
     }

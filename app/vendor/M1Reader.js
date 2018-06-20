@@ -19,7 +19,7 @@
         KeyModelB: 0x61,    //B密钥
         KeyA: 'A6C2D6A69286',    //A密钥值
         KeyB: 'FFFFFFFFFFFF',    //B密钥值
-        writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB15FF',    //写入密钥值
+        writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB6FF',    //写入密钥值
         KeyAList:['CBFBCFFEB6FF', 'A6C2D6A69286'],    //A密钥值列表,0:平台密钥;1:菜篮子密钥
         Blocks:[
             {sn:4, cid:5, mid:6},    //默认数据对应块:卡号,卡ID,店铺ID,密钥key:7
@@ -114,11 +114,18 @@
         this.authorization(model, key, blockId);
         var buf = new Buffer(16);
         if (SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) < 0) throw '读卡失败';
-        return tool.iconv(buf, 'gbk');
+        return tool.iconv(buf, 'gbk').replace(/\0/g, '');
+    }
+
+    r.readKey = function(model, key, blockId) {
+        this.authorization(model, key, blockId);
+        var buf = new Buffer(16);
+        if (SDT.YW_ReadaBlock(this.ID, blockId, 16, buf) < 0) throw '读卡失败';
+        return buf;
     }
 
     /**
-     * 写入卡数据
+     * 写入卡数据 扇区 * 4 + 3 的位置为密钥区块
      * @param {*number} model 所读区域:值为1=A或2=B
      * @param {*number} blockId 绝对块号地址
      * @param {*string} data 要写入的数据最大长度为8
@@ -130,11 +137,47 @@
         return SDT.YW_WriteaBlock(this.ID, blockId, 16, buf) > 0;
     }
 
+    r.writeKey = function(model, key, blockId, data) {
+        this.authorization(model, key, blockId);
+        return SDT.YW_WriteaBlock(this.ID, blockId, 16, tool.data2Buf(data)) > 0;
+    }
+
     /**
      * 逻辑获取卡数据
      * @return {*object} {empty:是否为空卡,hasUpdate:会员卡是否已经更新为本平台的卡,error:是否为读卡错误}
      */
-    r.get = function() {
+    r.get = function () {
+        var obj = {empty:true, hasUpdate:false, error:false}
+        ,   verify = true
+        ,   temp
+        ,   k;
+        try {
+            this.authorization(1, config.KeyA, config.Blocks[0].sn);
+        } catch (e) {
+            obj.error = true;    //读卡失败
+            return obj;
+        }
+        for (k in config.Blocks[0]) {
+            temp = this.read(1, config.KeyA, config.Blocks[0][k]);
+            if ('' == temp) {
+                verify = false;
+                break;
+            } else {
+                obj[k] = temp;
+            }
+        }
+        if (verify) {
+            obj.empty = false;
+            obj.hasUpdate = true;
+            return obj;
+        }
+        for (k in config.Blocks[1]) {
+            obj[k] = this.read(1, config.KeyA, config.Blocks[1][k]);
+        }
+        obj.empty = false;
+        return obj;
+    }
+    /*r.get = function() {
         var len = config.KeyAList.length
         ,   index = null;
         for (var i = 0;i < len;++i) {
@@ -163,7 +206,7 @@
             obj[k] = this.read(2, config.KeyB, config.Blocks[0][k]);
         }
         return obj;
-    }
+    }*/
 
     /**
      * 逻辑设置卡数据
@@ -175,22 +218,42 @@
         if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
         if ('string' !== typeof data.sn && isNaN(data.cid)) throw 'cid格式错误';
         if ('string' !== typeof data.sn && isNaN(data.mid)) throw 'mid格式错误';
-        var verify = false
+        try {
+            this.authorization(1, config.KeyA, config.Blocks[0].sn);
+        } catch (e) {
+            return false;
+        }
+        var tempArr = [];
+        for (var k in config.Blocks[0]) {
+            if (!this.write(1, config.KeyA, config.Blocks[0][k], data[k])) tempArr.push(k);
+        }
+        if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
+        return true;
+    }
+    /*r.set = function(data) {
+        if ('object' !== typeof data) throw '参数格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.cid)) throw 'cid格式错误';
+        if ('string' !== typeof data.sn && isNaN(data.mid)) throw 'mid格式错误';
+        var verify = false;
         try {
             this.authorization(1, config.KeyA, config.Blocks[1].sn);
             verify = true;
-        } catch (e) {}
+        } catch (e) {verify = false;}
         if (verify) {
+            console.log('verify', verify);
             if (!this.write(1, config.KeyA, 7, config.writeKey)) return false;
         } else {
+            console.log('verify', verify);
             if (!this.write(2, config.KeyB, 7, config.writeKey)) return false;
         }
         var tempArr = [];
+        console.log('写入数值');
         for (var k in config.Blocks[0]) {
             if (!this.write(1, config.KeyAList[0], config.Blocks[0][k], data[k])) tempArr.push(k);
         }
         if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
         return true;
-    }
+    }*/
     window.M1Reader = r;
 })(window);

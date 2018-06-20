@@ -28,7 +28,7 @@ export default class extends Component {
         <td>{item.card_name}</td>
         <td>{item.balance}</td>
         <td>{item.time}</td>
-        <td>查看详情</td>
+        <td>{item.discount}</td>
     </tr>)
         return ( 
             <div>
@@ -46,7 +46,7 @@ export default class extends Component {
                       <div className="balancestatistics_title_right"></div>
                    </div>
                    <div className="bothpages_count">                           
-                              <div className="bothpages_count_title balancestatistics_count_title">
+                            <div className="bothpages_count_title balancestatistics_count_title">
                                  <span></span>
                                  <span>卡号</span>
                                  <span>姓名</span>
@@ -54,7 +54,7 @@ export default class extends Component {
                                  <span>余额</span>
                                  <span>办理时间</span>
                                  <span>折扣率</span>
-                              </div>                                                     
+                            </div>                                                     
                             <table className="bothpages_count_list balancestatistics_count_list" cellPadding="0" cellSpacing="0" border="0">  
                                 <tbody>                            
                                    {list}
