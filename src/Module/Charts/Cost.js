@@ -3,6 +3,7 @@
  * @author Edwin Young
  */
 import React from 'react';
+import Highcharts from 'highcharts';
 
 export default class extends React.Component {
     constructor(props) {super(props)}
