@@ -15,26 +15,27 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        index:0, //索引
-        types:[],//充值卡类型
-        cards:[],//卡类型信息
-        cardNumber:'',//输入卡号
-        card_number:'',//卡编号
-        user_mobile:'',//电话
-        user_name:'',//姓名
-        sex:'',//性别
-        birthday:'',//生日
-        address:'',//地址
-        integrals:'',//积分
-        balance:'',//余额
-        recharge_number:'',//卡号
-        card_name:'',//卡类型
-        discount:'',//折扣
-        time:'',//售卡日期
-        show:false,//是否显示
-        cid:''//卡id
-    }
+            show:false,    //是否显示
+            index:0,    //索引
+            number:'',    //输入卡号
+            types:[],    //充值卡类型
+            cards:[],    //卡类型信息
+            card_number:'',    //卡编号
+            user_mobile:'',    //电话
+            user_name:'',    //姓名
+            sex:'',    //性别
+            birthday:'',    //生日
+            address:'',    //地址
+            integrals:'',    //积分
+            balance:'',    //余额
+            recharge_number:'',    //卡号
+            card_name:'',    //卡类型
+            discount:'',    //折扣
+            time:'',    //售卡日期
+            cid:''    //卡id
+        }
         this.query=this.query.bind(this);
+        this.M1Read = this.M1Read.bind(this);
         this.callback = this.callback.bind(this);
     }
     componentDidMount() {
@@ -60,8 +61,47 @@ export default class extends React.Component {
            }
         });
     }
+    M1Read() {
+        let card = M1Reader.get();
+        if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
+        if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
+        if (card.hasUpdate) {    //会员卡已更新为本平台的卡
+            //sn,cid,mid
+            //需提供通过sn,cid参数查询卡数据的接口
+            api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
+                console.log(res);
+                if (ver) {
+                    //api对接
+                    // this.setState({
+                    //     number:card.sn,
+                    //     cid:card.cid,
+                    //     phone:res.result.user_mobile,
+                    //     name:res.result.user_name,
+                    //     balance:res.result.balance,
+                    //     type:res.result.card_name,
+                    //     discount:res.result.discount
+                    // });
+                } else {
+                    handle();
+                }
+            });
+        } else {
+            this.setState({
+                user_mobile:card.phone,
+                user_name:card.name,
+                number:card.sn,
+                recharge_number:card.sn,
+                card_number:card.cid,
+                birthday:card.birthday,
+                card_name:card.type,
+                balance:parseFloat(card.balance),
+                discount:(parseFloat(card.discount) * 100)
+            });
+        }
+        console.log(card);
+    }
     query(){
-        api.post('readCard', {token:token,cardNumber:this.state.cardNumber}, (res, ver) => {
+        api.post('readCard', {token:token,cardNumber:this.state.number}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({card_number:res.result[0].card_number,
@@ -89,9 +129,9 @@ export default class extends React.Component {
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.cardNumber} onChange={e => this.setState({cardNumber:e.target.value})}/>&nbsp;
+                        <input id='card_id' className='e-input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
-                        <button type='button' className='e-btn'>读卡</button>
+                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                     </div>
                     <div><label className='e-label'>卡编号：</label>{this.state.card_number}</div>
                 </div>
