@@ -65,30 +65,34 @@
 .LatticeQuery-Bdiv ul{
     width:auto;
     height:auto;
-    max-height:389px;
+    max-height:415px;
     display:inline-flex;
 }
 .LatticeQuery-Bdiv ul li{
-    width:96px;
-    height:auto;
-    max-height:414px;
-    float:left;
-    margin:5px 0 8px 11.5px;
-    list-style:none;
+    width: auto;
+    height: auto;
+    max-height: 410px;
+    float: left;
+    margin: 5px 0 8px 11.5px;
+    list-style: none;
     clear: both;
+    max-width: 873px;
+    overflow-y: auto;
  }
- .LatticeQuery-Bdiv ul li:last-child{margin-right:8px}
+ /* .LatticeQuery-Bdiv ul li:last-child{margin-right:8px} */
  .LatticeQuery-Bdiv ul li span{
-     display:block;
-     width:94px;
-     height:27px;
-     border:1px solid #89b0d4;
-     font-size:12px;
-     color:#000;
-     text-align:center;
-     line-height:27px;
-     margin-top:8px;
-     background:#fff;
-     font-weight:bold;
+    display: block;
+    width: 94px;
+    height: 27px;
+    border: 1px solid #89b0d4;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+    line-height: 27px;
+    margin-top: 8px;
+    background: #fff;
+    font-weight: 700;
+    float: left;
+    margin-left: 9px;
 }
 .LatticeQuery-Bdiv ul li span.span-div{color:#ff0000}

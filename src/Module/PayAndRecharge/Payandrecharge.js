@@ -134,7 +134,7 @@ export default class extends Component {
                    <div className="Payandrecharge-information">
                       <div className="Payandrecharge-information-title">核对信息</div>
                       <div className="Payandrecharge-information-div">
-                          <div>
+                          <div>,
                               <p><i>卡类型：</i><b>{this.props.info.card_name}</b></p>
                               <p><i>折扣率：</i><b>{this.props.info.discount}%</b></p>
                           </div>

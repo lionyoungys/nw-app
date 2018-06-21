@@ -47,10 +47,10 @@ export default class extends Component {
             'undefined' !== typeof this.state.grid[this.state.index].use_detail
         ) {
             use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>
-          <li>
+          
                 <span>{item.number}#{item.put_num}件</span>
-                {/* <span className="span-div">1#35件</span> */}
-          </li>
+                
+          
             );
         }
         return (
@@ -74,7 +74,9 @@ export default class extends Component {
                </div>
                <div className="LatticeQuery-Bdiv">
                     <ul>
-                        {use_detail}
+                        <li>
+                          {use_detail}
+                         </li>
                     </ul> 
                 </div>    
             </Window>

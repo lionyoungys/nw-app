@@ -3,9 +3,10 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import './Payoutstats.css';
-import Window from '../../UI/Window';
 import { WSAEINVALIDPROCTABLE } from 'constants';
+import Window from '../../UI/Window';
+import './Payoutstats.css';
+
 
 export default class extends Component {   
     constructor(props) {
@@ -87,7 +88,7 @@ export default class extends Component {
                                </tbody>
                            </table>
                         </div>
-                        <div className="Payout-detail">
+                        <div className="Payout-detail bothpayout-detail">
                            <div className="Payout-detail-title">赔付明细 <b>共记录<i>456</i>条</b></div>
                            <table>
                                <thead>
@@ -105,7 +106,7 @@ export default class extends Component {
                                        <th>衣物类别</th>
                                    </tr>                                  
                                </thead>
-                               <tbody>
+                               <tbody >
                                    <tr>
                                        <td>1</td>
                                        <td>4522114 </td>

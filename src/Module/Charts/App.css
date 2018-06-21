@@ -1,0 +1,42 @@
+.ope_ana_date{
+    margin: 13px 13px 0;
+    height: 59px;
+    line-height: 59px;
+}
+.ope_ana_date_left{
+    width:65%;
+    border:1px solid #8db2e3;
+    height:57px;
+    background:#eef4fb;
+    float: left;
+}
+
+.ope_ana_date_left .ope_ana_date_left_part{
+    width:50%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 13px;
+    float: left;
+}
+.ope_ana_date_left div span{
+    float: left;
+}
+.ope_ana_date button{
+    margin-left: 18px; 
+}
+/* 设置选择宽的宽度 新增一个classname */
+.ope_ana_date_left .ui-select-define{
+    width: 140px;
+}
+
+/* tab部分 */
+.ope_ana_tab_part{
+    margin: 13px 14px;
+    height: 490px;
+}
+
+.oper_ana_content{
+    margin: 0;
+    height: 457px;
+}
+.oper_ana_content>div{height: 100%}

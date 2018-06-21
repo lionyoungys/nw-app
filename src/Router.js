@@ -51,7 +51,7 @@ import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBu
 import Businessdaily from './Module/Businessdaily/Businessdaily'; //经营日报
 import Businesstats from './Module/Businesstats/Businesstats'; //营业统计
 import Balancedetail from './Module/Balancedetail/Balancedetail'; //欠款明细
-import OperationAnalysis from './Module/OperationAnalysis/OperationAnalysis'; //营业分析
+import Charts from './Module/Charts/App'; //营业分析
 import Debtpay from './Module/Debtpay/Debtpay'; //欠款补交
 import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChecking'; //支付宝微信统计
 import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard'; //挂失补换卡
@@ -69,7 +69,6 @@ export default {
     take_clothes:Takeclothes, //取衣
     debt_pay:Debtpay,// 欠款补交
     commodity_sales:Commoditysales ,//商品销售
-
     data:Data,
     // take_clothes:Takeclothes,   //取衣界面
     revoke_data:RevokeData,//撤单统计
@@ -95,8 +94,7 @@ export default {
     return_card:ReturnCard,//退卡
     manager_gathering:ManagerGathering,//经理收款
     price_setting:PriceSetting,//价格设置
-    Solut_ionto_hang:Solutiontohang,  //解除挂失
-    
+    Solut_ionto_hang:Solutiontohang,  //解除挂失    
     edit_shop_prices:Editshopprices, //编辑商品价格
     edit_cleaning_prices:EditCleaningPrices,  //编辑洗护价格
     clothes_query:ClothesQuery,      //衣物查询
@@ -121,7 +119,7 @@ export default {
     Business_daily:Businessdaily , // 营业日报
     Busines_stats:Businesstats, //营业统计
     Balance_detail:Balancedetail,//欠款明细
-    operation_analysis:OperationAnalysis,//营业分析
+    charts:Charts,//营业分析
     member_business_statistics: MemberBusinessStatistics,//会员业务统计
     store_management: StoreManagement,//门店管理
     alipayWechat_checking: AlipayWechatChecking,//支付宝微信对账
