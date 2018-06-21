@@ -49,8 +49,7 @@ export default class extends Component {
             use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>
           
                 <span>{item.number}#{item.put_num}件</span>
-                
-          
+                          
             );
         }
         return (
