@@ -49,7 +49,7 @@ export default class extends Component {
                     if (this.state.error) {
                         clearInterval(this.timeId);
                         this.timeId = null;
-                        this.setState({data:[], error:false});
+                        this.setState({data:new Array, error:false});
                         console.log(this.state);
                         this.loadingHandle();
                         return tool.ui.error({msg:'导入错误，请重试！',callback:close => close()});

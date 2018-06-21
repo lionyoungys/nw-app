@@ -6,14 +6,17 @@
 import React from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import {Recharge} from '../../UI/Payment';
 import './App.css';
-import Payandrecharge from '../PayAndRecharge/Payandrecharge'
+import Payandrecharge from '../PayAndRecharge/Payandrecharge';
+
+const token = 'token'.getData();
 export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         index:0, //索引
-        cardtype:[],//充值卡类型
+        types:[],//充值卡类型
         cards:[],//卡类型信息
         cardNumber:'',//输入卡号
         card_number:'',//卡编号
@@ -32,31 +35,33 @@ export default class extends React.Component {
         cid:''//卡id
     }
         this.query=this.query.bind(this);
-        this.onchange=this.onchange.bind(this);
-        this.cashier=this.cashier.bind(this);
-        this.onclose=this.onclose.bind(this);
-    }
-    cashier(){
-        this.setState({show:true});
-        console.log(this.state.show)
+        this.callback = this.callback.bind(this);
     }
     componentDidMount() {
-        api.post('cardType', {token:'token'.getData()}, (res, ver) => {
+        api.post('cardType', {token:token}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({cardtype:res.result.typeArray('card_type'),cards:res.result});
+                this.setState({types:res.result.typeArray('card_type'),cards:res.result});
             }
         }
         );
     }
-    onchange(value){
-        this.setState({index:value.inObjArray(this.state.cards, 'card_type')});
-    }
-    onclose(){
-        this.setState({show:false});
+
+    callback(obj) {
+        obj.token = token;
+        obj.give = this.state.give_price;
+        obj.cid = this.state.cid;
+        api.post('recharge', obj, (res, ver, handle) => {
+           if (ver) {
+               console.log(res)
+               tool.ui.success({callback:close => close()}); 
+           }else{
+               handle();
+           }
+        });
     }
     query(){
-        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardNumber}, (res, ver) => {
+        api.post('readCard', {token:token,cardNumber:this.state.cardNumber}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({card_number:res.result[0].card_number,
@@ -78,7 +83,7 @@ export default class extends React.Component {
         );
     }
     render() {
-        let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}; 
+        let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
             <Window title='充值' onClose={this.props.closeView} width='632' height='430'>
                 <div className='recharge recharge-first'>
@@ -117,32 +122,33 @@ export default class extends React.Component {
                 </div>
                 <div className='recharge recharge-third'>
                     <div>
-                        <div><label className='e-label'>充值卡类型：</label><Select option={this.state.cardtype} selected={this.state.cardtype[0]} onChange={this.onchange}/></div>
+                        <div><label className='e-label'>充值卡类型：</label><Select option={this.state.types} onChange={value => this.setState({index:value.inObjArray(this.state.cards, 'card_type')})}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label>&yen;{card.price}</div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label>&yen;{card.give_price}</div>
                         <div><label className='e-label'>&emsp;&emsp;新折扣：</label>{card.discount}%</div>
                     </div>
                     <div className="recharge-four">
                         <div style={{color:'#ff0000',marginBottom:'22px',fontSize:'14px',fontWeight:'bold'}}>应收：&yen;{card.real_price}</div>
-                        <button type='button' className='e-btn recharge-btn' onClick={this.cashier}>收银</button>
-                        {this.state.show&&<Payandrecharge onclose={this.onclose} info={{
-                        user_mobile:this.state.user_mobile,
-                        user_name:this.state.user_name,
-                        sex:this.state.sex,
-                        birthday:this.state.birthday,
-                        address:this.state.address,
-                        integrals:this.state.integrals,
-                        balance:this.state.balance,
-                        recharge_number:this.state.recharge_number,
-                        card_name:this.state.card_name,
-                        discount:this.state.discount,
-                        time:this.state.time,
-                        price:card.price,
-                        give_price:card.give_price,
-                        cid:this.state.cid
-                        }}/>}
+                        <button type='button' className='e-btn recharge-btn' onClick={() => this.setState({show:true})}>收银</button>
                     </div>
                 </div>
+                {
+                    this.state.show 
+                    && 
+                    <Recharge
+                        data={{
+                            type:this.state.card_name,
+                            discount:this.state.discount,
+                            recharge:card.price,
+                            balance:this.state.balance,
+                            give:card.give_price,
+                            price: 0,
+                            amount:card.price
+                        }}
+                        callback={this.callback}
+                        onClose={() => this.setState({show:false})}
+                    />
+                }
             </Window>
         );
     }

@@ -5,7 +5,6 @@
     top: 50%;left: 50%;
     border: 1px solid #8899ad;
     border-radius: 8px;
-    overflow: hidden;
 }
 .ui-window>:first-child,
 .ui-layer-box>:first-child{

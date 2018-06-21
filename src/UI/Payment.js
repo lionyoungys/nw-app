@@ -142,7 +142,7 @@ export default class extends Component {
 /**
  * 售卡或充值支付弹窗
  * @param {object} data {type:卡类型,discount:折扣率,recharge:充值金额,balance:原金额,give:赠送金额,amount:收费}
- * @param {function} callback 回调方法
+ * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,[authcode:authcode]}
  */
 export class Recharge extends Component {
     constructor(props) {
@@ -197,7 +197,7 @@ export class Recharge extends Component {
                 &&
                 6 === authCode[3].length && !isNaN(authCode[1])
             ) {
-                obj.authCode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
+                obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
             } else {
                 return;
             }
