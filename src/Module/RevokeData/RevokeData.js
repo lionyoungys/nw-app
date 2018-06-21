@@ -24,6 +24,12 @@ export default class extends Component {
                 if (ver && res) {
                     console.log(res)
                     this.setState({orderCount:res.result.orderCount,itemCount:res.result.itemCount,orderBack:res.result.orderBack,item:res.result.item});
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
+                    
                 }
             }
             );

@@ -58,6 +58,8 @@ import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueCha
 import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期预警
 import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
 import pay from './Module/pay/pay'; //赔付
+import aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
+
 
 
 //路由对象
@@ -126,5 +128,6 @@ export default {
     loss_reissue_change_card: LossReissueChangeCard,//挂失补换卡
     delivery_warning:Deliverywarning ,// 交期预警
     its_processing:Itsprocessing, //撤单处理
-    pay:pay //赔付
+    pay:pay, //赔付
+    about_snl:aboutsnl, //关于速洗达
 };

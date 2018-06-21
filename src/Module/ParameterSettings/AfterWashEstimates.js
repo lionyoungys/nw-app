@@ -28,6 +28,12 @@ export default class extends Component {
                     console.log(res);
                     this.setState({show:false});
                     this.componentDidMount();
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
+                    
                 }
             }
         );
@@ -43,6 +49,12 @@ export default class extends Component {
                     console.log(res);
                     this.setState({show1:false});
                     this.componentDidMount();
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
+                    
                 }
             }
         );
@@ -54,6 +66,12 @@ export default class extends Component {
                 if (ver && res) {
                     console.log(res)
                     this.setState({brandlist:res.result});
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
+                    
                 }
             }
         );
@@ -71,9 +89,11 @@ export default class extends Component {
                         close();
                     }}); 
                 }else{
-                    tool.ui.error({callback:(close, event) => {
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
                     }});
+                    
                 }
                 close();
                 this.componentDidMount();
@@ -97,7 +117,7 @@ export default class extends Component {
         return ( 
                 <div>
                     <div className="brand">
-                       <button className="brand-btn" onClick={e => this.setState({show:true})}>新增洗后预估</button>
+                       <button className="brand-btn" onClick={e => this.setState({show:true,brandname:''})}>新增洗后预估</button>
                        <div className="brand-tab">
                           <table>
                               <thead>

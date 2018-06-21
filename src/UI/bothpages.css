@@ -310,7 +310,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Settings-title span.hover{height:24px;z-index:9;color:#15458d;font-weight:bold;}
 .Settings-div{width:868px;height:528px;margin-top:3px;border-top:1px solid #8db2e3}
 
-#balancestatistics-leiji{margin-right:23px}
+#balancestatistics-leiji{margin-right:11px}
 #balancestatistics-zengsong{margin-right:12px;}
 
 
@@ -428,3 +428,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     float: right;
     margin-left: 8px;
 }
+
+.recharg-btn{float:right;margin-top:11px;margin-right:10px}

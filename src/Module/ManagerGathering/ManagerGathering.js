@@ -10,7 +10,11 @@ import './ManagerGathering.css';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false}
+        this.state = {
+            show:false,
+            startdate:tool.date('Y-m-01'),
+            enddate:tool.date('Y-m-d'),
+        }
     };
     render() {
         return (
@@ -18,8 +22,8 @@ export default class extends Component {
             <Window title='经理收款' onClose={this.props.closeView} height='494'>
                <div className="Succession_data">
                          <div className="Succession_dataLeft">
-                            <div>开始日期：<input type="date" /></div>                           
-                            <div>结束日期：<input type="date" /></div>
+                            <div>开始日期：<input type="date" value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>                           
+                            <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                          </div>                         
                 </div>
                 {/* 表格部分 欠费衣物信息*/}               

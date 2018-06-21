@@ -1,5 +1,5 @@
 /**
- * 营业日报组件
+ * 营业收入组件
  * @author wang jun
  */
 import React, {Component} from 'react';
@@ -13,7 +13,7 @@ export default class extends Component {
     }; 
     render() {
         return(<div>
-            <Window title='营业日报' onClose={this.props.closeView}>  
+            <Window title='营业收入' onClose={this.props.closeView}>  
                 <div className='operateincome'>
                     <div className='blacktext'>收衣</div>
                     <div>

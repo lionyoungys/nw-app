@@ -31,7 +31,10 @@
 }
 .operateincome table tr:nth-child(odd){
     background: white;
-    }
+}
+.operateincome table tr:nth-child(even){
+        background:#f0f5f9;
+}
 .operateincome div.blacktext{
     color: black;
     font-size: 14px;

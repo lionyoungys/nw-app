@@ -40,14 +40,14 @@ export default class extends Component {
             <div>
                <Window title='余额统计' onClose={this.props.closeView}>   
                    <div className="balancestatistics_title">
-                     <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
+                     <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left" style={{marginLeft:'0px'}}>
                             <div>开始日期：<input type="date" value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})} /></div>
                             <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                       </div>
                       <div className="balancestatistics_title_left" >
                          <span>累计会员数 ： <b>{this.state.user_total}</b></span>
                          <span>累计会员余额 ： <b>￥{this.state.balance_total}</b></span>
-                         <button>下载</button>
+                         <button>查询</button>
                       </div>
                       <div className="balancestatistics_title_right"></div>
                    </div>

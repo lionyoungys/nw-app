@@ -41,7 +41,11 @@ export default class extends Component {
                             this.setState({operatorlist:operatorlist})   
                             this.componentDidMount();                     
                         }else{
-                            close();
+                            console.log(res.msg);
+                            tool.ui.error({msg:res.msg,callback:(close) => {
+                                close();
+                            }});
+                            
                         }
                     }
                );

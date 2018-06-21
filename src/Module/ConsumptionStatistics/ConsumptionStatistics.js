@@ -23,8 +23,10 @@ export default class extends Component {
                                 <div>开始日期：<input type="date"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                             </div>
+                            <button className="e-btn recharg-btn">查询</button>
                             <div id="balancestatistics-leiji">累计订单数 :<b>256485</b></div>
-                            <div id="balancestatistics-zengsong">累计订单总额 :<b>123456485元</b></div>
+                            <div id="balancestatistics-zengsong">累计订单总额 :<b>12345元</b></div>
+                            
                         </div>
                         <div className="bothpages_count">                           
                               <div className="bothpages_count_title">

@@ -5,9 +5,26 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import './LossReissueChangeCard.css';
+import LossReport from './LossReport';//挂失
+import ChangeCard from './ChangeCard';//换卡
+import ReissueCard from './ReissueCard';//补卡
+import RemoveLossCard from './RemoveLossCard';//解除挂失
+
+
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            show:false,
+            clickNum:-1,
+        }
+        
+        this.onclose = this.onclose.bind(this);
+        this.views = [<ReissueCard onClose={this.onclose} />, <ChangeCard onClose={this.onclose} />, <RemoveLossCard onClose={this.onclose} />, <LossReport onClose={this.onclose}/>] 
+    }
+    onclose() {
+
+        this.setState({ clickNum: null });
     }
     render() {
         return (
@@ -106,11 +123,13 @@ export default class extends Component {
                 </table>
                 <div className='bothpages-btn-part'>
                     
-                    <button type='button' className='e-btn'>挂失</button>
-                    <button type='button' className='e-btn'>解除挂失</button>
-                    <button type='button' className='e-btn'>换卡</button>
-                    <button type='button' className='e-btn'>补卡</button>
+                    <button type='button' className='e-btn' onClick={() => this.setState({clickNum: 3 })}>挂失</button>
+                    <button type='button' className='e-btn' onClick={() => this.setState({clickNum: 2 })}>解除挂失</button>
+                    <button type='button' className='e-btn' onClick={() => this.setState({clickNum: 1 })}>换卡</button>
+                    <button type='button' className='e-btn' onClick={() => this.setState({clickNum: 0 })}>补卡</button>
                 </div>
+                {null !==this.state.clickNum && this.views[this.state.clickNum]}
+                
             </Window>
         );
     }

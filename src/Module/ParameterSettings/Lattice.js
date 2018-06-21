@@ -38,9 +38,11 @@ export default class extends Component {
                         close();
                     }}); 
                 }else{
-                    tool.ui.error({callback:(close, event) => {
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
                     }});
+                    
                 }
                 close();
                 this.componentDidMount();
@@ -54,6 +56,12 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({grid:res.result})
+            }else{
+                console.log(res.msg);
+                tool.ui.error({msg:res.msg,callback:(close) => {
+                    close();
+                }});
+                
             }
         }
         );
@@ -75,9 +83,11 @@ export default class extends Component {
                     close();
                 }}); 
             }else{
-                tool.ui.error({callback:(close, event) => {
+                console.log(res.msg);
+                tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
                 }});
+                
             }
         }
         );
@@ -98,9 +108,11 @@ export default class extends Component {
                     close();
                 }}); 
             }else{
-                tool.ui.error({callback:(close, event) => {
+                console.log(res.msg);
+                tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
                 }});
+                
             }
         }
         );
@@ -138,7 +150,7 @@ export default class extends Component {
         return ( 
                 <div>
                     <div className="lattic">
-                       <button className="lattic-btn" onClick={e => this.setState({show:true})}>新 增 格 架</button>
+                       <button className="lattic-btn" onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}>新 增 格 架</button>
                        <div className="lattic-tab">
                           <table border='0' cellPadding="0" cellSpacing="0">
                               <thead>

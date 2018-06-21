@@ -284,7 +284,7 @@ export default class extends Component {
                     this.state.show
                     &&
                     <Window title='客户信息详情' onClose={this.props.closeView}>
-                        <div className="Membersdetail">
+                        <div className="Membersdetail Membersdetail-div">
                             <div>卡号：<span>158475254582</span></div>
                             <div>姓名：<span>旺旺旺</span></div>
                             <div>手机号：<span>158475254582</span></div>

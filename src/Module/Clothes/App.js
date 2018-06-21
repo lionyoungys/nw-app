@@ -26,7 +26,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
@@ -112,10 +112,20 @@ export default class extends Component {
             //sn,cid,mid
             //需提供通过sn,cid参数查询卡数据的接口
             api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
+                console.log(res);
                 if (ver) {
-                    
+                    //api对接
+                    this.setState({
+                        number:card.sn,
+                        cid:card.cid,
+                        phone:res.result.user_mobile,
+                        name:res.result.user_name,
+                        balance:res.result.balance,
+                        type:res.result.card_name,
+                        discount:res.result.discount
+                    });
                 } else {
-
+                    handle();
                 }
             });
         } else {

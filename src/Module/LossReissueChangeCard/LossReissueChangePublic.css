@@ -1,0 +1,76 @@
+
+.loss-rep-left{
+
+    height: 260px;
+}
+.loss-rep-title{
+
+    text-align: center;
+    margin: 12px 0 0 11px;
+    width:289px;
+    font-size: 12px;
+    color:#063781;
+}
+.loss-rep-right{
+
+    margin: 11px 0 0 22px;
+    width: 233px;
+    height: 262px;
+    float: left;
+    position: relative;
+}
+.loss-rep-right p{
+
+    margin: 15px 0 0 0;
+    line-height: 18px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: normal;
+    color:#063781;
+}
+
+.loss-rep-right a{
+
+    display: block;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color:#063781;
+}
+.loss-rep-right a b{
+
+    font-size: 12px;
+    font-weight: bold;
+    color:red;
+}
+.loss-rep-right .e-input.loss-rep-input{
+
+    margin:10px 0 0;
+    width: 200px;
+    
+}
+.loss-rep-right .loss-rep-right-btn{
+
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+}
+.loss-rep-right .loss-rep-right-btn span{
+    float: left;
+    font-weight: bold;
+    color: red;
+}
+.loss-rep-right .loss-rep-right-btn button{
+   float: right;
+   margin-left: 20px;
+}
+
+/* 换卡 */
+.loss-rep-right .ui-select-define{
+
+    margin: 10px 0 0 0;
+    width: 200px;
+    border-radius: 0;
+}
+
