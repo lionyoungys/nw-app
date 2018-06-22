@@ -33,10 +33,6 @@
 .ope_ana_tab_part{
     margin: 13px 14px;
     height: 490px;
+    width: 872px;
 }
-
-.oper_ana_content{
-    margin: 0;
-    height: 457px;
-}
-.oper_ana_content>div{height: 100%}
+.ope_ana_tab_part>:last-child{height: 457px}

@@ -85,7 +85,7 @@ export default class extends React.Component {
                             >客流量统计(月)</li>
                         </ul>
                     </div>
-                    <div className='oper_ana_content'><V/></div>
+                    <V/>
                 </div>
             </Window>
         );
