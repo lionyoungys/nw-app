@@ -8,31 +8,31 @@ import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import {Recharge} from '../../UI/Payment';
 import './App.css';
-import Payandrecharge from '../PayAndRecharge/Payandrecharge';
 
 const token = 'token'.getData();
 export default class extends React.Component {
     constructor(props) {
         super(props);
+        let card = this.props.card || {};
         this.state = {
             show:false,    //是否显示
             index:0,    //索引
             number:'',    //输入卡号
             types:[],    //充值卡类型
             cards:[],    //卡类型信息
-            card_number:'',    //卡编号
-            user_mobile:'',    //电话
-            user_name:'',    //姓名
-            sex:'',    //性别
-            birthday:'',    //生日
-            address:'',    //地址
-            integrals:'',    //积分
-            balance:'',    //余额
-            recharge_number:'',    //卡号
-            card_name:'',    //卡类型
-            discount:'',    //折扣
-            time:'',    //售卡日期
-            cid:''    //卡id
+            card_number: card.id || '',    //卡编号
+            user_mobile: card.user_mobile || '',    //电话
+            user_name: card.user_name || '',    //姓名
+            sex: card.sex || '',    //性别
+            birthday: card.birthday || '',    //生日
+            address: card.address || '',    //地址
+            integrals: card.integral,    //积分
+            balance: card.balance || '',    //余额
+            recharge_number: card.recharge_number || '',    //卡号
+            card_name: card.card_name || '',    //卡类型
+            discount: card.discount || '',    //折扣
+            time: card.time || '',    //售卡日期
+            cid: card.id || ''    //卡id
         }
         this.query=this.query.bind(this);
         this.M1Read = this.M1Read.bind(this);
@@ -66,19 +66,22 @@ export default class extends React.Component {
         if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
         if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
         if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-            //sn,cid,mid
-            //需提供通过sn,cid参数查询卡数据的接口
             api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
                     this.setState({
                         number:card.sn,
                         cid:card.cid,
+                        card_number:card.cid,
                         user_mobile:res.result.user_mobile,
                         user_name:res.result.user_name,
+                        sex:res.result.sex,
+                        birthday:res.result.birthday,
                         balance:res.result.balance,
+                        integrals:res.result.integrals,
                         card_name:res.result.card_name,
                         discount:res.result.discount,
+                        time:res.result.time,
                         recharge_number:res.result.recharge_number,
                         address:res.result.address,
                     });

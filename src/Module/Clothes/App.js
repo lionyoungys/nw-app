@@ -31,6 +31,7 @@ export default class extends Component {
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
+            card:{},    //卡数据
             update:false,    //用于判断衣物为添加还是修改
 
         };
@@ -73,7 +74,6 @@ export default class extends Component {
                     this.state.item.push(res.result[i].server);
                 }
                 this.setState({category:this.state.category, item:this.state.item});
-                console.log('item', this.state.item);
             } else {handle()}
         });
         api.post('brandList', {token:token}, (res, ver, handle) => {    //获取品牌列表
@@ -99,7 +99,6 @@ export default class extends Component {
         api.post('additionList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
                 this.setState({price:res.result});
-                console.log('price', this.state.price);
             } else {handle()}
         });
     }
@@ -123,7 +122,8 @@ export default class extends Component {
                         name:res.result.user_name,
                         balance:res.result.balance,
                         type:res.result.card_name,
-                        discount:res.result.discount
+                        discount:res.result.discount,
+                        card:res.result
                     });
                 } else {
                     handle();
@@ -524,7 +524,7 @@ export default class extends Component {
                 {
                     17 === this.state.show
                     &&
-                    <Recharge closeView={this.handleClose}/>
+                    <Recharge closeView={this.handleClose} card={this.state.card}/>
                 }
             </Window>
         );
