@@ -37,9 +37,7 @@ export default class extends Component {
 
     handleChange(e) {
         let value = e.target.value;
-        if (!isNaN(value)) {
-            this.setState({amount:value});
-        }
+        !isNaN(value) && this.setState({amount:value});
     }
 
     M1Read() {
@@ -192,9 +190,7 @@ export class Recharge extends Component {
     }
     handleChange(e) {
         let value = e.target.value;
-        if (!isNaN(value)) {
-            this.setState({amount:value});
-        }
+        !isNaN(value) && this.setState({amount:value});
     }
 
     setAuthCode(e) {
