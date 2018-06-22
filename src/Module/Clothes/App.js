@@ -19,6 +19,7 @@ import Deduct from './Deduct';
 import Payment from '../../UI/Payment';
 import User from './User';
 import Code from './Code';
+import Recharge from '../Recharge/App';
 import './App.css';
 
 const token = 'token'.getData();
@@ -26,11 +27,12 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
             update:false,    //用于判断衣物为添加还是修改
+
         };
         this.counter = 1;    //编码累加计数属性
         this.M1read = this.M1read.bind(this);    //读卡
@@ -41,7 +43,6 @@ export default class extends Component {
         this.cost = this.cost.bind(this);    //收银
         this.clone = this.clone.bind(this);    //数量增加
         this.destory = this.destory.bind(this);    //数量减少
-        this.recharge = this.recharge.bind(this);    //充值
         this.handleClose = this.handleClose.bind(this);    //关闭窗口处理
         this.handleCancel = this.handleCancel.bind(this);    //取消处理
         this.setBrand = this.setBrand.bind(this);    //设置品牌
@@ -342,21 +343,17 @@ export default class extends Component {
             delete data[i].DATATAG;
             delete data[i].parent;
         }
-        console.log({token:'token'.getData(), uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)});
         api.post(
             'get_clothes',
             {token:'token'.getData(), uid:this.state.uid, pay_amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver) => {
                 console.log(res);
                 if (ver) {
-                    this.setState({show:14});
+                    this.setState({show:14, oid:res.result.oid});
                 }
             }
         );
         
-    }
-    recharge() {
-
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
@@ -432,7 +429,7 @@ export default class extends Component {
                         <div><button type='button' className='e-btn middle high' onClick={this.cost}>收银</button></div>
                         <div>
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
-                            <button type='button' className='e-btn' onClick={this.recharge}>充值</button>&nbsp;
+                            <button type='button' className='e-btn' onClick={() => this.setState({show:17})}>充值</button>&nbsp;
                             <button type='button' className='e-btn' onClick={() => this.setState({show:13})}>卡扣款</button>
                         </div>
                     </div>
@@ -515,6 +512,11 @@ export default class extends Component {
                     16 === this.state.show
                     &&
                     <Code onClose={this.handleClose} data={this.state.data} currentIndex={this.state.currentIndex} callback={this.setCode}/>
+                }
+                {
+                    17 === this.state.show
+                    &&
+                    <Recharge closeView={this.handleClose}/>
                 }
             </Window>
         );

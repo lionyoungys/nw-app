@@ -71,16 +71,17 @@ export default class extends React.Component {
             api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
-                    //api对接
-                    // this.setState({
-                    //     number:card.sn,
-                    //     cid:card.cid,
-                    //     phone:res.result.user_mobile,
-                    //     name:res.result.user_name,
-                    //     balance:res.result.balance,
-                    //     type:res.result.card_name,
-                    //     discount:res.result.discount
-                    // });
+                    this.setState({
+                        number:card.sn,
+                        cid:card.cid,
+                        user_mobile:res.result.user_mobile,
+                        user_name:res.result.user_name,
+                        balance:res.result.balance,
+                        card_name:res.result.card_name,
+                        discount:res.result.discount,
+                        recharge_number:res.result.recharge_number,
+                        address:res.result.address,
+                    });
                 } else {
                     handle();
                 }
@@ -142,7 +143,7 @@ export default class extends React.Component {
                     </div>
                     <div>
                         <label className='e-label'>姓名：</label><div>{this.state.user_name}</div>
-                        <label className='e-label'>&emsp;折扣率：</label><div>{this.state.discount}</div>
+                        <label className='e-label'>&emsp;折扣率：</label><div>{(this.state.discount ? this.state.discount + '%' : '')}</div>
                     </div>
                     <div>
                         <label className='e-label'>电话：</label><div>{this.state.user_mobile}</div>
