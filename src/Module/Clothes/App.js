@@ -487,7 +487,15 @@ export default class extends Component {
                 {
                     13 === this.state.show
                     &&
-                    <Deduct onClose={this.handleClose} callback={this.handleClose}/>
+                    <Deduct 
+                        onClose={this.handleClose} 
+                        callback={this.handleClose} 
+                        cid={this.state.cid} 
+                        number={this.state.number} 
+                        name={this.state.name} 
+                        phone={this.state.phone} 
+                        balance={this.state.balance}
+                    />
                 }
                 {
                     14 === this.state.show

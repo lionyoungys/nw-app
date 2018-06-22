@@ -30,9 +30,17 @@ export default class extends Component {
         !isNaN(value) && this.setState({amount:value});
     }
     handleClick() {
-        'function' === typeof this.props.callback
-        &&
-        this.props.callback(this.state);
+        if ('' == this.state.number && '' == this.state.cid) return tool.ui.error({msg:'此用户不是会员',callback:close => close()});
+        if ('' == this.state.amount || this.state.amount < 0) return tool.ui.error({msg:'扣款金额不能为空',callback:close => close()});
+        console.log({token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount});
+        api.post(
+            'deduct', 
+            {token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount}, 
+            (res, ver, handle) => {
+                if (!ver) return handle();
+                'function' === typeof this.props.callback && this.props.callback(this.state);
+            }
+        );
     }
     M1Read() {
         tool.ui.loading(handle => this.loadingHandle = handle);
