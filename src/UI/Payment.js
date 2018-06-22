@@ -12,6 +12,7 @@ const style = {marginBottom:'8px', fontSize:'12px'};
 /**
  * 订单支付弹窗
  * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
+ * @param {function} M1Read 读卡方法
  * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,[authcode:authcode]}
  */
 export default class extends Component {
@@ -23,7 +24,6 @@ export default class extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
-        this.M1Read = this.M1Read.bind(this);
     }
 
     componentDidMount() {
@@ -40,19 +40,13 @@ export default class extends Component {
         !isNaN(value) && this.setState({amount:value});
     }
 
-    M1Read() {
-        let card = M1Reader.get();
-        if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
-        if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
-        'function' === typeof this.props.M1Read && this.props.M1Read(card);
-    }
     setAuthCode(e) {
         let value = e.target.value,
             index = Number(e.target.dataset.index),
             len = value.length;
         (3 !== index && 4 === len) && this.input[index + 1].focus();
         if (( 3 !== index && 4 >= len ) || ( 3 === index && 6 >= len )) {
-            this.state.authCode[index] = value
+            this.state.authCode[index] = value;
             this.setState({authCode:this.state.authCode});
         }
     }
@@ -89,7 +83,9 @@ export default class extends Component {
         let data = this.props.data || {}
         ,   authCode = this.state.authCode
         ,   gateway = this.state.gateway
-        ,   change = '' == this.state.amount ? 0 : this.state.amount.subtract(data.total_amount);
+        ,   discount = data.discount || 100
+        ,   amount = 0 == gateway ? data.pay_amount : data.total_amount
+        ,   change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         return (
             <Window title='收银' width='632' height='532' onClose={this.props.onClose}>
                 <div className='ui-payment-title'>核对信息</div>
@@ -103,7 +99,7 @@ export default class extends Component {
                         <div><span>折后价：</span>&yen;{data.pay_amount}</div>
                     </div>
                     <div>
-                        <div><span>折扣率：</span>{data.discount || 100}%</div>
+                        <div><span>折扣率：</span>{discount}%</div>
                     </div>
                 </div>
                 <div className='ui-payment-title2'>活动优惠</div>
@@ -135,8 +131,12 @@ export default class extends Component {
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请扫描或输入会员卡号</div>
                         <input type='input' className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
-                        <button type='button' className='e-btn'>查询</button>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
+                        <button 
+                            type='button' 
+                            className='e-btn' 
+                            onClick={() => '' != this.state.number && 'function' === typeof this.props.cardQuery && this.props.cardQuery(this.state.number)}
+                        >查询</button>&nbsp;
+                        <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
@@ -151,7 +151,7 @@ export default class extends Component {
                         <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                     </div>
                     <div className='ui-payment-amount'>
-                        <div>应收：<span>&yen;{data.total_amount}</span></div>
+                        <div>应收：<span>&yen;{amount}</span></div>
                         <div>找零：<span>&yen;{change}</span></div>
                         <div>欠费：<span>&yen;{change > 0 ? 0 : (change * -1)}</span></div>
                     </div>
@@ -199,7 +199,7 @@ export class Recharge extends Component {
             len = value.length;
         (3 !== index && 4 === len) && this.input[index + 1].focus();
         if (( 3 !== index && 4 >= len ) || ( 3 === index && 6 >= len )) {
-            this.state.authCode[index] = value
+            this.state.authCode[index] = value;
             this.setState({authCode:this.state.authCode});
         }
     }

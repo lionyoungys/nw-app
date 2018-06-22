@@ -103,7 +103,27 @@ export default class extends Component {
         });
     }
 
-    M1read() {
+    M1read(value) {
+        if ('string' === typeof value && '' != value) {
+            return api.post('cardDetail', {token:token,recharge_number:value}, (res, ver, handle) => {
+                console.log(res);
+                if (ver) {
+                    //api对接
+                    this.setState({
+                        number:res.result.recharge_number,
+                        cid:res.result.id,
+                        phone:res.result.user_mobile,
+                        name:res.result.user_name,
+                        balance:res.result.balance,
+                        type:res.result.card_name,
+                        discount:res.result.discount,
+                        card:res.result
+                    });
+                } else {
+                    handle();
+                }
+            });
+        }
         //phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',
         let card = M1Reader.get();
         if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
@@ -328,8 +348,9 @@ export default class extends Component {
     //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
         if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
         if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
+        let len = this.state.data.length;
+        if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
-        ,   len = data.length
         ,   pay_amount = 0
         ,   craft_price = 0
         for (let i = 0;i < len;++i) {
@@ -345,11 +366,11 @@ export default class extends Component {
         }
         api.post(
             'get_clothes',
-            {token:'token'.getData(), uid:this.state.uid, pay_amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            {token:'token'.getData(), uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver) => {
                 console.log(res);
                 if (ver) {
-                    this.setState({show:14, oid:res.result.oid});
+                    this.setState({show:14, oid:res.result});
                 }
             }
         );
@@ -373,6 +394,8 @@ export default class extends Component {
     render() {
         let total = 0    //总金额
         ,   amount = 0    //折后金额
+        ,   dis_amount = 0
+        ,   no_dis_amount = 0
         ,   discount = '' == this.state.discount ? 100 : this.state.discount
         ,   html = this.state.data.map((obj, index) => {
             let count = this.state.data.keyValCount('parent', obj.DATATAG);
@@ -382,6 +405,9 @@ export default class extends Component {
                 obj.addition_no_price, 
                 (Math.floor(obj.addition_price * discount) / 100)
             );
+            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+            
             return (
                 <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
                     <div onClick={this.showCode}>{obj.clothing_number}</div>
@@ -500,7 +526,18 @@ export default class extends Component {
                 {
                     14 === this.state.show
                     &&
-                    <Payment onClose={this.handleClose}/>
+                    <Payment 
+                        onClose={this.handleClose}
+                        data={{
+                            total_amount:total,
+                            dis_amount:dis_amount,
+                            amount:no_dis_amount,
+                            discount:discount,
+                            pay_amount:amount
+                        }}
+                        M1Read={this.M1read}
+                        cardQuery={this.M1read}
+                    />
                 }
                 {
                     15 === this.state.show
