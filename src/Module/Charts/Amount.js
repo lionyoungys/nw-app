@@ -11,7 +11,6 @@ export default class extends React.Component {
     componentDidMount() {
         Highcharts.chart(this.container, {
             title: {text: '月度营业额分析'},
-            // chart: {width: 872},
             credits: {enabled: false},
             yAxis: {title: {text: ''}},
             xAxis: {categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']},
