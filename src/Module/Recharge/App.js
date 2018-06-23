@@ -33,7 +33,6 @@ export default class extends React.Component {
             discount: card.discount || '',    //折扣
             time: card.time || ''    //售卡日期
         }
-        this.loadingHandle = null;
         this.M1Read = this.M1Read.bind(this);
         this.callback = this.callback.bind(this);
     }
@@ -50,17 +49,21 @@ export default class extends React.Component {
         if ('' == this.state.cid && '' == this.state.recharge_number) return tool.ui.error({msg:'会员卡不存在',callback:close => close()});
         let card = this.state.cards[this.state.index];
         if ('object' !== typeof card || 'undefined' === typeof card.id)  return tool.ui.error({msg:'请选择充值卡类型',callback:close => close()});
+        let loadingEnd;
+        tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'recharge', 
             {token:token, cid:this.state.cid, number:this.state.recharge_number, gateway:obj.gateway, authcode:obj.authcode || '', recharge_id:card.id}, 
             (res, ver, handle) => {
+                loadingEnd();
                 if (ver) {
                     console.log(res);
                     tool.ui.success({callback:close => close()}); 
                 }else{
                     handle();
                 }
-            }
+            },
+            () => loadingEnd()
         );
     }
 
@@ -136,7 +139,7 @@ export default class extends React.Component {
                     </div>
                     <div className="recharge-four">
                         <div style={{color:'#ff0000',marginBottom:'22px',fontSize:'14px',fontWeight:'bold'}}>应收：&yen;{card.real_price}</div>
-                        <button type='button' className='e-btn recharge-btn' onClick={() => this.setState({show:true})}>收银</button>
+                        <button type='button' className='e-btn recharge-btn' onClick={() => '' != this.state.cid && this.setState({show:true})}>收银</button>
                     </div>
                 </div>
                 {
@@ -150,7 +153,7 @@ export default class extends React.Component {
                             balance:this.state.balance,
                             give:card.give_price,
                             price: 0,
-                            amount:card.price
+                            amount:card.real_price
                         }}
                         callback={this.callback}
                         onClose={() => this.setState({show:false})}
