@@ -165,7 +165,7 @@ class Login extends Component {
     }
     componentDidMount() {
         if('mid'.getData!=''){
-            this.setState({merchant:'mid'.getData(),name:'name'.getData(),passwd:'passwd'.getData()})
+            this.setState({merchant:'mid'.getData(),name:'name'.getData(),passwd:'passwd'.getData(),remember:true})
         }
     }
     remember() {

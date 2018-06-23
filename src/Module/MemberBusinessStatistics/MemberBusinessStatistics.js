@@ -56,7 +56,7 @@ export default class extends Component {
                         </tbody>
                     </table>
                     <p>消费明细</p>
-                <table id='mem_bus_sta_table_two' className='ui-table-base'>
+                <table className='ui-table-base mem_bus_sta_table_two'>
                         <thead>
                             <tr>
                                 <td>卡编号</td>

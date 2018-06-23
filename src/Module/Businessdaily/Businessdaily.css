@@ -3,3 +3,19 @@
     height: auto;   
     margin-top:0;
 }
+
+.ui-table-base.bus-daily-tab{
+    max-height: 448px;
+    margin-top: 15px;
+    max-width: 872px;
+    overflow-x: auto;
+}
+.ui-table-base.bus-daily-tab tbody{
+
+    max-height: 423px;
+}
+.ui-table-base.bus-daily-tab tr td{
+
+    max-width: 120px;
+    min-width: 120px;
+}

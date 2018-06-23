@@ -4,6 +4,10 @@
     border:1px solid #8db2e3;
     margin: 13px;
 }
+.clothesquery_top_one div .ui-select-define {width:90px;}
+.clothesquery_top_one div .ui-select-define .ui-select-selected{margin-top:0}
+.clothesquery_top_one div .ui-select-option{margin-top:0;}
+.clothesquery_top_one div .ui-select-option div{margin-top:0}
 .clothesquery_top_one,.clothesquery_top_two{
 
     width: 230px;

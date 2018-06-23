@@ -7,3 +7,22 @@
 .businesstats-div .businesstats-tab thead tr td{min-width:94px;}
 .businesstats-div .businesstats-tab thead tr td:last-child{border-right:none;}
 .businesstats-div .businesstats-tab tbody tr td{min-width:94px;}
+.Succession-name.bus-sta-num{
+
+    height: 30px;
+    color: black;
+}
+.ui-table-base.bus-sta-tab{
+    max-height: 435px;
+    max-width: 872px;
+    overflow-x: auto;
+}
+.ui-table-base.bus-sta-tab tbody{
+
+    max-height: 410px;
+}
+.ui-table-base.bus-sta-tab tr td{
+
+    max-width: 107px;
+    min-width: 107px;
+}

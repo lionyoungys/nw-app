@@ -44,19 +44,16 @@ p{
     color: black;
 }
 
-#mem_bus_sta_table_two{
+.ui-table-base.mem_bus_sta_table_two{
 
-    max-height: 350px;
+    max-height: 330px;
 }
-#mem_bus_sta_table_two tr td{
+.ui-table-base.mem_bus_sta_table_two tr td{
 
-    min-width:91px;
+    min-width:97px;
+    max-width: 97px;
 }
-#mem_bus_sta_table_two tr th{
+.ui-table-base.mem_bus_sta_table_two tbody{
 
-    min-width:91px;
-}
-#mem_bus_sta_table_two tbody{
-
-    max-height: 325px;
+    max-height: 305px;
 }

@@ -27,7 +27,7 @@ export default class extends Component {
                            <thead>
                                <tr>
                                    <th></th>
-                                   <th>定单号</th>
+                                   <th>订单号</th>
                                    <th>姓名</th>
                                    <th>手机号</th>
                                    <th>卡号</th>
@@ -140,7 +140,7 @@ export default class extends Component {
                                    <td>6/13</td>                                   
                                </tr>
                                <tr>
-                                   <td>444</td>
+                                   <td></td>
                                    <td>45547586586</td>
                                    <td>吱吱</td>
                                    <td>13546079987</td>

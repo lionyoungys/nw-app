@@ -13,6 +13,10 @@
     min-width:95px;
 }
 .managerquery-div .managerquery-tab tbody tr td{min-width:95px;}
+
+
+
+
 .Succession_dataLeft div .ui-select-define{
     width:135px;    
     margin-top: -2px;
@@ -26,4 +30,26 @@
     margin-left:18px;
     float:left;
     cursor:pointer;
+}
+/* table部分 */
+
+.ui-table-base.man-que-tab tr td{
+
+    min-width: 97px;
+    max-width: 97px;
+}
+.ui-table-base.man-que-tab-two{
+    max-height: 265px;
+    margin-top: 15px;
+    max-width: 874px;
+    overflow-x: auto;
+}
+.ui-table-base.man-que-tab-two tbody{
+
+    max-height: 240px;
+}
+.ui-table-base.man-que-tab-two tr td{
+
+    max-width: 97px;
+    min-width: 97px;
 }

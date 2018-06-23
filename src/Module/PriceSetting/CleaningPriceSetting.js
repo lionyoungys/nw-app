@@ -156,7 +156,11 @@ export default class extends Component {
     }
     handle(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
-        this.setState({goodindex:e.target.dataset.index || e.target.parentNode.dataset.index,show1:true});
+        this.setState({goodindex:e.target.dataset.index || e.target.parentNode.dataset.index,
+            show1:true,
+            item_name:this.state.itemLists[this.state.index].server[this.state.goodindex].item_name,
+            item_cycle:this.state.itemLists[this.state.index].server[this.state.goodindex].item_cycle,
+        });
         this.request();
         
     }
@@ -195,7 +199,6 @@ export default class extends Component {
                 </tr>
             );  
         }
-        console.log(itemList);
         let gridss;
         if(
             'undefined' !== typeof this.state.grid[this.state.index]
@@ -296,7 +299,7 @@ export default class extends Component {
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_type[0]} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
-                                <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
+                                <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} selected={this.state.dispose_type[0]} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.grade[0]} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materials[0]} onChange={value => this.setState({materialsname:value})} /></div>

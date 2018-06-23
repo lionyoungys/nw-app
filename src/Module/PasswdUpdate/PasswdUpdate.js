@@ -8,18 +8,15 @@ import './PasswdUpdate.css';
 
 export default class extends Component {   
     constructor(props) {
-        super(props);  
-        this.state={show:true}         
+        super(props);    
     }; 
     render() {
         return(
-                this.state.show
-                &&
-                <LayerBox
+                <LayerBox 
                     title='密码修改'
-                    onClose={() => this.setState({show:false})}
-                    onClick={() => this.setState({show:false})}
-                    onCancel={() => this.setState({show:false})}
+                    onClose={this.props.closeView}
+                    onClick={this.props.closeView}
+                    onCancel={this.props.closeView}
                     hasCancel={true}
                 > {
                     <div className='passwdupdate'>
