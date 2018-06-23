@@ -339,7 +339,24 @@ export default class extends Component {
         
     }
     paymentCallback(obj) {
-
+        if (null == this.state.oid) return;
+        if (0 == obj.gateway && null == this.state.cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let loadingEnd;
+        tool.ui.loading(handle => loadingEnd = handle);
+        api.post(
+            'orderPay', 
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.state.cid || '', oid:this.state.oid},
+            (res, ver, handle) => {
+                console.log(res);
+                loadingEnd();
+                if (ver) {
+                    tool.ui.success({callback:close => close()}); 
+                } else {
+                    handle();
+                }
+            },
+            () => loadingEnd()
+        );
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
@@ -492,7 +509,7 @@ export default class extends Component {
                     14 === this.state.show
                     &&
                     <Payment 
-                        onClose={this.handleClose}
+                        onClose={this.props.closeView}
                         data={{
                             total_amount:total,
                             dis_amount:dis_amount,
@@ -516,6 +533,8 @@ export default class extends Component {
                         phone={this.state.phone} 
                         balance={this.state.balance} 
                         discount={this.state.discount} 
+                        cid={this.state.cid}
+                        type={this.state.type}
                         callback={this.setUser}
                     />
                 }

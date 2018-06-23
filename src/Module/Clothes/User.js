@@ -9,11 +9,14 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            addr:'string' === typeof this.props.addr ? this.props.addr : '', 
-            phone:'string' === typeof this.props.phone ? this.props.phone : '', 
-            name:'string' === typeof this.props.name ? this.props.name : '',
-            number:'string' === typeof this.props.number ? this.props.number : '',
-            balance:0, discount:'',type:'',
+            addr:this.props.addr || '', 
+            phone:this.props.phone || '', 
+            name:this.props.name || '',
+            number:this.props.number || '',
+            cid:this.props.cid || '',
+            balance:this.props.balance || '', 
+            discount:this.props.discount || '',
+            type:this.props.type || '',
             data:[]
         };
         this.handleClick = this.handleClick.bind(this);
@@ -32,7 +35,7 @@ export default class extends React.Component {
 
     handleChange(e) {
         let key = e.target.dataset.key
-        ,   obj = {[key]:e.target.value};
+        ,   obj = {[key]:e.target.value, cid:'', balance:0, discount:'', type:''};
         this.setState(obj);
         if ('undefined' === typeof obj.addr && '' !== obj[key]) this.query(obj);
     }
@@ -46,6 +49,7 @@ export default class extends React.Component {
             'readCard', 
             {token:'token'.getData(), cardNumber:obj.number, user_name:obj.name, user_mobile:obj.phone}, 
             (res, ver) => {
+                console.log(res);
                 if (ver) {
                     this.setState({data:res.result});
                 }
@@ -71,7 +75,8 @@ export default class extends React.Component {
             addr:data.address || '', 
             balance:data.balance || 0,
             discount:data.discount || '',
-            type:data.card_name || ''
+            type:data.card_name || '',
+            cid:data.id,
         });
     }
     render() {

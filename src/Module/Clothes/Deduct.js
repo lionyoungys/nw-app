@@ -43,40 +43,17 @@ export default class extends Component {
         );
     }
     M1Read() {
-        tool.ui.loading(handle => this.loadingHandle = handle);
-        let card = M1Reader.get();
-        if (card.error) {
-            this.loadingHandle();
-            return tool.ui.error({msg:'读卡失败',callback:close => close()});
-        }
-        if (card.empty) {
-            this.loadingHandle();
-            return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
-        }
-        this.loadingHandle();
-        if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-            api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
-                if (ver) {
-                    //api对接
-                    this.setState({
-                        number:card.sn,
-                        cid:card.cid,
-                        phone:res.result.user_mobile,
-                        name:res.result.user_name,
-                        balance:res.result.balance
-                    });
-                } else {
-                    handle();
-                }
-            });
-        } else {
-            this.setState({
-                phone:card.phone,
-                name:card.name,
-                number:card.sn,
-                balance:parseFloat(card.balance),
-            });
-        }
+        EventApi.M1Read({
+            callback:(res) => {
+                this.setState({
+                    number:res.recharge_number,
+                    cid:res.id,
+                    phone:res.user_mobile,
+                    name:res.user_name,
+                    balance:res.balance
+                });
+            }
+        });
     }
 
     render() {

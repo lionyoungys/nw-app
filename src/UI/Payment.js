@@ -55,12 +55,9 @@ export default class extends Component {
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:this.state.amount};
-        if (0 == obj.gateway) {
-            if (!this.props.number && !this.props.cid) return;
-            obj.number = this.props.number || '';
-            obj.cid = this.props.cid || '';
+        if (0 == obj.gateway) {    //会员卡支付
         } else if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0) return;
+            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.total_amount) > parseFloat(obj.amount)) return;
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
@@ -157,7 +154,7 @@ export default class extends Component {
                     </div>
                 </div>
                 <div className='ui-payment-confirm'>
-                    <button type='button' className='e-btn'>立即收款</button>
+                    <button type='button' className='e-btn' onClick={this.onConfirm}>立即收款</button>
                 </div>
             </Window>
         );
