@@ -5,5 +5,17 @@
     width:auto;
     overflow-y: hidden;
 }
-.balancedetail-div table thead{display:inline-block}
-.balancedetail-div table tbody{display:inline-block;overflow-y: auto;max-height:340px;overflow-x:hidden}
+.ui-table-base.balance-det-tab{
+
+    max-height: 420px;
+    width: 880px;
+}
+.ui-table-base.balance-det-tab tbody{
+
+    max-height: 395px;
+}
+.ui-table-base.balance-det-tab tr td{
+
+    min-width: 97px;
+    max-width: 97px;
+}
