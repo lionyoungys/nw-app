@@ -7,9 +7,9 @@ const process = window.require('process')
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
-import event from './Event';
 import {topMenu, nav, leftMenu} from './Menu';
 import './Api';
+import './Event';
 import './main.css';
 import './UI/base.css';
 
@@ -70,7 +70,7 @@ class Main extends Component {
             if ('string' === typeof e.event) eventName = e.event
         }
         if (eventName) {    //若为事件处理而非跳转视图,则处理事件
-            event[eventName]();
+            EventApi[eventName]();
         } else {
             null !== view && this.state.view !== view && this.setState({view:view,param:param});
         }

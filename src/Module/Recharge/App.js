@@ -20,7 +20,7 @@ export default class extends React.Component {
             number:'',    //输入卡号
             types:[],    //充值卡类型
             cards:[],    //卡类型信息
-            card_number: card.id || '',    //卡编号
+            cid: card.id || '',    //卡编号id
             user_mobile: card.user_mobile || '',    //电话
             user_name: card.user_name || '',    //姓名
             sex: card.sex || '',    //性别
@@ -31,10 +31,9 @@ export default class extends React.Component {
             recharge_number: card.recharge_number || '',    //卡号
             card_name: card.card_name || '',    //卡类型
             discount: card.discount || '',    //折扣
-            time: card.time || '',    //售卡日期
-            cid: card.id || ''    //卡id
+            time: card.time || ''    //售卡日期
         }
-        this.query=this.query.bind(this);
+        this.loadingHandle = null;
         this.M1Read = this.M1Read.bind(this);
         this.callback = this.callback.bind(this);
     }
@@ -42,89 +41,51 @@ export default class extends React.Component {
         api.post('cardType', {token:token}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({types:res.result.typeArray('card_type'),cards:res.result});
+                this.setState({types:res.result.typeArray('card_type'), cards:res.result});
             }
-        }
-        );
+        });
     }
 
     callback(obj) {
-        obj.token = token;
-        obj.give = this.state.give_price;
-        obj.cid = this.state.cid;
-        api.post('recharge', obj, (res, ver, handle) => {
-           if (ver) {
-               console.log(res)
-               tool.ui.success({callback:close => close()}); 
-           }else{
-               handle();
-           }
-        });
-    }
-    M1Read() {
-        let card = M1Reader.get();
-        if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
-        if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
-        if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-            api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
-                console.log(res);
+        if ('' == this.state.cid && '' == this.state.recharge_number) return tool.ui.error({msg:'会员卡不存在',callback:close => close()});
+        api.post(
+            'recharge', 
+            {token:token, cid:this.state.cid, number:this.state.recharge_number, gateway:obj.gateway, authcode:obj.authcode || ''}, 
+            (res, ver, handle) => {
                 if (ver) {
-                    this.setState({
-                        number:card.sn,
-                        cid:card.cid,
-                        card_number:card.cid,
-                        user_mobile:res.result.user_mobile,
-                        user_name:res.result.user_name,
-                        sex:res.result.sex,
-                        birthday:res.result.birthday,
-                        balance:res.result.balance,
-                        integrals:res.result.integrals,
-                        card_name:res.result.card_name,
-                        discount:res.result.discount,
-                        time:res.result.time,
-                        recharge_number:res.result.recharge_number,
-                        address:res.result.address,
-                    });
-                } else {
+                    console.log(res);
+                    tool.ui.success({callback:close => close()}); 
+                }else{
                     handle();
                 }
-            });
-        } else {
-            this.setState({
-                user_mobile:card.phone,
-                user_name:card.name,
-                number:card.sn,
-                recharge_number:card.sn,
-                card_number:card.cid,
-                birthday:card.birthday,
-                card_name:card.type,
-                balance:parseFloat(card.balance),
-                discount:(parseFloat(card.discount) * 100)
-            });
-        }
-        console.log(card);
-    }
-    query(){
-        api.post('readCard', {token:token,cardNumber:this.state.number}, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({card_number:res.result[0].card_number,
-                    user_mobile:res.result[0].user_mobile,
-                    user_name:res.result[0].user_name,
-                    sex:res.result[0].sex,
-                    birthday:res.result[0].birthday,
-                    address:res.result[0].address,
-                    integrals:res.result[0].integrals,
-                    balance:res.result[0].balance,
-                    recharge_number:res.result[0].recharge_number,
-                    card_name:res.result[0].card_name,
-                    discount:res.result[0].discount,
-                    time:res.result[0].time,
-                    cid:res.result[0].id
-                });
             }
-        }
         );
+    }
+
+    M1Read(e) {
+        let obj = {};
+        if (e.target.dataset.query) {
+            if ('' == this.state.number) return tool.ui.error({msg:'请输入会员卡号',callback:close => close()});
+            obj.number = this.state.number;
+        }
+        obj.callback = (res) => {
+            this.setState({
+                number:res.result.recharge_number,
+                cid:res.result.id,
+                user_mobile:res.result.user_mobile,
+                user_name:res.result.user_name,
+                sex:res.result.sex,
+                birthday:res.result.birthday,
+                balance:res.result.balance,
+                integrals:res.result.integrals,
+                card_name:res.result.card_name,
+                discount:res.result.discount,
+                time:res.result.time,
+                recharge_number:res.result.recharge_number,
+                address:res.result.address,
+            });
+        }
+        EventApi.M1Read(obj);
     }
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
@@ -134,10 +95,10 @@ export default class extends React.Component {
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
                         <input id='card_id' className='e-input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
+                        <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                     </div>
-                    <div><label className='e-label'>卡编号：</label>{this.state.card_number}</div>
+                    <div><label className='e-label'>卡编号：</label>{this.state.cid}</div>
                 </div>
                 <div className='recharge recharge-second'>
                     <div>
