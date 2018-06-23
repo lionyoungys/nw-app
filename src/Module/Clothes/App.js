@@ -63,6 +63,7 @@ export default class extends Component {
         this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
         this.setUser = this.setUser.bind(this);    //设置用户信息
         this.del = this.del.bind(this);    //项目删除方法
+        this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
     }
 
     componentDidMount() {
@@ -104,62 +105,23 @@ export default class extends Component {
     }
 
     M1read(value) {
+        let obj = {};
         if ('string' === typeof value && '' != value) {
-            return api.post('cardDetail', {token:token,recharge_number:value}, (res, ver, handle) => {
-                console.log(res);
-                if (ver) {
-                    //api对接
-                    this.setState({
-                        number:res.result.recharge_number,
-                        cid:res.result.id,
-                        phone:res.result.user_mobile,
-                        name:res.result.user_name,
-                        balance:res.result.balance,
-                        type:res.result.card_name,
-                        discount:res.result.discount,
-                        card:res.result
-                    });
-                } else {
-                    handle();
-                }
-            });
+            obj.number = value;
         }
-        //phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',
-        let card = M1Reader.get();
-        if (card.error) return tool.ui.error({msg:'读卡失败',callback:close => close()});
-        if (card.empty) return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
-        if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-            //sn,cid,mid
-            //需提供通过sn,cid参数查询卡数据的接口
-            api.post('cardDetail', {token:token,id:card.cid}, (res, ver, handle) => {
-                console.log(res);
-                if (ver) {
-                    //api对接
-                    this.setState({
-                        number:card.sn,
-                        cid:card.cid,
-                        phone:res.result.user_mobile,
-                        name:res.result.user_name,
-                        balance:res.result.balance,
-                        type:res.result.card_name,
-                        discount:res.result.discount,
-                        card:res.result
-                    });
-                } else {
-                    handle();
-                }
-            });
-        } else {
+        obj.callback = (res) => {
             this.setState({
-                phone:card.phone,
-                name:card.name,
-                number:card.sn,
-                type:card.type,
-                balance:parseFloat(card.balance),
-                discount:(parseFloat(card.discount) * 100)
+                number:res.recharge_number,
+                cid:res.id,
+                phone:res.user_mobile,
+                name:res.user_name,
+                balance:res.balance,
+                type:res.card_name,
+                discount:res.discount,
+                card:res
             });
         }
-        console.log(card);
+        EventApi.M1Read(obj);
     }
     add(index) {
         let item = this.state.item[this.state.categoryIndex][index];
@@ -376,6 +338,9 @@ export default class extends Component {
         );
         
     }
+    paymentCallback(obj) {
+
+    }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
     tempUser() {this.setState({show:15})}
@@ -537,6 +502,7 @@ export default class extends Component {
                         }}
                         M1Read={this.M1read}
                         cardQuery={this.M1read}
+                        callback={this.paymentCallback}
                     />
                 }
                 {
