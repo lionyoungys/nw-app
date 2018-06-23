@@ -16,9 +16,16 @@ export default class extends Component {
                 this.setState({freight_price:res.result.freight_price,
                     mrange:res.result.mrange,
                     mstatus:res.result.mstatus
-                });
-                console.log(this.state.mstatus)
+                }
+            );
          }
+         else{
+            console.log(res.msg);
+            tool.ui.error({msg:res.msg,callback:(close) => {
+                close();
+            }});
+            
+        }
         }
         );
       

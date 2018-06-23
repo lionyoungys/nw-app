@@ -57,6 +57,10 @@ export default class extends Component {
                     typeList:res.result.typeArray('name'),
                   
                 })
+            }else{
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         ); 
@@ -80,7 +84,9 @@ export default class extends Component {
                 this.setState({show:false,name:'',price:'',stock:''});
                 this.componentDidMount();
             }else{
-                console.log(res)
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         ); 
@@ -100,6 +106,7 @@ export default class extends Component {
         let write = e.target.dataset.write;
         this.setState({id:this.state.itemLists[this.state.index].goods[write].id});
         tool.ui.error({title:'提示',msg:'将删除档次,档次上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
+            if(event=='click'){
             api.post('delGoods', {token:'token'.getData(),
             id:this.state.id
         }, (res, ver) => {
@@ -110,7 +117,7 @@ export default class extends Component {
                     }}); 
                 }else{
                     console.log(res)
-                    tool.ui.error({callback:(close, event) => {
+                    tool.ui.error({msg:res.msg,callback:(close, event) => {
                         close();
                     }});
                 }
@@ -118,6 +125,9 @@ export default class extends Component {
                 this.componentDidMount();
             }
             );
+        }else{
+            close();
+        }
         }});
     }
     componentDidMount(){
@@ -127,6 +137,10 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({itemLists:res.result})
+            }else{
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         ); 
@@ -139,6 +153,10 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({typeLists:res.result,typeList:res.result.typeArray('name')})
+            }else{
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         ); 
@@ -172,7 +190,9 @@ export default class extends Component {
                 this.setState({show2:false,name:'',price:'',stock:''});
                 
             }else{
-                console.log(res)
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         ); 

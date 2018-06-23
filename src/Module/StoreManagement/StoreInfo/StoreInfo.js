@@ -21,6 +21,13 @@ export default class extends Component {
                 province:res.result.province,city:res.result.city,mstatus:res.result.mstatus,maddress:res.result.maddress});
         
          }
+         else{
+            console.log(res.msg);
+            tool.ui.error({msg:res.msg,callback:(close) => {
+                close();
+            }});
+            
+        }
         }
         );
     }
@@ -32,9 +39,11 @@ export default class extends Component {
                     close();
                 }}); 
             }else{
-                tool.ui.error({callback:(close, event) => {
+                console.log(res.msg);
+                tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
                 }});
+                
             }
         }
         );

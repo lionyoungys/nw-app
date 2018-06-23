@@ -13,7 +13,7 @@ export default class extends Component {
         this.state = {show:false,
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
-            status:'',
+            status:'清洗中',
             serialsn:'',
             user_name:'',
             cardNumber:'',
@@ -34,7 +34,7 @@ export default class extends Component {
         api.post('clothesQuery', {token:'token'.getData(),
         start_time:this.state.start_time,
         end_time:this.state.end_time,
-        status:this.state.status,
+        status:this.state.status=='清洗中'?'3':this.state.status=='清洗完成'?'4':'5',
         serialsn:this.state.serialsn,
         user_name:this.state.user_name,
         cardNumber:this.state.cardNumber,
@@ -60,7 +60,7 @@ export default class extends Component {
                 <span>{item.clothing_name}</span>
                 <span>{item.clothing_color}</span>
                 <span>{item.grid_num}</span>
-                <span>{item.status}</span>
+                <span>{item.status==3?'清洗中':item.status==4?'清洗完成':'撤单'}</span>
                 <span>{item.user_name}</span>
                 <span>{item.user_mobile}</span>
                 <span>{item.card_number}</span>
@@ -74,7 +74,7 @@ export default class extends Component {
                 <div className='clothesquery_top'>
                     <div className='clothesquery_top_one'>
                             <div>
-                                <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={e => this.setState({status:e.target.value})}/>
+                                <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={value => this.setState({status:value})}/>
                             </div> 
                             <div>
                             <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>

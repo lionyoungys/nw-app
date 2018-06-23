@@ -13,7 +13,7 @@ export default class extends Component {
             user_total:'',
             balance_total:'',
             list:[],
-            startdate:tool.date('Y-m-d'),
+            startdate:tool.date('Y-m-01'),
             enddate:tool.date('Y-m-d'),
         };         
     }; 

@@ -107,6 +107,9 @@
     background-color: #fff;
     color: black;
 }
+.change_card_table tbody #selecttr{
+    background:#cce8ff;
+}
 
 .change_card_table tbody tr td:first-child{
     color: #9f9f9f;

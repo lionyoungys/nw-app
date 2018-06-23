@@ -8,7 +8,10 @@ import './Businessdaily.css';
 export default class extends Component {   
     constructor(props) {
         super(props);    
-       
+        this.state={
+            startdate:tool.date('Y-m-01'),
+            enddate:tool.date('Y-m-d'),
+        }
     }; 
     
     render() {
@@ -19,8 +22,8 @@ export default class extends Component {
             <Window title='经营日报' onClose={this.props.closeView}>   
                 <div className="revokedata_data">
                          <div className="revokedata_dataLeft">
-                            <div>开始日期：<input type="date" /></div>                           
-                            <div>结束日期：<input type="date" /></div>
+                            <div>开始日期：<input type="date" value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})} /></div>                           
+                            <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                          </div>
                          <div className="revokedata_dataright">
                            {arr}

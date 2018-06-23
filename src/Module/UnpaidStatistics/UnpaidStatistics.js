@@ -63,46 +63,43 @@ export default class extends Component {
                         <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} /></div>
                     </div>
                     <div className="unpaidstatistics_dataright">
-                        <button type='button' className='e-btn ' onClick={this.props.closeView}>退出</button>
-                        <button type='button' className='e-btn '>打印</button>
                         <button type='button' className='e-btn ' onClick = {this.order}>查询</button>
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">
+                    <span>  已为您找到{this.state.itemCount}条数据</span>
                     <span>  总衣物：<a>{this.state.itemCount}件</a></span>
                     <span>  可折金额：<a>{this.state.discount_amount}元</a></span>
                     <span>  不可折金额：<a>{this.state.amount}元</a></span>
                 </div>
                 {/* 表格部分 欠费信息*/}
-                <span className='unpaidstatistics_title'>欠费信息</span>
-                <div className='unpaidstatistics_table_part'>
-                    <table className='unpaidstatistics_table_Arrearage'>
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>店员姓名</td>
-                                <td>流水号</td>
-                                <td>衣物件数</td>
-                                <td>可折额</td>
-                                <td>不可折额</td>
-                                <td>客户电话</td>
-                                <td>客户姓名</td>
-                                <td>日期</td>
-                            </tr>
-                        </thead>
-                        <tbody>                   
-                                                           
-                                {list}
-                                                      
-                        </tbody>
-                    </table>
-                </div>
+                {/* <span className='unpaidstatistics_title'>欠费信息</span> */}
+                <table className='ui-table-base unpaidstatistics_table_Arrearage'>
+                    <thead>
+                        <tr>
+                            <td>店员姓名</td>
+                            <td>流水号</td>
+                            <td>衣物件数</td>
+                            <td>可折额</td>
+                            <td>折扣率</td>
+                            <td>不可折额</td>
+                            <td>客户电话</td>
+                            <td>客户姓名</td>
+                            <td>日期</td>
+                        </tr>
+                    </thead>
+                    <tbody>                   
+                                                        
+                            {list}
+                                                    
+                    </tbody>
+                </table>
                 
                 {/* 表格部分 欠费衣物信息*/}
-                <span className='unpaidstatistics_title'>欠费衣物信息
+                {/* <span className='unpaidstatistics_title'>欠费衣物信息 */}
                 {/* <a className='span-a-one'>共有记录</a><a className='span-a-two'>245</a><a>条</a> */}
-                </span>
-                <div className='unpaidstatistics_table_part'>
+                {/* </span> */}
+                {/* <div className='unpaidstatistics_table_part'>
                     <table className='unpaidstatistics_table_Arrearage'>
                         <thead>
                             <tr>
@@ -124,7 +121,7 @@ export default class extends Component {
                             
                         </tbody>
                     </table>
-                </div>
+                </div> */}
             </Window>
         );
     }

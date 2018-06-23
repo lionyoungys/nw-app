@@ -80,6 +80,7 @@ export default class extends Component {
         let index=e.target.dataset.index;
         this.setState({index:index,brandid:this.state.brandlist[index].id});
         tool.ui.error({title:'提示',msg:'将删除品牌,品牌上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
+            if(event=='click'){
             api.post('delBrand', {token:'token'.getData(),
             id:this.state.brandid
         }, (res, ver) => {
@@ -99,6 +100,9 @@ export default class extends Component {
                 this.componentDidMount();
             }
             );
+        }else{
+            close();
+        }
         }});
 
     }

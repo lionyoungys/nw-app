@@ -49,7 +49,7 @@ export default class extends Component {
                             <td className='store_management_assShop_table_mname'>店长姓名</td>
                             <td className='store_management_assShop_table_add'>地址</td>
                             <td className='store_management_assShop_table_phone'>手机</td>
-                            <td className='store_management_assShop_table_hamdle'>操作</td>
+                            <td className='store_management_assShop_table_hamdle'>删除</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,7 +60,7 @@ export default class extends Component {
                             <td className='store_management_assShop_table_mname'>店长姓名</td>
                             <td className='store_management_assShop_table_add'>北京市石景山还是睡觉睡觉就算是计算机设计师姐姐</td>
                             <td className='store_management_assShop_table_phone'>手机</td>
-                            <td className='store_management_assShop_table_hamdle'>操作</td>
+                            <td className='store_management_assShop_table_hamdle'>删除</td>
                         </tr>
                         <tr>
 
@@ -70,7 +70,7 @@ export default class extends Component {
                             <td className='store_management_assShop_table_mname'>店长姓名</td>
                             <td className='store_management_assShop_table_add'>地址</td>
                             <td className='store_management_assShop_table_phone'>手机</td>
-                            <td className='store_management_assShop_table_hamdle'>操作</td>
+                            <td className='store_management_assShop_table_hamdle'>删除</td>
                         </tr>
                         
                         

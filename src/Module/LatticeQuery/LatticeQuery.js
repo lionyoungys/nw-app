@@ -31,7 +31,8 @@ export default class extends Component {
     }
     render() {
         let grid = this.state.grid.map((item,index)=>
-        <tr key={'item'+index} data-index={index} onClick={this.handleclick}  
+        <tr key={'item'+index} data-index={index} onClick={this.handleclick }  
+        id={this.state.index==index?'selecttr':null}
         >
                 <td>{item.name}</td>
                 <td>{item.start_number}</td>

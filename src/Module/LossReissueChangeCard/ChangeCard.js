@@ -7,14 +7,25 @@ import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import '../Hangon/Hangon.css'
 import './LossReissueChangePublic.css'
-
+const token = 'token'.getData();
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state={ 
+            types:[]
+         }
     };
+    componentDidMount() {
+        api.post('cardType', {token:token}, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({cards:res.result, types:res.result.typeArray('card_type')});
+            }
+        });
+    }
     render() {
         var arr = ['发卡店', '发卡店ID', '卡类型', '卡号', '卡编号', '姓名', '手机号', '折扣率', '余额'].map((item, index) => <span key={index} >{item}</span>);
-        var count = ['xxxxxx', '102982828228', '金卡', '0108928828', '3838383338', '王小胖', '136737384874', '70%', '¥215.00'].map((item, index) => <span key={index} >{item}</span>);
+        var count = ['xxxxxx', '102982828228', this.props.data.card_name, this.props.data.recharge_number, this.props.data.cardNumber, this.props.data.user_name, this.props.data.user_mobile, this.props.data.discount, this.props.data.balance].map((item, index) => <span key={index} >{item}</span>);
         return (
             <Window title='换卡' onClose={this.props.onClose} width='567' height='382'>
                 <p className='loss-rep-title'>原卡信息</p>
@@ -29,7 +40,8 @@ export default class extends Component {
                 <div className="loss-rep-right">
                     <p>注意：补换卡业务仅支持实体卡、IC卡</p>
                     <a><b>*</b>卡类型</a>
-                    <Select option={['手机号', '用户名', '密码']} selected='密码' onChange={value => console.log(value)} />
+                    <Select option={this.state.types} selected={this.state.types[0]}
+                     onChange={value => this.setState({index:value.inObjArray(this.state.cards, 'card_type')})} />
                     <a><b>*</b>新卡号</a>
                     <input type="text" className='e-input loss-rep-input' />
                     <div className='loss-rep-right-btn'>

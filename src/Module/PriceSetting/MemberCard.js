@@ -35,11 +35,13 @@ export default class extends Component {
     }
     delete(e){
         let index=e.target.dataset.write;
-        console.log(index);
         this.setState({index:index,id:this.state.cardtypes[index].id});
+        console.log(this.state.id);
         tool.ui.error({title:'提示',msg:'将删除档次,档次上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
-            api.post('delGrade', {token:'token'.getData(),
-            id:this.state.id
+            if(event=='click'){
+            api.post('delCardType', {
+                token:'token'.getData(),
+                id:this.state.id
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
@@ -47,14 +49,17 @@ export default class extends Component {
                         close();
                     }}); 
                 }else{
-                    tool.ui.error({callback:(close, event) => {
-                        close();
-                    }});
+                        tool.ui.error({msg:res.msg,callback:(close, event) => {
+                            close();
+                        }});
                 }
                 close();
                 this.componentDidMount();
             }
             );
+        }else{
+            close();
+        }
         }});
 
     }
@@ -73,6 +78,10 @@ export default class extends Component {
                 this.setState({show:false,card_type:'',discount:'',price:'',give_price:'',made_price:''})
                 this.componentDidMount();
                 
+            }else{
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
     
@@ -105,7 +114,9 @@ export default class extends Component {
                 console.log(res)
                 this.setState({show:false})
             }else{
-                console.log(res)
+                tool.ui.error({msg:res.msg,callback:(close, event) => {
+                    close();
+                }});
             }
         }
         );

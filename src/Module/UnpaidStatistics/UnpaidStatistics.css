@@ -66,7 +66,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .unpaidstatistics_dataright button{
 
-    margin-left:12px;
+    margin-left:30px;
 }
 .unpaidstatistics_Statistics{
 
@@ -78,7 +78,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .unpaidstatistics_Statistics span{
 
-    width: 33%;
+    width: 25%;
     height: 100%;
     text-indent: 18px;
     font-size: 12px;
@@ -96,7 +96,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .unpaidstatistics_title{
 
     display: block;
-    font-size: 16px;
+    font-size: 13px;
     color: black;
     font-weight: bold;
     margin: 0 13px;
@@ -120,62 +120,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: blue;
 }
 
-.unpaidstatistics_table_part{
+.ui-table-base.unpaidstatistics_table_Arrearage{
 
-    margin-left:13px;
-    height: 195px;
-    width: 874px;
-    border:1px solid #8db2e3;
-    overflow: scroll;
-
+    margin-top: 10px;
+    max-height: 450px;
 }
-.unpaidstatistics_table_Arrearage{
-    width:auto;
-    height:auto;
-    margin-left: 0;
-    margin-top: 0;
-    border-bottom: 1px solid #8db2e3;
-}
-.unpaidstatistics_table_Arrearage tr td{
+.ui-table-base.unpaidstatistics_table_Arrearage tbody{
 
-    /* 只设置最小即可设置固定的宽度 */
-    min-width:102px;
-    height: 26px;
-    font-size: 12px;
-    border-right: 1px solid #acc6de;
-    text-align: center;
-    word-wrap:break-word;
+    max-height: 425px;
 }
-.unpaidstatistics_table_Arrearage tr td:first-child{   
+.ui-table-base.unpaidstatistics_table_Arrearage tr td{
 
-    min-width: 33px; 
+    min-width: 97px;
+    max-width: 97px;
 }
-.unpaidstatistics_table_Arrearage tr td:last-child{
-   border-right: none;
-}
-
-.unpaidstatistics_table_Arrearage thead tr{
-    background-color: #89b0d4;
-    color: white;
-}
-.unpaidstatistics_table_Arrearage thead tr td:first-child{
-    /* background: url(./img/e-btn-hover.png); */
-    background-size: contain;
-}
-
-.unpaidstatistics_table_Arrearage tbody tr{
-
-    background-color: #f0f5f9;
-    color: black;
-
-}
-.unpaidstatistics_table_Arrearage tbody tr:nth-child(odd){
-
-    background-color: #fff;
-    color: black;
-}
-
-.unpaidstatistics_table_Arrearage tbody tr td:first-child{
-    color: #9f9f9f;
-}
-

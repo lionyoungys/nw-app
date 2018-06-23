@@ -21,6 +21,13 @@ export default class extends Component {
                 });
         
          }
+         else{
+            console.log(res.msg);
+            tool.ui.error({msg:res.msg,callback:(close) => {
+                close();
+            }});
+            
+        }
         }
         );
     }
@@ -38,9 +45,11 @@ export default class extends Component {
                         close();
                     }}); 
                 }else{
-                    tool.ui.error({callback:(close, event) => {
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
                     }});
+                    
                 }
         
          }
