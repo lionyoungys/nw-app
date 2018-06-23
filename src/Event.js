@@ -56,7 +56,7 @@
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
-                ver ? ( 'function' === typeof obj.callback && obj.callback(res) ) : handle();
+                ver ? ( 'function' === typeof obj.callback && obj.callback(res.result) ) : handle();
             },
             () => loadingEnd()
         );

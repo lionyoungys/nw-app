@@ -70,23 +70,23 @@ export default class extends React.Component {
         }
         obj.callback = (res) => {
             this.setState({
-                number:res.result.recharge_number,
-                cid:res.result.id,
-                user_mobile:res.result.user_mobile,
-                user_name:res.result.user_name,
-                sex:res.result.sex,
-                birthday:res.result.birthday,
-                balance:res.result.balance,
-                integrals:res.result.integrals,
-                card_name:res.result.card_name,
-                discount:res.result.discount,
-                time:res.result.time,
-                recharge_number:res.result.recharge_number,
-                address:res.result.address,
+                cid:res.id,
+                user_mobile:res.user_mobile,
+                user_name:res.user_name,
+                sex:res.sex,
+                birthday:res.birthday,
+                balance:res.balance,
+                integrals:res.integrals,
+                card_name:res.card_name,
+                discount:res.discount,
+                time:res.time,
+                recharge_number:res.recharge_number,
+                address:res.address,
             });
         }
         EventApi.M1Read(obj);
     }
+    
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
