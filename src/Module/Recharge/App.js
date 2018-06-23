@@ -48,9 +48,11 @@ export default class extends React.Component {
 
     callback(obj) {
         if ('' == this.state.cid && '' == this.state.recharge_number) return tool.ui.error({msg:'会员卡不存在',callback:close => close()});
+        let card = this.state.cards[this.state.index];
+        if ('object' !== typeof card || 'undefined' === typeof card.id)  return tool.ui.error({msg:'请选择充值卡类型',callback:close => close()});
         api.post(
             'recharge', 
-            {token:token, cid:this.state.cid, number:this.state.recharge_number, gateway:obj.gateway, authcode:obj.authcode || ''}, 
+            {token:token, cid:this.state.cid, number:this.state.recharge_number, gateway:obj.gateway, authcode:obj.authcode || '', recharge_id:card.id}, 
             (res, ver, handle) => {
                 if (ver) {
                     console.log(res);
@@ -86,7 +88,7 @@ export default class extends React.Component {
         }
         EventApi.M1Read(obj);
     }
-    
+
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
