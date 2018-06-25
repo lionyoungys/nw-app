@@ -22,13 +22,13 @@ export default class extends Component {
         
          }
          else{
-            console.log(res.msg);
-            tool.ui.error({msg:res.msg,callback:(close) => {
-                close();
-            }});
-            
-        }
-        }
+                console.log(res.msg);
+                tool.ui.error({msg:res.msg,callback:(close) => {
+                    close();
+                }});
+                
+                }
+            }
         );
     }
     storesave(){
@@ -43,7 +43,6 @@ export default class extends Component {
                 tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
                 }});
-                
             }
         }
         );

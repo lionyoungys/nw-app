@@ -78,7 +78,7 @@ export default class extends Component {
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>11</td>
+                                <td>11</td> 
                                 <td></td>
                                 <td>11</td>
                             </tr>

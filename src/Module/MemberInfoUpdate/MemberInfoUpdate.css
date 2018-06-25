@@ -34,7 +34,7 @@ span{
     margin-left: 9px;
     outline: none;
     border:1px solid #c4c2c2;  
-  
+    text-indent: 5px;
 }
 .memberinfoupdate_leftdirection{
     float: left;
@@ -112,6 +112,7 @@ span{
     background-position-y:0; 
 }
 .inputborder:focus{
+ 
     width: 151px;
     height: 21px;
     margin-left: 9px;

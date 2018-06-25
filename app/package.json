@@ -2,14 +2,14 @@
   "name": "main",
   "version": "3.0.0",
   "description": "nw app",
-  "main": "main.html",
+  "main": "login.html",
   "repository": "none",
   "author": "Edwin Young",
   "license": "MIT",
   "window": {
     "icon": "img/icon.png",
-    "min_width": 1024,
-    "min_height": 737,
+    "min_width": 600,
+    "min_height": 450,
     "frame": false,
     "show": false,
     "new_instance": true

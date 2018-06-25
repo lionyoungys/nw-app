@@ -36,13 +36,14 @@ export default class extends Component {
             catetype_index:0,
             disposetype:'',
             item_off_price:'',//线下价格
-            online:false,//在线接单
-            has_discount:false,//允许折扣
-            transfer:false,//价格可调
+            online:0,//在线接单
+            has_discount:0,//允许折扣
+            transfer:0,//价格可调
             min_discount:'',//最低折扣
             gradename:'',//档次
             materialsname:'',//材料名称
-            goodindex:0
+            goodindex:0,
+            item_online_price:'',//线上价格
         }
 
         this.handleClick=this.handleClick.bind(this);
@@ -156,10 +157,14 @@ export default class extends Component {
     }
     handle(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
+        let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
         this.setState({goodindex:e.target.dataset.index || e.target.parentNode.dataset.index,
             show1:true,
-            item_name:this.state.itemLists[this.state.index].server[this.state.goodindex].item_name,
-            item_cycle:this.state.itemLists[this.state.index].server[this.state.goodindex].item_cycle,
+            item_name:this.state.itemLists[this.state.index].server[good_index].item_name,
+            item_cycle:this.state.itemLists[this.state.index].server[good_index].item_cycle,
+            item_off_price:this.state.itemLists[this.state.index].server[good_index].item_off_price,
+            min_discount:this.state.itemLists[this.state.index].server[good_index].min_discount,
+            item_online_price:this.state.itemLists[this.state.index].server[good_index].item_online_price
         });
         this.request();
         
@@ -277,7 +282,7 @@ export default class extends Component {
                             <div><span>线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="text" />元
+                                </span><input className='e-input addnewprice-input' type="text" value="afsfsdf" onChange={e=>this.setState({item_online_price:e.target.value})}/>元
                                     <div className="add-select-part">
                                         <div><input type="checkbox" onChange={e=>this.setState({online:e.target.checked?0:1})}/>在线接单</div>
                                         <div><input type="checkbox" onChange={e=>this.setState({has_discount:e.target.checked?0:1})}/>允许折扣</div>
@@ -321,7 +326,7 @@ export default class extends Component {
                             <div><span>线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="text" />元
+                                </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
                                     <div className="add-select-part">
                                         <div><input type="checkbox" onChange={e=>this.setState({online:e.target.checked?0:1})}/>在线接单</div>
                                         <div><input type="checkbox" onChange={e=>this.setState({has_discount:e.target.checked?0:1})}/>允许折扣</div>

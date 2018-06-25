@@ -28,102 +28,159 @@ export default class extends Component {
                 <table className='ui-table-base ManagerGathering-tab'>
                     <thead>
                         <tr>
-                            <td>统计类目</td>
-                            <td>会员卡</td>
-                            <td>现金</td>
-                            <td>微信</td>
-                            <td>支付宝</td>
-                            <td>欠款</td>
-                            <td>充值卡</td>
-                            <td>代金券</td>
-                            <td>优惠</td>
+                            <td>收银类型</td>
+                            <td>金额</td>
+                            <td>实收金额</td>
+                            <td>衣物数量</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td onClick={e => this.setState({ show: true })}>收衣</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>免费</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>撤单</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>免费退卡</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>赔付</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>刷卡</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>售卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>刷卡其他</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>充值</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>刷卡补交</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>退卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>刷集团卡</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>扣款</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onClick={e => this.setState({ show: true })}>刷集团卡其他</td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>合计</td>
+                            <td onClick={e => this.setState({ show: true })}>刷集团卡补交</td>
                             <td></td>
                             <td></td>
                             <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>手持机刷卡</td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>手持机刷卡补交</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>未付款</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>未付款补交</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金充值</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金其他</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金发卡</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金补交</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>现金退卡</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券充值</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券其他</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券发卡</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券补交</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>赠券退卡</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td onClick={e => this.setState({ show: true })}>合计</td>
                             <td></td>
                             <td></td>
                             <td></td>

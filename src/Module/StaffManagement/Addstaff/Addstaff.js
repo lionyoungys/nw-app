@@ -3,7 +3,7 @@
  * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';
- import '../../../UI/bothpages.css'  //公共样式
+import '../../../UI/bothpages.css'  //公共样式
 import '../StaffManagement.css';
 import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
@@ -36,8 +36,8 @@ export default class extends Component {
         this.updatemobile = this.updatemobile.bind(this);
         this.updatepassword = this.updatepassword.bind(this);
         this.modOperatorSuccess = this.modOperatorSuccess.bind(this);
-        this.updatepasswd = this.updatepasswd.bind(this);
         this.modpasswdSuccess = this.modpasswdSuccess.bind(this);
+        this.resetPas = this.resetPas.bind(this);
     }; 
     //员工与权限 新增员工
     operatorAdd () {
@@ -84,7 +84,7 @@ export default class extends Component {
               }else{
               api.post('delOperator', {
                 token:'token'.getData(),
-                id:this.state. operatorlist[index].id,
+                id:this.state.operatorlist[index].id,
                 }, (res, ver) => {
                         if (ver && res) {
                             console.log(res);
@@ -168,10 +168,6 @@ export default class extends Component {
         this.input.removeAttribute('disabled');
         console.log(this.input);
     }
-    updatepasswd(e){
-        this.setState({show2:true,index:e.target.dataset.index});
-
-    }
     componentDidMount() {
         api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
@@ -181,6 +177,46 @@ export default class extends Component {
         }
         );    
     }
+    // 重置密码调用
+   resetPas(e){
+
+       var index = e.target.dataset.index;
+       var operatorlist = this.state.operatorlist;
+       tool.ui.ask({
+           title: '重置密码', msg: '提示:该操作不可逆转。重置密码后密码将被修改为123456。', callback: (close, event) => {
+               //点击按钮或关闭符号时关闭弹窗
+               console.log(event)
+               if (event == 'close') {
+                   close();
+               } else {
+                   api.post('resetPasswd', {
+                       token: 'token'.getData(),
+                       id: operatorlist[index].id,
+                    }, (res, ver) => {
+                       
+                       if (ver && res) {
+                           console.log(res);
+                           close();
+                           tool.ui.success({
+                               callback: (close, event) => {
+                                   close();
+                               }
+                           }); 
+
+                       } else {
+                           console.log(res.msg);
+                           tool.ui.error({
+                               msg: res.msg, callback: (close) => {   
+                                   close();
+                               }
+                           });
+                       }
+                    }
+                   );
+               }
+           }
+       });
+   } 
     render() {  
       
         let operatorlist= this.state.operatorlist.map((item,index) => 
@@ -189,7 +225,7 @@ export default class extends Component {
         <td>{item.aname}</td>
         <td>{item.account}</td>
         <td>{item.auth_name}</td>
-        <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index = {index}>删除</i><i onClick={this.updatepasswd} data-index={index}>修改密码</i></td>
+                <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index={index}>删除</i><i onClick={this.resetPas} data-index={index}>重置密码</i></td>
     </tr>
         );
         return ( 
@@ -251,23 +287,7 @@ export default class extends Component {
                      }
                     </LayerBox>
                 }
-                  {
-                    this.state.show2
-                    &&
-                   
-                    <LayerBox title='修改员工密码' onClose={() => this.setState({show2:false})} onClick={this.modpasswdSuccess} >
-                        {
-                            <div className='updatestaffborder'>
-                            <div className='margintop'>
-                              <div>
-                              <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} />
-                              {/* <span className='updatemobile' onClick={this.updatepassword}>修改密码</span> */}
-                              </div>
-                            </div>
-                               </div>
-                     }
-                    </LayerBox>
-                }
+                 
                 </div>
         );            
     };

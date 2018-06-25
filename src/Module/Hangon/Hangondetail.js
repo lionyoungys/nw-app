@@ -31,7 +31,7 @@ export default class extends Component {
                    <div className="Hangon-right-select">
                       <span>衣挂号: </span><input type="text" />
                    </div>
-                   <button className="e-btn Hangon-right-btn">取消</button><button className="e-btn Hangon-right-btn">上挂</button>
+                   <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button><button className="e-btn Hangon-right-btn">上挂</button>
                 </div>
             </Window>
            

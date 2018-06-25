@@ -67,11 +67,11 @@ export default class extends Component {
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">
-                    <span>  已为您找到{this.state.itemCount}条数据</span>
                     <span>  总衣物：<a>{this.state.itemCount}件</a></span>
                     <span>  可折金额：<a>{this.state.discount_amount}元</a></span>
                     <span>  不可折金额：<a>{this.state.amount}元</a></span>
                 </div>
+                <p className = 'unp-sta-res-num'>已为您找到{this.state.itemCount}条数据</p>
                 {/* 表格部分 欠费信息*/}
                 {/* <span className='unpaidstatistics_title'>欠费信息</span> */}
                 <table className='ui-table-base unpaidstatistics_table_Arrearage'>
