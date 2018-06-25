@@ -26,7 +26,6 @@ import ReportLossMain from './Module/ReportLossMain/ReportLossMain';//挂失主�
 import ReturnCard from './Module/ReturnCard/ReturnCard';
 import ManagerGathering from './Module/ManagerGathering/ManagerGathering';//经理收款
 
-import Payandrecharge from'./Module/PayAndRecharge/Payandrecharge'; // 支付充值页面
 import PriceSetting from './Module/PriceSetting/PriceSetting'; // 洗护价格设置
 import Solutiontohang from'./Module/Solutiontohang/Solutiontohang';// 解除挂失页面
 import Editshopprices from'./Module/Editshopprices/Editshopprices'; // 编辑商品价格
@@ -89,8 +88,7 @@ export default {
     operate_income:OperateIncome, //营业收入
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面
-    sale_card:SaleCard, //售卡
-    pay_and_recharge:Payandrecharge,// 支付充值    
+    sale_card:SaleCard, //售卡  
     return_card:ReturnCard,//退卡
     manager_gathering:ManagerGathering,//经理收款
     price_setting:PriceSetting,//价格设置
