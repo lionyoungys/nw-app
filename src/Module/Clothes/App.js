@@ -363,7 +363,7 @@ export default class extends Component {
     tempUser() {this.setState({show:15})}
     onClose() {
         if (this.state.data.length > 0) {
-            tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
+            tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
                 0 == event && this.props.closeView();
                 close();
             }});
@@ -408,15 +408,15 @@ export default class extends Component {
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>
-                    手机：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.phone} readOnly onClick={this.tempUser}/>
-                    姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly onClick={this.tempUser}/>
-                    卡号：<input type='text' className='e-input' style={{width:'126px'}} value={this.state.number} readOnly onClick={this.tempUser}/>
+                    <b>*</b>手机：<input type='text' className='e-input' style={{width:'120px'}} value={this.state.phone} readOnly onClick={this.tempUser}/>
+                    <b>*</b>姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly onClick={this.tempUser}/>
+                    卡号：<input type='text' className='e-input' style={{width:'120px'}} value={this.state.number} readOnly onClick={this.tempUser}/>
                     地址：<input type='text' className='e-input' style={{width:'196px'}} value={this.state.addr} readOnly onClick={this.tempUser}/>
                     <button type='button' className='e-btn' onClick={this.M1read}>读卡</button>
                 </div>
                 <div className='clothes-header'>
-                    <div>衣物编码</div><div>衣物名称</div><div>颜色</div><div>瑕疵</div><div>品牌</div>
-                    <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
+                    <div><b>*</b>衣物编码</div><div><b>*</b>衣物名称</div><div>颜色</div><div>瑕疵</div><div>品牌</div>
+                    <div>洗后预估</div><div>工艺加价</div><div><b>*</b>单价</div><div><b>*</b>数量</div><div>操作</div>
                 </div>
                 <div className='clothes-body'>{html}</div>
                 <div style={{padding:'10px 20px'}}><button type='button' className='e-btn' onClick={() => this.setState({show:1})}>添加衣物</button></div>
@@ -430,7 +430,7 @@ export default class extends Component {
                         <div>
                             <div>卡余额：&yen;{this.state.balance}</div>
                             <div>折扣率：{discount}%</div>
-                            <div>取衣时间：<input type="date" className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
+                            <div><b>*</b>取衣时间：<input type="date" className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
                     </div>
                     <div className='clothes-footer-right'>

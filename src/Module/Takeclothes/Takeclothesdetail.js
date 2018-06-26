@@ -7,24 +7,100 @@ import Window from '../../UI/Window';
 import LayerBox from '../..//UI/LayerBox';
 import { WSAEINVALIDPROCTABLE } from 'constants';
 import './Takeclothes.css';
+import Item from '../Clothes/Item';
 
 export default class extends Component {   
     constructor(props) {
         super(props);     
-        this.state = {show2:false}         
-    };    
-    render() {           
+        this.state = {
+            show2:false,            
+            count:'',
+            listitem:[],
+            listorder:[],
+            listuser:[],
+            id:this.props.id
+        }; 
+
+    }; 
+    takeClothes(){
+        api.post('takeItem', {
+            token:'token'.getData(),
+            ids:this.props.id,
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res);  
+                    this.setState({
+                        count:res.result.count,
+                        listitem:res.result.item,
+                        listorder:res.result.order,
+                        listuser:res.result.user,
+                    })
+                    
+                    // if(this.state.listitem.status==3){
+                    //     this.setState({status:'清洗中'})
+                    // }else if(this.state.listitem.status==4){
+                    //     this.setState({status:'清洗完成'})
+                    // } else{
+                    //     this.setState({status:'退款中'})
+                    // }                                                                                                 
+                }else{
+                    console.log(res.msg);                   
+                }
+            }
+        );
+    }
+      componentDidMount () {
+          console.log(this.state.id)
+        api.post('clothesdetail', {
+            token:'token'.getData(),
+            id:this.props.id,
+        }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res);  
+                    this.setState({
+                        count:res.result.count,
+                        listitem:res.result.item,
+                        listorder:res.result.order,
+                        listuser:res.result.user,
+                    })
+                    
+                    // if(this.state.listitem.status==3){
+                    //     this.setState({status:'清洗中'})
+                    // }else if(this.state.listitem.status==4){
+                    //     this.setState({status:'清洗完成'})
+                    // } else{
+                    //     this.setState({status:'退款中'})
+                    // }                                                                                                 
+                }else{
+                    // console.log(res.msg);                   
+                }
+            }
+        );
+
+      } 
+    render() { 
+       let takeclothesdetail=this.state.listitem.map((item,index)=>
+       <tr key={'item'+index} data-id={item.id}>
+           <td>{index+1}</td>
+           <td>{item.clothing_number}</td>
+           <td>{item.clothing_name}</td>
+           <td>{item.clothing_color}</td>
+           <td>{item.remark}</td>
+           <td>{item.grid_num}</td>
+           <td>{item.status==3?'清洗中':'清洗完成'}</td>
+       </tr>
+       );
            return (
-                <Window title='取衣详情' onClose={this.props.closeView}>   
+                <Window title='取衣详情' onClose={this.props.onClick}>   
                     <div className="Takeclothesdetail-title">
                       <div className="Takeclothesdetail-title-left">
-                         <div>订单号：14578612558</div>
-                         <div>衣物件数：254</div>
+                         <div>订单号：{this.state.listorder.ordersn}</div>
+                         <div>衣物件数:{this.state.count}</div>
                       </div>
                       <div className="Takeclothesdetail-title-right">
-                         <div>姓名：哈哈哈</div>
-                         <div>手机号：18310963932</div>
-                         <div>会员卡号：25487452154</div>
+                         <div>姓名：{this.state.listuser.user_name}</div>
+                         <div>手机号：{this.state.listuser.user_mobile}</div>
+                         <div>会员卡号：{this.state.listuser.card_number}</div>
                       </div>
                     </div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab">
@@ -42,17 +118,7 @@ export default class extends Component {
                                </tr>
                            </thead>
                            <tbody>
-                               <tr>
-                                   <td></td>
-                                   <td><input type="checkbox"/>345678908456778</td>
-                                   <td>吱吱</td>
-                                   <td>红色红色红色红色红色红色红色红色</td>
-                                   <td>点点点</td>
-                                   <td>45#34</td>
-                                   <td>--</td>                                                                
-                               </tr>                              
-                                
-                                
+                               {takeclothesdetail}
                            </tbody>
                         </table> 
                     </div>
@@ -63,8 +129,8 @@ export default class extends Component {
                            <button className="take-over" onClick={() => this.setState({show2:true})}>取衣</button>
                            <button className="take-no" >取衣</button>
                            {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
-                           <div>欠款: ￥122.52</div>
-                           <div>价格: ￥524.12</div>
+                           <div>欠款: ￥{this.state.listorder.arrears}</div>
+                           <div>价格: ￥{this.state.listorder.pay_amount}</div>
                         </div>                       
                     </div>
                     {
@@ -73,7 +139,7 @@ export default class extends Component {
                     <LayerBox
                         title='取衣'
                         onClose={() => this.setState({show2:false})}
-                        onClick={() => this.setState({show2:false})}
+                        onClick={this.takeClothes}
                         onCancel={() => this.setState({show2:false})}
                         hasCancel={true} width='278' height='200'>
                         {

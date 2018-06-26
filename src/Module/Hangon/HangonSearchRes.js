@@ -9,8 +9,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
     };
-    render() {
-        
+    render() {        
         return (
             <Window title='查询结果' onClose={this.props.onClose}>
                 <div class="Succession-name ReportLossQuery">

@@ -177,19 +177,26 @@ class Login extends Component {
     login() {
            api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
             if (ver && res) {
-               console.log(res);
-            var aname = res.aname;
-            var mname = res.mname;
-            var token = res.token;
-            this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
-            console.log(this.state.remember)
-            aname.setData('aname');
-            mname.setData('mname');
-            token.setData('token');
-            nw.Window.open('main.html', nw.App.manifest.mainWindow);
-            win.close();
+
+                console.log(res);
+                var aname = res.aname;
+                var mname = res.mname;
+                var token = res.token;
+                this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
+                console.log(this.state.remember)
+                aname.setData('aname');
+                mname.setData('mname');
+                token.setData('token');
+                nw.Window.open('main.html', nw.App.manifest.mainWindow);
+                win.close();
             } else {
+                console.log(res);
                 this.setState({index:2});
+                tool.ui.error({
+                     msg: res.msg, button: '确定', callback: (close, event) => {
+                        close();
+                    }
+                });
             }
         }, () => {this.setState({index:2})});
         // this.setState({show:true});

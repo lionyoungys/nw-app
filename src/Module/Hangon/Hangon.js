@@ -83,7 +83,19 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                        <Hangondetail onClose={this.onclose} /> 
+                        <Hangondetail onClose={this.onclose} data={{
+                            clothing_number:this.state.result.clothing_number,
+                            clothing_name:this.state.result.clothing_name,
+                            clothing_color:this.state.result.clothing_color,
+                            sign:this.state.result.sign,
+                            grid_num:this.state.result.grid_num,
+                            user_name:this.state.result.user_name,
+                            user_mobile:this.state.result.user_mobile,
+                            remark:this.state.result.remark,
+                            forecast:this.state.result.forecast,
+                            status:this.state.result.status,
+                            deal_time:this.state.result.deal_time
+                        }}/> 
                         // <HangonSearchRes onClose={this.onclose} />) 
                 }
             </Window>

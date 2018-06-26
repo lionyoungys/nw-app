@@ -122,11 +122,16 @@
     String.prototype.add = 
     Number.prototype.add = function() {
         var len = arguments.length
-        ,   precision = 1000000
-        ,   value = Math.floor(parseFloat(this) * precision);
-        if (len < 1) return this;
+        ,   that = parseFloat(this);
+        if (isNaN(that)) that = 0;
+        if (len < 1) return that;
+        var precision = 1000000
+        ,   value = Math.floor(that * precision)
+        ,   temp;
+        
         for (var i = 0;i < len;++i) {
-            value += Math.floor(parseFloat(arguments[i]) * precision);
+            temp = parseFloat(arguments[i]);
+            value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
         }
         return (value / precision);
     }

@@ -31,7 +31,7 @@ export default class extends Component {
         return (
             <Window title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
                 <div className='clothes-problem-top'>
-                    <span>颜色：</span>
+                    <span>洗后预估：</span>
                     <input className='e-input' value={this.state.value} onChange={e => this.setState({value:e.target.value})}/>
                     <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
                 </div>

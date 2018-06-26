@@ -68,6 +68,7 @@ export default class extends React.Component {
     setUser(e) {
         let index = e.target.dataset.index || e.target.parentNode.dataset.index
         ,   data = this.state.data[index];
+        this.numberInput = data.card_number || '';
         this.setState({
             name:data.user_name || '', 
             number:data.card_number || '', 

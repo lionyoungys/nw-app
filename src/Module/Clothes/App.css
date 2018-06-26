@@ -9,6 +9,10 @@
     background: #eef4fb;
 }
 .clothes-user>input{margin-right: 18px}
+.clothes-user b,.clothes-footer-left b,.clothes-header b{
+    font-size: 12px;
+    color: red;
+}
 .clothes-header{
     display: -webkit-flex;
     display: flex;
@@ -19,6 +23,7 @@
     border-right: 1px solid #acc6de;
     background: #89b0d4;
 }
+
 .clothes-header>div, .clothes-body>div>div{
     border-right: 1px solid #acc6de;
     min-height: 26px;

@@ -110,7 +110,6 @@ export default class extends React.Component {
             }
         });
     }
-
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}
         ,   amount = card.real_price ? card.real_price.add(card.made_price) : 0; 
