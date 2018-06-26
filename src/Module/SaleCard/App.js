@@ -66,12 +66,13 @@ export default class extends React.Component {
                     this.writeCard();
                 } else {
                     close();
+                    this.props.closeView();
                 }
             }});
         } else {
             tool.ui.success({callback:close => {
                 close();
-                this.setState({show:false});
+                this.props.closeView();
             }});
         }
     }

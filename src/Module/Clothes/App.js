@@ -350,7 +350,10 @@ export default class extends Component {
                 console.log(res);
                 loadingEnd();
                 if (ver) {
-                    tool.ui.success({callback:close => close()}); 
+                    tool.ui.success({callback:close => {
+                        close();
+                        this.props.closeView();
+                    }}); 
                 } else {
                     handle();
                 }

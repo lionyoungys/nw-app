@@ -58,7 +58,10 @@ export default class extends React.Component {
                 loadingEnd();
                 if (ver) {
                     console.log(res);
-                    tool.ui.success({callback:close => close()}); 
+                    tool.ui.success({callback:close => {
+                        close();
+                        this.props.closeView();
+                    }}); 
                 }else{
                     handle();
                 }
