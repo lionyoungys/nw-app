@@ -93,7 +93,6 @@ class Download extends Component {
         ,   count = 0
         ,   tempLen
         ,   tempPath;
-        console.log(total);
         for (let i = 0;i < len;++i) {
             tempLen = files[i].resource.length;
             tempPath = ('' == files[i].local) ? (realPath + '/') : (realPath + '/' + files[i].local + '/');
@@ -111,13 +110,9 @@ class Download extends Component {
             let progress = Math.floor(count / total * 100);
             if (this.state.progress !== progress) {
                 if (100 == progress) {
-                    console.log('success');
-                    console.log(progress);
-                    console.log('success');
                     clearInterval(this.timeId);
                     this.setState({complete:true, progress:0});
                 } else {
-                    console.log(progress);
                     this.setState({progress:progress});
                 }
             }
