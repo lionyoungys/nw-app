@@ -6,9 +6,9 @@
         nw.Window.open('login.html', nw.App.manifest.loginWindow);
         win.close();
     }
-    e.print = function() {    //打印
+    e.print = function(pageName) {    //打印
         //let win = nw.Window.get();
-        nw.Window.open('print/index.html');
+        nw.Window.open('print/' + pageName + '.html');
         //win.close();
     },
     e.open_case = function() {    //打开钱箱
