@@ -26,14 +26,14 @@ export default class extends Component {
                             <button className='e-btn'>清空</button>
                          </div>
                     <div className='mem_bus_sta_top_two'>
-                        <div>&emsp;&emsp;&emsp;姓名：<input type="text" /></div>                           
-                        <div>&emsp;&emsp;&emsp;手机：<input type="text" /></div>
-                        <div>&emsp;&emsp;&emsp;卡号：<input type="text" /></div>
+                        <div>&emsp;&emsp;&emsp;姓名：<input type="text" className='e-input' /></div>                           
+                        <div>&emsp;&emsp;&emsp;手机：<input type="text" className='e-input' /></div>
+                        <div>&emsp;&emsp;&emsp;卡号：<input type="text" className='e-input'/></div>
                         <button className='e-btn'>查询</button>
                     </div>
                 </div>
-                <p>财务合计</p>
-                <table className='ui-table-base auto-width' >
+                <p className='mem-bus-sta-p'>财务合计</p>
+                <table className='ui-table-base auto-width mem-bus-auto-tab' >
                         <thead>
                             <tr>
                                 <td>合计</td>
@@ -55,8 +55,8 @@ export default class extends Component {
                             </tr>
                         </tbody>
                     </table>
-                    <p>消费明细</p>
-                <table className='ui-table-base mem_bus_sta_table_two'>
+                <p className='mem-bus-sta-p'>消费明细</p>
+                    <table className='ui-table-base mem_bus_sta_table_two'>
                         <thead>
                             <tr>
                                 <td>卡编号</td>

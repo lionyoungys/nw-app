@@ -73,3 +73,8 @@
     max-width:31px;
 }
 .Membersdetail-tab table tbody tr td:last-child{border-right:none}
+
+#Membersdetail{
+    height:85px;
+}
+#Membersdetail div{margin-left:35px;}

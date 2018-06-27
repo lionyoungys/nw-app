@@ -29,242 +29,70 @@ export default class extends Component {
                    <div className="Customerquery-right">
                       <button className="Customerquery-query">查询</button>
                       <b></b>
-                      <button className="Customerquery-over">退出</button>
+                      <button className="Customerquery-over">读卡</button>
                     </div>
                 </div>
-                <div className="Customerquery-tab">
+                <div className="Customerquery-tab cust-tab">
                   <div className="Customerquery-tab-title">共记录<b>564</b>条</div>
                   <table border="0" cellSpacing="0" cellPadding="0">
                       <thead>
                           <tr>
-                              <th></th>
-                              <th>卡编号</th>
-                              <th>充值卡号</th>
-                              <th>客户电话 </th>
-                                <th>充值卡金额 </th>
-                              <th>折扣率</th>
-                              <th>客户姓名 </th>
-                              <th>消费总额</th>
-                              <th>截止日期</th>
-                              <th>卡类型 </th>
+                              <th></th>                             
+                              <th>卡号</th>
+                              <th>会员姓名 </th>
+                              <th>会员手机号 </th>
+                              <th>卡类型</th>
+                              <th>余额 </th>                             
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td onClick = {e =>this.setState({show:true})}>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
-                          <tr>
+                          <tr onClick = {e =>this.setState({show:true})}>
                               <td></td>
-                              <td>15555555</td>
+                              <td >15555555</td>
                               <td>555555555</td>
                               <td>42342353253243</td>
                               <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td>15555555</td>
-                              <td>555555555</td>
-                              <td>42342353253243</td>
-                              <td>5432521521</td>
-                              <td>旺旺旺</td>
-                              <td>5555555</td>
-                              <td>5555555</td>
-                              <td>555555555555</td>
-                              <td>平台会员卡</td>
+                              <td>旺旺旺</td>                              
                           </tr>
                       </tbody>
                   </table>
@@ -283,29 +111,37 @@ export default class extends Component {
             {
                     this.state.show
                     &&
-                    <Window title='客户信息详情' onClose={this.props.closeView}>
-                        <div className="Membersdetail Membersdetail-div">
+                    <Window title='客户信息详情'  onClose={this.props.closeView}>
+                        <div className="Membersdetail " id="Membersdetail">
                             <div>卡号：<span>158475254582</span></div>
                             <div>姓名：<span>旺旺旺</span></div>
                             <div>手机号：<span>158475254582</span></div>
-                            <div>卡类型：<span>平台会员卡</span></div>
-                            <div>余额：<span>158475254582</span></div>                  
+                            <div>发卡店：<span>大望路万达广场</span></div>
+                            <div>卡类型：<span>白金卡</span></div>
+                            <div>折扣率：<span>7.7折</span></div>
+                            <div>余额：<span>158475254582</span></div>
+                            <div>发卡时间：<span>2015-06-25</span></div>
+                            <div>性别：<span>女</span></div> 
+                            <div>生日：<span>1984-06-25</span></div>   
+                            <div>地址：<span>万达广场三号楼</span></div>                
                         </div> 
-                        <div className="Membersdetail-tab">
+                        <div className="Membersdetail-tab cust-tab">
                             <div className="Membersdetail-tab-title">已为您找到<span>25485</span>条记录</div>
                             <table>
                                 <thead>
                                     <tr>
                                         <th></th>
                                         <th>流水号</th>
-                                        <th>店铺ID</th>
+                                        <th>店铺简称</th>
                                         <th>店员姓名</th>
                                         <th>衣物件数</th>
                                         <th>金额</th>
                                         <th>实收金额</th>
                                         <th>折扣率 </th>
                                         <th>收银类型</th>
-                                        <th>日期</th>
+                                        <th>时间</th>
+                                        <th>充值卡号</th>
+                                        <th>卡类型</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -320,17 +156,7 @@ export default class extends Component {
                                         <td>56%</td>
                                         <td>3245</td>
                                         <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
+                                        <td>2015-05-23</td>
                                         <td>2015-05-23</td>
                                     </tr>
                                     <tr>
@@ -344,200 +170,9 @@ export default class extends Component {
                                         <td>56%</td>
                                         <td>3245</td>
                                         <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
                                         <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
                                         <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4555584751</td>
-                                        <td>45</td>
-                                        <td>旺旺旺</td>
-                                        <td>43</td>
-                                        <td>564</td>
-                                        <td>455</td>
-                                        <td>56%</td>
-                                        <td>3245</td>
-                                        <td>2015-05-23</td>
-                                    </tr>
+                                    </tr>                                    
                                 </tbody>
                             </table>
                         </div>                              

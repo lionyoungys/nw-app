@@ -19,9 +19,10 @@ export default class extends Component {
                          <div className="Succession_dataLeft">
                             <div>开始日期：<input type="date" value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
                             <div>结束日期：<input type="date" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+                            <button className="e-btn loss-query">查询</button>
                          </div>                         
                 </div>
-                <div className="Succession-name ReportLossQuery">已为您找到：<b>2345</b>条记录</div> 
+                <div className="ui-check-res ReportLossQuery">已为您找到：<b>2345</b>条记录</div> 
                 <div className="Succession-tab ReportLossQuery-tab">
                    <table>
                        <thead>

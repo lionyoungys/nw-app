@@ -153,11 +153,27 @@
     }
 
     /**
+     * 返回对象数组指定属性的总长度
+     * @param {string} type 对象属性名 
+     * @param 总长度
+     */
+    Array.prototype.objTypeLen = function(type) {
+        var len = this.length
+        ,   retLen = 0;
+        for (var i = 0;i < len;++i) {
+            try {
+                retLen += this[i][type].length;
+            } catch (e) {}
+        }
+        return retLen;
+    }
+
+    /**
      * 通过数组对象获取指定属性的数组
      * @param {string} arguments 数组对象将要提取的属性
      * @return {array} 属性列表数组/属性列表对象数组
      */
-    Array.prototype.typeArray = function () {
+    Array.prototype.typeArray = function() {
         var len = this.length
         ,   argLen = arguments.length
         ,   arr = []

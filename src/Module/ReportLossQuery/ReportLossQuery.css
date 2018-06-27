@@ -26,3 +26,9 @@
     
 }
 .ReportLossQuery b{color:#ff0000}
+
+.e-btn.loss-query{
+    float:left;
+    margin-left:310px;
+    margin-top:18px;
+}

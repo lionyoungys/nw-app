@@ -25,7 +25,7 @@ win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:0, version:'', log:'', packages:[]};
+        this.state = {index:0, version:'', log:'', files:[]};
         this.toggleStep = this.toggleStep.bind(this);
     }
 
@@ -33,12 +33,12 @@ class Main extends Component {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
             if (ver && res.has_upd) {
                 console.log(res);
-                let packages = [];
+                let files = [];
                 try {
-                    packages = JSON.parse(res.package);
+                    files = JSON.parse(res.package);
                 } catch (e) {}
-                console.log(packages);
-                this.setState({index:1,version:res.last_version,log:res.desc,packages:packages});
+                console.log(files);
+                this.setState({index:1,version:res.last_version,log:res.desc,files:files});
             } else {
                 this.setState({index:2});
             }
@@ -52,7 +52,7 @@ class Main extends Component {
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
                 {[
                     <Launch/>,
-                    <Download version={this.state.version} log={this.state.log} packages={this.state.packages}/>,
+                    <Download version={this.state.version} log={this.state.log} files={this.state.files}/>,
                     <Login toggleStep={this.toggleStep}/>,
                     <Passwd toggleStep={this.toggleStep}/>
                 ][this.state.index]}
@@ -81,40 +81,43 @@ class Download extends Component {
     constructor(props) {
         super(props);
         this.state = {progress:0, complete:false};
+        this.total = this.downloaded = 0;
+        this.timeId = null;
     }
 
     componentDidMount() {
-        let total = 0
-        ,   count = 0
+        let files = this.props.files
+        ,   len = files.length
         ,   realPath = path.dirname(process.execPath)
-        ,   packages = this.props.packages
-        ,   len = packages.length
+        ,   total = files.objTypeLen('resource')
+        ,   count = 0
         ,   tempLen
         ,   tempPath;
-        console.log(packages);
-
+        console.log(total);
         for (let i = 0;i < len;++i) {
-            tempLen = packages[i].resource.length;
-            tempPath = ('' == packages[i].local) ? (realPath + '/') : (realPath + '/' + packages[i].local + '/');
+            tempLen = files[i].resource.length;
+            tempPath = ('' == files[i].local) ? (realPath + '/') : (realPath + '/' + files[i].local + '/');
             !fs.existsSync(tempPath) && fs.mkdirSync(tempPath);
-            total += tempLen;
-            count = total;
             for (let j = 0;j < tempLen;++j) {
                 api.download(
-                    packages[i].resource[j], 
-                    fs.createWriteStream(tempPath + packages[i].resource[j].split('/').pop()), 
-                    state => {}, 
-                    () => {--count;}
+                    files[i].resource[j], 
+                    fs.createWriteStream(tempPath + files[i].resource[j].split('/').pop()), 
+                    null, 
+                    () => ++count
                 );
             }
         }
-        let timeId = setInterval(() => {
+        this.timeId = setInterval(() => {
             let progress = Math.floor(count / total * 100);
             if (this.state.progress !== progress) {
                 if (100 == progress) {
-                    clearInterval(timeId);
+                    console.log('success');
+                    console.log(progress);
+                    console.log('success');
+                    clearInterval(this.timeId);
                     this.setState({complete:true, progress:0});
                 } else {
+                    console.log(progress);
                     this.setState({progress:progress});
                 }
             }

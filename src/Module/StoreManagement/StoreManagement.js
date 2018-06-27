@@ -41,8 +41,7 @@ export default class extends Component {
                     </div>
                     <div className='store_management_content_all'>
                         {this.views[this.state.index]}
-                      </div>
-                     
+                      </div>                    
                     </div>
                 </Window>
             </div>

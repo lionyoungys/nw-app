@@ -17,7 +17,7 @@ export default class extends Component {
                     <a>统计时间：2018-06-21 22：00：57 至2018-06-22 19：00：00</a>
                     <a>衣物件数：10件</a>
                 </div>
-                <div class="Succession-name ReportLossQuery">已为您找到：<b>25</b>条记录</div>
+                <div class="ui-check-res ReportLossQuery">已为您找到：<b>25</b>条记录</div>
                 <table className='ui-table-base for-sta-tab'>
                     <thead>
                         <tr>

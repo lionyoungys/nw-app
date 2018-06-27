@@ -9,228 +9,122 @@ import './Succession.css'
 export default class extends Component {   
     constructor(props) {
         super(props);
-        this.state = {startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d')};
                    
     }; 
     render() {
         return (
             <Window title='交班' onClose={this.props.closeView}>
-                <div className="Succession_data">
-                         <div className="Succession_dataLeft">
-                            <div>开始日期：<input type="date" value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
-                            <div>结束日期：<input type="date" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
-                            <button type='button' className='e-btn'>交班</button>
-                         </div>                         
+                <div className="ope-inc-head">
+                    <a>统计时间：2018-06-21 22：00：57 至2018-06-22 19：00：00</a>
+                    <button className='e-btn'>交班</button>
+                    <a>操作员：ranchong</a>
                 </div>
-                <div className="Succession-name">操作员：<b>荣仔</b></div> 
-                <div className="Succession-tab">
-                   <table>
-                       <thead>
-                           <tr>
-                               <th>统计科目</th>
-                               <th>会员卡</th>
-                               <th>现金</th>
-                               <th>微信</th>
-                               <th>支付宝</th>
-                               <th>欠费</th>
-                               
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr>
-                               <td>收衣</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           
-                           <tr>
-                               <td>赔付</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                              
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           <tr>
-                               <td>售卡</td>
-                               <td>111</td>
-                               <td>222</td>
-                               <td>333</td>
-                               <td>444</td>
-                               <td>555</td>
-                               
-                           </tr>
-                           
-                       </tbody>
-                   </table>
-                </div>  
+                <table className='ui-table-base succession-tab'>
+                    <thead>
+                        <tr>
+                            <td>统计类目</td>
+                            <td>会员卡</td>
+                            <td>现金</td>
+                            <td>微信</td>
+                            <td>支付宝</td>
+                            <td>欠款</td>
+                            <td>充值卡</td>
+                            <td>代金券</td>
+                            <td>优惠</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>收衣</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>撤单</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>赔付</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>售卡</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>充值</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>退卡</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>扣款</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>合计</td>
+                            <td>111</td>
+                            <td>222</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                            <td>333</td>
+                            <td>444</td>
+                            <td>555</td>
+                        </tr>
+
+                    </tbody>
+                </table>  
             </Window>
 
        );

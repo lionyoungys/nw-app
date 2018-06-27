@@ -92,11 +92,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
 }
 .unp-sta-res-num{
-
     height: 30px;
     color: #063781;
     font-size: 12px;
     margin: 0 13px;
+    line-height:30px;
+    font-weight:bold;
 }
 /* 表格区域 */
 

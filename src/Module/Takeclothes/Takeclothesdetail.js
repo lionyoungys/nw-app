@@ -26,24 +26,24 @@ export default class extends Component {
         this.handleChecked=this.handleChecked.bind(this);
     }; 
     takeClothes(){
-        if(this.state.checked==[])
+        if(this.state.checked.length==0)
         return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
-        api.post('takeItem', {
-            token:'token'.getData,
+        let takeclothes= { 
+            token:'token'.getData(),
             ids:this.state.checked
-        }, (res, ver) => {
+        }
+        console.log(takeclothes)
+        api.post('takeItem',
+          takeclothes
+        , (res, ver) => {
                 if (ver && res) {
-                    console.log(res);  
-                    close();       
-                    // if(this.state.listitem.status==3){
-                    //     this.setState({status:'清洗中'})
-                    // }else if(this.state.listitem.status==4){
-                    //     this.setState({status:'清洗完成'})
-                    // } else{
-                    //     this.setState({status:'退款中'})
-                    // }                                                                                                 
+                    tool.ui.success({callback:(close) => {
+                        close();
+                    }});                                                                                         
                 }else{
-                    console.log(res.msg);                   
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});                 
                 }
             }
         );

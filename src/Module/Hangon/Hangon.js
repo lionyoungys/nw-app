@@ -23,6 +23,13 @@ export default class extends Component {
 
         this.setState({show:false});
     }
+    handleClick(){
+        if(this.state.result.clothing_number==''){
+
+        }else{
+           this.setState({show:true})
+        }
+    }
     query(){
         if(this.state.clothing_number=='')
         return tool.ui.error({msg:'请输入衣物编码',callback:(close) => {
@@ -34,7 +41,7 @@ export default class extends Component {
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({result:res.result})
+                this.setState({result:res.result,show:true})
                 // () => this.setState({ show: true, click: true })
             }else{
                 console.log(res)
@@ -51,11 +58,6 @@ export default class extends Component {
                     <button className="e-btn hangon-btn" onClick={this.query}>查询</button>
               
                 </div>
-                {/* <div class="Succession-name ReportLossQuery">
-                    已为您找到：
-                    <b>2345</b>
-                    条数据，请选择您要操作的衣物
-                </div> */}
                 <table class='ui-table-base hangon-sear-res-tab'>
                     <thead>
                         <tr>
@@ -69,7 +71,7 @@ export default class extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onClick={()=>this.setState({show:true})}>
+                        <tr onClick={this.handleClick}>
                             <td>{this.state.result.clothing_number}</td>
                             <td>{this.state.result.clothing_name}</td>
                             <td>{this.state.result.clothing_color}</td>

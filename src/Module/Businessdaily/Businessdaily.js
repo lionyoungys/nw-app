@@ -29,7 +29,7 @@ export default class extends Component {
                            {arr}
                          </div>
                 </div>
-                <div className="Succession-name">操作员：<b>荣仔</b></div>
+               <div className="ui-check-res">操作员：<b>荣仔</b></div>
                <table className='ui-table-base bus-daily-tab'>
                    <thead>
                        <tr>

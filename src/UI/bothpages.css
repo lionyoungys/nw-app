@@ -307,7 +307,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: -webkit-gradient(linear, 0% 20%, 20% 100%, from(#eff5fc), to(#d9e5f2));
     cursor:pointer;      
 }
-.Settings-title span.hover{height:24px;z-index:9;color:#15458d;font-weight:bold;background:#fff}
+.Settings-title span.hover{height:24px;z-index:9;color:#15458d;font-weight:bold;background:#f0f5f9}
 .Settings-div{width:868px;height:528px;margin-top:3px}
 
 #balancestatistics-leiji{margin-right:11px}

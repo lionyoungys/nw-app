@@ -38,7 +38,6 @@ export default class extends Component {
         );
     }
     handleClick(value){
-        console.log(value)
         this.setState({index:value.inObjArray(this.state.grid, 'name')})
         console.log(this.state.index)
         api.post('putNumber', {
@@ -60,9 +59,13 @@ export default class extends Component {
             put_id:this.state.clothnums[this.state.clothindex].id
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                tool.ui.success({callback:(close) => {
+                    close();
+                }}); 
             }else{
-                console.log(res)
+                tool.ui.error({msg:res.msg,callback:(close) => {
+                    close();
+                }});
             }
                 }
                );
@@ -90,10 +93,10 @@ export default class extends Component {
                 </div>
                 <div className="Hangon-right">
                    <div className="Hangon-right-select">
-                      <span>格架: </span><Select option={this.state.gridname} selected='请选择'  onChange={this.handleClick}/>
+                      <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick}/>
                    </div>
                    <div className="Hangon-right-select">
-                      <span>衣挂号: </span><Select option={this.state.clothnum} selected='请选择'  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})}/>
+                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})}/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button><button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
                 </div>

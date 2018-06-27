@@ -12,7 +12,7 @@ export default class extends Component {
     render() {        
         return (
             <Window title='查询结果' onClose={this.props.onClose}>
-                <div class="Succession-name ReportLossQuery">
+                <div class="ui-check-res ReportLossQuery">
                     已为您找到：
                     <b>2345</b>
                     条数据，请选择您要操作的衣物

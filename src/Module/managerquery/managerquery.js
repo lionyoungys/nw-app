@@ -10,7 +10,26 @@ import './managerquery.css'
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.setState={
+            list:[],
+            
+        }
     };
+    query(){
+        api.post('managerSearch', {
+            start_time:this.state.startdate,
+            end_time:this.state.enddate,
+            token:'token'.getData(),
+            operator:''
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});
+                
+            }
+        }
+        );
+    }
     render() {
         return (
 
@@ -18,23 +37,18 @@ export default class extends Component {
                <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
                                 <div>操作员：<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
-                                <div>开始日期：<input type="date" /></div>
-                                <div>结束日期：<input type="date" /></div>
+                                <div>开始日期：<input type="date" onChange={e=>this.setState({startdate:e.target.value})}/></div>
+                                <div>结束日期：<input type="date" onChange={e=>this.setState({enddate:e.target.value})}/></div>
                             </div>
-                            <button className="e-btn managerquery_btn">查询</button> 
+                            <button className="e-btn managerquery_btn" onClick={this.query}>查询</button> 
                 </div>                                    
-                <table className='ui-table-base man-que-tab'>
+                <table className='ui-table-base man-que-tab' id="man-que-tab">
                     <thead>
                         <tr>
-                            <td>统计科目</td>
-                            <td>会员卡</td>
-                            <td>现金</td>
-                            <td>微信</td>
-                            <td>支付宝</td>
-                            <td>欠款</td>
-                            <td>充值卡</td>
-                            <td>代金券</td>
-                            <td>优惠</td>
+                            <td>收银类型</td>
+                            <td>金额</td>
+                            <td>实收金额</td>
+                            <td>衣物数量</td>                            
                         </tr>
                     </thead>
                     <tbody>
@@ -42,93 +56,14 @@ export default class extends Component {
                             <td>收衣</td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>撤单</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>赔付</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>售卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>充值</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>退卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>扣款</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
+                            <td></td>                           
+                        </tr>                                                                                             
                         <tr>
                             <td>合计</td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
+                            <td></td>                           
                         </tr>
-
                     </tbody>
                 </table>
                 <table className='ui-table-base man-que-tab-two'>

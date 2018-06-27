@@ -59,7 +59,7 @@ export const topMenu = [
         options:[
             { value: '经理收款', view:'manager_gathering'},
             {value:'经理查询', view:'manager_query'},
-            {value:'经营日报', view:'Business_daily'},
+            {value:'营业日报', view:'operate_income'},
             {value:'营业统计', view:'Busines_stats'},
             {value:'经营明细', view:'operating_details'},
             {value: '营业分析', view:'charts'},

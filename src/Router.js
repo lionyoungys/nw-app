@@ -6,7 +6,7 @@ import Takeclothes from './Module/Takeclothes/Takeclothes'; //取衣
 import Commoditysales from './Module/Commoditysales/Commoditysales'; //商品销售
 
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计
-import OperatingDetails from './Module/OperatingDetails/OperatingDetails'; //营业明细
+import OperatingDetails from './Module/OperatingDetails/OperatingDetails'; //经营明细
 import MemberInfoUpdate from './Module/MemberInfoUpdate/MemberInfoUpdate'
 import AddGroup from './Module/AddGroup/AddGroup'//新增组
 import Demo from './Module/Demo';

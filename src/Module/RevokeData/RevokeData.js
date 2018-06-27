@@ -45,7 +45,7 @@ export default class extends Component {
        var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价格','备注','状态','收衣时间','交货日期','格架号','附加服务','衣物件数','客户姓名','充值卡号','卡类型','住址','折扣率'
        ].map((item,index)=><span>{item}</span>)
        var orderBack = this.state.orderBack.map((item,index)=>  <li>
-       <span>{item.id}</span>
+       <span>{index+1}</span>
        <span>{item.serialsn}</span>
        <span>{item.time}</span>
        <span>{item.operator}</span>
@@ -57,7 +57,7 @@ export default class extends Component {
         </li>
        )
        var item = this.state.item.map((item,index)=>  <li>
-           <span>{item.id}</span>
+           <span>{index+1}</span>
            <span>{item.operator}</span>
            <span>{item.user_mobile}</span>
            <span>{item.serialsn}</span>

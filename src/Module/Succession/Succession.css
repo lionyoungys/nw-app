@@ -61,53 +61,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position-y:0; 
 }
 .Succession_dataLeft div input:hover{border:1px solid #4589ee}
+.ui-table-base.succession-tab{
 
-.Succession-name{
-    width:875px;
-    height:40px;
-    line-height:40px;
-    color:#063781;
-    font-size:14px;
-    margin:0 auto;
-    text-indent:3px;
+    max-height: 475px;
+    /* overflow-x: auto; */
 }
-.Succession-tab{
-    width:873px;
-    height:auto;
-    max-height:440px;
-    max-width:873px;  
-    border:1px solid #a4c0da;
-    margin:0 auto;
-    overflow-y:hidden;
-    overflow-x: hidden;
+.ui-table-base.succession-tab tbody{
+
+    max-height: 450px;
 }
-.Succession-tab table{width:873px;height:auto;overflow-x:hidden}
-.Succession-tab table thead{width:875px;height:25px;background:#7fa8cf}
-.Succession-tab table thead tr{width:auto;height:25px;display:block;}
-.Succession-tab table thead tr th{
-    width:auto;
-    height:25px;
-    line-height:25px;
-    color:#fff;
-    font-size:12px;
-    text-align:center;
-    padding:0 25px;
-    border-right:1px solid #a4c0da;
-    min-width:95px;
+.ui-table-base.succession-tab tr td{
+    min-width: 97px;
+    max-width: 97px;
 }
-.Succession-tab table tbody{max-height:410px;overflow-y:auto;display:block;overflow-x: hidden}
-.Succession-tab table tbody tr{width:auto;height:25px;display: block;min-width:873px;}
-.Succession-tab table tbody tr:nth-of-type(odd){background:#fff;}
-.Succession-tab table tbody tr:nth-of-type(even){background:#f0f5f9;}
-.Succession-tab table tbody tr td{
-    width:auto;
-    height:25px;
-    line-height:25px;
-    color:#000;
-    font-size:12px;
-    padding:0 25px;
-    border-right:1px solid #a4c0da;
-    text-align:center;
-    min-width:95px;
-    
-}
+
+

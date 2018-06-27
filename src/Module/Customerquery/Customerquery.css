@@ -170,3 +170,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .Customerquery-tab table tbody tr td:last-child{border-right:none;}
 .Customerquery-tab table tbody tr td:first-child{width:31px;min-width: 31px;}
+
+
+/* 修改之后 */
+.Customerquery-tab.cust-tab table thead tr th:first-child{width:31px;min-width: 31px;}
+.Customerquery-tab.cust-tab table tbody tr td:first-child{width:31px;min-width: 31px;}
+.Customerquery-tab.cust-tab table thead tr th{
+    width:166px;
+    min-width:166px;
+    max-width:166px;
+}
+.Customerquery-tab.cust-tab table tbody tr td{
+    width:166px;
+    min-width:166px;
+    max-width:166px;
+}

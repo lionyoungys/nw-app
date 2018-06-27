@@ -39,7 +39,7 @@ export default class extends Component {
                              <label className='e-label'>&emsp;&emsp;积分：</label><div>2144</div>
                          </div>
                          <div>
-                             <label className='e-label'>地址：</label><div>大望路万达广场3号楼1902室</div>
+                             <label className='e-label'>发卡点ID：</label><div>25105598356888</div>
                              <label className='e-label'>&emsp;&emsp;余额：</label><div>&yen;300.00</div>
                          </div>
                      </div>

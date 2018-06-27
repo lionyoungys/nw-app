@@ -24,9 +24,8 @@ export default class extends Component {
                            {arr}
                          </div>
                 </div>
-               <div className="Succession-name bus-sta-num">衣物件数<b>15248</b>件</div>
-                <div className="Succession-name">已为您找到<b>15248</b>条数据</div>
-                                 
+               <div className="ui-check-res bus-sta-num">衣物件数<b>15248</b>件</div>
+               <div className="ui-check-res">已为您找到<b>15248</b>条数据</div>                  
                <table className='ui-table-base bus-sta-tab'>
                     <thead>
                         <tr>

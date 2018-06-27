@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-import Balancedetail from './Balancedetail.css';
+import Balancedetail from './Balancedetail.css'; 
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ export default class extends Component {
                     <span>  可折金额：<a>64364754元</a></span>
                     <span>  不可折金额：<a>43745754757元</a></span>
                 </div>             
-                <div className="Succession-name">已为您找到<b>25484</b>条数据</div>
+                <div className="ui-check-res">已为您找到<b>25484</b>条数据</div>
                 <table className='ui-table-base balance-det-tab'>
                     <thead>
                         <tr>

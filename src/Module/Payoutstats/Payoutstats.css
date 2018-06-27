@@ -252,6 +252,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height:32px;
     color:#000;
     font-size:12px;
+    font-weight: bold;
 }
 .Payout-detail-title b{font-weight:inherit;margin-left:12px;}
 .Payout-detail-title b i{font-style:normal;color:#063781}
@@ -312,7 +313,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:31px;
     min-width:31px;
 }
-.bothpayout-detail table tbody{
+#bothpayout-detail table tbody{
     height:130px;
     max-height:130px;
 }

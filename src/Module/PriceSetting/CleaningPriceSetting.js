@@ -44,6 +44,7 @@ export default class extends Component {
             materialsname:'',//材料名称
             goodindex:0,
             item_online_price:'',//线上价格
+            gridname:'',//格架名称
         }
 
         this.handleClick=this.handleClick.bind(this);
@@ -103,11 +104,12 @@ export default class extends Component {
             item_off_price:this.state.item_off_price,
             grade:this.state.gradename,
             materials:this.state.materialsname,
-            grid:'',
+            grid:this.state.gridname,
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
-            item_cycle:this.state.item_cycle
+            item_cycle:this.state.item_cycle,
+            item_online_price:this.state.item_online_price
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -208,7 +210,7 @@ export default class extends Component {
             'undefined' !== typeof this.state.grids[this.state.index].name
         ) {
             gridss = this.state.grid.map((item,index)=>
-                <div key={'item2'+index}><input type="checkbox" onChange={e=>this.setState({discount:e.target.checked})}/>{item}</div>
+                <div key={'item2'+index}><input type="radio" name='grid' onChange={e=>this.setState({gridname:e.target.checked})}/>{item}</div>
             );
         }
         return (

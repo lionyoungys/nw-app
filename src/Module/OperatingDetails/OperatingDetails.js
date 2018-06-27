@@ -17,7 +17,7 @@ export default class extends Component {
             <Window title='经营明细' onClose={this.props.closeView}>
                  <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
-                                <div>操作员：<Select option={['支付宝','微信','现金']} selected='现金'  onChange={value => console.log(value)}/></div>                           
+                                <div>收款类型：<Select option={['支付宝','微信','现金']} selected='现金'  onChange={value => console.log(value)}/></div>                           
                                 <div>结束日期：<input type="date" /></div>
                                 <div>结束日期：<input type="date" /></div>
                             </div>
@@ -39,6 +39,8 @@ export default class extends Component {
                                    <th>客户电话</th>
                                    <th>客户姓名</th>
                                    <th>时间</th>
+                                   <th>充值卡号</th>
+                                   <th>卡类型</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -53,17 +55,6 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -79,7 +70,9 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
                                </tr>
                                <tr>
                                    <td></td>
@@ -90,6 +83,53 @@ export default class extends Component {
                                    <td>25</td>
                                    <td>￥25.00</td>
                                    <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>   
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -105,7 +145,9 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
+                                   <td>6/13</td>    
+                                   <td>6/13</td>
+                                   <td>6/13</td>                               
                                </tr>
                                <tr>
                                    <td></td>
@@ -116,6 +158,38 @@ export default class extends Component {
                                    <td>25</td>
                                    <td>￥25.00</td>
                                    <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -131,56 +205,6 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -195,7 +219,9 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
                                </tr>
                                <tr>
                                    <td></td>
@@ -206,6 +232,8 @@ export default class extends Component {
                                    <td>25</td>
                                    <td>￥25.00</td>
                                    <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -221,7 +249,9 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
+                                   <td>6/13</td>  
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                 
                                </tr>
                                <tr>
                                    <td></td>
@@ -232,6 +262,52 @@ export default class extends Component {
                                    <td>25</td>
                                    <td>￥25.00</td>
                                    <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>    
+                                   <td>6/13</td>
+                                   <td>6/13</td>                               
+                               </tr><tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>     
+                                   <td>6/13</td>
+                                   <td>6/13</td>                              
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
+                                   <td>6/13</td>   
+                                   <td>6/13</td>
+                                   <td>6/13</td>                                
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td>45547586586</td>
+                                   <td>吱吱</td>
+                                   <td>13546079987</td>
+                                   <td>154852456321</td>
+                                   <td>25</td>
+                                   <td>￥25.00</td>
+                                   <td>￥45.10</td>                                  
+                                   <td>6/13</td> 
+                                   <td>6/13</td>
                                    <td>6/13</td> 
                                    <td>6/13</td>
                                    <td>6/13</td>                                  
@@ -246,112 +322,10 @@ export default class extends Component {
                                    <td>￥45.10</td>                                  
                                    <td>6/13</td> 
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
+                                   <td>6/13</td>   
                                    <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr><tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               <tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr><tr>
-                                   <td></td>
-                                   <td>45547586586</td>
-                                   <td>吱吱</td>
-                                   <td>13546079987</td>
-                                   <td>154852456321</td>
-                                   <td>25</td>
-                                   <td>￥25.00</td>
-                                   <td>￥45.10</td>                                  
-                                   <td>6/13</td> 
-                                   <td>6/13</td>
-                                   <td>6/13</td>                                  
-                               </tr>
-                               
-                               
+                                   <td>6/13</td>                                
+                               </tr> 
                            </tbody>
                         </table> 
                     </div>                   

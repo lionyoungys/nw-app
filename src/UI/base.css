@@ -226,7 +226,7 @@
 .ui-table-base{
     /* 非块级不能滚动 */
     display: block;
-    margin: 0 13px;
+    margin:8px 13px;
     height: auto;
     /* 可自定义 */
     width: 874px;
@@ -405,4 +405,18 @@
 .ui-payment-confirm{
     margin: 16px 40px 0 0;
     text-align: right;
+}
+/* 查询结果样式 */
+/* <div class="ui-check-res">已为您找到<b>15248</b>条数据</div> */
+.ui-check-res{
+
+    margin-left: 13px;
+    height: 30px;
+    color: #15458d;
+    font-size: 13px;
+    line-height: 30px;
+}
+.ui-check-res b{
+    color:red;
+    font-size: 14px;
 }

@@ -11,22 +11,101 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show:false,
-            startdate:tool.date('Y-m-01'),
-            enddate:tool.date('Y-m-d'),           
+            show:false, 
+            result:{},  
         }
+        this.map = {
+            free:'免费',
+            freeBackCard:'免费退卡',
+            cardPay:'刷卡',
+            cardOther:'刷卡其他',
+            cardReplenish:'刷卡补交',
+            cardGroup:'刷集团卡',
+            cardGroupOther:' 刷集团卡其他',
+            cardGroupReplenish:'刷集团卡补交',
+            cardHand:'手持机刷卡',
+            cardHandReplenish:'手持机刷卡补交',
+            noPay:'未付款',
+            noPayReplenish:'未付款补交',
+            cash:'现金',
+            cashRecharge:'现金充值',
+            cashOther:'现金其他',
+            cashCard:'现金发卡',
+            cashReplenish:'现金补交',
+            cashBackCard:'现金退卡',
+            ticket:'赠券',
+            ticketRecharge:'赠券充值',
+            ticketOther:'赠券其他',
+            ticketCard:'赠券发卡',
+            ticketReplenish:'赠券补交',
+            ticketBackCard:'赠券退卡',
+            total:'合计'
+        };
+        /*		free免费
+		freeBackCard免费退卡
+		cardPay刷卡
+cardOther   刷卡其他
+cardReplenish     刷卡补交
+cardGroup       刷集团卡
+cardGroupOther      刷集团卡其他
+cardGroupReplenish      刷集团卡补交
+cardHand          手持机刷卡
+cardHandReplenish        手持机刷卡补交
+noPay       未付款
+noPayReplenish         未付款补交
+cash            现金
+cashRecharge         现金充值
+cashOther             现金其他
+cashCard            现金发卡
+cashReplenish             现金补交
+cashBackCard            现金退卡
+ticket               赠券
+ticketRecharge           赠券充值
+ticketOther             赠券其他
+ticketCard               赠券发卡
+ticketReplenish            赠券补交
+ticketBackCard            赠券退卡
+total                     合计
+ */
         this.onclose = this.onclose.bind(this);
     };
     onclose (){
         this.setState({show:false})
     }
+    componentDidMount(){
+        api.post('managerGathering',{
+        token:'token'.getData()
+        }  
+      , (res, ver, handle) => {
+            if (ver) {
+                this.setState({result:res.result})                                                                                    
+            }else{
+                handle();                
+            }
+        }
+      );
+       
+    }
     render() {
+        let arr = []
+        ,   result = this.state.result
+        ,   temp;
+        for (let k in this.map) {
+            temp = result[k] || {};
+            arr.push(
+                <tr>
+                    <td onClick={() => this.setState({ show: true })}>{this.map[k]}</td>
+                    <td>{temp.amount || 0}</td>
+                    <td>{temp.real_amount || 0}</td>
+                    <td>{temp.work_number || 0}</td>
+                </tr>
+            );
+        } 
         return (
-
             <Window title='经理收款' onClose={this.props.closeView} height='494'>
                <div className="man-head">
                     <a>收款情况</a>   
-                    <a>统计时间：2018-06-21 22：00：57 至2018-06-22 19：00：00</a>                    
+                    <a>统计时间：{this.state.result.dateStartTime} 至{this.state.result.dateEndTime}</a>                    
                 </div>
                 {/* 表格部分 欠费衣物信息*/}               
                 <table className='ui-table-base ManagerGathering-tab'>
@@ -39,156 +118,7 @@ export default class extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>免费</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>免费退卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷卡其他</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷卡补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷集团卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷集团卡其他</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>刷集团卡补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>手持机刷卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>手持机刷卡补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>未付款</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>未付款补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金充值</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金其他</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金发卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>现金退卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券充值</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券其他</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券发卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券补交</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>赠券退卡</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td onClick={e => this.setState({ show: true })}>合计</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        {arr}
                     </tbody>
                 </table>
                 <div className="manager_gathering_bottom">

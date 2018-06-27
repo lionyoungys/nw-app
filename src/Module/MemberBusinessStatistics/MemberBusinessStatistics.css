@@ -23,7 +23,7 @@
 
     float: left;
     margin-right: 10px;
-    
+    width: 214px;
 }
 .mem_bus_sta_top button{
 
@@ -35,7 +35,11 @@
 
    width: 140px;
 }
-p{
+.mem_bus_sta_top_two input{
+
+    height: 22px;
+}
+.mem-bus-sta-p{
     margin: 0 13px;
     height: 30px;
     line-height: 30px;
@@ -56,4 +60,7 @@ p{
 .ui-table-base.mem_bus_sta_table_two tbody{
 
     max-height: 305px;
+}
+.ui-table-base.auto-width.mem-bus-auto-tab tr td{
+    min-width: 144px;
 }

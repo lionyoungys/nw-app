@@ -7,7 +7,7 @@
 .businesstats-div .businesstats-tab thead tr td{min-width:94px;}
 .businesstats-div .businesstats-tab thead tr td:last-child{border-right:none;}
 .businesstats-div .businesstats-tab tbody tr td{min-width:94px;}
-.Succession-name.bus-sta-num{
+.ui-check-res.bus-sta-num{
 
     height: 30px;
     color: black;

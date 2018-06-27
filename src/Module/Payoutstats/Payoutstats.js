@@ -88,7 +88,7 @@ export default class extends Component {
                                </tbody>
                            </table>
                         </div>
-                        <div className="Payout-detail bothpayout-detail">
+                        <div className="Payout-detail bothpayout-detail" id="bothpayout-detail">
                            <div className="Payout-detail-title">赔付明细 <b>共记录<i>456</i>条</b></div>
                            <table>
                                <thead>
