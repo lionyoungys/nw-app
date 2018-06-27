@@ -63,6 +63,7 @@ export default class extends Component {
         this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
         this.setUser = this.setUser.bind(this);    //设置用户信息
         this.del = this.del.bind(this);    //项目删除方法
+        this.copy = this.copy.bind(this);    //项目复制
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
     }
 
@@ -234,10 +235,20 @@ export default class extends Component {
         this.setState({data:this.state.data});
     }
     del(e) {
-        let index = e.target.parentNode.dataset.index
+        let index = e.target.parentNode.parentNode.dataset.index
         ,   number = this.state.data[index].DATATAG;
         this.state.data.splice(index, 1);
         this.state.data.spliceByKeyVal('parent', number);
+        this.setState({data:this.state.data});
+    }
+    copy(e) {
+        let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index])
+        ,   timeCode = this.counter.timeCode();
+        item.DATATAG = timeCode;
+        item.clothing_number = timeCode;
+        item.parent = null;
+        ++this.counter;
+        this.state.data.push(item);
         this.setState({data:this.state.data});
     }
     setCode(data){
@@ -404,7 +415,11 @@ export default class extends Component {
                     <div onClick={this.showPrice}>{obj.addition_remark}</div>
                     <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
-                    <div onClick={this.del}>删除</div>
+                    <div>
+                        <span onClick={this.copy}>复制</span>
+                        &emsp;
+                        <span onClick={this.del}>删除</span>
+                    </div>
                 </div>
             );
         });
