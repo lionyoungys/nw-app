@@ -35,7 +35,12 @@
         if (obj.number) {
             data.recharge_number = obj.number;
         } else {
-            let card = M1Reader.get();
+            try {
+                var card = M1Reader.get();
+            } catch (e) {
+                loadingEnd();
+                return tool.ui.error({msg:'读卡失败',callback:close => close()});
+            }
             if (card.error) {
                 loadingEnd();
                 return tool.ui.error({msg:'读卡失败',callback:close => close()});
