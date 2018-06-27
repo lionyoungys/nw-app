@@ -4,7 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Succession from './Succession.css'
+import './Succession.css'
 
 export default class extends Component {   
     constructor(props) {
@@ -19,6 +19,7 @@ export default class extends Component {
                          <div className="Succession_dataLeft">
                             <div>开始日期：<input type="date" value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
                             <div>结束日期：<input type="date" value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+                            <button type='button' className='e-btn'>交班</button>
                          </div>                         
                 </div>
                 <div className="Succession-name">操作员：<b>荣仔</b></div> 

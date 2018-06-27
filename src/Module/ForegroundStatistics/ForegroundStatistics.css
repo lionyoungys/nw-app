@@ -1,18 +1,18 @@
-.tableC_title_right{width:224px;height:43px;float:right;margin-right:13px}
-.tableC_title_right div{color:#000;font-size:12px;width:auto;height:24px;margin-top:19px;float:left;line-height:24px}
-.tableC_title_right div input{width:15px;height:15px;display:block;float:left;margin:5px 3px 0 0}
-.tableC_title_right button{
-    width:71px;
-    height:24px;
-    background:url(./img/e-btn.png);
-    border:none;
-    outline:none;
-    margin:19px 0 0 9px;
-    color:#000;
-    font-size:12px;
-    float:left;
-    cursor: pointer;
+.ope-inc-head.for-sta-head{
+
+    margin-bottom: 0px;
 }
-.tableC_title_right button:hover{background:url(./img/e-btn-hover.png)}
-.tableC_box .tableC_box_div table{height:88px;max-height:94px}
-.tableC_box .tableC_box_div:last-child table{height:247px;max-height:247px}
+.ui-table-base.for-sta-tab{
+
+    max-height: 450px;
+    overflow-x: auto;
+}
+.ui-table-base.for-sta-tab tbody{
+
+    max-height: 425px;
+}
+.ui-table-base.for-sta-tab tr td{
+
+    min-width: 107px;
+    max-width: 107px; 
+}

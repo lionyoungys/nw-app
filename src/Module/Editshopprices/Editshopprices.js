@@ -13,7 +13,7 @@ export default class extends Component {
     }; 
     render() {
         return (             
-            <Window title='编辑商品价格' onClose={this.props.closeView} width='279' height='291'>   
+            <Window title='编辑商品价格' onClose={this.props.closeView} width='340' height='291'>   
                 <div className="Editshopprices">
                     <div className='Editshopprices-select'>
                          <span>商品类别：</span><Select option={['外套','裤子']} selected='外套' onChange={value =>console.log(value)}/>

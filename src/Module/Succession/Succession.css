@@ -24,6 +24,12 @@
     float: left;
     margin-left:14px;
 }
+.Succession_data button{
+
+    margin-top: 17px;
+    float: right;
+    margin-right: 20px;
+}
 .Succession_dataLeft div input{
     width:133px;
     height:20px;

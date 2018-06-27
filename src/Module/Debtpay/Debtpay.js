@@ -26,7 +26,7 @@ export default class extends Component {
                            <thead>
                                <tr>
                                    <th></th>
-                                   <th>定单号</th>
+                                   <th>订单号</th>
                                    <th>姓名</th>
                                    <th>手机号</th>
                                    <th>卡号</th>
@@ -139,7 +139,7 @@ export default class extends Component {
                                    <td>收款</td>                                   
                                </tr>
                                <tr>
-                                   <td>444</td>
+                                   <td></td>
                                    <td>45547586586</td>
                                    <td>吱吱</td>
                                    <td>13546079987</td>
@@ -159,7 +159,7 @@ export default class extends Component {
                                     <span>下一页</span>
                                     <span>尾页</span>
                             </div>
-                            <div className="bothpages-footer-all">第<span>一</span>页/共<span>四</span>页</div>
+                            <div className="bothpages-footer-all">第<span>1</span>页/共<span>4</span>页</div>
                             <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
                     </div>
                 </Window> 

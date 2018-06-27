@@ -33,22 +33,29 @@ export default class extends Component {
                <table className='ui-table-base bus-daily-tab'>
                    <thead>
                        <tr>
-                           <td>统计科目</td>
-                           <td>流水号</td>
-                           <td>店员姓名</td>
-                           <td>衣物件数</td>
-                           <td>金额</td>
-                           <td>实收金额</td>
+                           <td></td>
+                           <td>卡号</td>
+                           <td>卡类型</td>
                            <td>折扣率</td>
-                           <td>收银类型</td>
-                           <td>客户电话</td>
-
+                           <td>姓名</td>
+                           <td>手机号</td>
+                           <td>余额</td>
+                           <td>办卡时间</td>
                        </tr>
                    </thead>
                    <tbody>
                        <tr>
                            <td>1</td>
+                           <td>111</td>
+                           <td>22</td>
                            <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>1</td>
                            <td></td>
                            <td></td>
                            <td></td>
@@ -60,6 +67,46 @@ export default class extends Component {
                        <tr>
                            <td>1</td>
                            <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>1</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>1</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>1</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           
+                       </tr>
+                       <tr>
+                           <td>1</td>
                            <td></td>
                            <td></td>
                            <td></td>
@@ -78,8 +125,6 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
                        </tr>
                        <tr>
                            <td>1</td>
@@ -90,8 +135,6 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
                        </tr>
                        <tr>
                            <td>1</td>
@@ -102,24 +145,9 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
                        </tr>
                        <tr>
                            <td>1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>1</td>
-                           <td></td>
                            <td></td>
                            <td></td>
                            <td></td>
@@ -138,56 +166,6 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
                        </tr>
                        <tr>
                            <td>2</td>
@@ -198,8 +176,6 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
                        </tr>
                        <tr>
                            <td>3</td>
@@ -210,73 +186,10 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
-                           <td></td>
-
                        </tr>
 
                        <tr>
                            <td>4</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>4</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>4</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>4</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>4</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-
-                       </tr>
-                       <tr>
-                           <td>4</td>
-                           <td></td>
                            <td></td>
                            <td></td>
                            <td></td>
@@ -294,8 +207,56 @@ export default class extends Component {
                            <td></td>
                            <td></td>
                            <td></td>
+                       </tr>
+                       <tr>
+                           <td>4</td>
                            <td></td>
-
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>4</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>4</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>4</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                       <tr>
+                           <td>4</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
                        </tr>
                    </tbody>
                </table>

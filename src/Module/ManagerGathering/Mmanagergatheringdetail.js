@@ -11,7 +11,7 @@ export default class extends Component {
     };
     render() {
         return (
-            <Window title='经理收款-查看明细' onClose={this.props.closeView} >
+            <Window title='经理收款-查看明细' onClose={this.props.onClick} >
               <div className="Payout-detail " id="ManagerGathering-detail">
                            <table>
                                <thead>

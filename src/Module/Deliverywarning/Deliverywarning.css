@@ -14,15 +14,9 @@
     line-height:58px;
     margin-left:16px;
 }
-.Deliverywarning-title input{
+.Deliverywarning-title .e-input.del-war-input{
     width:150px;
-    height:22px;
-    border:1px solid #a9a9a9;
-    background:#fff;
-    color:#000;
-    font-size:12px;
-    margin-top:17px;
-    margin-left:3px;
+    margin-left:5px;
 }
 
 .deliverywarning-tab{
@@ -37,10 +31,10 @@
     border:1px solid #8db2e3;
 }
 .deliverywarning-tab table thead{
-    width:870px;
+    width:874px;
     height:25px;
     background:#7fa8cf;
-    display:inline-block;
+    display:block;
 }
 .deliverywarning-tab table thead tr{width:auto;height:25px;}
 .deliverywarning-tab table thead tr th{

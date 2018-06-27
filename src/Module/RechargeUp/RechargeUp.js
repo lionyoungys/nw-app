@@ -61,7 +61,7 @@ export default class extends Component {
                                     <span>下一页</span>
                                     <span>尾页</span>
                             </div>
-                            <div className="bothpages-footer-all">第<span>一</span>页/共<span>四</span>页</div>
+                            <div className="bothpages-footer-all">第<span>1</span>页/共<span>4</span>页</div>
                             <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
                         </div>
                 </Window> 

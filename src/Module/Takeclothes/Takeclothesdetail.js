@@ -18,24 +18,23 @@ export default class extends Component {
             listitem:[],
             listorder:[],
             listuser:[],
-            id:this.props.id
+            index:[],
+            checked:[]
         }; 
-
+        this.takeClothes=this.takeClothes.bind(this);
+        this.handleAllChecked=this.handleAllChecked.bind(this);
+        this.handleChecked=this.handleChecked.bind(this);
     }; 
     takeClothes(){
+        if(this.state.checked==[])
+        return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
         api.post('takeItem', {
-            token:'token'.getData(),
-            ids:this.props.id,
+            token:'token'.getData,
+            ids:this.state.checked
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res);  
-                    this.setState({
-                        count:res.result.count,
-                        listitem:res.result.item,
-                        listorder:res.result.order,
-                        listuser:res.result.user,
-                    })
-                    
+                    close();       
                     // if(this.state.listitem.status==3){
                     //     this.setState({status:'清洗中'})
                     // }else if(this.state.listitem.status==4){
@@ -50,7 +49,6 @@ export default class extends Component {
         );
     }
       componentDidMount () {
-          console.log(this.state.id)
         api.post('clothesdetail', {
             token:'token'.getData(),
             id:this.props.id,
@@ -78,11 +76,33 @@ export default class extends Component {
         );
 
       } 
+    // handleclick(e){
+    //     console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
+    //     this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
+    // }
+    handleAllChecked() {
+        console.log(this.state.checked.length == this.state.listitem.length);
+        this.state.checked.length == this.state.listitem.length
+        ?
+        this.setState({checked:[]})
+        :
+        this.setState({checked:this.state.listitem.typeArray('id')});
+    }
+    handleChecked(e) {
+            let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
+            let index = id.inArray(this.state.checked);
+            if (-1 === index) {
+                this.state.checked.push(id);
+            } else {
+                this.state.checked.splice(index, 1);
+            }
+            this.setState({checked:this.state.checked});
+    }
     render() { 
        let takeclothesdetail=this.state.listitem.map((item,index)=>
-       <tr key={'item'+index} data-id={item.id}>
+       <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
            <td>{index+1}</td>
-           <td>{item.clothing_number}</td>
+           <td><input type="checkbox" checked={-1 !== item.id.inArray(this.state.checked)}/><span>{item.clothing_number}</span></td>
            <td>{item.clothing_name}</td>
            <td>{item.clothing_color}</td>
            <td>{item.remark}</td>
@@ -123,7 +143,8 @@ export default class extends Component {
                         </table> 
                     </div>
                     <div className="Takeclothesdetail-footer">
-                        <div className="Takeclothesdetail-footer-left"><input type="checkbox" />全选/全不选</div>
+                        <div className="Takeclothesdetail-footer-left">
+                        <input type="checkbox" onChange={this.handleAllChecked} checked={this.state.checked.length == this.state.listitem.length}/>全选/全不选</div>
                         <div className="Takeclothesdetail-footer-right">
                            <button className="e-btn Takeclothesdetail-footer-right-btn">立即收款</button> 
                            <button className="take-over" onClick={() => this.setState({show2:true})}>取衣</button>

@@ -45,8 +45,16 @@ export default class extends React.Component {
                 continue;
             } else if ('string' === typeof propsOption[i] && this.state.selected === propsOption[i]) {
                 continue;
-            } else {
-                if (this.state.selected === propsOption[i].value) continue;
+            } else if (
+                'object' === typeof propsOption[i] 
+                &&
+                null !== propsOption[i]
+                && 
+                'string' === typeof propsOption[i].value
+                &&
+                this.state.selected === propsOption[i].value
+            ) {
+                continue;
             }
             if ('string' === typeof propsOption[i]) {
                 option.push(
@@ -55,7 +63,7 @@ export default class extends React.Component {
                         onClick={this.handleChange}
                     >{propsOption[i]}</div>
                 );
-            } else {
+            } else if ('object' === typeof propsOption[i] && null !== propsOption[i]) {
                 option.push(
                     <div
                         key={propsOption[i].key}

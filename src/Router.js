@@ -14,7 +14,7 @@ import RechargeUp from './Module/RechargeUp/RechargeUp'; //充值统计
 import StaffManagement from './Module/StaffManagement/StaffManagement';  //员工管理
 import BalanceStatistics from './Module/BalanceStatistics/BalanceStatistics';  //余额统计
 import MemberConsumptionStatistics from './Module/MemberConsumptionStatistics/MemberConsumptionStatistics';  //会员消费统计
-import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics';  //前台统计
+import ForegroundStatistics from './Module/ForegroundStatistics/ForegroundStatistics';  //前台情况
 import MemberCardConsume from './Module/MemberCardConsume/MemberCardConsume';
 import UnpaidStatistics from './Module/UnpaidStatistics/UnpaidStatistics';//未付款统计
 import Recharge from './Module/Recharge/App';
@@ -85,7 +85,7 @@ export default {
     unpaid_statistics: UnpaidStatistics,//未付款统计
     recharge:Recharge,    //充值
     staff_management:StaffManagement,  //员工管理
-    operate_income:OperateIncome, //营业收入
+    operate_income:OperateIncome, //营业日报
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面
     sale_card:SaleCard, //售卡  

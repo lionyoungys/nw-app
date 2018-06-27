@@ -13,9 +13,13 @@ export default class extends Component {
         this.state = {
             show:false,
             startdate:tool.date('Y-m-01'),
-            enddate:tool.date('Y-m-d'),
+            enddate:tool.date('Y-m-d'),           
         }
+        this.onclose = this.onclose.bind(this);
     };
+    onclose (){
+        this.setState({show:false})
+    }
     render() {
         return (
 
@@ -208,7 +212,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Mmanagergatheringdetail />
+                    <Mmanagergatheringdetail  onClick = {this.onclose}/>
                 }
             </Window>
 

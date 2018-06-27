@@ -15,9 +15,9 @@ export default class extends Component {
             show:false,
             number:'',
             list:[],
-            count:'', 
-            id:'', 
-            index:'',                            
+            count:'0', 
+            id:0, 
+            index:0,                            
         };
         this.onclose = this.onclose.bind(this); 
         this.takecloth = this.takecloth.bind(this);  
@@ -28,6 +28,8 @@ export default class extends Component {
     } 
     // 搜索订单号查询订单
     takecloth() {
+        if(this.state.number=='')
+        return tool.ui.error({msg:'请输入关键词',callback:close => close()});
         api.post('takeclothes', {
             token:'token'.getData(),
             keywords:this.state.number,
@@ -41,8 +43,6 @@ export default class extends Component {
                     })
                 }else{
                     console.log(res.msg);
-                    
-                    
                 }
             }
         );
@@ -50,7 +50,8 @@ export default class extends Component {
     // 查询订单服务项目信息
     takeclothesdetail (e){
         var id = e.target.dataset.id || e.target.parentNode.dataset.id;
-        this.setState({show:true,id:id});       
+        var index = e.target.dataset.index;
+        this.setState({show:true,id:id,index:index});       
     }
     render() {  
         var list=this.state.list.map((item,index) => 
@@ -86,7 +87,7 @@ export default class extends Component {
                                    <th>衣物数量</th>
                                    <th>价格</th>
                                    <th>欠款</th>
-                                   <th>完成数量</th>
+                                   <th>进度</th>
                                </tr>
                            </thead>
                            <tbody>

@@ -16,11 +16,11 @@ export default class extends Component {
        return (             
             <Window title='赔付' onClose={this.props.closeView} width="630" height="510">   
                 <div className="Deliverywarning-title Itsprocessing-title">
-                  <span>流水单号:</span>
-                  <input type="text" /> 
-                  <button className="e-btn">查询</button>
-                  <button className="e-btn">确定</button>
-                  <button className="e-btn">退出</button>
+                    <span>流水单号:</span>
+                    <input type="text" className='e-input its-pro-input'/> 
+                    <button className="e-btn">查询</button>
+                    <button className="e-btn">确定</button>
+                    <button className="e-btn">退出</button>
                 </div>  
                 <div className="Itsprocessing-count">
                    <div className="Itsprocessing-count-left">                                                

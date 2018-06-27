@@ -22,7 +22,7 @@ export const topMenu = [
             {value:'格架查询', view:'lattice_query'},
             {value:'衣物查询', view:'clothes_query'},
             {value:'交班', view:'Succession'},
-            {value:'营业收入', view:'operate_income'},
+            {value:'营业日报', view:'operate_income'},
             {value:'前台情况', view:'foreground_statistics'},           
             {value: '未付款统计', view:'unpaid_statistics'},
             {value:'余额统计', view:'balance_statistics'},
@@ -123,7 +123,7 @@ export const leftMenu = [
         options:[
             {value:'衣物查询',class:'main-clothes-search',view:'clothes_query'},
             {value:'客户信息查询',class:'main-member-search',view:'customer_query'},
-            {value:'营业收入',class:'main-income-today',view:'operate_income'}
+            { value:'营业日报',class:'main-income-today',view:'operate_income'}
         ]
     },
     {

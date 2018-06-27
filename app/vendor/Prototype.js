@@ -154,20 +154,39 @@
 
     /**
      * 通过数组对象获取指定属性的数组
-     * @param {*string} key 数组对象将要提取的属性
-     * @return {*array} 属性列表数组
+     * @param {string} arguments 数组对象将要提取的属性
+     * @return {array} 属性列表数组/属性列表对象数组
      */
-    Array.prototype.typeArray = function (key) {
+    Array.prototype.typeArray = function () {
         var len = this.length
-        ,   arr = [];
+        ,   argLen = arguments.length
+        ,   arr = []
+        ,   obj = {}
+        ,   j;
         for (var i = 0;i < len;++i) {
-            if (this[i] instanceof Object && 'undefined' !== this[i][key]) {
-                arr.push(this[i][key]);
+            if (argLen > 1) {
+                for (j = 0;j < argLen;++j) {
+                    if ('string' !== typeof arguments[j] && 'number' !== typeof arguments[j]) continue;
+                    if (this[i] instanceof Object && 'undefined' !== this[i][arguments[j]]) {
+                        if (obj[arguments[j]]) {
+                            obj[arguments[j]].push(this[i][arguments[j]]);
+                        } else {
+                            obj[arguments[j]] = [ this[i][arguments[j]] ];
+                        }
+                    } else {
+                        continue;
+                    }
+                }
             } else {
-                break;
+                if ('string' !== typeof arguments[0] && 'number' !== typeof arguments[0]) continue;
+                if (this[i] instanceof Object && 'undefined' !== this[i][arguments[0]]) {
+                    arr.push(this[i][arguments[0]]);
+                } else {
+                    continue;
+                }
             }
         }
-        return arr;
+        return argLen > 1 ? obj : arr;
     }
 
     /**

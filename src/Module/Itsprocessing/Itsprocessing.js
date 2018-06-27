@@ -16,7 +16,7 @@ export default class extends Component {
             <Window title='撤单处理' onClose={this.props.closeView} width="630" height="510">   
                 <div className="Deliverywarning-title Itsprocessing-title">
                   <span>衣物编码:</span>
-                  <input type="text" /> 
+                  <input type="text" className='e-input its-pro-input'/> 
                   <button className="e-btn">查询</button>
                   <button className="e-btn">确定</button>
                   <button className="e-btn">退出</button>

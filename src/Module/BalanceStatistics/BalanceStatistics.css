@@ -20,23 +20,21 @@
 }
 .balancestatistics_title_left button:hover{background:url(./img/e-btn-hover.png);background-size:100% 100%}
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
-
-/* 充值统计tab页面样式 */
-.balancestatistics_count_title span:nth-child(2){width:132px}
-.balancestatistics_count_title span:nth-child(3){width:107px}
-.balancestatistics_count_title span:nth-child(4){width:136px}
-.balancestatistics_count_title span:nth-child(5){width:106px}
-.balancestatistics_count_title span:nth-child(6){width:216px}
-.balancestatistics_count_title span:nth-child(7){width:132px}
-
-/* .balancestatistics_count_list tbody tr td:last-child{color:#2151ed;cursor: pointer;} */
-.balancestatistics_count_list tbody tr td:nth-child(2){width:132px}
-.balancestatistics_count_list tbody tr td:nth-child(3){width:105px}
-.balancestatistics_count_list tbody tr td:nth-child(4){width:135px}
-.balancestatistics_count_list tbody tr td:nth-child(5){width:105px}
-.balancestatistics_count_list tbody tr td:nth-child(6){width:215px}
-.balancestatistics_count_list tbody tr td:nth-child(7){width:132px}
-
 #balancestatistics_title_left{width:51%;margin-right:11px;float:left;margin-left:11px;height:57px;margin-bottom:12px}
+.ui-table-base.bal-sta-tab{
+    max-height: 448px;
+    margin-top: 5px;
+    max-width: 872px;
+    overflow-x: auto;
+}
+.ui-table-base.bal-sta-tab tr td{
 
+    max-width: 120px;
+    min-width: 120px;
+}
+.ui-table-base.bal-sta-tab tr td:first-child{
+
+    max-width: 40px;
+    min-width: 40px;
+}
 

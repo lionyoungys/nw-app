@@ -55,13 +55,12 @@ export default class extends Component {
         this.handle=this.handle.bind(this);
     };   
     clothestypemanage(){
-      
         this.setState({clothestypemanageshow:true});
     }
     request(){
         api.post('needInfo', {
             token:'token'.getData()
-    }, (res, ver) => {
+    }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({
@@ -78,9 +77,7 @@ export default class extends Component {
 
                 })
             }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
+                handle();
             }
         }
         ); 
@@ -259,11 +256,11 @@ export default class extends Component {
                     <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_type[0]} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
-                                <div><span>处理类别：</span><Select option={this.state.dispose_type} selected={this.state.dispose_type[0]} onChange={value => this.setState({disposetype:value})} /></div>
-                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.grade[0]} onChange={value => this.setState({gradename:value})} /></div>
-                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materials[0]} onChange={value => this.setState({materialsname:value})} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} /></div>
+                                <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
+                                <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">

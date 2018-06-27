@@ -6,7 +6,7 @@
 
 .ui-table-base.bus-daily-tab{
     max-height: 448px;
-    margin-top: 15px;
+    margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
 }

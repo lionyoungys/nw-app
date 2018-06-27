@@ -53,9 +53,6 @@ class Main extends Component {
     
     //路由跳转方法
     changeView(e) {
-        // console.log(M1Reader.write(2, 4, '你好啊'));
-        // var result = M1Reader.read(2, 4);
-        // console.log(result);
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;
@@ -87,7 +84,7 @@ class Main extends Component {
                         <div>
                             <div className='main-mini' onClick={() => win.minimize()}></div>
                             <div className='main-max' onClick={() => this.state.max ? win.restore() : win.maximize()}></div>
-                            <div className='main-close' onClick={() => event.quit()}></div>
+                            <div className='main-close' onClick={() => EventApi.quit()}></div>
                         </div>
                     </div>
                     <MainTopMenu changeView={this.changeView}/>

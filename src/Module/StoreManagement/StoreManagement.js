@@ -23,21 +23,21 @@ export default class extends Component {
     }
     render() {
         let tabs=this.tab.map((item,index)=>
-        <li
+        <span
             key={item} 
             data-index={index} 
-            className={this.state.index==index?'store_management_tab_selected':null}
+            className={this.state.index==index?'hover':null}
             onClick={this.handleClick}
-        >{item}</li>
+        >{item}</span>
     );
         return (
             <div>
                 <Window title='门店管理' onClose={this.props.closeView}>
                 <div className='store_management'>
                     <div className="store_management_tabbar">
-                        <ul>
+                        <div className="Settings-title">
                            {tabs}
-                        </ul>
+                        </div>
                     </div>
                     <div className='store_management_content_all'>
                         {this.views[this.state.index]}
