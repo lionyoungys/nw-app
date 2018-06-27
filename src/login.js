@@ -32,10 +32,12 @@ class Main extends Component {
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
             if (ver && res.has_upd) {
+                console.log(res);
                 let packages = [];
                 try {
                     packages = JSON.parse(res.package);
                 } catch (e) {}
+                console.log(packages);
                 this.setState({index:1,version:res.last_version,log:res.desc,packages:packages});
             } else {
                 this.setState({index:2});
@@ -89,10 +91,12 @@ class Download extends Component {
         ,   len = packages.length
         ,   tempLen
         ,   tempPath;
+        console.log(packages);
 
         for (let i = 0;i < len;++i) {
             tempLen = packages[i].resource.length;
             tempPath = ('' == packages[i].local) ? (realPath + '/') : (realPath + '/' + packages[i].local + '/');
+            !fs.existsSync(tempPath) && fs.mkdirSync(tempPath);
             total += tempLen;
             count = total;
             for (let j = 0;j < tempLen;++j) {
@@ -100,7 +104,7 @@ class Download extends Component {
                     packages[i].resource[j], 
                     fs.createWriteStream(tempPath + packages[i].resource[j].split('/').pop()), 
                     state => {}, 
-                    () => --count
+                    () => {--count;}
                 );
             }
         }
