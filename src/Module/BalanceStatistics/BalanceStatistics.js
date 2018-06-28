@@ -15,28 +15,34 @@ export default class extends Component {
             list:[],
             startdate:tool.date('Y-m-01'),
             enddate:tool.date('Y-m-d'),
+            page:1,
+            limit:'10',
+            pageCount: 1,
+            count:1,
         };         
     }; 
     componentDidMount() {
-        api.post('balanceTotal', {token:'token'.getData()}, (res, ver) => {
+        api.post('balanceTotal', {token:'token'.getData(),page:this.state.page,limit:this.state.limit}, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-               this.setState({user_total:res.result.user_total,balance_total:res.result.balance_total,list:res.result.list});
+                this.setState({user_total:res.result.user_total,balance_total:res.result.balance_total,list:res.result.list,count:res.result.count});
+            }else{
+                handle();
             }
-        }
-        );
+        });
     }
-    render() {      
-        var list=this.state.list.map((item,index) => <tr>
-        <td>{index+1}</td>
-        <td>{item.user_mobile}</td>
-        <td>{item.user_name}</td>
-        <td>{item.user_mobile}</td>
-        <td>{item.card_name}</td>
-        <td>{item.balance}</td>
-        <td>{item.time}</td>
-        <td>{item.discount}</td>
-    </tr>)
+    render() {    
+        var list=this.state.list.map((item,index) => <tr key={'item'+index}>
+            <td>{index+1+(this.state.page-1)*10}</td>
+            <td>{item.card_number}</td>
+            <td>{item.card_name}</td>
+            <td>{item.discount}</td>
+            <td>{item.user_name}</td>
+            <td>{item.user_mobile}</td>
+            <td>{item.balance}</td>
+            <td>{item.time}</td>
+        </tr>
+        )
         return ( 
             <div>
                <Window title='余额统计' onClose={this.props.closeView}>   
@@ -46,8 +52,8 @@ export default class extends Component {
                             <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                       </div>
                       <div className="balancestatistics_title_left" >
-                         <span>累计会员数 ： <b>{this.state.user_total}</b></span>
-                         <span>累计会员余额 ： <b>￥{this.state.balance_total}</b></span>
+                         <span>累计会员数： <b>{this.state.user_total}</b></span>
+                         <span>累计会员余额： <b>￥{this.state.balance_total}</b></span>
                          <button>查询</button>
                       </div>
                       <div className="balancestatistics_title_right"></div>
@@ -66,217 +72,7 @@ export default class extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            {list}
                         </tbody>  
                     </table>
                     <div className="bothpages-footer">
@@ -286,8 +82,8 @@ export default class extends Component {
                             <span>下一页</span>
                             <span>尾页</span>
                        </div>
-                       <div className="bothpages-footer-all">第<span>1</span>页/共<span>4</span>页</div>
-                       <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
+                       <div className="bothpages-footer-all">第 <span>{this.state.page}</span> 页/共 <span>{this.state.pageCount}</span> 页</div>
+                       <div className="bothpages-footer-both">每页 <span>{this.state.limit}</span> 条，共 <span>{this.state.count}</span> 条</div>
                     </div>
                </Window> 
             </div>

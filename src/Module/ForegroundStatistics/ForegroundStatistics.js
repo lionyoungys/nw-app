@@ -19,15 +19,15 @@ export default class extends Component {
         console.log(this.state.pay_type)
         api.post('Operating', {
             token:'token'.getData()    
-        }, (res, ver) => {
-                if (ver && res) {
-                    console.log(res);
-                    this.setState({list:res.result})
-                }else{
-                    console.log(res.msg);
-                }
+        }, (res, ver,handle) => {
+            if (ver && res) {
+                console.log(res);
+                this.setState({list:res.result})
+            }else{
+                console.log(res.msg);
+                handle();
             }
-        );
+        });
     }
     render() {
         var list =  this.state.list.map((item,index) =>

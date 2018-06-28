@@ -77,7 +77,7 @@ export default class extends Component {
         return(<div>
             <Window title='营业日报' onClose={this.props.closeView}>  
                 <div className="ope-inc-head">
-                    <a>统计时间：{this.state.startdate}至 {this.state.enddate}</a>
+                    <a>统计时间：{this.state.startdate} 至 {this.state.enddate}</a>
                     <button className='e-btn' onClick={this.print}>打印</button>
                     <a>操作员：ranchong</a>
                 </div>

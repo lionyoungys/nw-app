@@ -145,7 +145,7 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemLists:res.result,type:res.result.typeArray('name'),})
+                this.setState({itemLists:res.result.type,type:res.result.type.typeArray('name'),})
             }
         }
         ); 

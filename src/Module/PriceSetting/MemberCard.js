@@ -28,7 +28,7 @@ export default class extends Component {
         api.post('cardType', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({cardtypes:res.result});
+                this.setState({cardtypes:res.result.cardsType});
             }
         }
         );
@@ -42,16 +42,14 @@ export default class extends Component {
             api.post('delCardType', {
                 token:'token'.getData(),
                 id:this.state.id
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res)
                     tool.ui.success({callback:(close, event) => {
                         close();
                     }}); 
                 }else{
-                        tool.ui.error({msg:res.msg,callback:(close, event) => {
-                            close();
-                        }});
+                    handle(); 
                 }
                 close();
                 this.componentDidMount();
@@ -72,16 +70,14 @@ export default class extends Component {
             price:this.state.price,
             give_price:this.state.give_price,
             made_price:this.state.made_price
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({show:false,card_type:'',discount:'',price:'',give_price:'',made_price:''})
                 this.componentDidMount();
                 
             }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
+               handle();
             }
         }
     

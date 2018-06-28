@@ -11,21 +11,55 @@ import './Takeclothes.css';
 export default class extends Component {   
     constructor(props) {
         super(props);   
+        let card = this.props.card || {};
         this.state = {
             show:false,
             number:'',
             list:[],
             count:'0', 
             id:0, 
-            index:0,                            
+            index:0, 
+            cid: card.id || '',    //卡编号id
+            user_mobile: card.user_mobile || '',    //电话
+            user_name: card.user_name || '',    //姓名
+            sex: card.sex || '',    //性别
+            birthday: card.birthday || '',    //生日
+            address: card.address || '',    //地址
+            integrals: card.integral,    //积分
+            balance: card.balance || '',    //余额
+            recharge_number: card.recharge_number || '',    //卡号
+            card_name: card.card_name || '',    //卡类型
+            discount: card.discount || '',    //折扣
+            time: card.time || ''    //售卡日期                           
         };
         this.onclose = this.onclose.bind(this); 
         this.takecloth = this.takecloth.bind(this);  
-        this.takeclothesdetail = this.takeclothesdetail.bind(this);    
+        this.takeclothesdetail = this.takeclothesdetail.bind(this);   
+        this.M1Read = this.M1Read.bind(this); 
     };   
     onclose (){
         this.setState({show:false});
     } 
+    M1Read(e) {
+        let obj = {};
+        obj.callback = (res) => {
+            this.setState({
+                cid:res.id,
+                user_mobile:res.user_mobile,
+                user_name:res.user_name,
+                sex:res.sex,
+                birthday:res.birthday,
+                balance:res.balance,
+                integrals:res.integrals,
+                card_name:res.card_name,
+                discount:res.discount,
+                time:res.time,
+                recharge_number:res.recharge_number,
+                address:res.address,
+            });
+        }
+        EventApi.M1Read(obj);
+    }
     // 搜索订单号查询订单
     takecloth() {
         if(this.state.number=='')
@@ -70,7 +104,7 @@ export default class extends Component {
            return (
                 <Window title='取衣' onClose={this.props.closeView}>   
                     <div className="Takeclothes-title">
-                       <button className="e-btn Takeclothes-title-btn">读卡</button>
+                       <button className="e-btn Takeclothes-title-btn" onClick={this.M1Read}>读卡</button>
                        <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
                        <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
                     </div>  

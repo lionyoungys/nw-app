@@ -67,7 +67,7 @@ export default class extends Component {
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
-                    this.setState({brandlist:res.result});
+                    this.setState({brandlist:res.result.list});
                 }else{
                     console.log(res.msg);
                     tool.ui.error({msg:res.msg,callback:(close) => {
