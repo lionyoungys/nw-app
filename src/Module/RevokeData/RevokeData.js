@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import './RevokeData.css';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page';
 
 export default class extends Component {   
     constructor(props) {
@@ -137,7 +138,7 @@ export default class extends Component {
                         </ul>
                       </div>
                    
-             
+                <Page />
              </Window> 
         );
     }

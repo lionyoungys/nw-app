@@ -29,7 +29,7 @@ export default class extends Component {
         api.post('balanceTotal', { token: 'token'.getData(), page: page, limit: this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ user_total: res.result.user_total, balance_total: res.result.balance_total, list: res.result.list, count: res.result.count, page:page });
+                this.setState({ user_total: res.result.user_total, balance_total: res.result.balance_total, list: res.result.list, count: res.result.count, page:page});
             } else {
                 handle();
             }
@@ -51,8 +51,8 @@ export default class extends Component {
             <div>
                <Window title='余额统计' onClose={this.props.closeView}>   
                     <div className="bal-head" >
-                        <span>累计会员数： <b>{this.state.user_total}</b></span>
-                        <span>累计会员余额： <b>￥{this.state.balance_total}</b></span>
+                        <span>累计会员数：<b>{this.state.user_total}</b></span>
+                        <span>累计会员余额：<b>￥{this.state.balance_total}</b></span>
                     </div>
                     <table className='ui-table-base bal-sta-tab'>
                         <thead>
@@ -71,7 +71,6 @@ export default class extends Component {
                             {list}
                         </tbody>  
                     </table>
-                    {/* current:当前页数,默认1;total:总条目,默认0;fetch:每页条目,默认20;callback:点击页码处理,返回参数为跳转的页码; */}
                     <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>   
                </Window> 
             </div>

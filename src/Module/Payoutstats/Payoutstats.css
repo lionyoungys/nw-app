@@ -258,7 +258,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Payout-detail-title b i{font-style:normal;color:#063781}
 .Payout-detail table{
     width:870px;
-    height:176px;
+    height:122px;
     border:1px solid #8db2e3;
     max-width:870px;
     overflow-x:auto;
@@ -290,8 +290,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .Payout-detail table tbody{
     width:auto;
-    height:130px;
-    max-height:130px;
+    height:85px;
+    max-height:85px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;
