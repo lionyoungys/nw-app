@@ -31,14 +31,11 @@ class Main extends Component {
 
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
-            console.log(res);
             if (ver && res.has_upd) {
-                console.log(res);
                 let files = [];
                 try {
                     files = JSON.parse(res.package);
                 } catch (e) {}
-                console.log(files);
                 this.setState({index:1,version:res.last_version,log:res.desc,files:files});
             } else {
                 this.setState({index:2});
@@ -48,7 +45,6 @@ class Main extends Component {
     toggleStep(e) {this.setState({index:e.target.dataset.step})}
 
     render() {
-        console.log(this.state.files);
         return (
             <div id='login' className='launch'>
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
