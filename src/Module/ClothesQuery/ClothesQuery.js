@@ -102,7 +102,7 @@ export default class extends Component {
                                 <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
                             </div>   
                             <div>
-                                <span>&emsp;格架号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
+                                <span>&emsp;衣挂号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
                             </div>
                         <div className='clothesquery_top_btn'>
                                 <button className='e-btn' onClick={this.clear}>清空</button>

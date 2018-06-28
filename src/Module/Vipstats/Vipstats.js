@@ -31,7 +31,7 @@ export default class extends Component {
                                <thead>
                                    <tr>
                                        <th></th>
-                                       <th>卡类别</th>
+                                       <th>卡类型</th>
                                        <th>刷卡数</th>
                                        <th>刷卡金额</th>
                                    </tr>
@@ -64,7 +64,7 @@ export default class extends Component {
                                <thead>
                                    <tr>
                                        <th></th>
-                                       <th>卡编号</th>
+                                       <th>卡ID</th>
                                        <th>卡号</th>
                                        <th>发卡店</th>
                                        <th>客户电话</th>

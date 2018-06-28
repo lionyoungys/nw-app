@@ -126,7 +126,7 @@ export default class extends Component {
                             <td>客户电话</td>
                             <td>客户姓名</td>
                             <td>时间</td>
-                            <td>充值卡号</td>
+                            <td>卡号</td>
                             <td>卡类型</td>
                         </tr>
                     </thead>

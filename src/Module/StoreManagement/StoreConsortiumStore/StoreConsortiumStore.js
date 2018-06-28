@@ -10,18 +10,18 @@ export default class extends Component {
                                
             {/*没有联营店  */}
             <div className='store_management_content_associatedShop_none'>
-                <p className='store_management_content_title'>您没有与任何店铺联营</p>
+                <p className='store_management_content_title'>您没有与任何门店联营</p>
                 <div className='store_management_content_ass_non_left'>
-                    <p className='tore_management_content_ass_non_left_p'>如果该店铺是总店</p>
+                    <p className='tore_management_content_ass_non_left_p'>如果该门店是总店</p>
                     <div className='store_management_content_ass_non_left_bot'>
-                        <p>请将店铺ID告诉分店，由分店申请加入</p>
-                        <p>店铺ID：1229</p>
-                        <p>店铺名称：诗奈尔大望路店</p>
+                        <p>请将商户ID告诉分店，由分店申请加入</p>
+                        <p>门店ID：1229</p>
+                        <p>门店名称：诗奈尔大望路店</p>
                         <button className='e-btn'>申请列表</button>
                     </div>
                 </div>
                 <div className='store_management_content_ass_non_left'>
-                    <p className='tore_management_content_ass_non_left_p'>如果该店铺是分店</p>
+                    <p className='tore_management_content_ass_non_left_p'>如果该门店是分店</p>
                     <div className='store_management_content_ass_non_left_bot'>
             
                         <h2>&emsp;</h2>

@@ -48,7 +48,7 @@ export default class extends Component {
                                     <span>卡号：</span><b>{this.state.user_info[this.state.index].recharge_number}</b>
                                   </div>
                                   <div>
-                                    <span>卡编号：</span><b>{this.state.user_info[this.state.index].card_number}</b>
+                                    <span>卡ID：</span><b>{this.state.user_info[this.state.index].card_number}</b>
                                   </div>
                                   <div>
                                     <span>姓名：</span><b>{this.state.user_info[this.state.index].user_name}</b>
@@ -73,7 +73,7 @@ export default class extends Component {
                                     <span>卡号：</span><input type="text"/>
                                   </div>
                                   <div>
-                                    <span>卡编号：</span><b>0258</b>
+                                    <span>卡ID：</span><b>0258</b>
                                   </div>
                                   <div>
                                     <span>姓名：</span><b>吱吱</b>

@@ -420,7 +420,7 @@
     font-size: 14px;
 }
 /* 分页组件样式 */
-.ui-page{height: 22px;font-size: 12px;text-align: right}
+.ui-page{height: 22px;font-size: 12px;text-align: right;position: absolute;bottom:17px;right:21px;}
 .ui-page>i{font-style: normal;color: red}
 .ui-page>span{
     display: inline-block;

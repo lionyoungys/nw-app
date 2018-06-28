@@ -70,7 +70,7 @@ export default class extends Component {
                               <tr>
                                   <th></th>
                                   <th>流水号</th>
-                                  <th>店铺ID</th>
+                                  <th>商户ID</th>
                                   <th>店员姓名</th>
                                   <th>衣物件数</th>
                                   <th>金额</th>

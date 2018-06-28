@@ -14,7 +14,7 @@ export default class extends Component {
                <div>
                    <div className="barcodeprinting">选择打印机</div>
                    <div className="barcodeprinting-div">
-                       <span>衣物条码打印机:</span>
+                       <span>衣物编码打印机:</span>
                        <Select option={['手机号','用户名','密码']} selected='密码'  onChange={value => console.log(value)}/>
                        <button>打 印 测 试 页</button>
                    </div>

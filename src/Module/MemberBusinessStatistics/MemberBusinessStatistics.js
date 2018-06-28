@@ -59,7 +59,7 @@ export default class extends Component {
                     <table className='ui-table-base mem_bus_sta_table_two'>
                         <thead>
                             <tr>
-                                <td>卡编号</td>
+                                <td>卡ID</td>
                                 <td>卡号</td>
                                 <td>发卡店</td>
                                 <td>客户电话</td>

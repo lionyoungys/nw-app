@@ -19,14 +19,14 @@ export default class extends Component {
         this.order = this.order.bind(this);
     };
     order (){
-        api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver,handle) => {
+        api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});
-            }else{
-                handle();
+                
             }
-        });
+            }
+        );
     }
     render() {
         var list = this.state.list.map((item, index) => <tr key={'item' + index}>
@@ -41,19 +41,19 @@ export default class extends Component {
             <td>{item.time}</td>
         </tr>
         )
-        // var item = this.state.item.map((item, index) => <tr key={'item' + index}>
-        //     <td>{index+1}</td>
-        //     <td>{item.operator}</td>
-        //     <td>{item.user_mobile}</td>
-        //     <td>{item.serialsn}</td>
-        //     <td>{item.clean_sn}</td>
-        //     <td>{item.clothing_number}</td>
-        //     <td>{item.clothing_name}</td>
-        //     <td>{item.clothing_color}</td>
-        //     <td>{item.clothing_grids}</td>
-        //     <td>{item.clothing_type}</td>
-        // </tr>
-    // )
+        var item = this.state.item.map((item, index) => <tr key={'item' + index}>
+            <td>{index+1}</td>
+            <td>{item.operator}</td>
+            <td>{item.user_mobile}</td>
+            <td>{item.serialsn}</td>
+            <td>{item.clean_sn}</td>
+            <td>{item.clothing_number}</td>
+            <td>{item.clothing_name}</td>
+            <td>{item.clothing_color}</td>
+            <td>{item.clothing_grids}</td>
+            <td>{item.clothing_type}</td>
+    </tr>
+    )
 
         return (            
             <Window title='未付款统计' onClose={this.props.closeView}>
@@ -63,13 +63,13 @@ export default class extends Component {
                         <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} /></div>
                     </div>
                     <div className="unpaidstatistics_dataright">
-                        <button type='button' className='e-btn' onClick = {this.order}>查询</button>
+                        <button type='button' className='e-btn ' onClick = {this.order}>查询</button>
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">
-                    <span>总衣物：<a>{this.state.itemCount || 0} 件</a></span>
-                    <span>可折金额：<a>{this.state.discount_amount ||0} 元</a></span>
-                    <span>不可折金额：<a>{this.state.amount ||0} 元</a></span>
+                    <span>  总衣物：<a>{this.state.itemCount}件</a></span>
+                    <span>  可折金额：<a>{this.state.discount_amount}元</a></span>
+                    <span>  不可折金额：<a>{this.state.amount}元</a></span>
                 </div>
                 <p className = 'unp-sta-res-num'>已为您找到{this.state.itemCount}条数据</p>
                 {/* 表格部分 欠费信息*/}
@@ -88,8 +88,8 @@ export default class extends Component {
                             <td>日期</td>
                         </tr>
                     </thead>
-                    <tbody>                                                      
-                        {list}                        
+                    <tbody>                                                                           
+                            {list}                                                   
                     </tbody>
                 </table>
                 

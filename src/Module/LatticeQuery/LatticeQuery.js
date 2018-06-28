@@ -54,7 +54,6 @@ export default class extends Component {
             );
         }
         return (
-
             <Window title='格架查询' onClose={this.props.closeView}>
                <div className="LatticeQuery-div">
                   <table>

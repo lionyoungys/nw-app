@@ -80,7 +80,7 @@ export default class extends Component {
                                    <th>客户电话</th>
                                    <th>客户姓名</th>
                                    <th>时间</th>
-                                   <th>充值卡号</th>
+                                   <th>卡号</th>
                                    <th>卡类型</th>
                                </tr>
                            </thead>

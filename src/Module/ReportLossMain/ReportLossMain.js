@@ -55,7 +55,7 @@ export default class extends Component {
                     <Window title='挂失-卡信息详情' onClose={() => this.setState({show:false})} width='632' height='337'>
                         {
                     <div className='reportloss'>
-                    <div className='cardnumber'>卡编号：{this.state.user_info[this.state.index].card_number} </div>
+                    <div className='cardnumber'>卡ID：{this.state.user_info[this.state.index].card_number} </div>
                     <div className='border'>
                     <div className='recharge recharge-second'>
                          <div>

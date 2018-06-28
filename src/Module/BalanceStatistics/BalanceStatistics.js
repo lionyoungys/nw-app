@@ -16,7 +16,7 @@ export default class extends Component {
             startdate:tool.date('Y-m-01'),
             enddate:tool.date('Y-m-d'),
             page:1,
-            limit:'10',
+            limit:15,
             pageCount: 1,
             count:1,
         };         

@@ -203,7 +203,7 @@ export default class extends Component {
                               <tr>
                                   <th>商品编号</th>
                                   <th>商品名称</th>
-                                  <th>折扣</th>
+                                  <th>折扣率</th>
                                   <th>库存</th>
                                   <th>单价</th>                                                                 
                               </tr>
@@ -364,7 +364,7 @@ export default class extends Component {
                       <div className="commoditysales-footerdiv-rightboth">总件数: 89</div>
                       <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥89.00</div>                    
                       <div className="commoditysales-footerdiv-rightboth">
-                          <button type='button' className='e-btn middle high'>收银</button>
+                          <button type='button' className='e-btn middle high'>收款</button>
                       </div>
                       <div className="commoditysales-button">
                         <button type='button' className='e-btn' >开钱箱</button>&nbsp;

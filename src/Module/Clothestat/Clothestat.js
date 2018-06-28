@@ -158,24 +158,24 @@ export default class extends Component {
                                        <th>衣物名称</th>
                                        <th>衣物颜色</th>
                                        <th>衣物网格</th>
-                                       <th>衣物处理</th>
+                                       <th>衣物类别</th>
                                        <th>价格</th>
                                        <th>品牌</th>
-                                       <th>折后价格</th>
+                                       <th>折后价</th>
                                        <th>备注</th>
                                        <th>状态</th>
                                        <th>日期</th>
                                        <th>时间</th>
-                                       <th>交货定期</th>
-                                       <th>交货日期</th>
-                                       <th>格架号</th>
+                                       <th>交活定期</th>
+                                       <th>交活日期</th>
+                                       <th>衣挂号</th>
                                        <th>是否上传</th>
                                        <th>附加服务</th>
                                        <th>附加费</th>
-                                       <th>洗后效果</th>
+                                       <th>洗后预估</th>
                                        <th>衣物件数</th>
                                        <th>客户姓名</th>
-                                       <th>充值卡号</th>
+                                       <th>卡号</th>
                                        <th>卡类型</th>
                                        <th>单位</th>
                                        <th>是否打印</th>

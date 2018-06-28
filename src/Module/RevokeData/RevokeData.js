@@ -42,7 +42,7 @@ export default class extends Component {
     render() {
        var arr = ['查询','打印','退出'].map((item,index) =><button key={index} data-index={index} onClick={this.arrbutton}>{item}</button>);
        var revokedata_detail = ['流水号','撤单日期','操作店员','撤单原因','原金额','金额','客户电话','客户姓名'].map((item,index)=><span>{item}</span>)
-       var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价格','备注','状态','收衣时间','交货日期','格架号','附加服务','衣物件数','客户姓名','充值卡号','卡类型','住址','折扣率'
+       var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价','备注','状态','收衣时间','交活日期','衣挂号','附加服务','衣物件数','客户姓名','充值卡号','卡类型','住址','折扣率'
        ].map((item,index)=><span>{item}</span>)
        var orderBack = this.state.orderBack.map((item,index)=>  <li>
        <span>{index+1}</span>

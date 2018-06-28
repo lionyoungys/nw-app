@@ -126,7 +126,7 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
-                        <div style={style}>请扫描或输入会员卡号</div>
+                        <div style={style}>请扫描或输入卡号</div>
                         <input type='input' className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button 
                             type='button' 

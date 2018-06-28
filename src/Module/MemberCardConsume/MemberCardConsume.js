@@ -100,7 +100,7 @@ export default class extends Component {
         </div>
         <div>
         <span className='memberinfoupdate_lefttopdirection'>
-           <span>卡编号:</span><b >324324234234</b>
+           <span>卡ID:</span><b >324324234234</b>
         </span>
         <span className='memberinfoupdate_rightdirection'>
            <span>付款方式:</span><input type='text' className='inputselectborder'/>

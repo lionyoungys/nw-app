@@ -120,7 +120,7 @@ export default class extends Component {
                       <div className="Takeclothesdetail-title-right">
                          <div>姓名：{this.state.listuser.user_name}</div>
                          <div>手机号：{this.state.listuser.user_mobile}</div>
-                         <div>会员卡号：{this.state.listuser.card_number}</div>
+                         <div>卡号：{this.state.listuser.card_number}</div>
                       </div>
                     </div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab">

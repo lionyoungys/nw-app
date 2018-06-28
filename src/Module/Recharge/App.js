@@ -73,7 +73,7 @@ export default class extends React.Component {
     M1Read(e) {
         let obj = {};
         if (e.target.dataset.query) {
-            if ('' == this.state.number) return tool.ui.error({msg:'请输入会员卡号',callback:close => close()});
+            if ('' == this.state.number) return tool.ui.error({msg:'请输入卡号',callback:close => close()});
             obj.number = this.state.number;
         }
         obj.callback = (res) => {
@@ -106,7 +106,7 @@ export default class extends React.Component {
                         <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                     </div>
-                    <div><label className='e-label'>卡编号：</label>{this.state.cid}</div>
+                    <div><label className='e-label'>卡ID：</label>{this.state.cid}</div>
                 </div>
                 <div className='recharge recharge-second'>
                     <div>

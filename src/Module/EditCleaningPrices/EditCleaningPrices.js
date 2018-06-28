@@ -16,8 +16,7 @@ export default class extends Component {
         return (
                <Window title='编辑洗护价格' onClose={this.props.closeView} width="510" height="312"> 
                         <div className="edit_price">
-                            <div className="edit_price-div">
-                                <div className='edit_price-div-select'><span>衣物处理：</span><Select option={['干洗','水洗','烘干']} selected='干洗' onChange={value => console.log(value)} /></div>
+                            <div className="edit_price-div">                                
                                 <div className='edit_price-div-select'><span>衣物类别：</span><Select option={['上衣','裤装','小件']} selected='上衣' onChange={value => console.log(value)}/></div>
                             </div>
                             <div className="edit_price-div">

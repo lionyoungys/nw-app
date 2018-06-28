@@ -21,7 +21,7 @@ export default class extends Component {
                    <div className="Customerquery-title">
                         <div><span>客户电话：</span><input type="text" /></div>
                         <div><span>客户姓名：</span><input type="text" /></div>
-                        <div><span>充值卡号：</span><input type="text" /></div>
+                        <div><span>卡号：</span><input type="text" /></div>
                         <div><span>卡类型：</span><Select option={['金卡', '钻石卡']} selected='金卡' onChange={value => console.log(value)} /></div>
                         <div><span>起始日期：</span><input type="date" className="select"/></div>
                         <div><span>结束日期：</span><input type="date" className="select"/></div>
@@ -132,7 +132,7 @@ export default class extends Component {
                                     <tr>
                                         <th></th>
                                         <th>流水号</th>
-                                        <th>店铺简称</th>
+                                        <th>门店简称</th>
                                         <th>店员姓名</th>
                                         <th>衣物件数</th>
                                         <th>金额</th>
@@ -140,7 +140,7 @@ export default class extends Component {
                                         <th>折扣率 </th>
                                         <th>收银类型</th>
                                         <th>时间</th>
-                                        <th>充值卡号</th>
+                                        <th>卡号</th>
                                         <th>卡类型</th>
                                     </tr>
                                 </thead>

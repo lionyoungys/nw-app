@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page';
 import ReportLossQuery from './ReportLossQuery.css'
 
 export default class extends Component {   
@@ -71,7 +72,8 @@ export default class extends Component {
                            </tr>
                        </tbody>
                    </table>
-                </div>  
+                </div> 
+                <Page /> 
             </Window>
 
        );

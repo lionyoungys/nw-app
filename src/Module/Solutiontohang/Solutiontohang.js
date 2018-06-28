@@ -30,7 +30,7 @@ export default class extends Component {
         return (
             <Window title='解除挂失( 仅实体店卡 )' onClose={this.props.closeView} width='632' height='337'>           
                 <div className='reportloss'>
-                        <div className='cardnumber'>卡编号：1254879652 <b>(已挂失)</b></div>
+                        <div className='cardnumber'>卡ID：1254879652 <b>(已挂失)</b></div>
                         <div className='border'>
                             <div className='recharge recharge-second'>
                                     <div>

@@ -52,7 +52,7 @@ export default class extends Component {
         // {/* 基本信息 */}
         <div className='store_management_content_baseInfo store_management_content_selected'>
                 <p className='store_management_content_title'>门店基本信息</p>
-                <div>门店编号：&emsp;<a>{this.state.id}</a></div>
+                <div>商户编号：&emsp;<a>{this.state.id}</a></div>
                 <div>网店状态：&emsp;<a>{this.state.mstatus=='12'?'未开通':this.state.mstatus=='11'?'休息中':'正常营业'}</a></div>
                 <div>门店名称：&emsp;<span className='store_management_disable_span'>{this.state.mname}</span></div>
                 <div>
