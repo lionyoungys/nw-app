@@ -31,6 +31,7 @@ class Main extends Component {
 
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
+            console.log(res);
             if (ver && res.has_upd) {
                 console.log(res);
                 let files = [];
@@ -47,6 +48,7 @@ class Main extends Component {
     toggleStep(e) {this.setState({index:e.target.dataset.step})}
 
     render() {
+        console.log(this.state.files);
         return (
             <div id='login' className='launch'>
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
@@ -86,6 +88,7 @@ class Download extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.files);
         let files = this.props.files
         ,   len = files.length
         ,   realPath = path.dirname(process.execPath)

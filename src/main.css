@@ -172,6 +172,8 @@ table{border-collapse: collapse}
 }
 .main-left-menu>div:last-child>.main-clothes{background-image: url(img/main-clothes.png)}
 .main-left-menu>div:last-child>.main-take{background-image: url(img/main-take.png)}
+.main-left-menu>div:last-child>.main-put-on{background-image: url(img/main-put-on.png)}
+.main-left-menu>div:last-child>.main-sell-goods{background-image: url(img/main-sell-goods.png)}
 .main-left-menu>div:last-child>.main-sale-card{background-image: url(img/main-sale-card.png)}
 .main-left-menu>div:last-child>.main-recharge{background-image: url(img/main-recharge.png)}
 .main-left-menu>div:last-child>.main-clothes-search{background-image: url(img/main-clothes-search.png)}

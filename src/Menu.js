@@ -114,6 +114,8 @@ export const leftMenu = [
         options:[
             {value:'收衣',class:'main-clothes',view:'clothes'},
             {value:'取衣',class:'main-take',view:'take_clothes'},
+            {value:'上挂',class:'main-put-on',view:'hangon'},
+            {value:'商品销售',class:'main-sell-goods',view:'commodity_sales'},
             {value:'售卡',class:'main-sale-card',view:'sale_card'},
             {value:'充值',class:'main-recharge',view:'recharge'}
         ]
