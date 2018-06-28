@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page';
 
 export default class extends Component {   
     constructor(props) {
@@ -365,7 +366,8 @@ export default class extends Component {
                            </tr>
                        </tbody>
                    </table>
-                </div>  
+                </div> 
+                <Page /> 
             </Window>
 
        );
