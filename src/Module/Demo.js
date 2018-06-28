@@ -9,6 +9,7 @@ import {Table} from '../UI/Table';
 import LayerBox from '../UI/LayerBox';
 import SelectSearch from '../UI/SelectSearch';
 import Select from '../UI/Select';
+import Page from '../UI/Page';
 
 export default class extends React.Component {
     constructor(props) {
@@ -118,6 +119,7 @@ export default class extends React.Component {
                 <label className='e-label'>label样式：</label><input type='text' className='e-input'/>
                 <div style={{padding:'30px'}}></div>
                 <input type='checkbox' className='e-checkbox'/>多选框样式
+                <Page/>
                 <Table border={true} full={true}/>
                 {
                     this.state.show
