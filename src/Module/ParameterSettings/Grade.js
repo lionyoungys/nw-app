@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -12,8 +13,11 @@ export default class extends Component {
             colorlist:[],
             colorname:'',
             index:0,
-            colorid:''
-        };         
+            colorid:'',   
+            page:1,
+            count:1,
+        };      
+        this.limit = 15;     
         this.addColorYES = this.addColorYES.bind(this);    
         this.deleteColor = this.deleteColor.bind(this);
         this.updateColorYES = this.updateColorYES.bind(this);
@@ -57,13 +61,16 @@ export default class extends Component {
             }
         );
     }
-    componentDidMount(){
+    query(page) {
+        page = page || this.state.page;
         api.post('gradeList', {
             token:'token'.getData(),
+            page: page, 
+            limit: this.limit
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
-                    this.setState({colorlist:res.result.list});
+                    this.setState({colorlist:res.result.list, count: res.result.count, page:page});
                 }else{
                     console.log(res.msg);
                     tool.ui.error({msg:res.msg,callback:(close) => {
@@ -73,6 +80,9 @@ export default class extends Component {
                 }
             }
         );
+    }
+    componentDidMount(){
+         this.query();
     }
     deleteColor(e){
         let index=e.target.dataset.index;
@@ -107,7 +117,7 @@ export default class extends Component {
     render() {      
         let colorlist = this.state.colorlist.map((item,index) => 
         <tr>
-            <td>{index+1}</td>
+            <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{this.state.colorlist[index].grade}</td>
             <td><b onClick={e => this.setState({show1:true,
                 colorname:this.state.colorlist[index].grade,
@@ -133,6 +143,7 @@ export default class extends Component {
                                   {colorlist}                         
                               </tbody>
                           </table>
+                          <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                        </div>
                     </div>
                     {

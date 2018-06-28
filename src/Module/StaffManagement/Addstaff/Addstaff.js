@@ -8,6 +8,7 @@ import '../StaffManagement.css';
 import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
 import Select from '../../../UI/Select';
+import Page from '../../../UI/Page';
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -264,6 +265,7 @@ export default class extends Component {
                             </tbody>
                         </table>
                     </div>
+                    <Page/>
                     {
                     this.state.show1
                     &&

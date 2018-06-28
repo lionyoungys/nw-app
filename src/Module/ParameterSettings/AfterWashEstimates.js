@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -12,8 +13,11 @@ export default class extends Component {
             brandlist:[],
             brandname:'',
             index:0,
-            brandid:''
-        };         
+            brandid:'',
+            page:1,
+            count:1,
+        };    
+        this.limit = 15;          
         this.addbrandYES = this.addbrandYES.bind(this);    
         this.deleteBrand = this.deleteBrand.bind(this);
         this.updatebrandYES = this.updatebrandYES.bind(this);
@@ -59,13 +63,16 @@ export default class extends Component {
             }
         );
     }
-    componentDidMount(){
+    query(page) {
+        page = page || this.state.page;
         api.post('forecastList', {
             token:'token'.getData(),
+            page: page, 
+            limit: this.limit
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
-                    this.setState({brandlist:res.result.list});
+                    this.setState({brandlist:res.result.list, count: res.result.count, page:page });
                 }else{
                     console.log(res.msg);
                     tool.ui.error({msg:res.msg,callback:(close) => {
@@ -75,6 +82,9 @@ export default class extends Component {
                 }
             }
         );
+    }
+    componentDidMount(){
+        this.query();
     }
     deleteBrand(e){
         let index=e.target.dataset.index;
@@ -109,7 +119,7 @@ export default class extends Component {
     render() {      
         let brandlist = this.state.brandlist.map((item,index) => 
         <tr>
-            <td>{index+1}</td>
+            <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{this.state.brandlist[index].forecast}</td>
             <td><b onClick={e => this.setState({show1:true,
                 brandname:this.state.brandlist[index].forecast,
@@ -135,6 +145,7 @@ export default class extends Component {
                                   {brandlist}                         
                               </tbody>
                           </table>
+                          <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                        </div>
                     </div>
                     {

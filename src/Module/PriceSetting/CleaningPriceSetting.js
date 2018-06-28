@@ -8,7 +8,8 @@ import Select from '../../UI/Select';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
-import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment'
+import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment';
+import Page from '../../UI/Page'
 export default class extends Component {
     constructor(props) {
         super(props);

@@ -53,8 +53,8 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({
-                    typeLists:res.result,
-                    typeList:res.result.typeArray('name'),
+                    typeLists:res.result.list,
+                    typeList:res.result.list.typeArray('name'),
                   
                 })
             }else{

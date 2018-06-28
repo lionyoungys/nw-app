@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './ClothesQuery.css';
+import Page from '../../UI/Page'
 
 export default class extends Component {
     constructor(props) {
@@ -22,15 +23,20 @@ export default class extends Component {
             clothing_color:'',
             grid_num:'',
             clothes:[],
-            count:0
+            count:0,
+            page:1,
         }
+        this.limit = 15;
         this.query = this.query.bind(this)
         this.clear = this.clear.bind(this)
     }; 
     clear(){
-        this.setState({clothes:[],count:0})
+        this.setState({clothes:[],count:0,page:1})
     }  
-    query(){
+    query(page){
+        console.log(page);
+        if (page == this.state.page) return;
+        page = page || this.state.page;
         api.post('clothesQuery', {token:'token'.getData(),
         start_time:this.state.start_time,
         end_time:this.state.end_time,
@@ -41,14 +47,17 @@ export default class extends Component {
         user_mobile:this.state.user_mobile,
         clothing_name:this.state.clothing_name,
         clothing_color:this.state.clothing_color,
-        grid_num:this.state.grid_num
-    }, (res, ver) => {
+        grid_num:this.state.grid_num,
+        page:page,
+        limit:this.limit,
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({clothes:res.result.list,count:res.result.count})
+            }else{
+                handle;
             }
-        }
-        );
+        });
     }
     render() {
         var revokedata_detail = ['流水号','衣物编码','衣物名称','颜色','格架号','状态','姓名','手机','卡号'].map((item,index)=><span>{item}</span>)
@@ -64,7 +73,6 @@ export default class extends Component {
                 <span>{item.user_name}</span>
                 <span>{item.user_mobile}</span>
                 <span>{item.card_number}</span>
-
                 <span></span>
             </li>
        );
@@ -106,7 +114,7 @@ export default class extends Component {
                             </div>
                         <div className='clothesquery_top_btn'>
                                 <button className='e-btn' onClick={this.clear}>清空</button>
-                                <button className='e-btn' onClick={this.query}>查询</button>
+                                <button className='e-btn' onClick={()=>this.query(1)}>查询</button>
                             </div>
                             
                         </div>
@@ -127,16 +135,7 @@ export default class extends Component {
                         </ul>
                     </div>
                </div>
-               <div className="bothpages-footer">
-                       <div className="bothpages-footer-btn">
-                            <span>首页</span>
-                            <span>上一页</span>
-                            <span>下一页</span>
-                            <span>尾页</span>
-                       </div>
-                       <div className="bothpages-footer-all">第<span>1</span>页/共<span>4</span>页</div>
-                       <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
-                </div>   
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
             </Window>
         )
     }

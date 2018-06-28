@@ -9,6 +9,7 @@ import Window from '../../../UI/Window';
 import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
 import {topMenu} from '../../../Menu.js';
+import Page from '../../../UI/Page'
 export default class extends Component {   
     constructor(props) {
         super(props);   
@@ -76,6 +77,7 @@ export default class extends Component {
            </Window>
            }
         </tr>
+        
         );
 
         let menuList = topMenu.map((obj, index) => 
@@ -131,6 +133,7 @@ export default class extends Component {
                             </tbody>
                         </table>
                     </div>
+                    <Page/>
                 </div>
             
         );           

@@ -11,6 +11,19 @@
                 marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
             });
             this.win.close();
+        },
+        insertById:function(elem, value) {
+            if ('string' === typeof elem && '' !== elem) {
+                var node = document.getElementById(elem);
+                if ('object' === typeof node && node instanceof Node) node.innerHTML = value;
+            }
+        },
+        now:function() {
+            var date = new Date();
+            this.insertById(
+                'now', 
+                date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+            );
         }
     };
     c.win.on('close', function() {

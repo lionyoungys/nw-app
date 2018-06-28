@@ -24,9 +24,11 @@ export default class extends Component {
     }; 
     componentDidMount() { this.query() };
     query(page) {
+        console.log(page);
+        if (page == this.state.page) return;
         page = page || this.state.page;
         // 这里接口需要更改
-        api.post('balanceTotal', { token: 'token'.getData(), page: this.state.page, limit: this.limit }, (res, ver, handle) => {
+        api.post('balanceTotal', { token: 'token'.getData(), page:page, limit: this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
                 this.setState({ user_total: res.result.user_total, balance_total: res.result.balance_total, list: res.result.list, count: res.result.count, page: page });

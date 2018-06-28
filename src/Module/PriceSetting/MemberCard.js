@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import './MemberCard.css'
 import Window from '../../UI/Window';
+import Page from '../../UI/Page'
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -17,21 +18,32 @@ export default class extends Component {
         made_price:'',
         discount:'',
         index:0,
-        id:''
+        id:'',
+        page:1,
+        count:1,
     }
+        this.limit = 15;
         this.addMemberCardYes=this.addMemberCardYes.bind(this);
         this.delete=this.delete.bind(this);
         this.mod=this.mod.bind(this);
         this.updateMemberCardYes=this.updateMemberCardYes.bind(this);
     };   
-    componentDidMount(){
-        api.post('cardType', {token:'token'.getData()}, (res, ver) => {
+    query(page) {
+        page = page || this.state.page;
+        api.post('cardType', {
+            token:'token'.getData(),
+            page: page, 
+            limit: this.limit
+        }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({cardtypes:res.result.cardsType});
+                this.setState({cardtypes:res.result.cardsType, count: res.result.count, page:page });
             }
         }
         );
+    }
+    componentDidMount(){
+        this.query();
     }
     delete(e){
         let index=e.target.dataset.write;
@@ -163,7 +175,9 @@ export default class extends Component {
                           {cardtypes}
                       </tbody>
                   </table>
+                  <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                </div>
+              
             </div>
             {
                         this.state.show

@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import LayerBox from '../../UI/LayerBox';
+import Page from '../../UI/Page'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -16,8 +17,11 @@ export default class extends Component {
             end_number:'',
             id:'',
             grid:[],
-            write:''
-        };         
+            write:'',  
+            page:1,
+            count:1,
+        };      
+        this.limit = 15;    
         this.addlatticeYES = this.addlatticeYES.bind(this);   
         this.updatelatticeYES = this.updatelatticeYES.bind(this);
         this. modlattice = this.modlattice.bind(this); 
@@ -56,11 +60,17 @@ export default class extends Component {
         }});
     }
     componentDidMount() {
-        api.post('grid', {token:'token'.getData()
+         this.query();
+    }
+    query(page) {
+        page = page || this.state.page;
+        api.post('grid', {token:'token'.getData(),
+        page: page, 
+        limit: this.limit
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({grid:res.result})
+                this.setState({grid:res.result, count: res.result.count, page:page})
             }else{
                 console.log(res.msg);
                 tool.ui.error({msg:res.msg,callback:(close) => {
@@ -139,7 +149,7 @@ export default class extends Component {
     render() {      
         let grid = this.state.grid.map((item,index)=>
         <tr>
-                <td>{index+1}</td>
+                <td>{index+1+(this.state.page-1)*this.limit}</td>
                 <td>{item.name}</td>
                 <td>{item.start_number}</td>
                 <td>{item.end_number}</td>
@@ -174,6 +184,7 @@ export default class extends Component {
                                   {grid}
                               </tbody>
                           </table>
+                          <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                        </div>
                     </div>
                     {

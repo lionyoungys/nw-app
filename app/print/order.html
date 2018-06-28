@@ -16,15 +16,57 @@
     <i class="dashed"></i>
     <div>订单号:<span id="sn">68574930296857483734</span></div>
     <div><img id="barcode" class="barcode"></div>
-
-
+    <div>打印时间:<span id="now"></span></div>
+    <i class="dashed empty"></i>
+    <div>衣物编码&emsp;&emsp;衣物名称&emsp;&emsp;颜色</div>
+    <div id="clothes"></div>
+    <i class="dashed empty"></i>
+    <div>总件数:<span id="count">3</span></div>
+    <div>总金额:&yen;<span id="total">30000</span></div>
+    <div>可折金额:&yen;<span id="dis_amount">30000</span></div>
+    <div>不可折金额:&yen;<span id="amount">30000</span></div>
+    <div>付款方式:<span id="gateway">现金</span></div>
+    <div>折扣率:<span id="discount">80%</span></div>
+    <div>折后价:<span id="real_amount">10000</span></div>
+    <div>优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span></div>
+    <div>现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span></div>
+    <div>实收:&yen;<span id="pay_amount">11554</span></div>
+    <div>找零:&yen;<span id="change">894</span></div>
+    <div>欠款:&yen;<span id="debt">50</span></div>
+    <div>卡号:<span id="number">454555444444454</span></div>
+    <div>余额:&yen;<span id="balance">4555</span></div>
+    <i class="dashed"></i>
+    <div>客户姓名:<span id="member">yangyunlong</span></div>
+    <div>客户电话:<span id="phone">15011540794</span></div>
+    <div>取衣时间:<span id="time">2018-11-12 05:07:00</span></div>
+    <i class="dashed"></i>
+    <div>操作员:<span id="employee">cidefdf</span></div>
+    <div>店铺地址:<span id="addr">dfdffddfdfdfdfdfffd</span></div>
+    <div>服务热线:<span id="mphone">01055445655</span></div>
+    <i class="dashed"></i>
+    <div id="ad">广告地址打发打发发达地方的打发打发打发打发的</div>
     <!-- js -->
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
 <script>
 nw.Window.get().showDevTools();
     window.onload = function() {
+        common.now();
         common.barcode('#barcode', '68574930296857483734');
+        for (var i = 0;i < 2;++i) {
+            common.insertById(
+                'clothes', 
+                '<i class="empty"></i>' + 
+                '<div>3958674958673029 上衣 灰色</div>' +
+                '<div>品牌:香奈儿</div>' +
+                '<div>瑕疵:各种问题</div>' +
+                '<div>洗后预估:发白,变丑</div>' +
+                '<div>单价:1500.00 打折</div>' +
+                '<div>加价工艺名称:100 不打折</div>' +
+                '<div>加价工艺名称2:10000.00 不可打折</div>'
+            );
+        }
+        
     }
 </script>
 </body>

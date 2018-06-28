@@ -22,7 +22,7 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({goodtypelist:res.result})
+                this.setState({goodtypelist:res.result.list})
             }
         }
         ); 
