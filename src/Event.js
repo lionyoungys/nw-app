@@ -6,10 +6,10 @@
         nw.Window.open('login.html', nw.App.manifest.loginWindow);
         win.close();
     }
-    e.print = function(pageName) {    //打印
-        //let win = nw.Window.get();
-        nw.Window.open('print/' + pageName + '.html');
-        //win.close();
+    e.print = function(pageName, param) {    //打印
+        nw.Window.open(
+            'print/' + pageName + '.html' + ( ('object' === typeof param && param instanceof Object) ? ('?' + tool.toUrlString(param)) : '' )
+        );
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')

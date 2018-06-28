@@ -56,8 +56,9 @@
                 //使用encodeURIComponent将参数值中的特殊字符进行转义防止发送请求时缺省掉特殊字符
                 str += ( k + '=' + encodeURIComponent(object[k]) + '&' );
             }
+            return str.substr(0, (str.length - 1) );
         }
-        return str.substr(0, (str.length - 1) );
+        return str;
     }
 
     /**
