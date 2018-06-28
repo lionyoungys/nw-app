@@ -32,8 +32,8 @@
 }
 .clothestat-tab table tbody{
     width:auto;
-    height:156px;
-    max-height:156px;
+    height:135px;
+    max-height:135px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;
@@ -41,7 +41,6 @@
 .clothestat-tab table tbody tr{width:870px;height:25px;}
 .clothestat-tab table tbody tr:nth-child(odd){background:#fff;}
 .Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
-
 .clothestat-tab table tbody tr td{
     width:88px;
     height:25px;
@@ -55,3 +54,54 @@
     width:31px;
     min-width:31px;
 }
+
+.clothall{
+    width:330px;
+    height:30px;
+    line-height:30px;
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:13px;
+}
+.clothall-tab{
+    width:262px;
+    max-height:240px;
+    height:240px;
+    border:1px solid #acc6de;
+    display:block;
+    margin-left:13px;
+}
+.clothall-tab thead{
+    display:inline-block;
+    width:259px;
+    background:#89b0d4;
+}
+.clothall-tab thead tr{
+    width:259px;
+    height:25px;   
+}
+.clothall-tab thead tr th{
+    width:121px;
+    height:25px;
+    line-height:25px; 
+    font-size:12px; 
+    color:#fff;
+}
+.clothall-tab thead tr th:first-child{
+    border-right:1px solid #acc6de;
+}
+.clothall-tab tbody tr td{
+    width:130px;
+    height:25px;
+    line-height:25px;
+    font-size:12px;
+    color:#000;
+    text-align:center;
+}
+.clothall-tab tbody tr td:first-child{
+    border-right:1px solid #acc6de;
+}
+
+.clothall-tab tbody tr:nth-child(odd){background:#fff;}
+.clothall-tab tbody{max-height:214px;overflow-y:auto;display:block}

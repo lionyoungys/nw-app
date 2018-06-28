@@ -14,9 +14,6 @@
 }
 .managerquery-div .managerquery-tab tbody tr td{min-width:95px;}
 
-
-
-
 .Succession_dataLeft div .ui-select-define{
     width:135px;    
     margin-top: -2px;
@@ -32,12 +29,6 @@
     cursor:pointer;
 }
 /* table部分 */
-
-.ui-table-base.man-que-tab tr td{
-
-    min-width: 97px;
-    max-width: 97px;
-}
 .ui-table-base.man-que-tab-two{
     max-height: 265px;
     margin-top: 15px;
@@ -53,7 +44,15 @@
 }
 
 /* 修改之后 */
-#man-que-tab tr td{
+.ui-table-base.man-que-tab{
+
+    max-height: 210px;
+}
+.ui-table-base.man-que-tab tbody{
+
+    max-height: 185px;
+}
+.ui-table-base.man-que-tab tr td{
     min-width:218px;
     max-width:218px;
 }

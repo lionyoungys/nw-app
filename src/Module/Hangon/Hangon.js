@@ -86,6 +86,7 @@ export default class extends Component {
                     this.state.show
                     &&
                         <Hangondetail onClose={this.onclose} data={{
+                            id:this.state.result.id,
                             clothing_number:this.state.result.clothing_number,
                             clothing_name:this.state.result.clothing_name,
                             clothing_color:this.state.result.clothing_color,

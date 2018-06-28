@@ -409,12 +409,11 @@
 /* 查询结果样式 */
 /* <div class="ui-check-res">已为您找到<b>15248</b>条数据</div> */
 .ui-check-res{
-
     margin-left: 13px;
-    height: 30px;
     color: #15458d;
-    font-size: 13px;
-    line-height: 30px;
+    font-size: 13px; 
+    height:30px;
+    line-height:30px;  
 }
 .ui-check-res b{
     color:red;

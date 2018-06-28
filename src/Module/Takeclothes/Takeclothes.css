@@ -70,7 +70,7 @@
 .Takeclothes-tab table th:last-child{border-right:none}
 .Takeclothes-tab table tbody{
     width:auto;
-    max-height:420px;
+    max-height:400px;
     overflow-y:auto;
     display:inline-block;
    

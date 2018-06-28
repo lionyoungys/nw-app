@@ -63,7 +63,7 @@ export default class extends Component {
                               <th>格架名称</th>
                               <th>首数</th>
                               <th>尾数</th>
-                              <th>每个挂号最大挂衣数</th>
+                              <th>每衣挂号最大挂衣数</th>
                               <th>使用率</th>
                           </tr>
                       </thead>

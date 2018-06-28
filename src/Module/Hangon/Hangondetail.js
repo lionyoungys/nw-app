@@ -39,12 +39,13 @@ export default class extends Component {
     }
     handleClick(value){
         this.setState({index:value.inObjArray(this.state.grid, 'name')})
-        console.log(this.state.index)
+        console.log(this.state.grid[this.state.index].id)
         api.post('putNumber', {
             token:'token'.getData(),
             id:this.state.grid[this.state.index].id,   
         }, (res, ver) => {
             if (ver && res) {
+                console.log(res)
                 this.setState({clothnums:res.result,clothnum:res.result.typeArray('number')})
             }else{
                 console.log(res)
@@ -53,12 +54,15 @@ export default class extends Component {
                );
     }
     putOn(){
-        api.post('putOn', {
+        let puton={
             token:'token'.getData(),
-            id:this.state.grid[this.state.index].id,   
+            id:this.props.data.id,   
             put_id:this.state.clothnums[this.state.clothindex].id
-        }, (res, ver) => {
-            if (ver && res) {
+        }
+        console.log(puton)
+        api.post('putOn',
+        puton, (res, ver) => {
+            if (ver) {
                 tool.ui.success({callback:(close) => {
                     close();
                 }}); 

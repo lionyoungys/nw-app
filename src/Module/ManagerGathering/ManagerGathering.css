@@ -123,3 +123,7 @@
 }
 #ManagerGathering-detail table{height:auto}
 #ManagerGathering-detail table tbody{max-height:482px;height:auto}
+
+textarea{
+    resize: none;  
+}

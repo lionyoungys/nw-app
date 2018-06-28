@@ -239,7 +239,7 @@ export default class extends Component {
 
                 {/* 表格部分 欠费衣物信息*/}
 
-                 <table className='change_card_table right_table'>
+                 <table className='change_card_table right_table' id="right_table">
                     <thead>
                         <tr>
                             <td>商品编号</td>

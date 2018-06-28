@@ -1,6 +1,14 @@
 
-.ReportLossQuery-tab{overflow-x: hidden}
-
+.ReportLossQuery-tab{
+    overflow-x:auto;
+    width:874px;
+    margin:auto;
+    height:auto;
+    max-height:449px;
+    border:1px solid #a4c0da;
+    overflow-y:hidden;
+}
+.ReportLossQuery-tab table thead{background:#89b0d4;display:inline-block;}
 .ReportLossQuery-tab table thead tr th{
     width:auto;
     height:25px;
@@ -12,7 +20,6 @@
     border-right:1px solid #a4c0da;
     min-width:59px;
 }
-
 .ReportLossQuery-tab table tbody tr td{
     width:auto;
     height:25px;
@@ -25,6 +32,9 @@
     min-width:59px;
     
 }
+.ReportLossQuery-tab table tbody{display:inline-block;max-height:400px;overflow-y:auto;overflow-x:hidden;}
+.ReportLossQuery-tab table tbody tr:nth-child(odd){background:#fff}
+.ReportLossQuery-tab table tbody tr:nth-child(even){background:#f0f5f9}
 .ReportLossQuery b{color:#ff0000}
 
 .e-btn.loss-query{

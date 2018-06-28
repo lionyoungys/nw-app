@@ -71,8 +71,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-height: 450px;
 }
 .ui-table-base.succession-tab tr td{
-    min-width: 97px;
-    max-width: 97px;
+    min-width: 218px;
+    max-width: 218px;
 }
 
 

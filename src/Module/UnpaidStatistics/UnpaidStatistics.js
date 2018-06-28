@@ -25,11 +25,11 @@ export default class extends Component {
                 this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});
                 
             }
-        }
+            }
         );
     }
     render() {
-        var list = this.state.list.map((item,index)=><tr>
+        var list = this.state.list.map((item, index) => <tr key={'item' + index}>
             <td>{item.operator}</td>
             <td>{item.serialsn}</td>
             <td>{item.work_number}</td>
@@ -41,17 +41,17 @@ export default class extends Component {
             <td>{item.time}</td>
         </tr>
         )
-        var item = this.state.item.map((item,index)=><tr>
-        <td>{index+1}</td>
-        <td>{item.operator}</td>
-        <td>{item.user_mobile}</td>
-        <td>{item.serialsn}</td>
-        <td>{item.clean_sn}</td>
-        <td>{item.clothing_number}</td>
-        <td>{item.clothing_name}</td>
-        <td>{item.clothing_color}</td>
-        <td>{item.clothing_grids}</td>
-        <td>{item.clothing_type}</td>
+        var item = this.state.item.map((item, index) => <tr key={'item' + index}>
+            <td>{index+1}</td>
+            <td>{item.operator}</td>
+            <td>{item.user_mobile}</td>
+            <td>{item.serialsn}</td>
+            <td>{item.clean_sn}</td>
+            <td>{item.clothing_number}</td>
+            <td>{item.clothing_name}</td>
+            <td>{item.clothing_color}</td>
+            <td>{item.clothing_grids}</td>
+            <td>{item.clothing_type}</td>
     </tr>
     )
 

@@ -24,166 +24,515 @@ export default class extends Component {
                          </div>
                          <div className="vipstats-detail"><input type="checkbox" />明细</div>
                       </div>
-                      <div className="revokedata_list">
-                        <div>类别合计<span className="revokedata_prompt"></span></div>
-                        <ul className="revokedata_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                <span>合计</span>
-                                <span>衣物合计</span>
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span>6436436</span>
-                                <span>3643643</span>
-                            </li>
-                        </ul>
-                      </div>
-                      <div className="revokedata_list">
-                        <div>衣物合计<span className="revokedata_prompt"></span></div>
-                        <ul className="revokedata_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                <span>合计</span>
-                                <span>衣物合计</span>
-                            </li>
-                            <li>
-                                <span>1</span>
-                                <span>6436436</span>
-                                <span>3643643</span>
-                            </li>
-                        </ul>
-                      </div>
+                      <div className="clothall">类别合计</div>
+                        <table className="clothall-tab">
+                          <thead>
+                              <tr>
+                                  <th>衣物类别</th>
+                                  <th>数量</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr><tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr><tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr><tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                              <tr>
+                                  <td>外套</td>
+                                  <td>440</td>
+                              </tr>
+                          </tbody>
+                        </table>  
+                      
+                      
                       <div className="revokedata_list revokedata_last clothestat-tab">
                         <div>衣物明细<b>共有 <a>25487</a> 条</b><span className="revokedata_prompt"></span></div>
                         <table>
                                <thead>
                                    <tr>
                                        <th></th>
+                                       <th>店员姓名</th>
+                                       <th>客户电话</th>
                                        <th>流水号</th>
-                                       <th>日期</th>
-                                       <th>经手人</th>
-                                       <th>类别</th>
+                                       <th>水洗条码号</th>
+                                       <th>衣物编码</th>
                                        <th>衣物名称</th>
-                                       <th>衣物类别</th>
-                                       <th>退赔原因</th>
-                                       <th>退赔方式</th>
-                                       <th>退赔金额</th>
-                                       <th>衣物类别</th>
+                                       <th>衣物颜色</th>
+                                       <th>衣物网格</th>
+                                       <th>衣物处理</th>
+                                       <th>价格</th>
+                                       <th>品牌</th>
+                                       <th>折后价格</th>
+                                       <th>备注</th>
+                                       <th>状态</th>
+                                       <th>日期</th>
+                                       <th>时间</th>
+                                       <th>交货定期</th>
+                                       <th>交货日期</th>
+                                       <th>格架号</th>
+                                       <th>是否上传</th>
+                                       <th>附加服务</th>
+                                       <th>附加费</th>
+                                       <th>洗后效果</th>
+                                       <th>衣物件数</th>
+                                       <th>客户姓名</th>
+                                       <th>充值卡号</th>
+                                       <th>卡类型</th>
+                                       <th>单位</th>
+                                       <th>是否打印</th>
+                                       <th>住址</th>
+                                       <th>包号</th>
+                                       <th>类别</th>
+                                       <th>折扣率</th>
+                                       <th>是否返工</th>
+                                       <th>联盟卡</th>
                                    </tr>                                  
                                </thead>
-                               <tbody>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
-                                   <tr>
-                                       <td>1</td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                       <td>4522114 </td>
-                                   </tr>
+                               <tbody> 
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>                                  
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                                </tbody>
-                           </table>
-                        
+                           </table>                       
                       </div>
-                      
-                   
-             
              </Window> 
         );
     }
