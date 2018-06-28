@@ -13,13 +13,7 @@ export default class extends Component {
         this.onChoice = this.onChoice.bind(this);
     }
 
-    handleClick() {
-        '' !== this.state.value
-        &&
-        'function' === typeof this.props.callback
-        &&
-        this.props.callback(this.state.value);
-    }
+    handleClick() {'function' === typeof this.props.callback && this.props.callback(this.state.value)}
 
     onChoice(e) {this.setState({value:e.target.innerText + '；' + this.state.value})}
 
