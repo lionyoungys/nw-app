@@ -91,6 +91,8 @@ export default class extends React.Component {
                 <button type='button' className='e-btn middle' readOnly>取消</button>
                 <button type='button' className='e-btn large' readOnly>取消</button>
                 <br/>
+                <button type='button' className='e-btn' onClick={() => EventApi.print('order')}>打印测试</button>
+                <br/>
                 <button type='button' className='e-btn' onClick={this.ask}>询问弹框</button>
                 <button type='button' className='e-btn' onClick={this.error}>错误弹框</button>
                 <button type='button' className='e-btn' onClick={this.warn}>警告弹框</button>

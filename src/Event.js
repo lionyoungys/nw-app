@@ -8,7 +8,8 @@
     }
     e.print = function(pageName, param) {    //打印
         nw.Window.open(
-            'print/' + pageName + '.html' + ( ('object' === typeof param && param instanceof Object) ? ('?' + tool.toUrlString(param)) : '' )
+            'print/' + pageName + '.html' + ( ('object' === typeof param && param instanceof Object) ? ('?' + tool.toUrlString(param)) : '' ),
+            {new_instance: true}
         );
     },
     e.open_case = function() {    //打开钱箱
