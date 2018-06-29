@@ -59,80 +59,86 @@ export default class extends Component {
         });
     }
     render() {
-        var revokedata_detail = ['流水号','衣物编码','衣物名称','颜色','格架号','状态','姓名','手机','卡号'].map((item,index)=><span>{item}</span>)
+        
         let clothes = this.state.clothes.map((item,index)=>
-            <li>
-                <span>{index+1+(this.state.page-1)*this.limit}</span>
-                <span>{item.serialsn}</span>
-                <span>{item.clothing_number}</span>
-                <span>{item.clothing_name}</span>
-                <span>{item.clothing_color}</span>
-                <span>{item.grid_num}</span>
-                <span>{item.status==3?'清洗中':item.status==4?'清洗完成':'撤单'}</span>
-                <span>{item.user_name}</span>
-                <span>{item.user_mobile}</span>
-                <span>{item.card_number}</span>
-                <span></span>
-            </li>
+            <tr key={'item'+index}>
+                <td>{index+1+(this.state.page-1)*this.limit}</td>
+                <td>{item.serialsn}</td>
+                <td>{item.clothing_number}</td>
+                <td>{item.clothing_name}</td>
+                <td>{item.clothing_color}</td>
+                <td>{item.grid_num}</td>
+                <td>{item.status == 3 ? '清洗中' : item.status == 4 ? '清洗完成' : '撤单'}</td>
+                <td>{item.user_name}</td>
+                <td>{item.user_mobile}</td>
+                <td>{item.card_number}</td>
+            </tr>
        );
         return (
             <Window title='衣物查询' onClose={this.props.closeView} width='901' height='623'>
                 <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
-                            <div>
-                                <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={value => this.setState({status:value})}/>
-                            </div> 
-                            <div>
+                        <div>
+                            <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={value => this.setState({status:value})}/>
+                        </div> 
+                        <div>
                             <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
-                            </div>
-                            <div>
+                        </div>
+                        <div>
                             <span>衣物名称：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_name:e.target.value})} />
-                            </div>
                         </div>
+                    </div>
                     <div className='clothesquery_top_two'>
-                            <div>
-                                <span>&emsp;流水号：</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
-                            </div> 
-                            <div>
-                                <span>&emsp;&emsp;卡号：</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
-                            </div>
-                            <div>
-                                <span>&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
-                            </div>
+                        <div>
+                            <span>&emsp;流水号：</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
+                        </div> 
+                        <div>
+                            <span>&emsp;&emsp;卡号：</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
                         </div>
+                        <div>
+                            <span>&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
+                        </div>
+                    </div>
                     <div className='clothesquery_top_three'>
-                            <div>
-                                <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/><input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
-                            </div> 
-                            <div>
-                                <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
-                            </div>   
-                            <div>
-                                <span>&emsp;衣挂号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
-                            </div>
-                        <div className='clothesquery_top_btn'>
-                                <button className='e-btn' onClick={this.clear}>清空</button>
-                                <button className='e-btn' onClick={()=>this.query(1)}>查询</button>
-                            </div>
-                            
+                        <div>
+                            <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/><input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
+                        </div> 
+                        <div>
+                            <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
+                        </div>   
+                        <div>
+                            <span>&emsp;衣挂号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
                         </div>
+                        <div className='clothesquery_top_btn'>
+                            <button className='e-btn' onClick={this.clear}>清空</button>
+                            <button className='e-btn' onClick={()=>this.query(1)}>查询</button>
+                        </div>     
+                    </div>
                     
                 </div>
                 <div className='clothesquery_text'>
                     已为您找到
                     <label>{this.state.count}</label>条数据
                 </div>
-                <div className='clothesquery_bottom'>
-                        <div className="revokedata_list revokedata_last OperatingDetails_list">
-                        <ul className="revokedata_list_box clothesquery_bottom_list_box">
-                            <li id="revokedata_list_box_li">
-                                <span></span>
-                                 {revokedata_detail}
-                            </li>
-                          {clothes}
-                        </ul>
-                    </div>
-               </div>
+                <table className='ui-table-base clo-que-tab'>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>流水号</td>
+                            <td>衣物编码</td>
+                            <td>衣物名称</td>
+                            <td>颜色</td>
+                            <td>格架号</td>
+                            <td>状态</td>
+                            <td>姓名</td>
+                            <td>手机</td>
+                            <td>卡号</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {clothes}
+                    </tbody>
+                </table>  
                 <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
             </Window>
         )

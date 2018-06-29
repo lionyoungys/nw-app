@@ -106,7 +106,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .revokedata_last{height:171px;}
 .revokedata_last .revokedata_list_box{height:132px;max-height:132px;overflow:auto;position:relative}
- .revokedata_last .revokedata_list_box li{width:2144px;}/*横向滚动条设置 */
+.revokedata_last .revokedata_list_box li{width:2144px;}/*横向滚动条设置 */
 #revokedata_list_box_li{background:#8db2e3;color:#fff;}
 #revokedata_list_box_li span{color:#fff;}
 
