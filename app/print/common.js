@@ -1,5 +1,5 @@
 (function(window) {
-    var init = function() {
+    var init = function() {    //初始化函数
         var str = window.location.search.substring(1);    //获取url的get参数
         if ('' != str) {
             var arr = str.split('&')
@@ -16,7 +16,7 @@
     var c = {
         GET:{},
         win:nw.Window.get(),
-        barcode:function(elem, code) {JsBarcode(elem, code, {displayValue: false,width:2, height:30})},    //依赖JsBarcode
+        barcode:function(elem, code) {JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
         print:function() {    //打印退出方法
             this.win.print({
                 headerFooterEnabled:false,
