@@ -138,7 +138,6 @@ class MainNav extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         let navList = nav.map(obj => 
             <div key={obj.value}><div className={obj.class} data-view={obj.view} data-event={obj.event} onClick={this.props.changeView}>{obj.value}</div></div>
@@ -153,7 +152,6 @@ class MainLeftMenu extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         let menuList = leftMenu.map(obj => 
             <div key={obj.value} className='main-left-menu'>
@@ -171,6 +169,4 @@ class MainLeftMenu extends Component {
         );
     }
 }
-
-
 ReactDOM.render(<Main/>, document.getElementById('root'));

@@ -25,6 +25,8 @@ export default class extends React.Component {
     }
 
     render() {
-        return (<div ref={container => this.container = container}></div>);
+        return (
+            <div ref={container => this.container = container}></div>
+        );
     }
 } 

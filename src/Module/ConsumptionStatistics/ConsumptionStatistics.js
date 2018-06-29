@@ -25,7 +25,6 @@ export default class extends Component {
     componentDidMount() { this.query() };
     query(page) {
         console.log(page);
-        if (page == this.state.page) return;
         page = page || this.state.page;
         // 这里接口需要更改
         api.post('balanceTotal', { token: 'token'.getData(), page:page, limit: this.limit }, (res, ver, handle) => {

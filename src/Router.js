@@ -39,6 +39,7 @@ import CardQueries from './Module/CardQueries/CardQueries'; //退卡查询
 import ParameterSettings from './Module/ParameterSettings/ParameterSettings'; //参数设置
 import Equipmentmanagement from './Module/Equipmentmanagement/Equipmentmanagement'; //设备管理
 // import Membershipquery from './Module/Membershipquery/Membershipquery'; //会员消费查询
+
 import Customerquery from './Module/Customerquery/Customerquery'; //客户消费查询
 import Payoutstats from './Module/Payoutstats/Payoutstats'; //赔付统计
 import Vipstats from './Module/Vipstats/Vipstats'; //会员分类统计
@@ -58,7 +59,6 @@ import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期
 import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
 import pay from './Module/pay/pay'; //赔付
 import aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
-
 
 
 //路由对象

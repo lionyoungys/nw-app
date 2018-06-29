@@ -60,15 +60,15 @@ export default class extends Component {
     render() {
         let V = null === this.state.clickNum ? null : this.router[this.state.clickNum];
         var userinfo=this.state.user_info.map((item,index) => <tr 
-        key={'item'+index} data-index={index} onClick={this.handleclick} 
-        id={this.state.index==index?'selecttr':null}>
-        <td></td>
-        <td>{item.recharge_number}</td>
-        <td>{item.user_name}</td>
-        <td>{item.user_mobile}</td>
-        <td>{item.card_name}</td>
-        <td>{item.balance}</td>
-        <td>{item.type==1?'可用':item.type==2?'挂失':'冻结'}</td>
+            key={'item'+index} data-index={index} onClick={this.handleclick} 
+            id={this.state.index==index?'selecttr':null}>
+            <td></td>
+            <td>{item.recharge_number}</td>
+            <td>{item.user_name}</td>
+            <td>{item.user_mobile}</td>
+            <td>{item.card_name}</td>
+            <td>{item.balance}</td>
+            <td>{item.type==1?'可用':item.type==2?'挂失':'冻结'}</td>
         </tr>
         );
         return (

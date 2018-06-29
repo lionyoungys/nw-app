@@ -26,7 +26,6 @@ export default class extends Component {
     // 网络请求
     query(page) {
         console.log(page);
-        if (page == this.state.page) return;
         page = page || this.state.page;
         api.post('balanceTotal', { token: 'token'.getData(), page: page, limit: this.limit }, (res, ver, handle) => {
             if (ver && res) {
@@ -36,7 +35,7 @@ export default class extends Component {
                 handle();
             }
         });
-    }
+    } 
     render() {    
         var list=this.state.list.map((item,index) => <tr key={'item'+index}>
             <td>{index+1+(this.state.page-1)*this.limit}</td>

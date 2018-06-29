@@ -65,7 +65,7 @@
     margin-left:13px;
 }
 .clothall-tab{
-    width:262px;
+    width:503px;
     max-height:240px;
     height:240px;
     border:1px solid #acc6de;
@@ -74,15 +74,15 @@
 }
 .clothall-tab thead{
     display:inline-block;
-    width:259px;
+    width:503px;
     background:#89b0d4;
 }
 .clothall-tab thead tr{
-    width:259px;
+    width:503px;
     height:25px;   
 }
 .clothall-tab thead tr th{
-    width:121px;
+    width:242px;
     height:25px;
     line-height:25px; 
     font-size:12px; 
@@ -92,7 +92,7 @@
     border-right:1px solid #acc6de;
 }
 .clothall-tab tbody tr td{
-    width:130px;
+    width:264px;
     height:25px;
     line-height:25px;
     font-size:12px;

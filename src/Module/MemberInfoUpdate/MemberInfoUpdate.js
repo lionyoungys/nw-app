@@ -34,11 +34,9 @@ export default class extends Component {
         this.modCardInfo=this.modCardInfo.bind(this);
         this.M1Read = this.M1Read.bind(this);
     }; 
-    
-        onchange(value){
-            this.setState({sex:value});
-        }
-    
+    onchange(value){
+        this.setState({sex:value});
+    }
     query(){
         console.log(this.state.cardnumber)
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardnumber}, (res, ver) => {
@@ -55,8 +53,7 @@ export default class extends Component {
                     passwd:res.result[0].password
                 });
             }
-        }
-        );
+        });
     }
     modCardInfo(){
         api.post('modCardInfo', {
@@ -159,6 +156,6 @@ export default class extends Component {
         </div>
         </div>
         </Window>    
-    );
+        );
     }
 }

@@ -6,13 +6,34 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import MathUI from '../../UI/MathUI';
 import './Commoditysales.css';
+import Clearing from'./Clearing';
+import Nursing from'./nursing';
+import Accessories from'./Accessories';
+import Clothes from'./Clothes';
+import Luxury from'./Luxury';
+import Integral from'./Integral';
 
 export default class extends Component {
     constructor(props) {
         super(props);  
+        this.state={index:0};
+        this. handleClick = this.handleClick.bind(this);
+        this.tab=['清洁','护理','配件','衣服','二手奢侈品','积分'];
+        this.views = [<Clearing />, <Nursing />,<Accessories/>,<Clothes/>,<Luxury/>,<Integral/>];
                     
     };  
-    render() {               
+    handleClick (e){
+        this.setState({index:e.target.dataset.index});
+    }
+    render() {   
+        let tabs=this.tab.map((item,index)=>
+                <span
+                    key={item} 
+                    data-index={index} 
+                    className={this.state.index==index?'commoditysales-left-hover':null}
+                    onClick={this.handleClick}
+                >{item}</span>
+        );            
         return (       
         
             <Window title='商品销售' onClose={this.props.closeView}>
@@ -189,175 +210,10 @@ export default class extends Component {
                    <div className="commoditysales-div-left">
                       <div className="commoditysales-left-title">商品分类</div>
                       <div className="commoditysales-left-count">
-                        <span className="commoditysales-left-hover">清洁</span>
-                        <span>护理</span>
-                        <span>配件</span>
-                        <span>衣服</span>
-                        <span>二手奢侈品</span>
-                        <span>积分</span>
+                         {tabs}
                       </div>
                     </div>
-                    <div className="commoditysales-footerdiv-left">
-                      <table>
-                          <thead>
-                              <tr>
-                                  <th>商品编号</th>
-                                  <th>商品名称</th>
-                                  <th>折扣率</th>
-                                  <th>库存</th>
-                                  <th>单价</th>                                                                 
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr><tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr><tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>                                 
-                                  <td></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                   </div>   
+                    {this.views[this.state.index]} 
                    <div className="commoditysales-footerdiv-right">
                       <div className="commoditysales-footerdiv-rightboth">总金额: ￥89.00</div>
                       <div className="commoditysales-footerdiv-rightboth">折扣率: 5%</div>

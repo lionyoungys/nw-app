@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import { WSAEINVALIDPROCTABLE } from 'constants';
 import Window from '../../UI/Window';
+import Page from '../../UI/Page';
 import './Payoutstats.css';
 
 
@@ -212,9 +213,9 @@ export default class extends Component {
                                        <td>4522114 </td>
                                    </tr>
                                </tbody>
-                           </table>
-                        
+                           </table>                       
                         </div>
+                        <Page />
              </Window> 
         );
     }

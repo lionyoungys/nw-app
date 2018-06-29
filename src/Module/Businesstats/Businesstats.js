@@ -21,7 +21,6 @@ export default class extends Component {
     }; 
     arrbutton (page){
         // console.log(this.state.pay_type)
-        // if (page == this.state.page) return;
         // page = page || this.state.page;
         api.post('Operating', {
             token:'token'.getData(),

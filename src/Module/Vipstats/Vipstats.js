@@ -12,7 +12,7 @@ export default class extends Component {
         super(props);              
     };    
     render() {
-       var arr = ['退出'].map((item,index) =><button key={index} data-index={index} onClick={this.arrbutton}>{item}</button>);
+       var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={this.arrbutton}>{item}</button>);
        return (             
             <Window title='会员分类统计' onClose={this.props.closeView}>   
                         <div className="revokedata_data">

@@ -1,6 +1,7 @@
 /**
  * 充值界面
  * @author Edwin Young
+ * 修改日志：6/29  更改接口数据处理，修改右下角布局（ranchong）
  */
 
 import React from 'react';
@@ -123,7 +124,7 @@ export default class extends React.Component {
                         <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                     </div>
-                    <div><label className='e-label'>卡ID：</label>{this.state.cid}</div>
+                    <div><label className='e-label'>卡ID：</label>{this.state.cid || '0'}</div>
                 </div>
                 <div className='recharge recharge-second'>
                     <div>

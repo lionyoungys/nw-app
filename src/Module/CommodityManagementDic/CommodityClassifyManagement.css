@@ -83,11 +83,11 @@
 }
 
 .commodity_classify_management_right_bottom{
-
     margin: 0;
     height: 285px;
     border:1px solid #8db2e3;
     box-sizing: border-box;
+    border-bottom:none;
 }
 .commodity_classify_management_right_bottom a:first-child{
 
