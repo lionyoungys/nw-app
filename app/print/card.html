@@ -26,13 +26,12 @@
     <i class="dashed"></i>
     <script src="common.js"></script>
     <script>
-    common.win.showDevTools();
+    //common.win.showDevTools();
     window.onload = function() {
-        console.log(common.GET);
+        //console.log(common.GET);
         common.now();
-        if (common.GET.take) {
-            common.insertById('title', '储值卡充值回单');
-        } 
+        common.GET.take && common.insertById('title', '储值卡充值回单');
+        common.print();
     }
     </script>
 </body>

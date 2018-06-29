@@ -24,7 +24,7 @@
                 mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
                 marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
             });
-            this.win.close();
+            setTimeout(this.win.close, 100);
         },
         id:function(id) {return document.getElementById(id)},
         insertById:function(elem, value) {

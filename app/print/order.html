@@ -49,9 +49,8 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-    common.win.showDevTools();
+    //common.win.showDevTools();
     window.onload = function() {
-        console.log(common.GET);
         common.now();
         common.barcode('#barcode', '68574930296857483734');
         for (var i = 0;i < 2;++i) {
@@ -73,6 +72,7 @@
             common.id('mphone_box').style.display = 'block';
             common.id('ad').style.display = 'block';
         }
+        common.print();
     }
     </script>
 </body>
