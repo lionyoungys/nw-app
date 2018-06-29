@@ -54,8 +54,8 @@
         common.now();
         common.barcode('#barcode', '68574930296857483734');
         for (var i = 0;i < 2;++i) {
-            common.insertById(
-                'clothes', 
+            common.inner(
+                '#clothes', 
                 '<i class="empty"></i>' + 
                 '<div>3958674958673029 上衣 灰色</div>' +
                 '<div>品牌:香奈儿</div>' +
@@ -67,12 +67,12 @@
             );
         }
         if (common.GET.take) {
-            common.insertById('title', '洗衣单');
+            common.inner('#title', '洗衣单');
             common.id('addr_box').style.display = 'block';
             common.id('mphone_box').style.display = 'block';
             common.id('ad').style.display = 'block';
         }
-        common.insertById('employee', localStorage.getItem('aname'));
+        common.inner('#employee', localStorage.getItem('aname'));
         console.log(common.GET);
         console.log(JSON.parse(common.GET.data));
         //common.print();

@@ -29,9 +29,23 @@
     //common.win.showDevTools();
     window.onload = function() {
         //console.log(common.GET);
+        /*sn:流水号,addr:本店地址,mphone:查询电话,phone:用户电话,name:用户名,number:卡号,balance:余额,discount:折扣,recharge:充值金额,gateway:支付方式*/
+        var get = common.GET;
         common.now();
-        common.GET.take && common.insertById('title', '储值卡充值回单');
-        common.insertById('employee', localStorage.getItem('aname'));
+        console.log(get);
+        get.take && common.inner('#title', '储值卡充值回单');
+        common.inner('#employee', localStorage.getItem('aname'));
+        common.inner('#sn', get.sn);
+        common.inner('#phone', get.phone);
+        common.inner('#name', get.name);
+        common.inner('#number', get.number);
+        common.inner('#balance', get.balance);
+        common.inner('#discount', get.discount);
+        common.inner('#recharge', get.recharge);
+        common.inner('#total', get.recharge.add(get.balance));
+        common.inner('#gateway', get.gateway);
+        common.inner('#addr', get.addr);
+        common.inner('#mphone', get.mphone);
         common.print();
     }
     </script>

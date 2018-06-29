@@ -60,10 +60,25 @@ export default class extends React.Component {
                 loadingEnd();
                 if (ver) {
                     console.log(res);
+                    let param = {
+                        sn:res.result.sn,
+                        addr:res.result.addr,
+                        mphone:res.result.phone,
+                        phone:this.state.user_mobile,
+                        name:this.state.user_name,
+                        number:this.state.recharge_number,
+                        balance:this.state.balance,
+                        discount:(this.state.discount / 10),
+                        recharge:card.price,
+                        gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
+                    };
+                    EventApi.print('card', param);
+                    param.take = 1;
+                    EventApi.print('card', param);
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();
-                    }}); 
+                    }});
                 }else{
                     handle();
                 }

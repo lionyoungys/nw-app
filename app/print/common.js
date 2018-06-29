@@ -27,16 +27,29 @@
             setTimeout(this.win.close, 100);
         },
         id:function(id) {return document.getElementById(id)},
-        insertById:function(elem, value) {
-            if ('string' === typeof elem && '' !== elem) {
-                var node = document.getElementById(elem);
-                if ('object' === typeof node && node instanceof Node) node.innerHTML = value;
+        className:function(className) {return document.getElementsByClassName(className)},
+        tag:function(tag) {return document.getElementsByTagName(tag)},
+        inner:function(elem, value) {
+            if (
+                'string' === typeof elem && '' !== elem && ( 'string' === typeof value || 'number' === typeof value )) {
+                if (elem.indexOf('#') === 0) {
+                    var node = this.id(elem.substring(1));
+                    if ('object' === typeof node && node instanceof Node) node.innerHTML = value;
+                } else{
+                    var nodeList = (elem.indexOf('.') === 0) ? this.className(elem.substring(1)) : this.tag(elem);
+                    if ('object' === typeof nodeList && nodeList instanceof NodeList) {
+                        var len = nodeList.length;
+                        for (var i = 0;i < len;++i) {
+                            nodeList[i].innerHTML = value;
+                        }
+                    }
+                }
             }
         },
         now:function() {
             var date = new Date();
-            this.insertById(
-                'now', 
+            this.inner(
+                '#now', 
                 date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
             );
         }
@@ -48,5 +61,21 @@
     });
     c.win.on('closed', function() {c.win = null});
     init();
+    String.prototype.add = 
+    Number.prototype.add = function() {
+        var len = arguments.length
+        ,   that = parseFloat(this);
+        if (isNaN(that)) that = 0;
+        if (len < 1) return that;
+        var precision = 1000000
+        ,   value = Math.floor(that * precision)
+        ,   temp;
+        
+        for (var i = 0;i < len;++i) {
+            temp = parseFloat(arguments[i]);
+            value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
+        }
+        return (value / precision);
+    }
     window.common = c;
 })(window);

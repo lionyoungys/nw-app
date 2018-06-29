@@ -15,7 +15,7 @@
         }
         nw.Window.open(
             'print/' + pageName + '.html' + getParam,
-            {new_instance:true}
+            {new_instance:true, show:false}
         );
     },
     e.open_case = function() {    //打开钱箱
