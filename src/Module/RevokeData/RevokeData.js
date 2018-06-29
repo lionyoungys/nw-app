@@ -137,8 +137,6 @@ export default class extends Component {
                             </li>
                         </ul>
                       </div>
-                   
-                <Page />
              </Window> 
         );
     }

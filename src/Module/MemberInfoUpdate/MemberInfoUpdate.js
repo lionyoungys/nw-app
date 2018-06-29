@@ -9,11 +9,30 @@ import Select from '../../UI/Select';
 
 export default class extends Component {   
     constructor(props) {
-        super(props);       
-        this.state = {id:'',cardnumber:'',card_number:'',user_mobile:'',user_name:'',sex:'',birthday:'1970-01-01',address:'',user_type:'',passwd:''};    
+        super(props);    
+        let card = this.props.card || {};   
+        this.state = {
+            cardnumber:'',
+            card_number:'',
+            user_type:'',
+            passwd:'',
+            cid: card.id || '',    //卡编号id
+            user_mobile: card.user_mobile || '',    //电话
+            user_name: card.user_name || '',    //姓名
+            sex: card.sex || '',    //性别
+            birthday: card.birthday || '',    //生日
+            address: card.address || '',    //地址
+            integrals: card.integral,    //积分
+            balance: card.balance || '',    //余额
+            recharge_number: card.recharge_number || '',    //卡号
+            card_name: card.card_name || '',    //卡类型
+            discount: card.discount || '',    //折扣
+            time: card.time || ''    //售卡日期      
+        };    
         this.query = this.query.bind(this);
         this.onchange=this.onchange.bind(this);
         this.modCardInfo=this.modCardInfo.bind(this);
+        this.M1Read = this.M1Read.bind(this);
     }; 
     
         onchange(value){
@@ -25,13 +44,13 @@ export default class extends Component {
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardnumber}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({card_number:res.result[0].card_number,
+                this.setState({recharge_number:res.result[0].card_number,
                     user_mobile:res.result[0].user_mobile,
                     user_name:res.result[0].user_name,
                     sex:res.result[0].sex,
                     birthday:res.result[0].birthday,
                     address:res.result[0].address,
-                    id:res.result[0].id,
+                    cid:res.result[0].id,
                     user_type:res.result[0].user_type,
                     passwd:res.result[0].password
                 });
@@ -40,8 +59,16 @@ export default class extends Component {
         );
     }
     modCardInfo(){
-        api.post('modCardInfo', {token:'token'.getData(),id:this.state.id,user_name:this.state.user_name,user_mobile:this.state.user_mobile,
-        sex:this.state.sex,birthday:this.state.birthday,password:this.state.passwd,address:this.state.address,user_type:this.state.user_type
+        api.post('modCardInfo', {
+            token:'token'.getData(),
+            id:this.state.cid,
+            user_name:this.state.user_name,
+            user_mobile:this.state.user_mobile,
+            sex:this.state.sex,
+            birthday:this.state.birthday,
+            password:this.state.passwd,
+            address:this.state.address,
+            user_type:this.state.user_type
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -56,6 +83,26 @@ export default class extends Component {
         }
         );
     }
+    M1Read(e) {
+        let obj = {};
+        obj.callback = (res) => {
+            this.setState({
+                cid:res.id,
+                user_mobile:res.user_mobile,
+                user_name:res.user_name,
+                sex:res.sex,
+                birthday:res.birthday,
+                balance:res.balance,
+                integrals:res.integrals,
+                card_name:res.card_name,
+                discount:res.discount,
+                time:res.time,
+                recharge_number:res.recharge_number,
+                address:res.address,
+            });
+        }
+        EventApi.M1Read(obj);
+    }
     render() {
         return(
         <Window title='资料修改' width='634' height='388' onClose={this.props.closeView}>
@@ -63,11 +110,11 @@ export default class extends Component {
         <div className="recharge recharge-first">
             <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.cardnumber} onChange={e => this.setState({cardnumber:e.target.value})}/>&nbsp;
+                        <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({cardnumber:e.target.value})}/>&nbsp;
                         <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
-                        <button type='button' className='e-btn'>读卡</button>
+                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
             </div>
-            <div><label className='e-label'>卡ID：</label>{this.state.card_number}</div>
+            <div><label className='e-label'>卡编号：</label>{this.state.cid}</div>
             </div>
             <div className="memberinfoupdate_bottomborder">
             <div>

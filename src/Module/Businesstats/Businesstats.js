@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import './Businesstats.css';
+// import Page from '../../UI/Page'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -12,16 +13,23 @@ export default class extends Component {
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
             pay_type:'现金',
             list:[],
-        }        
+            page:1,
+            count:1,
+        }     
+        this.limit = 15;   
         this.arrbutton = this.arrbutton.bind(this);          
     }; 
-    arrbutton (){
-        console.log(this.state.pay_type)
+    arrbutton (page){
+        // console.log(this.state.pay_type)
+        // if (page == this.state.page) return;
+        // page = page || this.state.page;
         api.post('Operating', {
             token:'token'.getData(),
             pay_type:this.state.pay_type,
             start_time:this.state.startdate,
-            end_time:this.state.enddate,            
+            end_time:this.state.enddate,    
+            // page: page,
+            // limit: this.limit        
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res);
@@ -90,7 +98,7 @@ export default class extends Component {
                     </tbody>
                 </table>
     
-                      
+                {/* <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.arrbutton(page)}/>    */}
                       
                    
              

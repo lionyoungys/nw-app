@@ -19,14 +19,14 @@ export default class extends Component {
         this.order = this.order.bind(this);
     };
     order (){
-        api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver) => {
+        api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});
-                
+                this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});   
+            }else{
+                handle();
             }
-            }
-        );
+        });
     }
     render() {
         var list = this.state.list.map((item, index) => <tr key={'item' + index}>
@@ -36,25 +36,23 @@ export default class extends Component {
             <td>{item.discount_amount}</td>
             <td>{item.discount}</td>
             <td>{item.amount}</td>
-            <td>{item.user_mobile}</td>
             <td>{item.user_name}</td>
-            <td>{item.time}</td>
-        </tr>
-        )
-        var item = this.state.item.map((item, index) => <tr key={'item' + index}>
-            <td>{index+1}</td>
-            <td>{item.operator}</td>
             <td>{item.user_mobile}</td>
-            <td>{item.serialsn}</td>
-            <td>{item.clean_sn}</td>
-            <td>{item.clothing_number}</td>
-            <td>{item.clothing_name}</td>
-            <td>{item.clothing_color}</td>
-            <td>{item.clothing_grids}</td>
-            <td>{item.clothing_type}</td>
-    </tr>
-    )
-
+            <td>{item.time}</td>
+        </tr>) 
+    //     var item = this.state.item.map((item, index) => <tr key={'item' + index}>
+    //         <td>{index+1}</td>
+    //         <td>{item.operator}</td>
+    //         <td>{item.user_mobile}</td>
+    //         <td>{item.serialsn}</td>
+    //         <td>{item.clean_sn}</td>
+    //         <td>{item.clothing_number}</td>
+    //         <td>{item.clothing_name}</td>
+    //         <td>{item.clothing_color}</td>
+    //         <td>{item.clothing_grids}</td>
+    //         <td>{item.clothing_type}</td>
+    // </tr>
+    // )
         return (            
             <Window title='未付款统计' onClose={this.props.closeView}>
                 <div className="unpaidstatistics_data">
@@ -67,13 +65,12 @@ export default class extends Component {
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">
-                    <span>  总衣物：<a>{this.state.itemCount}件</a></span>
-                    <span>  可折金额：<a>{this.state.discount_amount}元</a></span>
-                    <span>  不可折金额：<a>{this.state.amount}元</a></span>
+                    <span>  总衣物：<a>{this.state.itemCount ||0}件</a></span>
+                    <span>  可折金额：<a>{this.state.discount_amount || 0}元</a></span>
+                    <span>  不可折金额：<a>{this.state.amount ||0}元</a></span>
                 </div>
-                <p className = 'unp-sta-res-num'>已为您找到{this.state.itemCount}条数据</p>
+                <p className = 'unp-sta-res-num'>已为您找到{this.state.list.length}条数据</p>
                 {/* 表格部分 欠费信息*/}
-                {/* <span className='unpaidstatistics_title'>欠费信息</span> */}
                 <table className='ui-table-base unpaidstatistics_table_Arrearage'>
                     <thead>
                         <tr>
@@ -83,8 +80,8 @@ export default class extends Component {
                             <td>可折额</td>
                             <td>折扣率</td>
                             <td>不可折额</td>
-                            <td>客户电话</td>
                             <td>客户姓名</td>
+                            <td>客户电话</td>
                             <td>日期</td>
                         </tr>
                     </thead>
@@ -92,7 +89,7 @@ export default class extends Component {
                             {list}                                                   
                     </tbody>
                 </table>
-                
+
                 {/* 表格部分 欠费衣物信息*/}
                 {/* <span className='unpaidstatistics_title'>欠费衣物信息 */}
                 {/* <a className='span-a-one'>共有记录</a><a className='span-a-two'>245</a><a>条</a> */}
