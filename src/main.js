@@ -29,8 +29,6 @@ class Main extends Component {
             max:false, 
             min:false,
             isMaxMin:false,    //是否为最大化的情况下最小化
-            name:'mname'.getData(), 
-            employee:'aname'.getData(),
             view:null,    //视图路由名称
             param:null    //视图路由携带参数
         }
@@ -80,7 +78,7 @@ class Main extends Component {
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'>
                     <div className='main-title'>
-                        {this.state.name}&nbsp;【操作员：{this.state.employee}】&nbsp;【软件版本：{nw.App.manifest.version}】
+                        {'mname'.getData()}&nbsp;【操作员：{'aname'.getData()}】&nbsp;【软件版本：{nw.App.manifest.version}】
                         <div>
                             <div className='main-mini' onClick={() => win.minimize()}></div>
                             <div className='main-max' onClick={() => this.state.max ? win.restore() : win.maximize()}></div>

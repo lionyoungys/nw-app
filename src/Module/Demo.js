@@ -91,7 +91,11 @@ export default class extends React.Component {
                 <button type='button' className='e-btn middle' readOnly>取消</button>
                 <button type='button' className='e-btn large' readOnly>取消</button>
                 <br/>
-                <button type='button' className='e-btn' onClick={() => EventApi.print('order', {test:1,param:2,cd:'erererr', word:'你好啊！', take:1})}>订单打印</button>
+                <button 
+                    type='button' 
+                    className='e-btn' 
+                    onClick={() => EventApi.print('order', {test:1,param:2,cd:'erererr', word:'你好啊！', take:1, data:JSON.stringify([{key:2,value:'你好'},{key:2,value:'你好'},{key:2,value:'你好'}])})}
+                >订单打印</button>
                 <button type='button' className='e-btn middle' onClick={() => EventApi.print('card', 'id=50&cid=60&word=你好啊！&take=1')}>会员卡打印</button>
                 <br/>
                 <button type='button' className='e-btn' onClick={this.ask}>询问弹框</button>

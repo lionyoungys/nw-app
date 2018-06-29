@@ -49,7 +49,7 @@ export default class extends Component {
     //         <td>{item.clothing_number}</td>
     //         <td>{item.clothing_name}</td>
     //         <td>{item.clothing_color}</td>
-    //         <td>{item.clothing_grids}</td>
+    //         <td>{item.clothing_grids}</td> 
     //         <td>{item.clothing_type}</td>
     // </tr>
     // )

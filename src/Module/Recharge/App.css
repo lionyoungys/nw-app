@@ -48,5 +48,5 @@
     text-align: right;
     float: right;
 } */
-.recharge-third .recharge-four{float:right;margin-top:16px;}
-.recharge-four .recharge-btn{margin-right:5px;}
+.recharge-third .recharge-four{float:right;height: 100%;width: 49%;}
+.recharge-four .recharge-btn{margin-left: 102px;}

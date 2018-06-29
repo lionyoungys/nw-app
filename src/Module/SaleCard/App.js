@@ -1,6 +1,7 @@
 /**
  * 售卡
- * @author wangjun && Edwin Young
+ * @author wangjun && Edwin Young && ranchong 
+ * 修改日志：6/29 修改了返回数据复制（ranchong）
  */
 import React from 'react';
 import Window from '../../UI/Window';
@@ -32,10 +33,12 @@ export default class extends React.Component {
         this.callback = this.callback.bind(this);
     }; 
     componentDidMount() {
-        api.post('cardType', {token:token}, (res, ver) => {
+        api.post('cardType', {token:token}, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({cards:res.result, types:res.result.typeArray('card_type')});
+                this.setState({ cards: res.result.cardsType, types: res.result.cardsType.typeArray('card_type')});
+            }else{
+                handle();
             }
         });
     }
@@ -47,7 +50,6 @@ export default class extends React.Component {
         if (this.state.passwd != this.state.passwd2) return tool.ui.error({msg:'2次密码不正确！',callback:close => close()});
         this.setState({show:true})
     }
-
     writeCard(obj) {
         obj = obj || this.state.writeData;
         console.log(obj);
