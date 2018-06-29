@@ -12,8 +12,10 @@ export default class extends Component {
             itemLists:[],
             type:[],
             id:'',
-            name:''
+            name:'',
+            page:1
         }
+        this.limit=200;
         this.update=this.update.bind(this);
         this.modYES=this.modYES.bind(this);
         this.addYES=this.addYES.bind(this);
@@ -67,7 +69,9 @@ export default class extends Component {
     }
     componentDidMount(){
         api.post('serveType', {
-            token:'token'.getData()
+            token:'token'.getData(),
+            page:this.state.page,
+            limit:this.limit
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)

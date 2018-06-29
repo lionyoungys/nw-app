@@ -26,9 +26,10 @@ export default class extends Component {
             discount:0,//是否打折  0不打折 1打折
             name:'',
             stock:'',
-            price:''
-
+            price:'',
+            page:1,
         }
+        this.limit = 200;
         this.handleClick=this.handleClick.bind(this);
         this.add=this.add.bind(this);
         this.typemanage=this.typemanage.bind(this);
@@ -132,7 +133,9 @@ export default class extends Component {
     }
     componentDidMount(){
         api.post('goodsList', {
-            token:'token'.getData()
+            token:'token'.getData(),
+            page:1,
+            limit:this.limit
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)

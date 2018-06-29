@@ -35,7 +35,7 @@ export default class extends Component {
             item_name:'',
             item_cycle:'',
             catetype_index:0,
-            disposetype:'',
+            disposetype:'',//处理类别
             item_off_price:'',//线下价格
             online:0,//在线接单
             has_discount:0,//允许折扣
@@ -46,8 +46,9 @@ export default class extends Component {
             goodindex:0,
             item_online_price:'',//线上价格
             gridname:'',//格架名称
+            page:1,
         }
-
+        this.limit = 200;
         this.handleClick=this.handleClick.bind(this);
         this.onClose=this.onClose.bind(this);
         this.addcheanprice=this.addcheanprice.bind(this);
@@ -110,11 +111,12 @@ export default class extends Component {
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
             item_cycle:this.state.item_cycle,
-            item_online_price:this.state.item_online_price
+            item_online_price:this.state.item_online_price,
+            image_id:''
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                close();
+                // close();
             }else{
                 tool.ui.error({msg:res.msg,callback:(close, event) => {
                     close();
@@ -142,7 +144,9 @@ export default class extends Component {
     }
     componentDidMount(){
         api.post('itemList', {
-            token:'token'.getData()
+            token:'token'.getData(),
+            page: this.state.page, 
+            limit: this.limit
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -204,16 +208,6 @@ export default class extends Component {
                 </tr>
             );  
         }
-        let gridss;
-        if(
-            'undefined' !== typeof this.state.grid[this.state.index]
-            && 
-            'undefined' !== typeof this.state.grids[this.state.index].name
-        ) {
-            gridss = this.state.grid.map((item,index)=>
-                <div key={'item2'+index}><input type="radio" name='grid' onChange={e=>this.setState({gridname:e.target.checked})}/>{item}</div>
-            );
-        }
         return (
             // <Window title='洗护价格设置' onClose={this.props.closeView} >
             <div className='cleaning_price_all'>
@@ -265,16 +259,17 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                               
                             </div>
                             <div className="addnewprice-one-right">
                                 <img></img>
                                 <button className="e-btn" onClick={()=>this.setState({selectImg:true})}>修改图片</button>
                             </div>
                             <div className="addnewprice-one-bootom">
-                                <span><i>*</i>格架：</span>
-                                <div className="add-select-part">
-                                {gridss}
+                                <div>
+                                <span><i>*</i>格架：</span><Select option={this.state.grid} onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
+                          
                             </div>
                         </div>
 
@@ -282,7 +277,7 @@ export default class extends Component {
                             <div><span>线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="text" value="afsfsdf" onChange={e=>this.setState({item_online_price:e.target.value})}/>元
+                                </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
                                     <div className="add-select-part">
                                         <div><input type="checkbox" onChange={e=>this.setState({online:e.target.checked?0:1})}/>在线接单</div>
                                         <div><input type="checkbox" onChange={e=>this.setState({has_discount:e.target.checked?0:1})}/>允许折扣</div>
@@ -315,10 +310,10 @@ export default class extends Component {
                                 <button className="e-btn" onClick={()=>this.setState({selectImg:true})}>修改图片</button>
                             </div>
                             <div className="addnewprice-one-bootom">
-                                <span><i>*</i>格架：</span>
-                                <div className="add-select-part">
-                                {gridss}
+                                <div>
+                                <span><i>*</i>格架：</span><Select option={this.state.grid} onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
+                          
                             </div>
                         </div>
 

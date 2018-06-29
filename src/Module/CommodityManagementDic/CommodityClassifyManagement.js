@@ -15,8 +15,10 @@ export default class extends Component {
             show:false,
             id:'',
             addshow:false,
-            modshow:false
+            modshow:false,
+            page:1
         };
+        this.limit=200;
         this.addYES=this.addYES.bind(this);
         this.update=this.update.bind(this);
         this.onclose=this.onclose.bind(this);
@@ -26,6 +28,8 @@ export default class extends Component {
     componentDidMount(){
         api.post('goodtypeList', {
             token:'token'.getData(),
+            limit:this.limit,
+            page:this.state.page
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
