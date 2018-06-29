@@ -35,7 +35,6 @@ export default class extends Component {
     }  
     query(page){
         console.log(page);
-        if (page == this.state.page) return;
         page = page || this.state.page;
         api.post('clothesQuery', {token:'token'.getData(),
         start_time:this.state.start_time,
@@ -53,7 +52,7 @@ export default class extends Component {
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({clothes:res.result.list,count:res.result.count})
+                this.setState({clothes:res.result.list,count:res.result.count,page:page})
             }else{
                 handle;
             }
@@ -63,7 +62,7 @@ export default class extends Component {
         var revokedata_detail = ['流水号','衣物编码','衣物名称','颜色','格架号','状态','姓名','手机','卡号'].map((item,index)=><span>{item}</span>)
         let clothes = this.state.clothes.map((item,index)=>
             <li>
-                <span>{index+1}</span>
+                <span>{index+1+(this.state.page-1)*this.limit}</span>
                 <span>{item.serialsn}</span>
                 <span>{item.clothing_number}</span>
                 <span>{item.clothing_name}</span>
@@ -76,10 +75,9 @@ export default class extends Component {
                 <span></span>
             </li>
        );
-       
         return (
             <Window title='衣物查询' onClose={this.props.closeView} width='901' height='623'>
-                <div className='clothesquery_top'>
+                <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
                             <div>
                                 <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={value => this.setState({status:value})}/>
