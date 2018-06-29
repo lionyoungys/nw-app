@@ -26,6 +26,7 @@
             });
             this.win.close();
         },
+        id:function(id) {return document.getElementById(id)},
         insertById:function(elem, value) {
             if ('string' === typeof elem && '' !== elem) {
                 var node = document.getElementById(elem);

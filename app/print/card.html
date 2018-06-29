@@ -9,7 +9,7 @@
     <style>body{width: 5.8cm}</style>
 </head>
 <body>
-    <div class="t-c" onclick="common.print();" id="title">储值卡充值回单</div>
+    <div class="t-c" onclick="common.print();" id="title">储值卡充值存根</div>
     <div class="t-c">流水号:<span id="sn">45678795425454</span></div>
     充值日期:<span id="now">2018-02-09 15:44:09</span><br/>
     <i class="dashed"></i>
@@ -29,7 +29,10 @@
     common.win.showDevTools();
     window.onload = function() {
         console.log(common.GET);
-        common.now(); 
+        common.now();
+        if (common.GET.take) {
+            common.insertById('title', '储值卡充值回单');
+        } 
     }
     </script>
 </body>
