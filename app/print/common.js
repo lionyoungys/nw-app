@@ -1,6 +1,20 @@
 (function(window) {
-    
+    var init = function() {
+        var str = window.location.search.substring(1);    //获取url的get参数
+        if ('' != str) {
+            var arr = str.split('&')
+            ,   len = arr.length;
+            if (len > 0) {
+                var temp;
+                for (var i = 0;i < len;++i) {
+                    temp = arr[i].split('=');
+                    if ('' != temp[0]) c.GET[temp[0]] = decodeURIComponent(temp[1]);
+                }
+            }
+        }
+    }
     var c = {
+        GET:{},
         win:nw.Window.get(),
         barcode:function(elem, code) {JsBarcode(elem, code, {displayValue: false,width:2, height:30})},    //依赖JsBarcode
         print:function() {    //打印退出方法
@@ -32,6 +46,6 @@
         this.close(true);
     });
     c.win.on('closed', function() {c.win = null});
-
+    init();
     window.common = c;
 })(window);

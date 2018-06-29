@@ -7,8 +7,14 @@
         win.close();
     }
     e.print = function(pageName, param) {    //打印
+        let getParam = '';
+        if ('object' === typeof param && param instanceof Object) {
+            getParam = '?' + tool.toUrlString(param);
+        } else if ('string' === typeof param) {
+            getParam = '?' + param;
+        }
         nw.Window.open(
-            'print/' + pageName + '.html' + ( ('object' === typeof param && param instanceof Object) ? ('?' + tool.toUrlString(param)) : '' ),
+            'print/' + pageName + '.html' + getParam,
             {new_instance: true}
         );
     },
