@@ -18,6 +18,7 @@
     卡&emsp;&emsp;号:<span id="number">6957845124857478</span><br/>
     卡内余额:&yen;<span id="balance">500.00</span>&emsp;折扣:<span id="discount">7</span><br/>
     充值金额:&yen;<span id="recharge">500.00</span><br/>
+    赠送金额:&yen;<span id="give">0.00</span><br/>
     可用总额:&yen;<span id="total">1000.00</span>&emsp;店员:<span id="employee">管理员</span><br/>
     付款方式:<span id="gateway">现金</span>
     <i class="dashed"></i>
@@ -42,7 +43,8 @@
         common.inner('#balance', get.balance);
         common.inner('#discount', get.discount);
         common.inner('#recharge', get.recharge);
-        common.inner('#total', get.recharge.add(get.balance));
+        common.inner('#give', get.give);
+        common.inner('#total', get.recharge.add(get.balance, get.give));
         common.inner('#gateway', get.gateway);
         common.inner('#addr', get.addr);
         common.inner('#mphone', get.mphone);

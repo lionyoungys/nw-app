@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import { WSAEINVALIDPROCTABLE } from 'constants';
-import './pay.css';
+import './Pay.css';
 
 export default class extends Component {   
     constructor(props) {

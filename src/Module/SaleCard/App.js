@@ -96,7 +96,23 @@ export default class extends React.Component {
         obj.balance = card.price.add(card.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
             if (ver) {
-                console.log(res);
+                //console.log(res);
+                let param = {
+                    sn:res.result.sn,
+                    addr:res.result.addr,
+                    mphone:res.result.phone,
+                    phone:obj.user_mobile,
+                    name:obj.user_name,
+                    number:obj.recharge_number,
+                    balance:0,
+                    give:card.give_price,
+                    discount:(obj.discount / 10),
+                    recharge:obj.price,
+                    gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
+                };
+                EventApi.print('card', param);
+                param.take = 1;
+                EventApi.print('card', param);
                 if ('' == this.state.number) {
                     tool.ui.success({callback:close => {
                         close();

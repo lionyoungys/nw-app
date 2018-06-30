@@ -46,7 +46,7 @@ import Vipstats from './Module/Vipstats/Vipstats'; //会员分类统计
 import PasswdUpdate from './Module/PasswdUpdate/PasswdUpdate'; //密码修改
 import StoreManagement from './Module/StoreManagement/StoreManagement'; //门店管理
 import Clothestat from './Module/Clothestat/Clothestat'; //衣物统计
-import managerquery from './Module/managerquery/managerquery'; //衣物统计
+import Managerquery from './Module/Managerquery/Managerquery'; //衣物统计
 import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBusinessStatistics'; //会员业务统计
 import Businessdaily from './Module/Businessdaily/Businessdaily'; //经营日报
 import Businesstats from './Module/Businesstats/Businesstats'; //营业统计
@@ -57,8 +57,8 @@ import AlipayWechatChecking from './Module/AlipayWechatChecking/AlipayWechatChec
 import LossReissueChangeCard from './Module/LossReissueChangeCard/LossReissueChangeCard'; //挂失补换卡
 import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期预警
 import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
-import pay from './Module/pay/pay'; //赔付
-import aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
+import Pay from './Module/Pay/Pay'; //赔付
+import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
 
 
 //路由对象
@@ -113,7 +113,7 @@ export default {
     ParameterSettings:ParameterSettings, //参数设置
     passwd_update:PasswdUpdate,//密码修改
     clothe_stat:Clothestat ,// 衣物统计
-    manager_query:managerquery, //经理查询
+    manager_query:Managerquery, //经理查询
     Business_daily:Businessdaily , // 营业日报
     Busines_stats:Businesstats, //营业统计
     Balance_detail:Balancedetail,//欠款明细
@@ -124,6 +124,6 @@ export default {
     loss_reissue_change_card: LossReissueChangeCard,//挂失补换卡
     delivery_warning:Deliverywarning ,// 交期预警
     its_processing:Itsprocessing, //撤单处理
-    pay:pay, //赔付
-    about_snl:aboutsnl, //关于速洗达
+    pay:Pay, //赔付
+    about_snl:Aboutsnl, //关于速洗达
 };

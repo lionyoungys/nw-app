@@ -70,6 +70,7 @@ export default class extends React.Component {
                         number:this.state.recharge_number,
                         balance:this.state.balance,
                         discount:(this.state.discount / 10),
+                        give:card.give_price,
                         recharge:card.price,
                         gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                     };

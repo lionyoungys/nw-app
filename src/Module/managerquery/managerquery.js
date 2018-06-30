@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
-import './managerquery.css'
+import './Managerquery.css'
 
 export default class extends Component {
     constructor(props) {

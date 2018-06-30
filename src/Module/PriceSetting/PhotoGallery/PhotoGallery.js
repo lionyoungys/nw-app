@@ -37,8 +37,7 @@ export default class extends Component {
         ); 
       
     }
-    handleclick(e){
-       
+    handleclick(e){  
         console.log(e.target.dataset.index);
         this.setState({index:e.target.dataset.index,id:e.target.dataset.id});
         'function' === typeof this.props.callback && this.props.callback(e.target.dataset.id,e.target.dataset.url)
