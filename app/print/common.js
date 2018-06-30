@@ -29,20 +29,24 @@
         id:function(id) {return document.getElementById(id)},
         className:function(className) {return document.getElementsByClassName(className)},
         tag:function(tag) {return document.getElementsByTagName(tag)},
+        isNode:function(node) {return 'object' === typeof node && node instanceof Node},
+        isNodeList:function(nodeList) {return 'object' === typeof nodeList && nodeList instanceof NodeList},
+        elem:function(elem) {
+            if ('string' === typeof elem && '' !== elem) {
+                return (elem.indexOf('#') === 0) ? this.id(elem.substring(1)) : ( (elem.indexOf('.') === 0) ? this.className(elem.substring(1)) : this.tag(elem) );
+            } else if (this.isNode(elem) || this.isNodeList(elem)) {
+                return elem;
+            }
+            return null;
+        },
         inner:function(elem, value) {
-            if (
-                'string' === typeof elem && '' !== elem && ( 'string' === typeof value || 'number' === typeof value )) {
-                if (elem.indexOf('#') === 0) {
-                    var node = this.id(elem.substring(1));
-                    if ('object' === typeof node && node instanceof Node) node.innerHTML = value;
-                } else{
-                    var nodeList = (elem.indexOf('.') === 0) ? this.className(elem.substring(1)) : this.tag(elem);
-                    if ('object' === typeof nodeList && nodeList instanceof NodeList) {
-                        var len = nodeList.length;
-                        for (var i = 0;i < len;++i) {
-                            nodeList[i].innerHTML = value;
-                        }
-                    }
+            var node = this.elem(elem);
+            if (this.isNode(node)) {
+                node.innerHTML = value;
+            } else if (this.isNodeList(node)) {
+                var len = node.length;
+                for (var i = 0;i < len;++i) {
+                    node[i].innerHTML = value;
                 }
             }
         },
@@ -52,6 +56,14 @@
                 '#now', 
                 date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
             );
+        },
+        hidd:function(elem) {
+            var node = this.elem(elem);
+            if (this.isNode(node)) node.style.display = 'none';
+        },
+        show:function(elem) {
+            var node = this.elem(elem);
+            if (this.isNode(node)) node.style.display = '';
         }
     };
     c.win.on('close', function() {

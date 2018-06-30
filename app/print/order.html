@@ -73,14 +73,14 @@
         }
         if (_.GET.take) {
             _.inner('#title', '洗衣单');
-            _.id('addr_box').style.display = 'block';
-            _.id('mphone_box').style.display = 'block';
-            _.id('ad').style.display = 'block';
+            _.show('#addr_box');
+            _.show('#mphone_box');
+            _.show('#ad');
         }
         _.inner('#mname', localStorage.getItem('mname'));
         _.inner('#employee', localStorage.getItem('aname'));
         console.log(_.GET);
-        console.log(JSON.parse(_.GET.data));
+        //console.log(JSON.parse(_.GET.data));
         //_.print();
     }
     </script>
