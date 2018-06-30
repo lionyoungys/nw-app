@@ -170,7 +170,7 @@ export default class extends Component {
                                        <th>交活日期</th>
                                        <th>衣挂号</th>
                                        <th>是否上传</th>
-                                       <th>附加服务</th>
+                                       <th>工艺加价</th>
                                        <th>附加费</th>
                                        <th>洗后预估</th>
                                        <th>衣物件数</th>
@@ -184,7 +184,7 @@ export default class extends Component {
                                        <th>类别</th>
                                        <th>折扣率</th>
                                        <th>是否返工</th>
-                                       <th>联盟卡</th>
+                                       <th>联营卡</th>
                                    </tr>                                  
                                </thead>
                                <tbody> 

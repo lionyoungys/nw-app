@@ -128,7 +128,7 @@ export default class extends Component {
                             <td>衣物编码</td>
                             <td>衣物名称</td>
                             <td>颜色</td>
-                            <td>格架号</td>
+                            <td>衣挂号</td>
                             <td>状态</td>
                             <td>姓名</td>
                             <td>手机</td>

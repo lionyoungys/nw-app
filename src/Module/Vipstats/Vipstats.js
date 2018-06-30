@@ -84,7 +84,7 @@ export default class extends Component {
                                        <th>导出</th>
                                        <th>卡面值</th>
                                        <th>卡型</th>
-                                       <th>联盟卡</th>
+                                       <th>联营卡</th>
                                        <th>增加信用额度</th>
                                    </tr>                                  
                                </thead>

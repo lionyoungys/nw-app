@@ -1,4 +1,23 @@
 (function(window) {
+    String.prototype.add = 
+    Number.prototype.add = function() {
+        var len = arguments.length
+        ,   that = parseFloat(this);
+        if (isNaN(that)) that = 0;
+        if (len < 1) return that;
+        var precision = 1000000
+        ,   value = Math.floor(that * precision)
+        ,   temp;
+        
+        for (var i = 0;i < len;++i) {
+            temp = parseFloat(arguments[i]);
+            value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
+        }
+        return (value / precision);
+    }
+    Node.prototype.show = function() {this.style.display = '';}
+    Node.prototype.hidd = function() {this.style.display = 'none';}
+    
     var init = function() {    //初始化函数
         var str = window.location.search.substring(1);    //获取url的get参数
         if ('' != str) {
@@ -73,23 +92,5 @@
     });
     c.win.on('closed', function() {c.win = null});
     init();
-    String.prototype.add = 
-    Number.prototype.add = function() {
-        var len = arguments.length
-        ,   that = parseFloat(this);
-        if (isNaN(that)) that = 0;
-        if (len < 1) return that;
-        var precision = 1000000
-        ,   value = Math.floor(that * precision)
-        ,   temp;
-        
-        for (var i = 0;i < len;++i) {
-            temp = parseFloat(arguments[i]);
-            value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
-        }
-        return (value / precision);
-    }
-    Node.prototype.show = function() {this.style.display = '';}
-    Node.prototype.hidd = function() {this.style.display = 'none';}
     window._ = c;
 })(window);

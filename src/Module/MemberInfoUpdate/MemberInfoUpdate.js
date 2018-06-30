@@ -111,7 +111,7 @@ export default class extends Component {
                         <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
             </div>
-            <div><label className='e-label'>卡编号：</label>{this.state.cid}</div>
+            <div><label className='e-label'>卡ID：</label>{this.state.cid}</div>
             </div>
             <div className="memberinfoupdate_bottomborder">
             <div>
