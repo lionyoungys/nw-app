@@ -59,11 +59,11 @@
         },
         hidd:function(elem) {
             var node = this.elem(elem);
-            if (this.isNode(node)) node.style.display = 'none';
+            this.isNode(node) && node.hidd();
         },
         show:function(elem) {
             var node = this.elem(elem);
-            if (this.isNode(node)) node.style.display = '';
+            this.isNode(node) && node.show();
         }
     };
     c.win.on('close', function() {
@@ -89,5 +89,7 @@
         }
         return (value / precision);
     }
+    Node.prototype.show = function() {this.style.display = '';}
+    Node.prototype.hidd = function() {this.style.display = 'none';}
     window._ = c;
 })(window);

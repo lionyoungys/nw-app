@@ -49,15 +49,11 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-    /*
-        sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
-        reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;pay_amount:实收;change:找零;debt:欠款;number:卡号;balance:余额;
-        name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
-    */
     _.win.showDevTools();
     window.onload = function() {
         _.now();
-        _.barcode('#barcode', '68574930296857483734');
+        var get = _.GET;
+        
         for (var i = 0;i < 2;++i) {
             _.inner(
                 '#clothes', 
@@ -80,6 +76,56 @@
         _.inner('#mname', localStorage.getItem('mname'));
         _.inner('#employee', localStorage.getItem('aname'));
         console.log(_.GET);
+        /*
+            sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
+            reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;pay_amount:实收;change:找零;debt:欠款;number:卡号;balance:余额;
+            name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
+        */
+        _.inner('#sn', get.sn);
+        _.barcode('#barcode', get.sn);
+        _.inner('#total', get.total);
+        _.inner('#dis_amount', get.dis_amount);
+        _.inner('#amount', get.amount);
+        _.inner('#gateway', get.gateway);
+        _.inner('#discount', get.discount);
+        _.inner('#real_amount', get.real_amount);
+        get.reduce ? _.inner('#reduce', get.reduce) : _.hidd('#reduce');
+        get.reduce_cause ? _.inner('#reduce', get.reduce_cause) : _.hidd('#reduce_cause');
+        get.coupon ? _.inner('#coupon', get.coupon) : _.hidd('#coupon');
+        get.coupon_name ? _.inner('#reduce', get.coupon_name) : _.hidd('#coupon_name');
+        get.pay_amount ? _.inner('#pay_amount', get.pay_amount) : _.hidd('#pay_amount');
+        get.change ? _.inner('#change', get.change) : _.hidd('#change');
+        get.debt ? _.inner('#debt', get.debt) : _.hidd('#debt');
+        get.number ? _.inner('#number', get.number) : _.hidd('#number');
+        get.balance ? _.inner('#balance', get.balance) : _.hidd('#balance');
+        _.inner('#name', get.name);
+        _.inner('#phone', get.phone);
+        _.inner('#time', get.time);
+        _.inner('#addr', get.addr);
+        _.inner('#mphone', get.mphone);
+        _.inner('#ad', get.ad);
+        if (get.items) {
+            var items;
+            try {
+                items = JSON.parse(get.items);
+            } catch (e) {
+                items = [];
+            }
+            var len = items.length;
+            for (var i = 0;i < len;++i) {
+                _.inner(
+                    '#clothes', 
+                    '<i class="empty"></i>' + 
+                    '<div>3958674958673029 上衣 灰色</div>' +
+                    '<div>品牌:香奈儿</div>' +
+                    '<div>瑕疵:各种问题</div>' +
+                    '<div>洗后预估:发白,变丑</div>' +
+                    '<div>单价:1500.00 打折</div>' +
+                    '<div>加价工艺名称:100 不打折</div>' +
+                    '<div>加价工艺名称2:10000.00 不可打折</div>'
+                );
+            }
+        }
         //console.log(JSON.parse(_.GET.data));
         //_.print();
     }
