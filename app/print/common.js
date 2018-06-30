@@ -8,7 +8,6 @@
         var precision = 1000000
         ,   value = Math.floor(that * precision)
         ,   temp;
-        
         for (var i = 0;i < len;++i) {
             temp = parseFloat(arguments[i]);
             value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
@@ -17,7 +16,7 @@
     }
     Node.prototype.show = function() {this.style.display = '';}
     Node.prototype.hidd = function() {this.style.display = 'none';}
-    
+
     var init = function() {    //初始化函数
         var str = window.location.search.substring(1);    //获取url的get参数
         if ('' != str) {
