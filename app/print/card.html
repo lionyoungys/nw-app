@@ -9,7 +9,7 @@
     <style>body{width: 5.8cm}</style>
 </head>
 <body>
-    <div class="t-c" onclick="common.print();" id="title">储值卡充值存根</div>
+    <div class="t-c" onclick="_.print();" id="title">储值卡充值存根</div>
     <div class="t-c">流水号:<span id="sn">45678795425454</span></div>
     充值日期:<span id="now">2018-02-09 15:44:09</span><br/>
     <i class="dashed"></i>
@@ -27,28 +27,28 @@
     <i class="dashed"></i>
     <script src="common.js"></script>
     <script>
-    //common.win.showDevTools();
+    //_.win.showDevTools();
     window.onload = function() {
-        //console.log(common.GET);
+        //console.log(_.GET);
         /*sn:流水号,addr:本店地址,mphone:查询电话,phone:用户电话,name:用户名,number:卡号,balance:余额,discount:折扣,recharge:充值金额,gateway:支付方式*/
-        var get = common.GET;
-        common.now();
+        var get = _.GET;
+        _.now();
         console.log(get);
-        get.take && common.inner('#title', '储值卡充值回单');
-        common.inner('#employee', localStorage.getItem('aname'));
-        common.inner('#sn', get.sn);
-        common.inner('#phone', get.phone);
-        common.inner('#name', get.name);
-        common.inner('#number', get.number);
-        common.inner('#balance', get.balance);
-        common.inner('#discount', get.discount);
-        common.inner('#recharge', get.recharge);
-        common.inner('#give', get.give);
-        common.inner('#total', get.recharge.add(get.balance, get.give));
-        common.inner('#gateway', get.gateway);
-        common.inner('#addr', get.addr);
-        common.inner('#mphone', get.mphone);
-        common.print();
+        get.take && _.inner('#title', '储值卡充值回单');
+        _.inner('#employee', localStorage.getItem('aname'));
+        _.inner('#sn', get.sn);
+        _.inner('#phone', get.phone);
+        _.inner('#name', get.name);
+        _.inner('#number', get.number);
+        _.inner('#balance', get.balance);
+        _.inner('#discount', get.discount);
+        _.inner('#recharge', get.recharge);
+        _.inner('#give', get.give);
+        _.inner('#total', get.recharge.add(get.balance, get.give));
+        _.inner('#gateway', get.gateway);
+        _.inner('#addr', get.addr);
+        _.inner('#mphone', get.mphone);
+        _.print();
     }
     </script>
 </body>

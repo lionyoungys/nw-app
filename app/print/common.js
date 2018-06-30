@@ -77,5 +77,5 @@
         }
         return (value / precision);
     }
-    window.common = c;
+    window._ = c;
 })(window);

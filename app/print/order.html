@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <div id="mname" class="t-c" onclick="common.print();">店铺简称</div>
+    <div id="mname" class="t-c" onclick="_.print();">店铺简称</div>
     <div class="t-c" id="title">留底单</div>
     <i class="dashed"></i>
     订单号:<span id="sn">68574930296857483734</span><br/>
@@ -26,7 +26,7 @@
     可折金额:&yen;<span id="dis_amount">30000</span><br/>
     不可折金额:&yen;<span id="amount">30000</span><br/>
     付款方式:<span id="gateway">现金</span><br/>
-    折扣率:<span id="discount">80%</span><br/>
+    折扣:<span id="discount">8</span><br/>
     折后价:<span id="real_amount">10000</span><br/>
     优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span><br/>
     现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span><br/>
@@ -36,7 +36,7 @@
     卡号:<span id="number">454555444444454</span><br/>
     余额:&yen;<span id="balance">4555</span><br/>
     <i class="dashed"></i>
-    客户姓名:<span id="member">yangyunlong</span><br/>
+    客户姓名:<span id="name">yangyunlong</span><br/>
     客户电话:<span id="phone">15011540794</span><br/>
     取衣时间:<span id="time">2018-11-12 05:07:00</span><br/>
     <i class="dashed"></i>
@@ -49,12 +49,17 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-    common.win.showDevTools();
+    /*
+        sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
+        reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;pay_amount:实收;change:找零;debt:欠款;number:卡号;balance:余额;
+        name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
+    */
+    _.win.showDevTools();
     window.onload = function() {
-        common.now();
-        common.barcode('#barcode', '68574930296857483734');
+        _.now();
+        _.barcode('#barcode', '68574930296857483734');
         for (var i = 0;i < 2;++i) {
-            common.inner(
+            _.inner(
                 '#clothes', 
                 '<i class="empty"></i>' + 
                 '<div>3958674958673029 上衣 灰色</div>' +
@@ -66,16 +71,17 @@
                 '<div>加价工艺名称2:10000.00 不可打折</div>'
             );
         }
-        if (common.GET.take) {
-            common.inner('#title', '洗衣单');
-            common.id('addr_box').style.display = 'block';
-            common.id('mphone_box').style.display = 'block';
-            common.id('ad').style.display = 'block';
+        if (_.GET.take) {
+            _.inner('#title', '洗衣单');
+            _.id('addr_box').style.display = 'block';
+            _.id('mphone_box').style.display = 'block';
+            _.id('ad').style.display = 'block';
         }
-        common.inner('#employee', localStorage.getItem('aname'));
-        console.log(common.GET);
-        console.log(JSON.parse(common.GET.data));
-        //common.print();
+        _.inner('#mname', localStorage.getItem('mname'));
+        _.inner('#employee', localStorage.getItem('aname'));
+        console.log(_.GET);
+        console.log(JSON.parse(_.GET.data));
+        //_.print();
     }
     </script>
 </body>
