@@ -12,8 +12,8 @@ export const topMenu = [
             {value:'撤单处理', view:'its_processing'},
             {value:'赔付', view:'pay'},
             {value:'demo', view:'demo'},
-            {value:'编辑商品价格', view:'edit_shop_prices'},
-            {value:'编辑洗护价格', view:'edit_cleaning_prices'},
+            // {value:'编辑商品价格', view:'edit_shop_prices'},
+            // {value:'编辑洗护价格', view:'edit_cleaning_prices'},
         ]
     },
     {

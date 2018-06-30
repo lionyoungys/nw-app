@@ -109,6 +109,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color:#000;
     font-size:12px;
     margin-left:4px;
+    text-indent: 5px;
 }
 
 
@@ -158,11 +159,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top:8px;
 }
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text textarea{
-    width:350px;
+    width:345px;
     height:55px;
     border:1px solid #c4c2c2;
     background:#fff;
     margin-top:8px;
+    margin-left: 4px;
 }
 
 /* 赔付合计 */
@@ -188,7 +190,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:870px;
     height:25px;
     background:#89b0d4;
-    display:inline-block;    
+    display:block;    
 }
 .Pay-tatol table thead tr{width:870px;height:25px;}
 .Pay-tatol table thead tr th{
@@ -316,9 +318,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 #bothpayout-detail table tbody{
     height:88px;
-    max-height:88px;
+    max-height:135px;
 }
 #bothpayout-detail table{ 
-    max-height:126px;
+    max-height:175px;
 }
  

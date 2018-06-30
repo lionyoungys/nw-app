@@ -23,7 +23,7 @@ export default class extends Component {
             user_mobile:'',
             discount:'',
             user_info:[],
-            index:0
+            index:0,
         }
         this.router = {LossReport:LossReport, ChangeCard:ChangeCard, ReissueCard:ReissueCard, RemoveLossCard:RemoveLossCard};
         this.query=this.query.bind(this);

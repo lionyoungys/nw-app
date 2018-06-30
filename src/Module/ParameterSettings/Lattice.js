@@ -65,12 +65,12 @@ export default class extends Component {
     query(page) {
         page = page || this.state.page;
         api.post('grid', {token:'token'.getData(),
-        page: page, 
-        limit: this.limit
+        gridPage: page, 
+        gridLimit: this.limit
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({grid:res.result, count: res.result.count, page:page})
+                this.setState({grid:res.result.grid, count: res.result.gridCount, page:page})
             }else{
                 console.log(res.msg);
                 tool.ui.error({msg:res.msg,callback:(close) => {

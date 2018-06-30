@@ -100,16 +100,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align:right;
     float: left;
 }
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-div input{
-    float:left;
-    width:132px;
-    height:20px;
-    border:1px solid #c4c2c2;
-    background:#fff;
-    color:#000;
-    font-size:12px;
-    margin-left:4px;
-}
+
 
 
 /* 下拉日期input */
@@ -141,7 +132,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position-x:114px;
     background-position-y:0; 
 }
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-div input:hover{border:1px solid #4589ee}
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text{
     width:435px;
     height:68px;  
@@ -157,11 +147,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top:8px;
 }
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text textarea{
-    width:350px;
+    width:345px;
     height:55px;
     border:1px solid #c4c2c2;
     background:#fff;
     margin-top:8px;
+    margin-left: 4px;
 }
 
 /* 赔付合计 */
@@ -187,7 +178,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:870px;
     height:25px;
     background:#89b0d4;
-    display:inline-block;    
+    display:block;    
 }
 .Pay-tatol table thead tr{width:870px;height:25px;}
 .Pay-tatol table thead tr th{

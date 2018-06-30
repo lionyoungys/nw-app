@@ -16,11 +16,14 @@ export default class extends Component {
         this.handleclick=this.handleclick.bind(this);
     };
     componentDidMount() {
-        api.post('grid', {token:'token'.getData()
+        api.post('grid', {
+            token:'token'.getData(),
+            gridPage:1,
+            gridLimit:200
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({grid:res.result})
+                this.setState({grid:res.result.grid})
             }
         }
         );
