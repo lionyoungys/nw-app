@@ -31,9 +31,11 @@
             }
         }
     }
-    var c = {
+    var win = nw.Window.get()
+    ,   c = {
         GET:{},
-        win:nw.Window.get(),
+        win:win,
+        close:win.close,
         barcode:function(elem, code) {JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
         print:function() {    //打印退出方法
             this.win.print({
@@ -42,7 +44,6 @@
                 mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
                 marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
             });
-            setTimeout(this.win.close, 100);
         },
         id:function(id) {return document.getElementById(id)},
         className:function(className) {return document.getElementsByClassName(className)},

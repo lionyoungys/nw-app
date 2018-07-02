@@ -75,8 +75,6 @@ export default class extends React.Component {
                         gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                     };
                     EventApi.print('card', param);
-                    param.take = 1;
-                    EventApi.print('card', param);
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();

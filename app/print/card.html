@@ -27,14 +27,14 @@
     <i class="dashed"></i>
     <script src="common.js"></script>
     <script>
-    //_.win.showDevTools();
+    _.win.showDevTools();
     window.onload = function() {
         //console.log(_.GET);
         /*sn:流水号,addr:本店地址,mphone:查询电话,phone:用户电话,name:用户名,number:卡号,balance:余额,discount:折扣,recharge:充值金额,gateway:支付方式*/
         var get = _.GET;
         _.now();
         console.log(get);
-        get.take && _.inner('#title', '储值卡充值回单');
+        
         _.inner('#employee', localStorage.getItem('aname'));
         _.inner('#sn', get.sn);
         _.inner('#phone', get.phone);
@@ -49,6 +49,11 @@
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
         _.print();
+        setTimeout(function() {
+            _.inner('#title', '储值卡充值回单');
+            _.print();
+        }, 1000);
+        setTimeout(_.close, 2000);
     }
     </script>
 </body>
