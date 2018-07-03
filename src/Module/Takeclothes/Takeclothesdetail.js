@@ -113,6 +113,11 @@ export default class extends Component {
         } else {
             this.state.checked.splice(index, 1);
         }
+        if(this.state.checked.length>0){
+            this.setState({Show:'none',Show1:'block'});   
+        }else{
+            this.setState({Show:'block',Show1:'none'});    
+        }    
         this.setState({checked:this.state.checked});
         //console.log(this.state.checked.length)
         if(this.state.listorder.arrears>0){
