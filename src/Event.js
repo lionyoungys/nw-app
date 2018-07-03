@@ -38,7 +38,7 @@
         }
     },
     e.M1Read = function(obj) {
-        if ('object' !== typeof obj || !(obj instanceof Object)) return;
+        if ('object' !== typeof obj || !(obj.constructor === Object)) return;
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         let data = {token:'token'.getData()};
@@ -47,12 +47,7 @@
         } else {
             try {
                 var card = M1Reader.get();
-                console.log(card);
             } catch (e) {
-                loadingEnd();
-                return tool.ui.error({msg:'读卡失败',callback:close => close()});
-            }
-            if (card.error) {
                 loadingEnd();
                 return tool.ui.error({msg:'读卡失败',callback:close => close()});
             }
@@ -60,13 +55,21 @@
                 loadingEnd();
                 return tool.ui.error({msg:'卡片数据为空',callback:close => close()});
             }
-            if (card.hasUpdate) {    //会员卡已更新为本平台的卡
-                data.id = card.cid;
-            } else {
-                data.recharge_number = card.sn;
+            if (card.error) {
+                loadingEnd();
+                return tool.ui.error({msg:'读卡失败',callback:close => close()});
             }
+            if ('' == card.sn) {
+                loadingEnd();
+                return tool.ui.error({msg:'卡片数据为空!',callback:close => close()});
+            }
+            data.recharge_number = card.sn;
+            // if (card.hasUpdate) {    //会员卡已更新为本平台的卡
+            //     data.id = card.cid;
+            // } else {
+            //     data.recharge_number = card.sn;
+            // }
         }
-        console.log(data);
         api.post(
             'cardDetail', 
             data, 

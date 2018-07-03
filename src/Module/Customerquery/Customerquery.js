@@ -145,7 +145,7 @@ export default class extends Component {
                         <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
                         <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} /></div>
-                        <div><span>起始日期：</span><input type="date" className="select"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
+                        <div><span>开始日期：</span><input type="date" className="select"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
                         <div><span>结束日期：</span><input type="date" className="select" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                    </div>
                    <div className="Customerquery-right">

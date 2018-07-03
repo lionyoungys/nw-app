@@ -205,8 +205,7 @@
     cursor: pointer;
     background:#c2c2c2;   
     outline:none;
-    border:none;
-    display: none;
+    border:none;  
 }
 .Takeclothesdetail-footer-right div{
     float: right;

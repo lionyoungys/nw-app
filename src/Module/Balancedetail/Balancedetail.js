@@ -6,16 +6,20 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Balancedetail from './Balancedetail.css'; 
 export default class extends Component {
-    constructor(props) {
-        super(props);        
+    constructor(props) {        
+        super(props);  
+            this.state={
+                start_time:tool.date('Y-m-d'),
+                end_time:tool.date('Y-m-d'),
+            }      
         }
     render(){
         return (            
             <Window title='欠款明细' onClose={this.props.closeView}>
                 <div className="unpaidstatistics_data">
                     <div className="unpaidstatistics_dataLeft">
-                        <div>开始日期：<input type="date"  /></div>
-                        <div>结束日期：<input type="date"  /></div>
+                        <div>开始日期：<input type="date"  value = {this.state.start_time} onChange={e=>this.setState({startdate:e.target.value})}/></div>
+                        <div>结束日期：<input type="date"  value = {this.state.end_time} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                     </div>
                     <div className="unpaidstatistics_dataright">                        
                         <button type='button' className='e-btn ' onClick = {this.order}>查询</button>

@@ -38,8 +38,8 @@ export default class extends Component {
         this.setState({sex:value});
     }
     query(){
-        console.log(this.state.cardnumber)
-        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardnumber}, (res, ver) => {
+        console.log(this.state.recharge_number)
+        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.recharge_number}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({recharge_number:res.result[0].card_number,
@@ -66,16 +66,14 @@ export default class extends Component {
             password:this.state.passwd,
             address:this.state.address,
             user_type:this.state.user_type
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 tool.ui.success({callback:(close, event) => {
                     close();
                 }}); 
             }else{
-                tool.ui.error({callback:(close, event) => {
-                    close();
-                }});
+               handle();
             }
         }
         );
@@ -107,7 +105,7 @@ export default class extends Component {
         <div className="recharge recharge-first">
             <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({cardnumber:e.target.value})}/>&nbsp;
+                        <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/>&nbsp;
                         <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
             </div>

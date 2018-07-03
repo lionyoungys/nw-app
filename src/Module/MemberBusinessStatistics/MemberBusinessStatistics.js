@@ -86,8 +86,8 @@ export default class extends Component {
             <Window title='会员业务统计'  onClose={this.props.closeView}>    
                 <div className="mem_bus_sta_top">
                     <div className='mem_bus_sta_top_one'>
-                        <div>&emsp;开始时间：<input type="date" className='ui-date' value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
-                        <div>&emsp;结束时间：<input type="date" className='ui-date' value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+                        <div>&emsp;开始日期：<input type="date" className='ui-date' value = {this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
+                        <div>&emsp;结束日期：<input type="date" className='ui-date' value = {this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
                         <button className='e-btn' onClick={this.clear}>清空</button>
                          </div>
                     <div className='mem_bus_sta_top_two'>

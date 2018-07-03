@@ -19,10 +19,7 @@ export default class extends Component {
             listuser:{},
             index:[],
             checked:[],
-            more:false,
-            Show:'block',
-            Show1:'none',
-            pay:'none',
+            more:false,                      
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
@@ -65,11 +62,6 @@ export default class extends Component {
                         listorder:res.result.order,
                         listuser:res.result.user,
                     })
-                    if(res.result.order.arrears > 0){
-                        this.setState({pay:'block',Show:'none',Show1:'none'});
-                    }else{
-                        this.setState({pay:'none',Show:'block',Show1:'none'});                       
-                    }                                                                                                                 
                 }else{
                     // console.log(res.msg);                   
                 }
@@ -84,19 +76,13 @@ export default class extends Component {
     handleAllChecked() {
         
         //console.log(this.state.checked.length == this.state.listitem.length);
-        if(this.state.listorder.arrears>0){
+    
             this.state.checked.length == this.state.listitem.length
             ?
-            this.setState({checked:[],Show:'none',Show1:'none'})        
+            this.setState({checked:[]})        
             :
-            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'none'})
-        }else{
-            this.state.checked.length == this.state.listitem.length
-            ?
-            this.setState({checked:[],Show:'block',Show1:'none'})        
-            :
-            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'block'})
-        }
+            this.setState({checked:this.state.listitem.typeArray('id')})
+        
     }
     handleChecked(e) {          
         let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
@@ -106,33 +92,16 @@ export default class extends Component {
         } else {
             this.state.checked.splice(index, 1);
         }
-        if(this.state.checked.length > 0){
-            this.setState({Show:'none',Show1:'block'});   
-        }else{
-            this.setState({Show:'block',Show1:'none'});    
-        }    
+         
         this.setState({checked:this.state.checked});
-        //console.log(this.state.checked.length)
-        if(this.state.listorder.arrears>0){
-            this.setState({Show:'none',Show1:'none'});
-            
-        }else{
-            
-        }
-           
+        //console.log(this.state.checked.length)                 
     }
-    paymore (){
-        if(this.state.checked.length>0){
-            this.setState({more:true});            
-        }else{
-            this.setState({more:false})
-        }       
+    paymore (){       
+            this.setState({more:true});                        
     }
     render() {
         let discount = this.props.data.discount || 100
         ,   total_amount = this.state.listorder.arrears || this.state.listorder.pay_amount || 0;
-
-
         let takeclothesdetail=this.state.listitem.map((item,index)=>
         <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
             <td>{index+1}</td>
@@ -181,9 +150,8 @@ export default class extends Component {
                         <input type="checkbox" onChange={this.handleAllChecked} checked={this.state.checked.length == this.state.listitem.length}/>全选/全不选</div>
                         <div className="Takeclothesdetail-footer-right">
                            <button className="e-btn Takeclothesdetail-footer-right-btn" onClick = {this.paymore} style={{display:this.state.pay}}>立即收款</button> 
-                           <button className="take-over" onClick={() => this.setState({show2:true})} style={{display:this.state.Show1}}>取衣</button>
-                           <button className="take-no" style={{display:this.state.Show}}>取衣</button>
-                           {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
+                           <button className="take-over" onClick={() => this.setState({show2:true})} >取衣</button>
+                           <button className="take-no">取衣</button>                           
                            <div>欠款: ￥{this.state.listorder.arrears}</div>
                            <div>价格: ￥{this.state.listorder.pay_amount}</div>
                         </div>                       
@@ -215,8 +183,7 @@ export default class extends Component {
                             <div className="takeclothes-people">
                                 该客户确定要取走衣物
                             </div>
-                        }
-                   
+                        }                   
                     </LayerBox>
                 }
                 </Window> 

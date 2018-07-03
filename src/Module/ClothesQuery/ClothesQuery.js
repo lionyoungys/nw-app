@@ -14,7 +14,7 @@ export default class extends Component {
         this.state = {show:false,
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
-            status:'清洗中',
+            status:'未取走',
             serialsn:'',
             user_name:'',
             cardNumber:'',
@@ -39,7 +39,7 @@ export default class extends Component {
         api.post('clothesQuery', {token:'token'.getData(),
         start_time:this.state.start_time,
         end_time:this.state.end_time,
-        status:this.state.status=='清洗中'?'3':this.state.status=='清洗完成'?'4':'5',
+        status:this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
         serialsn:this.state.serialsn,
         user_name:this.state.user_name,
         cardNumber:this.state.cardNumber,
@@ -68,7 +68,7 @@ export default class extends Component {
                 <td>{item.clothing_name}</td>
                 <td>{item.clothing_color}</td>
                 <td>{item.grid_num}</td>
-                <td>{item.status == 3 ? '清洗中' : item.status == 4 ? '清洗完成' : '撤单'}</td>
+                <td>{item.status == 3 ? '未取走' : item.status == 4 ? '已取走' : '已撤单'}</td>
                 <td>{item.user_name}</td>
                 <td>{item.user_mobile}</td>
                 <td>{item.card_number}</td>
@@ -79,7 +79,7 @@ export default class extends Component {
                 <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
                         <div>
-                            <span>&emsp;&emsp;状态：</span><Select  option={['清洗中','清洗完成','撤单']} selected='清洗中' onChange={value => this.setState({status:value})}/>
+                            <span>&emsp;&emsp;状态：</span><Select  option={['未取走','已取走','已撤单']} selected='未取走' onChange={value => this.setState({status:value})}/>
                         </div> 
                         <div>
                             <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
@@ -101,7 +101,7 @@ export default class extends Component {
                     </div>
                     <div className='clothesquery_top_three'>
                         <div>
-                            <span>收衣时间:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/><input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
+                            <span>开始日期:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/>结束日期<input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                         </div> 
                         <div>
                             <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>

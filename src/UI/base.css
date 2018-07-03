@@ -436,3 +436,12 @@
     margin-left: 5px;
 }
 .ui-page>span:first-of-type{margin-left: 10px}
+
+table tbody tr:nth-child(odd):hover{
+    background:#cce8ff;
+    cursor: pointer;
+}
+table tbody tr:nth-child(even):hover{
+    background:#cce8ff;
+    cursor: pointer;
+}
