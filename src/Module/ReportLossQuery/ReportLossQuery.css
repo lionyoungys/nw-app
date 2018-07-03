@@ -32,7 +32,7 @@
     min-width:59px;
     
 }
-.ReportLossQuery-tab table tbody{display:inline-block;max-height:397px;overflow-y:auto;overflow-x:hidden;}
+.ReportLossQuery-tab table tbody{display:inline-block;max-height:380px;overflow-y:auto;overflow-x:hidden;}
 .ReportLossQuery-tab table tbody tr:nth-child(odd){background:#fff}
 .ReportLossQuery-tab table tbody tr:nth-child(even){background:#f0f5f9}
 .ReportLossQuery b{color:#ff0000}

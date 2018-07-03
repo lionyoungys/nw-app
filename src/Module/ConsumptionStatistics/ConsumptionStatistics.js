@@ -43,7 +43,8 @@ export default class extends Component {
             <td>{item.card_name}</td>
             <td>{item.balance}</td>
             <td>{item.user_name}</td>
-            <td>{item.user_mobile}</td>         
+            <td>{item.user_mobile}</td> 
+            <td>{item.balance}</td>        
             <td>{item.time}</td>
         </tr>
         )       
