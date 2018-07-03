@@ -26,13 +26,13 @@
     付款方式:<span id="gateway">现金</span><br/>
     折扣:<span id="discount">8</span><br/>
     折后价:<span id="real_amount">10000</span><br/>
-    优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span><br/>
-    现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span><br/>
-    实收:&yen;<span id="pay_amount">11554</span><br/>
-    找零:&yen;<span id="change">894</span><br/>
-    欠款:&yen;<span id="debt">50</span><br/>
-    卡号:<span id="number">454555444444454</span><br/>
-    余额:&yen;<span id="balance">4555</span><br/>
+    <div id="reduce_box">优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span></div>
+    <div id="coupon_box">现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span></div>
+    <div id="pay_amount_box">实收:&yen;<span id="pay_amount">11554</span></div>
+    <div id="change_box">找零:&yen;<span id="change">894</span></div>
+    <div id="debt_box">欠款:&yen;<span id="debt">50</span></div>
+    <div id="number_box">卡号:<span id="number">454555444444454</span></div>
+    <div id="balance_box">余额:&yen;<span id="balance">4555</span></div>
     <i class="dashed"></i>
     客户姓名:<span id="name">yangyunlong</span><br/>
     客户电话:<span id="phone">15011540794</span><br/>
@@ -66,21 +66,22 @@
         _.inner('#discount', get.discount);
         _.inner('#real_amount', get.real_amount);
         get.gateway ? _.inner('#gateway', get.gateway) : _.inner('#gateway', '未付款');
-        get.reduce ? _.inner('#reduce', get.reduce) : _.hidd('#reduce');
-        get.reduce_cause ? _.inner('#reduce', get.reduce_cause) : _.hidd('#reduce_cause');
-        get.coupon ? _.inner('#coupon', get.coupon) : _.hidd('#coupon');
-        get.coupon_name ? _.inner('#reduce', get.coupon_name) : _.hidd('#coupon_name');
-        get.pay_amount ? _.inner('#pay_amount', get.pay_amount) : _.hidd('#pay_amount');
-        get.change ? _.inner('#change', get.change) : _.hidd('#change');
-        get.debt ? _.inner('#debt', get.debt) : _.hidd('#debt');
-        get.number ? _.inner('#number', get.number) : _.hidd('#number');
-        get.balance ? _.inner('#balance', get.balance) : _.hidd('#balance');
+        get.reduce ? _.inner('#reduce', get.reduce) : _.hidd('#reduce_box');
+        get.reduce_cause ? _.inner('#reduce_cause', get.reduce_cause) : _.hidd('#reduce_cause');
+        get.coupon ? _.inner('#coupon', get.coupon) : _.hidd('#coupon_box');
+        get.coupon_name ? _.inner('#coupon_name', get.coupon_name) : _.hidd('#coupon_name');
+        get.pay_amount ? _.inner('#pay_amount', get.pay_amount) : _.hidd('#pay_amount_box');
+        get.change ? _.inner('#change', get.change) : _.hidd('#change_box');
+        get.debt ? _.inner('#debt', get.debt) : _.hidd('#debt_box');
+        get.number ? _.inner('#number', get.number) : _.hidd('#number_box');
+        get.balance ? _.inner('#balance', get.balance) : _.hidd('#balance_box');
         _.inner('#name', get.name);
         _.inner('#phone', get.phone);
         _.inner('#time', get.time);
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
         _.inner('#ad', get.ad);
+        console.log(get);
         if (get.items) {
             var items;
             try {
@@ -88,21 +89,33 @@
             } catch (e) {
                 items = [];
             }
+            console.log(items);
             var len = items.length
-            ,   content;
+            ,   hasDiscount = get.discount < 10
+            ,   content = ''
+            ,   json, tempLen, j;
             for (var i = 0;i < len;++i) {
-                content = '<i class="empty"></i>' + 
-                    '<div>3958674958673029 上衣 灰色</div>' +
-                    '<div>品牌:香奈儿</div>' +
-                    '<div>瑕疵:各种问题</div>' +
-                    '<div>洗后预估:发白,变丑</div>' +
-                    '<div>单价:1500.00 打折</div>' +
-                    '<div>加价工艺名称:100 不打折</div>' +
-                    '<div>加价工艺名称2:10000.00 不可打折</div>';
-                _.inner('#clothes', content);
+                content += '<i class="empty"></i>' + 
+                    '<div>' + items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + '</div>' +
+                    ('' == items[i].sign ? '' : '<div>品牌:' + items[i].sign + '</div>') +
+                    ('' == items[i].remark ? '' : '<div>瑕疵:' + items[i].remark + '</div>') +
+                    ('' == items[i].forecast ? '' : '<div>洗后预估:' + items[i].forecast + '</div>') +
+                    '<div>单价:' + items[i].raw_price + ' '+ (hasDiscount ? '打折' : '不打折') +'</div>';
+                try {
+                    json = JSON.parse(items[i].json);
+                } catch (e2) {
+                    json = [];
+                }
+                if ('object' === typeof json) {
+                    tempLen = json.length;
+                    for (j = 0;j < tempLen;++j) {
+                        content += '<div>'+ json[j].name +':'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折') +'</div>';
+                    }
+                }
             }
+            _.inner('#clothes', content);
         }
-        /*_.print();
+        _.print();
         setTimeout(function() {
             _.inner('#title', '洗衣单');
             _.show('#addr_box');
@@ -110,7 +123,7 @@
             _.show('#ad');
             _.print();
         }, 1000);
-        setTimeout(_.close, 2000);*/
+        setTimeout(_.close, 2000);
     }
     </script>
 </body>

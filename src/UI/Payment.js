@@ -18,11 +18,12 @@ const style = {marginBottom:'8px', fontSize:'12px'};
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {gateway:0,authCode:['','','',''], amount:'', number:'',coupon:'', option:[]};
+        this.state = {gateway:0,authCode:['','','',''], amount:'', number:'',coupon:'', passwd:'',option:[],show:false};
         this.input = [];
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
     }
 
@@ -51,12 +52,22 @@ export default class extends Component {
         }
     }
 
+    handleClick() {
+        console.log(this.state.gateway);
+        if (0 == this.state.gateway) {    //会员卡支付
+            this.setState({show:true});
+        } else {
+            this.onConfirm();
+        }
+    }
+
     onConfirm() {
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount), pay_amount:parseFloat(this.props.data.total_amount), change:0};
         if (0 == obj.gateway) {    //会员卡支付
             obj.pay_amount = this.props.data.pay_amount;
+            obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
             if ('' == obj.amount || obj.amount <= 0 || obj.pay_amount > obj.amount) return;
             if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
@@ -156,8 +167,17 @@ export default class extends Component {
                     </div>
                 </div>
                 <div className='ui-payment-confirm'>
-                    <button type='button' className='e-btn' onClick={this.onConfirm}>立即收款</button>
+                    <button type='button' className='e-btn' onClick={this.handleClick}>立即收款</button>
                 </div>
+                {
+                    this.state.show
+                    &&
+                    <Window title='请输入会员卡密码' width='200' height='200' onClose={() => this.setState({show:false})}>
+                        <div style={{textAlign:'center'}}>
+                            <input type='password' className='e-input' value={this.state.passwd} onChange={e => this.setState({passwd:e.target.value})}/>
+                        </div>
+                    </Window>
+                }
             </Window>
         );
     }

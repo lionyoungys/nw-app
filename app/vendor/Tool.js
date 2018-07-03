@@ -12,7 +12,9 @@
                 var ADODB = require('node-adodb');
                 ADODB.connection = function(address, password) {
                     password = password || '';
-                    return ADODB.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + address + ';Persist Security Info=False;Jet OLEDB:Database Password=' + password);
+                    //Provider=Microsoft.Jet.OLEDB.4.0;Data Source=
+                    //return ADODB.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + address + ';Persist Security Info=False;Jet OLEDB:Database Password=' + password);
+                    return ADODB.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + address + ';Jet OLEDB:Database Password=' + password);
                 }
                 return ADODB;
             }

@@ -14,12 +14,13 @@
 }
 .clothestat-tab table thead tr{width:870px;height:25px;}
 .clothestat-tab table thead tr th{
-    width:88px;
+    width:130px;
     height:25px;
     border-right:1px solid #acc6de;
     color:#fff;
     font-size:12px;
-    min-width:88px;
+    min-width:130px;
+    max-width:130px;
     text-align:center;
 }
 .clothestat-tab table thead tr th:first-child{
@@ -45,13 +46,14 @@
 
 .Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
 .clothestat-tab table tbody tr td{
-    width:88px;
+    width:130px;
     height:25px;
     border-right:1px solid #acc6de;
     color:#000;
     font-size:12px;
-    min-width:88px;
+    min-width:130px;
     text-align:center;
+    max-width:130px;
 }
 .clothestat-tab table tbody tr td:first-child{
     width:31px;

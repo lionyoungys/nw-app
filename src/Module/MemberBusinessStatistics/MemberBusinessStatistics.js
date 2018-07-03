@@ -91,9 +91,9 @@ export default class extends Component {
                         <button className='e-btn' onClick={this.clear}>清空</button>
                          </div>
                     <div className='mem_bus_sta_top_two'>
-                        <div>&emsp;&emsp;&emsp;姓名：<input type="text" className='e-input' onChange={e=>this.setState({name:e.target.value})}/></div>                           
-                        <div>&emsp;&emsp;&emsp;手机：<input type="text" className='e-input' onChange={e => this.setState({ mobile: e.target.value })}/></div>
-                        <div>&emsp;&emsp;&emsp;卡号：<input type="text" className='e-input' onChange={e => this.setState({ cardNum: e.target.value })}/></div>
+                        <div>&emsp;&emsp;&emsp;姓名：<input type="text" className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}/></div>                           
+                        <div>&emsp;&emsp;&emsp;手机：<input type="text" className='e-input' value={this.state.mobile} onChange={e => this.setState({ mobile: e.target.value })}/></div>
+                        <div>&emsp;&emsp;&emsp;卡号：<input type="text" className='e-input' value={this.state.cardNum} onChange={e => this.setState({ cardNum: e.target.value })}/></div>
                         <button className='e-btn' onClick={()=>this.searchRes(1)}>查询</button>
                     </div>
                 </div>

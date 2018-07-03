@@ -317,7 +317,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-width:31px;
 }
 #bothpayout-detail table tbody{
-    height:88px;
+    height:135px;
     max-height:135px;
 }
 #bothpayout-detail table{ 

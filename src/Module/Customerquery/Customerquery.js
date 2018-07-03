@@ -28,7 +28,8 @@ export default class extends Component {
             index:0,
             countdetail:1,
             listdetail:[],
-            pagedetail:1
+            pagedetail:1,
+
             
         }     
         this.limit = 15;
@@ -119,7 +120,7 @@ export default class extends Component {
             <td>{item.balance}</td>                              
         </tr>       
         );
-        let listdetail=this.state.listdetail.map((item,index)=>
+        let listdetail = this.state.listdetail.map((item,index)=>
         <tr key={'itemdetail'+index}>
             <td></td>
             <td>{item.serialsn}</td>

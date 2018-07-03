@@ -11,10 +11,9 @@ import Window from '../../UI/Window';
 
 const token = 'token'.getData()
 ,     data = [
-    '收活表','客户信息表','POS_备注','POS_价格表','备注','撤单信息表','处理类别','返洗衣物表','价格表','卡类设置',
-    '卡信息','品牌','欠费信息','收银表','退赔记录表','洗后预估','颜色表','转卡记录','衣物类别','卡信息','退赔类别',
-    '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','其他收费','挂失卡号',
-    '加价工艺',
+    '收活表','品牌','颜色表','返洗衣物表','处理类别','洗后效果','备注','POS_备注','衣物类别','价格表',
+    '退赔记录表','欠费信息','POS_价格表','撤单信息表','转卡记录','挂失卡号','卡信息','收银表','卡类设置','客户信息表','其他收费',
+    '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
 ];
 export default class extends Component {
     constructor(props) {
@@ -38,6 +37,7 @@ export default class extends Component {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
                     this.state.data.push({'name':data[i], data:tableData});
                 }).catch(e => {
+                    console.log(data[i])
                     console.log(e);
                     this.setState({error:true});
                     error = true;

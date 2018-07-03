@@ -26,7 +26,7 @@
                 var temp;
                 for (var i = 0;i < len;++i) {
                     temp = arr[i].split('=');
-                    if ('' != temp[0]) c.GET[temp[0]] = decodeURIComponent(temp[1]);
+                    if ('' != temp[0] && 'undefined' != temp[1]) c.GET[temp[0]] = decodeURIComponent(temp[1]);
                 }
             }
         }

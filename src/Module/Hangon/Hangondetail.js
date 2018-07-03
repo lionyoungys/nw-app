@@ -22,11 +22,15 @@ export default class extends Component {
         this.putOn=this.putOn.bind(this);
     };
     componentDidMount(){
-        api.post('grid', {token:'token'.getData()
+        api.post('grid', {
+            token:'token'.getData(),
+            limit:200,
+            page:1
+        
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({grid:res.result,gridname:res.result.typeArray('name')})
+                this.setState({grid:res.result.grid,gridname:res.result.grid.typeArray('name')})
                 this.handleClick();
             }else{
                 console.log(res.msg);
@@ -36,17 +40,23 @@ export default class extends Component {
             }
         }
         );
+      
     }
     handleClick(value){
-        this.setState({index:value.inObjArray(this.state.grid, 'name')})
-        console.log(this.state.grid[this.state.index].id)
+        if('undefined'==value){
+            this.setState({index:value.inObjArray(this.state.grid, 'name')})
+        }else{
+            this.setState({index:0});
+        }
+        console.log(value)
+      
         api.post('putNumber', {
             token:'token'.getData(),
             id:this.state.grid[this.state.index].id,   
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({clothnums:res.result,clothnum:res.result.typeArray('number')})
+                this.setState({clothnums:res.result.list,clothnum:res.result.list.typeArray('number')})
             }else{
                 console.log(res)
             }

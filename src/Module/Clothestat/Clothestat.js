@@ -21,6 +21,7 @@ export default class extends Component {
             list: [],
             page: 1,
             count: 1, 
+            states:'',
         } 
         this.limit = 15;
         this.query = this.query.bind(this);                  
@@ -43,8 +44,17 @@ export default class extends Component {
                     allist:res.result.type,
                     allcount:res.result.total_count,
                     total_amount: res.result.total_amount, 
-                    count: res.result.count,
+                    count: res.result.count,                   
                 });
+                if(res.result.list.status==3){
+                    this.setState({states:'清洗中'})
+                }else if(res.result.list.status==4){
+                    this.setState({states:'清洗完成'})
+                }else{
+                    this.setState({states:'退单中'})
+                }
+                   
+                
             } else {
                 console.log(res);
                 handle();
@@ -74,7 +84,7 @@ export default class extends Component {
               <td>{item.raw_price}</td>
               <td>{item.sign}</td>
               <td>{item.discount_price}</td>
-              <td>{item.status}}</td>
+              <td>{this.state.states}</td>
               <td>{item.collect_time}</td>
               <td>{item.collect_time}</td>
               <td>{item.deal_time}</td>

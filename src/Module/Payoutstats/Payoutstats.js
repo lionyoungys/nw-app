@@ -173,7 +173,7 @@ export default class extends Component {
                     </tbody>
                 </table>                       
             </div>
-            <Page />
+            <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>
              </Window> 
         );
     }
