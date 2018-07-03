@@ -324,6 +324,22 @@ export default class extends Component {
             dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
+        let gateway = object.gateway
+        ,   balance = this.state.balance;
+        if ('undefined' !== typeof gateway) {
+            if (0 == gateway) {
+                gateway = '会员卡支付';
+                if (!isNaN(balance)) balance = balance.subtract(object.pay_amount);
+            } else if (1 == gateway) {
+                gateway = '现金支付';
+            } else if (2 == gateway) {
+                gateway = '微信支付';
+            } else {
+                gateway = '支付宝支付';
+            }
+        } else {
+            gateway = '未付款';
+        }
         EventApi.print('order', {
             sn:this.state.sn,
             items:JSON.stringify(this.state.data),
@@ -339,9 +355,10 @@ export default class extends Component {
             mphone:this.state.mphone,
             ad:this.state.ad,
             number:this.state.number,
-            balance:this.state.balance,
+            balance:balance,
             pay_amount:object.pay_amount,
             change:object.change,
+            gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         });
     }
@@ -412,12 +429,12 @@ export default class extends Component {
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.state.cid || '', oid:this.state.oid},
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.state.cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
                 if (ver) {
-                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount});
+                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();

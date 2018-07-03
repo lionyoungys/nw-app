@@ -62,6 +62,7 @@ export default class extends Component {
     }
 
     onConfirm() {
+        this.setState({show:false});
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount), pay_amount:parseFloat(this.props.data.total_amount), change:0};
@@ -172,9 +173,11 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Window title='请输入会员卡密码' width='200' height='200' onClose={() => this.setState({show:false})}>
-                        <div style={{textAlign:'center'}}>
+                    <Window title='请输入会员卡密码' width='260' height='100' onClose={() => this.setState({show:false})}>
+                        <div style={{textAlign:'center',marginTop:'14px'}}>
                             <input type='password' className='e-input' value={this.state.passwd} onChange={e => this.setState({passwd:e.target.value})}/>
+                            &nbsp;&nbsp;
+                            <button type='button' className='e-btn' onClick={this.onConfirm}>确认</button>
                         </div>
                     </Window>
                 }
