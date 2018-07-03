@@ -34,6 +34,17 @@ export default class extends Component {
     handleGateway(e) {
         let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
         this.setState({gateway:gateway});
+        // if (0 == gateway) {
+        //     console.log(this.firstInput);
+        //     this.firstInput.focus();
+        // } else if (1 == gateway) {
+        //     console.log(this.secondInput);
+        //     this.secondInput.focus();
+        // } else {
+        //     console.log(this.input[0]);
+        //     this.input[0].focus();
+        // }
+        // e.stopPropagation();
     }
 
     handleChange(e) {
@@ -140,7 +151,7 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
-                        <input type='input' className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
+                        <input type='input' ref={input => {0 == gateway && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button 
                             type='button' 
                             className='e-btn' 
@@ -150,12 +161,22 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
-                            实收金额：<input type='input' className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                            实收金额：<input type='input' ref={input => {1 == gateway && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                         </div>
                     </div>
                     <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
-                        <input type='text' className='e-input' value={authCode[0]} onChange={this.setAuthCode} data-index='0' ref={input => this.input[0] = input}/>
+                        <input 
+                            type='text' 
+                            className='e-input' 
+                            value={authCode[0]} 
+                            onChange={this.setAuthCode} 
+                            data-index='0' 
+                            ref={input => {
+                                this.input[0] = input;
+                                (2 == gateway || 3 == gateway) && input.focus();
+                            }}
+                        />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
                         <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
                         <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
