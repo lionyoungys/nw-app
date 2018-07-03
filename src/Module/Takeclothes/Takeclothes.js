@@ -126,7 +126,7 @@ export default class extends Component {
                     {
                         this.state.show
                         &&
-                        <Takeclothesdetail id={this.state.id} onClick={() => this.setState({show:false})} data={this.state} M1Read={this.M1Read}/>
+                        <Takeclothesdetail id={this.state.id} onClick={() => this.setState({show:false})} data={this.state} M1Read={this.M1Read} closeView={this.props.closeView}/>
                     }
                 </Window> 
         )

@@ -13,7 +13,7 @@ const style = {marginBottom:'8px', fontSize:'12px'};
  * 订单支付弹窗
  * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
  * @param {function} M1Read 读卡方法
- * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,[authcode:authcode]}
+ * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,pay_amount:pay_amount,passwd:passwd,[authcode:authcode]}
  */
 export default class extends Component {
     constructor(props) {
@@ -53,7 +53,6 @@ export default class extends Component {
     }
 
     handleClick() {
-        console.log(this.state.gateway);
         if (0 == this.state.gateway) {    //会员卡支付
             this.setState({show:true});
         } else {

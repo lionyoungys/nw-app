@@ -36,7 +36,7 @@
     <i class="dashed"></i>
     客户姓名:<span id="name">yangyunlong</span><br/>
     客户电话:<span id="phone">15011540794</span><br/>
-    取衣时间:<span id="time">2018-11-12 05:07:00</span><br/>
+    <div id="time_box">取衣时间:<span id="time">2018-11-12 05:07:00</span></div>
     <i class="dashed"></i>
     操作员:<span id="employee">cidefdf</span><br/>
     <div id="addr_box" style="display: none">店铺地址:<span id="addr">dfdffddfdfdfdfdfffd</span></div>
@@ -75,9 +75,9 @@
         get.debt ? _.inner('#debt', get.debt) : _.hidd('#debt_box');
         get.number ? _.inner('#number', get.number) : _.hidd('#number_box');
         get.balance ? _.inner('#balance', get.balance) : _.hidd('#balance_box');
+        get.time ? _.inner('#time', get.time) : _.hidd('#time_box');
         _.inner('#name', get.name);
         _.inner('#phone', get.phone);
-        _.inner('#time', get.time);
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
         _.inner('#ad', get.ad);

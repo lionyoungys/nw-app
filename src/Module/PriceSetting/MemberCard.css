@@ -37,6 +37,7 @@
     height:25px;
 }
 .membercard-tab table tbody tr:nth-of-type(odd){background:#fff}
+.membercard-tab table tbody tr:nth-of-type(even){background:#f0f5f9}
 .membercard-tab table tbody tr td{
     width: 138px;
     height:25px; 

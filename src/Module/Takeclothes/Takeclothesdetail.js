@@ -8,6 +8,7 @@ import LayerBox from '../../UI/LayerBox';
 import Payment from '../../UI/Payment';
 import './Takeclothes.css';
 
+const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -17,6 +18,8 @@ export default class extends Component {
             listitem:[],
             listorder:{},
             listuser:{},
+            merchant:{},
+            nopay:{},
             index:[],
             checked:[],
             more:false,                      
@@ -25,6 +28,8 @@ export default class extends Component {
         this.handleAllChecked=this.handleAllChecked.bind(this);
         this.handleChecked=this.handleChecked.bind(this);
         this.paymore = this.paymore.bind(this);
+        this.paymentCallback = this.paymentCallback.bind(this);
+        this.print = this.print.bind(this);
     }; 
     takeClothes(){
         if(this.state.checked.length==0)
@@ -61,6 +66,8 @@ export default class extends Component {
                         listitem:res.result.item,
                         listorder:res.result.order,
                         listuser:res.result.user,
+                        nopay:res.result.nopay,
+                        merchant:res.result.merchant,
                     })
                 }else{
                     // console.log(res.msg);                   
@@ -84,6 +91,91 @@ export default class extends Component {
             this.setState({checked:this.state.listitem.typeArray('id')})
         
     }
+    paymentCallback(obj) {
+        if (null == this.props.id) return;
+        if (0 == obj.gateway && (null == this.props.data.cid || '' == this.props.data.cid)) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let loadingEnd;
+        tool.ui.loading(handle => loadingEnd = handle);
+        api.post(
+            'orderPay', 
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.props.data.cid || '', oid:this.props.id, passwd:obj.passwd || ''},
+            (res, ver, handle) => {
+                console.log(res);
+                loadingEnd();
+                if (ver) {
+                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
+                    tool.ui.success({callback:close => {
+                        close();
+                        this.props.closeView();
+                    }}); 
+                } else {
+                    handle();
+                }
+            },
+            () => loadingEnd()
+        );
+    }
+    print(object) {
+        object = object || {};
+        /*
+            sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
+            reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;
+            pay_amount:实收;change:找零;debt:欠款;
+            number:卡号;balance:余额;
+            name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
+        */
+        let total = 0    //总金额
+        ,   amount = 0    //折后金额
+        ,   dis_amount = 0
+        ,   no_dis_amount = 0
+        ,   discount = this.props.data.discount || 100;
+        this.state.listitem.map(obj => {
+            total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
+            amount = amount.add( 
+                (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
+                obj.addition_no_price, 
+                (Math.floor(obj.addition_price * discount) / 100)
+            );
+            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+        });
+        let gateway = object.gateway
+        ,   balance = this.props.data.balance;
+        if ('undefined' !== typeof gateway) {
+            if (0 == gateway) {
+                gateway = '会员卡支付';
+                if (!isNaN(balance)) balance = balance.subtract(object.pay_amount);
+            } else if (1 == gateway) {
+                gateway = '现金支付';
+            } else if (2 == gateway) {
+                gateway = '微信支付';
+            } else {
+                gateway = '支付宝支付';
+            }
+        } else {
+            gateway = '未付款';
+        }
+        EventApi.print('order', {
+            sn:this.state.listorder.ordersn,
+            items:JSON.stringify(this.state.listitem),
+            total:total,
+            dis_amount:dis_amount,
+            amount:no_dis_amount,
+            discount: (discount / 10),
+            real_amount:amount,
+            name:this.state.listuser.user_name,
+            phone:this.state.listuser.user_mobile,
+            addr:this.state.merchant.maddress,    //店铺地址
+            mphone:this.state.merchant.phone_number,    //店铺电话
+            ad:this.state.merchant.mdesc,    //店铺广告
+            number:this.props.data.recharge_number,
+            balance:balance,
+            pay_amount:object.pay_amount,
+            change:object.change,
+            gateway:gateway,
+            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+        });
+    }
     handleChecked(e) {          
         let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
         let index = id.inArray(this.state.checked);
@@ -97,11 +189,14 @@ export default class extends Component {
         //console.log(this.state.checked.length)                 
     }
     paymore (){       
-            this.setState({more:true});                        
+        this.setState({more:true});                        
     }
     render() {
         let discount = this.props.data.discount || 100
-        ,   total_amount = this.state.listorder.arrears || this.state.listorder.pay_amount || 0;
+        ,   total_amount = this.state.listorder.arrears || this.state.listorder.pay_amount || 0
+        ,   amount = this.state.nopay.amount || 0
+        ,   dis_amount = this.state.nopay.discount_amount || 0
+        ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100);
         let takeclothesdetail=this.state.listitem.map((item,index)=>
         <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
             <td>{index+1}</td>
@@ -110,7 +205,7 @@ export default class extends Component {
             <td>{item.clothing_color}</td>
             <td>{item.remark}</td>
             <td>{item.grid_num}</td>
-            <td>{item.status==3?'清洗中':'清洗完成'}</td>
+            <td>{item.status == 3 ? '清洗中' : '清洗完成'}</td>
         </tr>
         );
            return (
@@ -166,8 +261,11 @@ export default class extends Component {
                             data={{
                                 total_amount:total_amount,
                                 discount:discount,
-
+                                amount:amount,
+                                dis_amount:dis_amount,
+                                pay_amount:pay_amount
                             }}
+                            callback={this.paymentCallback}
                         />
                     }
                     {

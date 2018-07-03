@@ -29,7 +29,6 @@ export default class extends React.Component {
         tool.KeyCode.listen(this.numberInput, value => {
             let obj = {number:value};
             this.setState(obj);
-            this.query(obj);
         });
     }
 
@@ -37,17 +36,13 @@ export default class extends React.Component {
         let key = e.target.dataset.key
         ,   obj = {[key]:e.target.value, cid:'', balance:0, discount:'', type:''};
         this.setState(obj);
-        if ('undefined' === typeof obj.addr && '' !== obj[key]) this.query(obj);
     }
 
-    query(obj) {
-        obj.number = obj.number || this.state.number;
-        obj.name = obj.name || this.state.name;
-        obj.phone = obj.phone || this.state.phone
-        if ('' === obj.number && '' === obj.phone && '' === obj.name) return;
+    query() {
+        if ('' === this.state.number && '' === this.state.phone && '' === this.state.name) return;
         api.post(
             'readCard', 
-            {token:'token'.getData(), cardNumber:obj.number, user_name:obj.name, user_mobile:obj.phone}, 
+            {token:'token'.getData(), cardNumber:this.state.number, user_name:this.state.name, user_mobile:this.state.phone}, 
             (res, ver) => {
                 console.log(res);
                 if (ver) {
@@ -128,7 +123,11 @@ export default class extends React.Component {
                             <input type='text' className='e-input' style={{width:'549px'}} value={this.state.addr} data-key='addr' onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
+                    <div>
+                        <button type='button' className='e-btn' onClick={this.query}>查询</button>
+                        <br/>
+                        <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
+                    </div>
                 </div>
                 <div className='clothes-user-main'>
                     <div><div>用户ID</div><div>姓名</div><div>手机</div><div>卡号</div><div>余额</div><div>消费金额</div><div>地址</div></div>

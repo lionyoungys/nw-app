@@ -49,8 +49,8 @@
 }
 .cleaning_price_set_left_table span{
     display: block;
-    margin: 0;
-    height: 30px;
+    margin:0;
+    height:30px;
     line-height: 30px;
     box-sizing: border-box;
     text-align: center;
@@ -60,6 +60,7 @@
     background-size:77px 2px;
     background-position: bottom center;
     width:100%;
+    cursor:pointer;
 }
 .cleaning_price_set_left_table span.selected_row{
 
