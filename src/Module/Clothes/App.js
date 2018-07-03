@@ -298,6 +298,7 @@ export default class extends Component {
     showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
     setUser(obj) {
         obj.show = 0;
+        console.log(obj);
         this.setState(obj);
     }
     print(object) {
@@ -452,7 +453,10 @@ export default class extends Component {
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
-    tempUser() {this.setState({show:15})}
+    tempUser() {
+        if ('' === this.state.number && '' === this.state.phone && '' === this.state.name) return;
+        this.setState({show:15});
+    }
     onClose() {
         if (this.state.data.length > 0) {
             tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
@@ -504,10 +508,12 @@ export default class extends Component {
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>
-                    <b>*</b>手机：<input type='text' className='e-input' style={{width:'120px'}} value={this.state.phone} readOnly onClick={this.tempUser}/>
-                    <b>*</b>姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} readOnly onClick={this.tempUser}/>
-                    卡号：<input type='text' className='e-input' style={{width:'120px'}} value={this.state.number} readOnly onClick={this.tempUser}/>
-                    地址：<input type='text' className='e-input' style={{width:'196px'}} value={this.state.addr} readOnly onClick={this.tempUser}/>
+                    <b>*</b>手机：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.phone} onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    <b>*</b>姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    卡号：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.number} onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    地址：<input type='text' className='e-input' style={{width:'160px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
+                    &emsp;
                     <button type='button' className='e-btn' onClick={this.M1read}>读卡</button>
                 </div>
                 <div className='clothes-header'>
@@ -623,14 +629,9 @@ export default class extends Component {
                     &&
                     <User
                         onClose={this.handleClose} 
-                        addr={this.state.addr} 
                         name={this.state.name} 
                         number={this.state.number} 
                         phone={this.state.phone} 
-                        balance={this.state.balance} 
-                        discount={this.state.discount} 
-                        cid={this.state.cid}
-                        type={this.state.type}
                         callback={this.setUser}
                     />
                 }
