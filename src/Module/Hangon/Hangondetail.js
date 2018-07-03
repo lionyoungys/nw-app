@@ -52,7 +52,8 @@ export default class extends Component {
       
         api.post('putNumber', {
             token:'token'.getData(),
-            id:this.state.grid[this.state.index].id,   
+            id:this.state.grid[this.state.index].id,  
+            limit:200
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)

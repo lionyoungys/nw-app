@@ -41,10 +41,9 @@ export default class extends Component {
             <td>{index + 1 + (this.state.page - 1) * this.limit}</td>
             <td>{item.card_number}</td>
             <td>{item.card_name}</td>
-            <td>{item.discount}</td>
-            <td>{item.user_name}</td>
-            <td>{item.user_mobile}</td>
             <td>{item.balance}</td>
+            <td>{item.user_name}</td>
+            <td>{item.user_mobile}</td>         
             <td>{item.time}</td>
         </tr>
         )       
@@ -68,7 +67,8 @@ export default class extends Component {
                             <td>商品类型</td>
                             <td>交易金额</td>
                             <td>姓名</td>
-                            <td>手机号</td>                                
+                            <td>手机号</td> 
+                            <td>卡余额</td>                               
                             <td>交易时间</td>
                         </tr>
                     </thead>

@@ -41,7 +41,7 @@ export default class extends Component {
             <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{item.card_number}</td>
             <td>{item.card_name}</td>
-            <td>{item.discount}</td>
+            <td>{item.discount}%</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>
             <td>{item.balance}</td>

@@ -5,7 +5,6 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Takeclothesdetail from './Takeclothesdetail';
-import { WSAEINVALIDPROCTABLE } from 'constants';
 import './Takeclothes.css';
 
 export default class extends Component {   

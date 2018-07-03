@@ -138,5 +138,11 @@
 #right_table tr td{
     min-width:116px;
 }
+#right_table tr td b{
+    font-weight:inherit;
+    margin-right:15px;
+}
+#right_table tr td i{font-style:normal;margin-left:15px;}
+
 .commodity_classify_management_left_table{border-bottom: 1px solid #8db2e3}
 .commodity_classify_management_right_bottom{border-bottom: none}

@@ -17,7 +17,7 @@
             'print/' + pageName + '.html' + getParam,
             {
                 new_instance:true, 
-                // show:false
+                show:false
             }
         );
     },

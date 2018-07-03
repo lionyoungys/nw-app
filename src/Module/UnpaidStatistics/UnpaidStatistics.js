@@ -34,7 +34,7 @@ export default class extends Component {
             <td>{item.serialsn}</td>
             <td>{item.work_number}</td>
             <td>{item.discount_amount}</td>
-            <td>{item.discount}</td>
+            <td>{item.discount}%</td>
             <td>{item.amount}</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>

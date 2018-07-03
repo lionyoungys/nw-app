@@ -38,7 +38,7 @@ export default class extends Component {
              <td>{item.work_number}</td>
              <td>{item.amount}</td>
              <td>{item.real_amount}</td>
-             <td>{item.discount}</td>
+             <td>{item.discount}%</td>
              <td>{item.pay_type}</td>
              <td>{item.user_mobile}</td>
              <td>{item.user_name}</td>
@@ -53,7 +53,7 @@ export default class extends Component {
             <Window title='前台情况' onClose={this.props.closeView}>   
                 <div className="ope-inc-head for-sta-head">
                     <a>统计时间：{tool.date('Y-m-d') +'  00：00：00'} 至{tool.date('Y-m-d  H：i：s')}</a>
-                    <a>衣物件数：10件</a>
+                    <a>衣物件数：{this.state.list.length}件</a>
                 </div>
                 <div class="ui-check-res ReportLossQuery">已为您找到：<b>{this.state.list.length}</b>条记录</div>
                 <table className='ui-table-base for-sta-tab'>

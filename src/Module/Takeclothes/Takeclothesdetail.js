@@ -4,11 +4,9 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import LayerBox from '../..//UI/LayerBox';
-import Payment from '../..//UI/Payment';
-import { WSAEINVALIDPROCTABLE } from 'constants';
+import LayerBox from '../../UI/LayerBox';
+import Payment from '../../UI/Payment';
 import './Takeclothes.css';
-import Item from '../Clothes/Item';
 
 export default class extends Component {   
     constructor(props) {
@@ -17,8 +15,8 @@ export default class extends Component {
             show2:false,            
             count:'',
             listitem:[],
-            listorder:[],
-            listuser:[],
+            listorder:{},
+            listuser:{},
             index:[],
             checked:[],
             more:false,
@@ -71,7 +69,7 @@ export default class extends Component {
                         listorder:res.result.order,
                         listuser:res.result.user,
                     })
-                    if(res.result.order.arrears>0){
+                    if(res.result.order.arrears > 0){
                         this.setState({pay:'block',Show:'none',Show1:'none'});
                     }else{
                         this.setState({pay:'none',Show:'block',Show1:'none'});                       
@@ -191,10 +189,11 @@ export default class extends Component {
                            <div>价格: ￥{this.state.listorder.pay_amount}</div>
                         </div>                       
                     </div>
+                    {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
                     {
-                    this.state.more
+                        this.state.more
                         &&
-                        <Payment onClose = {this.onClose}  />
+                        <Payment onClose={this.onClose}/>
                     }
                     {
                     this.state.show2

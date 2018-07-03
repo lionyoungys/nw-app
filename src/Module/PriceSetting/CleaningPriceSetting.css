@@ -22,7 +22,7 @@
     margin-top: 0;
     margin-left: 13px;
     width: 90px;
-    height: auto;
+    height:448px;
     max-height: 448px;
     border:1px solid #8db2e3;
     overflow: hidden;
@@ -41,6 +41,7 @@
     overflow-y: scroll;
     /* 用于隐藏横向滑块 */
     overflow-x:hidden;
+    height:448px;
 }
 .cleaning_price_set_left_table:-webkit-scrollbar{
 
@@ -73,15 +74,13 @@
 }
 
 .change_card_table.right_table{
-
     float:right;
     margin:0 11px;
     max-height: 448px;
-    max-width: 741px;
-    height: auto;
+    max-width: 741px;    
     overflow: auto;
     border:1px solid #8db2e3; 
-    
+    height:448px;
 }
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */

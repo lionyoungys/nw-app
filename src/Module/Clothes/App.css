@@ -378,3 +378,6 @@
 .clothes-code>:first-child, .clothes-code>:last-child>:last-child{border: none}
 .clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 188px}
 .clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 192px}
+
+.clothes-user-main-body>div:nth-child(odd){background:#fff}
+.clothes-user-main-body>div:nth-child(even){background:#f0f5f9}

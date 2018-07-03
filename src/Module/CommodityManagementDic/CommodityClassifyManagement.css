@@ -3,12 +3,13 @@
     margin-top: 16px;
     margin-left: 16px;
     width: 307px;
-    height: 338px;
+    height: auto;
     /* background: yellow; */
     overflow-y: scroll;
     overflow-x: hidden;
     float: left;
     border:1px solid #8db2e3;
+    max-height:338px;
 }
 .commodity_classify_management_left_table{
 
@@ -85,7 +86,7 @@
 .commodity_classify_management_right_bottom{
     margin: 0;
     height: 285px;
-    border:1px solid #8db2e3;
+   
     box-sizing: border-box;
     border-bottom:none;
 }
@@ -117,7 +118,5 @@
     height: 25px;
 }
 .commodity_classify_management_right_bottom button{
-
-
     margin: 83px 10px 10px 45px;
 }

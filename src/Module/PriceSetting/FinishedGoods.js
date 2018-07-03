@@ -73,17 +73,26 @@ export default class extends Component {
         
     } 
     addYES(){
-        api.post('addGoods', {
+        if(''==this.state.name)
+        return  tool.ui.error({msg:'请输入名称',callback:(close) => { close();}});
+        if(''==this.state.stock)
+        return  tool.ui.error({msg:'请输入库存',callback:(close) => { close();}});
+        if(''==this.state.price)
+        return  tool.ui.error({msg:'请输入价格',callback:(close) => { close();}});
+        
+        let params={
             token:'token'.getData(),
             fid:this.state.typeLists[this.state.typeindex].id,
             name:this.state.name,
             price:this.state.price,
             stock:this.state.stock,
             has_discount:this.state.discount
-    }, (res, ver) => {
+        }
+        console.log(params)
+        api.post('addGoods',params, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({show:false,name:'',price:'',stock:''});
+                this.setState({show:false,name:'',price:'',stock:'',has_discount:0});
                 this.componentDidMount();
             }else{
                 tool.ui.error({msg:res.msg,callback:(close, event) => {
@@ -180,6 +189,12 @@ export default class extends Component {
     //    this.setState({id:this.state.itemLists[this.state.index].goods[write].id});
     }
     modYES(){
+        if(''==this.state.name)
+        return  tool.ui.error({msg:'请输入名称',callback:(close) => { close();}});
+        if(''==this.state.stock)
+        return  tool.ui.error({msg:'请输入库存',callback:(close) => { close();}});
+        if(''==this.state.price)
+        return  tool.ui.error({msg:'请输入价格',callback:(close) => { close();}});
         api.post('modGoods', {
             token:'token'.getData(),
             id:this.state.itemLists[this.state.index].goods[this.state.goodindex].id,
@@ -221,7 +236,7 @@ export default class extends Component {
             <tr key={item}>
                 <td>{index+1}</td>
                 <td>{item.name}</td>
-                <td>{item.discount}</td>
+                <td>{item.has_discount=='1'?'是':'否'}</td>
                 <td>{item.stock}</td>
                 <td>{item.price}</td>
                 <td> <b onClick={this.mod} data-write={index}>编辑</b>&nbsp;<i  onClick={this.delete} data-write={index}>删除</i></td>

@@ -333,12 +333,12 @@ export default class extends Component {
                     <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange} /></div>
-                                <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
+                                <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange} /></div>
+                                <div><span><i>*</i> 衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
-                                <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                                
                             </div>
                             <div className="addnewprice-one-right">
@@ -347,14 +347,14 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i>格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
+                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
                           
                             </div>
                         </div>
 
                         <div className="addnewprice-two">
-                            <div><span><i>*</i>线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value,item_online_price:e.target.value})}/>元</div>
+                            <div><span><i>*</i> 线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value,item_online_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
                                 </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
