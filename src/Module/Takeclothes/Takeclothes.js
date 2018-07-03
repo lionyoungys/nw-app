@@ -72,8 +72,7 @@ export default class extends Component {
                     console.log(res);
                     this.setState({
                         list:res.result.list,
-                        count:res.result.count,
-                        
+                        count:res.result.count,                       
                     })
                 }else{
                     console.log(res.msg);

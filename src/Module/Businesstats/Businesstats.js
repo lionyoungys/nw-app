@@ -29,19 +29,19 @@ export default class extends Component {
             end_time:this.state.enddate,    
             // page: page,
             // limit: this.limit        
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res);
                     this.setState({list:res.result})
                 }else{
-                    console.log(res.msg);
+                    handle();
                 }
             }
         );
     }
     render() {
         var list =  this.state.list.map((item,index) =>
-        <tr>
+        <tr key= {'item'+index}>
              <td>{index+1}</td>
              <td>{item.serialsn}</td>
              <td>{item.operator}</td>

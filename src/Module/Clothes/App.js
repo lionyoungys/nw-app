@@ -28,6 +28,7 @@ export default class extends Component {
         super(props);
         this.state = {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            mphone:'',maddr:'', ad:'',sn:'',
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
@@ -65,42 +66,44 @@ export default class extends Component {
         this.del = this.del.bind(this);    //项目删除方法
         this.copy = this.copy.bind(this);    //项目复制
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
+        this.print = this.print.bind(this);
+        this.paymentClose = this.paymentClose.bind(this);
     }
 
     componentDidMount() {
         api.post('clothes', {token:token}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
-                let len = res.result.length;
+                let len = res.result.type.length;
                 for (let i = 0;i < len;++i) {
-                    this.state.category.push({id:res.result[i].id, name:res.result[i].name});
-                    this.state.item.push(res.result[i].server);
+                    this.state.category.push({id:res.result.type[i].id, name:res.result.type[i].name});
+                    this.state.item.push(res.result.type[i].server);
                 }
                 this.setState({category:this.state.category, item:this.state.item});
             } else {handle()}
         });
         api.post('brandList', {token:token}, (res, ver, handle) => {    //获取品牌列表
             if (ver) {
-                this.setState({brand:res.result});
+                this.setState({brand:res.result.list});
             } else {handle()}
         });
         api.post('colorList', {token:token}, (res, ver, handle) => {    //获取颜色列表
             if (ver) {
-                this.setState({color:res.result});
+                this.setState({color:res.result.list});
             } else {handle()}
         });
         api.post('flawList', {token:token}, (res, ver, handle) => {    //获取瑕疵列表
             if (ver) {
-                this.setState({problem:res.result});
+                this.setState({problem:res.result.list});
             } else {handle()}
         });
         api.post('forecastList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
-                this.setState({forecast:res.result});
+                this.setState({forecast:res.result.list});
             } else {handle()}
         });
         api.post('additionList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
-                this.setState({price:res.result});
+                this.setState({price:res.result.list});
             } else {handle()}
         });
     }
@@ -283,6 +286,7 @@ export default class extends Component {
         this.state.data[obj.index].addition_remark = obj.remark;
         this.state.data[obj.index].addition_price = obj.disPrice;
         this.state.data[obj.index].addition_no_price = obj.price;
+        this.state.data[obj.index].json = obj.json;
         this.setState({show:0, data:this.state.data})
     }
     showPrice(e) {this.setState({show:7,currentIndex:e.target.parentNode.dataset.index})}
@@ -295,6 +299,51 @@ export default class extends Component {
     setUser(obj) {
         obj.show = 0;
         this.setState(obj);
+    }
+    print(object) {
+        object = object || {};
+        /*
+            sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
+            reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;
+            pay_amount:实收;change:找零;debt:欠款;
+            number:卡号;balance:余额;
+            name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
+        */
+        let total = 0    //总金额
+        ,   amount = 0    //折后金额
+        ,   dis_amount = 0
+        ,   no_dis_amount = 0
+        ,   discount = '' == this.state.discount ? 100 : this.state.discount;
+        this.state.data.map(obj => {
+            total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
+            amount = amount.add( 
+                (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
+                obj.addition_no_price, 
+                (Math.floor(obj.addition_price * discount) / 100)
+            );
+            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+        });
+        EventApi.print('order', {
+            sn:this.state.sn,
+            items:JSON.stringify(this.state.data),
+            total:total,
+            dis_amount:dis_amount,
+            amount:no_dis_amount,
+            discount: (discount / 10),
+            real_amount:amount,
+            name:this.state.name,
+            phone:this.state.phone,
+            time:this.state.time,
+            addr:this.state.maddr,
+            mphone:this.state.mphone,
+            ad:this.state.ad,
+            number:this.state.number,
+            balance:this.state.balance,
+            pay_amount:object.pay_amount,
+            change:object.change,
+            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+        });
     }
     cost() {
         /**"user_name": "姓名",
@@ -343,7 +392,14 @@ export default class extends Component {
             (res, ver) => {
                 console.log(res);
                 if (ver) {
-                    this.setState({show:14, oid:res.result});
+                    this.setState({
+                        show:14, 
+                        oid:res.result.order_id, 
+                        sn:res.result.ordersn, 
+                        mphone:res.result.merchant.phone_number, 
+                        maddr:res.result.merchant.maddress,
+                        ad:res.result.merchant.mdesc,
+                    });
                 }
             }
         );
@@ -361,6 +417,7 @@ export default class extends Component {
                 console.log(res);
                 loadingEnd();
                 if (ver) {
+                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount});
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();
@@ -371,6 +428,10 @@ export default class extends Component {
             },
             () => loadingEnd()
         );
+    }
+    paymentClose() {
+        this.print();
+        this.props.closeView();
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
@@ -527,7 +588,7 @@ export default class extends Component {
                     14 === this.state.show
                     &&
                     <Payment 
-                        onClose={this.props.closeView}
+                        onClose={this.paymentClose}
                         data={{
                             total_amount:total,
                             dis_amount:dis_amount,

@@ -1,13 +1,12 @@
 /**
  * 赔付统计界面组件
- * @author fanyerong
+ * @author fanyerong && ranchong
+ * 修改日志:6/30 调试完成接口（ranchong）
  */
 import React, {Component} from 'react';
-import { WSAEINVALIDPROCTABLE } from 'constants';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
 import './Payoutstats.css';
-
 
 export default class extends Component {   
     constructor(props) {
@@ -52,8 +51,10 @@ export default class extends Component {
             this.query(1);
         }else if (index==1) {
             console.log('打印');
+            
         }else{
             console.log('退出');
+            this.props.closeView();
         }
     }
     render() {

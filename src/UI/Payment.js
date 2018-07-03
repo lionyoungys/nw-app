@@ -54,10 +54,12 @@ export default class extends Component {
     onConfirm() {
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
-        ,   obj = {gateway:this.state.gateway,amount:this.state.amount};
+        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount), pay_amount:parseFloat(this.props.data.total_amount), change:0};
         if (0 == obj.gateway) {    //会员卡支付
+            obj.pay_amount = this.props.data.pay_amount;
         } else if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.total_amount) > parseFloat(obj.amount)) return;
+            if ('' == obj.amount || obj.amount <= 0 || obj.pay_amount > obj.amount) return;
+            if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
@@ -126,7 +128,7 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
-                        <div style={style}>请扫描或输入卡号</div>
+                        <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
                         <input type='input' className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button 
                             type='button' 

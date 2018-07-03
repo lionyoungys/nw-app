@@ -49,17 +49,18 @@
 }
 
 .ui-table-base.mem_bus_sta_table_two{
-
-    max-height: 330px;
+    max-height: 275px;
+    overflow: auto;
 }
 .ui-table-base.mem_bus_sta_table_two tr td{
 
-    min-width:97px;
-    max-width: 97px;
+    min-width:130px;
+    max-width: 130px;
+    padding: 0 4px;
 }
 .ui-table-base.mem_bus_sta_table_two tbody{
 
-    max-height: 305px;
+    max-height: 235px;
 }
 .ui-table-base.auto-width.mem-bus-auto-tab tr td{
     min-width: 144px;

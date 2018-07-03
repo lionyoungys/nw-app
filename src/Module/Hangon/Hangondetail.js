@@ -50,8 +50,7 @@ export default class extends Component {
             }else{
                 console.log(res)
             }
-                }
-               );
+        });
     }
     putOn(){
         let puton={

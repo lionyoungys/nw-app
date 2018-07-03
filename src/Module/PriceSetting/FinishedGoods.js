@@ -28,6 +28,7 @@ export default class extends Component {
             stock:'',
             price:'',
             page:1,
+            goods_type:''//类别
         }
         this.limit = 200;
         this.handleClick=this.handleClick.bind(this);
@@ -151,11 +152,12 @@ export default class extends Component {
     }
     mod(e){
         api.post('goodtypeList', {
-            token:'token'.getData()
+            token:'token'.getData(),
+            limit:200
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({typeLists:res.result,typeList:res.result.typeArray('name')})
+                this.setState({typeLists:res.result.list,typeList:res.result.list.typeArray('name')})
             }else{
                 tool.ui.error({msg:res.msg,callback:(close, event) => {
                     close();
@@ -168,7 +170,7 @@ export default class extends Component {
        this.setState({
         show2:true,
         goodindex:write,
-      
+        goods_type:this.state.itemLists[this.state.index].goods[write].goods_type,
         name:this.state.itemLists[this.state.index].goods[write].name,
         stock:this.state.itemLists[this.state.index].goods[write].stock,
         price:this.state.itemLists[this.state.index].goods[write].price,
@@ -291,7 +293,7 @@ export default class extends Component {
                     <Window title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[this.state.index]} onchange={this.onchange}/></div>
+                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.goods_type} onchange={this.onchange}/></div>
                             </div>
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-nor"><span>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>

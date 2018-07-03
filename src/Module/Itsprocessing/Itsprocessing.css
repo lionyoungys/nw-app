@@ -38,22 +38,21 @@
     background:#eef4fb;
 }
 .Itsprocessing-count-take div{
-    width:240px;
+
     height:22px;
-    line-height:22px; 
+    line-height:22px;  
     padding-left:18px;
     border:1px solid #8db2e3;
-    margin:6px auto 0;
+    margin:6px 10px 0;
 }
 
 .Itsprocessing-count-take div.itsproce-click{
     background:#89b0d4;
-    width:240px;
     height:22px;
     line-height:22px; 
     padding-left:18px;
     border:1px solid #8db2e3;
-    margin:6px auto 0;
+    margin:6px 10px 0;
 }
 
 .Itsprocessing-count-take div span{
@@ -66,7 +65,6 @@
 .Itsprocessing-count-transfer span:first-child{background: url(./img/Itsprocessing-btn.png) no-repeat;background-position:center center }
 .Itsprocessing-count-transfer span:last-child{background: url(./img/.Itsprocessing-returnbtn.png) no-repeat;background-position:center center }
 .Itsprocessing-count-right{float:right;}
-
 
 .Itsprocessing-footer{
     width:602px;

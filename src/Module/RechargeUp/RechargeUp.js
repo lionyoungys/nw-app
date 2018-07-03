@@ -26,7 +26,7 @@ export default class extends Component {
     query(page) {
         console.log(page);
         page = page || this.state.page;
-        api.post('rechargeSta', { token: 'token'.getData(), start_time: this.state.startdate, end_time: this.state.enddate,page: page, limit: this.limit }, (res, ver, handle) => {
+        api.post('rechargeSta', { token: 'token'.getData(), start_time: this.state.startdate, end_time: this.state.enddate,page: page, limit:this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
                 this.setState({ total_amount: res.result.total_amount, list: res.result.list, count: res.result.count,page:page});
@@ -55,9 +55,11 @@ export default class extends Component {
                             <div>开始日期：<input type="date"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
                             <div>结束日期：<input type="date"  value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                         </div>
+                        
                         <button className="e-btn recharg-btn" onClick={()=>this.query(1)}>查询</button>
-                        <div id="balancestatistics-leiji">累计充值金额：<b>¥{this.state.total_amount||0}</b> 元</div>
-                        {/* <div id="balancestatistics-zengsong">累计赠送金额：<b>¥{this.state.balance_total||0}</b></div>                             */}
+                        <div id="balancestatistics-zengsong">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                        <div id="balancestatistics-leiji">累计充值金额：<b>¥{this.state.total_amount || 0}</b> 元</div>
+                                                    
                     </div>
                     <table className='ui-table-base bal-sta-tab'>
                         <thead>

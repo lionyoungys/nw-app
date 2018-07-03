@@ -1,6 +1,6 @@
 .clothestat-tab table{
     width:870px;
-    height:176px;
+    height:150px;
     border:1px solid #8db2e3;
     max-width:870px;
     overflow-x:auto;
@@ -32,14 +32,17 @@
 }
 .clothestat-tab table tbody{
     width:auto;
-    height:135px;
-    max-height:135px;
+    height:112px;
+    max-height:112px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;
 }
 .clothestat-tab table tbody tr{width:870px;height:25px;}
 .clothestat-tab table tbody tr:nth-child(odd){background:#fff;}
+.clothestat-tab tbody tr:nth-child(odd){background:#fff;}
+.clothestat-tab tbody tr:nth-child(even){background:#f0f5f9;}
+
 .Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
 .clothestat-tab table tbody tr td{
     width:88px;

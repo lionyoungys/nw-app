@@ -12,6 +12,7 @@ export default class extends Component {
         this.state = {show:false, tempIndex:null};
         this.editor = this.editor.bind(this);
         this.callback = this.callback.bind(this);
+        console.log(this.props.price);
     }
 
     editor(e) {
@@ -31,7 +32,7 @@ export default class extends Component {
             }
             remark += checked[i].name + checked[i].value + '元;';
         }
-        this.props.callback({index:this.state.tempIndex, remark:remark, disPrice:disPrice, price:price});
+        this.props.callback({index:this.state.tempIndex, remark:remark, disPrice:disPrice, price:price, json:JSON.stringify(checked)});
         this.setState({show:false});
     }
 
@@ -66,7 +67,7 @@ export default class extends Component {
 class Layer extends Component {
     constructor(props) {
         super(props);
-        this.state = {checked:[]};    //checked:[{id:string,name:string,discount:bool}]
+        this.state = {checked:[]};    //checked:[{id:string,name:string,value:string,discount:bool}]
         this.handleClick = this.handleClick.bind(this);
         this.handleChecked = this.handleChecked.bind(this);    //项目选中事件处理
         this.handleDiscount = this.handleDiscount.bind(this);    //打折处理

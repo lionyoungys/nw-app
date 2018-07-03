@@ -1,20 +1,62 @@
 /**
  * 交期预警
- * @author  fanyerong
+ * @author  fanyerong&wangjun
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Deliverywarning from './Deliverywarning.css';
+import Page from '../../UI/Page'
 
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            page:1,
+            clothing_number:'',//衣物编码
+            list:[],
+            count:1,
+        }
+        this.limit=15;
+        this.query=this.query.bind(this);
     };
+    query(page){
+        page = page || this.state.page;
+        api.post('past', {
+            token:'token'.getData(),
+            clothing_number:this.state.clothing_number,
+            limit:this.limit,
+            page:page
+        }, (res, ver,handle) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({
+                    list:res.result.list,
+                    count:res.result.count,
+                    page:page
+                });
+            }else{
+                handle();
+            }
+        }
+        );  
+    }
     render() {
+        let list=this.state.list.map((item,index)=>
+        <tr>
+            <td>{item.clothing_number}</td>
+            <td>{item.clothing_name}</td>
+            <td>{item.clothing_color}</td>
+            <td>{item.pastTime}</td>
+            <td>{item.user_name}</td>
+            <td>{item.card_number}</td>
+            <td>{item.user_mobile}</td>
+        </tr>
+        );
         return (
             <Window title='交期预警' onClose={this.props.closeView} >
                <div className="Deliverywarning-title">
-                  <span>衣物编码:</span><input type="text" className='e-input del-war-input'/> <button className="e-btn">查询</button>
+                  <span>衣物编码:</span><input type="text" className='e-input del-war-input' value={this.state.clothing_number   
+                } onChange={e=>this.setState({clothing_number:e.target.value})}/> <button className="e-btn" onClick={()=>this.query(1)}>查询</button>
                </div>
                <div className="deliverywarning-tab">
                   <table>
@@ -30,362 +72,12 @@ export default class extends Component {
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr><tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr><tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
-                          <tr>
-                              <td>876545</td>
-                              <td>裤子</td>
-                              <td>红色，白色蓝色，青色，橙色</td>
-                              <td>5</td>
-                              <td>旺旺</td>
-                              <td>8765455663325323</td>
-                              <td>18310963932</td>
-                          </tr>
+                         {list}
                       </tbody>
                   </table>
+                  <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                </div>
-               <div className="bothpages-footer">
-                    <div className="bothpages-footer-btn">
-                        <span>首页</span>
-                        <span>上一页</span>
-                        <span>下一页</span>
-                        <span>尾页</span>
-                    </div>
-                    <div className="bothpages-footer-all">第<span>1</span>页/共<span>4</span>页</div>
-                    <div className="bothpages-footer-both">每页<span>20</span>条，共<span>112</span>条</div>
-                </div>
+             
             </Window>
            
         );

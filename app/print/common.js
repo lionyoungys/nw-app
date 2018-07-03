@@ -34,9 +34,10 @@
     var win = nw.Window.get()
     ,   c = {
         GET:{},
+        win:win,
         close:win.close,
         barcode:function(elem, code) {JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
-        print:function() {    //打印退出方法
+        print:function() {    //打印方法
             win.print({
                 headerFooterEnabled:false,
                 marginsType:3,

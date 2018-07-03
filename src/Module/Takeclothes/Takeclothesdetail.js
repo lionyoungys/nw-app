@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import LayerBox from '../..//UI/LayerBox';
+import Payment from '../..//UI/Payment';
 import { WSAEINVALIDPROCTABLE } from 'constants';
 import './Takeclothes.css';
 import Item from '../Clothes/Item';
@@ -19,12 +20,21 @@ export default class extends Component {
             listorder:[],
             listuser:[],
             index:[],
-            checked:[]
+            checked:[],
+            more:false,
+            Show:'block',
+            Show1:'none',
+            pay:'none',
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
         this.handleChecked=this.handleChecked.bind(this);
+        this.paymore = this.paymore.bind(this);
+        this.onClose = this.onClose.bind(this)
     }; 
+    onClose (){
+        this.setState({more:false})
+    }
     takeClothes(){
         if(this.state.checked.length==0)
         return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
@@ -61,14 +71,11 @@ export default class extends Component {
                         listorder:res.result.order,
                         listuser:res.result.user,
                     })
-                    
-                    // if(this.state.listitem.status==3){
-                    //     this.setState({status:'清洗中'})
-                    // }else if(this.state.listitem.status==4){
-                    //     this.setState({status:'清洗完成'})
-                    // } else{
-                    //     this.setState({status:'退款中'})
-                    // }                                                                                                 
+                    if(res.result.order.arrears>0){
+                        this.setState({pay:'block',Show:'none',Show1:'none'});
+                    }else{
+                        this.setState({pay:'none',Show:'block',Show1:'none'});                       
+                    }                                                                                                                 
                 }else{
                     // console.log(res.msg);                   
                 }
@@ -81,22 +88,47 @@ export default class extends Component {
     //     this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
     // }
     handleAllChecked() {
-        console.log(this.state.checked.length == this.state.listitem.length);
-        this.state.checked.length == this.state.listitem.length
-        ?
-        this.setState({checked:[]})
-        :
-        this.setState({checked:this.state.listitem.typeArray('id')});
+        
+        //console.log(this.state.checked.length == this.state.listitem.length);
+        if(this.state.listorder.arrears>0){
+            this.state.checked.length == this.state.listitem.length
+            ?
+            this.setState({checked:[],Show:'none',Show1:'none'})        
+            :
+            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'none'})
+        }else{
+            this.state.checked.length == this.state.listitem.length
+            ?
+            this.setState({checked:[],Show:'block',Show1:'none'})        
+            :
+            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'block'})
+        }
+        
     }
-    handleChecked(e) {
-            let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
-            let index = id.inArray(this.state.checked);
-            if (-1 === index) {
-                this.state.checked.push(id);
-            } else {
-                this.state.checked.splice(index, 1);
-            }
-            this.setState({checked:this.state.checked});
+    handleChecked(e) {          
+        let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
+        let index = id.inArray(this.state.checked);
+        if (-1 === index) {
+            this.state.checked.push(id);
+        } else {
+            this.state.checked.splice(index, 1);
+        }
+        this.setState({checked:this.state.checked});
+        //console.log(this.state.checked.length)
+        if(this.state.listorder.arrears>0){
+            this.setState({Show:'none',Show1:'none'});
+            
+        }else{
+            
+        }
+           
+    }
+    paymore (){
+        if(this.state.checked.length>0){
+            this.setState({more:true});            
+        }else{
+            this.setState({more:false})
+        }       
     }
     render() { 
        let takeclothesdetail=this.state.listitem.map((item,index)=>
@@ -146,14 +178,19 @@ export default class extends Component {
                         <div className="Takeclothesdetail-footer-left">
                         <input type="checkbox" onChange={this.handleAllChecked} checked={this.state.checked.length == this.state.listitem.length}/>全选/全不选</div>
                         <div className="Takeclothesdetail-footer-right">
-                           <button className="e-btn Takeclothesdetail-footer-right-btn">立即收款</button> 
-                           <button className="take-over" onClick={() => this.setState({show2:true})}>取衣</button>
-                           <button className="take-no" >取衣</button>
+                           <button className="e-btn Takeclothesdetail-footer-right-btn" onClick = {this.paymore} style={{display:this.state.pay}}>立即收款</button> 
+                           <button className="take-over" onClick={() => this.setState({show2:true})} style={{display:this.state.Show1}}>取衣</button>
+                           <button className="take-no" style={{display:this.state.Show}}>取衣</button>
                            {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                            <div>欠款: ￥{this.state.listorder.arrears}</div>
                            <div>价格: ￥{this.state.listorder.pay_amount}</div>
                         </div>                       
                     </div>
+                    {
+                    this.state.more
+                        &&
+                        <Payment onClose = {this.onClose}  />
+                    }
                     {
                     this.state.show2
                     &&

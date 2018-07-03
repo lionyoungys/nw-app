@@ -47,7 +47,7 @@
 .deliverywarning-tab table thead tr th:last-child{border-right:none}
 .deliverywarning-tab table tbody{
     width:auto;
-    max-height:370px;
+    max-height:375px;
     display:inline-block;
     overflow-y:auto;
     overflow-x: hidden;
