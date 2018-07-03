@@ -28,7 +28,7 @@ export default class extends Component {
             <Window title='编辑衣物信息' width='333' height='260' onClose={this.props.onClose}>
                 <div className='clothes-temp-top'>单价修改</div>
                 <div className='clothes-update-price'>
-                    <div><span>请输入价格：</span><input type='text' value={this.state.value} onChange={this.handleChange}/>&nbsp;&nbsp;元</div>
+                    <div><span>请输入价格：</span><input type='text' value={this.state.value} onChange={this.handleChange} className='e-input'/>&nbsp;&nbsp;元</div>
                     <div><span></span><span style={{color:'#ff0000'}}>价格不得低于{this.minPrice}</span></div>
                 </div>
                 <div style={{textAlign:'right', marginRight:'16px'}}>
