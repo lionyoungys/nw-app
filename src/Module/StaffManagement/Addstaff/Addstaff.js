@@ -265,7 +265,7 @@ export default class extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <Page/>
+                    
                     {
                     this.state.show1
                     &&

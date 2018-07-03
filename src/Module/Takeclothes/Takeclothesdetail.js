@@ -28,11 +28,7 @@ export default class extends Component {
         this.handleAllChecked=this.handleAllChecked.bind(this);
         this.handleChecked=this.handleChecked.bind(this);
         this.paymore = this.paymore.bind(this);
-        this.onClose = this.onClose.bind(this)
     }; 
-    onClose (){
-        this.setState({more:false})
-    }
     takeClothes(){
         if(this.state.checked.length==0)
         return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
@@ -101,7 +97,6 @@ export default class extends Component {
             :
             this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'block'})
         }
-        
     }
     handleChecked(e) {          
         let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
@@ -111,7 +106,7 @@ export default class extends Component {
         } else {
             this.state.checked.splice(index, 1);
         }
-        if(this.state.checked.length>0){
+        if(this.state.checked.length > 0){
             this.setState({Show:'none',Show1:'block'});   
         }else{
             this.setState({Show:'block',Show1:'none'});    
@@ -133,18 +128,22 @@ export default class extends Component {
             this.setState({more:false})
         }       
     }
-    render() { 
-       let takeclothesdetail=this.state.listitem.map((item,index)=>
-       <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
-           <td>{index+1}</td>
-           <td><input type="checkbox" checked={-1 !== item.id.inArray(this.state.checked)}/><span>{item.clothing_number}</span></td>
-           <td>{item.clothing_name}</td>
-           <td>{item.clothing_color}</td>
-           <td>{item.remark}</td>
-           <td>{item.grid_num}</td>
-           <td>{item.status==3?'清洗中':'清洗完成'}</td>
-       </tr>
-       );
+    render() {
+        let discount = this.props.data.discount || 100
+        ,   total_amount = this.state.listorder.arrears || this.state.listorder.pay_amount || 0;
+
+
+        let takeclothesdetail=this.state.listitem.map((item,index)=>
+        <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
+            <td>{index+1}</td>
+            <td><input type="checkbox" checked={-1 !== item.id.inArray(this.state.checked)}/><span>{item.clothing_number}</span></td>
+            <td>{item.clothing_name}</td>
+            <td>{item.clothing_color}</td>
+            <td>{item.remark}</td>
+            <td>{item.grid_num}</td>
+            <td>{item.status==3?'清洗中':'清洗完成'}</td>
+        </tr>
+        );
            return (
                 <Window title='取衣详情' onClose={this.props.onClick}>   
                     <div className="Takeclothesdetail-title">
@@ -193,7 +192,15 @@ export default class extends Component {
                     {
                         this.state.more
                         &&
-                        <Payment onClose={this.onClose}/>
+                        <Payment 
+                            onClose={() => this.setState({more:false})} 
+                            M1Read={this.props.M1Read}
+                            data={{
+                                total_amount:total_amount,
+                                discount:discount,
+
+                            }}
+                        />
                     }
                     {
                     this.state.show2

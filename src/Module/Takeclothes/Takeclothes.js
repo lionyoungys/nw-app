@@ -31,14 +31,10 @@ export default class extends Component {
             discount: card.discount || '',    //折扣
             time: card.time || ''    //售卡日期                           
         };
-        this.onclose = this.onclose.bind(this); 
         this.takecloth = this.takecloth.bind(this);  
         this.takeclothesdetail = this.takeclothesdetail.bind(this);   
         this.M1Read = this.M1Read.bind(this); 
     };   
-    onclose (){
-        this.setState({show:false});
-    } 
     M1Read(e) {
         let obj = {};
         obj.callback = (res) => {
@@ -130,11 +126,7 @@ export default class extends Component {
                     {
                         this.state.show
                         &&
-                        <Takeclothesdetail   
-                             id={this.state.id}
-                             onClick = {this.onclose}    
-                            
-                             />
+                        <Takeclothesdetail id={this.state.id} onClick={() => this.setState({show:false})} data={this.state} M1Read={this.M1Read}/>
                     }
                 </Window> 
         )

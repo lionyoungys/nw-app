@@ -84,6 +84,10 @@ export default class extends Component {
     // 新增格架操作
     addlatticeYES (){      
         // this.setState({show:false})
+        if ('' == this.state.name) return tool.ui.error({msg:'请输入格架名称！',callback:close => close()});
+        if ('' == this.state.start_number) return tool.ui.error({msg:'请输入首数！',callback:close => close()});
+        if ('' == this.state.end_number) return tool.ui.error({msg:'请输入尾数！',callback:close => close()});
+        if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
         api.post('addGrid', {token:'token'.getData(),
         name:this.state.name,
         max_number:this.state.max_number,
@@ -109,6 +113,10 @@ export default class extends Component {
     }
     updatelatticeYES (e){      
         // this.setState({show:false})
+        if ('' == this.state.name) return tool.ui.error({msg:'请输入格架名称！',callback:close => close()});
+        if ('' == this.state.start_number) return tool.ui.error({msg:'请输入首数！',callback:close => close()});
+        if ('' == this.state.end_number) return tool.ui.error({msg:'请输入尾数！',callback:close => close()});
+        if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
         api.post('modGrid', {token:'token'.getData(),
         id:this.state.id,
         name:this.state.name,

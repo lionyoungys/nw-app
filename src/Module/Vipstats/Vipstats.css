@@ -308,6 +308,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
      height:267px;
  }
  .Vipstats table tbody{max-height:227px;height:227px;}
+ .Vipstats table tbody tr:last-child{border-bottom:1px solid #8db2e3}
  .vipstats-detail{
      float:right;
      color:#000;

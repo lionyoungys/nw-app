@@ -43,6 +43,7 @@ export default class extends Component {
         );
     }
     addColorYES (){
+        
         api.post('addAddition', {
             token:'token'.getData(),
             name:this.state.colorname,

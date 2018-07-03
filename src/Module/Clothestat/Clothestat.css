@@ -40,6 +40,9 @@
     overflow-x:hidden;
 }
 .clothestat-tab table tbody tr{width:870px;height:25px;}
+.clothestat-tab table tbody tr:last-child{
+    border-bottom: 1px solid #8db2e3;
+}
 .clothestat-tab table tbody tr:nth-child(odd){background:#fff;}
 .clothestat-tab tbody tr:nth-child(odd){background:#fff;}
 .clothestat-tab tbody tr:nth-child(even){background:#f0f5f9;}

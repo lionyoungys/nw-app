@@ -103,6 +103,8 @@ export default class extends React.Component {
                                 value={this.state.phone}
                                 data-key='phone'
                                 onChange={this.handleChange}
+                                maxLength='11'
+                                minLength='11'
                             />
                             <span><i>*</i>&nbsp;姓名：</span>
                             <input

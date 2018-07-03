@@ -23,6 +23,7 @@ export default class extends Component {
         this.updatebrandYES = this.updatebrandYES.bind(this);
     }; 
     addbrandYES (){
+        if ('' == this.state.brandname) return tool.ui.error({msg:'请输入品牌名称！',callback:close => close()});
         api.post('addBrand', {
             token:'token'.getData(),
             name:this.state.brandname,
@@ -43,6 +44,7 @@ export default class extends Component {
         );
     }
     updatebrandYES(){
+        if ('' == this.state.brandname) return tool.ui.error({msg:'请输入品牌名称！',callback:close => close()});
         api.post('modBrand', {
             token:'token'.getData(),
             id:this.state.brandid,

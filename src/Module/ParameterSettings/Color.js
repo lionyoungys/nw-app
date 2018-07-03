@@ -23,6 +23,7 @@ export default class extends Component {
         this.updateColorYES = this.updateColorYES.bind(this);
     }; 
     addColorYES (){
+        if ('' == this.state.colorname) return tool.ui.error({msg:'请输入颜色名称！',callback:close => close()});
         api.post('addColor', {
             token:'token'.getData(),
             name:this.state.colorname,
@@ -44,6 +45,7 @@ export default class extends Component {
         );
     }
     updateColorYES(){
+        if ('' == this.state.colorname) return tool.ui.error({msg:'请输入颜色名称！',callback:close => close()});
         api.post('modColor', {
             token:'token'.getData(),
             id:this.state.colorid,

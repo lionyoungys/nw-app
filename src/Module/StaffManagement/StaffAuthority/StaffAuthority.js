@@ -17,11 +17,11 @@ export default class extends Component {
     }; 
     componentDidMount() {
         api.post('authList', {token:'token'.getData()}, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({authlist:res.result});
+                if (ver && res) {
+                    console.log(res)
+                    this.setState({authlist:res.result});
+                }
             }
-        }
         );  
     }
     ask2(e) {
@@ -132,10 +132,8 @@ export default class extends Component {
                                {authlist}
                             </tbody>
                         </table>
-                    </div>
-                    <Page/>
-                </div>
-            
+                    </div>                   
+                </div>           
         );           
     };
 }

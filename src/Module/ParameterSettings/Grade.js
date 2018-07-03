@@ -23,6 +23,7 @@ export default class extends Component {
         this.updateColorYES = this.updateColorYES.bind(this);
     }; 
     addColorYES (){
+        if ('' == this.state.colorname) return tool.ui.error({msg:'请输入档次名称！',callback:close => close()});
         api.post('addGrade', {
             token:'token'.getData(),
             grade:this.state.colorname,
@@ -42,6 +43,7 @@ export default class extends Component {
         );
     }
     updateColorYES(){
+        if ('' == this.state.colorname) return tool.ui.error({msg:'请输入档次名称！',callback:close => close()});
         api.post('modGrade', {
             token:'token'.getData(),
             id:this.state.colorid,

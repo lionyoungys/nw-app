@@ -23,6 +23,7 @@ export default class extends Component {
         this.updatebrandYES = this.updatebrandYES.bind(this);
     }; 
     addbrandYES (){
+        if ('' == this.state.brandname) return tool.ui.error({msg:'请输入洗后预估名称！',callback:close => close()});
         api.post('addForecast', {
             token:'token'.getData(),
             forecast:this.state.brandname,
@@ -43,6 +44,7 @@ export default class extends Component {
         );
     }
     updatebrandYES(){
+        if ('' == this.state.brandname) return tool.ui.error({msg:'请输入洗后预估名称！',callback:close => close()});
         api.post('modForecast', {
             token:'token'.getData(),
             id:this.state.brandid,
