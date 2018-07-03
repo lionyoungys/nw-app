@@ -47,6 +47,7 @@
         } else {
             try {
                 var card = M1Reader.get();
+                console.log(card);
             } catch (e) {
                 loadingEnd();
                 return tool.ui.error({msg:'读卡失败',callback:close => close()});
@@ -65,6 +66,7 @@
                 data.recharge_number = card.sn;
             }
         }
+        console.log(data);
         api.post(
             'cardDetail', 
             data, 

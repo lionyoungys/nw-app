@@ -65,18 +65,6 @@ export default class extends React.Component {
             close();
         }}); 
     }
-    M1ReaderR() {
-        let result = M1Reader.read(1, 'A6C2D6A69286', 7);
-        console.log(result);
-    }
-    M1ReaderR2() {
-        let result = M1Reader.read(1, 'CBFBCFFEB6FF', 7);
-        console.log(result);
-    }
-    M1ReaderW() {
-        let result = M1Reader.writeKey(1, 'A6C2D6A69286', 7, 'CBFBCFFEB6FFFF078069CBFBCFFEB6FF');
-        console.log(result);
-    }
     render() {
         return (
             <Window title='测试窗口' onClose={this.props.closeView} width='600' height='600'>
@@ -103,9 +91,6 @@ export default class extends React.Component {
                 <button type='button' className='e-btn' onClick={this.warn}>警告弹框</button>
                 <button type='button' className='e-btn' onClick={this.success}>成功弹框</button>
                 <button type='button' className='e-btn' onClick={this.loading}>加载框</button>
-                <button type='button' className='e-btn' onClick={this.M1ReaderR}>测试读卡</button>
-                <button type='button' className='e-btn' onClick={this.M1ReaderR2}>测试读卡2</button>
-                <button type='button' className='e-btn' onClick={this.M1ReaderW}>测试写卡</button>
                 <br/>
                 弹窗并附带提示信息：<button type='button' className='e-btn' onClick={this.ask2}>询问弹框</button>
                 <br/>
