@@ -32,10 +32,10 @@ export default class extends Component {
     handleClick() {
         if ('' == this.state.number && '' == this.state.cid) return tool.ui.error({msg:'此用户不是会员',callback:close => close()});
         if ('' == this.state.amount || this.state.amount < 0) return tool.ui.error({msg:'扣款金额不能为空',callback:close => close()});
-        console.log({token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount});
+        if ('' == this.state.cause) return tool.ui.error({msg:'扣款原因不能为空',callback:close => close()});
         api.post(
             'deduct', 
-            {token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount}, 
+            {token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount,cause:this.state.cause}, 
             (res, ver, handle) => {
                 if (!ver) return handle();
                 'function' === typeof this.props.callback && this.props.callback(this.state);
@@ -43,17 +43,20 @@ export default class extends Component {
         );
     }
     M1Read() {
-        EventApi.M1Read({
-            callback:(res) => {
-                this.setState({
-                    number:res.recharge_number,
-                    cid:res.id,
-                    phone:res.user_mobile,
-                    name:res.user_name,
-                    balance:res.balance
-                });
-            }
-        });
+        let obj = {};
+        if ('string' === typeof value && '' != value) {
+            obj.number = value;
+        }
+        obj.callback = (res) => {
+            this.setState({
+                number:res.recharge_number,
+                cid:res.id,
+                phone:res.user_mobile,
+                name:res.user_name,
+                balance:res.balance
+            });
+        }
+        EventApi.M1Read(obj);
     }
 
     render() {
@@ -68,7 +71,7 @@ export default class extends Component {
                         value={this.state.value} 
                         onChange={e => this.setState({value:e.target.value})}
                     />
-                    <button type='button' className='e-btn' style={{marginRight:'43px'}}>查询</button>
+                    <button type='button' className='e-btn' onClick={() => this.M1Read(this.state.value)} style={{marginRight:'43px'}}>查询</button>
                     <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                 </div>
                 <div className='clothes-deduct-body'>
