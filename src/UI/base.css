@@ -437,6 +437,8 @@
 }
 .ui-page>span:first-of-type{margin-left: 10px}
 
+
+/* 给表格加选中样式 */
 table tbody tr:nth-child(odd):hover{
     background:#cce8ff;
     cursor: pointer;
@@ -445,3 +447,20 @@ table tbody tr:nth-child(even):hover{
     background:#cce8ff;
     cursor: pointer;
 }
+
+.no-data{
+    background: url(./img/no-data.png) no-repeat;
+    background-size: 96px 76px;
+    width: 150px;
+    height: auto;
+    padding-top: 96px;
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+    line-height: 22px;
+    margin-left: 364px;
+    margin-top: 105px;
+    margin-bottom: 84px;
+    background-position-x: 27px;
+}
+table tbody{background:#fff}

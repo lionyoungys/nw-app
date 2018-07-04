@@ -16,10 +16,13 @@ export default class extends Component {
          }
     };
     componentDidMount() {
-        api.post('cardType', {token:token}, (res, ver) => {
+        api.post('cardType', {
+            token:token,
+            limit:200
+        }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({cards:res.result, types:res.result.typeArray('card_type')});
+                this.setState({cards:res.result.cardsType, types:res.result.cardsType.typeArray('card_type')});
             }
         });
     }

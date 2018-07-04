@@ -100,7 +100,7 @@ span{
 .inputselectborder{
      width: 151px;
     height: 21px;
-    margin-left: 9px;
+    margin-left:6px;
     background-size:100% 100%;
     outline:none;border:none;
     border:1px solid #c4c2c2;       
@@ -115,7 +115,7 @@ span{
  
     width: 151px;
     height: 21px;
-    margin-left: 9px;
+    margin-left:6px;
     border: 1px solid #6f9ec2;
  }
   .inputlongborder:focus{

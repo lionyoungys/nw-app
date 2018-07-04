@@ -5,11 +5,16 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
+import Nodata from '../../UI/nodata';
 
 export default class extends Component {   
     constructor(props) {
         super(props);
-        this.state = {startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d')};
+        this.state = {
+            startdate:tool.date('Y-m-d'),
+            enddate:tool.date('Y-m-d'),
+            nodatas:false,
+        };
                    
     }; 
     render() {
@@ -364,6 +369,7 @@ export default class extends Component {
                                <td>555</td>
                                <td>555</td>
                            </tr>
+                           {this.state.nodatas&&<Nodata />}
                        </tbody>
                    </table>
                 </div> 

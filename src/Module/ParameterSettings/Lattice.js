@@ -162,9 +162,9 @@ export default class extends Component {
                 <td>{item.start_number}</td>
                 <td>{item.end_number}</td>
                 <td>{item.max_number}</td>
-                <td>{item.use_total}</td>
-                <td>{item.total}</td>
-                <td>  <b onClick={this.modlattice} data-write={index}>修改</b><i  onClick={this.error2} data-write={index}>删除</i></td>
+                <td>  
+                    {/* <b onClick={this.modlattice} data-write={index}>修改</b> */}
+                <i  onClick={this.error2} data-write={index}>删除</i></td>
               
         </tr>
         
@@ -183,8 +183,7 @@ export default class extends Component {
                                       <th>首数</th>
                                       <th>尾数</th>
                                       <th>最大衣挂号</th>
-                                      <th>已使用</th>
-                                      <th>未使用</th>
+                                   
                                       <th>操作</th>
                                   </tr>
                               </thead>

@@ -83,7 +83,8 @@ export default class extends Component {
                     grades:res.result.grade,
                     materials:res.result.materials.typeArray('name'),
                     materialss:res.result.materials,
-                    grid:res.result.grid.typeArray('name'),
+                    grid:res.result.grid.typeArray('name').push('任意格架'),
+            
                     grids:res.result.grid,
                     requestHave:true,
                 })
@@ -106,6 +107,14 @@ export default class extends Component {
             online: 0,//在线接单
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
+            cate_id:this.state.cate_types[0].id,
+            cate_name:this.state.cate_type[0],
+            disposetype:this.state.dispose_type[0],
+            gradename:this.state.grade[0],
+            gridname:this.state.grid[0],
+            materialsname:this.state.materials[0],
+
+
         })
     }
     handleClick(e){
@@ -182,6 +191,7 @@ export default class extends Component {
                 tool.ui.success({callback:(close, event) => {
                     close();
                 }}); 
+                
             }else{
                 tool.ui.error({msg:res.msg,callback:(close, event) => {
                     close();
@@ -201,6 +211,7 @@ export default class extends Component {
                 tool.ui.success({callback:(close, event) => {
                     close();
                 }}); 
+
             }else{
                 tool.ui.error({msg:res.msg,callback:(close, event) => {
                     close();
@@ -352,7 +363,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
+                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='X' onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
                           
                             </div>

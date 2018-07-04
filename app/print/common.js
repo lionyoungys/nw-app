@@ -59,6 +59,7 @@
             return null;
         },
         inner:function(elem, value) {
+            if ('undefined' === typeof value) return;
             var node = this.elem(elem);
             if (this.isNode(node)) {
                 node.innerHTML = value;

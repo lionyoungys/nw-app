@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
+import Nodata from '../../UI/nodata';
 import './RechargeUp.css'
 
 export default class extends Component {   
@@ -18,6 +19,7 @@ export default class extends Component {
             list: [],
             page: 1,
             count: 1,
+            nodatas:false,
         }      
         this.limit = 15;
         this.query = this.query.bind(this);   
@@ -29,7 +31,18 @@ export default class extends Component {
         api.post('rechargeSta', { token: 'token'.getData(), start_time: this.state.startdate, end_time: this.state.enddate,page: page, limit:this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
-                this.setState({ total_amount: res.result.total_amount, list: res.result.list, count: res.result.count,page:page});
+                if(res.result.list.length>0){
+                    this.setState({ 
+                        total_amount: res.result.total_amount, 
+                        list: res.result.list, 
+                        count: res.result.count,
+                        page:page,
+                        nodatas:false,
+                    });
+                }else{
+                    this.setState({nodatas:true})
+                }
+                
             } else {
                 console.log(res);
                 handle();
@@ -75,6 +88,7 @@ export default class extends Component {
                         </thead>
                         <tbody>
                             {list}
+                            {this.state.nodatas&&<Nodata />}
                         </tbody>  
                     </table>  
                     <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>    

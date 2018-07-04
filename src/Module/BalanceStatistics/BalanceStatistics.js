@@ -7,6 +7,8 @@ import Window from '../../UI/Window';
 import '../../UI/bothpages.css';
 import './BalanceStatistics.css';
 import Page from '../../UI/Page';
+import Nodata from '../../UI/nodata';
+
 export default class extends Component {   
     constructor(props) {
         super(props);  
@@ -16,6 +18,7 @@ export default class extends Component {
             list:[],
             page:1,
             count:1,
+            nodatas:false,
         };     
         this.limit = 15;
         this.query = this.query.bind(this);
@@ -30,7 +33,19 @@ export default class extends Component {
         api.post('balanceTotal', { token: 'token'.getData(), page: page, limit: this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ user_total: res.result.user_total, balance_total: res.result.balance_total, list: res.result.list, count: res.result.count, page:page});
+                if(res.result.list.length>0){
+                    this.setState({ 
+                        user_total: res.result.user_total, 
+                        balance_total: res.result.balance_total, 
+                        list: res.result.list, 
+                        count: res.result.count, 
+                        page:page,
+                        nodatas:false,
+                    });
+                }else{
+                    this.setState({nodatas:true})
+                }
+                
             } else {
                 handle();
             }
@@ -70,6 +85,7 @@ export default class extends Component {
                         </thead>
                         <tbody>
                             {list}
+                            {this.state.nodatas&&<Nodata />}
                         </tbody>  
                     </table>
                     <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>   

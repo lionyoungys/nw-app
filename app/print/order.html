@@ -94,6 +94,7 @@
             ,   hasDiscount = get.discount < 10
             ,   content = ''
             ,   json, tempLen, j;
+            _.inner('#count', len);
             for (var i = 0;i < len;++i) {
                 content += '<i class="empty"></i>' + 
                     '<div>' + items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + '</div>' +

@@ -33,7 +33,7 @@
 .Membersdetail-tab table thead tr{width:auto;height:25px}
 .Membersdetail-tab table thead tr th{
     width:106px;
-    min-width:106px;
+    min-width:134px;
     border-right:1px solid #acc6de;
     line-height:25px;
     color:#fff;
@@ -66,7 +66,7 @@
     line-height:25px;
     color:#000;
     font-size:12px;   
-    min-width:106px; 
+    min-width:134px; 
 }
 .Membersdetail-tab table tbody tr td:first-child{
     width:31px;

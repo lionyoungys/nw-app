@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import './UnpaidStatistics.css';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,8 @@ export default class extends Component {
             list:[],
             discount_amount:'',
             itemCount:0,
-            amount:''
+            amount:'',
+            nodatas:false,
         };
         this.order = this.order.bind(this);
     };
@@ -22,7 +25,18 @@ export default class extends Component {
         api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({itemCount:res.result.itemCount,item:res.result.item,discount_amount:res.result.discount_amount,amount:res.result.amount,list:res.result.list});   
+                if(res.result.list.length>0){
+                    this.setState({
+                        itemCount:res.result.itemCount,
+                        item:res.result.item,
+                        discount_amount:res.result.discount_amount,
+                        amount:res.result.amount,
+                        list:res.result.list,
+                        nodatas:false,
+                    });
+                }else{
+                    this.setState({nodatas:true})
+                }                                  
             }else{
                 handle();
             }
@@ -85,7 +99,8 @@ export default class extends Component {
                         </tr>
                     </thead>
                     <tbody>                                                                           
-                            {list}                                                   
+                            {list} 
+                            {this.state.nodatas&&<Nodata />}                                                  
                     </tbody>
                 </table>                
             </Window>

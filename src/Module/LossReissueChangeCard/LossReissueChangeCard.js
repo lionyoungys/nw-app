@@ -62,7 +62,7 @@ export default class extends Component {
         var userinfo=this.state.user_info.map((item,index) => <tr 
             key={'item'+index} data-index={index} onClick={this.handleclick} 
             id={this.state.index==index?'selecttr':null}>
-            <td></td>
+            <td>{item.mname}</td>
             <td>{item.recharge_number}</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>

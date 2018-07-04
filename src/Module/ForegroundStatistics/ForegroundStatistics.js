@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
 import './ForegroundStatistics.css';
 
 export default class extends Component {   
@@ -12,16 +13,21 @@ export default class extends Component {
         this.state = {
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),          
             list:[],
+            nodatas:false,
         }              
     }; 
-    componentDidMount(){
-        
+    componentDidMount(){        
         api.post('Operating', {
             token:'token'.getData()    
         }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res);
-                this.setState({list:res.result})
+                if(res.result.length>0){
+                    this.setState({list:res.result,nodatas:false})
+                }else{
+                    this.setState({nodatas:true})
+                }
+                  
             }else{
                 console.log(res.msg);
                 handle();
@@ -74,6 +80,7 @@ export default class extends Component {
                     </thead>
                     <tbody>
                       {list}
+                      {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>
              </Window> 

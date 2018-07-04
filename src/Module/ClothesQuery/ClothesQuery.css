@@ -10,7 +10,7 @@
 .clothesquery_top_one div .ui-select-option div{margin-top:0}
 .clothesquery_top_one,.clothesquery_top_two{
 
-    width: 230px;
+    width:220px;
     height: 100%;
     float: left;
 }
@@ -21,7 +21,7 @@
 }
 .clothesquery_top_three{
 
-    width: 412px;
+    width: 430px;
     height: 100%;
     float: left;
 }
@@ -31,10 +31,9 @@
 }
 .clothesquery_top_three  div.clothesquery_top_btn{
 
-    margin-top: -16px;
+    margin-left:146px;
 } 
 .clothesquery_top_three div button{
-
     margin-left: 20px;
 }
 .clothesquery_top div span{
