@@ -63,7 +63,22 @@ export default class extends Component {
         this.modYES=this.modYES.bind(this);
         this.handle=this.handle.bind(this);
         this.onchange=this.onchange.bind(this);
-    };   
+    };  
+    componentDidMount() {
+        let done;
+        tool.ui.loading(handle => done = handle);
+        api.post('itemList', {
+            token: 'token'.getData(),
+            page: this.state.page,
+            limit: this.limit
+        }, (res, ver) => {
+            done();
+            if (ver && res) {
+                console.log(res)
+                this.setState({ itemLists: res.result.type, type: res.result.type.typeArray('name'), })
+            }
+        });
+    } 
     clothestypemanage(){
         this.setState({clothestypemanageshow:true});
     }
@@ -220,18 +235,7 @@ export default class extends Component {
         }
     );
     }
-    componentDidMount(){
-        api.post('itemList', {
-            token:'token'.getData(),
-            page: this.state.page, 
-            limit: this.limit
-    }, (res, ver) => { 
-            if (ver && res) {
-                console.log(res)
-                this.setState({itemLists:res.result.type,type:res.result.type.typeArray('name'),})
-            }
-        });   
-    }
+
     onClose(){
         this.setState({selectImg:false})
     }
