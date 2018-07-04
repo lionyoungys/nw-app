@@ -69,7 +69,7 @@ export default class extends Component {
         tool.ui.loading(handle => done = handle);
         api.post('itemList', {
             token: 'token'.getData(),
-            page: this.state.page,
+            // page: this.state.page,
             limit: this.limit
         }, (res, ver) => {
             done();
@@ -430,7 +430,7 @@ export default class extends Component {
                         this.state.selectImg && <PhotoGallery onClose={this.onClose} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
                     }
                     {
-                        this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})}/>
+                        this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})} refresh={this.componentDidMount}/>
                     }
             </div>
             // </Window>

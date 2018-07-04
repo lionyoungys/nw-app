@@ -46,6 +46,7 @@ export default class extends Component {
     }
     updatebrandYES(){
         if ('' == this.state.brandname) return tool.ui.error({msg:'请输入瑕疵名称！',callback:close => close()});
+        console.log(this.state.id&&this.state.name)
         api.post('modBrand', {
             token:'token'.getData(),
             id:this.state.brandid,
@@ -57,6 +58,7 @@ export default class extends Component {
                     console.log(res);
                     this.setState({show1:false});
                     this.componentDidMount();
+                    console.log(111111)
                 }else{
                     console.log(res.msg);
                     tool.ui.error({msg:res.msg,callback:(close) => {
@@ -127,10 +129,9 @@ export default class extends Component {
             <td>{this.state.brandlist[index].name}</td>
             <td><b onClick={e => this.setState({show1:true,
                 brandname:this.state.brandlist[index].name,
-                brandid:this.state.brandlist[index].id
+                brandid:this.state.brandlist[index].id,                              
                 })}>修改</b><i onClick={this.deleteBrand} data-index={index}>删除</i></td>
          </tr>
-
     );
         return ( 
                 <div>
@@ -168,7 +169,7 @@ export default class extends Component {
                      {
                         this.state.show1
                         &&
-                        <Window title='修改品牌' onClose={() => this.setState({show1:false})} width="230" height='160'>
+                        <Window title='修改瑕疵' onClose={() => this.setState({show1:false})} width="230" height='160'>
                             <div className="addbrand-div">
                                 <div className="brand-name">瑕疵名称</div>
                                 <input  type="text" className="brand-text" value={this.state.brandname} onChange={e => this.setState({brandname:e.target.value})}/>

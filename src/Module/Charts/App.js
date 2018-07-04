@@ -16,18 +16,22 @@ import './App.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.month = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+        this.months = ['01月', '02月', '03月', '04月', '05月', '06月', '07月', '08月', '09月', '10月', '11月', '12月'];
         this.router = {Amount:Amount, Cost:Cost, Clothes:Clothes, Sell:Sell, CustomerOfWeek:CustomerOfWeek, CustomerOfMonth:CustomerOfMonth};
-        this.state = {index:0, key:'Amount',year:null,month:this.month[0]};
+        this.curremtY= tool.date('Y');
+        this.state = { 
+            index: 0, 
+            key: 'Amount', 
+            year: tool.date('Y'),
+            month: tool.date('m') + '月',
+        };
         this.handleClick = this.handleClick.bind(this);
     };
-
     handleClick(e) {
         let index = e.target.dataset.index
         ,   key = e.target.dataset.key;
         this.state.index != index && this.state.key != key && this.setState({index:index, key:key});
     }
-
     render() {
         let V = this.router[this.state.key];
         return (
@@ -36,11 +40,11 @@ export default class extends React.Component {
                     <div className="ope_ana_date_left">
                         <div className='ope_ana_date_left_part'>
                             <span>&emsp;&emsp;年份选择：</span>
-                            <Select option={['2018', '2017', '2016']} onChange={value => this.setState({year:value})}/>
+                            <Select option={[this.curremtY, this.curremtY - 1, this.curremtY - 2]}  onChange={value => this.setState({year:value})}/>
                         </div>
                         <div className='ope_ana_date_left_part'>
                             <span>&emsp;&emsp;月份选择：</span>
-                            <Select option={this.month} onChange={value => this.setState({month:value})}/>
+                            <Select option={this.months} selected= {this.state.month} onChange={value => this.setState({month:value})}/>
                         </div>
                     </div>
                     <button type='button' className='e-btn'>开始分析</button>
@@ -85,7 +89,7 @@ export default class extends React.Component {
                             >客流量统计(月)</li>
                         </ul>
                     </div>
-                    <V/>
+                    <V year={this.state.year} month={this.state.month}/>
                 </div>
             </Window>
         );

@@ -178,7 +178,7 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({show2:false}); 
-                this.componentDidMount();  
+                this.componentDidMount(); 
             }
             handle();
         }); 
@@ -189,7 +189,6 @@ export default class extends Component {
         data-index={index} 
         className={this.state.index==index?'selected_row':null}
         onClick={this.handleClick}>{item.name}</span>
-      
     );
     let itemList;
     if(

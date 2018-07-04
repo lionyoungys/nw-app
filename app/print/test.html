@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打印测试页</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        body{width: 5.8cm}
+        #barcode{width: 3.8cm}
+    </style>
+</head>
+<body>
+    <div class="t-c">试试看能否正确扫描条码</div>
+    <div class="t-c"><img id="barcode"/></div>
+    <div class="t-c" id="code"></div>
+    <script src="JsBarcode.min.js"></script>
+    <script src="common.js"></script>
+    <script>
+        _.init(function() {
+            var code = '01234567890123456789';
+            _.barcode(code);
+            _.inner('#code', code);
+            _.print();
+            setTimeout(_.close, 1000);
+        });
+    </script>
+</body>
+</html>

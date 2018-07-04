@@ -30,12 +30,15 @@ export default class extends Component {
         api.post('addServeType', {
             token:'token'.getData(),
             name:this.state.name
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
+               
                 this.setState({name:'',addshow:false})
                 this.componentDidMount()
+                // this.props.refresh();
             }
+            handle();
         }
         ); 
     }
@@ -46,12 +49,15 @@ export default class extends Component {
             token:'token'.getData(),
             name:this.state.name,
             id:this.state.id
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
+               
                 this.setState({name:'',show:false})
                 this.componentDidMount()
+                // this.props.refresh();
             }
+            handle();
         }); 
     }
     deleteYES(){
@@ -63,13 +69,15 @@ export default class extends Component {
                     api.post('delServeType', {
                         token: 'token'.getData(),
                         id: this.state.id
-                    }, (res, ver) => {
+                    }, (res, ver,handle) => {
                         if (ver && res) {
                             console.log(res)
                             this.setState({ name: '', show: false })
                             this.componentDidMount()
+                            // this.props.refresh();
                             close();
                         }
+                        handle();
                     });
                 }else{
                     close();

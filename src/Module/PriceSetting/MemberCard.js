@@ -140,7 +140,7 @@ export default class extends Component {
     }
     render(){
         let cardtypes =this.state.cardtypes.map((item,index)=>
-        <tr key={item}>
+        <tr key={'item'+index}>
         <td>{item.card_type}</td>
         <td>{item.price}</td>
         <td>{item.give_price}</td>

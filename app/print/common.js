@@ -56,6 +56,7 @@
         barcode:function(elem, code) {JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
         print:function(printer) {    //打印方法
             win.print({
+                autoprint:true,
                 printer:printer || '',
                 headerFooterEnabled:false,
                 marginsType:3,

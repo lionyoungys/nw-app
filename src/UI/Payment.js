@@ -144,7 +144,7 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
-                        <input type='input' ref={input => {0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
+                        <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button 
                             type='button' 
                             className='e-btn' 
@@ -154,7 +154,7 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
-                            实收金额：<input type='input' ref={input => {1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                            实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                         </div>
                     </div>
                     <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
@@ -167,7 +167,7 @@ export default class extends Component {
                             data-index='0' 
                             ref={input => {
                                 this.input[0] = input;
-                                (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
+                                !this.state.show && (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
                             }}
                         />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>

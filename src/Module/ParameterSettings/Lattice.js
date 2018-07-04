@@ -98,7 +98,7 @@ export default class extends Component {
                 console.log(res)
                 tool.ui.success({callback:(close, event) => {
                     this.componentDidMount();
-                    this.setState({name:'',max_number:'',start_number:'',end_number:''})
+                    this.setState({name:'',max_number:'',start_number:'',end_number:'',show:false})
                     close();
                 }}); 
             }else{
@@ -164,7 +164,8 @@ export default class extends Component {
                 <td>{item.max_number}</td>
                 <td>  
                     {/* <b onClick={this.modlattice} data-write={index}>修改</b> */}
-                <i  onClick={this.error2} data-write={index}>删除</i></td>
+                <i  onClick={this.error2} data-write={index}>删除</i>
+                </td>
               
         </tr>
         
