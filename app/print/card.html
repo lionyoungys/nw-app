@@ -6,35 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>会员卡打印</title>
     <link rel="stylesheet" href="base.css">
-    <style>body{width: 5.8cm}</style>
+    <style>
+        body{width: 5.8cm}
+        #container{margin-bottom: 30px}
+    </style>
 </head>
 <body>
-    <div class="t-c" onclick="_.print();" id="title">储值卡充值存根</div>
-    <div class="t-c">流水号:<span id="sn">45678795425454</span></div>
-    充值日期:<span id="now">2018-02-09 15:44:09</span><br/>
-    <i class="dashed"></i>
-    客户电话:<span id="phone">15011540794</span><br/>
-    客户姓名:<span id="name">yanyunlong</span><br/>
-    卡&emsp;&emsp;号:<span id="number">6957845124857478</span><br/>
-    卡内余额:&yen;<span id="balance">500.00</span>&emsp;折扣率:<span id="discount">7</span><br/>
-    充值金额:&yen;<span id="recharge">500.00</span><br/>
-    赠送金额:&yen;<span id="give">0.00</span><br/>
-    可用总额:&yen;<span id="total">1000.00</span>&emsp;店员:<span id="employee">管理员</span><br/>
-    付款方式:<span id="gateway">现金</span>
-    <i class="dashed"></i>
-    本店地址:<span id="addr">dfdfdffdfdffdff</span><br/>
-    查询电话:<span id="mphone">dfdfddfdfdffdfdf</span>
-    <i class="dashed"></i>
+    <div class="t-c" onclick="_.print();">储值卡充值存根</div>
+    <div id="container">
+        <div class="t-c">流水号:<span id="sn">45678795425454</span></div>
+        充值日期:<span id="now">2018-02-09 15:44:09</span><br/>
+        <i class="dashed"></i>
+        客户电话:<span id="phone">15011540794</span><br/>
+        客户姓名:<span id="name">yanyunlong</span><br/>
+        卡&emsp;&emsp;号:<span id="number">6957845124857478</span><br/>
+        卡内余额:&yen;<span id="balance">500.00</span>&emsp;折扣率:<span id="discount">7</span><br/>
+        充值金额:&yen;<span id="recharge">500.00</span><br/>
+        赠送金额:&yen;<span id="give">0.00</span><br/>
+        可用总额:&yen;<span id="total">1000.00</span>&emsp;店员:<span id="employee">管理员</span><br/>
+        付款方式:<span id="gateway">现金</span>
+        <i class="dashed"></i>
+        本店地址:<span id="addr">dfdfdffdfdffdff</span><br/>
+        查询电话:<span id="mphone">dfdfddfdfdffdfdf</span>
+    </div>
+    <div class="t-c">储值卡充值回单</div>
+    <div id="container2"></div>
+
     <script src="common.js"></script>
     <script>
-    //_.win.showDevTools();
-    window.onload = function() {
-        //console.log(_.GET);
+    //_.showDevTools();
+    _.init(function() {
         /*sn:流水号,addr:本店地址,mphone:查询电话,phone:用户电话,name:用户名,number:卡号,balance:余额,discount:折扣,recharge:充值金额,gateway:支付方式*/
         var get = _.GET;
         _.now();
         console.log(get);
-        
         _.inner('#employee', localStorage.getItem('aname'));
         _.inner('#sn', get.sn);
         _.inner('#phone', get.phone);
@@ -48,13 +53,10 @@
         _.inner('#gateway', get.gateway);
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
-        _.print();
-        setTimeout(function() {
-            _.inner('#title', '储值卡充值回单');
-            _.print();
-        }, 1000);
-        setTimeout(_.close, 2000);
-    }
+        _.inner('#container2', _.html('#container'));
+        _.print(localStorage.getItem('printer'));
+        setTimeout(_.close, 1000);
+    });
     </script>
 </body>
 </html>

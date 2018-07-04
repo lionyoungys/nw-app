@@ -98,14 +98,23 @@ export default class extends Component {
                     grades:res.result.grade,
                     materials:res.result.materials.typeArray('name'),
                     materialss:res.result.materials,
-                    grid:res.result.grid.typeArray('name').push('任意格架'),
-            
+                    grid:res.result.grid.typeArray('name'),
                     grids:res.result.grid,
                     requestHave:true,
                 })
             }else{
                 handle();
             }
+            this.state.grid.push('任意格架')
+            this.setState({
+            cate_id:this.state.cate_types[0].id,
+            cate_name:this.state.cate_type[0],
+            disposetype:this.state.dispose_type[0],
+            gradename:this.state.grade[0],
+            gridname:'任意格架',
+            materialsname:this.state.materials[0],
+        }
+        )
         });   
     }
     addcheanprice(){
@@ -122,14 +131,7 @@ export default class extends Component {
             online: 0,//在线接单
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
-            cate_id:this.state.cate_types[0].id,
-            cate_name:this.state.cate_type[0],
-            disposetype:this.state.dispose_type[0],
-            gradename:this.state.grade[0],
-            gridname:this.state.grid[0],
-            materialsname:this.state.materials[0],
-
-
+         
         })
     }
     handleClick(e){
@@ -157,7 +159,7 @@ export default class extends Component {
             min_discount:this.state.min_discount,
             item_cycle:this.state.item_cycle,
             item_online_price:this.state.item_online_price,
-            image_id:this.state.image_id
+            image_id:this.state.image_id,
         }
         console.log(mod)
         api.post('modItem',mod, (res, ver) => {
@@ -245,6 +247,7 @@ export default class extends Component {
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
         let good = this.state.itemLists[this.state.index].server[good_index];
+        console.log(good.dispose_type);
         this.setState(
             {
                 goodindex: good_index,
@@ -257,7 +260,7 @@ export default class extends Component {
                 min_discount: good.min_discount,
                 item_online_price: good.item_online_price,
                 cate_name: good.cate_name,
-                disposetype: good.dispose_type,
+                disposetype: good.dispose_type==null?this.state.disposetype:good.dispose_type,
                 gradename: good.grade,
                 materialsname: good.materials,
                 gridname: good.grid,
@@ -367,7 +370,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='X' onChange={value=>this.setState({ gridname:value})}/>
+                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
                           
                             </div>
