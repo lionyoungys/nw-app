@@ -113,8 +113,7 @@ export default class extends Component {
             gradename:this.state.grade[0],
             gridname:'X',
             materialsname:this.state.materials[0],
-        }
-        )
+            })
         });   
     }
     addcheanprice(){

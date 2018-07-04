@@ -48,7 +48,6 @@ import StoreManagement from './Module/StoreManagement/StoreManagement'; //门店
 import Clothestat from './Module/Clothestat/Clothestat'; //衣物统计
 import Managerquery from './Module/Managerquery/Managerquery'; //衣物统计
 import MemberBusinessStatistics from './Module/MemberBusinessStatistics/MemberBusinessStatistics'; //会员业务统计
-import Businessdaily from './Module/Businessdaily/Businessdaily'; //经营日报
 import Businesstats from './Module/Businesstats/Businesstats'; //营业统计
 import Balancedetail from './Module/Balancedetail/Balancedetail'; //欠款明细
 import Charts from './Module/Charts/App'; //营业分析
@@ -113,7 +112,6 @@ export default {
     passwd_update:PasswdUpdate,//密码修改
     clothe_stat:Clothestat ,// 衣物统计
     manager_query:Managerquery, //经理查询
-    Business_daily:Businessdaily , // 营业日报
     Busines_stats:Businesstats, //营业统计
     Balance_detail:Balancedetail,//欠款明细
     charts:Charts,//营业分析

@@ -1,5 +1,5 @@
 /**
- * 营业日报组件
+ * 经营日报组件
  * @author ranchong
  */
 import React, {Component} from 'react';
@@ -75,11 +75,11 @@ export default class extends Component {
             );
         } 
         return(<div>
-            <Window title='营业日报' onClose={this.props.closeView}>  
+            <Window title='经营日报' onClose={this.props.closeView}>  
                 <div className="ope-inc-head">
                     <a>统计时间：{this.state.startdate} 至 {this.state.enddate}</a>
                     <button className='e-btn' onClick={this.print}>打印</button>
-                    <a>操作员：ranchong</a>
+                    <a>操作员：{'aname'.getData()}</a>
                 </div>
                 {/* 表格部分 欠费衣物信息*/}
                 <table className='ui-table-base ManagerGathering-tab ope-inc-tab'>

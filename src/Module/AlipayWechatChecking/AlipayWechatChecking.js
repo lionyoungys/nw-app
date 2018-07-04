@@ -20,9 +20,12 @@ export default class extends Component {
         this.limit = 15;
         this.query = this.query.bind(this);
     }
+    componentDidMount(){
+        this.query();
+    }
     query(page){
         page = page || this.state.page;
-        api.post('addItem', {
+        api.post('aliWechatPayInfo', {
             token: 'token'.getData(),
             page: this.state.page,
             limit: this.limit,
@@ -36,23 +39,21 @@ export default class extends Component {
                 handle();
             } 
         });
-
     }
     render() {
         var list = this.state.list.map((item,index)=>
             <tr key= {'item'+index}>
                 <td className='ali-wechat-check-tab-1'>{item.serialsn}</td>
-                <td className='ali-wechat-check-tab-2'>'{''}</td>
-                <td className='ali-wechat-check-tab-3'>{item.pay_type}</td>
+                <td className='ali-wechat-check-tab-2'>{item.pay_type}</td>
                 <td className='ali-wechat-check-tab-4'>{item.real_amount}</td>
                 <td className='ali-wechat-check-tab-5'>{item.balance}</td>
-                <td className='ali-wechat-check-tab-6'>{item.time}}</td>
+                <td className='ali-wechat-check-tab-6'>{item.time}</td>
             </tr>
         );
         return (
             <Window title='支付宝、微信对账' onClose={this.props.closeView}>
                 <div className="ali-wechat-check-head">
-                    <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<a>{this.state.bankInfo.bank || '********'}}</a><b>{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
+                    <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<a>{this.state.bankInfo.bank || '********'}</a><b>{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
                     <p>余额：¥{this.state.bankInfo.balance || '0'}</p>
                 </div>
                 <div className="ali-wechat-check-title">
@@ -71,8 +72,7 @@ export default class extends Component {
                     <thead>
                         <tr>
                             <td className='ali-wechat-check-tab-1'>交易单号</td>
-                            <td className='ali-wechat-check-tab-2'>备注</td>
-                            <td className='ali-wechat-check-tab-3'>类型</td>
+                            <td className='ali-wechat-check-tab-2'>类型</td>
                             <td className='ali-wechat-check-tab-4'>金额</td>
                             <td className='ali-wechat-check-tab-5'>余额</td>
                             <td className='ali-wechat-check-tab-6'>交易时间</td>

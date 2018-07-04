@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="base.css">
     <style>
         body{width: 5.8cm}
-        #barcode{width: 3.8cm}
+        #barcode{width: 100%; height:2cm}
     </style>
 </head>
 <body>
@@ -18,11 +18,12 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
+        //_.showDevTools();
         _.init(function() {
             var code = '01234567890123456789';
-            _.barcode(code);
+            _.barcode('#barcode', code);
             _.inner('#code', code);
-            _.print();
+            _.print(localStorage.getItem(_.GET.printer));
             setTimeout(_.close, 1000);
         });
     </script>

@@ -80,7 +80,7 @@ export default class extends Component {
                 <div className="ope-inc-head">
                     <a>统计时间：{this.state.result.dateStartTime} 至 {this.state.result.dateEndTime}</a>
                     <button className='e-btn' onClick={this.successionHandle}>交班</button>
-                    <a>操作员：ranchong</a>
+                    <a>操作员：{'aname'.getData()}</a>
                 </div>
                 <table className='ui-table-base succession-tab'>
                     <thead>

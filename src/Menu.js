@@ -22,7 +22,6 @@ export const topMenu = [
             {value:'格架查询', view:'lattice_query'},
             {value:'衣物查询', view:'clothes_query'},
             {value:'交班', view:'Succession'},
-            {value:'营业日报', view:'operate_income'},
             {value:'前台情况', view:'foreground_statistics'},           
             {value: '未付款统计', view:'unpaid_statistics'},
             {value:'余额统计', view:'balance_statistics'},
@@ -59,7 +58,7 @@ export const topMenu = [
         options:[
             { value: '经理收款', view:'manager_gathering'},
             {value:'经理查询', view:'manager_query'},
-            {value:'营业日报', view:'operate_income'},
+            {value:'经营日报', view:'operate_income'},
             {value:'营业统计', view:'Busines_stats'},
             {value:'经营明细', view:'operating_details'},
             {value: '营业分析', view:'charts'},
