@@ -29,7 +29,6 @@ export default class extends React.Component {
             writeData:{}
         };
         this.handleClick = this.handleClick.bind(this);
-        this.writeCard = this.writeCard.bind(this);
         this.callback = this.callback.bind(this);
     }; 
     componentDidMount() {
@@ -48,34 +47,10 @@ export default class extends React.Component {
         if ('' == this.state.phone) return tool.ui.error({msg:'手机号不能为空！',callback:close => close()});
         if (isNaN(this.state.phone) || 11 != this.state.phone.length) return tool.ui.error({msg:'手机号格式不正确！',callback:close => close()});
         if (this.state.passwd != this.state.passwd2) return tool.ui.error({msg:'2次密码不正确！',callback:close => close()});
-        this.setState({show:true})
-    }
-    writeCard(obj) {
-        obj = obj || this.state.writeData;
-        console.log(obj);
-        let result = true;
-        try {
-            result = M1Reader.set(obj);
-            console.log('false');
-        } catch (e) {
-            console.log(e);
-            result = false;
-        }
-        if (!result) {
-            tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
-                if ('click' == event) {
-                    close();
-                    this.writeCard();
-                } else {
-                    close();
-                    this.props.closeView();
-                }
-            }});
+        if ('' != this.state.number) {
+            EventApi.M1Write({sn:this.state.number, success:() => this.setState({show:true})});
         } else {
-            tool.ui.success({callback:close => {
-                close();
-                this.props.closeView();
-            }});
+            this.setState({show:true});
         }
     }
 
@@ -111,20 +86,11 @@ export default class extends React.Component {
                     gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                 };
                 EventApi.print('card', param);
-                if ('' == this.state.number) {
-                    tool.ui.success({callback:close => {
-                        close();
-                        this.setState({show:false});
-                    }});
-                } else {
-                    //sn:卡号,cid:卡ID,mid:商户id
-                    let writeData = {cid:res.result.card_id,mid:res.result.mid,sn:this.state.number};
-                    this.setState({writeData:writeData});
-                    this.writeCard(writeData);
-                }
+                handle({callback:this.props.closeView});
             }else{
                 handle();
             }
+            
         });
     }
     render() {

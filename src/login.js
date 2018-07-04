@@ -188,6 +188,8 @@ class Login extends Component {
                 aname.setData('aname');
                 mname.setData('mname');
                 token.setData('token');
+                res.mid.setData('merchant_id');
+
                 nw.Window.open('main.html', nw.App.manifest.mainWindow);
                 win.close();
             } else {

@@ -215,9 +215,9 @@
      */
     r.set = function(data) {
         if ('object' !== typeof data) throw '参数格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.cid)) throw 'cid格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.mid)) throw 'mid格式错误';
+        if ('string' !== typeof data.sn) throw 'sn格式错误';
+        if ('string' !== typeof data.cid) throw 'cid格式错误';
+        if ('string' !== typeof data.mid) throw 'mid格式错误';
         try {
             this.authorization(1, config.KeyA, config.Blocks[0].sn);
         } catch (e) {

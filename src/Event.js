@@ -37,7 +37,7 @@
             }
         }
     },
-    e.M1Read = function(obj) {
+    e.M1Read = function(obj) {    //读卡
         if ('object' !== typeof obj || !(obj.constructor === Object)) return;
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
@@ -80,6 +80,34 @@
             },
             () => loadingEnd()
         );
+    }
+    e.M1Write = function(obj) {    //写卡
+        if (!tool.isObject(obj)) return tool.ui.error({msg:'写卡数据错误',callback:close => close()});
+        if ('string' !== typeof obj.sn || '' == obj.sn || obj.sn.length > 16) return tool.ui.error({msg:'卡号格式错误',callback:close => close()});
+        obj.mid = obj.mid || 'merchant_id'.getData();
+        obj.cid = obj.cid || '0';
+        try {
+            var result = M1Reader.set(obj);
+        } catch (e) {
+            result = false;
+        }
+        if (!result) {
+            setTimeout(() => {
+                tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
+                    close();
+                    if ('click' == event) {
+                        this.M1Write(obj);
+                    } else {
+                        'function' === typeof obj.fail && obj.fail();
+                    }
+                }});
+            }, 500);
+        } else {
+            tool.ui.success({msg:'写卡成功',callback:close => {
+                close();
+                'function' === typeof obj.success && obj.success();
+            }});
+        }
     }
     window.EventApi = e;
 })(window);
