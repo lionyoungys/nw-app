@@ -128,7 +128,8 @@ export default class extends Component {
         EventApi.M1Read(obj);
     }
     add(index) {
-        let item = this.state.item[this.state.categoryIndex][index];
+        let item = this.state.item[this.state.categoryIndex][index]
+        ,   time = this.state.time;
         if (this.state.update) {
             let day = tool.timestamp(item.item_cycle);
             this.state.data[this.state.currentIndex].clothing_id = item.id
@@ -177,8 +178,10 @@ export default class extends Component {
             };
             ++this.counter;
             this.state.data.push(data);
+            let itemTime = tool.date('Y-m-d', data.deal_time);
+            if ('' == time || time < itemTime) time = itemTime;
         }
-        this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false});
+        this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
     }
     setTemp(value) {
         if (this.state.update) {
