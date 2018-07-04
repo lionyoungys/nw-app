@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
 import Balancedetail from './Balancedetail.css'; 
 export default class extends Component {
     constructor(props) {        
@@ -11,6 +12,7 @@ export default class extends Component {
             this.state={
                 start_time:tool.date('Y-m-d'),
                 end_time:tool.date('Y-m-d'),
+                nodatas:false,
             }      
         }
     render(){
@@ -90,6 +92,7 @@ export default class extends Component {
                             <td>客户姓名</td>
                             <td>日期</td>
                         </tr>
+                        {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>              
             </Window>

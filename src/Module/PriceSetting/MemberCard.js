@@ -34,10 +34,12 @@ export default class extends Component {
             token:'token'.getData(),
             page: page, 
             limit: this.limit
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({cardtypes:res.result.cardsType, count: res.result.count, page:page });
+            }else{
+                handle();
             }
         }
         );
@@ -57,12 +59,9 @@ export default class extends Component {
             }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res)
-                    tool.ui.success({callback:(close, event) => {
-                        close();
-                    }}); 
-                }else{
-                    handle(); 
+                
                 }
+                handle(); 
                 close();
                 this.componentDidMount();});
             }else{
@@ -86,10 +85,8 @@ export default class extends Component {
                 console.log(res)
                 this.setState({show:false,card_type:'',discount:'',price:'',give_price:'',made_price:''})
                 this.componentDidMount();
-                
-            }else{
-               handle();
-            }
+            } 
+            handle();
         });
      }
      format(){
@@ -119,12 +116,13 @@ export default class extends Component {
             give_price:this.state.give_price,
             made_price:this.state.made_price
         }, (res, ver ,handle) => {
+           
             if (ver && res) {
                 console.log(res)
-                this.setState({show:false})
-            }else{
-                handle();
+                this.setState({show1:false})
+                this.componentDidMount();
             }
+            handle();
         });
     }
     mod(e){

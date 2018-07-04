@@ -57,7 +57,7 @@ export default class extends Component {
                 if(res.result.list.length>0){
                     this.setState({clothes:res.result.list,count:res.result.count,page:page,nodatas:false})
                 }else{
-                    this.setState({nodatas:true})
+                    this.setState({nodatas:true,clothes:[],count:0})
                 }
                 
             }else{

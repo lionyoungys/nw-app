@@ -479,7 +479,8 @@ export default class extends Component {
         ,   no_dis_amount = 0
         ,   discount = '' == this.state.discount ? 100 : this.state.discount
         ,   html = this.state.data.map((obj, index) => {
-            let count = this.state.data.keyValCount('parent', obj.DATATAG);
+            let count = this.state.data.keyValCount('parent', obj.DATATAG)
+            ,   total_craft = tool.arrObjValsSum(this.state.data, ['addition_no_price', 'addition_price'], {parent:obj.DATATAG});
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
                 (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
@@ -497,7 +498,7 @@ export default class extends Component {
                     <div onClick={this.showProblem}>{obj.remark}</div>
                     <div onClick={this.showBrand}>{obj.sign}</div>
                     <div onClick={this.showForcast}>{obj.forecast}</div>
-                    <div onClick={this.showPrice}>{obj.addition_remark}</div>
+                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft)}</div>
                     <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div>

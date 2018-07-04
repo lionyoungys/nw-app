@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
 import './LossReissueChangeCard.css';
 import LossReport from './LossReport';//挂失
 import ChangeCard from './ChangeCard';//换卡
@@ -24,6 +25,7 @@ export default class extends Component {
             discount:'',
             user_info:[],
             index:0,
+            nodatas:false,
         }
         this.router = {LossReport:LossReport, ChangeCard:ChangeCard, ReissueCard:ReissueCard, RemoveLossCard:RemoveLossCard};
         this.query=this.query.bind(this);
@@ -43,8 +45,12 @@ export default class extends Component {
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-             
-                this.setState({user_info:res.result});
+                if(res.result.length>0){
+                    this.setState({user_info:res.result,nodatas:false});
+                }else{
+                    this.setState({user_info:[],nodatas:true})
+                }
+                
             }else{
                 tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
@@ -80,13 +86,7 @@ export default class extends Component {
                         <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/></div>
                     </div>
                     <button type='button' className='e-btn ' onClick={this.query}>查询</button>
-                </div>
-                <div className='bothpages-place' >
-                    <div className='bothpages-block-center'>
-                        <img src='./img/no_data_place.png' />
-                        <p>没有找到符合条件的数据</p>
-                    </div>
-                </div>
+                </div>               
                 <table className='ui-table-base lrc-card-tab' >
                     <thead>
                         <tr> 
@@ -101,6 +101,7 @@ export default class extends Component {
                     </thead>
                     <tbody>
                       {userinfo}
+                      {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>
                 <div className='bothpages-btn-part'>
@@ -123,7 +124,9 @@ export default class extends Component {
                              user_mobile:this.state.user_info[this.state.index].user_mobile,
                              card_name:this.state.user_info[this.state.index].card_name,
                              recharge_number:this.state.user_info[this.state.index].recharge_number,
-                             id:this.state.user_info[this.state.index].id
+                             id:this.state.user_info[this.state.index].id,
+                             mname:this.state.user_info[this.state.index].mname,
+                             mid:this.state.user_info[this.state.index].mid
                             }} 
                         refresh={this.query}
                         onClose={() => this.setState({ clickNum: null })}

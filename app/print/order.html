@@ -29,7 +29,7 @@
         不可折金额:&yen;<span id="amount">30000</span><br/>
         付款方式:<span id="gateway">现金</span><br/>
         折扣:<span id="discount">8</span><br/>
-        折后价:<span id="real_amount">10000</span><br/>
+        折后价:&yen;<span id="real_amount">10000</span><br/>
         <div id="reduce_box">优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span></div>
         <div id="coupon_box">现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span></div>
         <div id="pay_amount_box">实收:&yen;<span id="pay_amount">11554</span></div>
@@ -108,7 +108,7 @@
                     ('' == items[i].sign ? '' : '<div>品牌:' + items[i].sign + '</div>') +
                     ('' == items[i].remark ? '' : '<div>瑕疵:' + items[i].remark + '</div>') +
                     ('' == items[i].forecast ? '' : '<div>洗后预估:' + items[i].forecast + '</div>') +
-                    '<div>单价:' + items[i].raw_price + ' '+ (1 == items[i].has_discount ? '打折' : '不打折') +'</div>';
+                    '<div>单价:&yen;' + items[i].raw_price + ' '+ (1 == items[i].has_discount ? '打折' : '不打折') +'</div>';
                 try {
                     json = JSON.parse(items[i].json);
                 } catch (e2) {
@@ -117,7 +117,7 @@
                 if ('object' === typeof json) {
                     tempLen = json.length;
                     for (j = 0;j < tempLen;++j) {
-                        content += '<div>'+ json[j].name +':'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折') +'</div>';
+                        content += '<div>'+ json[j].name +':&yen;'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折') +'</div>';
                     }
                 }
             }

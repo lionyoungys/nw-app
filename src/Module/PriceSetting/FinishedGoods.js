@@ -8,7 +8,6 @@ import Select from '../../UI/Select';
 import '../CleaningPriceSetting/addnewprice.css';
 import '../ChangeCard/ChangeCard.css'
 import CommodityClassifyManagement from '../CommodityManagementDic/CommodityClassifyManagement'
-import { timeInterval } from 'rxjs/operator/timeInterval';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -74,6 +73,7 @@ export default class extends Component {
     getGoodTypeList(){
         api.post('goodtypeList', {
             token: 'token'.getData(),
+            limit:this.limit
         }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
@@ -88,7 +88,7 @@ export default class extends Component {
     }
     onchange(value){
         this.setState({typeindex:value.inObjArray(this.state.typeLists, 'name')});
-        console.log(this.state.typeindex);
+        console.log(value.inObjArray(this.state.typeLists, 'name'));
     } 
     addYES(){
         if(''==this.state.name)
@@ -105,16 +105,15 @@ export default class extends Component {
             stock:this.state.stock,
             has_discount:this.state.discount
         }
-        console.log(params)
+        console.log(this.state.typeLists[this.state.typeindex].id)
         api.post('addGoods',params, (res, ver,handle) => {
+            
             if (ver && res) {
                 console.log(res)
                 this.setState({show:false});
                 this.componentDidMount();
-                handle();
-            }else{
-                handle();
             }
+            handle();
         }); 
     }
     onclose(){
@@ -139,10 +138,8 @@ export default class extends Component {
                 close();
                 if (ver && res) {
                     this.componentDidMount();
-                    handle();  
-                }else{
-                    handle();
-                } 
+                }
+                handle();
             });
         }else{
             close();

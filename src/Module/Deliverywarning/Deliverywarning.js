@@ -22,32 +22,40 @@ export default class extends Component {
         this.query=this.query.bind(this);
     };
     query(page){
-        page = page || this.state.page;
-        api.post('past', {
-            token:'token'.getData(),
-            clothing_number:this.state.clothing_number,
-            limit:this.limit,
-            page:page
-        }, (res, ver,handle) => {
-            if (ver && res) {
-                console.log(res);
-                if(res.result.list.length>0){
-                    this.setState({
-                        list:res.result.list,
-                        count:res.result.count,
-                        page:page,
-                        nodatas:false,
-                    });
+       
+        if(this.state.clothing_number == '' ){
+            tool.ui.error({title:'提示',msg:'请输入衣物编码',button:'确定',callback:(close, event) => {
+                close();
+            }});          
+        }else{
+            page = page || this.state.page;
+            api.post('past', {
+                token:'token'.getData(),
+                clothing_number:this.state.clothing_number,
+                limit:this.limit,
+                page:page
+            }, (res, ver,handle) => {
+                if (ver && res) {
+                    console.log(res);
+                    if(res.result.list.length>0){
+                        this.setState({
+                            list:res.result.list,
+                            count:res.result.count,
+                            page:page,
+                            nodatas:false,
+                        });
+                    }else{
+                        this.setState({nodatas:true,list:[],count:1})
+                    }
+                    
+    
                 }else{
-                    this.setState({nodatas:true})
+                    handle();
                 }
-                
-
-            }else{
-                handle();
-            }
+            }        
+            );
         }
-        );  
+          
     }
     render() {
         let list=this.state.list.map((item,index)=>

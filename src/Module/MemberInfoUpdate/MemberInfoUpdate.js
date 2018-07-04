@@ -15,7 +15,8 @@ export default class extends Component {
             cardnumber:'',
             card_number:'',
             user_type:'',
-            passwd:'',
+            passwd1:'',
+            passwd2:'',
             cid: card.id || '',    //卡编号id
             user_mobile: card.user_mobile || '',    //电话
             user_name: card.user_name || '',    //姓名
@@ -56,6 +57,10 @@ export default class extends Component {
         });
     }
     modCardInfo(){
+        if(this.state.passwd1!=this.state.passwd2)
+        return tool.ui.error({msg:'两次密码不一致,请重新输入',callback:(close) => {
+            close();
+        }});
         api.post('modCardInfo', {
             token:'token'.getData(),
             id:this.state.cid,
@@ -63,18 +68,14 @@ export default class extends Component {
             user_mobile:this.state.user_mobile,
             sex:this.state.sex,
             birthday:this.state.birthday,
-            password:this.state.passwd,
+            password:this.state.passwd2,
             address:this.state.address,
             user_type:this.state.user_type
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                }}); 
-            }else{
-               handle();
             }
+            handle();
         }
         );
     }
@@ -89,11 +90,12 @@ export default class extends Component {
                 birthday:res.birthday,
                 balance:res.balance,
                 integrals:res.integrals,
-                card_name:res.card_name,
+                user_type:res.card_name,
                 discount:res.discount,
                 time:res.time,
                 recharge_number:res.recharge_number,
                 address:res.address,
+
             });
         }
         EventApi.M1Read(obj);
@@ -117,7 +119,7 @@ export default class extends Component {
            <span>手机号:</span><input type='text' className='inputborder' value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/>
            </span>
            <span className='memberinfoupdate_rightdirection'>
-           <span>密码1次:</span><input type='text' className='inputborder'/>
+           <span>密码1次:</span><input type='text' className='inputborder' value={this.state.passwd1} onChange={e=>this.setState({passwd1:e.target.value})}/>
            </span>
         </div>
         <div>
@@ -125,7 +127,7 @@ export default class extends Component {
            <span>姓名:</span><input type='text' className='inputborder' value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})}/>
         </span>
         <span className='memberinfoupdate_rightdirection'>
-           <span>密码2次:</span><input type='text' className='inputborder'/>
+           <span>密码2次:</span><input type='text' className='inputborder'  value={this.state.passwd2} onChange={e=>this.setState({passwd2:e.target.value})}/>
            </span>
         </div>
         <div>

@@ -25,7 +25,7 @@ export default class extends Component {
                 if(res.result.length>0){
                     this.setState({list:res.result,nodatas:false})
                 }else{
-                    this.setState({nodatas:true})
+                    this.setState({nodatas:true,list:[]})
                 }
                   
             }else{

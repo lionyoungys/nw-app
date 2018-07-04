@@ -42,7 +42,13 @@ export default class extends Component {
                         nodatas:false,
                      });
                 }else{
-                    this.setState({nodatas:true})
+                    this.setState({
+                        nodatas:true,
+                        list:[],
+                        count:1,
+                        user_total: '',
+                        balance_total: '',
+                    })
                 }
                 
             } else {

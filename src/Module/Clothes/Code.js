@@ -39,7 +39,9 @@ export default class extends Component {
             return (
                 <div key={'data' + index}>
                     <div>{index + 1}</div>
-                    <div><input type='text' className='e-input' value={obj.number} data-index={index} onChange={this.handleChange}/></div>
+                    <div>
+                        <input type='text' className='e-input' value={obj.number} data-index={index} onChange={this.handleChange}/>                        
+                    </div>
                 </div>
             );
         });

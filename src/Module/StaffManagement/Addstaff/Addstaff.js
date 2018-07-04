@@ -17,8 +17,7 @@ export default class extends Component {
             show1:false,
             show2:false,
             operatorlist:[],
-            user_name : '',
-            user_phone : '', 
+            aname : '',
             user_permissions :'',  
             id:'',
             auth_name:[],
@@ -42,19 +41,23 @@ export default class extends Component {
     }; 
     //员工与权限 新增员工
     operatorAdd () {
-      
+       if(''==this.state.aname)
+       return tool.ui.error({msg:'请输入姓名',callback:(close) => {close(); }});
+       if(''==this.state.mobile)
+       return tool.ui.error({msg:'请输入手机号',callback:(close) => {close(); }});
         api.post('operatorAdd', {
             token:'token'.getData(),
-            aname:this.state.user_name,
-            account:this.state.user_phone,
+            aname:this.state.aname,
+            account:this.state.mobile,
             auth:this.state.auth[this.state.index].id,
            
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res)
                     this.setState({show:false});
                     this.componentDidMount();   
                 }
+                handle();
             }
         );4
     }
@@ -111,7 +114,11 @@ export default class extends Component {
     }
     //员工列表显示
     addstaff(){
-        this.setState({show:true});
+        this.setState({
+            show:true,
+            aname:'',
+            mobile:'',
+        });
         this.staffauthlist();
        
     }
@@ -128,19 +135,24 @@ export default class extends Component {
         );
     }
     modOperatorSuccess(){
-       
+       if(''==this.state.aname)
+       return tool.ui.error({msg:'请输入姓名',callback:(close) => {close(); }});
+       if(''==this.state.mobile)
+       return tool.ui.error({msg:'请输入手机号',callback:(close) => {close(); }});
+        console.log(this.state.account)
         api.post('modOperator', {
             token:'token'.getData(),
             id:this.state.operatorlist[this.state.write].id,
             aname:this.state.aname,
             account:this.state.mobile,
             auth:this.state.auth[this.state.index].id,
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
                 if (ver && res) {
                     this.setState({show1:false})
                     console.log(res)
                    this.componentDidMount();
                 }
+                handle();
             }
         );
     }
@@ -239,10 +251,10 @@ export default class extends Component {
                         {
                             <div className='addstaffborder'>
                                 <div className='margintop'>
-                            <span >姓名:</span><input  type='text' onChange={e => this.setState({user_name:e.target.value})}/>
+                            <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname}/>
                             </div>
                              <div>
-                             <span>手机号:</span><input type='text' onChange={e => this.setState({user_phone:e.target.value})}/>
+                             <span>手机号:</span><input type='text' onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile}/>
                              </div>                             
                                <div >
                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>

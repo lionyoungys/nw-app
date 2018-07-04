@@ -8,6 +8,8 @@ import Page from '../../UI/Page';
 import './Customerquery.css';
 import './Membersdetail.css';
 import Select from '../../UI/Select';
+import Nodata from '../../UI/nodata';
+
 const token = 'token'.getData();
 export default class extends Component {
     constructor(props) {
@@ -24,13 +26,13 @@ export default class extends Component {
             startdate: tool.date('Y-m-01'),
             enddate: tool.date('Y-m-d'),
             page: 1,
-            count: 1,
+            count: 0,
             index:0,
             countdetail:1,
             listdetail:[],
             pagedetail:1,
-
-            
+            nodatas:false,   
+            alldata:false,        
         }     
         this.limit = 15;
         this.query = this.query.bind(this);      
@@ -84,7 +86,21 @@ export default class extends Component {
         }, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ list: res.result.list,count:res.result.user_total,page: page});
+                if(res.result.list.length>0){
+                    this.setState({ 
+                        list: res.result.list,
+                        count:res.result.user_total,
+                        page: page,
+                        nodatas:false,
+                    });
+                }else{
+                    this.setState({
+                        nodatas:true,
+                        list:[],
+                        count:0,
+                    })
+                }
+                
             }else{
                 handle();
             }
@@ -101,8 +117,13 @@ export default class extends Component {
             limit:this.limit
         }, (res,ver,handle) => {
             if (ver && res) {
-                console.log(res)
-                this.setState({ listdetail: res.result.list,countdetail:res.result.count});
+                console.log(res);
+                if(res.result.list.length>0){
+                    this.setState({ listdetail: res.result.list,countdetail:res.result.count,alldata:false});
+                }else{
+                   this.state.setState({alldata:true})
+                }
+                
             }else{
                 handle();
             }
@@ -169,6 +190,7 @@ export default class extends Component {
                       </thead>
                       <tbody>
                          {list}
+                         {this.state.nodatas&&<Nodata />}
                       </tbody>
                   </table>
                 </div>
@@ -211,7 +233,8 @@ export default class extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   {listdetail}                       
+                                   {listdetail} 
+                                   {this.state.alldata&&<Nodata />}                      
                                 </tbody>
                             </table>
                         </div>                              

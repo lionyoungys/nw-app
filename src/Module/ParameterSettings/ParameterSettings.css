@@ -152,13 +152,13 @@
     display: inline-block;
 }
 .lattic-tab table thead tr th{
-    width:104px;
+    width:141px;
     height:25px;
     border-right:1px solid #acc6de;
     line-height:25px;
     text-align:center;color:#fff;
     font-size:12px;
-    min-width:104px;
+    min-width:141px;
 }
 .lattic-tab table thead tr th:last-child{border-right:none}
 .lattic-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
@@ -168,7 +168,7 @@
 }
 .lattic-tab table tbody tr:nth-of-type(odd){background:#fff}
 .lattic-tab table tbody tr td{
-    width:104px;
+    width:141px;
     height:25px; 
     border-right:1px solid #acc6de;
     text-align:center;
@@ -178,7 +178,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:104px;
+    min-width:141px;
     
 }
 .lattic-tab table tbody tr td:last-child{border-right:none;cursor:pointer}

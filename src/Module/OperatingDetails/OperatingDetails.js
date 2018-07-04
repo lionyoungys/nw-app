@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import Nodata from '../../UI/nodata';
 import './OperatingDetails.css';
 
 export default class extends Component {   
@@ -14,6 +15,7 @@ export default class extends Component {
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
             pay_type:'现金',
             list:[],
+            nodatas:false,
         }        
         this.Operatingdetail = this.Operatingdetail.bind(this);          
     }; 
@@ -27,7 +29,11 @@ export default class extends Component {
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res);
-                    this.setState({list:res.result})
+                    if(res.result.length>0){
+                        this.setState({list:res.result,nodatas:false})
+                    }else{
+                        this.setState({nodatas:true,list:[]})
+                    }                   
                 }else{
                     console.log(res.msg);
                 }
@@ -50,10 +56,8 @@ export default class extends Component {
                 <td>{item.time}</td>
                 <td>{item.recharge_number}</td>
                 <td>{item.card_type}</td>
-
            </tr>
-        )
-      
+        )      
         return (             
             <Window title='经营明细' onClose={this.props.closeView}>
                  <div className="Succession_data">
@@ -85,7 +89,8 @@ export default class extends Component {
                                </tr>
                            </thead>
                            <tbody> 
-                               {list}                             
+                               {list} 
+                               {this.state.nodatas&&<Nodata />}                            
                            </tbody>
                         </table> 
                     </div>                          

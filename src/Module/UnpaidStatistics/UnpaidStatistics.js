@@ -35,7 +35,14 @@ export default class extends Component {
                         nodatas:false,
                     });
                 }else{
-                    this.setState({nodatas:true})
+                    this.setState({
+                        nodatas:true,
+                        list:[],
+                        item:[],
+                        discount_amount:'',
+                        itemCount:0,
+                        amount:'',
+                    })
                 }                                  
             }else{
                 handle();

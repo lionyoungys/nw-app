@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
 import './Businesstats.css';
 // import Page from '../../UI/Page'
 export default class extends Component {   
@@ -15,6 +16,7 @@ export default class extends Component {
             list:[],
             page:1,
             count:1,
+            nodatas:false,
         }     
         this.limit = 15;   
         this.arrbutton = this.arrbutton.bind(this);          
@@ -32,7 +34,12 @@ export default class extends Component {
         }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res);
-                    this.setState({list:res.result})
+                    if(res.result.length>0){
+                        this.setState({list:res.result,nodatas:false})
+                    }else{
+                       this.setState({nodatas:true,list:[]})
+                    }
+                    
                 }else{
                     handle();
                 }
@@ -93,7 +100,7 @@ export default class extends Component {
                     </thead>
                     <tbody>
                        {list}
-                        
+                        {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>
     

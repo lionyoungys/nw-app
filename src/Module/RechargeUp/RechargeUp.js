@@ -40,7 +40,12 @@ export default class extends Component {
                         nodatas:false,
                     });
                 }else{
-                    this.setState({nodatas:true})
+                    this.setState({
+                        nodatas:true,
+                        list:[],
+                        count:1,
+                        total_amount:''
+                    })
                 }
                 
             } else {

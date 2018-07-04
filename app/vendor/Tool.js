@@ -74,6 +74,7 @@
         return encoding ? new TextEncoder(code, {NONSTANDARD_allowLegacyEncoding: true}).encode(data) : new TextDecoder(code).decode(new Uint8Array(data));
     }
 
+
     /**
      * 16进制数据转buffer
      * @param {*string} data
@@ -143,6 +144,47 @@
      */
     t.isObject = function(object) {
         return 'object' === typeof object && null !== object && object.constructor === Object;
+    }
+    /**
+     * 判断参数是否属于数组
+     * @param {array} array 
+     * @return bool
+     */
+    t.isArray = function(array) {
+        return 'object' === typeof array && null !== array && array instanceof Array;
+    }
+
+    /**
+     * 通过条件判断获取指定交集对象的属性值的和
+     * @param {array} arr
+     * @param {array} arr2 属性数组
+     * @param {object} where 条件判断
+     * @return bool
+     */
+    t.arrObjValsSum = function(arr, arr2, where) {
+        var sum = 0;
+        if (this.isArray(arr) && this.isArray(arr2) && this.isObject(where)) {
+            var len = arr.length
+            ,   len2 = arr2.length
+            ,   ver = true
+            ,   i2
+            ,   k;
+            for (var i = 0;i < len;++i) {
+                for (k in where) {
+                    if (arr[i][k] != where[k]) {
+                        ver = false;
+                        break;
+                    }
+                }
+                if (ver) {
+                    for (i2 = 0;i2 < len2;++i2) {
+                        sum = sum.add(arr[i][arr2[i2]]);
+                    }
+                }
+                ver = true;
+            }
+        }
+        return sum;
     }
 
     //ui对象实现

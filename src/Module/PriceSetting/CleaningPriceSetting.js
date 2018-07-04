@@ -111,7 +111,7 @@ export default class extends Component {
             cate_name:this.state.cate_type[0],
             disposetype:this.state.dispose_type[0],
             gradename:this.state.grade[0],
-            gridname:'任意格架',
+            gridname:'X',
             materialsname:this.state.materials[0],
         }
         )
@@ -153,7 +153,7 @@ export default class extends Component {
             grade:this.state.gradename,
             materials:this.state.materialsname,
             grid:this.state.gridname,
-            state: this.state.online,//是否在线
+            // state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
@@ -162,17 +162,13 @@ export default class extends Component {
             image_id:this.state.image_id,
         }
         console.log(mod)
-        api.post('modItem',mod, (res, ver) => {
+        api.post('modItem',mod, (res, ver,handle) => {
             if (ver && res) {
-                console.log(res)
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                }}); 
-            }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
+                console.log(res) 
+                this.setState({show1:false});
+                this.componentDidMount();
             }
+            handle();
         }
     ); 
     }
@@ -192,7 +188,7 @@ export default class extends Component {
             grade:this.state.gradename,
             materials:this.state.materialsname,
             grid:this.state.gridname,
-            state: this.state.online,//是否在线
+            // state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
@@ -201,19 +197,14 @@ export default class extends Component {
             image_id:this.state.image_id
         }
         console.log(params)
-        api.post('addItem', params, (res, ver) => {
+        api.post('addItem', params, (res, ver,handle) => {
+          
             if (ver && res) {
                 console.log(res)
                 this.componentDidMount();
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                }}); 
-                
-            }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
-            }
+                this.setState({show:false});
+            }  
+            handle();
         });
     }
     
@@ -221,19 +212,14 @@ export default class extends Component {
         api.post('delItem', {
             token:'token'.getData(),
             id:this.state.server_id,
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
+            
             if (ver && res) {
                 console.log(res)
                 this.componentDidMount();
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                }}); 
-
-            }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
+                this.setState({show1:false});
             }
+            handle();
         }
     );
     }
