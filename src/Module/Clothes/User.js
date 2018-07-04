@@ -103,8 +103,9 @@ export default class extends React.Component {
                 <div>{obj.id}</div>
                 <div>{obj.user_name}</div>
                 <div>{obj.user_mobile}</div>
-                <div>{obj.card_number}</div>
-                <div>{obj.balance}</div><div>消费金额</div>
+                <div>{obj.recharge_number}</div>
+                <div>{obj.balance}</div>
+                <div>{obj.consume}</div>
                 <div>{obj.address}</div>
             </div>
         );
