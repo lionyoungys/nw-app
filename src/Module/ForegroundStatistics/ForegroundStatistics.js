@@ -10,13 +10,12 @@ export default class extends Component {
     constructor(props) {
         super(props);     
         this.state = {
-            startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
-            pay_type:'现金',
+            startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),          
             list:[],
         }              
     }; 
     componentDidMount(){
-        console.log(this.state.pay_type)
+        
         api.post('Operating', {
             token:'token'.getData()    
         }, (res, ver,handle) => {

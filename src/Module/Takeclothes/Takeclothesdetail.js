@@ -22,7 +22,11 @@ export default class extends Component {
             nopay:{},
             index:[],
             checked:[],
-            more:false,                      
+            more:false,
+            Show:'block',
+            Show1:'none',
+            pay:'none',
+            checkbox:'none'
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
@@ -44,6 +48,7 @@ export default class extends Component {
         , (res, ver) => {
                 if (ver && res) {
                     tool.ui.success({callback:(close) => {
+                        this.componentDidMount();
                         close();
                     }});                                                                                         
                 }else{
@@ -69,6 +74,17 @@ export default class extends Component {
                         nopay:res.result.nopay,
                         merchant:res.result.merchant,
                     })
+                    console.log(res.result.order.pay_state)
+                    if(res.result.order.arrears > 0){
+                        this.setState({pay:'block',Show:'none',Show1:'none',checkbox:'none'});
+                    }else{
+                        if(res.result.order.pay_state!=1){
+                            this.setState({pay:'block',Show:'none',Show1:'none',checkbox:'none'});
+                        }else{
+                            this.setState({pay:'none',Show:'none',Show1:'block',checkbox:'block'});   
+                        }                          
+                    }   
+                                                                                                                          
                 }else{
                     // console.log(res.msg);                   
                 }
@@ -83,12 +99,19 @@ export default class extends Component {
     handleAllChecked() {
         
         //console.log(this.state.checked.length == this.state.listitem.length);
-    
+        if(this.state.listorder.arrears>0){
             this.state.checked.length == this.state.listitem.length
             ?
-            this.setState({checked:[]})        
+            this.setState({checked:[],Show:'none',Show1:'none'})        
             :
-            this.setState({checked:this.state.listitem.typeArray('id')})
+            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'none'})
+        }else{
+            this.state.checked.length == this.state.listitem.length
+            ?
+            this.setState({checked:[],Show:'block',Show1:'none'})        
+            :
+            this.setState({checked:this.state.listitem.typeArray('id'),Show:'none',Show1:'block'})
+        }
         
     }
     paymentCallback(obj) {
@@ -184,9 +207,20 @@ export default class extends Component {
         } else {
             this.state.checked.splice(index, 1);
         }
-         
+        if(this.state.checked.length > 0){
+            this.setState({Show:'none',Show1:'block'});   
+        }else{
+            this.setState({Show:'block',Show1:'none'});    
+        }    
         this.setState({checked:this.state.checked});
-        //console.log(this.state.checked.length)                 
+        //console.log(this.state.checked.length)
+        if(this.state.listorder.arrears>0){
+            this.setState({Show:'none',Show1:'none'});
+            
+        }else{
+            
+        }
+           
     }
     paymore (){       
         this.setState({more:true});                        
@@ -197,15 +231,17 @@ export default class extends Component {
         ,   amount = this.state.nopay.amount || 0
         ,   dis_amount = this.state.nopay.discount_amount || 0
         ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100);
+
+
         let takeclothesdetail=this.state.listitem.map((item,index)=>
         <tr key={'item'+index} data-id={item.id}  onClick={this.handleChecked}>
             <td>{index+1}</td>
-            <td><input type="checkbox" checked={-1 !== item.id.inArray(this.state.checked)}/><span>{item.clothing_number}</span></td>
+            <td><input type="checkbox" checked={-1 !== item.id.inArray(this.state.checked)} style={{display:((this.state.checkbox=='block'?true:false)&&(item.status==4?false:true))==true?'block':'none'}}/><span>{item.clothing_number}</span></td>
             <td>{item.clothing_name}</td>
             <td>{item.clothing_color}</td>
             <td>{item.remark}</td>
             <td>{item.grid_num}</td>
-            <td>{item.status == 3 ? '清洗中' : '清洗完成'}</td>
+            <td>{item.status==3?'未取走':item.status==4?'已取走':'已撤单'}</td>
         </tr>
         );
            return (
@@ -241,12 +277,13 @@ export default class extends Component {
                         </table> 
                     </div>
                     <div className="Takeclothesdetail-footer">
-                        <div className="Takeclothesdetail-footer-left">
-                        <input type="checkbox" onChange={this.handleAllChecked} checked={this.state.checked.length == this.state.listitem.length}/>全选/全不选</div>
+                        <div className="Takeclothesdetail-footer-left" style={{display:this.state.checkbox}}>
+                        <input type="checkbox" onChange={this.handleAllChecked} checked={this.state.checked.length == this.state.listitem.length} />全选/全不选</div>
                         <div className="Takeclothesdetail-footer-right">
                            <button className="e-btn Takeclothesdetail-footer-right-btn" onClick = {this.paymore} style={{display:this.state.pay}}>立即收款</button> 
-                           <button className="take-over" onClick={() => this.setState({show2:true})} >取衣</button>
-                           <button className="take-no">取衣</button>                           
+                           <button className="take-over" onClick={() => this.setState({show2:true})} style={{display:this.state.Show1}}>取衣</button>
+                           <button className="take-no" style={{display:this.state.Show}}>取衣</button>
+                           {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                            <div>欠款: ￥{this.state.listorder.arrears}</div>
                            <div>价格: ￥{this.state.listorder.pay_amount}</div>
                         </div>                       
@@ -281,7 +318,8 @@ export default class extends Component {
                             <div className="takeclothes-people">
                                 该客户确定要取走衣物
                             </div>
-                        }                   
+                        }
+                   
                     </LayerBox>
                 }
                 </Window> 

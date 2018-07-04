@@ -54,7 +54,7 @@ export default class extends Component {
             api.post('delCardType', {
                 token:'token'.getData(),
                 id:this.state.id
-        }, (res, ver,handle) => {
+            }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res)
                     tool.ui.success({callback:(close, event) => {
@@ -64,17 +64,16 @@ export default class extends Component {
                     handle(); 
                 }
                 close();
-                this.componentDidMount();
+                this.componentDidMount();});
+            }else{
+                close();
             }
-            );
-        }else{
-            close();
-        }
         }});
-
     }
     addMemberCardYes(){ 
-        this.format();
+        let msg = this.format();
+        if (msg.length > 0) return tool.ui.error({ msg: msg, callback: (close) => close() });
+        if ('' == this.state.card_type || '' == this.state.price || '' == this.state.give_price || '' == this.state.made_price || '' == this.state.discount) return;
         api.post('addCardType', {
             token:'token'.getData(),
             card_type:this.state.card_type,
@@ -91,24 +90,26 @@ export default class extends Component {
             }else{
                handle();
             }
-        }
-    
-        );
+        });
      }
      format(){
-        if(''==this.state.card_type)
-        return tool.ui.error({msg:'请输入卡类型',callback:(close) =>close()}); 
-        if(''==this.state.price)
-        return tool.ui.error({msg:'请输入充值金额',callback:(close) =>close()}); 
-        if(''==this.state.give_price)
-        return tool.ui.error({msg:'请输入赠送金额',callback:(close) =>close()}); 
-        if(''==this.state.made_price)
-        return tool.ui.error({msg:'请输入制卡费',callback:(close) =>close()}); 
-        if(''==this.state.discount)
-        return tool.ui.error({msg:'请输入折扣率',callback:(close) => close()}); 
+        let msg = '';
+        if(''==this.state.card_type){
+            msg = '请输入卡类型';
+        } else if ('' == this.state.price) {
+            msg = '请输入充值金额';
+        } else if ('' == this.state.give_price){
+            msg = '请输入赠送金额';
+        } else if ('' == this.state.made_price){ 
+            msg = '请输入制卡费';
+        } else if ('' == this.state.discount) {
+            msg = '请输入折扣率';
+        }
+        return msg;
      }
-    updateMemberCardYes(){   
-        this.format();
+    updateMemberCardYes(){ 
+        let msg = this.format();
+        if (msg.length > 0) return tool.ui.error({ msg: msg, callback: (close) => close() });
         api.post('modCardType', {
             token:'token'.getData(),
             id:this.state.id,
@@ -117,17 +118,14 @@ export default class extends Component {
             price:this.state.price,
             give_price:this.state.give_price,
             made_price:this.state.made_price
-        }, (res, ver) => {
+        }, (res, ver ,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({show:false})
             }else{
-                tool.ui.error({msg:res.msg,callback:(close, event) => {
-                    close();
-                }});
+                handle();
             }
-        }
-        );
+        });
     }
     mod(e){
         let index=e.target.dataset.write;
@@ -140,7 +138,6 @@ export default class extends Component {
             price:this.state.cardtypes[index].price,
             give_price:this.state.cardtypes[index].give_price,
             made_price:this.state.cardtypes[index].made_price
-
         });
     }
     render(){
@@ -152,7 +149,6 @@ export default class extends Component {
         <td>{item.made_price}</td>
         <td>{item.discount}</td>
         <td>  <b onClick={this.mod} data-write={index}>修改</b><i  onClick={this.delete} data-write={index}>删除</i></td>
-      
 </tr>
     );
         return( 

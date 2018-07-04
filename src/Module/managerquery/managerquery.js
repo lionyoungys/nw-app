@@ -11,8 +11,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            start_time:tool.date('Y-m-d'),
-            end_time:tool.date('Y-m-d'),
+            startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
             show: false,
             result: {},
             list:[],
@@ -97,8 +96,8 @@ export default class extends Component {
                <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
                                 <div>操作员：<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
-                                <div>开始日期：<input type="date" value = {this.state.start_time} onChange={e=>this.setState({startdate:e.target.value})}/></div>
-                                <div>结束日期：<input type="date" value = {this.state.end_time} onChange={e=>this.setState({enddate:e.target.value})}/></div>
+                                <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>
+                                <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
                             </div>
                             <button className="e-btn managerquery_btn" onClick={this.query}>查询</button> 
                 </div>                                    

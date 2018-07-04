@@ -13,6 +13,7 @@ const style = {marginBottom:'8px', fontSize:'12px'};
  * 订单支付弹窗
  * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
  * @param {function} M1Read 读卡方法
+ * @param {function} query 卡号查询 回调参数:卡号
  * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,pay_amount:pay_amount,passwd:passwd,[authcode:authcode]}
  */
 export default class extends Component {
@@ -25,6 +26,7 @@ export default class extends Component {
         this.setAuthCode = this.setAuthCode.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
+        this.query = this.query.bind(this);
     }
 
     componentDidMount() {
@@ -34,18 +36,9 @@ export default class extends Component {
     handleGateway(e) {
         let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
         this.setState({gateway:gateway});
-        // if (0 == gateway) {
-        //     console.log(this.firstInput);
-        //     this.firstInput.focus();
-        // } else if (1 == gateway) {
-        //     console.log(this.secondInput);
-        //     this.secondInput.focus();
-        // } else {
-        //     console.log(this.input[0]);
-        //     this.input[0].focus();
-        // }
-        // e.stopPropagation();
     }
+
+    query() {'' != this.state.number && 'function' === typeof this.props.query && this.props.query(this.state.number)}
 
     handleChange(e) {
         let value = e.target.value;
@@ -151,17 +144,17 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
-                        <input type='input' ref={input => {0 == gateway && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
+                        <input type='input' ref={input => {0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button 
                             type='button' 
                             className='e-btn' 
-                            onClick={() => '' != this.state.number && 'function' === typeof this.props.cardQuery && this.props.cardQuery(this.state.number)}
+                            onClick={this.query}
                         >查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
-                            实收金额：<input type='input' ref={input => {1 == gateway && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                            实收金额：<input type='input' ref={input => {1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                         </div>
                     </div>
                     <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
@@ -174,7 +167,7 @@ export default class extends Component {
                             data-index='0' 
                             ref={input => {
                                 this.input[0] = input;
-                                (2 == gateway || 3 == gateway) && input.focus();
+                                (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
                             }}
                         />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
@@ -310,12 +303,22 @@ export class Recharge extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
-                            实收金额：<input type='input' className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                            实收金额：<input type='input' ref={input => {1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                         </div>
                     </div>
                     <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
-                        <input type='text' className='e-input' value={authCode[0]} onChange={this.setAuthCode} data-index='0' ref={input => this.input[0] = input}/>
+                        <input 
+                            type='text' 
+                            className='e-input' 
+                            value={authCode[0]} 
+                            onChange={this.setAuthCode} 
+                            data-index='0' 
+                            ref={input => {
+                                this.input[0] = input;
+                                (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
+                            }}
+                        />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
                         <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
                         <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>

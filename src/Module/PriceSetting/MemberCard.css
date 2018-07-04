@@ -68,6 +68,7 @@
 .membercard-div{
     width:426px;
     height:190px;
+    font-size: 13px;
     border:1px solid #8db2e3;
     margin:15px auto;
     background:#eef4fb;
@@ -85,7 +86,7 @@
    color: red;
    font-weight: normal
 }
- .membercard-div div input{width:149px;height:20px;border:1px solid #c2c2c2;backgorund:#fff;}
+ .membercard-div div input{width:149px;height:20px;border:1px solid #c2c2c2;background-color:#fff;box-sizing: border-box;padding: 0 5px}
  .membercard-footer{width:440px;height:39px;}
  .membercard-footer button{
      width:71px;

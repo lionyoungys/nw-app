@@ -620,7 +620,7 @@ export default class extends Component {
                             pay_amount:amount
                         }}
                         M1Read={this.M1read}
-                        cardQuery={this.M1read}
+                        query={this.M1read}
                         callback={this.paymentCallback}
                     />
                 }

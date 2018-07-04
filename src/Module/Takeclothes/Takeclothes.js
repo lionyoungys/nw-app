@@ -92,7 +92,7 @@ export default class extends Component {
             <td>{item.total_count}</td>
             <td>{item.pay_amount}</td>
             <td>{item.debt}</td>
-            <td>{item.end_count}</td>
+            <td>{item.end_count}/{item.total_count}</td>
         </tr>
         )
            return (

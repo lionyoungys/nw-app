@@ -26,6 +26,7 @@ export default class extends Component {
         this.setState({show:true,id:this.state.itemLists[index].id,name:this.state.itemLists[index].name});
     }
     addYES(){
+        if ('' == this.state.name) return tool.ui.error({ msg: '分类名称不能为空！', callback: close => close() });
         api.post('addServeType', {
             token:'token'.getData(),
             name:this.state.name
@@ -40,6 +41,7 @@ export default class extends Component {
     }
     modYES(){   
         console.log("####")
+        if ('' == this.state.name) return tool.ui.error({ msg: '分类名称不能为空！', callback: close => close() });
         api.post('modServeType', {
             token:'token'.getData(),
             name:this.state.name,
@@ -50,22 +52,30 @@ export default class extends Component {
                 this.setState({name:'',show:false})
                 this.componentDidMount()
             }
-        }
-        ); 
+        }); 
     }
     deleteYES(){
         console.log("35454")
-        api.post('delServeType', {
-            token:'token'.getData(),
-            id:this.state.id
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({name:'',show:false})
-                this.componentDidMount()
+        tool.ui.warn({
+            title: '提示', msg: '确定要删除？',button: ['是（Y）', '否（N）'], callback: (close, event) => {
+                console.log(event);
+                if (0==event) {//是
+                    api.post('delServeType', {
+                        token: 'token'.getData(),
+                        id: this.state.id
+                    }, (res, ver) => {
+                        if (ver && res) {
+                            console.log(res)
+                            this.setState({ name: '', show: false })
+                            this.componentDidMount()
+                            close();
+                        }
+                    });
+                }else{
+                    close();
+                }
             }
-        }
-        ); 
+        }); 
     }
     componentDidMount(){
         api.post('serveType', {

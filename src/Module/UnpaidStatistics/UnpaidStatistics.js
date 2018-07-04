@@ -69,8 +69,7 @@ export default class extends Component {
                     <span>  可折金额：<a>{this.state.discount_amount || 0}元</a></span>
                     <span>  不可折金额：<a>{this.state.amount ||0}元</a></span>
                 </div>
-                <p className = 'unp-sta-res-num'>已为您找到{this.state.list.length}条数据</p>
-                {/* 表格部分 欠费信息*/}
+                <p className = 'unp-sta-res-num'>已为您找到{this.state.list.length}条数据</p>               
                 <table className='ui-table-base unpaidstatistics_table_Arrearage'>
                     <thead>
                         <tr>
@@ -88,35 +87,7 @@ export default class extends Component {
                     <tbody>                                                                           
                             {list}                                                   
                     </tbody>
-                </table>
-
-                {/* 表格部分 欠费衣物信息*/}
-                {/* <span className='unpaidstatistics_title'>欠费衣物信息 */}
-                {/* <a className='span-a-one'>共有记录</a><a className='span-a-two'>245</a><a>条</a> */}
-                {/* </span> */}
-                {/* <div className='unpaidstatistics_table_part'>
-                    <table className='unpaidstatistics_table_Arrearage'>
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>店员姓名</td>
-                                <td>客户电话</td>
-                                <td>流水号</td>
-                                <td>水洗条码号</td>
-                                <td>衣物编码</td>
-                                <td>衣物名称</td>
-                                <td>衣物颜色</td>
-                                <td>衣物网格</td>
-                                <td>衣物类型</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                               {item}                               
-                            
-                        </tbody>
-                    </table>
-                </div> */}
+                </table>                
             </Window>
         );
     }

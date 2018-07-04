@@ -128,6 +128,23 @@
         return Math.floor( (number * 1000 * 3600 * 24 + timestamp) / 1000 );
     }
 
+    /**
+     * 判断参数是否为对象
+     * @param {object} object 
+     * @return bool
+     */
+    t.is_object = function(object) {
+        return 'object' === typeof object && null !== object;
+    }
+    /**
+     * 判断参数是否属于对象类
+     * @param {object} object 
+     * @return bool
+     */
+    t.isObject = function(object) {
+        return 'object' === typeof object && null !== object && object.constructor === Object;
+    }
+
     //ui对象实现
 
     /**

@@ -9,14 +9,13 @@ import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
 import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment';
-import Page from '../../UI/Page'
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
             show:false,
             show1:false,
-            // serveTypes:[],
+            requestHave:false,//记录是否已请求过数据
             index:0,
             itemLists:[],
             itemList:[],
@@ -32,28 +31,29 @@ export default class extends Component {
             materialss:[],
             grid:[],
             grids:[],
-            item_name:'',
-            item_cycle:'',
-            catetype_index:0,
+            page: 1,
+
+            catetype_index: 0,
+            item_name: '',//衣物名称
             cate_name:'',//衣物类别
             disposetype:'',//处理类别
             item_off_price:'',//线下价格
             online:0,//在线接单
             has_discount:1,//允许折扣
             transfer:1,//价格可调
-            min_discount:'',//最低折扣
+            min_discount:'',//折扣下限
             gradename:'',//档次
             materialsname:'',//材料名称
             goodindex:0,
+            item_cycle: '',//洗护周期
             item_online_price:'',//线上价格
             gridname:'',//格架名称
-            page:1,
             image_id:'',//图片id
             image_url:'',//图片url
             server_id:'',//服务id
             cate_id:'',//衣物类别id
         }
-        this.limit = 200;
+        this.limit = 1000;
         this.handleClick=this.handleClick.bind(this);
         this.onClose=this.onClose.bind(this);
         this.addcheanprice=this.addcheanprice.bind(this);
@@ -68,9 +68,10 @@ export default class extends Component {
         this.setState({clothestypemanageshow:true});
     }
     request(){
+        if (this.state.requestHave) return;//请求国数据无需多次调用
         api.post('needInfo', {
             token:'token'.getData()
-    }, (res, ver, handle) => {
+        }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({
@@ -84,26 +85,28 @@ export default class extends Component {
                     materialss:res.result.materials,
                     grid:res.result.grid.typeArray('name'),
                     grids:res.result.grid,
-                
+                    requestHave:true,
                 })
             }else{
                 handle();
             }
-            this.setState({    
-                disposetype:this.state.dispose_type[0],
-                gradename:this.state.grade[0],
-                cate_id:this.state.cate_types[0].id,
-                materialsname:this.state.materials[0],
-                cate_name:this.state.cate_type[0]
-            })
-        }
-        ); 
-      
-       
+        });   
     }
     addcheanprice(){
-       this.setState({show:true});
-       this.request();  
+        this.setState({show:true});
+        this.request(); 
+        this.setState({
+            item_name: '',//衣物名称
+            item_cycle: '',//洗护周期
+            item_off_price: '',//线下价格
+            min_discount: '',//折扣下限
+            item_online_price: '',//线上价格
+            image_id: '',//图片id
+            image_url: '',//图片url
+            online: 0,//在线接单
+            has_discount: 1,//允许折扣
+            transfer: 1,//价格可调
+        })
     }
     handleClick(e){
         console.log(e)
@@ -124,6 +127,7 @@ export default class extends Component {
             grade:this.state.gradename,
             materials:this.state.materialsname,
             grid:this.state.gridname,
+            state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
@@ -162,6 +166,7 @@ export default class extends Component {
             grade:this.state.gradename,
             materials:this.state.materialsname,
             grid:this.state.gridname,
+            state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
             min_discount:this.state.min_discount,
@@ -182,8 +187,7 @@ export default class extends Component {
                     close();
                 }});
             }
-        }
-    );
+        });
     }
     
     deleteYES(){
@@ -210,41 +214,45 @@ export default class extends Component {
             token:'token'.getData(),
             page: this.state.page, 
             limit: this.limit
-    }, (res, ver) => {
+    }, (res, ver) => { 
             if (ver && res) {
                 console.log(res)
                 this.setState({itemLists:res.result.type,type:res.result.type.typeArray('name'),})
             }
-        }
-        ); 
-       
+        });   
     }
     onClose(){
         this.setState({selectImg:false})
     }
     handle(e){
+
         this.request();
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
-        this.setState({goodindex:e.target.dataset.index || e.target.parentNode.dataset.index,
-            show1:true,
-            server_id:this.state.itemLists[this.state.index].server[good_index].id,
-            cate_id:this.state.itemLists[this.state.index].server[good_index].cate_id,
-            item_name:this.state.itemLists[this.state.index].server[good_index].item_name,
-            item_cycle:this.state.itemLists[this.state.index].server[good_index].item_cycle,
-            item_off_price:this.state.itemLists[this.state.index].server[good_index].item_off_price,
-            min_discount:this.state.itemLists[this.state.index].server[good_index].min_discount,
-            item_online_price:this.state.itemLists[this.state.index].server[good_index].item_online_price,
-            cate_name:this.state.itemLists[this.state.index].server[good_index].cate_name,
-            disposetype:this.state.itemLists[this.state.index].server[good_index].dispose_type,
-            gradename:this.state.itemLists[this.state.index].server[good_index].grade,
-            materialsname:this.state.itemLists[this.state.index].server[good_index].materials,
-            gridname:this.state.itemLists[this.state.index].server[good_index].grid,
-            image_url:this.state.itemLists[this.state.index].server[good_index].image_url
-        });
-       
-        
+        let good = this.state.itemLists[this.state.index].server[good_index];
+        this.setState(
+            {
+                goodindex: good_index,
+                show1:true,
+                server_id: good.id,
+                cate_id: good.cate_id,
+                item_name: good.item_name,
+                item_cycle: good.item_cycle,
+                item_off_price: good.item_off_price,
+                min_discount: good.min_discount,
+                item_online_price: good.item_online_price,
+                cate_name: good.cate_name,
+                disposetype: good.dispose_type,
+                gradename: good.grade,
+                materialsname: good.materials,
+                gridname: good.grid,
+                image_url: good.image_url,
+                online: good.state,//在线接单
+                transfer: good.transfer,//价格可调
+                has_discount:good.has_discount,//允许折扣
+            });     
     }
+
     onchange(value){
         console.log(this.state.cate_types[value.inObjArray(this.state.cate_types, 'name')].id)
         this.setState({
@@ -289,7 +297,6 @@ export default class extends Component {
             );  
         }
         return (
-            // <Window title='洗护价格设置' onClose={this.props.closeView} >
             <div className='cleaning_price_all'>
                 <div className="cleaning_price_set_btn">
                     <button className='e-btn middle' onClick={this.clothestypemanage}>衣物类别管理</button>
@@ -297,7 +304,6 @@ export default class extends Component {
                 </div >
                 <div className='cleaning_price_set_left_table_div'>
                     <div className='cleaning_price_set_left_table'>
-                        {/* <span className='selected_row'>外套类</span> */}
                         {itemLists}
                     </div> 
                 </div>
@@ -339,7 +345,6 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
-                               
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -358,10 +363,11 @@ export default class extends Component {
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
                                 </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
-                                    <div className="add-select-part">
-                                        <div><input type="checkbox" onChange={e=>this.setState({online:e.target.checked?1:0})}/>在线接单</div>
-                                        <div><input type="checkbox" onChange={e=>this.setState({has_discount:e.target.checked?1:0})} defaultChecked/>允许折扣</div>
-                                        <div><input type="checkbox" onChange={e=>this.setState({transfer:e.target.checked?1:0})} defaultChecked/>价格可调</div>
+                                    <div className="add-select-part"> 
+                                        {/* <div><input type="checkbox"  onChange={e=>this.setState({online:e.target.checked?1:0})}/>在线接单</div> */}
+                                    <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e => this.setState({ online: e.target.checked ? 1 : 0 })} />在线接单</div>
+                                        <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
+                                        <div><input type="checkbox" checked={this.state.transfer == 1 ? true : false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
                                     </div>
                             </div>
                         </div>
@@ -403,9 +409,9 @@ export default class extends Component {
                             <div><span>线上价格：
                                 </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
                                     <div className="add-select-part">
-                                        <div><input type="checkbox" onChange={e=>this.setState({online:e.target.checked?0:1})} />在线接单</div>
-                                        <div><input type="checkbox" onChange={e=>this.setState({has_discount:e.target.checked?0:1})} />允许折扣</div>
-                                        <div><input type="checkbox" onChange={e=>this.setState({transfer:e.target.checked?0:1})} />价格可调</div>
+                                        <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e=>this.setState({online:e.target.checked?1:0})} />在线接单</div>
+                                    <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
+                                    <div><input type="checkbox" checked={this.state.transfer == 1 ? true: false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
                                     </div>
                             </div>
                         </div>
@@ -415,14 +421,13 @@ export default class extends Component {
                             <button className="e-btn" onClick={this.modYES}>确定</button>
                         </div>
                     </Window>
-
                 }
-                {
-                    this.state.selectImg && <PhotoGallery onClose={this.onClose} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
-                }
-                {
-                    this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})}/>
-                }
+                    {
+                        this.state.selectImg && <PhotoGallery onClose={this.onClose} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
+                    }
+                    {
+                        this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})}/>
+                    }
             </div>
             // </Window>
         );
