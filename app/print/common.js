@@ -16,21 +16,7 @@
     }
     Node.prototype.show = function() {this.style.display = '';}
     Node.prototype.hidd = function() {this.style.display = 'none';}
-
-    var init = function() {    //初始化函数
-        var str = window.location.search.substring(1);    //获取url的get参数
-        if ('' != str) {
-            var arr = str.split('&')
-            ,   len = arr.length;
-            if (len > 0) {
-                var temp;
-                for (var i = 0;i < len;++i) {
-                    temp = arr[i].split('=');
-                    if ('' != temp[0] && 'undefined' != temp[1]) c.GET[temp[0]] = decodeURIComponent(temp[1]);
-                }
-            }
-        }
-    }
+    
     var win = nw.Window.get()
     ,   c = {
         GET:{},
@@ -139,6 +125,5 @@
         this.close(true);
     });
     win.on('closed', function() {win = null});
-    init();
     window._ = c;
 })(window);

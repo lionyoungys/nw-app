@@ -68,6 +68,8 @@ export default class extends Component {
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
         this.print = this.print.bind(this);
         this.paymentClose = this.paymentClose.bind(this);
+        this.delOrder = this.delOrder.bind(this);
+        this.takeCost = this.takeCost.bind(this);
     }
 
     componentDidMount() {
@@ -122,6 +124,7 @@ export default class extends Component {
                 balance:res.balance,
                 type:res.card_name,
                 discount:res.discount,
+                addr:res.address,
                 card:res
             });
         }
@@ -366,7 +369,16 @@ export default class extends Component {
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         });
     }
-    cost() {
+    takeCost() {
+        if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
+        if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
+        tool.ui.warn({msg:'您确定客户取衣付款吗？', button:['是（Y）', '否（N）'],callback:(close, event) => {
+            0 == event && this.cost(true);
+            close();
+        }});
+    }
+    cost(isTake) {
         /**"user_name": "姓名",
 	"user_mobile": "手机号",
 	"clothing_number": "衣物编码",
@@ -404,14 +416,16 @@ export default class extends Component {
             data[i].user_mobile = this.state.phone;
             data[i].card_type = this.state.type;
             data[i].address = this.state.addr;
+            data[i].card_number = this.state.number;
             delete data[i].DATATAG;
             delete data[i].parent;
         }
         api.post(
             'get_clothes',
-            {token:'token'.getData(), uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            {token:token, uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver) => {
                 console.log(res);
+                if (isTake) return this.props.closeView();
                 if (ver) {
                     this.setState({
                         show:14, 
@@ -451,8 +465,9 @@ export default class extends Component {
         );
     }
     paymentClose() {
-        this.print();
-        this.props.closeView();
+        // this.print();
+        // this.props.closeView();
+        this.delOrder(() => this.setState({oid:null, show:0}));
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
@@ -463,12 +478,19 @@ export default class extends Component {
     onClose() {
         if (this.state.data.length > 0) {
             tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
-                0 == event && this.props.closeView();
+                0 == event && this.delOrder(this.props.closeView);
                 close();
             }});
         } else {
-            this.props.closeView();
+            this.delOrder(this.props.closeView);
         }
+    }
+
+    delOrder(callback) {
+        if (null != this.state.oid) {
+            api.post('del_order', {token:token, order_id:this.state.oid});
+        }
+        'function' === typeof callback && callback();
     }
 
 
@@ -540,7 +562,10 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className='clothes-footer-right'>
-                        <div><button type='button' className='e-btn middle high' onClick={this.cost}>收银</button></div>
+                        <div>
+                            <button type='button' className='e-btn' data-take='take' onClick={this.takeCost}>取衣付款</button>
+                            &nbsp;
+                            <button type='button' className='e-btn' onClick={this.cost}>收银</button></div>
                         <div>
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
                             <button type='button' className='e-btn' onClick={() => this.setState({show:17})}>充值</button>&nbsp;

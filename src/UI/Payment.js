@@ -167,7 +167,7 @@ export default class extends Component {
                             data-index='0' 
                             ref={input => {
                                 this.input[0] = input;
-                                !this.state.show && (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
+                                !this.state.show && (2 == gateway || 3 == gateway) && authCode[0].length < 4 && tool.is_object(input) && input.focus();
                             }}
                         />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
@@ -316,7 +316,7 @@ export class Recharge extends Component {
                             data-index='0' 
                             ref={input => {
                                 this.input[0] = input;
-                                (2 == gateway || 3 == gateway) && tool.is_object(input) && input.focus();
+                                (2 == gateway || 3 == gateway) && authCode[0].length < 4 && tool.is_object(input) && input.focus();
                             }}
                         />
                         <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
