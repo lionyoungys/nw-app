@@ -21,7 +21,16 @@
             {
                 new_instance:true, 
                 show:false
-            }
+            },
+            // function(currentWin) {
+            //     console.log(currentWin);
+            //     currentWin.on('close', function() {
+            //         this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
+            //         null !== currentWin && currentWin.close(true);    //虽然关了,但实际上它还在工作
+            //         this.close(true);    //关闭新窗口也关闭主窗口
+            //     });
+            //     currentWin.on('closed', function() {currentWin = null});    //新窗口关闭后释放'win'对象
+            // }
         );
     },
     e.open_case = function() {    //打开钱箱

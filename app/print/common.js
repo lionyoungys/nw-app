@@ -120,7 +120,6 @@
         }
     };
     win.on('close', function() {
-        this.hide();
         null !== win && win.close(true);
         this.close(true);
     });
