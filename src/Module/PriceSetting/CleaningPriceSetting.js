@@ -63,8 +63,12 @@ export default class extends Component {
         this.modYES=this.modYES.bind(this);
         this.handle=this.handle.bind(this);
         this.onchange=this.onchange.bind(this);
+        this.query=this.query.bind(this);
     };  
     componentDidMount() {
+        this.query();
+    } 
+    query(){
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('itemList', {
@@ -78,7 +82,7 @@ export default class extends Component {
                 this.setState({ itemLists: res.result.type, type: res.result.type.typeArray('name'), })
             }
         });
-    } 
+    }
     clothestypemanage(){
         this.setState({clothestypemanageshow:true});
     }
@@ -429,7 +433,7 @@ export default class extends Component {
                         this.state.selectImg && <PhotoGallery onClose={this.onClose} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
                     }
                     {
-                        this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})} refresh={this.componentDidMount}/>
+                        this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})} refresh={this.query}/>
                     }
             </div>
             // </Window>

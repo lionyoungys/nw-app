@@ -57,6 +57,18 @@ export default class extends Component {
         });
     }
     modCardInfo(){
+        if(''==this.state.cid)
+        return tool.ui.error({msg:'请先读卡或查询',callback:(close) => {
+            close();
+        }});
+        if(''==this.state.user_mobile)
+        return tool.ui.error({msg:'请输入手机号',callback:(close) => {
+            close();
+        }});
+        if(''==this.state.user_name)
+        return tool.ui.error({msg:'请输入姓名',callback:(close) => {
+            close();
+        }});
         if(this.state.passwd1!=this.state.passwd2)
         return tool.ui.error({msg:'两次密码不一致,请重新输入',callback:(close) => {
             close();

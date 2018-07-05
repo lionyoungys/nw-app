@@ -48,7 +48,8 @@ export default class extends Component {
                
                 this.setState({name:'',addshow:false})
                 this.componentDidMount()
-                // this.props.refresh();
+                this.props.refresh();
+                this.props.onClose();
             }
             handle();
         }); 
@@ -66,7 +67,9 @@ export default class extends Component {
                
                 this.setState({name:'',show:false})
                 this.componentDidMount()
-                // this.props.refresh();
+
+                this.props.refresh();
+                this.props.onClose();
             }
             handle();
         }); 
@@ -85,8 +88,9 @@ export default class extends Component {
                             console.log(res)
                             this.setState({ name: '', show: false })
                             this.componentDidMount()
-                            // this.props.refresh();
+                            this.props.refresh();
                             close();
+                            this.props.onClose();
                         }
                         handle();
                     });

@@ -38,8 +38,12 @@ export default class extends Component {
         this.onchange=this.onchange.bind(this);
         this.mod=this.mod.bind(this);
         this.modYES=this.modYES.bind(this);
+        this.query=this.query.bind(this);
     };  
     componentDidMount() {
+        this.query();
+    }
+    query(){
         let done;
         tool.ui.loading(handle => done = handle);
         console.log('申请数据1');
@@ -296,7 +300,7 @@ export default class extends Component {
                     </Window>
                 }
                  {
-                     this.state.show1&&<CommodityClassifyManagement onclose={this.onclose}/>
+                     this.state.show1&&<CommodityClassifyManagement onclose={this.onclose} onrefresh={this.query}/>
                  }
             </div>
         );
