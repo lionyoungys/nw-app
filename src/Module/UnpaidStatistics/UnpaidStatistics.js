@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import './UnpaidStatistics.css';
 import Window from '../../UI/Window';
 import Nodata from '../../UI/nodata';
+import Page from "../../UI/Page";
 
 export default class extends Component {
     constructor(props) {
@@ -18,11 +19,26 @@ export default class extends Component {
             itemCount:0,
             amount:'',
             nodatas:false,
+            count:0,
+            page:1,
         };
-        this.order = this.order.bind(this);
+        this.limit = 15;
+        this.query = this.query.bind(this);
     };
-    order (){
-        api.post('orderArrears', {start_time:this.state.startdate,end_time:this.state.enddate,token:'token'.getData()}, (res, ver,handle) => {
+    componentDidMount(){
+        this.query();
+    }
+    query (page){
+        page = page || this.state.page;
+        let pramas = {
+            start_time: this.state.startdate,
+            end_time: this.state.enddate,
+            page: page,
+            limit: this.limit,
+            token: 'token'.getData()
+        }
+        console.log(pramas);
+        api.post('orderArrears', pramas, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 if(res.result.list.length>0){
@@ -33,17 +49,10 @@ export default class extends Component {
                         amount:res.result.amount,
                         list:res.result.list,
                         nodatas:false,
+                        page:page,
+                        count:res.result.count,
                     });
-                }else{
-                    this.setState({
-                        nodatas:true,
-                        list:[],
-                        item:[],
-                        discount_amount:'',
-                        itemCount:0,
-                        amount:'',
-                    })
-                }                                  
+                }                                
             }else{
                 handle();
             }
@@ -61,19 +70,7 @@ export default class extends Component {
             <td>{item.user_mobile}</td>
             <td>{item.time}</td>
         </tr>) 
-    //     var item = this.state.item.map((item, index) => <tr key={'item' + index}>
-    //         <td>{index+1}</td>
-    //         <td>{item.operator}</td>
-    //         <td>{item.user_mobile}</td>
-    //         <td>{item.serialsn}</td>
-    //         <td>{item.clean_sn}</td>
-    //         <td>{item.clothing_number}</td>
-    //         <td>{item.clothing_name}</td>
-    //         <td>{item.clothing_color}</td>
-    //         <td>{item.clothing_grids}</td> 
-    //         <td>{item.clothing_type}</td>
-    // </tr>
-    // )
+
         return (            
             <Window title='未付款统计' onClose={this.props.closeView}>
                 <div className="unpaidstatistics_data">
@@ -82,7 +79,7 @@ export default class extends Component {
                         <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} /></div>
                     </div>
                     <div className="unpaidstatistics_dataright">
-                        <button type='button' className='e-btn ' onClick = {this.order}>查询</button>
+                        <button type='button' className='e-btn ' onClick={() => this.query(1)}>查询</button>
                     </div>
                 </div>
                 <div className="unpaidstatistics_Statistics">
@@ -90,7 +87,7 @@ export default class extends Component {
                     <span>  可折金额：<a>{this.state.discount_amount || 0}元</a></span>
                     <span>  不可折金额：<a>{this.state.amount ||0}元</a></span>
                 </div>
-                <p className = 'unp-sta-res-num'>已为您找到{this.state.list.length}条数据</p>               
+                <p className = 'unp-sta-res-num'>已为您找到{this.state.count}条数据</p>               
                 <table className='ui-table-base unpaidstatistics_table_Arrearage'>
                     <thead>
                         <tr>
@@ -109,7 +106,8 @@ export default class extends Component {
                             {list} 
                             {this.state.nodatas&&<Nodata />}                                                  
                     </tbody>
-                </table>                
+                </table>    
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />            
             </Window>
         );
     }
