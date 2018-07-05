@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 
+const style = {color:'red',cursor:'default'};
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -22,9 +23,14 @@ export default class extends Component {
         this.state = {data:tempData};
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleClean = this.handleClean.bind(this);
     }
     handleChange(e) {
         this.state.data[e.target.dataset.index].number = e.target.value;
+        this.setState({data:this.state.data});
+    }
+    handleClean(e) {
+        this.state.data[e.target.dataset.index].number = '';
         this.setState({data:this.state.data});
     }
     handleClick() {
@@ -40,7 +46,9 @@ export default class extends Component {
                 <div key={'data' + index}>
                     <div>{index + 1}</div>
                     <div>
-                        <input type='text' className='e-input' value={obj.number} data-index={index} onChange={this.handleChange}/>                        
+                        <input type='text' className='e-input' value={obj.number} data-index={index} onChange={this.handleChange}/>
+                        &emsp;
+                        <span style={style} data-index={index} onClick={this.handleClean}>清空</span>                        
                     </div>
                 </div>
             );

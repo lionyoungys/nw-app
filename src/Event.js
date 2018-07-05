@@ -1,13 +1,14 @@
 //事件注册配置
 (function(window) {
-    var win = nw.Window.get()
-    ,   e = {};
+    var e = {
+        win:nw.Window.get()
+    };
     e.quit = function() {    //退出
         nw.Window.open('login.html', nw.App.manifest.loginWindow);
-        win.close();
+        this.win.close();
     }
     e.printers = function (callback) {    //获取打印机列表
-        'function' === typeof callback && win.getPrinters(callback);
+        'function' === typeof callback && this.win.getPrinters(callback);
     }
     e.print = function(pageName, param) {    //打印
         let getParam = '';

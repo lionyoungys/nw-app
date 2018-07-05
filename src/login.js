@@ -190,8 +190,8 @@ class Login extends Component {
                 res.mid.setData('merchant_id');
                 res.is_root.setData('is_root');
                 res.auth.setData('auth');
-                nw.Window.open('main.html', nw.App.manifest.mainWindow);
-                win.close();
+                // nw.Window.open('main.html', nw.App.manifest.mainWindow);
+                // win.close();
                 //1 != res.is_root && res.auth.setData('auth');
                 if(pass==1){
                    this.setState({show:true})
