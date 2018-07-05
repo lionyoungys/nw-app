@@ -1,33 +1,31 @@
 .clothesquery_top{
-    width: 872px;
+    width: 874px;
     height: 101px;
     border:1px solid #8db2e3;
     margin: 13px;
 }
 .clothesquery_top_one div .ui-select-define {width:149px;}
-.clothesquery_top_one div .ui-select-define .ui-select-selected{margin-top:0}
-.clothesquery_top_one div .ui-select-option{margin-top:0;}
-.clothesquery_top_one div .ui-select-option div{margin-top:0}
 .clothesquery_top_one,.clothesquery_top_two{
 
-    width:220px;
+    width:218px;
     height: 100%;
     float: left;
 }
 
-.clothesquery_top_one div,.clothesquery_top_two div,.clothesquery_top_three div{
+.clothesquery_top_one>div,.clothesquery_top_two>div,.clothesquery_top_three>div{
 
     margin-top: 6px;
 }
 .clothesquery_top_three{
 
-    width: 430px;
+    width: 438px;
     height: 100%;
     float: left;
 }
-.clothesquery_top_three div{
+.clothesquery_top_three>div{
 
     float: left;
+    margin-right: 2px;
 }
 .clothesquery_top_three  div.clothesquery_top_btn{
 
@@ -89,4 +87,8 @@
 .ui-table-base.clo-que-tab tr td:first-child{
 
     min-width: 40px; 
+}
+.inputselectborder.clo-date{
+    width: 150px;
+    margin-left: 0px;
 }

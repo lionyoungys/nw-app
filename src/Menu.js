@@ -2,22 +2,24 @@
 export const topMenu = [
     {
         value:'前台业务', 
+        id :1,
         options:[
-            {value:'收衣', view:'clothes'},
-            {value:'上挂', view:'hangon'},           
-            {value:'取衣', view:'take_clothes'},
-            {value:'商品销售', view:'commodity_sales'},
-            // {value:'欠款补交', view:'debt_pay'},
-            {value:'交期预警', view:'delivery_warning'},
-            {value:'撤单处理', view:'its_processing'},
-            {value:'赔付', view:'pay'},
-            {value:'demo', view:'demo'},
+            {value:'收衣', view:'clothes',id:7},
+            { value: '上挂', view: 'hangon', id: 7},           
+            { value: '取衣', view: 'take_clothes', id: 8},
+            { value: '商品销售', view: 'commodity_sales', id: 9},
+            // {value:'欠款补交', view:'debt_pay',id:10},
+            { value: '交期预警', view: 'delivery_warning', id: 11},
+            { value: '撤单处理', view: 'its_processing', id: 12},
+            { value: '赔付', view: 'pay', id: 13},
+            { value: 'demo', view: 'demo', id: 7},
             // {value:'编辑商品价格', view:'edit_shop_prices'},
             // {value:'编辑洗护价格', view:'edit_cleaning_prices'},
         ]
     },
     {
         value:'信息查询', 
+        id:2,
         options:[
             {value:'格架查询', view:'lattice_query'},
             {value:'衣物查询', view:'clothes_query'},
@@ -26,11 +28,12 @@ export const topMenu = [
             {value: '未付款统计', view:'unpaid_statistics'},
             {value:'余额统计', view:'balance_statistics'},
             {value:'充值统计', view:'recharge_up'},
-            {value:'消费统计', view:'consum_ption_statistics'},     
+            {value:'消费统计', view:'consum_ption_statistics' ,id:23},     
         ]
     },
     {
         value:'客户管理', 
+        id: 3,
         options:[
             { value:'售卡', view:'sale_card'},
             { value:'充值', view:'recharge'},
@@ -48,13 +51,15 @@ export const topMenu = [
     },
     {
         value:'信息统计', 
+        id: 4,
         options:[
-            {value:'撤单统计', view:'revoke_data'},
+            {value:'撤单统计', view:'revoke_data',id:1},
             {value:'赔付统计', view:'payout_stats'}
         ]
     },
     {
         value:'财务统计', 
+        id: 5,
         options:[
             { value: '经理收款', view:'manager_gathering'},
             {value:'经理查询', view:'manager_query'},
@@ -85,6 +90,7 @@ export const topMenu = [
     // },
     {
         value:'设置', 
+        id: 2,
         options:[
             {value:'门店管理', view:'store_management'},
             {value:'员工与权限', view:'staff_management'},

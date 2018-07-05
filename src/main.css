@@ -106,7 +106,7 @@ table{border-collapse: collapse}
 }
 .main-menu-options>div:hover{
     background: #bbd9ef;
-    border: 1px solid #4e80a2;
+    /* border: 1px solid #4e80a2; */
 }
 .main-menu-options>div>div{
     margin: 0 20px;

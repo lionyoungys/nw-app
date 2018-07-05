@@ -17,14 +17,13 @@ export default class extends Component {
             token:'token'.getData(),
             id:this.props.data.id,
             
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.props.onClose();
                 this.props.refresh();
-            }else{
-                
             }
+            handle();
         }
     );
     }
@@ -46,7 +45,7 @@ export default class extends Component {
                     <p>解除挂失后，该卡将恢复正常使用，您确定要解除挂失吗？</p>
                     <div className='loss-rep-right-btn'>
                         <button className="e-btn" onClick={this.remove}>解除挂失</button>
-                        <button className="e-btn">取消</button>
+                        <button className="e-btn" onClick={this.props.onClose}>取消</button>
                     </div>
                 </div>
             </Window>

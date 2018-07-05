@@ -112,24 +112,27 @@ class MainTopMenu extends Component {
     }
 
     render() {
-        let menuList = topMenu.map((obj, index) => 
-            <div key={obj.value}>
-                【{obj.value}】
-                <div data-index={index} onMouseOver={this.handleMouseOver} onMouseOut={() => this.setState({index:null})}>
-                    <div data-index={index} className='main-menu-options' style={{display:this.state.index == index ? 'block' : 'none'}}>
-                        {obj.options.map(obj2 => 
-                            <div
-                                key={obj2.value}
-                                data-index={index}
-                                data-view={obj2.view}
-                                data-event={obj2.event}
-                                onClick={this.props.changeView}
-                            ><div data-index={index} data-view={obj2.view}>【{obj2.value}】</div></div>
-                        )}
+        let menuList = topMenu.map((obj, index) => {
+            // if (没有大的) return null;
+            return (
+                <div key={obj.value}>
+                    【{obj.value}】
+                    <div data-index={index} onMouseOver={this.handleMouseOver} onMouseOut={() => this.setState({ index: null })}>
+                        <div data-index={index} className='main-menu-options' style={{ display: this.state.index == index ? 'block' : 'none' }}>
+                            {obj.options.map(obj2 =>
+                                <div
+                                    key={obj2.value}
+                                    data-index={index}
+                                    data-view={obj2.view}
+                                    data-event={obj2.event}
+                                    onClick={this.props.changeView}
+                                ><div data-index={index} data-view={obj2.view}>【{obj2.value}】</div></div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        });
         return <div className='main-menu'>{menuList}</div>;
     }
 }

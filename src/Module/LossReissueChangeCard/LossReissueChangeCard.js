@@ -35,11 +35,11 @@ export default class extends Component {
   }
     hasUser() {return (this.state.user_info.length - 1) >= this.state.index}
     query(){
-        if(''==this.state.cardNumber && ''==this.state.user_name &&''==this.state.user_mobile)
+        if(''==this.state.recharge_number && ''==this.state.user_name &&''==this.state.user_mobile)
         return   tool.ui.error({msg:'至少输入一个参数',callback:(close) => {close();}});
         api.post('readCard', {
             token:'token'.getData(),
-            cardNumber:this.state.cardNumber,
+            cardNumber:this.state.recharge_number,
             user_name:this.state.user_name,
             user_mobile:this.state.user_mobile
         }, (res, ver) => {
@@ -81,7 +81,7 @@ export default class extends Component {
             <Window title='挂失、补换卡' onClose={this.props.closeView}>
                 <div className="change_card_date">
                     <div className="change_card_date_left">
-                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({cardNumber:e.target.value})}/></div>
+                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/></div>
                         <div>姓名：<input type="text" value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})}/></div>
                         <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/></div>
                     </div>

@@ -107,7 +107,6 @@ export default class extends Component {
         }
         console.log(this.state.typeLists[this.state.typeindex].id)
         api.post('addGoods',params, (res, ver,handle) => {
-            
             if (ver && res) {
                 console.log(res)
                 this.setState({show:false});
@@ -166,15 +165,18 @@ export default class extends Component {
         return  tool.ui.error({msg:'请输入库存',callback:(close) => { close();}});
         if(''==this.state.price)
         return  tool.ui.error({msg:'请输入价格',callback:(close) => { close();}});
-        api.post('modGoods', {
-            token:'token'.getData(),
-            id:this.state.itemLists[this.state.index].goods[this.state.goodindex].id,
-            fid:this.state.typeLists[this.state.typeindex].id,
-            name:this.state.name,
-            price:this.state.price,
-            stock:this.state.stock,
-            has_discount:this.state.discount
-    }, (res, ver,handle) => {
+        let params = {
+            token: 'token'.getData(),
+            id: this.state.itemLists[this.state.index].goods[this.state.goodindex].id,
+            fid: this.state.typeLists[this.state.typeindex].id,
+            name: this.state.name,
+            price: this.state.price,
+            stock: this.state.stock,
+            has_discount: this.state.discount
+        }
+        console.log('打印修改数据');
+        console.log(params);
+        api.post('modGoods', params, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({show2:false}); 

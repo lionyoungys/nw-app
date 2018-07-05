@@ -17,14 +17,13 @@ export default class extends Component {
             token:'token'.getData(),
             id:this.props.data.id,
             
-        }, (res, ver) => {
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.props.onClose();
                 this.props.refresh();
-            }else{
-                
             }
+            handle();
         }
     );
     }

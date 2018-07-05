@@ -21,6 +21,18 @@ export default class extends Component {
         this.addYES=this.addYES.bind(this);
         this.deleteYES=this.deleteYES.bind(this);
     };
+    componentDidMount() {
+        api.post('serveType', {
+            token: 'token'.getData(),
+            page: this.state.page,
+            limit: this.limit
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({ itemLists: res.result.type, type: res.result.type.typeArray('name'), })
+            }
+        });
+    }
     update(e){
         let index=e.target.dataset.write;
         this.setState({show:true,id:this.state.itemLists[index].id,name:this.state.itemLists[index].name});
@@ -39,8 +51,7 @@ export default class extends Component {
                 // this.props.refresh();
             }
             handle();
-        }
-        ); 
+        }); 
     }
     modYES(){   
         console.log("####")
@@ -49,7 +60,7 @@ export default class extends Component {
             token:'token'.getData(),
             name:this.state.name,
             id:this.state.id
-    }, (res, ver,handle) => {
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                
@@ -61,7 +72,7 @@ export default class extends Component {
         }); 
     }
     deleteYES(){
-        console.log("35454")
+        console.log("35454");
         tool.ui.warn({
             title: '提示', msg: '确定要删除？',button: ['是（Y）', '否（N）'], callback: (close, event) => {
                 console.log(event);
@@ -85,19 +96,7 @@ export default class extends Component {
             }
         }); 
     }
-    componentDidMount(){
-        api.post('serveType', {
-            token:'token'.getData(),
-            page:this.state.page,
-            limit:this.limit
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({itemLists:res.result.type,type:res.result.type.typeArray('name'),})
-            }
-        }
-        ); 
-    }
+   
     render() {
         let itemLists=this.state.itemLists.map((item,index)=>
         <tr>
@@ -130,15 +129,14 @@ export default class extends Component {
                     <div className='commodity_classify_management_right_btn'>
                         <button onClick={()=>this.setState({addshow:true,name:''})}>+添加分类</button>
                     </div>
-                    {this.state.show&&<Window title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
-                <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
-                        <p>分类名称:</p>
-                        <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
-                        <button className='e-btn' onClick={this.modYES}>保存</button>
-                        <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
-                        <button className='e-btn' onClick={this.deleteYES}>删除</button>
-
-                    </div>
+                    {this.state.show && <Window title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
+                        <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
+                            <p>分类名称:</p>
+                            <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
+                            <button className='e-btn' onClick={this.modYES}>保存</button>
+                            <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
+                            <button className='e-btn' onClick={this.deleteYES}>删除</button>
+                        </div>
                 </Window>
                 }
                 {this.state.addshow&&<Window title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>

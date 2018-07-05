@@ -114,9 +114,6 @@ export default class extends Component {
     }
     updatelatticeYES (e){      
         // this.setState({show:false})
-        if ('' == this.state.name) return tool.ui.error({msg:'请输入格架名称！',callback:close => close()});
-        if ('' == this.state.start_number) return tool.ui.error({msg:'请输入首数！',callback:close => close()});
-        if ('' == this.state.end_number) return tool.ui.error({msg:'请输入尾数！',callback:close => close()});
         if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
         api.post('modGrid', {token:'token'.getData(),
         id:this.state.id,
@@ -164,8 +161,8 @@ export default class extends Component {
                 <td>{item.end_number}</td>
                 <td>{item.max_number}</td>
                 <td>  
-                    {/* <b onClick={this.modlattice} data-write={index}>修改</b> */}
-                <i  onClick={this.error2} data-write={index}>删除</i>
+                    <b onClick={this.modlattice} data-write={index}>修改</b>
+                    <i  onClick={this.error2} data-write={index}>删除</i>
                 </td>
               
         </tr>
@@ -216,9 +213,9 @@ export default class extends Component {
             &&
             <Window title='编辑格架' onClose={() => this.setState({show1:false})} width="340" height='264'>
                 <div className="addlattice-div">
-                     <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/></div>
-                     <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})}/></div>
-                     <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})}/></div>
+                     <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
+                     <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled/></div>
+                     <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled/></div>
                      <div><span>最大挂衣数量：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
                 </div>
                 <div className="addlattice-footer">

@@ -47,7 +47,7 @@ export default class extends Component {
     updatebrandYES(){
         if ('' == this.state.brandname) return tool.ui.error({msg:'请输入瑕疵名称！',callback:close => close()});
         console.log(this.state.id&&this.state.name)
-        api.post('modBrand', {
+        api.post('modFlaw', {
             token:'token'.getData(),
             id:this.state.brandid,
             name:this.state.brandname,

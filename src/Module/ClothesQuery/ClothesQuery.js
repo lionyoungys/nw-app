@@ -108,8 +108,8 @@ export default class extends Component {
                     </div>
                     <div className='clothesquery_top_three'>
                         <div>
-                            <span>开始日期:</span><input type='date' className='inputselectborder' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/>
-                            <span>结束日期:</span><input type='date' className='inputselectborder' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
+                            <span>开始日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/>
+                            <span>结束日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                         </div> 
                         <div>
                             <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>

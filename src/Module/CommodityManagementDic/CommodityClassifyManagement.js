@@ -14,6 +14,7 @@ export default class extends Component {
             goodtypelist:[],
             show:false,
             id:'',
+            name:'',
             addshow:false,
             modshow:false,
             page:1
@@ -63,6 +64,7 @@ export default class extends Component {
             token:'token'.getData(),
             id:this.state.id,
             name:this.state.name
+            
     }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -73,17 +75,30 @@ export default class extends Component {
         ); 
     }
     delete(){
-        api.post('gooddelType', {
-            token:'token'.getData(),
-            id:this.state.id
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({show:false})
-                this.componentDidMount();
-            }
+        tool.ui.error({title:'提示',msg:'是否删除',button:'确定',callback:(close, event) => {
+            if(event=='click'){
+               api.post('gooddelType', {
+               token:'token'.getData(),
+               id:this.state.id
+               }, (res, ver,handle) => {
+               if (ver && res) {
+                     console.log(res)
+                     this.setState({show:false})
+                     this.componentDidMount();
+                     close();
+               }
+               handle();
+               close();
         }
         ); 
+       }
+       else{
+           close();
+           this.setState({show:false})
+       }
+       }
+       }
+    );
     }
     render() {
         let goodtypelist=this.state.goodtypelist.map((item,index)=>
@@ -115,7 +130,7 @@ export default class extends Component {
                 {/* 右侧板块 */}
                 <div className="commodity_classify_management_right">
                     <div className='commodity_classify_management_right_btn'>
-                        <button onClick={()=>this.setState({addshow:true})}>+添加分类</button>
+                        <button onClick={()=>this.setState({addshow:true,name:''})}>+添加分类</button>
                     </div>
                     {}
                 </div>
