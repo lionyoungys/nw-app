@@ -563,8 +563,9 @@ export default class extends Component {
                     </div>
                     <div className='clothes-footer-right'>
                         <div>
+                            <button type='button' className='e-btn middle high' onClick={this.cost}>收银</button>
                             <button type='button' className='e-btn middle high' data-take='take' onClick={this.takeCost}>取衣付款</button>
-                            <button type='button' className='e-btn middle high' onClick={this.cost}>收银</button></div>
+                        </div>
                         <div>
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
                             <button type='button' className='e-btn' onClick={() => this.setState({show:17})}>充值</button>
