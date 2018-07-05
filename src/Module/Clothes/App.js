@@ -425,7 +425,7 @@ export default class extends Component {
             {token:token, uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver) => {
                 console.log(res);
-                if (isTake) return this.props.closeView();
+                if ('boolean' === typeof isTake && isTake) return this.props.closeView();
                 if (ver) {
                     this.setState({
                         show:14, 
@@ -646,7 +646,8 @@ export default class extends Component {
                             dis_amount:dis_amount,
                             amount:no_dis_amount,
                             discount:discount,
-                            pay_amount:amount
+                            pay_amount:amount,
+                            balance:this.state.balance
                         }}
                         M1Read={this.M1read}
                         query={this.M1read}

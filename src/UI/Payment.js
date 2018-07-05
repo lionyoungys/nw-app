@@ -68,7 +68,7 @@ export default class extends Component {
         this.setState({show:false});
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
-        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount), pay_amount:parseFloat(this.props.data.total_amount), change:0};
+        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0), pay_amount:parseFloat(this.props.data.total_amount || 0), change:0};
         if (0 == obj.gateway) {    //会员卡支付
             obj.pay_amount = this.props.data.pay_amount;
             obj.passwd = this.state.passwd;
@@ -114,6 +114,7 @@ export default class extends Component {
                     </div>
                     <div>
                         <div><span>折扣率：</span>{discount}%</div>
+                        <div><span>卡余额：</span>&yen;{data.balance}</div>
                     </div>
                 </div>
                 <div className='ui-payment-title2'>活动优惠</div>
@@ -242,9 +243,9 @@ export class Recharge extends Component {
     onConfirm() {
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
-        ,   obj = {gateway:this.state.gateway,amount:this.state.amount};
+        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0)};
         if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount) > parseFloat(obj.amount)) return;
+            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount || 0) > obj.amount) return;
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
