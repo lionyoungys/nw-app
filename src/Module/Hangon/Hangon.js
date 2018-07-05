@@ -44,7 +44,11 @@ export default class extends Component {
                 this.setState({result:res.result,show:true})
                 // () => this.setState({ show: true, click: true })
             }else{
-                console.log(res)
+                console.log(res);
+                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    this.setState({result:[]})
+                    close();
+                }});
             }
         }
     );

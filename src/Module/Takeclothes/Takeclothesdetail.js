@@ -50,6 +50,7 @@ export default class extends Component {
                     tool.ui.success({callback:(close) => {
                         this.componentDidMount();
                         close();
+                    this.setState({show2:false})    
                     }});                                                                                         
                 }else{
                     tool.ui.error({msg:res.msg,callback:(close) => {

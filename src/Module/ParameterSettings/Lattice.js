@@ -39,7 +39,8 @@ export default class extends Component {
             id:this.state.id
         }, (res, ver) => {
                 if (ver && res) {
-                    console.log(res)
+                    console.log(res);
+                    console.log(11111)
                     tool.ui.success({callback:(close, event) => {
                         close();
                     }}); 

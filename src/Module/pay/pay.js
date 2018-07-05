@@ -19,7 +19,6 @@ export default class extends Component {
             selectType:'',//选择的类别名称
             cause:'',
             feedback:'',
-
         }     
         this.searchOrder = this.searchOrder.bind(this);
         this.doCompensate = this.doCompensate.bind(this);

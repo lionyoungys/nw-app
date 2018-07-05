@@ -67,7 +67,7 @@ export default class extends Component {
         let puton={
             token:'token'.getData(),
             id:this.props.data.id,   
-            put_id:this.state.clothnums[this.state.clothindex].id
+            // put_id:this.state.clothnums[this.state.clothindex].id
         }
         console.log(puton)
         api.post('putOn',

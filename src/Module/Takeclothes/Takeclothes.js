@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/nodata';
 import Takeclothesdetail from './Takeclothesdetail';
 import './Takeclothes.css';
 
@@ -13,6 +14,7 @@ export default class extends Component {
         let card = this.props.card || {};
         this.state = {
             show:false,
+            nodatas:false,
             number:'',
             list:[],
             count:'0', 
@@ -65,11 +67,19 @@ export default class extends Component {
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res);
-                    this.setState({
-                        list:res.result.list,
-                        count:res.result.count,                       
-                    })
+                    console.log(111)
+                    if(res.result.list.length>0){
+                        this.setState({
+                            list:res.result.list,
+                            count:res.result.count,   
+                            nodatas:false,                    
+                        })
+                    }else{
+                        this.setState({list:[],count:0,nodatas:true})
+                    }
+                    
                 }else{
+                    console.log(222)
                     console.log(res.msg);
                 }
             }
@@ -120,6 +130,11 @@ export default class extends Component {
                            </thead>
                            <tbody>
                                {list}
+                               {
+                                   this.state.nodatas
+                                   &&
+                                   <Nodata />
+                                }
                            </tbody>
                         </table> 
                     </div>
