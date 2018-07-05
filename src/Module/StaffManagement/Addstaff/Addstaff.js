@@ -259,6 +259,9 @@ export default class extends Component {
                                <div >
                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>
                                </div>
+                               <div>
+                               <span className='passlimit'>初始密码为123456</span>
+                               </div>
                                </div>
                         }
                     </LayerBox>

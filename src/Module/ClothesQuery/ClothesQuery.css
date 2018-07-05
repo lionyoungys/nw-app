@@ -4,31 +4,26 @@
     border:1px solid #8db2e3;
     margin: 13px;
 }
-.clothesquery_top_one div .ui-select-define {width:149px;}
+.clothesquery_top_one div .ui-select-define{width:149px;}
 .clothesquery_top_one,.clothesquery_top_two{
-
     width:218px;
     height: 100%;
     float: left;
 }
 
 .clothesquery_top_one>div,.clothesquery_top_two>div,.clothesquery_top_three>div{
-
-    margin-top: 6px;
+    margin-top:6px;
 }
 .clothesquery_top_three{
-
     width: 438px;
     height: 100%;
     float: left;
 }
 .clothesquery_top_three>div{
-
     float: left;
     margin-right: 2px;
 }
 .clothesquery_top_three  div.clothesquery_top_btn{
-
     margin-left:146px;
 } 
 .clothesquery_top_three div button{

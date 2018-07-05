@@ -170,10 +170,8 @@ class Login extends Component {
         }
     }
     remember() {
-      
         this.setState({remember:!this.state.remember});
         console.log(this.state.remember)
-        
     }
     login() {
            api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
@@ -189,7 +187,10 @@ class Login extends Component {
                 mname.setData('mname');
                 token.setData('token');
                 res.mid.setData('merchant_id');
-
+                res.is_root.setData('is_root');
+                res.auth.setData('auth');
+                //1 != res.is_root && res.auth.setData('auth');
+                
                 nw.Window.open('main.html', nw.App.manifest.mainWindow);
                 win.close();
             } else {

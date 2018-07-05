@@ -160,6 +160,7 @@ export default class extends Component {
             name:this.state.itemLists[this.state.index].goods[write].name,
             stock:this.state.itemLists[this.state.index].goods[write].stock,
             price:this.state.itemLists[this.state.index].goods[write].price,
+            discount:this.state.itemLists[this.state.index].goods[write].has_discount
         });
     }
     modYES(){

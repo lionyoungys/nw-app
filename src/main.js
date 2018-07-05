@@ -2,8 +2,6 @@
  * 主界面组件
  * @author Edwin Young
  */
-const process = window.require('process')
-,     path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
@@ -22,6 +20,43 @@ win.on('close', function() {
 });
 win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
 win.showDevTools();
+//权限设置
+var auth = 'auth'.getData()
+,   is_root = 'is_root'.getData();
+if (1 != is_root) {
+    try {
+        var authArr = JSON.parse(auth);
+    } catch (e) {
+        authArr = [];
+    }
+    var topMenuLen = topMenu.length
+    ,   navLen = nav.length
+    ,   leftMenuLen = leftMenu.length
+    ,   i
+    ,   tempLen
+    ,   j;
+    for (i = 0;i < topMenuLen;++i) {
+        if (999999 != topMenu[i].id && -1 == topMenu[i].id.inArray(authArr)) {
+            topMenu.splice(i, 1);
+        } else {
+            tempLen = topMenu[i].options.length;
+            for (j = 0;j < tempLen;++j) {
+                if (999999 != topMenu[i].options[j].id && -1 == topMenu[i].options[j].id.inArray(authArr)) {
+                    topMenu[i].options.splice(j, 1);
+                }
+            }
+        }
+    }
+    for (i = 0;i < navLen;++i) {
+        999999 != nav[i].id && -1 == nav[i].id.inArray(authArr) && nav.splice(i, 1);
+    }
+    for (i = 0;i < leftMenuLen;++i) {
+        tempLen = leftMenu[i].options.length;
+        for (j = 0;j < tempLen;++j) {
+            999999 != leftMenu[i].options[j].id && -1 == leftMenu[i].options[j].id.inArray(authArr) && leftMenu[i].options[j].splice(j, 1);
+        }
+    }
+}
 class Main extends Component {
     constructor(props) {
         super(props);

@@ -80,6 +80,14 @@
     outline: none;
     border:1px solid #c4c2c2;  
 }
+/* .addstaffborder  i{
+    margin-top: 6px;
+    color: red;
+    width: 300px;
+    display: inline-block;
+    font-style: normal
+
+} */
 .addstaffborder  span{
     margin-top: 6px;
     width: 85px;
@@ -91,7 +99,7 @@
 }
 .addstaffborder span.passlimit{
     color: red;
-    width: 78%;
+    width: 45%;
     margin-top: 0px;
     margin-bottom: 0px;
     float: left;

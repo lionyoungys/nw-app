@@ -141,14 +141,14 @@ export default class extends Component {
      // 编辑格架
      modlattice (e){
         var write = e.target.dataset.write
-        this.setState({show1:true,
+        this.setState({
+            show1:true,
             write:write,
             id:this.state.grid[write].id,
             name:this.state.grid[write].name,
             start_number:this.state.grid[write].start_number,
             end_number:this.state.grid[write].end_number,
             max_number:this.state.grid[write].max_number
-
         }
         );  
     }
