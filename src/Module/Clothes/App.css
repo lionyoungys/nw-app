@@ -76,8 +76,14 @@
 .clothes-footer-left>:last-child>:first-child{width: 164px}
 .clothes-footer-left>:first-child>:nth-child(2),
 .clothes-footer-left>:last-child>:nth-child(2){width: 176px}
-.clothes-footer-right{width: 226px;text-align: center}
-.clothes-footer-right>:first-child{padding: 12px 0 10px}
+.clothes-footer-right{
+    width: 226px;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+}
+.clothes-footer-right>:first-child{line-height: 44px}
+.clothes-footer-right>:last-child{line-height: 28px}
 
 /* category.js编辑衣物顶部样式 */
 .clothes-editor-top{
