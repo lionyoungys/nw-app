@@ -81,13 +81,9 @@ table{border-collapse: collapse}
 .main-menu>div:first-child{margin-left: 9px}
 .main-menu>div:last-child{margin-right: 0}
 .main-menu>div:hover{border: 1px solid #4e80a2;background: #bbd9ef}
+.main-menu>div .main-menu-options{display: none}
+.main-menu>div:hover .main-menu-options{display: block}
 /* 顶部菜单栏子选项样式 */
-.main-menu>div>div{
-    width: 100%;
-    padding-top: 30px;
-    position: absolute;
-    top: 0;left: 0;
-}
 .main-menu-options{
     position: absolute;
     top: 30px;left: 0;
@@ -106,12 +102,10 @@ table{border-collapse: collapse}
 }
 .main-menu-options>div:hover{
     background: #bbd9ef;
-    /* border: 1px solid #4e80a2; */
 }
 .main-menu-options>div>div{
     margin: 0 20px;
     padding-left: 13px;
-    /* border-left: 1px solid #ccc; */
     white-space: nowrap;
 }
 /* 顶部导航栏样式 */
