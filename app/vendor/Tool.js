@@ -111,7 +111,7 @@
      */
     t.clone = function(object) {
         if ('object' !== typeof object) return null;
-        var obj = (object instanceof Array) ? [] : {};
+        var obj = object instanceof Array ? [] : {};
         for (var k in object) {
             obj[k] = ('object' === typeof object[k] && null !== object[k]) ? this.clone(object[k]) : object[k];
         }
@@ -185,6 +185,32 @@
             }
         }
         return sum;
+    }
+
+    /**
+     * 判断对象是否相等
+     * @param {object} object 初始化对象
+     * @function match 匹配方法
+     * @return {boolean}
+     */
+    t.Equals = function(object) {
+        this.object = t.clone(object);
+        this.match = function(matchObj) {
+            if (!t.is_object(matchObj)) return false
+            if (null === this.object) return false;
+            var temp;
+            for (var k in matchObj) {
+                if (t.is_object(matchObj[k])) {
+                    temp = new t.Equals(matchObj[k]);
+                    if (!temp.match(matchObj[k])) {
+                        return false;
+                    }
+                } else if ('undefined' === this.object[k] || matchObj[k] != this.object[k]) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     //ui对象实现

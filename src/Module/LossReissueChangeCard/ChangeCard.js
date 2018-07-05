@@ -12,8 +12,11 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state={ 
-            types:[]
+            types:[],
+            index:0,
+            id:this.props.data.id
          }
+        this.success=this.success.bind(this);
     };
     componentDidMount() {
         api.post('cardType', {
@@ -23,6 +26,25 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({cards:res.result.cardsType, types:res.result.cardsType.typeArray('card_type')});
+            }
+        });
+    }
+    success(){
+        let params={
+            token:token,
+            id:this.state.id,
+            recharge_number:this.state.recharge_number,
+            card_name:this.state.cards[this.state.index].card_type,
+            discount:this.state.cards[this.state.index].discount
+        }
+        console.log(params)
+        api.post('repairCards',params, (res, ver,handle) => {
+            if (ver && res) {
+                console.log(res)
+                this.props.refresh();
+                this.props.onClose();
+            }else{
+                handle();
             }
         });
     }
@@ -43,13 +65,13 @@ export default class extends Component {
                 <div className="loss-rep-right">
                     <p>注意：补换卡业务仅支持实体卡、IC卡</p>
                     <a><b>*</b>卡类型</a>
-                    <Select option={this.state.types} selected={this.state.types[0]}
+                    <Select option={this.state.types} 
                      onChange={value => this.setState({index:value.inObjArray(this.state.cards, 'card_type')})} />
                     <a><b>*</b>新卡号</a>
-                    <input type="text" className='e-input loss-rep-input' />
+                    <input type="text" className='e-input loss-rep-input' onChange={e=>this.setState({recharge_number:e.target.value})}/>
                     <div className='loss-rep-right-btn'>
                         <span>制卡费：¥20.00</span>
-                        <button className="e-btn">确定</button>
+                        <button className="e-btn" onClick={this.success}>确定</button>
                     </div>
                 </div>
             </Window>

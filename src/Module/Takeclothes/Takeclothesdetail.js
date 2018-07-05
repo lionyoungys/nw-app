@@ -246,11 +246,17 @@ export default class extends Component {
         </tr>
         );
            return (
-                <Window title='取衣详情' onClose={this.props.onClick}>   
+                <Window title='取衣' onClose={this.props.onClick}>   
+                    <div className="Takeclothes-title">
+                       <button className="e-btn Takeclothes-title-btn" onClick={this.M1Read}>读卡</button>
+                       <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
+                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
+                    </div>  
+                    <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                     <div className="Takeclothesdetail-title">
                       <div className="Takeclothesdetail-title-left">
                          <div>订单号：{this.state.listorder.ordersn}</div>
-                         <div>衣物件数:{this.state.count}</div>
+                         <div>收衣时间:{this.state.count}</div>
                       </div>
                       <div className="Takeclothesdetail-title-right">
                          <div>姓名：{this.state.listuser.user_name}</div>

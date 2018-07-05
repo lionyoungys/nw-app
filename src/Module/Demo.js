@@ -15,6 +15,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {show:false, show2:false}
+        this.Equals = new tool.Equals({key:[1,2], value:{date:2, data:{ky:'cc'}}, dd:0});
     }
     ask() {
         tool.ui.ask({callback:(close, event) => {
@@ -66,6 +67,9 @@ export default class extends React.Component {
         }}); 
     }
     render() {
+        console.log(this.Equals.match({key:[1,2], value:{date:2, data:{ky:'cc'}}, dd:0}));
+        console.log(this.Equals.match({key:1, value:3, dd:0}));
+        console.log(this.Equals.match('dfdfff'));
         return (
             <Window title='测试窗口' onClose={this.props.closeView} width='600' height='600'>
                 正常按钮样式：

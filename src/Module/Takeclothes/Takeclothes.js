@@ -101,8 +101,6 @@ export default class extends Component {
             <td>{item.card_number}</td>
             <td>{item.total_count}</td>
             <td>{item.pay_amount}</td>
-            <td>{item.debt}</td>
-            <td>{item.end_count}/{item.total_count}</td>
         </tr>
         )
            return (
@@ -113,19 +111,26 @@ export default class extends Component {
                        <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
                     </div>  
                     <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
+                    <div className="Takeclothesdetail-title">
+                      <div className="Takeclothesdetail-title-left">
+                         <div>订单号：</div>
+                         <div>衣物件数: </div>
+                         <div>姓名：</div>
+                         <div>手机号：</div>
+                         <div>卡号：</div>
+                      </div>
+                    </div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab">
                         <table cellPadding="0" cellSpacing="0" border="0">
                            <thead>
                                <tr>
                                    <th></th>
-                                   <th>订单号</th>
-                                   <th>姓名</th>
-                                   <th>手机号</th>
-                                   <th>卡号</th>
-                                   <th>衣物数量</th>
-                                   <th>价格</th>
-                                   <th>欠款</th>
-                                   <th>进度</th>
+                                   <th>衣物编码</th>
+                                   <th>衣物名称</th>
+                                   <th>颜色</th>
+                                   <th>瑕疵</th>
+                                   <th>衣挂号</th>
+                                   <th>洗护状态</th>
                                </tr>
                            </thead>
                            <tbody>
