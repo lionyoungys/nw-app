@@ -158,7 +158,7 @@ class Download extends Component {
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {remember:false,merchant:'',name:'',passwd:'',show:false,init_passwd:'',init_passwd2:''}
+        this.state = {remember:false,merchant:'',name:'',passwd:'',show:false,init_passwd:'',init_passwd2:'',number:0}
         this.login = this.login.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.remember = this.remember.bind(this);
@@ -181,6 +181,7 @@ class Login extends Component {
                 var aname = res.aname;
                 var mname = res.mname;
                 var token = res.token;
+                var pass = res.pass;
                 this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
                 console.log(this.state.remember)
                 aname.setData('aname');
@@ -189,18 +190,31 @@ class Login extends Component {
                 res.mid.setData('merchant_id');
                 res.is_root.setData('is_root');
                 res.auth.setData('auth');
-                //1 != res.is_root && res.auth.setData('auth');
-                
                 nw.Window.open('main.html', nw.App.manifest.mainWindow);
                 win.close();
+                //1 != res.is_root && res.auth.setData('auth');
+                if(pass==1){
+                   this.setState({show:true})
+                }else{
+                nw.Window.open('main.html', nw.App.manifest.mainWindow);
+                win.close();
+                }
             } else {
-                console.log(res);
+               
+                this.setState({number:this.state.number+1});
+                if(this.state.number>=3){
+                   tool.ui.error({msg:'请5分钟后再重试',info:'Q：如何重置密码？<br/>A：如果您是店员，请联系店长重置密码，<br/>如果您是店长请点击找回密码', callback:(close) => {
+                     close();    //点击按钮或关闭符号时关闭弹窗
+                   }}); 
+                }
+                else{
                 this.setState({index:2});
                 tool.ui.error({
                      msg: res.msg, button: '确定', callback: (close, event) => {
                         close();
                     }
                 });
+                }
             }
         }, () => {this.setState({index:2})});
         // this.setState({show:true});
@@ -213,13 +227,51 @@ class Login extends Component {
     }
     handleClick() {
         console.log('##########################');
-        this.setState({show:false});
+        if(this.state.init_passwd!=this.state.init_passwd2){
+            return tool.ui.error({msg:'两次密码输入的不一致,请重新输入',callback:(close) => {
+                close();
+            }});
+        }
         if (this.state.init_passwd.length < 6) {
-
+           return tool.ui.error({msg:'密码必须大于等于6位',callback:(close) => {
+                close();
+            }});
         }
         if (!isNaN(this.state.init_passwd)) {
-
+            return tool.ui.error({msg:'密码不能为纯数字',callback:(close) => {
+                close();
+            }});
         }
+      
+        let params= { 
+            token: 'token'.getData(),
+             old_pass:this.state.passwd, 
+             new_pass: this.state.init_passwd}
+             console.log(params)
+            api.post('changePas',params, (res, ver) => {
+            if (ver && res) {
+                console.log(res)
+                tool.ui.success({
+                    callback: (close, event) => {
+                        close();
+                        this.setState({show:false});
+                        nw.Window.open('main.html', nw.App.manifest.mainWindow);
+                        win.close();
+                    }
+                });
+            } else {
+                console.log(res.msg);
+                tool.ui.error({
+                    msg: res.msg, callback: (close) => {
+                        close();
+                        this.setState({show:false})
+                    }
+                    });
+                }
+            }
+        );
+     
+
     }
 
     render() {
