@@ -12,13 +12,6 @@ import './main.css';
 import './UI/base.css';
 
 let win = nw.Window.get();
-win.on('loaded', win.show);    //防止窗口渲染未完成时展示
-win.on('close', function() {
-    this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-    null !== win && win.close(true);    //虽然关了,但实际上它还在工作
-    this.close(true);    //关闭新窗口也关闭主窗口
-});
-win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
 win.showDevTools();
 //权限设置
 var auth = 'auth'.getData()

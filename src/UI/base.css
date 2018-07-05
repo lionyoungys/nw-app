@@ -464,3 +464,4 @@ table tbody tr:nth-child(even):hover{
     background-position-x: 27px;
 }
 table{background:#fff}
+input{outline-color:#4589ee }

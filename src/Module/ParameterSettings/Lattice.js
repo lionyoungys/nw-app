@@ -181,8 +181,7 @@ export default class extends Component {
                                       <th>格架名称</th>
                                       <th>首数</th>
                                       <th>尾数</th>
-                                      <th>最大衣挂号</th>
-                                   
+                                      <th>每衣挂号最大挂衣数</th>                                   
                                       <th>操作</th>
                                   </tr>
                               </thead>
@@ -201,7 +200,7 @@ export default class extends Component {
                                  <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/></div>
                                  <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})}/></div>
                                  <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})}/></div>
-                                 <div><span>最大挂衣数量：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
+                                 <div><span>每衣挂号最大挂衣数：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
                             </div>
                             <div className="addlattice-footer">
                                <button onClick = {this.addlatticeYES}>新 增</button>
@@ -216,7 +215,7 @@ export default class extends Component {
                      <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
                      <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled/></div>
                      <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled/></div>
-                     <div><span>最大挂衣数量：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
+                     <div><span>每衣挂号最大挂衣数：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
                 </div>
                 <div className="addlattice-footer">
                    <button onClick = {this.updatelatticeYES}>保 存</button>

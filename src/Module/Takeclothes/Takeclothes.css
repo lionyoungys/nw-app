@@ -38,7 +38,7 @@
     max-height:445px;    
     margin:auto;
     border:1px solid #8db2e3;
-    overflow-x:auto;
+    overflow-x:hidden;
     overflow-y:hidden;
 }
 .Takeclothes-tab table{width:870px;height:auto;max-height:444px;}
@@ -53,10 +53,11 @@
     height:25px;
     line-height:25px;
     border-right:1px solid #acc6de;
-    min-width:128px;
-    max-width: 128px;
+    min-width:129px;
+    max-width: 129px;
     word-break: break-word;
 }
+/* .Takeclothes-tab table thead tr th:last-child{border-right:none;} */
 .Takeclothes-tab table thead tr th:first-child{
     min-width:31px;
     width:31px;
@@ -67,7 +68,7 @@
     background-position-y:11px;
     padding:0px;
 }
-.Takeclothes-tab table th:last-child{border-right:none}
+.Takeclothes-tab table thead tr th:last-child{border-right:none}
 .Takeclothes-tab table tbody{
     width:auto;
     max-height:400px;
@@ -87,8 +88,9 @@
     height:25px;
     line-height:25px;
     border-right:1px solid #acc6de;
-    min-width:128px;
+    min-width:129px;
     cursor: pointer;
+    max-width: 129px;
 }
 .Takeclothes-tab table tbody tr td:first-child{
     min-width:31px;
@@ -241,4 +243,10 @@
     color: #000;
     display: block;
     line-height: 25px;
+}
+
+
+/* 取衣新样式 */
+.Takeclothesdetail-title-left div{
+    margin-right:8px;
 }

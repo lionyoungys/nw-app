@@ -15,7 +15,6 @@ export default class extends React.Component {
         this.setCharts = this.setCharts.bind(this);
     }
     componentDidMount() {
-
         let par = {
             token: 'token'.getData(),
             year: this.state.year,

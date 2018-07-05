@@ -114,7 +114,7 @@ export default class extends Component {
                     <div className="Takeclothesdetail-title">
                       <div className="Takeclothesdetail-title-left">
                          <div>订单号：</div>
-                         <div>衣物件数: </div>
+                         <div>衣物件数： </div>
                          <div>姓名：</div>
                          <div>手机号：</div>
                          <div>卡号：</div>
