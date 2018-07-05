@@ -114,7 +114,7 @@ export default class extends Component {
                     </div>
                     <div>
                         <div><span>折扣率：</span>{discount}%</div>
-                        <div><span>卡余额：</span>&yen;{data.balance}</div>
+                        <div style={0 == gateway ? null : {display:'none'}}><span>卡余额：</span>&yen;{data.balance}</div>
                     </div>
                 </div>
                 <div className='ui-payment-title2'>活动优惠</div>
