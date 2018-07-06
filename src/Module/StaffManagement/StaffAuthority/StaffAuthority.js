@@ -93,11 +93,13 @@ export default class extends Component {
                 }, (res, ver,handle) => {
                     if (ver && res) {
                         console.log(res);
-                        close();
+                        
                         authlists.splice(index,1)  
-                        this.setState({ authlist: authlists})                       
+                        this.setState({ authlist: authlists,})    
+                        close();                   
                     }else{
                         handle();
+                        close();  
                     }
                 });      
         }});

@@ -69,9 +69,10 @@
     font-size: 13px; 
     color: black;   
     margin-right: 20px;
+    font-style:normal;
 }
 .ui-table-base.staff-tab tbody tr td i:last-child{
-    
+    font-style:normal;
     font-size: 13px;    
     color: red;
 }

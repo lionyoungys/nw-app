@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 import './OperatingDetails.css';
 
 export default class extends Component {   

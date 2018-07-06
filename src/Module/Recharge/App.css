@@ -50,3 +50,8 @@
 } */
 .recharge-third .recharge-four{float:right;height: 100%;width: 49%;}
 .recharge-four .recharge-btn{margin-left: 102px;margin-top: 12px;}
+
+.recharge-third div div .ui-select-define{
+    width:92px;
+    min-width:92px;
+}

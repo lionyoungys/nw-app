@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 import './RechargeUp.css'
 
 export default class extends Component {   

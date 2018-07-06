@@ -38,8 +38,11 @@
     height: 56px;
     float: left;
 }
+#addnewprice-one-bootom div .ui-select-define {
+    min-width:99px;
+    width:99px;
+}
 .addnewprice-one,.addnewprice-two{
-
     color:#063781;
     font-size:12px;
 }

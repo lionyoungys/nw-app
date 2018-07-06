@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 import './LossReissueChangeCard.css';
 import LossReport from './LossReport';//挂失
 import ChangeCard from './ChangeCard';//换卡

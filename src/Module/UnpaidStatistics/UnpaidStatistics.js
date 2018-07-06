@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './UnpaidStatistics.css';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 import Page from "../../UI/Page";
 
 export default class extends Component {
@@ -13,6 +13,7 @@ export default class extends Component {
         super(props);
         this.state={
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
+            nodatas:false,
             item:[],
             list:[],
             discount_amount:'',
@@ -51,10 +52,14 @@ export default class extends Component {
                         nodatas:false,
                         page:page,
                         count:res.result.count,
+                        nodatas:false,
                     });
+                }else{
+                    this.setState({nodatas:true,list:[],count:0,})
+                    
                 }                                
             }else{
-                handle();
+                handle()
             }
         });
     }

@@ -9,6 +9,7 @@ import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
 import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -357,7 +358,7 @@ export default class extends Component {
                                 <img src={this.state.image_url}></img>
                                 <button className="e-btn" onClick={()=>this.setState({selectImg:true})}>修改图片</button>
                             </div>
-                            <div className="addnewprice-one-bootom">
+                            <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
                                 <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
                                 </div>
@@ -402,7 +403,7 @@ export default class extends Component {
                                 <img src={this.state.image_url}></img>
                                 <button className="e-btn" onClick={()=>this.setState({selectImg:true})}>修改图片</button>
                             </div>
-                            <div className="addnewprice-one-bootom">
+                            <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
                                 <span><i>*</i>格架：</span><Select option={this.state.grid} selected={this.state.gridname}  onChange={value=>this.setState({ gridname:value})}/>
                                 </div>

@@ -4,7 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 import './ForegroundStatistics.css';
 
 export default class extends Component {   

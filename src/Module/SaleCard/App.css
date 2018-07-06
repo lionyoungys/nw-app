@@ -92,3 +92,8 @@
     margin-left:9px;
     height:18px;
 }
+
+.top div .ui-select-define{
+    width:92px;
+    min-width:92px;
+}
