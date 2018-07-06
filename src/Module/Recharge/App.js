@@ -74,7 +74,7 @@ export default class extends React.Component {
                         recharge:card.price,
                         gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                     };
-                    EventApi.print('card', param);
+                    EventApi.print('card', param, 'printer'.getData());
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();

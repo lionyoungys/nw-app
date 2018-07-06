@@ -20,14 +20,12 @@
         }
         return 'print/' + page_name + '.html' + get;
     }
-    e.print = function(page_name, param, printer) {    //打印
+    e.print = function(page_name, param, printer, callback) {    //打印
         if (null === this.printPageWin) {
             nw.Window.open(
                 this.getPrintPageName(page_name, param),
                 {show: false},
                 function(new_win) {
-                    console.log(new_win);
-                    //指向打印窗口
                     e.printPageWin = new_win;
                     e.printPageWin.on('close', function() {
                         null !== e.printPageWin && e.printPageWin.close(true);
@@ -43,12 +41,14 @@
                             mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
                             marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
                         });
-                        setTimeout(function() {e.printPageWin.close(true)}, 1000);
+                        setTimeout(function() {
+                            e.printPageWin.close(true);
+                            'function' === callback && callback();
+                        }, 1000);
                     });
                 }
             );
-
-        }
+        } 
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')

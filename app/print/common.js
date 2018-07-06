@@ -17,13 +17,9 @@
     Node.prototype.show = function() {this.style.display = '';}
     Node.prototype.hidd = function() {this.style.display = 'none';}
     
-    var win = nw.Window.get()
-    ,   c = {
+    var c = {
         GET:{},
         DATE:null,
-        win:win,
-        showDevTools:win.showDevTools,
-        close:win.close,
         init:function(func) {    //初始化函数
             var str = window.location.search.substring(1);    //获取url的get参数
             if ('' != str) {
@@ -40,16 +36,6 @@
             if ('function' === typeof func) window.onload = func;
         },
         barcode:function(elem, code) {JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
-        print:function(printer) {    //打印方法
-            win.print({
-                autoprint:true,
-                printer:printer || '',
-                headerFooterEnabled:false,
-                marginsType:3,
-                mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
-                marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
-            });
-        },
         first:function(name) {return document.querySelector(name)},
         all:function(name) {return document.querySelectorAll(name)},
         isNode:function(node) {return 'object' === typeof node && node instanceof Node},
@@ -119,10 +105,5 @@
             this.isNode(node) && node.show();
         }
     };
-    win.on('close', function() {
-        null !== win && win.close(true);
-        this.close(true);
-    });
-    win.on('closed', function() {win = null});
     window._ = c;
 })(window);

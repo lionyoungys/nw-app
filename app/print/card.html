@@ -34,7 +34,6 @@
 
     <script src="common.js"></script>
     <script>
-    //_.showDevTools();
     _.init(function() {
         /*sn:流水号,addr:本店地址,mphone:查询电话,phone:用户电话,name:用户名,number:卡号,balance:余额,discount:折扣,recharge:充值金额,gateway:支付方式*/
         var get = _.GET;
@@ -54,8 +53,6 @@
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
         _.inner('#container2', _.html('#container'));
-        _.print(localStorage.getItem('printer'));
-        setTimeout(_.close, 1000);
     });
     </script>
 </body>

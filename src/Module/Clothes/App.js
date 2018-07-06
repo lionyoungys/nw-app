@@ -367,7 +367,7 @@ export default class extends Component {
             change:object.change,
             gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-        });
+        }, 'printer'.getData());
     }
     takeCost() {
         if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
@@ -423,18 +423,23 @@ export default class extends Component {
         api.post(
             'get_clothes',
             {token:token, uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
-            (res, ver) => {
+            (res, ver, handle) => {
                 console.log(res);
-                if ('boolean' === typeof isTake && isTake) return this.props.closeView();
                 if (ver) {
                     this.setState({
-                        show:14, 
                         oid:res.result.order_id, 
                         sn:res.result.ordersn, 
                         mphone:res.result.merchant.phone_number, 
                         maddr:res.result.merchant.maddress,
                         ad:res.result.merchant.mdesc,
                     });
+                    if ('boolean' === typeof isTake && isTake) {
+                        this.print();
+                        return this.props.closeView();
+                    }
+                    this.setState({show:14});
+                } else {
+                    handle();
                 }
             }
         );

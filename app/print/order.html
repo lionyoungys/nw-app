@@ -55,7 +55,6 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-    //_.showDevTools();
     _.init(function() {
         _.now();
         var get = _.GET;
@@ -124,8 +123,6 @@
             _.inner('#clothes', content);
         }
         _.inner('#container2', _.html('#container'));
-        _.print(localStorage.getItem('printer'));
-        setTimeout(_.close, 1000);
     });
     </script>
 </body>
