@@ -21,13 +21,5 @@
     "min_height": 737,
     "frame": false,
     "show": false
-  },
-  "dependencies": {
-    "ffi": "^2.2.0",
-    "ms": "^2.1.1",
-    "node-adodb": "^4.2.2",
-    "request": "^2.87.0",
-    "request-progress": "^3.0.0",
-    "text-encoding": "^0.6.4"
   }
 }
