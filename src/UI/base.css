@@ -464,4 +464,11 @@ table tbody tr:nth-child(even):hover{
     background-position-x: 27px;
 }
 table{background:#fff}
-input{outline-color:#4589ee }
+/* input{outline-color:#4589ee } */
+
+input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+}
+input::-webkit-outer-spin-button{
+    -webkit-appearance:none;
+}

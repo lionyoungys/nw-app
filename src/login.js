@@ -42,7 +42,11 @@ class Main extends Component {
             }
         }, () => {this.setState({index:2})});
     }
-    toggleStep(e) {this.setState({index:e.target.dataset.step})}
+    toggleStep(e) {
+        this.setState({
+            index:e.target.dataset.step,
+            
+        })}
 
     render() {
         return (

@@ -40,45 +40,50 @@
     cursor: pointer;
 }
 .StaffAuthority:hover{background:url(./img/hoverbtn.png)}
-
 /* 增加组 */
-/* 列表title样式 */
-.StaffAuthority_count_list span:nth-child(1){
-    width:31px;
-}
-.StaffAuthority_count_list span:nth-child(2){
-    width:80px;
-}
-.StaffAuthority_count_list span:nth-child(3){
-    width:610px;
-}
-.StaffAuthority_count_list span:nth-child(4){
-    width:132px;
-}
 /* 增加组表格样式 */
-.StaffAuthority_count_list tbody tr td{border-right:1px solid #acc6de}
-.StaffAuthority_count_list tbody tr td:last-child{border-right:none}
-.StaffAuthority_count_list tbody tr td:first-child{
-    width:31px;
+.ui-table-base.staff-tab{
+    max-height: 450px;
 }
-.StaffAuthority_count_list tbody tr td:nth-child(2){
-    width:80px;
+.ui-table-base.staff-tab tbody{
+    max-height: 425px;
+    overflow-y: auto;
 }
-.StaffAuthority_count_list tbody tr td:nth-child(3){
-    width:611px;
+.ui-table-base.staff-tab tbody tr td:first-child,.ui-table-base.staff-tab thead tr td:first-child{
+    min-width: 31px;
+    max-width: 31px;
 }
-.StaffAuthority_count_list tbody tr td:nth-child(4){
-    width:132px;
+.ui-table-base.staff-tab tbody tr td:nth-child(2),.ui-table-base.staff-tab thead tr td:nth-child(2){
+    min-width: 80px;
+    max-width: 80px;
 }
-.StaffAuthority_count_list tbody tr td i:first-child{margin-left:24px;}
-.StaffAuthority_count_list tbody tr td i:last-child{margin-right:24px;}
-.addstaffborder  input{
+.ui-table-base.staff-tab tbody tr td:nth-child(3),.ui-table-base.staff-tab thead tr td:nth-child(3){
+    min-width: 611px;
+    max-width: 611px;
+}
+.ui-table-base.staff-tab tbody tr td:nth-child(4),.ui-table-base.staff-tab thead tr td:nth-child(4){
+    min-width: 149px;
+    max-width: 149px;
+}
+.ui-table-base.staff-tab tbody tr td i:first-child{
+    font-size: 13px; 
+    color: black;   
+    margin-right: 20px;
+}
+.ui-table-base.staff-tab tbody tr td i:last-child{
+    
+    font-size: 13px;    
+    color: red;
+}
+.addstaffborder input{
     margin-left: 8px;
     margin-top: 16px;
     width: 146px;
     height: 20px;
     outline: none;
-    border:1px solid #c4c2c2;  
+    border:1px solid #c4c2c2;
+    padding: 4px;
+    box-sizing: border-box;  
 }
 /* .addstaffborder  i{
     margin-top: 6px;

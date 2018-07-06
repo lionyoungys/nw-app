@@ -24,10 +24,12 @@ export default class extends Component {
         this.limit = 15;    
         this.addlatticeYES = this.addlatticeYES.bind(this);   
         this.updatelatticeYES = this.updatelatticeYES.bind(this);
-        this. modlattice = this.modlattice.bind(this); 
+        this.modlattice = this.modlattice.bind(this); 
         this.error2 = this.error2.bind(this);
+        
 
     };
+    
     // 删除格架操作 
     error2(e) {
         var write = e.target.dataset.write
@@ -89,28 +91,36 @@ export default class extends Component {
         if ('' == this.state.start_number) return tool.ui.error({msg:'请输入首数！',callback:close => close()});
         if ('' == this.state.end_number) return tool.ui.error({msg:'请输入尾数！',callback:close => close()});
         if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
-        api.post('addGrid', {token:'token'.getData(),
-        name:this.state.name,
-        max_number:this.state.max_number,
-        start_number:this.state.start_number,
-        end_number:this.state.end_number
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                tool.ui.success({callback:(close, event) => {
-                    this.componentDidMount();
-                    this.setState({name:'',max_number:'',start_number:'',end_number:'',show:false})
-                    close();
-                }}); 
-            }else{
-                console.log(res.msg);
-                tool.ui.error({msg:res.msg,callback:(close) => {
-                    close();
-                }});
-                
+        if(! /^\d+$/.test(this.state.max_number)){
+            this.setState({max_number:''})
+            tool.ui.error({title:'提示',msg:'请输入正整数',button:'确定',callback:(close, event) => {
+                close();
+            }});
+        }else{
+            api.post('addGrid', {token:'token'.getData(),
+            name:this.state.name,
+            max_number:this.state.max_number,
+            start_number:this.state.start_number,
+            end_number:this.state.end_number
+            }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    tool.ui.success({callback:(close, event) => {
+                        this.componentDidMount();
+                        this.setState({name:'',max_number:'',start_number:'',end_number:'',show:false})
+                        close();
+                    }}); 
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
+                    
+                }
             }
+            );
         }
-        );
+        
     }
     updatelatticeYES (e){      
         // this.setState({show:false})
@@ -123,13 +133,15 @@ export default class extends Component {
         end_number:this.state.end_number
     }, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                console.log(111)    
                 tool.ui.success({callback:(close, event) => {
+                    
+                    this.setState({show1:false})
                     this.componentDidMount();
                     close();
                 }}); 
             }else{
-                console.log(res.msg);
+                console.log(不成功);
                 tool.ui.error({msg:res.msg,callback:(close) => {
                     close();
                 }});
@@ -149,8 +161,8 @@ export default class extends Component {
             start_number:this.state.grid[write].start_number,
             end_number:this.state.grid[write].end_number,
             max_number:this.state.grid[write].max_number
-        }
-        );  
+        });
+         
     }
     render() {      
         let grid = this.state.grid.map((item,index)=>
@@ -161,7 +173,7 @@ export default class extends Component {
                 <td>{item.end_number}</td>
                 <td>{item.max_number}</td>
                 <td>  
-                    <b onClick={this.modlattice} data-write={index}>修改</b>
+                    <b onClick={this.modlattice} data-write={index}>编辑</b>
                     <i  onClick={this.error2} data-write={index}>删除</i>
                 </td>
               
@@ -198,9 +210,9 @@ export default class extends Component {
                         <Window title='新增格架' onClose={() => this.setState({show:false})} width="340" height='264'>
                             <div className="addlattice-div">
                                  <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/></div>
-                                 <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})}/></div>
-                                 <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})}/></div>
-                                 <div><span>每衣挂号最大挂衣数：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
+                                 <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} /></div>
+                                 <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})}  /></div>
+                                 <div><span>每衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0"/></div>
                             </div>
                             <div className="addlattice-footer">
                                <button onClick = {this.addlatticeYES}>新 增</button>
@@ -213,9 +225,9 @@ export default class extends Component {
             <Window title='编辑格架' onClose={() => this.setState({show1:false})} width="340" height='264'>
                 <div className="addlattice-div">
                      <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
-                     <div><span>首数：</span><input type='text' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled/></div>
-                     <div><span>尾数：</span><input type='text'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled/></div>
-                     <div><span>每衣挂号最大挂衣数：</span><input type='text' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})}/></div>
+                     <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled /></div>
+                     <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled /></div>
+                     <div><span>每衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" /></div>
                 </div>
                 <div className="addlattice-footer">
                    <button onClick = {this.updatelatticeYES}>保 存</button>

@@ -1,14 +1,12 @@
 /**
- * 新增员工界面组件
+ * 员工界面组件
  * @author wangjun & fanyerong
  */
 import React, {Component} from 'react';
-import '../../../UI/bothpages.css'  //公共样式
+import '../../../UI/bothpages.css' ; //公共样式
 import '../StaffManagement.css';
-import {Table} from '../../../UI/Table';
 import LayerBox from '../../../Ui/LayerBox';
-import Select from '../../../UI/Select';
-import Page from '../../../UI/Page';
+import Select from '../../../UI/Select'; 
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -26,7 +24,6 @@ export default class extends Component {
             write:'',
             mobile:'',
             password:''
-           
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
         this.ask2 = this.ask2.bind(this);
@@ -39,6 +36,14 @@ export default class extends Component {
         this.modpasswdSuccess = this.modpasswdSuccess.bind(this);
         this.resetPas = this.resetPas.bind(this);
     }; 
+    componentDidMount() {
+        api.post('operatorList', { token: 'token'.getData() }, (res, ver, handle) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({ operatorlist: res.result });
+            }
+        });
+    }
     //员工与权限 新增员工
     operatorAdd () {
        if(''==this.state.aname)
@@ -70,7 +75,6 @@ export default class extends Component {
             aname:this.state.operatorlist[write].aname,
             mobile:this.state.operatorlist[write].account,
             auth:this.state.operatorlist[write].auth_name
-
         });  
         this.staffauthlist();
        
@@ -181,15 +185,7 @@ export default class extends Component {
         this.input.removeAttribute('disabled');
         console.log(this.input);
     }
-    componentDidMount() {
-        api.post('operatorList', {token:'token'.getData()}, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({operatorlist:res.result});
-            }
-        }
-        );    
-    }
+    
     // 重置密码调用
    resetPas(e){
 
@@ -233,13 +229,13 @@ export default class extends Component {
     render() {  
       
         let operatorlist= this.state.operatorlist.map((item,index) => 
-        <tr>
-        <td>{index+1}</td>
-        <td>{item.aname}</td>
-        <td>{item.account}</td>
-        <td>{item.auth_name}</td>
-                <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index={index}>删除</i><i onClick={this.resetPas} data-index={index}>重置密码</i></td>
-    </tr>
+        <tr key= {'item'+index}>
+            <td>{index+1}</td>
+            <td>{item.aname}</td>
+            <td>{item.account}</td>
+            <td>{item.auth_name}</td>
+            <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index={index}>删除</i><i onClick={this.resetPas} data-index={index}>重置密码</i></td>
+        </tr>
         );
         return ( 
                 <div>
