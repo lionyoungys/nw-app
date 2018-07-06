@@ -82,7 +82,7 @@ export default class extends Component {
                 console.log(res)
                 this.setState({ itemLists: res.result.type, type: res.result.type.typeArray('name'), })
             }
-        });
+        },()=>done());
     }
     clothestypemanage(){
         this.setState({clothestypemanageshow:true});

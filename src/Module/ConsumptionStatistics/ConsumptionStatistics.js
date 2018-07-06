@@ -24,8 +24,8 @@ export default class extends Component {
         this.limit = 15;
         this.query = this.query.bind(this);        
     }; 
-    componentDidMount() { this.query() };
-    query(page) {
+    componentDidMount() { this.query()};
+    query(page) { 
         console.log(page);
         page = page || this.state.page;
         // 这里接口需要更改

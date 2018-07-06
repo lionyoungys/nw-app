@@ -46,20 +46,22 @@ export default class extends Component {
         this.query = this.query.bind(this);   
     };
     query(){
-
+        let done;
+        tool.ui.loading(handle => done = handle);
         api.post('managerSearch', {
             start_time:this.state.startdate,
             end_time:this.state.enddate,
             token:'token'.getData(),
             operator:''
         }, (res, ver,handle) => {
+            done();
             if (ver && res) {
                 console.log(res)
                 this.setState({ result: res.result,list:res.result.list});
             }else{
                 handle()
             }
-        });
+        },()=>done());
     }
     render() {
         let arr = [],

@@ -23,8 +23,6 @@ export default class extends Component {
             types:[],
             cards:[], 
             list:[],
-            startdate: tool.date('Y-m-01'),
-            enddate: tool.date('Y-m-d'),
             page: 1,
             count: 0,
             index:0,
@@ -78,8 +76,6 @@ export default class extends Component {
             recharge_number:this.state.recharge_number,
             user_mobile:this.state.user_mobile,
             user_name:this.state.user_name,
-            start_time:this.state.startdate,
-            end_time:this.state.enddate,
             card_name:this.state.card_name,
             page:page,
             limit:this.limit
@@ -138,14 +134,14 @@ export default class extends Component {
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>
             <td>{item.card_name}</td>
-            <td>{item.balance}</td>                              
+            <td>{item.balance}</td> 
+            <td>{item.time}</td>                             
         </tr>       
         );
         let listdetail = this.state.listdetail.map((item,index)=>
         <tr key={'itemdetail'+index}>
             <td></td>
-            <td>{item.serialsn}</td>
-            <td></td>
+            <td>{item.serialsn}</td>           
             <td>{item.operator}</td>
             <td>{item.work_number}</td>
             <td>{item.amount}</td>
@@ -155,19 +151,18 @@ export default class extends Component {
             <td>{item.time}</td>
             <td>{item.recharge_number}</td>
             <td>{item.card_type}</td>
+
         </tr>
         );
         return (       
         <div>
             <Window title='客户信息查询' onClose={this.props.closeView}>
                 <div className="Customerquery">
-                   <div className="Customerquery-title">
+                   <div className="Customerquery-title" id="Customerquery-title">
                         <div><span>客户电话：</span><input type="text" value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
                         <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
                         <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} /></div>
-                        <div><span>开始日期：</span><input type="date" className="select"  value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
-                        <div><span>结束日期：</span><input type="date" className="select" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>
@@ -185,7 +180,8 @@ export default class extends Component {
                               <th>会员姓名 </th>
                               <th>会员手机号 </th>
                               <th>卡类型</th>
-                              <th>余额 </th>                             
+                              <th>余额 </th> 
+                              <th>发卡时间 </th>                            
                           </tr>
                       </thead>
                       <tbody>

@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Pages from '../../UI/Page';
 import './AlipayWechatChecking.css';
+import Nodata from '../../UI/nodata';
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -33,8 +35,25 @@ export default class extends Component {
             end_time: this.state.endDate,
         }, (res, ver, handle) => {
             if (ver && res) {
-                console.log(res)
-                this.setState({ bankInfo: res.result.bankInfo, list: res.result.list, count: res.result.count,page:page})
+                console.log(res);
+                if(res.result.list.length>0){
+                    this.setState({ 
+                        bankInfo: res.result.bankInfo, 
+                        list: res.result.list, 
+                        count: res.result.count,
+                        page:page,
+                        nodatas:false,
+                    })
+                }else{
+                    this.setState({
+                        nodatas:true,
+                        bankInfo:{},
+                        list:[],
+                        page:1,
+                        count:0,
+                    })
+                }
+                
             }else{
                 handle();
             } 
@@ -80,6 +99,7 @@ export default class extends Component {
                     </thead>
                     <tbody>
                         {list}
+                        {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>
                 <Pages current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>

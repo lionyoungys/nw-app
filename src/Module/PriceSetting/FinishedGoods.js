@@ -60,7 +60,7 @@ export default class extends Component {
             } else {
                 handle();
             }
-        });
+        }, () => done());
     }
     add(){
         this.setState({

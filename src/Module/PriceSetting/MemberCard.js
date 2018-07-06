@@ -9,7 +9,8 @@ import Page from '../../UI/Page'
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state={cardtypes:[],
+        this.state={
+        cardtypes:[],
         show:false,
         colorid:'',
         card_type:'',
@@ -116,7 +117,9 @@ export default class extends Component {
             made_price:this.state.made_price
         }, (res, ver ,handle) => {          
             if (ver && res) {
-                console.log(res)                
+                console.log(res)  ;
+                this.setState({show1:false})  ;
+                this.componentDidMount();           
             }else{
                 this.setState({show1:false})
                 this.componentDidMount();

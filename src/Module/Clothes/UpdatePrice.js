@@ -11,7 +11,6 @@ export default class extends Component {
         this.state = {value: ''};
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.minPrice = ( (Math.floor(this.props.discount * 10) * this.props.price) / 100 );
     }
     handleChange(e) {
         let value = e.target.value;
@@ -20,7 +19,7 @@ export default class extends Component {
     }
     handleClick() {
         let value = this.state.value;
-        '' !== value && value >= this.minPrice && 'function' === typeof this.props.callback && this.props.callback(value);
+        '' !== value && value >= this.props.min_price && 'function' === typeof this.props.callback && this.props.callback(value);
     }
 
     render() {
@@ -29,7 +28,7 @@ export default class extends Component {
                 <div className='clothes-temp-top'>单价修改</div>
                 <div className='clothes-update-price'>
                     <div><span>请输入价格：</span><input type='text' value={this.state.value} onChange={this.handleChange} className='e-input'/>&nbsp;&nbsp;元</div>
-                    <div><span></span><span style={{color:'#ff0000'}}>价格不得低于{this.minPrice}</span></div>
+                    <div><span></span><span style={{color:'#ff0000'}}>价格不得低于{this.props.min_price}</span></div>
                 </div>
                 <div style={{textAlign:'right', marginRight:'16px'}}>
                     <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>

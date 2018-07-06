@@ -31,33 +31,27 @@ export default class extends Component {
         this.query=this.query.bind(this);
         this.handleclick=this.handleclick.bind(this);
         this.hasUser = this.hasUser.bind(this);
-      
   }
     hasUser() {return (this.state.user_info.length - 1) >= this.state.index}
     query(){
+        console.log('点击了查询');
         if(''==this.state.recharge_number && ''==this.state.user_name &&''==this.state.user_mobile)
         return   tool.ui.error({msg:'至少输入一个参数',callback:(close) => {close();}});
-        api.post('readCard', {
-            token:'token'.getData(),
-            cardNumber:this.state.recharge_number,
-            user_name:this.state.user_name,
-            user_mobile:this.state.user_mobile
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                if(res.result.length>0){
-                    this.setState({user_info:res.result,nodatas:false});
-                }else{
-                    this.setState({user_info:[],nodatas:true})
-                }
-                
-            }else{
-                tool.ui.error({msg:res.msg,callback:(close) => {
-                    close();
-                }});
-            }
+        let pramas = {
+            token: 'token'.getData(),
+            cardNumber: this.state.recharge_number,
+            user_name: this.state.user_name,
+            user_mobile: this.state.user_mobile,
+            limit: 1000,
         }
-        );
+        api.post('balanceTotal', pramas, (res, ver, handle) => {
+            console.log(res)
+            if (ver && res && res.result.list.length > 0) { 
+                this.setState({ user_info: res.result.list, nodatas: false });
+            }else{
+                this.setState({ user_info: [], nodatas: true });
+            }
+        });
     }
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
@@ -65,20 +59,20 @@ export default class extends Component {
     }
     render() {
         let V = null === this.state.clickNum ? null : this.router[this.state.clickNum];
-        var userinfo=this.state.user_info.map((item,index) => <tr 
-            key={'item'+index} data-index={index} onClick={this.handleclick} 
-            id={this.state.index==index?'selecttr':null}>
+        var userinfo=this.state.user_info.map((item,index) => 
+        <tr key={'item'+index} data-index={index} onClick={this.handleclick} id={this.state.index==index?'selecttr':null}>
             <td>{item.mname}</td>
             <td>{item.recharge_number}</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>
             <td>{item.card_name}</td>
             <td>{item.balance}</td>
-            <td>{item.type==1?'可用':item.type==2?'挂失':'冻结'}</td>
+            <td>{item.type==1?'可用':(item.type==2?'挂失':'冻结')}</td>
         </tr>
         );
         return (
             <Window title='挂失、补换卡' onClose={this.props.closeView}>
+            <div>
                 <div className="change_card_date">
                     <div className="change_card_date_left">
                         <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/></div>
@@ -101,7 +95,7 @@ export default class extends Component {
                     </thead>
                     <tbody>
                       {userinfo}
-                      {this.state.nodatas&&<Nodata />}
+                      {this.state.nodatas && <Nodata />}
                     </tbody>
                 </table>
                 <div className='bothpages-btn-part'>
@@ -110,29 +104,26 @@ export default class extends Component {
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ChangeCard' })}>换卡</button>
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
                 </div>
-                {/* {null !==this.state.clickNum && this.views[this.state.clickNum]} */}
-                {
-                    V 
-                    && 
-                    <V 
-                        data={{
-                             
-                             cardNumber:this.state.user_info[this.state.index].card_number,
-                             discount:this.state.user_info[this.state.index].discount,
-                             user_name:this.state.user_info[this.state.index].user_name,
-                             balance:this.state.user_info[this.state.index].balance,
-                             user_mobile:this.state.user_info[this.state.index].user_mobile,
-                             card_name:this.state.user_info[this.state.index].card_name,
-                             recharge_number:this.state.user_info[this.state.index].recharge_number,
-                             id:this.state.user_info[this.state.index].id,
-                             mname:this.state.user_info[this.state.index].mname,
-                             mid:this.state.user_info[this.state.index].mid
-                            }} 
-                        refresh={this.query}
-                        onClose={() => this.setState({ clickNum: null })}
-                    />
-                }
-                
+            </div>
+            {
+                V && 
+                <V 
+                    data={{
+                        cardNumber:this.state.user_info[this.state.index].card_number,
+                        discount:this.state.user_info[this.state.index].discount,
+                        user_name:this.state.user_info[this.state.index].user_name,
+                        balance:this.state.user_info[this.state.index].balance,
+                        user_mobile:this.state.user_info[this.state.index].user_mobile,
+                        card_name:this.state.user_info[this.state.index].card_name,
+                        recharge_number:this.state.user_info[this.state.index].recharge_number,
+                        id:this.state.user_info[this.state.index].id,
+                        mname:this.state.user_info[this.state.index].mname,
+                        mid:this.state.user_info[this.state.index].mid
+                    }} 
+                    refresh={this.query}
+                    onClose={() => this.setState({ clickNum: null})}
+                />
+            }
             </Window>
         );
     }

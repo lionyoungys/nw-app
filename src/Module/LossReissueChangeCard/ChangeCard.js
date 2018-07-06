@@ -26,7 +26,9 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({cards:res.result.cardsType, types:res.result.cardsType.typeArray('card_type')});
-            }
+            }else{
+                handle();
+            } 
         });
     }
     success(){

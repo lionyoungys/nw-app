@@ -24,8 +24,7 @@ export default class extends Component {
                 this.props.refresh();
             }
             handle();
-        }
-    );
+        });
     }
     render() {
         var arr = ['发卡店', '发卡店ID', '卡类型', '卡号', '卡ID', '姓名', '手机号', '折扣率', '余额'].map((item, index) => <span key={index} >{item}</span>);

@@ -33,7 +33,7 @@ export default class extends Component {
             }else{
                 handle();
             }
-        });  
+        }, () => done());  
     }
     sure(add) {
 
@@ -85,21 +85,18 @@ export default class extends Component {
         var index = e.target.dataset.index;
         var authlists = this.state.authlist;
         tool.ui.ask({title:'删除权限',info:'提示:删除后组名将被永久删除！<br/>', callback:(close, event) => {
-              //点击按钮或关闭符号时关闭弹窗
               //删除员工
+            close();
             api.post('authDel', {
                 token:'token'.getData(),
                 id:id,
                 }, (res, ver,handle) => {
                     if (ver && res) {
                         console.log(res);
-                        
                         authlists.splice(index,1)  
-                        this.setState({ authlist: authlists,})    
-                        close();                   
+                        this.setState({ authlist: authlists})                       
                     }else{
                         handle();
-                        close();  
                     }
                 });      
         }});
@@ -153,39 +150,12 @@ export default class extends Component {
             <td>{item.auth_name}</td>
             <td>{item.authName}</td>                                   
             <td><i onClick={() => this.setState({ show1: true, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
-            { 
-                this.state.show1 &&
-                <Window title='编辑组' onClose={() => this.setState({ show1: false })}>
-                    <div id="addGroup-srarch">
-                        <span>组名称：</span>
-                        <input type='text' value={this.state.authname} onChange={e => this.setState({ authname:e.target.value})}/>
-                        <button type='button' className='e-btn sureBtn' onClick={() => this.sure(false)}>确认</button>
-                    </div>
-                    <div id='addGroup-content'>
-                        {menuList}
-                    </div>
-                </Window>
-            }
         </tr>
         );
         
         return ( 
                 <div>
-                    <div className="StaffAuthority" onClick={() => this.setState({show:true,authSelectList:[],authname:''})}>新增组</div> 
-                    {
-                        this.state.show
-                        &&
-                        <Window title='新增组' onClose={() => this.setState({ show: false })}>
-                            <div id="addGroup-srarch">
-                                <span>组名称：</span>
-                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value})}/>
-                            <button type='button' className='e-btn sureBtn' onClick={()=>this.sure(true)}>确认</button>
-                            </div>
-                            <div id='addGroup-content'>
-                                {menuList}
-                            </div>
-                        </Window>
-                    }   
+                    <div className="StaffAuthority" onClick={() => this.setState({show:true,authSelectList:[],authname:''})}>新增组</div>   
                     <table className="ui-table-base staff-tab">
                         <thead>
                             <tr>
@@ -198,8 +168,37 @@ export default class extends Component {
                         <tbody>
                             {authlist}
                         </tbody>
-                    </table>                  
-                </div>                
-        );        
+                    </table> 
+                {
+                    this.state.show1 &&
+                    <Window title='编辑组' onClose={() => this.setState({ show1: false })}>
+                        <div id="addGroup-srarch">
+                            <span>组名称：</span>
+                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} />
+                            <button type='button' className='e-btn sureBtn' onClick={() => this.sure(false)}>确认</button>
+                        </div>
+                        <div id='addGroup-content'>
+                            {menuList}
+                        </div>
+                    </Window>
+                }     
+                {
+                    this.state.show
+                    &&
+                    <Window title='新增组' onClose={() => this.setState({ show: false })}>
+                        <div id="addGroup-srarch">
+                            <span>组名称：</span>
+                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} />
+                            <button type='button' className='e-btn sureBtn' onClick={() => this.sure(true)}>确认</button>
+                        </div>
+                        <div id='addGroup-content'>
+                            {menuList}
+                        </div>
+                    </Window>
+                }              
+                </div>   
+                             
+        );
+                
     };
 }

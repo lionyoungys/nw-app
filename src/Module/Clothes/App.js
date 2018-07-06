@@ -80,6 +80,7 @@ export default class extends Component {
                     this.state.category.push({id:res.result.type[i].id, name:res.result.type[i].name});
                     this.state.item.push(res.result.type[i].server);
                 }
+                console.log(res.result);
                 this.setState({category:this.state.category, item:this.state.item});
             } else {handle()}
         });
@@ -142,6 +143,8 @@ export default class extends Component {
             this.state.data[this.state.currentIndex].deal_time = day;
             this.state.data[this.state.currentIndex].min_discount = item.min_discount;
             this.state.data[this.state.currentIndex].has_discount = item.has_discount;
+            this.state.data[this.state.currentIndex].transfer = item.transfer;
+            this.state.data[this.state.currentIndex].min_transfer = item.min_transfer;
             this.state.data.setByIntersection(
                 {parent:this.state.data[this.state.currentIndex].DATATAG}, 
                 {
@@ -151,7 +154,9 @@ export default class extends Component {
                     raw_price:item.item_off_price, 
                     deal_time:day, 
                     min_discount:item.min_discount,
-                    has_discount:item.has_discount
+                    has_discount:item.has_discount,
+                    transfer:item.transfer,
+                    min_transfer:item.min_transfer
                 }
             );
         } else {
@@ -177,6 +182,8 @@ export default class extends Component {
                 sign:'',
                 min_discount: item.min_discount,    //最低折扣率
                 has_discount: item.has_discount,    //是否打折
+                transfer:item.transfer,
+                min_transfer:item.min_transfer,
                 parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
             ++this.counter;
@@ -505,14 +512,18 @@ export default class extends Component {
         ,   dis_amount = 0
         ,   no_dis_amount = 0
         ,   discount = '' == this.state.discount ? 100 : this.state.discount
+        ,   tempDiscount
         ,   html = this.state.data.map((obj, index) => {
+            tempDiscount = obj.min_discount * 10;
+            if (discount > tempDiscount) tempDiscount = discount;
+            
             let count = this.state.data.keyValCount('parent', obj.DATATAG)
             ,   total_craft = tool.arrObjValsSum(this.state.data, ['addition_no_price', 'addition_price'], {parent:obj.DATATAG});
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
-                (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
+                (obj.has_discount ? (Math.floor(obj.raw_price * tempDiscount) / 100) : obj.raw_price), 
                 obj.addition_no_price, 
-                (Math.floor(obj.addition_price * discount) / 100)
+                (Math.floor(obj.addition_price * tempDiscount) / 100)
             );
             dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
@@ -625,6 +636,7 @@ export default class extends Component {
                         onClose={this.handleClose}
                         callback={this.updatePrice}
                         price={this.state.data[this.state.currentIndex].raw_price} 
+                        min_price={this.state.data[this.state.currentIndex].min_transfer}
                         discount={this.state.data[this.state.currentIndex].min_discount}
                     />
                 }

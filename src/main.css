@@ -142,9 +142,10 @@ table{border-collapse: collapse}
 }
 .main-left-menu{
     margin-left: 13px;
+    margin-bottom: 10px;
 }
 .main-left-menu>div:first-child{
-    font-weight: bold; 
+    font-weight: bold;
     padding-bottom: 7px;
     border-bottom: 1px solid #4b92b7;
     margin-bottom: 6px;

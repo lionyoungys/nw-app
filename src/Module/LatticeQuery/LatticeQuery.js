@@ -16,17 +16,19 @@ export default class extends Component {
         this.handleclick=this.handleclick.bind(this);
     };
     componentDidMount() {
+        let done;
+        tool.ui.loading(handle => done = handle);
         api.post('grid', {
             token:'token'.getData(),
             gridPage:1,
             gridLimit:200
-    }, (res, ver) => {
+        }, (res, ver) => {
+            done();
             if (ver && res) {
                 console.log(res)
                 this.setState({grid:res.result.grid})
             }
-        }
-        );
+        },()=>done());
     }
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
@@ -34,9 +36,7 @@ export default class extends Component {
     }
     render() {
         let grid = this.state.grid.map((item,index)=>
-        <tr key={'item'+index} data-index={index} onClick={this.handleclick }  
-        id={this.state.index==index?'selecttr':null}
-        >
+        <tr key={'item'+index} data-index={index} onClick={this.handleclick }  id={this.state.index==index?'selecttr':null}>
                 <td>{item.name}</td>
                 <td>{item.start_number}</td>
                 <td>{item.end_number}</td>
@@ -52,8 +52,7 @@ export default class extends Component {
         ) {
             use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>
           
-                <span>{item.number}#{item.put_num}件</span>
-                          
+                <span>{item.number}#{item.put_num}件</span>          
             );
         }
         return (
@@ -62,15 +61,15 @@ export default class extends Component {
                   <table>
                       <thead>
                           <tr>
-                              <th>格架名称</th>
-                              <th>首数</th>
-                              <th>尾数</th>
-                              <th>每衣挂号最大挂衣数</th>
-                              <th>使用率</th>
+                            <th>格架名称</th>
+                            <th>首数</th>
+                            <th>尾数</th>
+                            <th>每衣挂号最大挂衣数</th>
+                            <th>使用率</th>
                           </tr>
                       </thead>
                       <tbody>
-                         {grid}
+                            {grid}
                       </tbody>
                   </table>         
                </div>

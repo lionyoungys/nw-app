@@ -2,14 +2,14 @@
     border-right: none;
 }
 .membercard-tab table thead tr th {
-    width: 138px;
+    width: 140px;
     height: 25px;
     border-right: 1px solid #acc6de;
     line-height: 25px;
     text-align: center;
     color: #fff;
     font-size: 12px;
-    min-width: 104px;
+    min-width: 140px;
 }
 .membercard-tab{
     width:843px;
@@ -39,7 +39,7 @@
 .membercard-tab table tbody tr:nth-of-type(odd){background:#fff}
 .membercard-tab table tbody tr:nth-of-type(even){background:#f0f5f9}
 .membercard-tab table tbody tr td{
-    width: 138px;
+    width: 140px;
     height:25px; 
     border-right:1px solid #acc6de;
     text-align:center;
@@ -49,7 +49,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:104px;
+    min-width:140px;
     
 }
 .membercard-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
