@@ -8,6 +8,7 @@
   "license": "MIT",
   "window": {
     "icon": "img/icon.png",
+    "resizable": false,
     "min_width": 600,
     "min_height": 450,
     "frame": false,
@@ -19,17 +20,7 @@
     "min_width": 1024,
     "min_height": 737,
     "frame": false,
-    "show": false,
-    "new_instance": true
-  },
-  "loginWindow": {
-    "icon": "img/icon.png",
-    "resizable": false,
-    "width": 600,
-    "height": 450,
-    "frame": false,
-    "show": false,
-    "new_instance": true
+    "show": false
   },
   "dependencies": {
     "ffi": "^2.2.0",
