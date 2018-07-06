@@ -18,9 +18,7 @@ export default class extends Component {
             count:'',
             list:[],
             nopay:{},
-            index:[],
             checked:[],
-            more:false,
             Show:'block',
             Show1:'none',
             pay:'none',
@@ -39,8 +37,9 @@ export default class extends Component {
             recharge_number: card.recharge_number || '',    //卡号
             card_name: card.card_name || '',    //卡类型
             discount: card.discount || '',    //折扣
-            time: card.time || ''    //售卡日期     
-            
+            time: card.time || '',    //售卡日期     
+            current:null,
+            merchant:{}
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
@@ -66,11 +65,11 @@ export default class extends Component {
                             list:res.result.list,
                             count:res.result.count,   
                             nodatas:false,     
-
+                            merchant:res.result.merchant
                         })
                       console.log(res.result.list);
                     }else{
-                        this.setState({list:[],count:0,nodatas:true})
+                        this.setState({list:[],count:0,nodatas:true, merchant:res.result.merchant})
                     }
                     
                 }else{
@@ -183,8 +182,8 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = this.props.data.discount || 100;
-        this.state.listitem.map(obj => {
+        ,   discount = this.state.discount || 100;
+        this.state.list[this.state.current].item.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
                 (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
@@ -195,7 +194,7 @@ export default class extends Component {
             no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
         let gateway = object.gateway
-        ,   balance = this.props.data.balance;
+        ,   balance = this.state.balance;
         if ('undefined' !== typeof gateway) {
             if (0 == gateway) {
                 gateway = '会员卡支付';
@@ -211,19 +210,19 @@ export default class extends Component {
             gateway = '未付款';
         }
         EventApi.print('order', {
-            sn:this.state.listorder.ordersn,
-            items:JSON.stringify(this.state.listitem),
+            sn:this.state.list[this.state.current].ordersn,
+            items:JSON.stringify(this.state.list[this.state.current].item),
             total:total,
             dis_amount:dis_amount,
             amount:no_dis_amount,
             discount: (discount / 10),
             real_amount:amount,
-            name:this.state.listuser.user_name,
-            phone:this.state.listuser.user_mobile,
+            name:this.state.user_name,
+            phone:this.state.user_mobile,
             addr:this.state.merchant.maddress,    //店铺地址
             mphone:this.state.merchant.phone_number,    //店铺电话
             ad:this.state.merchant.mdesc,    //店铺广告
-            number:this.props.data.recharge_number,
+            number:this.state.recharge_number,
             balance:balance,
             pay_amount:object.pay_amount,
             change:object.change,
@@ -245,19 +244,18 @@ export default class extends Component {
         this.setState({checked:this.state.checked});     
     }
     paymore (e){       
-        var id=e.target.dataset.id;
-        this.setState({more:true,id:id});                        
+        this.setState({id:e.target.dataset.id,current:e.target.dataset.index});                        
     }
     render() {
-       
-        let tempChecked;
+        let order = null === this.state.current ? {} : this.state.list[this.state.current]
+        ,   discount = order.discount || 100
+        ,   total_amount = order.debt || order.pay_amount || 0
+        ,   amount = order.amount || 0
+        ,   dis_amount = order.discount_amount || 0
+        ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100)
+        ,   tempChecked;
 
         let takeclothes=this.state.list.map((item,index)=> {
-            let discount = item.discount || 100
-            ,   total_amount = item.debt || item.pay_amount || 0
-            ,   amount = item.amount || 0
-            ,   dis_amount = item.discount_amount || 0
-            ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100);
             tempChecked = this.state.checked[index] || [];
             console.log(tempChecked);
             return (
@@ -307,7 +305,7 @@ export default class extends Component {
                 <div className="Takeclothesdetail-footer-left" style={{display:item.pay_state==1?'block':'none'}}>
                 <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == item.item.matchLen({status:3})} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
-                    <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
+                    <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
                     <button className="take-over" onClick={() => this.setState({show2:true})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
                     <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
@@ -315,40 +313,6 @@ export default class extends Component {
                     <div>价格: ￥{item.pay_amount}</div>
                 </div>                       
             </div>
-              {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
-              {
-                        this.state.more
-                        &&
-                        <Payment 
-                            onClose={() => this.setState({more:false})} 
-                            M1Read={this.M1Read}
-                            data={{
-                                total_amount:total_amount,
-                                discount:discount,
-                                amount:amount,
-                                dis_amount:dis_amount,
-                                pay_amount:pay_amount
-                            }}
-                            callback={this.paymentCallback}
-                        />
-                    }
-                    {
-                    this.state.show2
-                    &&
-                    <LayerBox
-                        title='取衣'
-                        onClose={() => this.setState({show2:false})}
-                        onClick={this.takeClothes}
-                        onCancel={() => this.setState({show2:false})}
-                        hasCancel={true} width='278' height='200'>
-                        {
-                            <div className="takeclothes-people">
-                                该客户确定要取走衣物
-                            </div>
-                        }
-                   
-                    </LayerBox>
-                }
             </div>
             
             );
@@ -362,7 +326,40 @@ export default class extends Component {
                     </div>  
                     <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                     {takeclothes}
-                  
+                {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
+                {
+                    null !== this.state.current
+                    &&
+                    <Payment 
+                        onClose={() => this.setState({current:null})} 
+                        M1Read={this.M1Read}
+                        data={{
+                            total_amount:total_amount,
+                            discount:discount,
+                            amount:amount,
+                            dis_amount:dis_amount,
+                            pay_amount:pay_amount
+                        }}
+                        callback={this.paymentCallback}
+                    />
+                }
+                {
+                    this.state.show2
+                    &&
+                    <LayerBox
+                        title='取衣'
+                        onClose={() => this.setState({show2:false})}
+                        onClick={this.takeClothes}
+                        onCancel={() => this.setState({show2:false})}
+                        hasCancel={true} width='278' height='200'>
+                        {
+                            <div className="takeclothes-people">
+                                该客户确定要取走衣物
+                            </div>
+                        }
+                    
+                    </LayerBox>
+                }
                 </Window> 
         )
     }

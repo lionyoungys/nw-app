@@ -318,4 +318,34 @@
             }
         }
     }
+
+    /**
+     * 数组对象通过条件对象判断匹配返回匹配的数量
+     * @param {object} where 
+     * @return {number} count
+     */
+    Array.prototype.matchLen = function(where) {
+        var count = 0;
+        if (tool.isObject(where)) {
+            var len = this.length
+            ,   ver = true
+            ,   k;
+            for (var i = 0;i < len;++i) {
+                if (tool.isObject(this[i])) {
+                    for (k in where) {
+                        if ('undefined' === typeof this[i][k] || this[i][k] != where[k]) {
+                            ver = false;
+                            break;
+                        }
+                    }
+                    if (ver) {
+                        ++count;
+                    } else {
+                        ver = true;
+                    }
+                }
+            }
+        }
+        return count;
+    }
 })();

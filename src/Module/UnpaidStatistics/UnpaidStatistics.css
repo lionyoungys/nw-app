@@ -77,7 +77,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: 33px;
 }
 .unpaidstatistics_Statistics span{
-
     width: 33%;
     height: 100%;
     text-indent: 18px;
@@ -112,7 +111,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-height: 340px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
-
     min-width: 110px;
     max-width: 110px;
 }

@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Pages from '../../UI/Page';
 import './AlipayWechatChecking.css';
-import Nodata from '../../UI/nodata';
+import Nodata from '../../UI/Nodata';
 
 export default class extends Component {
     constructor(props) {
