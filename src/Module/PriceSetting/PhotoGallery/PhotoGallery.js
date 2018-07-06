@@ -61,7 +61,6 @@ export default class extends Component {
                         <div className="photo-gal-img">
                             {list}
                         </div>
-
                     </div>
                 </Window>
 

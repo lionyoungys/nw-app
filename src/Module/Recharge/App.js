@@ -158,7 +158,7 @@ export default class extends React.Component {
                         <div><label className='e-label'>&emsp;&emsp;新折扣：</label>{card.discount}%</div>
                     </div>
                     <div className="recharge-four">
-                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold', width: '100%', textAlign:'center',}}>应收：&yen;{card.real_price}</div>
+                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold', width: '100%', textAlign:'center',}}>应收：&yen;{card.price}</div>
                         <button type='button' className='e-btn recharge-btn' onClick={() => '' != this.state.cid && this.setState({show:true})}>收银</button>
                     </div>
                 </div>
@@ -173,7 +173,7 @@ export default class extends React.Component {
                             balance:this.state.balance,
                             give:card.give_price,
                             price: 0,
-                            amount:card.real_price
+                            amount:card.price
                         }}
                         callback={this.callback}
                         onClose={() => this.setState({show:false})}

@@ -257,11 +257,11 @@ export default class extends Component {
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span><b>*</b>库存：</span><input  type="text" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>库存：</span><input  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input  type="text" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-money">
@@ -285,11 +285,11 @@ export default class extends Component {
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="text" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="text" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-money">

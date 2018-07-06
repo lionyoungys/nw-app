@@ -1,38 +1,54 @@
 //事件注册配置
 (function(window) {
     var e = {
-        win:nw.Window.get()
+        win:nw.Window.get(),
+        printPageWin:null,
     };
     e.quit = function() {    //退出
-        nw.Window.open('login.html', nw.App.manifest.loginWindow);
-        this.win.close();
+        nw.Window.open('login.html', nw.App.manifest.window);
+        this.win.close(true);
     }
     e.printers = function (callback) {    //获取打印机列表
         'function' === typeof callback && this.win.getPrinters(callback);
     }
-    e.print = function(pageName, param) {    //打印
-        let getParam = '';
-        if ('object' === typeof param && param instanceof Object) {
-            getParam = '?' + tool.toUrlString(param);
+    e.getPrintPageName = function (page_name, param) {
+        let get = '';
+        if (tool.isObject(param)) {
+            get = '?' + tool.toUrlString(param);
         } else if ('string' === typeof param) {
-            getParam = '?' + param;
+            get = '?' + param;
         }
-        nw.Window.open(
-            'print/' + pageName + '.html' + getParam,
-            {
-                new_instance:true, 
-                show:false
-            },
-            // function(currentWin) {
-            //     console.log(currentWin);
-            //     currentWin.on('close', function() {
-            //         this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-            //         null !== currentWin && currentWin.close(true);    //虽然关了,但实际上它还在工作
-            //         this.close(true);    //关闭新窗口也关闭主窗口
-            //     });
-            //     currentWin.on('closed', function() {currentWin = null});    //新窗口关闭后释放'win'对象
-            // }
-        );
+        return 'print/' + page_name + '.html' + get;
+    }
+    e.print = function(page_name, param, printer) {    //打印
+        if (null === this.printPageWin) {
+            nw.Window.open(
+                this.getPrintPageName(page_name, param),
+                {show: false},
+                function(new_win) {
+                    console.log(new_win);
+                    //指向打印窗口
+                    e.printPageWin = new_win;
+                    e.printPageWin.on('close', function() {
+                        null !== e.printPageWin && e.printPageWin.close(true);
+                        this.close(true);
+                    });
+                    e.printPageWin.on('closed', function() {e.printPageWin = null});
+                    e.printPageWin.on('loaded', function() {
+                        e.printPageWin.print({
+                            autoprint:true,
+                            printer:printer || '',
+                            headerFooterEnabled:false,
+                            marginsType:3,
+                            mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                            marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+                        });
+                        setTimeout(function() {e.printPageWin.close(true)}, 1000);
+                    });
+                }
+            );
+
+        }
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')
@@ -130,6 +146,6 @@
         this.close(true);    //关闭新窗口也关闭主窗口
     });
     e.win.on('closed', function() {e.win = null});    //新窗口关闭后释放'win'对象
-    
+
     window.EventApi = e;
 })(window);

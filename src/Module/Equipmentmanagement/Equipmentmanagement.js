@@ -34,7 +34,7 @@ export default class extends Component {
 
     print(e) {
         let printer = this.state[e.target.dataset.printer];
-        '无' != printer && EventApi.print('test', {printer:printer});
+        '无' != printer && EventApi.print('test', null, printer);
     }
     M1Read() {
         try {

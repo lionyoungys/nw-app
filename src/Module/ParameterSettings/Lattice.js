@@ -91,8 +91,8 @@ export default class extends Component {
         if ('' == this.state.start_number) return tool.ui.error({msg:'请输入首数！',callback:close => close()});
         if ('' == this.state.end_number) return tool.ui.error({msg:'请输入尾数！',callback:close => close()});
         if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
-        if(! /^\d+$/.test(this.state.max_number)){
-            this.setState({max_number:''})
+        if(! /^\d+$/.test(this.state.max_number&&this.start_number&&this.end_number)){
+            this.setState({max_number:'',start_number:'',end_number:''})
             tool.ui.error({title:'提示',msg:'请输入正整数',button:'确定',callback:(close, event) => {
                 close();
             }});

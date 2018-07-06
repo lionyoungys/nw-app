@@ -58,8 +58,7 @@ export default class extends Component {
                 id:this.state.id
             }, (res, ver,handle) => {
                 if (ver && res) {
-                    console.log(res)
-                
+                    console.log(res)               
                 }
                 handle(); 
                 close();
@@ -115,14 +114,13 @@ export default class extends Component {
             price:this.state.price,
             give_price:this.state.give_price,
             made_price:this.state.made_price
-        }, (res, ver ,handle) => {
-           
+        }, (res, ver ,handle) => {          
             if (ver && res) {
-                console.log(res)
+                console.log(res)                
+            }else{
                 this.setState({show1:false})
                 this.componentDidMount();
-            }
-            handle();
+            }            
         });
     }
     mod(e){
@@ -178,11 +176,11 @@ export default class extends Component {
                         &&
                         <Window title='增加卡类型' onClose={() => this.setState({show:false})} width="452" height='294'>
                             <div className="membercard-div">
-                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})}/></div>
-                                 <div><span><i>*</i>&nbsp;充值金额：</span><input type='text' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;赠送金额：</span><input type='text'  value={this.state.give_price} onChange={e => this.setState({give_price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;制卡费：</span><input type='text' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;折扣率：</span><input type='text' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>&nbsp;%</div>
+                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})} maxLength="6"/></div>
+                                 <div><span><i>*</i>&nbsp;充值金额：</span><input type='number' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;赠送金额：</span><input type='number'  value={this.state.give_price} onChange={e => this.setState({give_price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;制卡费：</span><input type='number' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;折扣率：</span><input type='number' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>&nbsp;%</div>
                             </div>
                             <div className="membercard-footer">
                                <button onClick = {this.addMemberCardYes}>保 存</button>
@@ -194,11 +192,11 @@ export default class extends Component {
                         &&
                         <Window title='编辑卡类型' onClose={() => this.setState({show1:false})} width="452" height='294'>
                             <div className="membercard-div">
-                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})}/></div>
-                                 <div><span><i>*</i>&nbsp;充值金额：</span><input type='text' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;赠送金额：</span><input type='text'  value={this.state.give_price} onChange={e => this.setState({give_price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;制卡费：</span><input type='text' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/>&nbsp;元</div>
-                                 <div><span><i>*</i>&nbsp;折扣率：</span><input type='text' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>&nbsp;%</div>
+                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})} maxLength="6"/></div>
+                                 <div><span><i>*</i>&nbsp;充值金额：</span><input type='number' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;赠送金额：</span><input type='number'  value={this.state.give_price} onChange={e => this.setState({give_price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;制卡费：</span><input type='number' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/>&nbsp;元</div>
+                                 <div><span><i>*</i>&nbsp;折扣率：</span><input type='number' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>&nbsp;%</div>
                             </div>
                             <div className="membercard-footer">
                                <button onClick = {this.updateMemberCardYes}>保 存</button>

@@ -351,7 +351,7 @@ export default class extends Component {
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
-                                <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -396,7 +396,7 @@ export default class extends Component {
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>
                                 <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname} onChange={value => this.setState({materialsname:value})} /></div>
-                                <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -411,10 +411,10 @@ export default class extends Component {
                         </div>
 
                         <div className="addnewprice-two">
-                            <div><span><i>*</i>线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
-                            <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
+                            <div><span><i>*</i>线下价格：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
+                            <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="number" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
                             <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
+                                </span><input className='e-input addnewprice-input' type="number" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
                                     <div className="add-select-part">
                                         <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e=>this.setState({online:e.target.checked?1:0})} />在线接单</div>
                                     <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
