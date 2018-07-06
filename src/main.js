@@ -11,8 +11,7 @@ import './Event';
 import './main.css';
 import './UI/base.css';
 
-let win = nw.Window.get();
-win.showDevTools();
+EventApi.win.showDevTools();
 //权限设置
 var auth = 'auth'.getData()
 ,   is_root = 'is_root'.getData();
@@ -64,7 +63,7 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        win.on('restore', () => {
+        EventApi.win.on('restore', () => {
             if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化
                 this.setState({isMaxMin:true});
             } else if (this.state.min && this.state.max && this.state.isMaxMin) {    //最小化还原为最大化
@@ -73,8 +72,8 @@ class Main extends Component {
                 this.setState({max:false});
             }
         });
-        win.on('maximize', () => this.setState({max:true}));
-        win.on('minimize', () => this.setState({min:true}));
+        EventApi.win.on('maximize', () => this.setState({max:true}));
+        EventApi.win.on('minimize', () => this.setState({min:true}));
     }
     
     //路由跳转方法
@@ -108,8 +107,8 @@ class Main extends Component {
                     <div className='main-title'>
                         {'mname'.getData()}&nbsp;【操作员：{'aname'.getData()}】&nbsp;【软件版本：{nw.App.manifest.version}】
                         <div>
-                            <div className='main-mini' onClick={() => win.minimize()}></div>
-                            <div className='main-max' onClick={() => this.state.max ? win.restore() : win.maximize()}></div>
+                            <div className='main-mini' onClick={() => EventApi.win.minimize()}></div>
+                            <div className='main-max' onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}></div>
                             <div className='main-close' onClick={() => EventApi.quit()}></div>
                         </div>
                     </div>
