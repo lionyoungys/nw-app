@@ -24,7 +24,7 @@ export default class extends Component {
         ,   price = 0;
         for (let i = 0;i < len;++i) {
             if ('' == checked[i].value || checked[i].value <= 0) continue;
-            if (checked[i].name) {
+            if (checked[i].discount) {
                 disPrice = disPrice.add(checked[i].value);
             } else {
                 price = price.add(checked[i].value);
@@ -119,7 +119,6 @@ class Layer extends Component {
 
     render() {
         if ('undefined' === typeof this.props.price || !(this.props.price instanceof Array)) return null;
-
         let tempIndex, hasChecked
         ,   html = this.props.price.map(obj => {
             tempIndex = obj.id.inObjArray(this.state.checked, 'id');

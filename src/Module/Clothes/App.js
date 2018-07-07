@@ -22,7 +22,9 @@ import Code from './Code';
 import Recharge from '../Recharge/App';
 import './App.css';
 
-const token = 'token'.getData();
+const token = 'token'.getData()
+,     page = 1
+,     limit = 10000;
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -76,7 +78,7 @@ export default class extends Component {
         tool.KeyCode.listenEnter(this.phoneInput, this.tempUser);
         tool.KeyCode.listenEnter(this.nameInput, this.tempUser);
         tool.KeyCode.listenEnter(this.numberInput, this.tempUser);
-        api.post('clothes', {token:token}, (res, ver, handle) => {    //获取衣物列表
+        api.post('clothes', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 let len = res.result.type.length;
                 for (let i = 0;i < len;++i) {
@@ -87,27 +89,27 @@ export default class extends Component {
                 this.setState({category:this.state.category, item:this.state.item});
             } else {handle()}
         });
-        api.post('brandList', {token:token}, (res, ver, handle) => {    //获取品牌列表
+        api.post('brandList', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取品牌列表
             if (ver) {
                 this.setState({brand:res.result.list});
             } else {handle()}
         });
-        api.post('colorList', {token:token}, (res, ver, handle) => {    //获取颜色列表
+        api.post('colorList', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取颜色列表
             if (ver) {
                 this.setState({color:res.result.list});
             } else {handle()}
         });
-        api.post('flawList', {token:token}, (res, ver, handle) => {    //获取瑕疵列表
+        api.post('flawList', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取瑕疵列表
             if (ver) {
                 this.setState({problem:res.result.list});
             } else {handle()}
         });
-        api.post('forecastList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+        api.post('forecastList', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
                 this.setState({forecast:res.result.list});
             } else {handle()}
         });
-        api.post('additionList', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+        api.post('additionList', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取洗后预估列表
             if (ver) {
                 this.setState({price:res.result.list});
             } else {handle()}
