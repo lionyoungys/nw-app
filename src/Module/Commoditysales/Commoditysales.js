@@ -16,6 +16,12 @@ export default class extends Component {
             allComList: [],//所有商品的数组
             searchList: [],
             searchNum:'',//搜索的商品编号
+
+            amount:'0',//总件数
+            total:'0',//总金额
+            discount:'100%',//折扣率
+            disTotal:'0',//折后总价
+            
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
@@ -88,6 +94,7 @@ export default class extends Component {
             handleList.push(search);
         }
         this.setState({ searchList: handleList });
+        this.compute();
     }
     //删除
     deleteYes(e){
@@ -95,12 +102,14 @@ export default class extends Component {
         let handleList = this.state.searchList;
         handleList.splice(index,1);
         this.setState({ searchList: handleList });
+        this.compute();
         console.log(this.state.searchList); 
     }
     //增加
     add(index) {
         this.state.searchList[index].count +=1;
         this.setState({ searchList: this.state.searchList });
+        this.compute();
         console.log(this.state.searchList); 
     }
     //减少
@@ -110,8 +119,24 @@ export default class extends Component {
         if (count > 1) {
             this.state.searchList[index].count -=1; 
             this.setState({ searchList: this.state.searchList });
+            this.compute();
         }
         console.log(this.state.searchList);
+    }
+    //计算总件数 总金额
+    compute(){
+
+        if (this.state.searchList.length == 0) return this.setState({ amount: '0', total:'0', disTotal: '0' });;
+        let count = this.state.searchList.addKeyInArray('count');
+        let total = 0;
+        for (let index = 0; index < this.state.searchList.length; index++) {
+           total += this.state.searchList[index].price * this.state.searchList[index].count;
+        }
+        let distotal = total * parseFloat(this.state.discount)/100;
+        total = Math.floor(total * 1000) / 1000;//100会出错 个别 10.2
+        distotal = Math.floor(distotal * 1000) / 1000;
+        this.setState({ amount: count, total: total, disTotal: distotal});
+        console.log(this.state.total, this.state.amount, this.state.disTotal);
     }
     handleClick (e){
         this.setState({index:e.target.dataset.index});
@@ -134,7 +159,7 @@ export default class extends Component {
                 <tr key={'item' + index}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
-                    <td>{item.has_discount == '1' ? '90%' : '100%'}</td>
+                    <td>{item.has_discount == '1' ? '是' : '否'}</td>
                     <td>{item.stock}</td>
                     <td>{item.price}</td>
                 </tr>
@@ -144,7 +169,7 @@ export default class extends Component {
             <tr key={'item' + index}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.has_discount == '1' ? '90%' : '100%'}</td>
+                <td>{item.has_discount == '1' ? '100%' : '100%'}</td>
                 <td>{item.price}</td>
                 <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
                 <td data-index={index} onClick={this.deleteYes}>删除</td>
@@ -190,7 +215,7 @@ export default class extends Component {
                                 <tr>
                                     <th>商品编号</th>
                                     <th>商品名称</th>
-                                    <th>折扣率</th>
+                                    <th>折扣</th>
                                     <th>库存</th>
                                     <th>单价</th>
                                 </tr>
@@ -201,10 +226,10 @@ export default class extends Component {
                         </table>
                     </div>  
                     <div className="commoditysales-footerdiv-right">
-                        <div className="commoditysales-footerdiv-rightboth">总金额: ￥89.00</div>
-                        <div className="commoditysales-footerdiv-rightboth">折扣率: 5%</div>
-                        <div className="commoditysales-footerdiv-rightboth">总件数: 89</div>
-                        <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥89.00</div>                    
+                        <div className="commoditysales-footerdiv-rightboth">总金额: ￥{this.state.total}</div>
+                        <div className="commoditysales-footerdiv-rightboth">折扣率: {this.state.discount}</div>
+                        <div className="commoditysales-footerdiv-rightboth">总件数: {parseInt(this.state.amount)}</div>
+                        <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥{this.state.disTotal}</div>                    
                         <div className="commoditysales-footerdiv-rightboth">
                             <button type='button' className='e-btn middle high'>收款</button>
                         </div>

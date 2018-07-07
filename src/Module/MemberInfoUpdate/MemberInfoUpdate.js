@@ -40,7 +40,7 @@ export default class extends Component {
     }
     query(){
         console.log(this.state.recharge_number)
-        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.recharge_number}, (res, ver) => {
+        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.recharge_number}, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({recharge_number:res.result[0].card_number,
@@ -53,6 +53,8 @@ export default class extends Component {
                     user_type:res.result[0].user_type,
                     passwd:res.result[0].password
                 });
+            }else{
+                handle();
             }
         });
     }

@@ -264,7 +264,7 @@ export default class extends Component {
             tempChecked = this.state.checked[index] || [];
             console.log(tempChecked);
             return (
-                <div>
+                <div style={{background:'#ffffff'}}>
                 <div className="Takeclothesdetail-title">
                 <div className="Takeclothesdetail-title-left">
                 <div>订单号：{item.ordersn}</div>
@@ -318,6 +318,8 @@ export default class extends Component {
                     <div>价格: ￥{item.pay_amount}</div>
                 </div>                       
             </div>
+            <div style={{height:'10px',background:'#cce8ff',marginTop:'10px'}}
+            ></div>
             </div>
             
             );
