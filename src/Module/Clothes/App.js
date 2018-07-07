@@ -73,6 +73,9 @@ export default class extends Component {
     }
 
     componentDidMount() {
+        tool.KeyCode.listenEnter(this.phoneInput, this.tempUser);
+        tool.KeyCode.listenEnter(this.nameInput, this.tempUser);
+        tool.KeyCode.listenEnter(this.numberInput, this.tempUser);
         api.post('clothes', {token:token}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 let len = res.result.type.length;
@@ -550,9 +553,33 @@ export default class extends Component {
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-user'>
-                    <b>*</b>手机：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.phone} onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
-                    <b>*</b>姓名：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.name} onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
-                    卡号：<input type='text' className='e-input' style={{width:'100px'}} value={this.state.number} onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    <b>*</b>手机：
+                    <input 
+                        type='text' 
+                        className='e-input' 
+                        ref={input => this.phoneInput = input}
+                        style={{width:'100px'}} 
+                        value={this.state.phone} 
+                        onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                    />
+                    <b>*</b>姓名：
+                    <input 
+                        type='text' 
+                        className='e-input' 
+                        ref={input => this.nameInput = input}
+                        style={{width:'100px'}} 
+                        value={this.state.name} 
+                        onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                    />
+                    卡号：
+                    <input 
+                        type='text' 
+                        className='e-input' 
+                        ref={input => this.numberInput = input}
+                        style={{width:'100px'}} 
+                        value={this.state.number} 
+                        onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                    />
                     地址：<input type='text' className='e-input' style={{width:'160px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
                     <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
                     &emsp;

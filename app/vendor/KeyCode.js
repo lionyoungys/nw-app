@@ -76,11 +76,27 @@
      * @param {*function} callback 输入回调函数
      */
     k.listen = function(node, callback) {
-        if (node instanceof Node) {
+        if (node instanceof Node && 'function' === typeof callback) {
             node.onkeydown = this.onkeydown;
             node.onkeypress = this.onkeypress;
             node.onkeyup = this.onkeyup;
-            if ('function' === typeof callback) this.callback = callback;
+            this.callback = callback;
+        }
+    }
+    /**
+     * 键盘回车键监听
+     * @param {object} node 元素节点对象
+     * @param {function} callback 输入回调函数
+     */
+    k.listenEnter = function (node, callback) {
+        if (
+            'object' === typeof node
+            && 
+            node instanceof Node
+            &&
+            'function' === typeof callback
+        ) {
+            node.onkeydown = function(e) {'Enter' === e.code && callback();}
         }
     }
     k.onkeydown = function(e) {
