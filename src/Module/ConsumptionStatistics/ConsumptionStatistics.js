@@ -14,8 +14,9 @@ export default class extends Component {
         this.state={
             startdate: tool.date('Y-m-01'),
             enddate: tool.date('Y-m-d'),
-            user_total: '',
-            balance_total: '',
+            order_total: '0',
+            amount_total: '0',//应收
+            real_total: '0',//实收
             list: [],
             page: 1,
             count: 1,
@@ -28,14 +29,14 @@ export default class extends Component {
     query(page) { 
         console.log(page);
         page = page || this.state.page;
-        // 这里接口需要更改
-        api.post('balanceTotal', { token: 'token'.getData(), page:page, limit: this.limit }, (res, ver, handle) => {
+        api.post('consumeSta', { token: 'token'.getData(), page: page, limit: this.limit, start_time: this.state.startdate, end_time:this.state.enddate }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
-                if(res.result.list.length>0){
+                if(res.result.list.length > 0){
                     this.setState({ 
-                        user_total: res.result.user_total, 
-                        balance_total: res.result.balance_total, 
+                        order_total: res.result.order_total, 
+                        amount_total: res.result.amount_total, 
+                        real_amount: res.result.real_amount_total,
                         list: res.result.list, 
                         count: res.result.count, 
                         page: page,
@@ -46,11 +47,12 @@ export default class extends Component {
                         nodatas:true,
                         list:[],
                         count:1,
-                        user_total: '',
-                        balance_total: '',
+                        page:1,
+                        order_total: '0',
+                        amount_total: '0',
+                        real_amount:'0',
                     })
                 }
-                
             } else {
                 handle();
             }
@@ -58,14 +60,18 @@ export default class extends Component {
     }
     render() { 
         var list = this.state.list.map((item, index) => <tr key={'item' + index}>
-            <td>{index + 1 + (this.state.page - 1) * this.limit}</td>
-            <td>{item.card_number}</td>
-            <td>{item.card_name}</td>
-            <td>{item.balance}</td>
+            <td>{item.id}</td>
+            <td>{item.serialsn}</td>
+            <td>{item.work_number}</td>
+            <td>{item.amount}</td>
+            <td>{item.real_amount}</td>
+            <td>{item.discount}</td>
+            <td>{item.pay_type}</td>
             <td>{item.user_name}</td>
-            <td>{item.user_mobile}</td> 
-            <td>{item.balance}</td>        
+            <td>{item.user_mobile}</td>   
             <td>{item.time}</td>
+            <td>{item.state == 0? '否':'是'}</td>
+            <td>{item.join_state == 0 ? '否' : '是'}</td>    
         </tr>
         )       
         return ( 
@@ -77,20 +83,28 @@ export default class extends Component {
                         <div>结束日期：<input type="date" value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                     </div>
                     <button className="e-btn recharg-btn" onClick={()=>this.query(1)}>查询</button>
-                    <div id="balancestatistics-leiji">累计订单数：<b>{this.state.user_total}</b></div>
-                    <div id="balancestatistics-zengsong">累计订单总额：<b>{this.state.balance_total}元</b></div>
+                    
+                </div>
+                <div className='con-sta-total'>
+                    <div>累计订单数：<b>{this.state.order_total}</b></div>
+                    <div>合计应收金额：<b>¥{this.state.amount_total}元</b></div>
+                    <div>合计实收金额：<b>¥{this.state.real_total}元</b></div>
                 </div>
                 <table className='ui-table-base bal-sta-tab consun-tab'>
                     <thead>
                         <tr>
-                            <td></td>
-                            <td>订单号</td>
-                            <td>商品类型</td>
-                            <td>交易金额</td>
+                            <td>ID</td>
+                            <td>流水号/订单号</td>
+                            <td>数量</td>
+                            <td>应收金额</td>
+                            <td>实收金额</td>
+                            <td>折扣率</td>
+                            <td>收银类型</td>
                             <td>姓名</td>
-                            <td>手机号</td> 
-                            <td>卡余额</td>                               
+                            <td>手机号</td>                               
                             <td>交易时间</td>
+                            <td>上缴</td> 
+                            <td>交班</td> 
                         </tr>
                     </thead>
                     <tbody>

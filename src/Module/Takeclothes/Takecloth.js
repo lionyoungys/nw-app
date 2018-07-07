@@ -7,7 +7,7 @@ import Window from '../../UI/Window';
 import LayerBox from '../../UI/LayerBox';
 import Payment from '../../UI/Payment';
 import './Takeclothes.css';
-
+import Nodata from '../../UI/Nodata'
 const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
@@ -39,6 +39,7 @@ export default class extends Component {
             discount: card.discount || '',    //折扣
             time: card.time || '',    //售卡日期     
             current:null,
+            takeclothindex:null,
             merchant:{}
         }; 
         this.takeClothes=this.takeClothes.bind(this);
@@ -80,11 +81,11 @@ export default class extends Component {
         );
     }
     takeClothes(){
-        if(this.state.checked.length==0)
-        return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
+        // if(this.state.checked[this.state.current].length==0)
+        // return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
         let takeclothes= { 
             token:'token'.getData(),
-            ids:this.state.checked
+            ids:JSON.stringify(this.state.checked[this.state.takeclothindex])
         }
         console.log(takeclothes)
         api.post('takeItem',
@@ -92,7 +93,7 @@ export default class extends Component {
         , (res, ver) => {
                 if (ver && res) {
                     tool.ui.success({callback:(close) => {
-                        this.componentDidMount();
+                        this.takecloth();
                         close();
                     this.setState({show2:false})    
                     }});                                                                                         
@@ -118,7 +119,7 @@ export default class extends Component {
             this.state.checked[index] = [];
             for (var i = 0;i < len;++i) {
                 if (3 == this.state.list[index].item[i].status) {
-                    this.state.checked[index].push(this.state.list[index].item[i].id);
+                    this.state.checked[index].push(Number(this.state.list[index].item[i].id));
                 }
             }
         }
@@ -236,7 +237,7 @@ export default class extends Component {
         ,   tempChecked = this.state.checked[index] || []
         ,   pointer = id.inArray(tempChecked);
         if (-1 === pointer) {
-            tempChecked.push(id);
+            tempChecked.push(Number(id));
             this.state.checked[index] = tempChecked;
         } else {
             this.state.checked[index].splice(pointer, 1);
@@ -306,7 +307,7 @@ export default class extends Component {
                 <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == item.item.matchLen({status:3})} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
                     <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
-                    <button className="take-over" onClick={() => this.setState({show2:true})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
+                    <button className="take-over" onClick={() => this.setState({show2:true,takeclothindex:index})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
                     <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                     <div>欠款: ￥{item.debt}</div>
@@ -325,7 +326,7 @@ export default class extends Component {
                        <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
                     </div>  
                     <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
-                    {takeclothes}
+                    <div style={{maxHeight: '500px',overflowY: 'auto'}}>{takeclothes}</div>
                 {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
                 {
                     null !== this.state.current
@@ -360,6 +361,7 @@ export default class extends Component {
                     
                     </LayerBox>
                 }
+                  {this.state.nodatas&&<Nodata />}
                 </Window> 
         )
     }

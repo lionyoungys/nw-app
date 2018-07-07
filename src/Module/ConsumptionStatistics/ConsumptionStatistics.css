@@ -1,0 +1,36 @@
+.con-sta-total{
+    margin: 0px 13px 10px;
+    width: 874px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+}
+.con-sta-total div{
+    width: 33%;
+    height: 100%;
+    font-size: 13px;
+    color: black;
+    text-align: left;
+    float: left;
+}
+.con-sta-total div b{
+    font-size: 13px;
+    color: red;
+}
+.ui-table-base.bal-sta-tab.consun-tab{
+
+    max-height: 400px;
+}
+.ui-table-base.bal-sta-tab.consun-tab tbody{
+
+    max-height: 360px;
+}
+.ui-table-base.bal-sta-tab.consun-tab tr td:first-child{
+
+    min-width: 139px;
+    max-width: 139px;
+}
+.ui-table-base.bal-sta-tab.consun-tab thead tr td:first-child{
+
+    background: none;
+}

@@ -19,6 +19,9 @@
 #Customerquery-title > div{
     margin-top:16px;
 }
+#Customerquery-title div .ui-select-define{
+    background-color:#f9f9f9;
+}
 .Customerquery-title div span{
     width:90px;
     line-height:24px;
@@ -76,17 +79,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
      cursor: pointer;
     }
 .Customerquery-right button:hover{background:url(./img/e-btn-hover.png)}
-.Customerquery-right b{
-    display:block;
-    width:31px;
-    height:29px;
-    margin-left:12px;
-    float: left;
-    background:url(./img/.Customerquery-right.png);
-    background-size:31px 29px;
-    cursor: pointer;
-    margin-left: 50px;
-  }
 .Customerquery-query{float:left;margin-left: 19px;}
 .Customerquery-over{
      float:right;
@@ -187,4 +179,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:166px;
     min-width:166px;
     max-width:166px;
+}
+
+#cust-tab table thead th{
+    width:137px;
+    min-width:137px;
+    max-width:137px;
+}
+#cust-tab table thead th:first-child{
+    min-width:31px;
+    max-width:31px;
+    min-width:31px;
+}
+#cust-tab table tbody td{
+    width:137px;
+    min-width:137px;
+    max-width:137px;
+}
+#cust-tab table tbody td:first-child{
+    min-width:31px;
+    max-width:31px;
+    min-width:31px;
 }

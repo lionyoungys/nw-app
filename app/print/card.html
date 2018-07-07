@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <div class="t-c" onclick="_.print();">储值卡充值存根</div>
+    <div class="t-c" onclick="_.print();">会员卡充值存根</div>
     <div id="container">
         <div class="t-c">流水号:<span id="sn">45678795425454</span></div>
         充值日期:<span id="now">2018-02-09 15:44:09</span><br/>
@@ -20,16 +20,16 @@
         客户电话:<span id="phone">15011540794</span><br/>
         客户姓名:<span id="name">yanyunlong</span><br/>
         卡&emsp;&emsp;号:<span id="number">6957845124857478</span><br/>
-        卡内余额:&yen;<span id="balance">500.00</span>&emsp;折扣率:<span id="discount">7</span><br/>
+        折扣率:<span id="discount">70</span>%<br/>
         充值金额:&yen;<span id="recharge">500.00</span><br/>
         赠送金额:&yen;<span id="give">0.00</span><br/>
-        可用总额:&yen;<span id="total">1000.00</span>&emsp;店员:<span id="employee">管理员</span><br/>
+        卡内总额:&yen;<span id="total">1000.00</span>&emsp;店员:<span id="employee">管理员</span><br/>
         付款方式:<span id="gateway">现金</span>
         <i class="dashed"></i>
         本店地址:<span id="addr">dfdfdffdfdffdff</span><br/>
         查询电话:<span id="mphone">dfdfddfdfdffdfdf</span>
     </div>
-    <div class="t-c">储值卡充值回单</div>
+    <div class="t-c">会员卡充值回单</div>
     <div id="container2"></div>
 
     <script src="common.js"></script>
@@ -44,8 +44,7 @@
         _.inner('#phone', get.phone);
         _.inner('#name', get.name);
         _.inner('#number', get.number);
-        _.inner('#balance', get.balance);
-        _.inner('#discount', get.discount);
+        _.inner('#discount', (get.discount || 10) * 10);
         _.inner('#recharge', get.recharge);
         _.inner('#give', get.give);
         _.inner('#total', get.recharge.add(get.balance, get.give));

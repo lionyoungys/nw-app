@@ -166,11 +166,10 @@ export default class extends Component {
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>
-                      <b></b>
                       <button className="Customerquery-over" onClick={this.M1Read}>读卡</button>
                     </div>
                 </div>
-                <div className="Customerquery-tab cust-tab">
+                <div className="Customerquery-tab cust-tab" id="cust-tab">
                   <div className="Customerquery-tab-title">共记录<b>{this.state.count}</b>条</div>
                   <table border="0" cellSpacing="0" cellPadding="0">
                       <thead>

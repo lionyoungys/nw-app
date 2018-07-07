@@ -16,12 +16,103 @@ import Integral from'./Integral';
 export default class extends Component {
     constructor(props) {
         super(props);  
-        this.state={index:0};
-        this. handleClick = this.handleClick.bind(this);
+        this.state={
+            index:0,
+            list:[],
+            allComList:[],//所有商品的数组
+            searchList:[],
+            searchNum:'',//搜索的商品编号
+        };
+        this.handleClick = this.handleClick.bind(this);
+        this.query = this.query.bind(this);
+        this.deleteYes = this.deleteYes.bind(this);
+        this.add = this.add.bind(this);
+        this.sub = this.sub.bind(this);
         this.tab=['清洁','护理','配件','衣服','二手奢侈品','积分'];
         this.views = [<Clearing />, <Nursing />,<Accessories/>,<Clothes/>,<Luxury/>,<Integral/>];
                     
-    };  
+    };
+    //进入页面获取数据
+    componentDidMount(){
+        let done;
+        tool.ui.loading(handle => done = handle);
+        console.log('申请库存商品');
+        api.post('goodsList', {
+            token: 'token'.getData(),
+            page: 1,
+            limit: 1000,
+        }, (res, ver, handle) => {
+            console.log('申请数据');
+            done();
+            if (ver && res) {
+                console.log(res)
+                //数据处理
+                // this.setState({ list: res.result, allComList: res.result,typeArr()})
+            } else {
+                handle();
+            }
+        }, () => done());
+
+    }
+    query(e){
+
+        if (this.state.searchNum.length == 0) return tool.ui.error({
+            title: '提示', msg: '商品编号不能为空', button: '确定', callback: (close, event) => {
+                close();
+            }
+        });
+        if (this.state.list.length == 0) return tool.ui.error({
+            title: '提示', msg: '商品分类为空，需要刷新页面！', button: '确定', callback: (close, event) => {
+                this.componentDidMount();
+                close();
+            }
+        });
+        let id = this.state.searchNum;
+        let sel_index = id.inObjArray(this.state.allComList, 'id');
+        if (sel_index == -1) return tool.ui.error({
+            title: '提示', msg: '商品不在库中', button: '确定', callback: (close, event) => {
+                close();
+            }
+        });//没有在数组中
+        //从大数组找出具体数据
+        let search = this.state.allComList[sel_index];
+        let handleList = this.state.searchList;
+        let exit = false;
+        if (handleList.length > 0) {
+            for (let index = 0; index < handleList.length; index++) {
+                if (search.id == handleList[index].id) {
+                    exit = true;
+                    handleList[index].count += 1;
+                }
+            }
+        }
+        if (!exit) {//不存在
+            search.count =1;
+            handleList.push(search);
+        }
+        this.setState({ searchList: handleList });
+    }
+    //删除
+    deleteYes(e){
+        let index = e.target.dataset.index;
+        let handleList = this.state.searchList;
+        handleList.splice(index,1);
+        this.setState({ searchList: handleList });
+    }
+    //增加
+    add(indx) {
+        this.state.searchList[index].count +=1;
+        this.setState({ searchList: this.state.searchList });
+    }
+    //减少
+    sub(index) {
+
+        let count = this.state.searchList[index].count;
+        if (count > 1) {
+            this.state.searchList[index].count -=1; 
+            this.setState({ searchList: this.state.searchList });
+        }
+    }
     handleClick (e){
         this.setState({index:e.target.dataset.index});
     }
@@ -33,9 +124,18 @@ export default class extends Component {
                     className={this.state.index==index?'commoditysales-left-hover':null}
                     onClick={this.handleClick}
                 >{item}</span>
-        );            
+        );   
+        let searchList = this.searchList.map((item, index) =>
+            <tr key={'item' + index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.discount}</td>
+                <td>{item.price}</td>
+                <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.stock}</MathUI ></td>
+                <td data-index={index} onClick={this.deleteYes}>删除</td>
+            </tr> 
+        );         
         return (       
-        
             <Window title='商品销售' onClose={this.props.closeView}>
                <div className="commoditysales-div">                 
                   <div className="commoditysales-div-right">                     
@@ -52,151 +152,7 @@ export default class extends Component {
                                  </tr>
                              </thead>
                              <tbody>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr> 
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>                               
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-                                 <tr>
-                                    <td>235666666</td>
-                                    <td>裤子外套衬衫鞋袜子</td>
-                                    <td>0.3%</td>
-                                    <td>45</td>
-                                    <td><MathUI>2</MathUI></td>
-                                    <td>删除</td>
-                                 </tr>
-
+                                {searchList}
                              </tbody>
                          </table>
                       </div>
@@ -204,8 +160,8 @@ export default class extends Component {
                </div> 
                <div className="commoditysales-footerdiv">
                     <div className="commoditysales-right-top">
-                        <button className="e-btn commoditysales-right-btn">查询</button>
-                        <input type="text" className="commoditysales-right-text" placeholder="请扫描或输入衣物编码"/>
+                        <button className="e-btn commoditysales-right-btn" onClick = {this.query}>查询</button>
+                        <input type="text" className="commoditysales-right-text" placeholder="请输入/扫描商品编码" onChange={e =>this.setState({searchNum:e.target.value})}/>
                     </div>
                    <div className="commoditysales-div-left">
                       <div className="commoditysales-left-title">商品分类</div>
