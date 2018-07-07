@@ -67,7 +67,7 @@ export const topMenu = [
             {value:'营业统计', view:'Busines_stats', id: 35},
             {value:'经营明细', view:'operating_details', id: 36},
             {value:'营业分析', view:'charts', id: 37},
-            {value:'欠款明细', view:'Balance_detail', id: 38},
+            // {value:'欠款明细', view:'Balance_detail', id: 38},
             {value:'会员业务统计', view:'member_business_statistics', id: 39},
             {value:'会员分类统计', view:'vip_stats', id: 40},
             // {value:'会员消费统计', view:'member_consumption_statistics'},
