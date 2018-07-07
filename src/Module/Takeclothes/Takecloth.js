@@ -275,7 +275,7 @@ export default class extends Component {
         let order = null === this.state.current ? {} : this.state.list[this.state.current]
         ,   discount = this.state.payCard.discount || this.state.discount || 100
         ,   total_amount = order.debt || order.pay_amount || 0
-        ,   amount = order.amount || 0
+        ,   amount = order.pay_amount || 0
         ,   dis_amount = order.discount_amount || 0
         ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100)
         ,   tempChecked;
@@ -365,6 +365,7 @@ export default class extends Component {
                             discount:discount,
                             amount:amount,
                             dis_amount:dis_amount,
+                            balance:this.state.payCard.balance || this.state.balance || 0,
                             pay_amount:pay_amount
                         }}
                         callback={this.paymentCallback}
