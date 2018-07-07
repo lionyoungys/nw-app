@@ -113,3 +113,10 @@
 
 .clothall-tab tbody tr:nth-child(odd){background:#fff;}
 .clothall-tab tbody{max-height:214px;overflow-y:auto;display:block}
+
+#clo-que-tab thead tr td:first-child{
+    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    background-size:10px 10px;
+    background-position-x:26px;
+    background-position-y:12px;
+}

@@ -69,7 +69,7 @@ export default class extends Component {
                             <button className="e-btn managerquery_btn" onClick = {this.Operatingdetail}>查询</button> 
                 </div>  
                 <div className="Takeclothes-div-title">已为您找到<b>{this.state.list.length}</b>条数据</div>
-                    <div className="Takeclothes-tab Takeclothesdetail-tab">
+                    <div className="Takeclothes-tab Takeclothesdetail-tab" id="operating-div">
                         <table cellPadding="0" cellSpacing="0" border="0">
                            <thead>
                                <tr>

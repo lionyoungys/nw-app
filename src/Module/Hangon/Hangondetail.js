@@ -74,8 +74,7 @@ export default class extends Component {
         puton, (res, ver) => {
             if (ver) {
                 tool.ui.success({callback:(close) => {
-                    close();
-                    
+                    close();                    
                 }}); 
             }else{
                 tool.ui.error({msg:res.msg,callback:(close) => {

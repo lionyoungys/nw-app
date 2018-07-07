@@ -45,16 +45,7 @@ export default class extends Component {
                     allcount:res.result.total_count,
                     total_amount: res.result.total_amount, 
                     count: res.result.count,                   
-                });
-                if(res.result.list.status==3){
-                    this.setState({states:'清洗中'})
-                }else if(res.result.list.status==4){
-                    this.setState({states:'清洗完成'})
-                }else{
-                    this.setState({states:'退单中'})
-                }
-                   
-                
+                });  
             } else {
                 console.log(res);
                 handle();
@@ -84,7 +75,7 @@ export default class extends Component {
               <td>{item.raw_price}</td>
               <td>{item.sign}</td>
               <td>{item.discount_price}</td>
-              <td>{this.state.states}</td>
+              <td>{item.status=='3'?'未取走':item.status=='4'?'已取走':'已撤单'}</td>
               <td>{item.collect_time}</td>
               <td>{item.collect_time}</td>
               <td>{item.deal_time}</td>
