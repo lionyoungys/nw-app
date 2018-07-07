@@ -35,11 +35,13 @@ export default class extends Component {
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
             card:{},    //卡数据
+            payCard:{},
             update:false,    //用于判断衣物为添加还是修改
 
         };
         this.counter = 1;    //编码累加计数属性
         this.M1read = this.M1read.bind(this);    //读卡
+        this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
         this.add = this.add.bind(this);    //添加衣物
@@ -133,6 +135,16 @@ export default class extends Component {
                 addr:res.address,
                 card:res
             });
+        }
+        EventApi.M1Read(obj);
+    }
+    PAYM1read(value) {
+        let obj = {};
+        if ('string' === typeof value && '' != value) {
+            obj.number = value;
+        }
+        obj.callback = (res) => {
+            this.setState({payCard:res});
         }
         EventApi.M1Read(obj);
     }
@@ -459,12 +471,13 @@ export default class extends Component {
     }
     paymentCallback(obj) {
         if (null == this.state.oid) return;
-        if (0 == obj.gateway && null == this.state.cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let cid = this.state.payCard.id || this.state.cid;
+        if (0 == obj.gateway && null == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.state.cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
@@ -482,8 +495,7 @@ export default class extends Component {
         );
     }
     paymentClose() {
-        // this.print();
-        // this.props.closeView();
+        this.setState({payCard:{}});
         this.delOrder(() => this.setState({oid:null, show:0}));
     }
     handleClose() {this.setState({show:0, update:false})}
@@ -516,7 +528,7 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = '' == this.state.discount ? 100 : this.state.discount
+        ,   discount = this.state.payCard.discount || ('' == this.state.discount ? 100 : this.state.discount)
         ,   tempDiscount
         ,   html = this.state.data.map((obj, index) => {
             tempDiscount = obj.min_discount * 10;
@@ -691,12 +703,12 @@ export default class extends Component {
                             total_amount:total,
                             dis_amount:dis_amount,
                             amount:no_dis_amount,
-                            discount:discount,
+                            discount:(this.state.payCard.discount || this.state.discount || 100),
                             pay_amount:amount,
-                            balance:this.state.balance
+                            balance:(this.state.payCard.balance || this.state.balance || 0),
                         }}
-                        M1Read={this.M1read}
-                        query={this.M1read}
+                        M1Read={this.PAYM1read}
+                        query={this.PAYM1read}
                         callback={this.paymentCallback}
                     />
                 }
