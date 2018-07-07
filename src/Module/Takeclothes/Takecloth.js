@@ -41,7 +41,8 @@ export default class extends Component {
             time: card.time || '',    //售卡日期     
             current:null,
             takeclothindex:null,
-            merchant:{}
+            merchant:{},
+            payCard:{}
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
@@ -51,6 +52,7 @@ export default class extends Component {
         this.print = this.print.bind(this);
         this.takecloth = this.takecloth.bind(this);
         this.M1Read = this.M1Read.bind(this); 
+        this.PAYM1read = this.PAYM1read.bind(this);
     }; 
     takecloth() {
         if(this.state.number=='')
@@ -156,14 +158,25 @@ export default class extends Component {
         }
         EventApi.M1Read(obj);
     }
+    PAYM1read(value) {
+        let obj = {};
+        if ('string' === typeof value && '' != value) {
+            obj.number = value;
+        }
+        obj.callback = (res) => {
+            this.setState({payCard:res});
+        }
+        EventApi.M1Read(obj);
+    }
     paymentCallback(obj) {
         if (null == this.state.id) return;
-        if (0 == obj.gateway && (null == this.state.cid || '' == this.state.cid)) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let cid = this.state.payCard.id || this.state.cid;
+        if (0 == obj.gateway && (null == cid || '' == cid)) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:this.state.cid || '', oid:this.state.id, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.id, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
@@ -171,7 +184,8 @@ export default class extends Component {
                     this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
                     tool.ui.success({callback:close => {
                         close();
-                        this.props.closeView();
+                        this.setState({current:null, payCard:{}});
+                        this.takecloth();
                     }}); 
                 } else {
                     handle();
@@ -259,7 +273,7 @@ export default class extends Component {
     }
     render() {
         let order = null === this.state.current ? {} : this.state.list[this.state.current]
-        ,   discount = order.discount || 100
+        ,   discount = this.state.payCard.discount || this.state.discount || 100
         ,   total_amount = order.debt || order.pay_amount || 0
         ,   amount = order.amount || 0
         ,   dis_amount = order.discount_amount || 0
@@ -344,8 +358,8 @@ export default class extends Component {
                     null !== this.state.current
                     &&
                     <Payment 
-                        onClose={() => this.setState({current:null})} 
-                        M1Read={this.M1Read}
+                        onClose={() => this.setState({current:null, payCard:{}})} 
+                        M1Read={this.PAYM1read}
                         data={{
                             total_amount:total_amount,
                             discount:discount,
