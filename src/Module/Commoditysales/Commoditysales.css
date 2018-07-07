@@ -178,6 +178,9 @@
     width:520px;
     height:25px;   
 }
+.commoditysales-footerdiv-left table tbody tr:last-child{
+    border-bottom: 1px solid #8db2e3;
+}
 .commoditysales-footerdiv-left table tbody tr:nth-child(odd){background:#fff}
 .commoditysales-footerdiv-left table tbody tr:nth-child(even){background:#f0f5f9}
 .commoditysales-footerdiv-left table tbody tr td{

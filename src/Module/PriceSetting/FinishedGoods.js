@@ -125,8 +125,7 @@ export default class extends Component {
     typemanage(){
         this.setState({show1:true});
     }
-    handleClick(e){
-      
+    handleClick(e){    
         this.setState({index:e.target.dataset.index});
         console.log(this.state.index)
     } 

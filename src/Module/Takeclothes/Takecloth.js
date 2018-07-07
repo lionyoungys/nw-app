@@ -14,6 +14,7 @@ export default class extends Component {
         super(props);    
         let card = this.props.card || {}; 
         this.state = {
+            title:'none',
             show2:false,            
             count:'',
             list:[],
@@ -66,16 +67,18 @@ export default class extends Component {
                             list:res.result.list,
                             count:res.result.count,   
                             nodatas:false,     
-                            merchant:res.result.merchant
+                            merchant:res.result.merchant,
+                            title:'block'
                         })
                       console.log(res.result.list);
                     }else{
-                        this.setState({list:[],count:0,nodatas:true, merchant:res.result.merchant})
+                        this.setState({list:[],count:0,nodatas:true, merchant:res.result.merchant,title:'block'})
                     }
                     
                 }else{
-                    console.log(222)
-                    console.log(res.msg);
+                    tool.ui.error({title:'提示',msg:'请检查您输入的是否正确',button:'确定',callback:(close, event) => {
+                        close();
+                    }});
                 }
             }
         );
@@ -95,12 +98,15 @@ export default class extends Component {
                     tool.ui.success({callback:(close) => {
                         this.takecloth();
                         close();
-                    this.setState({show2:false,checked:[]})    
-                    }});                                                                                         
+                        this.setState({show2:false,checked:[]})    
+                    }}
+                   ); 
+                                                                                                          
                 }else{
                     tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
-                    }});                 
+                    }}); 
+                                    
                 }
             }
         );
@@ -331,7 +337,7 @@ export default class extends Component {
                        <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
                        <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
                     </div>  
-                    <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
+                    <div className="Takeclothes-div-title" style={{display:this.state.title}}>已为您找到<b>{this.state.count}</b>条数据</div>
                     <div style={{maxHeight: '500px',overflowY: 'auto'}}>{takeclothes}</div>
                 {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
                 {

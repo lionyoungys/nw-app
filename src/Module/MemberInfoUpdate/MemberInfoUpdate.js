@@ -166,8 +166,7 @@ export default class extends Component {
         <span className='memberinfoupdate_longdirection'>
            <span>地址:</span><input type='text' className='inputlongborder' value={this.state.address} onChange={e => this.setState({address:e.target.value})}/>
         </span>
-        </div>
-       
+        </div>       
         </div>
         <div>
             <div className='memberinfoupdate_button'>

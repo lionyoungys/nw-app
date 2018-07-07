@@ -48,7 +48,7 @@ export default class extends Component {
                     }}); 
                 }else{
                     console.log(res.msg);
-                    tool.ui.error({msg:res.msg,callback:(close) => {
+                    tool.ui.error({msg:'该格架可能存在重要信息不可删除',callback:(close) => {
                         close();
                     }});
                     
