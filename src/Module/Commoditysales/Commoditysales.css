@@ -146,6 +146,7 @@
     width:520px;
     max-height:240px;
     border:1px solid #acc6de;
+    height:240px;
 }
 .commoditysales-footerdiv-left table thead{
     width:520px;
@@ -215,3 +216,5 @@
 .commoditysales-button{margin:40px 9px}
 .commoditysales-button button{ cursor: pointer;}
 .commoditysales-footerdiv-right div.commoditysales-footerdiv-rightred{color:#f00}
+
+ 

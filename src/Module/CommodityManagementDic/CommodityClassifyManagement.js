@@ -150,13 +150,12 @@ export default class extends Component {
                     </div>
                 </Window>
                 }
-                {this.state.addshow&&<Window title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>
+                 {this.state.addshow&&<Window title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>
                     <div className='commodity_classify_management_right_bottom'>
                         <p>分类名称:</p>
                         <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
                         <button className='e-btn' onClick={()=>this.setState({addshow:false})}>取消</button>
                         <button className='e-btn' onClick={this.addYES}>保存</button>
-
                     </div>
                     </Window>
                  }

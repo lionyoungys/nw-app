@@ -44,8 +44,7 @@ export default class extends Component {
             name:this.state.name
     }, (res, ver,handle) => {
             if (ver && res) {
-                console.log(res)
-               
+                console.log(res)               
                 this.setState({name:'',addshow:false})
                 this.componentDidMount()
                 this.props.refresh();

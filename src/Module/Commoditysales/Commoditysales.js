@@ -1,6 +1,6 @@
 /**
  * 商品销售界面
- * @author  fanyerong
+ * @author  fanyerong&&ranchong
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
