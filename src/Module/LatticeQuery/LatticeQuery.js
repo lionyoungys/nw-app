@@ -5,13 +5,15 @@
 import React, { Component } from 'react';
 import './LatticeQuery.css';
 import Window from '../../UI/Window';
+import Nodata from '../../UI/Nodata';
 
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={
             grid:[],
-            index:0
+            index:0, 
+            nodatas:true,           
         }
         this.handleclick=this.handleclick.bind(this);
     };
@@ -21,7 +23,9 @@ export default class extends Component {
         api.post('grid', {
             token:'token'.getData(),
             gridPage:1,
-            gridLimit:200
+            gridLimit:200,
+            page:1,
+            limit:10000000,             
         }, (res, ver) => {
             done();
             if (ver && res) {
@@ -33,6 +37,14 @@ export default class extends Component {
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
+        
+
+        if(this.state.grid[e.target.dataset.index || e.target.parentNode.dataset.index].use_detail.length>0){
+            this.setState({nodatas:false})
+        }else{
+            this.setState({nodatas:true})
+        }
+        
     }
     render() {
         let grid = this.state.grid.map((item,index)=>
@@ -49,10 +61,9 @@ export default class extends Component {
             'undefined' !== typeof this.state.grid[this.state.index]
             && 
             'undefined' !== typeof this.state.grid[this.state.index].use_detail
-        ) {
-            use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>
-          
-                <span>{item.number}#{item.put_num}件</span>          
+        ) {           
+            use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>         
+                <span className={item.put_num>0?'span-div':null}>{item.number}#{item.put_num}件</span>          
             );
         }
         return (
@@ -77,6 +88,7 @@ export default class extends Component {
                     <ul>
                         <li>
                           {use_detail}
+                          {this.state.nodatas&&<Nodata />}
                          </li>
                     </ul> 
                 </div>    

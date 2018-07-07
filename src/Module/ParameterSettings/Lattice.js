@@ -144,15 +144,14 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                 console.log(111)    
-                tool.ui.success({callback:(close, event) => {
-                    
+                tool.ui.success({callback:(close, event) => {                   
                     this.setState({show1:false})
                     this.componentDidMount();
                     close();
                 }}); 
-            }else{
-                console.log(不成功);
-                tool.ui.error({msg:res.msg,callback:(close) => {
+            }else{                
+                tool.ui.error({msg:'至少修改一处,且必须是正整数',callback:(close) => {   
+                    this.setState({max_number:''})                 
                     close();
                 }});
                 

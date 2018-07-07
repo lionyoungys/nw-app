@@ -26,7 +26,7 @@ export default class extends Component {
             clothes:[],
             count:0,
             page:1,
-            nodatas:false,
+            nodatas:true,
         }
         this.limit = 15;
         this.query = this.query.bind(this)
@@ -128,7 +128,7 @@ export default class extends Component {
                     已为您找到
                     <label>{this.state.count}</label>条数据
                 </div>
-                <table className='ui-table-base clo-que-tab'>
+                <table className='ui-table-base clo-que-tab' id="clo-que-tab">
                     <thead>
                         <tr>
                             <td></td>
