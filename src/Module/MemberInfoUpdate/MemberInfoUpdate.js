@@ -73,7 +73,7 @@ export default class extends Component {
         return tool.ui.error({msg:'两次密码不一致,请重新输入',callback:(close) => {
             close();
         }});
-        api.post('modCardInfo', {
+        let params= {
             token:'token'.getData(),
             id:this.state.cid,
             user_name:this.state.user_name,
@@ -83,11 +83,18 @@ export default class extends Component {
             password:this.state.passwd2,
             address:this.state.address,
             user_type:this.state.user_type
-    }, (res, ver,handle) => {
+        }
+        console.log(params)
+        api.post('modCardInfo',params, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
+                handle();
+            }else{
+                tool.ui.error({msg:'必须修改一项内容',callback:(close) => {
+                    close();
+                }});
             }
-            handle();
+           
         }
         );
     }

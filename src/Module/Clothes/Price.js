@@ -12,7 +12,6 @@ export default class extends Component {
         this.state = {show:false, tempIndex:null};
         this.editor = this.editor.bind(this);
         this.callback = this.callback.bind(this);
-        console.log(this.props.price);
     }
 
     editor(e) {
@@ -57,7 +56,11 @@ export default class extends Component {
                     <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
                     {html}
                 </div>
-                {this.state.show && <Layer price={this.props.price} onClose={() => this.setState({show:false})} callback={this.callback}/>}
+                {
+                    this.state.show 
+                    && 
+                    <Layer json={this.props.data[this.state.tempIndex].json} price={this.props.price} onClose={() => this.setState({show:false})} callback={this.callback}/>
+                }
             </Window>
         );
     }
@@ -67,7 +70,13 @@ export default class extends Component {
 class Layer extends Component {
     constructor(props) {
         super(props);
-        this.state = {checked:[]};    //checked:[{id:string,name:string,value:string,discount:bool}]
+        var arr = [];
+        if (this.props.json) {
+            try {
+                arr = JSON.parse(this.props.json);
+            } catch (e) {}
+        }
+        this.state = {checked:arr};    //checked:[{id:string,name:string,value:string,discount:bool}]
         this.handleClick = this.handleClick.bind(this);
         this.handleChecked = this.handleChecked.bind(this);    //项目选中事件处理
         this.handleDiscount = this.handleDiscount.bind(this);    //打折处理
@@ -110,6 +119,7 @@ class Layer extends Component {
 
     render() {
         if ('undefined' === typeof this.props.price || !(this.props.price instanceof Array)) return null;
+
         let tempIndex, hasChecked
         ,   html = this.props.price.map(obj => {
             tempIndex = obj.id.inObjArray(this.state.checked, 'id');
@@ -121,7 +131,7 @@ class Layer extends Component {
                             type='checkbox' 
                             className='e-checkbox' 
                             checked={hasChecked ? 'checked' : ''} 
-                            onClick={this.handleChecked}
+                            onChange={this.handleChecked}
                         />&nbsp;{obj.name}
                     </div>
                     <div>

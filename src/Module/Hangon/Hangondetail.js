@@ -53,7 +53,7 @@ export default class extends Component {
         api.post('putNumber', {
             token:'token'.getData(),
             id:this.state.grid[this.state.index].id,  
-            limit:200
+            limit:200000
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -67,7 +67,7 @@ export default class extends Component {
         let puton={
             token:'token'.getData(),
             id:this.props.data.id,   
-            // put_id:this.state.clothnums[this.state.clothindex].id
+            put_id:this.state.clothnums[this.state.clothindex].id
         }
         console.log(puton)
         api.post('putOn',

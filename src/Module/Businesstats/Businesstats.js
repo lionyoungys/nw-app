@@ -49,7 +49,6 @@ export default class extends Component {
     render() {
         var list =  this.state.list.map((item,index) =>
         <tr key= {'item'+index}>
-             <td>{index+1}</td>
              <td>{item.serialsn}</td>
              <td>{item.operator}</td>
              <td>{item.work_number}</td>

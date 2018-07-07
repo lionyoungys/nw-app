@@ -137,10 +137,10 @@ export default class extends Component {
         if ('' == this.state.max_number) return tool.ui.error({msg:'请输入挂衣数量！',callback:close => close()});
         api.post('modGrid', {token:'token'.getData(),
         id:this.state.id,
-        name:this.state.name,
+        // name:this.state.name,
         max_number:this.state.max_number,
-        start_number:this.state.start_number,
-        end_number:this.state.end_number
+        // start_number:this.state.start_number,
+        // end_number:this.state.end_number
     }, (res, ver) => {
             if (ver && res) {
                 console.log(111)    

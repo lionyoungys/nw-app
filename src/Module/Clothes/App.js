@@ -303,7 +303,7 @@ export default class extends Component {
         this.state.data[obj.index].addition_price = obj.disPrice;
         this.state.data[obj.index].addition_no_price = obj.price;
         this.state.data[obj.index].json = obj.json;
-        this.setState({show:0, data:this.state.data})
+        this.setState({data:this.state.data})
     }
     showPrice(e) {this.setState({show:7,currentIndex:e.target.parentNode.dataset.index})}
     updatePrice(value) {
