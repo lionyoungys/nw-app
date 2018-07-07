@@ -95,7 +95,7 @@ export default class extends Component {
                     tool.ui.success({callback:(close) => {
                         this.takecloth();
                         close();
-                    this.setState({show2:false})    
+                    this.setState({show2:false,checked:[]})    
                     }});                                                                                         
                 }else{
                     tool.ui.error({msg:res.msg,callback:(close) => {
@@ -143,6 +143,10 @@ export default class extends Component {
                 recharge_number:res.recharge_number,
                 address:res.address,
             });
+            if(''!=res.recharge_number){
+                this.setState({number:res.recharge_number})
+                this.takecloth();
+            }
         }
         EventApi.M1Read(obj);
     }

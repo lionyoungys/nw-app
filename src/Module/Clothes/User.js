@@ -88,7 +88,7 @@ export default class extends React.Component {
         && 
         this.props.callback({
             name:data.user_name || '', 
-            number:data.card_number || '', 
+            number:data.recharge_number || '', 
             phone:data.user_mobile || '', 
             addr:data.address || '', 
             balance:data.balance || 0,

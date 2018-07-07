@@ -191,29 +191,30 @@ export default class extends Component {
         }); 
     }
     render() {
+
         let itemLists = this.state.itemLists.map((item,index)=>
         <span  key={'item'+index} 
         data-index={index} 
         className={this.state.index==index?'selected_row':null}
         onClick={this.handleClick}>{item.name}</span>
-    );
-    let itemList;
-    if(
-        'undefined' !== typeof this.state.itemLists[this.state.index]
-        && 
-        'undefined' !== typeof this.state.itemLists[this.state.index].goods
-    ) {
-        itemList = this.state.itemLists[this.state.index].goods.map((item,index)=>
-            <tr key={'item'+index}>
-                <td>{index+1}</td>
-                <td>{item.name}</td>
-                <td>{item.has_discount=='1'?'是':'否'}</td>
-                <td>{item.stock}</td>
-                <td>{item.price}</td>
-                <td> <b onClick={this.mod} data-write={index}>编辑</b>&nbsp;<i  onClick={this.delete} data-write={index}>删除</i></td>
-            </tr>
         );
-    }
+        let itemList;
+        if(
+            'undefined' !== typeof this.state.itemLists[this.state.index]
+            && 
+            'undefined' !== typeof this.state.itemLists[this.state.index].goods
+        ) {
+            itemList = this.state.itemLists[this.state.index].goods.map((item,index)=>
+                <tr key={'item'+index}>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.has_discount=='1'?'是':'否'}</td>
+                    <td>{item.stock}</td>
+                    <td>{item.price}</td>
+                    <td> <b onClick={this.mod} data-write={index}>编辑</b>&nbsp;<i  onClick={this.delete} data-write={index}>删除</i></td>
+                </tr>
+            );
+        }
         return (
         
             <div className='cleaning_price_all'>

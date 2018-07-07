@@ -6,31 +6,22 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import MathUI from '../../UI/MathUI';
 import './Commoditysales.css';
-import Clearing from'./Clearing';
-import Nursing from'./nursing';
-import Accessories from'./Accessories';
-import Clothes from'./Clothes';
-import Luxury from'./Luxury';
-import Integral from'./Integral';
 
 export default class extends Component {
     constructor(props) {
         super(props);  
         this.state={
             index:0,
-            list:[],
-            allComList:[],//所有商品的数组
-            searchList:[],
+            list: [],//所有数据
+            allComList: [],//所有商品的数组
+            searchList: [],
             searchNum:'',//搜索的商品编号
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
         this.deleteYes = this.deleteYes.bind(this);
         this.add = this.add.bind(this);
-        this.sub = this.sub.bind(this);
-        this.tab=['清洁','护理','配件','衣服','二手奢侈品','积分'];
-        this.views = [<Clearing />, <Nursing />,<Accessories/>,<Clothes/>,<Luxury/>,<Integral/>];
-                    
+        this.sub = this.sub.bind(this);                  
     };
     //进入页面获取数据
     componentDidMount(){
@@ -46,13 +37,19 @@ export default class extends Component {
             done();
             if (ver && res) {
                 console.log(res)
+                let arr = [];
+                for (let index = 0; index < res.result.length; index++) {
+                    console.log(res.result[index].goods);
+                    if (res.result[index].goods.length > 0) {
+                       arr = arr.concat(res.result[index].goods);  
+                    }  
+                }
                 //数据处理
-                // this.setState({ list: res.result, allComList: res.result,typeArr()})
+                this.setState({ list: res.result, allComList: arr})
             } else {
                 handle();
             }
         }, () => done());
-
     }
     query(e){
 
@@ -98,11 +95,13 @@ export default class extends Component {
         let handleList = this.state.searchList;
         handleList.splice(index,1);
         this.setState({ searchList: handleList });
+        console.log(this.state.searchList); 
     }
     //增加
-    add(indx) {
+    add(index) {
         this.state.searchList[index].count +=1;
         this.setState({ searchList: this.state.searchList });
+        console.log(this.state.searchList); 
     }
     //减少
     sub(index) {
@@ -112,26 +111,42 @@ export default class extends Component {
             this.state.searchList[index].count -=1; 
             this.setState({ searchList: this.state.searchList });
         }
+        console.log(this.state.searchList);
     }
     handleClick (e){
         this.setState({index:e.target.dataset.index});
     }
-    render() {   
-        let tabs=this.tab.map((item,index)=>
-                <span
-                    key={item} 
-                    data-index={index} 
+    render() {  
+       
+        let tabs=this.state.list.map((item,index)=>
+                <span key={'item'+index} data-index={index} 
                     className={this.state.index==index?'commoditysales-left-hover':null}
                     onClick={this.handleClick}
-                >{item}</span>
-        );   
-        let searchList = this.searchList.map((item, index) =>
+                >{item.name}</span>
+        );  
+        let itemList;
+        if (
+            'undefined' !== typeof this.state.list[this.state.index]
+            &&
+            'undefined' !== typeof this.state.list[this.state.index].goods
+        ) {
+            itemList = this.state.list[this.state.index].goods.map((item, index) =>
+                <tr key={'item' + index}>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.has_discount == '1' ? '90%' : '100%'}</td>
+                    <td>{item.stock}</td>
+                    <td>{item.price}</td>
+                </tr>
+            );
+        }  
+        let searchList = this.state.searchList.map((item, index) =>
             <tr key={'item' + index}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.discount}</td>
+                <td>{item.has_discount == '1' ? '90%' : '100%'}</td>
                 <td>{item.price}</td>
-                <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.stock}</MathUI ></td>
+                <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
                 <td data-index={index} onClick={this.deleteYes}>删除</td>
             </tr> 
         );         
@@ -169,30 +184,38 @@ export default class extends Component {
                          {tabs}
                       </div>
                     </div>
-                    {this.views[this.state.index]} 
-                   <div className="commoditysales-footerdiv-right">
-                      <div className="commoditysales-footerdiv-rightboth">总金额: ￥89.00</div>
-                      <div className="commoditysales-footerdiv-rightboth">折扣率: 5%</div>
-                      <div className="commoditysales-footerdiv-rightboth">总件数: 89</div>
-                      <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥89.00</div>                    
-                      <div className="commoditysales-footerdiv-rightboth">
-                          <button type='button' className='e-btn middle high'>收款</button>
-                      </div>
-                      <div className="commoditysales-button">
-                        <button type='button' className='e-btn' >开钱箱</button>&nbsp;
-                        <button type='button' className='e-btn' >充值</button>&nbsp;
-                        <button type='button' className='e-btn' >卡扣款</button>
-                     </div>                  
-                   </div>                           
+                    <div className="commoditysales-footerdiv-left">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>商品编号</th>
+                                    <th>商品名称</th>
+                                    <th>折扣率</th>
+                                    <th>库存</th>
+                                    <th>单价</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {itemList}
+                            </tbody>
+                        </table>
+                    </div>  
+                    <div className="commoditysales-footerdiv-right">
+                        <div className="commoditysales-footerdiv-rightboth">总金额: ￥89.00</div>
+                        <div className="commoditysales-footerdiv-rightboth">折扣率: 5%</div>
+                        <div className="commoditysales-footerdiv-rightboth">总件数: 89</div>
+                        <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥89.00</div>                    
+                        <div className="commoditysales-footerdiv-rightboth">
+                            <button type='button' className='e-btn middle high'>收款</button>
+                        </div>
+                        <div className="commoditysales-button">
+                            <button type='button' className='e-btn' >开钱箱</button>&nbsp;
+                            <button type='button' className='e-btn' >充值</button>&nbsp;
+                            <button type='button' className='e-btn' >卡扣款</button>
+                        </div>                  
+                    </div>                           
                </div>                           
             </Window>  
         );
     }
 }
-
-{/* <div className="commoditysales-footerbtn"><button>收银</button></div> 
-                   <div className="commoditysales-footerbtn commoditysales-footerbtnboth">
-                      <button className="e-btn">开钱箱</button>
-                      <button className="e-btn">充值</button>
-                      <button className="e-btn">卡扣款</button>
-</div>  */}
