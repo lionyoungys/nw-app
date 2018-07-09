@@ -62,7 +62,8 @@ export default class extends Component {
         13 == (e.keyCode || e.which) && this.query();
     }
     render() {
-        let V = null === this.state.clickNum ? null : this.router[this.state.clickNum];
+        let V = null === this.state.clickNum ? null : this.router[this.state.clickNum]
+        ,   user = this.state.user_info[this.state.index] || {};
         var userinfo=this.state.user_info.map((item,index) => 
         <tr key={'item'+index} data-index={index} onClick={this.handleclick} id={this.state.index==index?'selecttr':null}>
             <td>{item.mname}</td>
@@ -113,18 +114,18 @@ export default class extends Component {
                 V && 
                 <V 
                     data={{
-                        cardNumber:this.state.user_info[this.state.index].card_number,
-                        discount:this.state.user_info[this.state.index].discount,
-                        user_name:this.state.user_info[this.state.index].user_name,
-                        balance:this.state.user_info[this.state.index].balance,
-                        user_mobile:this.state.user_info[this.state.index].user_mobile,
-                        card_name:this.state.user_info[this.state.index].card_name,
-                        recharge_number:this.state.user_info[this.state.index].recharge_number,
-                        id:this.state.user_info[this.state.index].id,
-                        card_id:this.state.user_info[this.state.index].card_id,
-                        mname:this.state.user_info[this.state.index].mname,
-                        mid:this.state.user_info[this.state.index].mid,
-                        made_price:this.state.user_info[this.state.index].made_price
+                        cardNumber:user.card_number,
+                        discount:user.discount,
+                        user_name:user.user_name,
+                        balance:user.balance,
+                        user_mobile:user.user_mobile,
+                        card_name:user.card_name,
+                        recharge_number:user.recharge_number,
+                        id:user.id,
+                        card_id:user.card_id,
+                        mname:user.mname,
+                        mid:user.mid,
+                        made_price:user.made_price
                     }} 
                     refresh={this.query}
                     onClose={() => this.setState({ clickNum: null})}
