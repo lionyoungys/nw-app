@@ -1,6 +1,6 @@
 /**
  * 挂失 补换卡
- * @author ranchong
+ * @author ranchong && WangJun && Edwin Young
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
@@ -59,8 +59,7 @@ export default class extends Component {
         this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
     }
     onKeyPress(e){
-        console.log(e.keyCode)
-        e.keyCode === 0 && this.query()
+        13 == (e.keyCode || e.which) && this.query();
     }
     render() {
         let V = null === this.state.clickNum ? null : this.router[this.state.clickNum];
