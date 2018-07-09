@@ -10,11 +10,12 @@ import LayerBox from '../UI/LayerBox';
 import SelectSearch from '../UI/SelectSearch';
 import Select from '../UI/Select';
 import Page from '../UI/Page';
+import {UpdateCard} from '../UI/Payment';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show:false, show2:false}
+        this.state = {show:false, show2:false,updateCardShow:false}
         this.Equals = new tool.Equals({key:[1,2], value:{date:2, data:{ky:'cc'}}, dd:0});
     }
     ask() {
@@ -74,6 +75,7 @@ export default class extends React.Component {
             <Window title='测试窗口' onClose={this.props.closeView} width='600' height='600'>
                 正常按钮样式：
                 <button type='button' className='e-btn'>确认</button>
+                <button type='button' className='e-btn' onClick={() => this.setState({updateCardShow:true})}>补卡确认</button>
                 <button type='button' className='e-btn middle'>确认</button>
                 <button type='button' className='e-btn middle high'>确认</button>
                 <button type='button' className='e-btn large'>确认</button>
@@ -154,9 +156,9 @@ export default class extends React.Component {
                         onClick={() => this.setState({show2:false})}
                         onCancel={() => this.setState({show2:false})}
                         hasCancel={true}
-                        
                     ></LayerBox>
                 }
+                {this.state.updateCardShow && <UpdateCard onClose={() => this.setState({updateCardShow:false})}/>}
            </Window>
         );
     }

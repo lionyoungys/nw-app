@@ -2,6 +2,8 @@
 node_modules
 app/node_modules
 src/Api.js
+app/main.js
+app/login.js
 .svn
 *.ldb
 *.btf

@@ -336,3 +336,129 @@ export class Recharge extends Component {
         );
     }
 }
+
+/**
+ * 补换卡支付弹窗
+ * @param {object} data {type:卡类型,discount:折扣率,made_price:制卡费,amount:补换卡应收金额}
+ * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,[authcode:authcode]}
+ */
+export class UpdateCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {gateway:1,authCode:['','','',''], amount:''};
+        this.input = [];
+        this.handleGateway = this.handleGateway.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.setAuthCode = this.setAuthCode.bind(this);
+        this.onConfirm = this.onConfirm.bind(this);
+    }
+
+    componentDidMount() {
+        this.input[3].onkeydown = ( e => {'Enter' === e.code && this.onConfirm()} )
+    }
+
+    handleGateway(e) {
+        let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
+        this.setState({gateway:gateway});
+    }
+    handleChange(e) {
+        let value = e.target.value;
+        !isNaN(value) && this.setState({amount:value});
+    }
+
+    setAuthCode(e) {
+        let value = e.target.value,
+            index = Number(e.target.dataset.index),
+            len = value.length;
+        (3 !== index && 4 === len) && this.input[index + 1].focus();
+        if (( 3 !== index && 4 >= len ) || ( 3 === index && 6 >= len )) {
+            this.state.authCode[index] = value;
+            this.setState({authCode:this.state.authCode});
+        }
+    }
+
+    onConfirm() {
+        if ('function' !== typeof this.props.callback) return;
+        let authCode = this.state.authCode
+        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0)};
+        if (1 == obj.gateway) {
+            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount || 0) > obj.amount) return;
+        } else {
+            if (
+                4 === authCode[0].length && !isNaN(authCode[0])
+                &&
+                4 === authCode[1].length && !isNaN(authCode[1])
+                &&
+                4 === authCode[2].length && !isNaN(authCode[1])
+                &&
+                6 === authCode[3].length && !isNaN(authCode[1])
+            ) {
+                obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
+            } else {
+                return;
+            }
+        }
+        this.props.callback(obj);
+    }
+
+    render() {
+        let data = this.props.data || {}
+        ,   amount = data.amount || 0
+        ,   made_price = data.made_price || 0
+        ,   total = amount.add(made_price)
+        ,   authCode = this.state.authCode
+        ,   gateway = this.state.gateway;
+        return (
+            <Window title='收银' width='632' height='360' onClose={this.props.onClose}>
+                <div className='ui-payment-update-card'>
+                    <div><span>卡类型：</span>{data.type}</div>
+                    <div><span>折扣率：</span>{data.discount || '100'}%</div>
+                    <div><span>制卡费：</span>{made_price}</div>
+                </div>
+                <div className='ui-payment-title2'>收款方式</div>
+                <div className='ui-payment-pay'>
+                    <div className='ui-payment-gateway'>
+                        <div className={'e-fieldset' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}>
+                            <img src='img/e-icon-cash.png'/>&nbsp;&nbsp;现金
+                        </div>
+                        <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} data-gateway='2' onClick={this.handleGateway}>
+                            <img src='img/e-icon-wechat.png'/>&nbsp;&nbsp;微信
+                        </div>
+                        <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} data-gateway='3' onClick={this.handleGateway}>
+                            <img src='img/e-icon-ali.png'/>&nbsp;&nbsp;支付宝
+                        </div>
+                    </div>
+                    <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-cash'>
+                            实收金额：<input type='input' ref={input => {1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                        </div>
+                    </div>
+                    <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                        <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
+                        <input 
+                            type='text' 
+                            className='e-input' 
+                            value={authCode[0]} 
+                            onChange={this.setAuthCode} 
+                            data-index='0' 
+                            ref={input => {
+                                this.input[0] = input;
+                                (2 == gateway || 3 == gateway) && authCode[0].length < 4 && tool.is_object(input) && input.focus();
+                            }}
+                        />
+                        <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
+                        <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
+                        <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
+                    </div>
+                    <div className='ui-payment-amount' style={{paddingRight:'238px'}}>
+                        <div>应收：<span>&yen;{total}</span></div>
+                        <div>找零：<span>&yen;{'' == this.state.amount ? 0 : this.state.amount.subtract(total)}</span></div>
+                    </div>
+                </div>
+                <div className='ui-payment-confirm'>
+                    <button type='button' className='e-btn' onClick={this.onConfirm}>立即收款</button>
+                </div>
+            </Window>
+        );
+    }
+}

@@ -31,6 +31,7 @@ export default class extends Component {
         this.query=this.query.bind(this);
         this.handleclick=this.handleclick.bind(this);
         this.hasUser = this.hasUser.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
   }
     hasUser() {return (this.state.user_info.length - 1) >= this.state.index}
     query(){
@@ -39,7 +40,7 @@ export default class extends Component {
         return   tool.ui.error({msg:'至少输入一个参数',callback:(close) => {close();}});
         let pramas = {
             token: 'token'.getData(),
-            cardNumber: this.state.recharge_number,
+            recharge_number: this.state.recharge_number,
             user_name: this.state.user_name,
             user_mobile: this.state.user_mobile,
             limit: 1000,
@@ -56,6 +57,10 @@ export default class extends Component {
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
+    }
+    onKeyPress(e){
+        console.log(e.keyCode)
+        e.keyCode === 0 && this.query()
     }
     render() {
         let V = null === this.state.clickNum ? null : this.router[this.state.clickNum];
@@ -75,9 +80,9 @@ export default class extends Component {
             <div>
                 <div className="change_card_date">
                     <div className="change_card_date_left">
-                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})} /></div>
-                        <div>姓名：<input type="text" value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})}/></div>
-                        <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/></div>
+                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                        <div>姓名：<input type="text" value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                        <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})} onKeyPress={this.onKeyPress}/></div>
                     </div>
                     <button type='button' className='e-btn ' onClick={this.query}>查询</button>
                 </div>               

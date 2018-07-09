@@ -344,6 +344,7 @@
     font-weight: bold;
 }
 .ui-payment-title2{height: 32px;line-height: 32px}
+.ui-payment-update-card,
 .ui-payment-order{
     display: -webkit-flex;
     display: flex;
@@ -355,11 +356,20 @@
     border: 1px solid #8db2e3;
     font-size: 12px;
 }
+.ui-payment-update-card{
+    height: auto;
+    margin: 10px 10px 0;
+}
+.ui-payment-update-card>:first-child,
 .ui-payment-order>:first-child{width: 206px}
+.ui-payment-update-card>:nth-child(2),
 .ui-payment-order>:nth-child(2){width: 205px;border-left: 1px solid #8db2e3;border-right: 1px solid #8db2e3}
+.ui-payment-update-card>:nth-child(3),
 .ui-payment-order>:nth-child(3){width: 192px}
+.ui-payment-update-card>div,
 .ui-payment-order>div>div{display: -webkit-flex;display: flex}
 .ui-payment-order>div>:first-child{margin-bottom: 6px}
+.ui-payment-update-card>div>span,
 .ui-payment-order>div>div>span{
     color: #063781;
     width: 104px;
