@@ -117,8 +117,10 @@ export default class extends Component {
                         card_name:this.state.user_info[this.state.index].card_name,
                         recharge_number:this.state.user_info[this.state.index].recharge_number,
                         id:this.state.user_info[this.state.index].id,
+                        card_id:this.state.user_info[this.state.index].card_id,
                         mname:this.state.user_info[this.state.index].mname,
-                        mid:this.state.user_info[this.state.index].mid
+                        mid:this.state.user_info[this.state.index].mid,
+                        made_price:this.state.user_info[this.state.index].made_price
                     }} 
                     refresh={this.query}
                     onClose={() => this.setState({ clickNum: null})}

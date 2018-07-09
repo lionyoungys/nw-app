@@ -141,9 +141,7 @@ export default class extends Component {
         let listdetail = this.state.listdetail.map((item,index)=>
         <tr key={'itemdetail'+index}>
             <td>{index+1}</td>
-            <td>{item.serialsn}</td>     
-            <td>{item.mname}</td>      
-            <td>{item.operator}</td>
+            <td>{item.serialsn}</td>                      
             <td>{item.operator}</td>
             <td>{item.work_number}</td>
             <td>{item.amount}</td>
@@ -216,8 +214,7 @@ export default class extends Component {
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>流水号</th>
-                                        <th>商户简称</th>
+                                        <th>流水号</th>                                       
                                         <th>店员姓名</th>
                                         <th>衣物件数</th>
                                         <th>金额</th>
