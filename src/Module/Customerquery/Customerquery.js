@@ -106,7 +106,7 @@ export default class extends Component {
         var index = e.target.dataset.index || e.target.parentNode.dataset.index;
         api.post('userPayInfo', {
             token:token,
-            recharge_number:this.state.list[this.state.index].recharge_number,
+            recharge_number:this.state.list[this.state.index].recharge_number||'',
             user_mobile:this.state.list[this.state.index].user_mobile,
             user_name:this.state.list[this.state.index].user_name,
             // page:pagedetail,
@@ -129,7 +129,7 @@ export default class extends Component {
     render() {   
         let list=this.state.list.map((item,index)=>
         <tr onClick = {this.handleClick} data-index={index} key={'item'+index}>
-            <td></td>
+            <td>{index+1}</td>
             <td >{item.recharge_number}</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>
@@ -140,13 +140,15 @@ export default class extends Component {
         );
         let listdetail = this.state.listdetail.map((item,index)=>
         <tr key={'itemdetail'+index}>
-            <td></td>
-            <td>{item.serialsn}</td>           
+            <td>{index+1}</td>
+            <td>{item.serialsn}</td>     
+            <td>{item.mname}</td>      
+            <td>{item.operator}</td>
             <td>{item.operator}</td>
             <td>{item.work_number}</td>
             <td>{item.amount}</td>
             <td>{item.real_amount}</td>
-            <td>{item.discount}</td>
+            <td>{item.discount}%</td>
             <td>{item.pay_type}</td>
             <td>{item.time}</td>
             <td>{item.recharge_number}</td>
@@ -199,9 +201,9 @@ export default class extends Component {
                             <div>卡号：<span>{this.state.list[this.state.index].recharge_number}</span></div>
                             <div>姓名：<span>{this.state.list[this.state.index].user_name}</span></div>
                             <div>手机号：<span>{this.state.list[this.state.index].user_mobile}</span></div>
-                            <div>发卡店：<span>{this.state.list[this.state.index].recharge_number}</span></div>
+                            <div>发卡店：<span>{this.state.list[this.state.index].mname}</span></div>
                             <div>卡类型：<span>{this.state.list[this.state.index].card_name}</span></div>
-                            <div>折扣率：<span>{this.state.list[this.state.index].discount}</span></div>
+                            <div>折扣率：<span>{this.state.list[this.state.index].discount}%</span></div>
                             <div>余额：<span>{this.state.list[this.state.index].balance}</span></div>
                             <div>发卡时间：<span>{this.state.list[this.state.index].time}</span></div>
                             <div>性别：<span>{this.state.list[this.state.index].sex}</span></div> 

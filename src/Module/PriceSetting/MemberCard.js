@@ -146,7 +146,7 @@ export default class extends Component {
         <td>{item.price}</td>
         <td>{item.give_price}</td>
         <td>{item.made_price}</td>
-        <td>{item.discount}</td>
+        <td>{item.discount}%</td>
         <td>  <b onClick={this.mod} data-write={index}>修改</b><i  onClick={this.delete} data-write={index}>删除</i></td>
 </tr>
     );

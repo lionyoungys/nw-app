@@ -91,3 +91,6 @@
 #clo-que-tab{
    height:365px;
 }
+#clo-que-tab tbody tr:last-child{
+    border-bottom: 1px solid #8db2e3;
+}

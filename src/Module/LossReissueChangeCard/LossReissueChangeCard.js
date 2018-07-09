@@ -75,7 +75,7 @@ export default class extends Component {
             <div>
                 <div className="change_card_date">
                     <div className="change_card_date_left">
-                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/></div>
+                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})} /></div>
                         <div>姓名：<input type="text" value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})}/></div>
                         <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/></div>
                     </div>
@@ -101,7 +101,7 @@ export default class extends Component {
                 <div className='bothpages-btn-part'>
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'LossReport' })}>挂失</button>
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'RemoveLossCard' })}>解除挂失</button>
-                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ChangeCard' })}>换卡</button>
+                    {/* <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ChangeCard' })}>换卡</button> */}
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
                 </div>
             </div>

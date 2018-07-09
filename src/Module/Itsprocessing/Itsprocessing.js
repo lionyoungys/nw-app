@@ -91,36 +91,176 @@ export default class extends Component {
             </div>
         )
        return (             
-            <Window title='撤单处理' onClose={this.props.closeView} width="630" height="510">   
+            <Window title='撤单处理' onClose={this.props.closeView} width="902" height="626">   
                 <div className="Deliverywarning-title Itsprocessing-title">
-                  <span>衣物编码:</span>
+                  <span>订单号/流水号:</span>
                   <input type="text" className='e-input its-pro-input'/> 
-                   <button className="e-btn" onClick={this.searchOrder}>查询</button>
-                   <button className="e-btn" onClick={this.doCompensate}>确定</button>
-                   <button className="e-btn" onClick={this.props.closeView}>退出</button>
+                   <button className="e-btn" onClick={this.searchOrder}>查询</button>                  
                 </div>  
                 <div className="Itsprocessing-count">
                    <div className="Itsprocessing-count-left">
-                       <div className="Itsprocessing-count-title">收进衣物</div>
-                       <div className="Itsprocessing-count-take">
-                           {list_left}                        
+                       <div className="Itsprocessing-count-title">收进衣物<span>共<b>23</b>件</span></div>
+                       <div className="Itsprocessing-count-take ">
+                            <table className='ui-table-base sing-tab'>
+                                <thead>
+                                    <tr>
+                                        
+                                        <td>衣物编码</td>
+                                        <td>衣物名称</td>
+                                        <td>颜色</td>
+                                        <td>价格</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>  
+                            </table>                      
                        </div>                      
                     </div>
                     <div className="Itsprocessing-count-transfer">
-                       <span onClick={() => this.handleAllArr(1)}></span>
-                       <span onClick={() => this.handleAllArr(2)}></span>
+                       <span onClick={() => this.handleAllArr(1)}><a title="翻转"></a></span>
+                       <span onClick={() => this.handleAllArr(2)}><a title="翻转1"></a></span>
                     </div>
                     <div className="Itsprocessing-count-left  Itsprocessing-count-right">
-                       <div className="Itsprocessing-count-title">待退衣物</div>
+                       <div className="Itsprocessing-count-title">待退衣物<span>共<b>23</b>件</span></div>
                        <div className="Itsprocessing-count-take">
-                           {list_right}                         
+                            <table className='ui-table-base sing-tab'>
+                                <thead>
+                                    <tr>
+                                        
+                                        <td>衣物编码</td>
+                                        <td>衣物名称</td>
+                                        <td>颜色</td>
+                                        <td>价格</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>  
+                            </table>                             
                        </div>                       
                     </div>
                 </div> 
                 <div className="Itsprocessing-footer">
-                    <div className="Itsprocessing-footer-title">退单原因</div>
-                    <textarea className="Itsprocessing-footer-text" onChange={value => this.setState({ cause: value })}></textarea>
+                  <div className="Itsprocessing-footer-left">                     
+                      <span>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={value => this.setState({ cause: value })}></textarea>
+                  </div>                 
                 </div> 
+                <div className="Itsprocessing-footer-div">
+                   <span>退款金额：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span>
+                </div>
+                <div className="Itsprocessing-footer-div">
+                   <span>卡退款：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span><b className="no-save">取消</b><b className="sure-save">确定</b>
+                </div>
             </Window> 
            
         );

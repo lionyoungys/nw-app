@@ -12,43 +12,6 @@ import './main.css';
 import './UI/base.css';
 
 EventApi.win.showDevTools();
-//权限设置
-var auth = 'auth'.getData()
-,   is_root = 'is_root'.getData();
-if (1 != is_root) {
-    try {
-        var authArr = JSON.parse(auth);
-    } catch (e) {
-        authArr = [];
-    }
-    var topMenuLen = topMenu.length
-    ,   navLen = nav.length
-    ,   leftMenuLen = leftMenu.length
-    ,   i
-    ,   tempLen
-    ,   j;
-    for (i = 0;i < topMenuLen;++i) {
-        if (999999 != topMenu[i].id && -1 == topMenu[i].id.inArray(authArr)) {
-            topMenu.splice(i, 1);
-        } else {
-            tempLen = topMenu[i].options.length;
-            for (j = 0;j < tempLen;++j) {
-                if (999999 != topMenu[i].options[j].id && -1 == topMenu[i].options[j].id.inArray(authArr)) {
-                    topMenu[i].options.splice(j, 1);
-                }
-            }
-        }
-    }
-    for (i = 0;i < navLen;++i) {
-        999999 != nav[i].id && -1 == nav[i].id.inArray(authArr) && nav.splice(i, 1);
-    }
-    for (i = 0;i < leftMenuLen;++i) {
-        tempLen = leftMenu[i].options.length;
-        for (j = 0;j < tempLen;++j) {
-            999999 != leftMenu[i].options[j].id && -1 == leftMenu[i].options[j].id.inArray(authArr) && leftMenu[i].options[j].splice(j, 1);
-        }
-    }
-}
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -91,7 +54,7 @@ class Main extends Component {
             if ('undefined' !== typeof e.param) param = e.param;
             if ('string' === typeof e.event) eventName = e.event
         }
-        if (eventName) {    //若为事件处理而非跳转视图,则处理事件
+        if (eventName && 'function' === typeof EventApi[eventName]) {    //若为事件处理而非跳转视图,则处理事件
             EventApi[eventName]();
         } else {
             null !== view && this.state.view !== view && this.setState({view:view,param:param});

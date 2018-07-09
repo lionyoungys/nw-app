@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import MathUI from '../../UI/MathUI';
+import Deduct from '../Clothes/Deduct';
+import Recharge from '../Recharge/App';
 import './Commoditysales.css';
 
 export default class extends Component {
@@ -16,18 +18,19 @@ export default class extends Component {
             allComList: [],//所有商品的数组
             searchList: [],
             searchNum:'',//搜索的商品编号
-
+            show:false,
             amount:'0',//总件数
             total:'0',//总金额
             discount:'100%',//折扣率
             disTotal:'0',//折后总价
-            
+            rechargeShow:false,
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
         this.deleteYes = this.deleteYes.bind(this);
         this.add = this.add.bind(this);
-        this.sub = this.sub.bind(this);                  
+        this.sub = this.sub.bind(this);   
+        this.compute = this.compute.bind(this);             
     };
     //进入页面获取数据
     componentDidMount(){
@@ -45,7 +48,7 @@ export default class extends Component {
                 console.log(res)
                 let arr = [];
                 for (let index = 0; index < res.result.length; index++) {
-                    console.log(res.result[index].goods);
+                    // console.log(res.result[index].goods);
                     if (res.result[index].goods.length > 0) {
                        arr = arr.concat(res.result[index].goods);  
                     }  
@@ -103,14 +106,14 @@ export default class extends Component {
         handleList.splice(index,1);
         this.setState({ searchList: handleList });
         this.compute();
-        console.log(this.state.searchList); 
+        // console.log(this.state.searchList); 
     }
     //增加
     add(index) {
         this.state.searchList[index].count +=1;
         this.setState({ searchList: this.state.searchList });
         this.compute();
-        console.log(this.state.searchList); 
+        // console.log(this.state.searchList); 
     }
     //减少
     sub(index) {
@@ -121,22 +124,20 @@ export default class extends Component {
             this.setState({ searchList: this.state.searchList });
             this.compute();
         }
-        console.log(this.state.searchList);
+        // console.log(this.state.searchList);
     }
+     
     //计算总件数 总金额
     compute(){
 
         if (this.state.searchList.length == 0) return this.setState({ amount: '0', total:'0', disTotal: '0' });;
-        let count = this.state.searchList.addKeyInArray('count');
-        let total = 0;
+        var count = this.state.searchList.addKeyInArray('count');
+        var total = 0;
         for (let index = 0; index < this.state.searchList.length; index++) {
-           total += this.state.searchList[index].price * this.state.searchList[index].count;
+           total +=this.state.searchList[index].price * this.state.searchList[index].count;
         }
-        let distotal = total * parseFloat(this.state.discount)/100;
-        total = Math.floor(total * 1000) / 1000;//100会出错 个别 10.2
-        distotal = Math.floor(distotal * 1000) / 1000;
-        this.setState({ amount: count, total: total, disTotal: distotal});
-        console.log(this.state.total, this.state.amount, this.state.disTotal);
+        var distotal = total * parseFloat(this.state.discount)/100;
+        this.setState({ amount: count.toString(), total: total.toDecimal2(), disTotal: distotal.toDecimal2()});
     }
     handleClick (e){
         this.setState({index:e.target.dataset.index});
@@ -234,12 +235,14 @@ export default class extends Component {
                             <button type='button' className='e-btn middle high'>收款</button>
                         </div>
                         <div className="commoditysales-button">
-                            <button type='button' className='e-btn' >开钱箱</button>&nbsp;
-                            <button type='button' className='e-btn' >充值</button>&nbsp;
-                            <button type='button' className='e-btn' >卡扣款</button>
+                            <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
+                            <button type='button' className='e-btn' onClick={() => this.setState({rechargeShow:true})}>充值</button>&nbsp;
+                            <button type='button' className='e-btn' onClick={() => this.setState({show:true})} >卡扣款</button>
                         </div>                  
                     </div>                           
-               </div>                           
+               </div> 
+                {this.state.show && <Deduct callback={() => this.setState({show: false})} onClose={() => this.setState({show:false})}/>}    
+                {this.state.rechargeShow && <Recharge closeView={() => this.setState({rechargeShow:false})}/>}
             </Window>  
         );
     }

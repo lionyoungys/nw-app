@@ -1,18 +1,18 @@
 //顶部菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
-export const topMenu = [
+const topMenu = [
     {
         value:'前台业务', 
         id :1,
         options:[
             {value:'收衣', view:'clothes', id: 7},
-            { value: '上挂', view: 'hangon', id: 8},           
-            { value: '取衣', view: 'take_clothes', id: 9},
-            { value: '商品销售', view: 'commodity_sales', id: 10},
+            {value: '上挂', view: 'hangon', id: 8},           
+            {value: '取衣', view: 'take_clothes', id: 9},
+            {value: '商品销售', view: 'commodity_sales', id: 10},
             // {value:'欠款补交', view:'debt_pay',id:10},
-            { value: '交期预警', view: 'delivery_warning', id: 11},
-            { value: '撤单处理', view: 'its_processing', id: 12},
-            { value: '赔付', view: 'pay', id: 13},
-            { value: 'demo', view: 'demo', id: 999999},
+            {value: '交期预警', view: 'delivery_warning', id: 11},
+            {value: '撤单处理', view: 'its_processing', id: 12},
+            {value: '赔付', view: 'pay', id: 13},
+            {value: 'demo', view: 'demo'},
             // {value:'编辑商品价格', view:'edit_shop_prices'},
             // {value:'编辑洗护价格', view:'edit_cleaning_prices'},
         ]
@@ -25,10 +25,10 @@ export const topMenu = [
             {value:'衣物查询', view:'clothes_query', id: 15},
             {value:'交班', view:'Succession', id: 16},
             {value:'前台情况', view:'foreground_statistics', id: 18},           
-            {value: '未付款统计', view:'unpaid_statistics', id: 19},
+            {value:'未付款统计', view:'unpaid_statistics', id: 19},
             {value:'余额统计', view:'balance_statistics', id: 20},
             {value:'充值统计', view:'recharge_up', id: 21},
-            {value:'消费统计', view:'consum_ption_statistics' ,id:22},     
+            {value:'消费统计', view:'consum_ption_statistics', id:22},     
         ]
     },
     {
@@ -105,15 +105,15 @@ export const topMenu = [
     }
 ];
 //顶部导航栏配置    value:导航名称;class:样式名称;view:展示的视图组件名称
-export const nav = [
+const nav = [
     {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
     {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
     {value:'充值',class:'main-recharge',view:'recharge', id: 24},
     {value:'营业日报',class:'main-income',view:'operate_income', id: 17},
-    {value:'退出',class:'main-quit',view:null, event:'quit', id: 999999},
+    {value:'退出',class:'main-quit',view:null, event:'quit'},
 ];
 //左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
-export const leftMenu = [
+const leftMenu = [
     {
         value:'常用任务', 
         options:[
@@ -136,7 +136,59 @@ export const leftMenu = [
     {
         value:'其他', 
         options:[
-            {value:'开钱箱',class:'main-open-case',view:null, event:'open_case', id: 999999}
+            {value:'开钱箱',class:'main-open-case',view:null, event:'open_case'}
         ]
     },
 ];
+
+//权限管理处理
+var auth = 'auth'.getData()
+,   is_root = 'is_root'.getData();
+if (1 != is_root) {
+    try {
+        var authArr = JSON.parse(auth);
+    } catch (e) {
+        authArr = [];
+    }
+    var topMenuLen = topMenu.length
+    ,   navLen = nav.length
+    ,   leftMenuLen = leftMenu.length
+    ,   i
+    ,   tempLen
+    ,   j;
+    for (i = 0;i < topMenuLen;++i) {
+        if ('undefined' !== typeof topMenu[i].id && -1 === topMenu[i].id.inArray(authArr)) {
+            topMenu.splice(i, 1);
+            --i;
+            --topMenuLen;
+        } else {
+            tempLen = topMenu[i].options.length;
+            for (j = 0;j < tempLen;++j) {
+                if ('undefined' !== typeof topMenu[i].options[j].id && -1 === topMenu[i].options[j].id.inArray(authArr)) {
+                    topMenu[i].options.splice(j, 1);
+                    --j;
+                    --tempLen;
+                }
+            }
+        }
+    }
+    for (i = 0;i < navLen;++i) {
+        if ('undefined' !== typeof nav[i].id && -1 === nav[i].id.inArray(authArr)) {
+            nav.splice(i, 1);
+            --i;
+            --navLen;
+        }
+    }
+    for (i = 0;i < leftMenuLen;++i) {
+        tempLen = leftMenu[i].options.length;
+        for (j = 0;j < tempLen;++j) {
+            if ('undefined' !== typeof leftMenu[i].options[j].id && -1 === leftMenu[i].options[j].id.inArray(authArr)) {
+                leftMenu[i].options[j].splice(j, 1);
+                --j;
+                --tempLen;
+            }
+        }
+    }
+}
+
+export {topMenu, nav, leftMenu};
