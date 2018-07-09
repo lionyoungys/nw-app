@@ -64,10 +64,11 @@ export default class extends Component {
         });
     }
     putOn(){
+        console.log(this.state.clothnums[this.state.clothindex])
         let puton={
             token:'token'.getData(),
             id:this.props.data.id,   
-            put_id:this.state.clothnums[this.state.clothindex].id
+            put_id:this.state.clothnums[this.state.clothindex]==undefined?'':this.state.clothnums[this.state.clothindex].id
         }
         console.log(puton)
         api.post('putOn',

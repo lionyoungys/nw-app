@@ -12,7 +12,7 @@ export default class extends Component {
         super(props); 
         this.state = {
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
-            pay_type:'现金',
+            pay_type:'',
             list:[],
             page:1,
             count:1,

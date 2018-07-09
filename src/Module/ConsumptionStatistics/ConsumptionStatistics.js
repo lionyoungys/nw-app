@@ -88,7 +88,7 @@ export default class extends Component {
                 <div className='con-sta-total'>
                     <div>累计订单数：<b>{this.state.order_total}</b></div>
                     <div>合计应收金额：<b>¥{this.state.amount_total}元</b></div>
-                    <div>合计实收金额：<b>¥{this.state.real_total}元</b></div>
+                    <div>合计实收金额：<b>¥{this.state.real_amount}元</b></div>
                 </div>
                 <table className='ui-table-base bal-sta-tab consun-tab'>
                     <thead>
