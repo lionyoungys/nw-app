@@ -211,12 +211,12 @@ export default class extends Component {
         this.state.list[this.state.current].item.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
-                (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
+                (1 == obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
                 obj.addition_no_price, 
                 (Math.floor(obj.addition_price * discount) / 100)
             );
-            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
-            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+            dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
         let gateway = object.gateway
         ,   balance = this.state.balance;

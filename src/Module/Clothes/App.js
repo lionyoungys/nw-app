@@ -348,12 +348,12 @@ export default class extends Component {
         this.state.data.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
-                (obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
+                (1 == obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
                 obj.addition_no_price, 
                 (Math.floor(obj.addition_price * discount) / 100)
             );
-            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
-            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+            dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
         let gateway = object.gateway
         ,   balance = this.state.balance;
@@ -544,7 +544,6 @@ export default class extends Component {
             );
             dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
-            
             return (
                 <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
                     <div onClick={this.showCode}>{obj.clothing_number}</div>
@@ -553,8 +552,8 @@ export default class extends Component {
                     <div onClick={this.showProblem}>{obj.remark}</div>
                     <div onClick={this.showBrand}>{obj.sign}</div>
                     <div onClick={this.showForcast}>{obj.forecast}</div>
-                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft)}</div>
-                    <div onClick={this.showUpdatePrice}>{obj.raw_price}</div>
+                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft).toFixed(2)}</div>
+                    <div onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div>
                         <span onClick={this.copy}>复制</span>
@@ -609,11 +608,11 @@ export default class extends Component {
                     <div className='clothes-footer-left'>
                         <div>
                             <div>总件数：{this.state.data.length}件</div>
-                            <div>总金额：&yen;{total}</div>
-                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;{amount}</div>
+                            <div>总金额：&yen;{total.toFixed(2)}</div>
+                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;{amount.toFixed(2)}</div>
                         </div>
                         <div>
-                            <div>卡余额：&yen;{this.state.balance}</div>
+                            <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
                             <div>折扣率：{discount}%</div>
                             <div><b>*</b>取衣时间：<input type="date" className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
