@@ -169,12 +169,14 @@
         if (verify) {
             obj.empty = false;
             obj.hasUpdate = true;
+            SDT.YW_Buzzer(this.ID, 1, 1, 1);
             return obj;
         }
         for (k in config.Blocks[1]) {
             obj[k] = this.read(1, config.KeyA, config.Blocks[1][k]);
         }
         obj.empty = false;
+        SDT.YW_Buzzer(this.ID, 1, 1, 1);
         return obj;
     }
     /*r.get = function() {
@@ -228,6 +230,7 @@
             if (!this.write(1, config.KeyA, config.Blocks[0][k], data[k])) tempArr.push(k);
         }
         if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
+        SDT.YW_Buzzer(this.ID, 2, 1, 2);
         return true;
     }
     /*r.set = function(data) {
