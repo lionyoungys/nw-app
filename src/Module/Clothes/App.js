@@ -394,8 +394,8 @@ export default class extends Component {
         }, 'printer'.getData());
     }
     takeCost() {
-        if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
+        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         tool.ui.warn({msg:'您确定客户取衣付款吗？', button:['是（Y）', '否（N）'],callback:(close, event) => {
             0 == event && this.cost(true);
@@ -425,8 +425,8 @@ export default class extends Component {
     "card_type":卡类型
     "address":住址 */
     //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
-        if ('' == this.state.name) return tool.ui.error({msg:'用户名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'用户手机不能为空',callback:close => close()});
+        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         let len = this.state.data.length;
         if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
