@@ -128,13 +128,13 @@ export default class extends Component {
                 <div className='addGroup-content-cell-content'>
                     <ul>
                         <li className='addGroup-content-cell-content-head'>
-                            <input type='checkbox' checked={this.state.authSelectList.length == 0 ? false : (obj.id.inArray(this.state.authSelectList) == -1 ? false : true)} data-id={obj.id} onChange={this.handleArr}/>
+                            <input type='checkbox' checked={this.state.authSelectList.length == 0 ? false : ('undefined'!= typeof obj.id && obj.id.inArray(this.state.authSelectList) == -1 ? false : true)} data-id={obj.id} onChange={this.handleArr}/>
                             <p>{obj.value}</p>
                         </li>
                         {
                             obj.options.map(obj2 =>
                                 <li className='addGroup-content-cell-content-normal' key={obj2.value}>
-                                    <input type='checkbox' checked={this.state.authSelectList.length == 0 ? false : (obj2.id.inArray(this.state.authSelectList) == -1 ? false : true)} data-id={obj2.id} onChange={this.handleArr}/>
+                                    <input type='checkbox' checked={this.state.authSelectList.length == 0 ? false : ('undefined' != typeof obj2.id && obj2.id.inArray(this.state.authSelectList) == -1 ? false : true)} data-id={obj2.id} onChange={this.handleArr}/>
                                     <p>{obj2.value}</p>
                                 </li>
                             )

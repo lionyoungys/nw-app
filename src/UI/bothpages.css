@@ -200,7 +200,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .tableye_dataright button:hover{background:url(./img/hoverbtn.png)}
 
 
-
 /* 第三种公共样式 如同前台统计界面 */
 .tableC_title{width:872px;height:43px;margin:auto;}
 .tableC_box{width:872px;height:530px;margin:auto;clear:both}

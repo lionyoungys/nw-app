@@ -86,19 +86,20 @@
 }
 
 .Itsprocessing-footer-text{
-    width:795px;
+    width:801px;
     border:1px solid #8db2e3;
     background: #fff;
     font-size:12px;
-    text-indent: 12px;
     height:61px;
     float: left;
     margin-left:10px;
+    padding: 4px 5px;
+    box-sizing: border-box;
 }
 
 .Itsprocessing-footer-left{
     float: left;
-    width:872px;
+    width:874px;
     height:auto;
 }
 
@@ -146,6 +147,7 @@
     width:264px;
     height:30px;
     border:1px solid #ccc;
+    padding: 0 5px;
     float: left;
     outline:none;
     background:#fff;

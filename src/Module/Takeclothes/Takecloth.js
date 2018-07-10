@@ -53,7 +53,12 @@ export default class extends Component {
         this.takecloth = this.takecloth.bind(this);
         this.M1Read = this.M1Read.bind(this); 
         this.PAYM1read = this.PAYM1read.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }; 
+    componentDidMount(){
+        this.input.focus();
+    }
+  
     takecloth() {
         if(this.state.number=='')
         return tool.ui.error({msg:'请输入关键词',callback:close => close()});
@@ -84,6 +89,9 @@ export default class extends Component {
                 }
             }
         );
+    }
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.takecloth();
     }
     takeClothes(){
         // if(this.state.checked[this.state.current].length==0)
@@ -349,7 +357,7 @@ export default class extends Component {
                     <div className="Takeclothes-title">
                        <button className="e-btn Takeclothes-title-btn" onClick={this.M1Read}>读卡</button>
                        <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
-                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
+                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} onKeyPress={this.onKeyPress}/>
                     </div>  
                     <div className="Takeclothes-div-title" style={{display:this.state.title}}>已为您找到<b>{this.state.count}</b>条数据</div>
                     <div style={{maxHeight: '500px',overflowY: 'auto'}}>{takeclothes}</div>

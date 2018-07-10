@@ -115,6 +115,8 @@ export default class extends Component {
                 console.log(res)
                 this.setState({show:false});
                 this.componentDidMount();
+            }else{
+                
             }
             handle();
         }); 
@@ -185,8 +187,13 @@ export default class extends Component {
                 console.log(res)
                 this.setState({show2:false}); 
                 this.componentDidMount(); 
+            }else{
+                console.log(res.msg);
+                    tool.ui.error({msg:'且须修改一项',callback:(close) => {
+                        close();
+                }});
             }
-            handle();
+            
         }); 
     }
     render() {

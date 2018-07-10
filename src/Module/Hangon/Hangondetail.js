@@ -108,10 +108,10 @@ export default class extends Component {
                 </div>
                 <div className="Hangon-right">
                    <div className="Hangon-right-select">
-                      <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick}/>
+                      <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick} selected='请选择'/>
                    </div>
                    <div className="Hangon-right-select">
-                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})}/>
+                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected='请选择'/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button><button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
                 </div>

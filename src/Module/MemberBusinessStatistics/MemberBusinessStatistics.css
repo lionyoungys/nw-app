@@ -1,14 +1,12 @@
 .mem_bus_sta_top{
-
     margin: 13px;
     height: 80px;
     border: 1px solid #8db2e3;
-    background-color: #fff;
+    background-color:#eef4fb;
     font-size: 12px;
     color: #063781;
 }
 .mem_bus_sta_top_one,.mem_bus_sta_top_two{
-
     margin: 0;
     height: 30px;
     line-height: 30px;

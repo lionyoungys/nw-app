@@ -17,6 +17,7 @@ export default class extends Component {
             list:[],
             nodatas:false,
         }        
+
         this.Operatingdetail = this.Operatingdetail.bind(this);          
     }; 
     Operatingdetail (){
@@ -60,6 +61,7 @@ export default class extends Component {
         )      
         return (             
             <Window title='经营明细' onClose={this.props.closeView}>
+            <div>
                  <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
                                 <div>收款类型：<Select  option={['免费','免费补交','免费充值','免费发卡',
@@ -99,7 +101,8 @@ export default class extends Component {
                                {this.state.nodatas&&<Nodata />}                            
                            </tbody>
                         </table> 
-                    </div>                          
+                    </div> 
+            </div>                         
             </Window>  
         );
     }

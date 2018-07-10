@@ -260,8 +260,7 @@ export default class extends Component {
                 <div className="Itsprocessing-footer-div">
                    <span>卡退款：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span><b className="no-save">取消</b><b className="sure-save">确定</b>
                 </div>
-            </Window> 
-           
+            </Window>           
         );
     }
 }

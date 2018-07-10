@@ -275,32 +275,29 @@ export default class extends Component {
                                {operatorlist}
                             </tbody>
                         </table>
-                    </div>
-                    
+                    </div>                    
                     {
                     this.state.show1
-                    &&
-                   
+                    &&                   
                     <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
                         {
                             <div className='updatestaffborder'>
-                            <div className='margintop'>
-                            <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})}/>
-                            </div>
-                             <div className='mobilephone'>
-                             <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
-                             </div>
+                                <div className='margintop'>
+                                    <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})}/>
+                                </div>
+                                <div className='mobilephone'>
+                                    <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
+                                </div>
                               {/* <div>
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
                               </div> */}
-                               <div>
+                            <div>
                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange}/>
-                               </div>
-                               </div>
+                        </div>
+                    </div>
                      }
                     </LayerBox>
-                }
-                 
+                }                
                 </div>
         );            
     };

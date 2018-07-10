@@ -174,7 +174,7 @@ export default class extends Component {
                 </table>                       
             </div>
             <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>
-             </Window> 
+            </Window> 
         );
     }
 }

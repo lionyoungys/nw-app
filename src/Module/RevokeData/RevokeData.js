@@ -16,7 +16,8 @@ export default class extends Component {
     }; 
     arrbutton(e){
         console.log(e.target.dataset.index)
-        if(e.target.dataset.index==0){
+        let index = e.target.dataset.index || 0;
+        if (index==0){
             api.post('orderBack', {
                 start_time:this.state.startdate,
                 end_time:this.state.enddate,
@@ -24,53 +25,57 @@ export default class extends Component {
             }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
+                    console.log('查询')
                     this.setState({orderCount:res.result.orderCount,itemCount:res.result.itemCount,orderBack:res.result.orderBack,item:res.result.item});
                 }else{
                     console.log(res.msg);
                     tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
-                    }});
-                    
+                    }});   
                 }
-            }
-            );
-        }else if(e.target.dataset.index==1){
+            });
+        }else if(index==1){//打印处理
 
-        }else{
+
+
+        } else if(index ==2){
+
             this.props.closeView();
         }
     }
     render() {
-       var arr = ['查询','打印','退出'].map((item,index) =><button key={index} data-index={index} onClick={this.arrbutton}>{item}</button>);
-       var revokedata_detail = ['流水号','撤单日期','操作店员','撤单原因','原金额','金额','客户电话','客户姓名'].map((item,index)=><span>{item}</span>)
+       var arr = ['查询','打印','退出'].map((item,index) =><button key={'item'+index} data-index={index} onClick={this.arrbutton}>{item}</button>);
+       var revokedata_detail = ['流水号','撤单日期','操作店员','撤单原因','原金额','金额','客户电话','客户姓名'].map((item,index)=><span key={'item'+index}>{item}</span>)
        var revokedata_clothes = ['店员姓名','客户电话','流水号','水洗条码号','衣物编码','衣物名称','衣物颜色','衣物网格','价格','品牌','折后价','备注','状态','收衣时间','交活日期','衣挂号','附加服务','衣物件数','客户姓名','充值卡号','卡类型','住址','折扣率'
-       ].map((item,index)=><span>{item}</span>)
-       var orderBack = this.state.orderBack.map((item,index)=>  <li>
-       <span>{index+1}</span>
-       <span>{item.serialsn}</span>
-       <span>{item.time}</span>
-       <span>{item.operator}</span>
-       <span>{item.cause}</span>
-       <span>{item.amount}</span>
-       <span>{item.amount_back}</span>
-       <span>{item.user_mobile}</span>
-       <span>{item.user_name}</span>
+       ].map((item,index)=><span key={'item'+index}>{item}</span>)
+       var orderBack = this.state.orderBack.map((item,index)=>  
+        <li key={'item' + index}>
+            <span>{index+1}</span>
+            <span>{item.serialsn}</span>
+            <span>{item.time}</span>
+            <span>{item.operator}</span>
+            <span>{item.cause}</span>
+            <span>{item.amount}</span>
+            <span>{item.amount_back}</span>
+            <span>{item.user_mobile}</span>
+            <span>{item.user_name}</span>
         </li>
        )
-       var item = this.state.item.map((item,index)=>  <li>
-           <span>{index+1}</span>
-           <span>{item.operator}</span>
-           <span>{item.user_mobile}</span>
-           <span>{item.serialsn}</span>
-           <span>{item.clean_sn}</span>
-           <span>{item.clothing_number}</span>
-           <span>{item.clothing_name}</span>
-           <span>{item.clothing_color}</span>
-           <span>{item.clothing_grids}</span>
-           <span>{item.raw_price}</span>
-           <span>{item.sign}</span>
-           <span>{item.discount_price}</span>
-           <span>{item.deal_time}</span>
+        var item = this.state.item.map((item, index) => 
+        <li key={'item' + index}>
+            <span>{index+1}</span> 
+            <span>{item.operator}</span>
+            <span>{item.user_mobile}</span>
+            <span>{item.serialsn}</span>
+            <span>{item.clean_sn}</span>
+            <span>{item.clothing_number}</span>
+            <span>{item.clothing_name}</span>
+            <span>{item.clothing_color}</span>
+            <span>{item.clothing_grids}</span>
+            <span>{item.raw_price}</span>
+            <span>{item.sign}</span>
+            <span>{item.discount_price}</span>
+            <span>{item.deal_time}</span>
             <span>{item.remark}</span>
             <span>{item.status}</span>
             <span>{item.collect_time}</span>
@@ -82,9 +87,7 @@ export default class extends Component {
             <span>{item.card_type}</span>
             <span>{item.address}</span>
             <span>{item.discount}</span>
-
-
-           </li>
+        </li>
        )
        return (             
             <Window title='撤单统计' onClose={this.props.closeView}>   

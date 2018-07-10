@@ -11,12 +11,25 @@ import './ChangeCard.css';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {show:false,show1:false,cardNumber:'',user_name:'',user_mobile:'',user_info:[],index:0} 
+        this.state = {
+            show:false,
+            show1:false,
+            cardNumber:'',
+            user_name:'',
+            user_mobile:'',
+            user_info:[],
+            index:0,
+        } 
         this.query = this.query.bind(this)   
         
     };
     query(){
-        api.post('readCard', {token:'token'.getData(),cardNumber:this.state.cardNumber,user_name:this.state.user_name,user_mobile:this.state.user_mobile}, (res, ver) => {
+        api.post('readCard', {
+            token:'token'.getData(),
+            cardNumber:this.state.cardNumber,
+            user_name:this.state.user_name,
+            user_mobile:this.state.user_mobile,
+        }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({user_info:res.result});
@@ -76,7 +89,7 @@ export default class extends Component {
                                     <span>卡ID：</span><b>0258</b>
                                   </div>
                                   <div>
-                                    <span>姓名：</span><b>吱吱</b>
+                                    <span>姓名：</span><b>yuyu</b>
                                   </div>
                                   <div>
                                     <span>电话：</span><b>18310963932</b>

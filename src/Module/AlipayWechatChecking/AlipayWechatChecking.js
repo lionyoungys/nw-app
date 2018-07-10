@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Pages from '../../UI/Page';
+import Select from '../../UI/Select';
 import './AlipayWechatChecking.css';
 import Nodata from '../../UI/Nodata';
 
@@ -18,7 +19,9 @@ export default class extends Component {
             bankInfo:{},
             list:[],
             count:0,
+            selectType:'全部',
         }
+        this.type =['全部','支付宝','微信'];
         this.limit = 15;
         this.query = this.query.bind(this);
     }
@@ -27,13 +30,15 @@ export default class extends Component {
     }
     query(page){
         page = page || this.state.page;
-        api.post('aliWechatPayInfo', {
+        let pramas = {
             token: 'token'.getData(),
             page: this.state.page,
             limit: this.limit,
             start_time: this.state.startDate,
             end_time: this.state.endDate,
-        }, (res, ver, handle) => {
+        }
+        console.log(pramas);
+        api.post('aliWechatPayInfo', pramas, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
                 if(res.result.list.length>0){
@@ -53,7 +58,6 @@ export default class extends Component {
                         count:0,
                     })
                 }
-                
             }else{
                 handle();
             } 
@@ -64,9 +68,11 @@ export default class extends Component {
             <tr key= {'item'+index}>
                 <td className='ali-wechat-check-tab-1'>{item.serialsn}</td>
                 <td className='ali-wechat-check-tab-2'>{item.pay_type}</td>
+                <td className='ali-wechat-check-tab-3'>{item.pay_type}</td>
                 <td className='ali-wechat-check-tab-4'>{item.real_amount}</td>
-                <td className='ali-wechat-check-tab-5'>{item.balance}</td>
-                <td className='ali-wechat-check-tab-6'>{item.time}</td>
+                <td className='ali-wechat-check-tab-5'>{item.real_amount * 0.01}</td>
+                <td className='ali-wechat-check-tab-6'>{item.balance}</td>
+                <td className='ali-wechat-check-tab-7'>{item.time}</td>
             </tr>
         );
         return (
@@ -77,24 +83,30 @@ export default class extends Component {
                 </div>
                 <div className="ali-wechat-check-title">
                     <a>余额明细</a>
-                    <span>
-                        <a><b>*</b>开始时间：</a>
-                        <input type='date' className='ui-date' value={this.state.startDate} onChange={e =>this.setState({startDate:e.target.value})}/>
-                    </span>
+                    <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>
                     <span>
                         <a><b>*</b>结束时间：</a>
-                        <input type='date' className='ui-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })}/>
+                        <input type='date' className='ui-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
                     </span>
-                    <button type='button' className='e-btn' onClick = {()=>this.query(1)}>查询</button>
+                    <span>
+                        <a><b>*</b>开始时间：</a>
+                        <input type='date' className='ui-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
+                    </span>
+                    <span>
+                        <a><b>*</b>交易类型：</a>
+                        <Select option={this.type} onChange={value => this.setState({ selectType: value })} />
+                    </span>  
                 </div>
                 <table className='ui-table-base ali-wechat-check-tab'>
                     <thead>
                         <tr>
                             <td className='ali-wechat-check-tab-1'>交易单号</td>
-                            <td className='ali-wechat-check-tab-2'>类型</td>
-                            <td className='ali-wechat-check-tab-4'>金额</td>
-                            <td className='ali-wechat-check-tab-5'>余额</td>
-                            <td className='ali-wechat-check-tab-6'>交易时间</td>
+                            <td className='ali-wechat-check-tab-2'>交易类型</td>
+                            <td className='ali-wechat-check-tab-3'>备注</td>
+                            <td className='ali-wechat-check-tab-4'>交易金额</td>
+                            <td className='ali-wechat-check-tab-5'>交易手续费</td>
+                            <td className='ali-wechat-check-tab-6'>余额</td>
+                            <td className='ali-wechat-check-tab-7'>交易时间</td>
                         </tr>
                     </thead>
                     <tbody>

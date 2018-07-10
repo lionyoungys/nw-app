@@ -61,7 +61,7 @@ export default class extends Component {
                     console.log(111111)
                 }else{
                     console.log(res.msg);
-                    tool.ui.error({msg:res.msg,callback:(close) => {
+                    tool.ui.error({msg:'且须修改一项',callback:(close) => {
                         close();
                     }});
                     

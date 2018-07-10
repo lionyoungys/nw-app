@@ -274,8 +274,7 @@ export default class extends Component {
                                    <th>颜色</th>
                                    <th>颜色瑕疵</th>
                                    <th>衣挂号</th>
-                                   <th>洗护状态</th>
-                                   
+                                   <th>洗护状态</th>                                   
                                </tr>
                            </thead>
                            <tbody>
