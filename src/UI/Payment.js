@@ -19,9 +19,10 @@ const style = {marginBottom:'8px', fontSize:'12px'};
 export default class extends Component {
     constructor(props) {
         super(props);
+        let zero = ( 0 == parseFloat(this.props.data.total_amount || 0) );
         this.state = {
-            zero:( 0 == parseFloat(this.props.data.total_amount || 0) ), 
-            gateway: ( this.state.zero ? 1 : 0 ),
+            zero: zero, 
+            gateway: ( zero ? 1 : 0 ),
             authCode:['','','',''], 
             amount:'', 
             number:'',

@@ -190,6 +190,10 @@ table{border-collapse: collapse}
     background-repeat: no-repeat;
     background-size: 100% 100%;
     overflow: auto;
+    user-select:text;
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
 }
 
 /* 公共样式部分 */
