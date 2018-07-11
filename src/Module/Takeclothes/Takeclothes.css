@@ -109,7 +109,7 @@
 }
 .Takeclothesdetail-title-left{
     float: left;
-    width:329px;
+    width:400px;
     height:47px;
 }
 .Takeclothesdetail-title-left div{
@@ -142,12 +142,10 @@
     float:right;
 }
 .Takeclothesdetail-tab table tbody tr td{
-    padding:0px 5px;
-    line-height:0;
+    padding:0px 5px;    
 }
 .Takeclothesdetail-tab table thead tr th{
-    padding:0px 5px;
-    line-height:0;
+    padding:0px 5px;    
 }
 .Takeclothesdetail-tab table tbody{
     overflow-x:hidden;

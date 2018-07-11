@@ -38,7 +38,7 @@ export default class extends Component {
     query(page){
         console.log(page);
         page = page || this.state.page;
-        api.post('clothesQuery', {token:'token'.getData(),
+        let params= {token:'token'.getData(),
         start_time:this.state.start_time,
         end_time:this.state.end_time,
         status:this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
@@ -51,7 +51,9 @@ export default class extends Component {
         grid_num:this.state.grid_num,
         page:page,
         limit:this.limit,
-    }, (res, ver,handle) => {
+    }
+        console.log(params)
+        api.post('clothesQuery',params, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res);
                 if(res.result.list.length>0){

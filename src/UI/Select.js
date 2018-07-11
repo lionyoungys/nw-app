@@ -14,11 +14,28 @@ export default class extends React.Component {
             show:false,
             minWidth:null
         };
+        this.uniqueID = new Date().getTime() + Math.random();
         this.handleChange = this.handleChange.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
     } 
 
     componentDidMount() {
+        document.addEventListener("click", e => {
+            let len = e.path.length
+            ,   isSelf = false;
+            for (let i = 0;i < len;++i) {
+                if (
+                    1 == e.path[i].nodeType 
+                    && 
+                    'string' === typeof e.path[i].dataset.unique 
+                    && 
+                    e.path[i].dataset.unique == this.uniqueID
+                ) {
+                    isSelf = true;
+                }
+            }
+            !isSelf && this.state.show && this.setState({show:false});
+        });
         this.setState({minWidth:68+'px'});
     }
 
@@ -30,7 +47,7 @@ export default class extends React.Component {
             'string' === typeof dataValue ? this.props.onChange(dataValue) : this.props.onChange(value);
         }
     }
-    toggleShow() {!this.props.readOnly && this.setState({show:!this.state.show})}
+    toggleShow(e) {!this.props.readOnly && this.setState({show:!this.state.show})}
     
     render() {
         let propsOption = ('object' === typeof this.props.option && this.props.option instanceof Array) ? this.props.option : []
@@ -77,13 +94,14 @@ export default class extends React.Component {
             <div
                 className={`ui-select-define ui-select${this.state.show ? ' ui-select-show' : ''}${this.props.readOnly ? ' ui-select-readonly' : ''}`}
                 style={{minWidth:this.state.minWidth}}
+                data-unique={this.uniqueID}
             >
                 <i onClick = {this.toggleShow}></i>
                 <div
                     className='ui-select-selected'
                     onClick = {this.toggleShow}
                 >{selected}</div>
-                <div ref={div => this.div = div} className='ui-select-option'>{option}</div>
+                <div className='ui-select-option'>{option}</div>
             </div>
         );
     }

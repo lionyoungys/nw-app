@@ -360,7 +360,16 @@
             return '0.00';
         }
     };
-
+     /**
+     * 限制输入整数
+     * 
+     * @return {boolean} a.test(this)
+     */
+    Number.prototype.number = 
+    String.prototype.number = function() {
+       var a=/[^1-9]/g;
+       return a.test(this)
+    }
     /**
      * 数组对象通过条件对象判断匹配返回匹配的数量
      * @param {object} where 

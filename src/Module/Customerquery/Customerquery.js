@@ -103,34 +103,34 @@ export default class extends Component {
         });
     }
     handleClick(e){
-        var index = e.target.dataset.index || e.target.parentNode.dataset.index;
-        api.post('userPayInfo', {
-            token:token,
-            recharge_number:this.state.list[this.state.index].recharge_number||'',
-            user_mobile:this.state.list[this.state.index].user_mobile,
-            user_name:this.state.list[this.state.index].user_name,
-            // page:pagedetail,
-            limit:this.limit
-        }, (res,ver,handle) => {
+        
+        var index = e.target.dataset.index || e.target.parentNode.dataset.index; 
+        console.log('点击了' + index);
+        let pramas = {
+            token: token,
+            recharge_number: this.state.list[index].recharge_number,
+            user_mobile: this.state.list[index].user_mobile,
+            user_name: this.state.list[index].user_name,
+            page: 1,
+            limit: 1000,
+        }
+        console.log(pramas);
+        api.post('userPayInfo', pramas, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res);
-                if(res.result.list.length>0){
-                    this.setState({ listdetail: res.result.list,countdetail:res.result.count,alldata:false});
-                }else{
-                   this.state.setState({alldata:true})
-                }
-                
+                this.setState({ listdetail: res.result.list, countdetail: res.result.count, alldata: es.result.list.length > 0 ?false:true });
             }else{
+                this.setState({ listdetail: [], countdetail: 0, alldata: true });
                 handle();
             }
         });
-        this.setState({show:true,index:index})
+        this.setState({ show: true, index: index })
     }
     render() {   
         let list=this.state.list.map((item,index)=>
-        <tr onClick = {this.handleClick} data-index={index} key={'item'+index}>
-            <td>{index+1}</td>
-            <td >{item.recharge_number}</td>
+            <tr data-index={index} onClick={this.handleClick} key={'item'+index}>
+            <td>{index+1+(this.state.page-1)*this.limit}</td>
+            <td>{item.recharge_number}</td>
             <td>{item.user_name}</td>
             <td>{item.user_mobile}</td>
             <td>{item.card_name}</td>
@@ -185,7 +185,7 @@ export default class extends Component {
                       </thead>
                       <tbody>
                          {list}
-                         {this.state.nodatas&&<Nodata />}
+                         {this.state.nodatas && <Nodata />}
                       </tbody>
                   </table>
                 </div>
@@ -228,7 +228,7 @@ export default class extends Component {
                                 </thead>
                                 <tbody>
                                    {listdetail} 
-                                   {this.state.alldata&&<Nodata />}                      
+                                   {this.state.alldata && <Nodata />}                      
                                 </tbody>
                             </table>
                         </div>                              
