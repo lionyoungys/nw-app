@@ -8,6 +8,10 @@ table{border-collapse: collapse}
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 108px 0 0 206px;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
 }
 .main-top{    /* 界面顶部样式 */
     position: absolute;
