@@ -60,7 +60,7 @@ export default class extends Component {
            </tr>
        )
         var detail = this.state.list.map((item,index) =>
-          <tr>
+          <tr key={'item'+index}>
             <td>{index + 1 + (this.state.page - 1) * this.limit}</td>
             <td>{item.card_coding}</td>
             <td>{item.card_num}</td>

@@ -60,7 +60,7 @@ export default class extends Component {
             'undefined' !== typeof this.state.grid[this.state.index].use_detail
         ) {           
             use_detail = this.state.grid[this.state.index].use_detail.map((item,index)=>         
-                <span className={item.put_num>0?'span-div':null}>{item.number}#{item.put_num}件</span>          
+                <span key={'item'+index} className={item.put_num>0?'span-div':null}>{item.number}#{item.put_num}件</span>          
             );
         }
         return (

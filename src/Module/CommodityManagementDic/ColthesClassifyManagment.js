@@ -102,7 +102,7 @@ export default class extends Component {
    
     render() {
         let itemLists=this.state.itemLists.map((item,index)=>
-        <tr>
+        <tr key = {'item'+index}>
            <td>{index+1}</td>
            <td>{item.name}</td>
            <td data-write={index} onClick={this.update}>编辑</td>

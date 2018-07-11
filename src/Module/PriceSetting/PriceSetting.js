@@ -21,7 +21,7 @@ export default class extends Component {
     render() {
         let tabs=this.tab.map((item,index)=>
         <span
-            key={item} 
+            key={'item'+index} 
             data-index={index} 
             className={this.state.index==index?'hover':null}
             onClick={this.handleClick}

@@ -23,7 +23,7 @@ export default class extends Component {
         );
     }
     render() {
-        var userinfo=this.state.user_info.map((item,index) => <tr>
+        var userinfo=this.state.user_info.map((item,index) => <tr key={'item'+index}>
         <td>{index+1}</td>
         <td>{item.recharge_number}</td>
         <td>{item.user_name}</td>

@@ -56,7 +56,7 @@ export default class extends Component {
     render() {
        var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={()=>this.query(1)}>{item}</button>);
        var list = this.state.allist.map((item,index) =>
-          <tr>
+          <tr key = {'item'+index}>
               <td>{item.name}</td>
               <td>{item.count}</td>
           </tr>

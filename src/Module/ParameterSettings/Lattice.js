@@ -175,7 +175,7 @@ export default class extends Component {
     }
     render() {      
         let grid = this.state.grid.map((item,index)=>
-        <tr>
+        <tr key={'item'+index}>
                 <td>{index+1+(this.state.page-1)*this.limit}</td>
                 <td>{item.name}</td>
                 <td>{item.start_number}</td>

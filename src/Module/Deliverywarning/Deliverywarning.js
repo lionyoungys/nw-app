@@ -57,7 +57,7 @@ export default class extends Component {
     }
     render() {
         let list=this.state.list.map((item,index)=>
-        <tr key={'index'+index}>
+        <tr key={'item'+index}>
             <td>{item.clothing_number}</td>
             <td>{item.clothing_name}</td>
             <td>{item.clothing_color}</td>

@@ -124,7 +124,7 @@ export default class extends Component {
     }
     render() {      
         let brandlist = this.state.brandlist.map((item,index) => 
-        <tr>
+        <tr key={'item'+index}>
             <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{this.state.brandlist[index].name}</td>
             <td><b onClick={e => this.setState({show1:true,
