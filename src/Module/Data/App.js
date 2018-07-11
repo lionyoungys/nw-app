@@ -18,59 +18,78 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {addr:null, data:[], error:false};
+        this.state = {addr:null, data:[]};
         this.timeId = null;
-        this.loadingHandle = null;
+        this.loadingEnd = null;
+        this.handleCancel = this.handleCancel.bind(this);
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleCancel() {
+        if (null !== this.loadingEnd) {
+            if (null !== this.timeId) {
+                clearInterval(this.timeId);
+                this.timeId = null;
+            }
+            this.state.data.splice(0, this.state.data.length);
+            this.setState({error:false, data:this.state.data});
+            this.loadingEnd();
+            this.loadingEnd = null;
+        }
     }
 
     handleClick() {
         console.log(this.state.addr && !this.state.data.length);
-        console.log(this.state.data);
-        console.log(this.state.addr);
         if (this.state.addr && !this.state.data.length) {
-            tool.ui.loading(handle => this.loadingHandle = handle);
-            let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126');
-            let len = data.length
-            ,   error = false;
+            let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126')
+            ,   len = data.length
+            ,   count = 0
+            ,   size = 0
+            ,   error = '';
+            tool.ui.loading(handle => this.loadingEnd = handle);
             for (let i = 0;i < len;++i) {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
-                    this.state.data.push({'name':data[i], data:tableData});
+                    this.state.data.push({name:data[i], data:tableData});
                 }).catch(e => {
-                    console.log(data[i])
-                    console.log(e);
-                    this.setState({error:true});
-                    error = true;
-                });;
-                if (error) break;
+                    console.log(data[i], e);
+                    error = '导入错误，请重试！';
+                });
+                connection.query('SELECT count(*) as len FROM [' + data[i] + ']').then(arr => {
+                    size += arr[0].len;
+                    ++count;
+                }).catch(e => {
+                    console.log(data[i], e);
+                    error = '导入错误，请重试！！！';
+                });
+                if ('' !== error) break;
             }
             if (null === this.timeId) {
                 this.timeId = setInterval(() => {
-                    console.log(this.state.data.length);
-                    if (this.state.error) {
-                        clearInterval(this.timeId);
-                        this.timeId = null;
-                        this.setState({error:false, data:[]});
-                        console.log(this.state);
-                        this.loadingHandle();
-                        return tool.ui.error({msg:'导入错误，请重试！',callback:close => close()});
+                    let dataLen = this.state.data.length;
+                    console.log(dataLen);
+                    if ('' !== error) {
+                        this.handleCancel();
+                        return tool.ui.error({msg:error,callback:close => close()});
                     }
-                    if (this.state.data.length == len) {
+                    if (dataLen == len && dataLen == count) {
                         clearInterval(this.timeId);
                         this.timeId = null;
+                        if (size > 60000) {
+                            this.handleCancel();
+                            return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
+                        }
                         let dataFile = path.dirname(process.execPath) + '/data.txt';
                         fs.writeFileSync(dataFile, JSON.stringify(this.state.data), 'utf8')
-                        this.setState({data:[]});
                         let postData = {token:token,txt:fs.createReadStream(dataFile)};
                         console.log(postData);
                         api.post('UploadData', postData, (res, ver, handle) => {
-                            this.loadingHandle();
+                            this.handleCancel();
                             if (ver) {
                                 tool.ui.success({callback:close => close()});
                             } else {
-                                handle();
+                                this.handleCancel();
                             }
-                        }, () => this.loadingHandle());
+                        }, this.handleCancel);
                     }
                 }, 1000);
             }
@@ -83,12 +102,9 @@ export default class extends Component {
 
     render() {
         return (
-            <Window title='数据导入' onClose={this.props.closeView} width='352' height='293'>
+            <Window title='数据导入' onClose={this.props.closeView} width='352' height='240'>
             <div className='data'>
                 <div className='data_border'>
-                    <div>
-                        <span>新版本:</span> <input type='text' className='inputselectborder'/>
-                    </div>
                     <div>
                         <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({addr:e.target.value}) }/>
                     </div>
