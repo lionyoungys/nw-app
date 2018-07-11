@@ -18,7 +18,7 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {addr:null, data:[]};
+        this.state = {addr:null};
         this.timeId = null;
         this.loadingEnd = null;
         this.handleCancel = this.handleCancel.bind(this);
@@ -31,17 +31,15 @@ export default class extends Component {
                 clearInterval(this.timeId);
                 this.timeId = null;
             }
-            this.state.data.splice(0, this.state.data.length);
-            this.setState({error:false, data:this.state.data});
             this.loadingEnd();
             this.loadingEnd = null;
         }
     }
 
     handleClick() {
-        console.log(this.state.addr && !this.state.data.length);
-        if (this.state.addr && !this.state.data.length) {
+        if (this.state.addr) {
             let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126')
+            ,   read = []
             ,   len = data.length
             ,   count = 0
             ,   size = 0
@@ -49,7 +47,7 @@ export default class extends Component {
             tool.ui.loading(handle => this.loadingEnd = handle);
             for (let i = 0;i < len;++i) {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
-                    this.state.data.push({name:data[i], data:tableData});
+                    read.push({name:data[i], data:tableData});
                 }).catch(e => {
                     console.log(data[i], e);
                     error = '导入错误，请重试！';
@@ -65,27 +63,33 @@ export default class extends Component {
             }
             if (null === this.timeId) {
                 this.timeId = setInterval(() => {
-                    let dataLen = this.state.data.length;
-                    console.log(dataLen);
+                    let readLen = read.length;
+                    console.log(readLen);
                     if ('' !== error) {
                         this.handleCancel();
                         return tool.ui.error({msg:error,callback:close => close()});
                     }
-                    if (dataLen == len && dataLen == count) {
+                    if (readLen == len && readLen == count) {
                         clearInterval(this.timeId);
                         this.timeId = null;
                         if (size > 60000) {
                             this.handleCancel();
                             return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
                         }
+                        //let bf = new Buffer(JSON.stringify(read));
+                        //console.log('buf', buf);
+                        //let postData = {token:token,txt:fs.createReadStream( new Blob([bf], {type:'text/plain'}) )};
                         let dataFile = path.dirname(process.execPath) + '/data.txt';
-                        fs.writeFileSync(dataFile, JSON.stringify(this.state.data), 'utf8')
+                        fs.writeFileSync(dataFile, JSON.stringify(read), 'utf8')
                         let postData = {token:token,txt:fs.createReadStream(dataFile)};
                         console.log(postData);
                         api.post('UploadData', postData, (res, ver, handle) => {
                             this.handleCancel();
                             if (ver) {
-                                tool.ui.success({callback:close => close()});
+                                tool.ui.success({callback:close => {
+                                    close();
+                                    this.props.closeView();
+                                }});
                             } else {
                                 this.handleCancel();
                             }

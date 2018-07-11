@@ -334,6 +334,32 @@
             }
         }
     }
+     /**
+     * 保留两位小数
+     * @return String
+     */
+    Number.prototype.changeTwoDecimal_f = 
+    String.prototype.changeTwoDecimal_f = function() {
+        try {
+            let f_x1 = parseFloat(this);
+            if (isNaN(f_x1)) {
+                return this;
+            }
+            let f_x = Math.round(this * 100) / 100;
+            let s_x = f_x.toString();
+            let pos_decimal = s_x.indexOf('.');
+            if (pos_decimal < 0) {
+                pos_decimal = s_x.length;
+                s_x += '.';
+            }
+            while (s_x.length <= pos_decimal + 2) {
+                s_x += '0';
+            }
+            return s_x;
+        } catch (e) {
+            return '0.00';
+        }
+    };
 
     /**
      * 数组对象通过条件对象判断匹配返回匹配的数量

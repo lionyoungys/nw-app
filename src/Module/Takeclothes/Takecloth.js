@@ -343,8 +343,8 @@ export default class extends Component {
                     <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                     <div style={{display:item.pay_state!=1?'block':'none'}}>
-                    {item.debt>0?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{item.debt}</div>}
-                    <div><span style={{color:'#000000'}}>价格:</span> ￥{item.pay_amount}</div>
+                    {item.debt>0?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)+parseFloat(item.pay_amount)).changeTwoDecimal_f()}</div>}
+                    <div style={{display:'none'}}><span style={{color:'#000000'}}>价格:</span> ￥{item.pay_amount}</div>
                     </div>
                 </div>                       
             </div>

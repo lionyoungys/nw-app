@@ -84,7 +84,7 @@ export default class extends Component {
             obj.pay_amount = this.props.data.pay_amount;
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0 || obj.pay_amount > obj.amount) return;
+            if (obj.amount < 0 || obj.pay_amount > obj.amount) return;
             if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
         } else {
             if (

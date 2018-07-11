@@ -101,7 +101,7 @@ export default class extends Component {
                          <div className="revokedata_dataright">
                            {arr}
                          </div>
-                         <div className="vipstats-detail"><input type="checkbox" />明细</div>
+                         <div className="vipstats-detail"><input type="checkbox" style={{display:'none'}}/>明细</div>
                       </div>
                        <div className="clothall" >类别合计</div>
                         <table className="clothall-tab clothestat-tab">
