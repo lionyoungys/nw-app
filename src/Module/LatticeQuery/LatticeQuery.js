@@ -13,7 +13,7 @@ export default class extends Component {
         this.state={
             grid:[],
             index:0, 
-            nodatas:true,           
+            nodatas:false,           
         }
         this.handleclick=this.handleclick.bind(this);
     };
@@ -37,14 +37,11 @@ export default class extends Component {
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
-        
-
         if(this.state.grid[e.target.dataset.index || e.target.parentNode.dataset.index].use_detail.length>0){
             this.setState({nodatas:false})
         }else{
             this.setState({nodatas:true})
-        }
-        
+        }        
     }
     render() {
         let grid = this.state.grid.map((item,index)=>

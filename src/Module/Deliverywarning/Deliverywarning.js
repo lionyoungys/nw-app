@@ -21,45 +21,43 @@ export default class extends Component {
         this.limit=15;
         this.query=this.query.bind(this);
     };
+    componentDidMount(){
+        this.query();
+    }
     query(page){
        
-        if(this.state.clothing_number == '' ){
-            tool.ui.error({title:'提示',msg:'请输入衣物编码',button:'确定',callback:(close, event) => {
-                close();
-            }});          
-        }else{
-            page = page || this.state.page;
-            api.post('past', {
-                token:'token'.getData(),
-                clothing_number:this.state.clothing_number,
-                limit:this.limit,
-                page:page
-            }, (res, ver,handle) => {
-                if (ver && res) {
-                    console.log(res);
-                    if(res.result.list.length>0){
-                        this.setState({
-                            list:res.result.list,
-                            count:res.result.count,
-                            page:page,
-                            nodatas:false,
-                        });
-                    }else{
-                        this.setState({nodatas:true,list:[],count:1})
-                    }
-                    
-    
-                }else{
-                    handle();
-                }
-            }        
-            );
+        page = page || this.state.page;
+        let pramas = {
+            token: 'token'.getData(),
+            limit: this.limit,
+            page: page,
+        };
+        if(this.state.clothing_number != '' ){
+            pramas.clothing_number = this.state.clothing_number; 
         }
+        console.log(pramas);
+        api.post('past',pramas, (res, ver, handle) => {
+            if (ver && res) {
+                console.log(res);
+                if (res.result.list.length > 0) {
+                    this.setState({
+                        list: res.result.list,
+                        count: res.result.count,
+                        page: page,
+                        nodatas: false,
+                    });
+                } else {
+                    this.setState({ nodatas: true, list: [], count: 1 })
+                }
+            } else {
+                handle();
+            }
+        });
           
     }
     render() {
         let list=this.state.list.map((item,index)=>
-        <tr>
+        <tr key={'index'+index}>
             <td>{item.clothing_number}</td>
             <td>{item.clothing_name}</td>
             <td>{item.clothing_color}</td>

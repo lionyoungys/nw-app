@@ -11,7 +11,7 @@
 .commoditysales-div-left{
     float: left;
     width: 93px;
-    height: 233px;
+    height:265px;
     margin-left: 0px;
     margin-top: -28px;
 }
@@ -29,6 +29,7 @@
     max-height:236px;
     overflow-y:auto; 
     border:1px solid #8db2e3;
+    height:236px;
 }
 .commoditysales-left-count span{
     display:block;

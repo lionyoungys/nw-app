@@ -474,6 +474,7 @@ table tbody tr:nth-child(even):hover{
     background-position-x: 27px;
     min-width:150px;
     max-width:150px;
+    border-bottom:none;
 }
 #no-data:hover{
     background-color:none; 

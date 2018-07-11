@@ -136,7 +136,7 @@ export default class extends Component {
                     </div>
                     <div className='manager_gathering_part_btn'>
                         <button type='button' className='e-btn ' onClick={() => this.setState({ show: true })}>查看明细</button>
-                        <button type='button' className='e-btn '>开钱箱</button>
+                        <button type='button' className='e-btn ' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
                         <button type='button' className='e-btn ' onClick={this.payment}>交款</button>
                     </div>
                 </div>

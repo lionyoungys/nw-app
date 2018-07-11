@@ -19,7 +19,17 @@ const style = {marginBottom:'8px', fontSize:'12px'};
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {gateway:0,authCode:['','','',''], amount:'', number:'',coupon:'', passwd:'',option:[],show:false};
+        this.state = {
+            zero:( 0 == parseFloat(this.props.data.total_amount || 0) ), 
+            gateway: ( this.state.zero ? 1 : 0 ),
+            authCode:['','','',''], 
+            amount:'', 
+            number:'',
+            coupon:'', 
+            passwd:'',
+            option:[],
+            show:false
+        };
         this.input = [];
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -130,16 +140,16 @@ export default class extends Component {
                 <div className='ui-payment-title2'>收款方式</div>
                 <div className='ui-payment-pay'>
                     <div className='ui-payment-gateway'>
-                        <div className={'e-fieldset' + (0 == gateway ? ' checked' : '')} data-gateway='0' onClick={this.handleGateway}>
+                        <div className={'e-fieldset' + (0 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='0' onClick={this.handleGateway}>
                             <img src='img/e-icon-vip.png'/>&nbsp;&nbsp;会员卡
                         </div>
                         <div className={'e-fieldset' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}>
                             <img src='img/e-icon-cash.png'/>&nbsp;&nbsp;现金
                         </div>
-                        <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} data-gateway='2' onClick={this.handleGateway}>
+                        <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}>
                             <img src='img/e-icon-wechat.png'/>&nbsp;&nbsp;微信
                         </div>
-                        <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} data-gateway='3' onClick={this.handleGateway}>
+                        <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}>
                             <img src='img/e-icon-ali.png'/>&nbsp;&nbsp;支付宝
                         </div>
                     </div>

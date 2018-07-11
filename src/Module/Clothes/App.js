@@ -433,7 +433,7 @@ export default class extends Component {
         ,   pay_amount = 0
         ,   craft_price = 0
         for (let i = 0;i < len;++i) {
-            if ('' == data[i].raw_price || 0 == data[i].raw_price) return tool.ui.error({msg:(data[i].clothing_name + '价格为空'),callback:close => close()});
+            data[i].raw_price = data[i].raw_price || 0;
             pay_amount = pay_amount.add(data[i].raw_price, data[i].addition_price, data[i].addition_no_price);
             craft_price = craft_price.add(data[i].addition_price, data[i].addition_no_price);
             data[i].user_name = this.state.name;

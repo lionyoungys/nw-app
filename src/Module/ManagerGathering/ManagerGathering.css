@@ -53,12 +53,13 @@
 }
 
 .manager_gathering_part input{
-    width: 140px;
+    width: 100px;
     height: 21px;
     background:#fff;
     outline:none;
     border:1px solid #c4c2c2;       
     text-indent:4px;
+    margin-left: 24px;
     /* 设置选中的边框颜色 */
     outline-color: #6f9ec2;
 }
@@ -103,6 +104,8 @@
     width: 599px;
     height: 62px;
     border: 1px solid #c4c2c2;
+    box-sizing: border-box;
+    padding: 4px;
 }
 .manager_gathering_part_btn{
     float: left;

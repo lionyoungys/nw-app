@@ -1,5 +1,5 @@
 /**
- * 撤单处理界面
+ * 赔付界面
  * @author fanyerong
  */
 import React, {Component} from 'react';
@@ -165,7 +165,6 @@ export default class extends Component {
                                         <td></td>
                                         <td></td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -178,7 +177,6 @@ export default class extends Component {
                                         <td></td>
                                         <td></td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -191,7 +189,6 @@ export default class extends Component {
                                         <td></td>
                                         <td></td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -221,16 +218,15 @@ export default class extends Component {
                        </div>                      
                     </div>
                     <div className="Itsprocessing-count-transfer">
-                       <span onClick={() => this.handleAllArr(1)}><a title="翻转"></a></span>
-                       <span onClick={() => this.handleAllArr(2)}><a title="翻转1"></a></span>
+                       <span onClick={() => this.handleAllArr(1)}><a title="全选"></a></span>
+                       <span onClick={() => this.handleAllArr(2)}><a title="全不选"></a></span>
                     </div>
                     <div className="Itsprocessing-count-left  Itsprocessing-count-right">
                        <div className="Itsprocessing-count-title">赔退衣物<span>共<b>23</b>件</span></div>
                        <div className="Itsprocessing-count-take">
                             <table className='ui-table-base sing-tab'>
                                 <thead>
-                                    <tr>
-                                        
+                                    <tr>                                        
                                         <td>衣物编码</td>
                                         <td>衣物名称</td>
                                         <td>颜色</td>
@@ -250,15 +246,15 @@ export default class extends Component {
                     </div>
                 </div> 
                 <div className="Itsprocessing-footer">
-                  <div className="Itsprocessing-footer-left">                     
+                    <div className="Itsprocessing-footer-left">                     
                       <span>赔退原因：</span><textarea className="Itsprocessing-footer-text" onChange={value => this.setState({ cause: value })}></textarea>
-                  </div>                 
+                    </div>                 
                 </div> 
                 <div className="Itsprocessing-footer-div">
-                   <span>退款金额：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span>
+                    <span>退款金额：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span>
                 </div>
                 <div className="Itsprocessing-footer-div">
-                   <span>卡退款：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span><b className="no-save">取消</b><b className="sure-save">确定</b>
+                    <span>卡退款：</span><input type="number" /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多500元</span><b className="no-save">取消</b><b className="sure-save">确定</b>
                 </div>
             </Window>           
         );

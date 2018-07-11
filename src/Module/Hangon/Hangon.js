@@ -22,6 +22,7 @@ export default class extends Component {
     onclose(){
 
         this.setState({show:false});
+        this.props.closeView();
     }
     handleClick(){
         if(this.state.result.clothing_number==''){
@@ -88,7 +89,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                        <Hangondetail onClose={this.onclose} data={{
+                        <Hangondetail onClose={this.onclose} refresh={this.query} data={{
                             id:this.state.result.id,
                             clothing_number:this.state.result.clothing_number,
                             clothing_name:this.state.result.clothing_name,

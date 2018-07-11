@@ -13,8 +13,9 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: tool.date('Y-m-d'),
+            startDate: tool.date('Y-m-01'),
             endDate: tool.date('Y-m-d'),
+            nodatas:false,
             page:1,
             bankInfo:{},
             list:[],
@@ -41,23 +42,7 @@ export default class extends Component {
         api.post('aliWechatPayInfo', pramas, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
-                if(res.result.list.length>0){
-                    this.setState({ 
-                        bankInfo: res.result.bankInfo, 
-                        list: res.result.list, 
-                        count: res.result.count,
-                        page:page,
-                        nodatas:false,
-                    })
-                }else{
-                    this.setState({
-                        nodatas:true,
-                        bankInfo:{},
-                        list:[],
-                        page:1,
-                        count:0,
-                    })
-                }
+                this.setState({ bankInfo: res.result.bankInfo, list: res.result.list, count: res.result.count, page: page, nodatas: res.result.list.length > 0 ? false : true,})
             }else{
                 handle();
             } 
@@ -77,6 +62,7 @@ export default class extends Component {
         );
         return (
             <Window title='支付宝、微信对账' onClose={this.props.closeView}>
+            <div>
                 <div className="ali-wechat-check-head">
                     <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<a>{this.state.bankInfo.bank || '********'}</a><b>{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
                     <p>余额：¥{this.state.bankInfo.balance || '0'}</p>
@@ -111,10 +97,11 @@ export default class extends Component {
                     </thead>
                     <tbody>
                         {list}
-                        {this.state.nodatas&&<Nodata />}
+                        {this.state.nodatas && <Nodata />}
                     </tbody>
                 </table>
                 <Pages current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+            </div>
             </Window>
         );
     }

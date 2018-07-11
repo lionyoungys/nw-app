@@ -55,7 +55,7 @@ export default class extends Component {
                         nodatas:false,
                     });
                 }else{
-                    this.setState({nodatas:true,list:[],count:0,})
+                    this.setState({nodatas:true,list:[],count:0,itemCount:0,discount_amount:0,amount:0,})
                     
                 }                                
             }else{

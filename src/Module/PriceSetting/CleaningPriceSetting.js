@@ -42,7 +42,8 @@ export default class extends Component {
             online:0,//在线接单
             has_discount:1,//允许折扣
             transfer:1,//价格可调
-            min_discount:'',//折扣下限
+            min_discount:'0',//折扣下限
+            min_transfer:'1',//可调下限
             gradename:'',//档次
             materialsname:'',//材料名称
             goodindex:0,
@@ -128,13 +129,14 @@ export default class extends Component {
             item_name: '',//衣物名称
             item_cycle: '',//洗护周期
             item_off_price: '',//线下价格
-            min_discount: '',//折扣下限
+            min_discount: '0',//折扣下限
             item_online_price: '',//线上价格
             image_id: '',//图片id
             image_url: '',//图片url
             online: 0,//在线接单
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
+            min_transfer:'1'//可调下线
          
         })
     }
@@ -164,6 +166,7 @@ export default class extends Component {
             item_cycle:this.state.item_cycle,
             item_online_price:this.state.item_online_price,
             image_id:this.state.image_id,
+            min_transfer:this.state.min_transfer
         }
         console.log(mod)
         api.post('modItem',mod, (res, ver,handle) => {
@@ -198,7 +201,8 @@ export default class extends Component {
             min_discount:this.state.min_discount,
             item_cycle:this.state.item_cycle,
             item_online_price:this.state.item_online_price,
-            image_id:this.state.image_id
+            image_id:this.state.image_id,
+            min_transfer:this.state.min_transfer
         }
         console.log(params)
         api.post('addItem', params, (res, ver,handle) => {
@@ -258,6 +262,7 @@ export default class extends Component {
                 online: good.state,//在线接单
                 transfer: good.transfer,//价格可调
                 has_discount:good.has_discount,//允许折扣
+                min_transfer:good.min_transfer,//可调下限
             });     
     }
 
@@ -369,16 +374,18 @@ export default class extends Component {
                         <div className="addnewprice-two">
                             <div><span><i>*</i> 线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value,item_online_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
-                            <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
-                                    <div className="add-select-part"> 
-                                        {/* <div><input type="checkbox"  onChange={e=>this.setState({online:e.target.checked?1:0})}/>在线接单</div> */}
-                                    <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e => this.setState({ online: e.target.checked ? 1 : 0 })} />在线接单</div>
-                                        <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
-                                        <div><input type="checkbox" checked={this.state.transfer == 1 ? true : false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
-                                    </div>
+                            <div><span>线上价格： </span><input className='e-input addnewprice-input' type="text" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元</div>
+                            <div><span>调价下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_transfer} onChange={e=>this.setState({min_transfer:e.target.value})}/>元</div>
+                        
+                            <div className="add-select-part" id="add-select-part"> 
+                            {/* <div><input type="checkbox"  onChange={e=>this.setState({online:e.target.checked?1:0})}/>在线接单</div> */}
+                               
+                                <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e => this.setState({ online: e.target.checked ? 1 : 0 })} />在线接单</div>
+                                <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
+                                <div><input type="checkbox" checked={this.state.transfer == 1 ? true : false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
                             </div>
                         </div>
+                        
                         <div className="addnewprice-btn">
                             <button className="e-btn" onClick={()=>this.setState({show:false})}>取消</button>
                             <button className="e-btn" onClick={this.addYES}>确定</button>
@@ -410,19 +417,19 @@ export default class extends Component {
                           
                             </div>
                         </div>
-
                         <div className="addnewprice-two">
                             <div><span><i>*</i>线下价格：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="number" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>
-                            <div><span>线上价格：
-                                </span><input className='e-input addnewprice-input' type="number" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元
-                                    <div className="add-select-part">
-                                        <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e=>this.setState({online:e.target.checked?1:0})} />在线接单</div>
+                            <div><span>线上价格：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_online_price} onChange={e=>this.setState({item_online_price:e.target.value})}/>元</div>                           
+                            <div><span>调节下限：</span><input className='e-input addnewprice-input' type="number" value={this.state.min_transfer} onChange={e=>this.setState({min_transfer:e.target.value})}/>元</div>
+                            <div className="add-select-part" id="add-select-part">
+                                    <div><input type="checkbox" checked={this.state.online == 1 ? true : false} onChange={e=>this.setState({online:e.target.checked?1:0})} />在线接单</div>
                                     <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
                                     <div><input type="checkbox" checked={this.state.transfer == 1 ? true: false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
-                                    </div>
                             </div>
                         </div>
+                        
+                        
                         <div className="addnewprice-btn">
                             <button className="e-btn" onClick={this.deleteYES}>删除</button>
                             <button className="e-btn" onClick={()=>this.setState({show1:false})}>取消</button>

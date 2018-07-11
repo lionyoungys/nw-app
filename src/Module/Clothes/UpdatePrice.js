@@ -18,7 +18,7 @@ export default class extends Component {
         this.setState({value:value})
     }
     handleClick() {
-        let value = this.state.value;
+        let value = parseFloat(this.state.value);
         '' !== value && value >= this.props.min_price && 'function' === typeof this.props.callback && this.props.callback(value);
     }
 

@@ -26,7 +26,7 @@ export default class extends Component {
             page: 1,
             count: 0,
             index:0,
-            countdetail:1,
+            countdetail:0,
             listdetail:[],
             pagedetail:1,
             nodatas:false,   
@@ -41,8 +41,8 @@ export default class extends Component {
         api.post('cardType', {token:token}, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ cards: res.result.cardsType, types: res.result.cardsType.typeArray('card_type'),
-                card_name:res.result.cardsType.typeArray('card_type')[0]});
+                this.setState({ cards: res.result.cardsType, types: res.result.cardsType.typeArray('card_type')});
+                this.query();
             }else{
                 handle();
             }
@@ -162,7 +162,7 @@ export default class extends Component {
                         <div><span>客户电话：</span><input type="text" value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
                         <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
-                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} /></div>
+                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} selected={'全部'}/></div>
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>

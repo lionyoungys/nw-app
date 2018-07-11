@@ -6,7 +6,22 @@
 (function() {
     var mime = {bmp:'image/bmp',gif:'image/gif',png:'image/png',jpeg:'image/jpeg',jpg:'image/jpeg',jpe:'image/jpeg',txt:'text/plain'};
     //去除字符串中的空字符；
-    String.prototype.trim = function () {return this.replace(/(^\s*)|(\s*$)/g,'')};
+    String.prototype.trim = function () {
+        return this.replace(/(^\s*)|(\s*$)/g,'')
+    };
+    //判断输入正整数
+
+    // String.prototype.judgeInt =
+    // Number.prototype.judgeInt = function(){
+
+    //     if( /^\d+$/.test(this)){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+
     /**
      * localStorage数据存储
      * @param key 数据存储键
@@ -102,6 +117,7 @@
         }
         return obj;
     }
+
 
     /**
      * 根据数值生成当前毫秒级别的编码号
