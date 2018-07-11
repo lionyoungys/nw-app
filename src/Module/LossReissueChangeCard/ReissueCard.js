@@ -72,7 +72,7 @@ export default class extends Component {
                             made_price:data.made_price,
                             discount:data.discount,
                             type:data.card_name,
-                            amount:data.balance
+                            amount:data.made_price
                         }}
                         callback={this.success}
                         onClose={() => this.setState({show:false})}

@@ -415,7 +415,6 @@ export class UpdateCard extends Component {
         let data = this.props.data || {}
         ,   amount = data.amount || 0
         ,   made_price = data.made_price || 0
-        ,   total = amount.add(made_price)
         ,   authCode = this.state.authCode
         ,   gateway = this.state.gateway;
         return (
@@ -461,8 +460,8 @@ export class UpdateCard extends Component {
                         <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                     </div>
                     <div className='ui-payment-amount' style={{paddingRight:'238px'}}>
-                        <div>应收：<span>&yen;{total}</span></div>
-                        <div>找零：<span>&yen;{'' == this.state.amount ? 0 : this.state.amount.subtract(total)}</span></div>
+                        <div>应收：<span>&yen;{amount || '0.00'}</span></div>
+                        <div>找零：<span>&yen;{'' == this.state.amount ? 0 : this.state.amount.subtract(amount)}</span></div>
                     </div>
                 </div>
                 <div className='ui-payment-confirm'>
