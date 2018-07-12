@@ -55,9 +55,9 @@
         ,   { execFileSync } = window.require('child_process')
         ,   scriptName = 'script/open_case.';
         if (os.release().split('.')[0] > 5) {
-            let printer = 'printer'.getData();
+            let printer = 'open_case_printer'.getData();
             scriptName += 'exe';
-            'string' === typeof printer && printer.length > 0 ? execFileSync(scriptName, [printer]) : execFileSync(scriptName);
+            printer ? execFileSync(scriptName, [printer]) : execFileSync(scriptName);
         } else {
             try {
                 execFileSync(scriptName + 'com');

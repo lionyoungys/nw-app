@@ -13,14 +13,36 @@ export default class extends Component {
         super(props);  
         this.state = {
             checked: 0,
-            printer:'printer'.getData(),    //小票打印机
-            clothes_printer:'clothes_printer'.getData() || '无',    //衣物条码打印机
-            sn_printer:'sn_printer'.getData() || '无',    //不干胶条码打印机
-            M1:'SDT-HA',    //射频读卡型号
             M1data:['SDT-HA'],
-            data:[]
+            printers:[
+                {
+                    name:'printer'.getData(), 
+                    width:'printer_width'.getData(), 
+                    font_size:'printer_font_size'.getData(), 
+                    unit:'printer_unit'.getData(),
+                    id:'printer'
+                },    //小票打印机
+                {
+                    name:'clean_tag_printer'.getData(),
+                    width:'clean_tag_printer_width'.getData(),
+                    font_size:'clean_tag_printer_font_size'.getData(),
+                    unit:'clean_tag_printer_unit'.getData(),
+                    id:'clean_tag_printer'
+                },    //水洗标签打印机
+                {
+                    name:'glue_tag_printer'.getData(),
+                    width:'glue_tag_printer_width'.getData(),
+                    font_size:'glue_tag_printer_font_size'.getData(),
+                    unit:'glue_tag_printer_unit'.getData(),
+                    id:'glue_tag_printer'
+                },    //不干胶标签打印机
+                {name:'SDT-HA'},    //射频读卡器
+                {name:'open_case_printer'.getData(), id:'open_case_printer'}    //钱箱连接打印机
+            ],
+            data:['无']    //打印机列表
         }
         this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
+        this.handleChange = this.handleChange.bind(this);
         this.print = this.print.bind(this);
         this.M1Read = this.M1Read.bind(this);
     }; 
@@ -32,6 +54,10 @@ export default class extends Component {
             }
             this.setState({data:this.state.data});
         });
+    }
+    handleChange(e) {
+        let value = 'string' === typeof e ? e : e.target.value;
+        
     }
 
     print(e) {
@@ -54,36 +80,25 @@ export default class extends Component {
     }
 
     render() {
-        let printers = this.state.data.map(value => value);
-        printers.unshift('无');
+        let isM1 = 3 == this.state.checked
+        ,   show = this.state.checked < 4
+        ,   printer = this.state.printers[this.state.checked]
+        ,   list = isM1 ? this.state.M1data : this.state.data;
         return (
             <Window title='设备管理' onClose={this.props.closeView} width="500" height='400'>
-                <Tab style={{marginTop:'10px'}} option={this.tabs} checked={this.state.checked} onChange={i => this.setState({checked:i})}/>
-                <div style={{fontSize:'12px',marginLeft:'10px'}}>
-                    <div style={style}></div> 
-                    小票打印机：&emsp;&emsp;&emsp;<Select option={this.state.data} selected={this.state.printer} onChange={value => {
-                        value.setData('printer');
-                        this.setState({printer:value});
-                    }}/>&emsp;
-                    <button type='button' className='e-btn' onClick={this.print} data-printer='printer'>打印测试页</button>
-                    &nbsp;
-                    <button type='button' className='e-btn' data-event='open_case' onClick={this.props.changeView}>开钱箱测试</button>
-                    <div style={style}></div> 
-                    衣物编码打印机：&emsp;<Select option={printers} selected={this.state.clothes_printer} onChange={value => {
-                        value.setData('clothes_printer');
-                        this.setState({clothes_printer:value});
-                    }}/>&emsp;
-                    <button type='button' className='e-btn' onClick={this.print} data-printer='clothes_printer'>打印测试页</button>
-                    <div style={style}></div> 
-                    不干胶条码打印机：<Select option={printers} selected={this.state.sn_printer} onChange={value => {
-                        value.setData('sn_printer');
-                        this.setState({sn_printer:value});
-                    }}/>&emsp;
-                    <button type='button' className='e-btn' onClick={this.print} data-printer='sn_printer'>打印测试页</button>
-                    <div style={style}></div> 
-                    射频读卡器型号：&emsp;<Select option={this.state.M1data} selected={this.state.M1}/>&emsp;&emsp;
-                    <button type='button' className='e-btn' onClick={this.M1Read}>读卡测试</button>
-                </div>                                                                         
+                <Tab option={this.tabs} checked={this.state.checked} onChange={i => this.setState({checked:i})}/>
+                <div style={{marginLeft:'10px'}}>
+                    {isM1 ? '读卡器型号' : '打印机名称'}：<Select option={this.state.data} selected={printer.name} onChange={this.handleChange}/><br/>
+                    {show && <div>页面&emsp;宽度：<input type='number' value={printer.width} onChange={this.handleChange}/>&nbsp;mm</div>}
+                    {
+                        show 
+                        && 
+                        <div>
+                            字体&emsp;大小：<input type='number' value={printer.font_size} onChange={this.handleChange}/>&nbsp;
+                            <Select option={['pt', 'px', 'em']} selected={printer.unit}  onChange={this.handleChange}/>
+                        </div>
+                    }
+                </div>                                                                     
             </Window> 
         );            
     };
