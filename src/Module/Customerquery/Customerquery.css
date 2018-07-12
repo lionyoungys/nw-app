@@ -110,7 +110,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-width:868px;
     height:25px;
     background:#89b0d4;
-    display:inline-block;
+    display:block;
 
 }
 .Customerquery-tab table thead tr{min-width:868px;height:25px;}

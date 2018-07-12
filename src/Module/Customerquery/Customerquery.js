@@ -21,7 +21,6 @@ export default class extends Component {
             recharge_number:'',
             card_name:'',//卡类型
             types:[],
-            cards:[], 
             list:[],
             page: 1,
             count: 0,
@@ -38,11 +37,13 @@ export default class extends Component {
         this.M1Read = this.M1Read.bind(this); 
     };  
     componentDidMount(){
-        api.post('cardType', {token:token}, (res,ver,handle) => {
+        api.post('cardType', {token:token}, (res,ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ cards: res.result.cardsType, types: res.result.cardsType.typeArray('card_type')});
-                this.query();
+                if (res.result.cardsType.length > 0) {
+                    this.setState({ types: res.result.cardsType.typeArray('card_type'), card_name: res.result.cardsType[0].card_type});
+                    this.query();
+                }
             }else{
                 handle();
             }
@@ -95,8 +96,7 @@ export default class extends Component {
                         list:[],
                         count:0,
                     })
-                }
-                
+                } 
             }else{
                 handle();
             }
@@ -105,6 +105,11 @@ export default class extends Component {
     handleClick(e){
         
         var index = e.target.dataset.index || e.target.parentNode.dataset.index; 
+        if ('' == this.state.list[index].recharge_number || null == this.state.list[index].recharge_number) return tool.ui.error({
+            title: '提示', msg: '无卡号用户不支持详情查询', button: '确定', callback: (close, event) => {
+                close();
+            }
+        });
         console.log('点击了' + index);
         let pramas = {
             token: token,
@@ -118,7 +123,7 @@ export default class extends Component {
         api.post('userPayInfo', pramas, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res);
-                this.setState({ listdetail: res.result.list, countdetail: res.result.count, alldata: es.result.list.length > 0 ?false:true });
+                this.setState({ listdetail: res.result.list, countdetail: res.result.count, alldata: res.result.list.length > 0 ?false:true });
             }else{
                 this.setState({ listdetail: [], countdetail: 0, alldata: true });
                 handle();
@@ -162,7 +167,7 @@ export default class extends Component {
                         <div><span>客户电话：</span><input type="text" value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
                         <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
-                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} selected={'全部'}/></div>
+                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} selected={this.state.card_name}/></div>
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>

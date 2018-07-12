@@ -12,32 +12,45 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state={
-        id:this.props.data.id,
-        recharge_number:'',
-        show:false
+            id:this.props.data.id,
+            recharge_number:'',
+            show:false
         }
         this.handleClick = this.handleClick.bind(this);
         this.success = this.success.bind(this);
     };
-    success(){
+    success(obj){
         let params={
             token:token,
             id:this.state.id,
             recharge_number:this.state.recharge_number,
+            made_price:this.props.data.made_price || 0,
+            authcode:obj.authcode || '',
+            pay_type:obj.gateway
         }
         console.log(params)
         api.post('repairCards',params, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.props.refresh();
-                this.props.onClose();
+                tool.ui.success({msg:'补卡成功！', callback:close => {
+                    close();
+                    this.props.refresh();
+                    this.props.onClose();
+                }});
             }else{
                 handle();
             }
         });
     }
     handleClick() {
-        EventApi.M1Write({sn:this.state.recharge_number, success:() => this.setState({show:true})});
+        EventApi.M1Write({sn:this.state.recharge_number, success:() => {
+            let made_price = parseFloat(this.props.data.made_price || 0);
+            if (0 == made_price) {
+                this.success({gateway:1,authcode:''});
+            } else {
+                this.setState({show:true});
+            }
+        }});
     }
     render() {
         let data = this.props.data || {};

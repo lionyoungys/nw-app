@@ -98,3 +98,98 @@
     margin-left:9px;
 }
 .LatticeQuery-Bdiv ul li span.span-div{color:#ff0000}
+
+
+
+/* 格架修改  */
+
+.lattice-title{
+    width:872px;
+    height:37px;
+    margin:0 auto;
+    text-align:center;
+}
+.lattice-title span{
+   width:auto;
+   display:inline-block;
+   height: 37px;
+   line-height:37px;
+   margin-right:52px;
+   color:#000;
+   font-size:14px;
+}
+.lattice-div{
+    width:872px;
+    height:352px;
+    margin:0 auto;
+    margin-bottom:10px;
+}
+
+.lattice-div-left{
+    width:90px;
+    height:350px;
+    max-height:350px;
+    border:1px solid #8db2e3;
+    float:left;
+    overflow-y:auto;
+    background:#eef4fb;
+    overflow-x:hidden;
+    cursor: pointer;
+}
+.lattice-div-left::-webkit-scrollbar {
+    width:5px;
+}
+.lattice-div-left span{
+    display:block;
+    width:90px;
+    height:28px;
+    line-height:28px;
+    background:url(./img/cleaning_price_set.png) no-repeat;
+    background-size:77px 2px;
+    background-position:bottom center;
+    color:#000;
+    font-size:14px;
+    text-align:center;
+}
+.lattice-div-left span.selected{
+    background:#5f9dfa;
+    color:#fff;
+}
+
+.lattice-div-right{
+    width:772px;
+    height:350px;
+    border:1px solid #8db2e3;
+    float:right;
+    max-height:350px;
+    overflow-y: auto;
+    overflow-x:hidden;
+    background:#eef4fb;
+}
+.lattice-div-right::-webkit-scrollbar {
+    width:5px;
+}
+.lattice-div-right span{
+    display:inline-block;
+    width:64px;
+    height:24px;
+    border:1px solid #8db2e3;
+    color:#afafaf;
+    background:#fff;
+    font-size:14px;
+    text-align:center;
+    line-height:24px;
+    margin:9px 0 5px 10px;
+    cursor: pointer;
+}
+.lattice-div-right span:hover{
+    background:#5f9dfa;
+    color:#fff;
+}
+.lattice-div-right span.index{
+    color:#f00;
+}
+.lattice-div-right span.index:hover{
+    background:#5f9dfa;
+    color:#f00;
+}
