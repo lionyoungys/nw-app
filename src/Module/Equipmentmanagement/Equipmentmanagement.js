@@ -5,20 +5,22 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import Tab from '../../UI/Tab';
 
 const style = {height:'10px'};
 export default class extends Component {   
     constructor(props) {
         super(props);  
         this.state = {
-            index : 0,
+            checked: 0,
             printer:'printer'.getData(),    //小票打印机
             clothes_printer:'clothes_printer'.getData() || '无',    //衣物条码打印机
             sn_printer:'sn_printer'.getData() || '无',    //不干胶条码打印机
             M1:'SDT-HA',    //射频读卡型号
             M1data:['SDT-HA'],
             data:[]
-        }    
+        }
+        this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
         this.print = this.print.bind(this);
         this.M1Read = this.M1Read.bind(this);
     }; 
@@ -54,8 +56,9 @@ export default class extends Component {
     render() {
         let printers = this.state.data.map(value => value);
         printers.unshift('无');
-        return ( 
-            <Window title='设备管理' onClose={this.props.closeView} width="500" height='400'>  
+        return (
+            <Window title='设备管理' onClose={this.props.closeView} width="500" height='400'>
+                <Tab style={{marginTop:'10px'}} option={this.tabs} checked={this.state.checked} onChange={i => this.setState({checked:i})}/>
                 <div style={{fontSize:'12px',marginLeft:'10px'}}>
                     <div style={style}></div> 
                     小票打印机：&emsp;&emsp;&emsp;<Select option={this.state.data} selected={this.state.printer} onChange={value => {

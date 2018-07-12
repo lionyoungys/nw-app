@@ -96,7 +96,7 @@ const topMenu = [
             {value:'员工与权限', view:'staff_management', id: 44},
             {value:'价格设置', view:'price_setting', id: 45},
             {value:'参数设置', view:'Parameter_Settings', id: 46},
-            {value:'设备管理', view:'equipment_management', id: 47},
+            {value:'设备与打印机', view:'equipment_management', id: 47},
             {value:'数据导入',  view:'data', id: 48},
             {value:'密码修改', view:'passwd_update', id: 49},
             // {value:'其他设置', view:'colthes_classify_managment'},

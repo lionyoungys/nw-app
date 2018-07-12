@@ -489,3 +489,28 @@ input::-webkit-inner-spin-button{
 input::-webkit-outer-spin-button{
     -webkit-appearance:none;
 }
+/* tab组件样式 */
+.ui-tab{
+    width:100%;
+    height:24px;
+    max-height: 24px;
+    border-bottom:1px solid #8db2e3;
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+}
+.ui-tab>span{
+    font-size: 12px;
+    margin-left: 6px;
+    height: 23px;
+    line-height: 23px;
+    padding:0 10px;
+    background: #fff;
+    border: 1px solid #8db2e3;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #333;
+    cursor: default;
+}
+.ui-tab>span.checked{padding-bottom: 1px;color: #15458d;font-weight: bold}
