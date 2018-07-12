@@ -83,17 +83,19 @@ export default class extends Component {
     //点击了尖号 1 全部右移 2全部左移
     handleAllArr(index) {
         console.log('点击了片区' + index);
+        console.log(this.state.returnCloth.concat(this.state.comeinCloth));
         if (index == 1) {
             if (this.state.comeinCloth.length == 0) return;
-            this.setState({ returnCloth: this.state.returnCloth.concat(this.state.comeinCloth), comeinCloth: [] });
+            let allArr = this.state.returnCloth.concat(this.state.comeinCloth);
+            this.setState({ returnCloth: allArr, comeinCloth: [] });
+            this.handleMaxReturn(allArr);
+
         } else {
             if (this.state.returnCloth.length == 0) return;
+            let allArr = this.state.comeinCloth.concat(this.state.returnCloth);
             this.setState({ comeinCloth: this.state.comeinCloth.concat(this.state.returnCloth), returnCloth: [] });
+            this.handleMaxReturn([]);
         }
-        console.log(this.state.comeinCloth);
-        console.log(this.state.returnCloth);
-        this.handleMaxReturn();
-
     }
     //点击了 1 左侧某个 2右侧某个
     handlePartArr(index, cellIndex) {
@@ -107,14 +109,14 @@ export default class extends Component {
             this.state.returnCloth.splice(cellIndex, 1);
             this.setState({ comeinCloth: this.state.comeinCloth, returnCloth: this.state.returnCloth });
         }
-        this.handleMaxReturn();
+        this.handleMaxReturn(this.state.returnCloth);
     }  
     //计算最大退款额
-    handleMaxReturn(){
-        if (this.state.returnCloth.length == 0){
+    handleMaxReturn(returnArr){
+        if (returnArr.length == 0){
             this.setState({maxReturn:'0'});
         }else{
-            this.setState({ maxReturn: this.state.returnCloth.addKeyInArray('discount_price')})
+            this.setState({ maxReturn: returnArr.addKeyInArray('discount_price')})
         }
         console.log('退款最大'+this.state.maxReturn);
     }
