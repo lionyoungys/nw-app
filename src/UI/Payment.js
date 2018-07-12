@@ -47,6 +47,7 @@ export default class extends Component {
     handleGateway(e) {
         let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
         this.setState({gateway:gateway});
+        1 == gateway && EventApi.open_case();
     }
 
     query() {'' != this.state.number && 'function' === typeof this.props.query && this.props.query(this.state.number)}
@@ -225,6 +226,7 @@ export class Recharge extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
+        EventApi.open_case();
     }
 
     componentDidMount() {
@@ -234,6 +236,7 @@ export class Recharge extends Component {
     handleGateway(e) {
         let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
         this.setState({gateway:gateway});
+        1 == gateway && EventApi.open_case();
     }
     handleChange(e) {
         let value = e.target.value;
@@ -362,6 +365,7 @@ export class UpdateCard extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
+        EventApi.open_case();
     }
 
     componentDidMount() {
@@ -371,6 +375,7 @@ export class UpdateCard extends Component {
     handleGateway(e) {
         let gateway = e.target.dataset.gateway || e.target.parentNode.dataset.gateway;
         this.setState({gateway:gateway});
+        1 == gateway && EventApi.open_case();
     }
     handleChange(e) {
         let value = e.target.value;
