@@ -103,6 +103,15 @@
         show:function(elem) {
             var node = this.elem(elem);
             this.isNode(node) && node.show();
+        },
+        string:function(value) {return 'string' === typeof value && value;},
+        page:function(widthKey, fontSizeKey, unitKey) {
+            var body = document.body
+            ,   width = this.string(widthKey) ? localStorage.getItem(widthKey) : null
+            ,   fontSize = this.string(fontSizeKey) ? localStorage.getItem(fontSizeKey) : null
+            ,   unit = this.string(unitKey) ? localStorage.getItem(unitKey) : 'pt';
+            if (width && !isNaN(width)) body.style.width = (width / 10) + 'cm';
+            if (fontSize && !isNaN(fontSize)) body.style.fontSize = (fontSize + unit);
         }
     };
     window._ = c;

@@ -54,10 +54,7 @@
     <script src="common.js"></script>
     <script>
     _.init(function() {
-        let font_size = (localStorage.getItem('printer_font_size') || '13') + (localStorage.getItem('printer_unit') || 'px')
-        ,   width = (localStorage.getItem('printer_width') || '5.8') + 'cm';
-        document.body.style.fontSize = font_size;
-        document.body.style.width = width;
+        _.page('printer_width', 'printer_font_size', 'printer_unit');
         _.now();
         _.inner('#sn', '4578451212124555');
         _.barcode('#barcode', '4578451212124555');
