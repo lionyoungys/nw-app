@@ -16,8 +16,12 @@
     <div class="t-c"><img id="barcode"/></div>
     <div class="t-c" id="code">01234567890123456789</div>
     <script src="JsBarcode.min.js"></script>
+    <script src="common.js"></script>
     <script>
-        JsBarcode('#barcode', document.getElementById('code').innerText, {displayValue:false, width:2, height:30})
+    _.init(function() {
+        _.page('printer_width', 'printer_font_size', 'printer_unit');
+        _.barcode('#barcode', _.first('#code').innerText);
+    });
     </script>
 </body>
 </html>
