@@ -358,11 +358,14 @@
 .clothes-user-main>:first-child>div:last-child,
 .clothes-user-main-body>div>div:last-child{border-right: none}
 .clothes-user-main>:first-child>div,
-.clothes-user-main-body>div>div{width: 94px}
+.clothes-user-main-body>div>div{width: 92px}
 .clothes-user-main>:first-child>div:nth-child(1),
 .clothes-user-main-body>div>div:nth-child(1) {width: 84px}
 .clothes-user-main>:first-child>div:nth-child(7),
 .clothes-user-main-body>div>div:nth-child(7) {width: 180px}
+.clothes-user-main>:first-child>div:nth-child(4),
+.clothes-user-main-body>div>div:nth-child(4) {width: 124px}
+
 /* code.js衣物编码界面 */
 .clothes-code{
     margin: 12px;

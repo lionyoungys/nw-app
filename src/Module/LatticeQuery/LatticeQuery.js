@@ -73,12 +73,6 @@ export default class extends Component {
         },()=>done());
     }
     
-
-
-
-
-
-
     render() { 
         let name = this.state.gridname.map((item,index) =><span key={'item'+index} data-index={index} className={this.state.index==index?'selected':null} onClick = {this.handleclick}>{item.name}</span>)                      
         let use_detail;
