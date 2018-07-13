@@ -352,6 +352,7 @@
     line-height: 26px;
     font-size: 12px;
     text-align: center;
+    word-break: break-all;
 }
 .clothes-user-main>:first-child>div, .clothes-user-main-body>div>div{border-right: 1px solid #acc6de}
 .clothes-user-main>:first-child>div:last-child,
