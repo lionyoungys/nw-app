@@ -160,7 +160,7 @@ export default class extends Component {
             item_off_price:this.state.item_off_price,
             grade:this.state.gradename||'',
             materials:this.state.materialsname||'',
-            grid:this.state.gridname||'',
+            grid:this.state.gridname=='任意格架'?'X':this.state.gridname||'',
             // state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
@@ -198,7 +198,7 @@ export default class extends Component {
             item_off_price:this.state.item_off_price,
             grade:this.state.gradename,
             materials:this.state.materialsname,
-            grid:this.state.gridname,
+            grid:this.state.gridname=='任意格架'?'X':this.state.gridname,
             // state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,

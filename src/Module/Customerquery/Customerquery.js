@@ -41,8 +41,11 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 if (res.result.cardsType.length > 0) {
-                    this.setState({ types: res.result.cardsType.typeArray('card_type'), card_name: res.result.cardsType[0].card_type});
+                   
+                    this.setState({ types: res.result.cardsType.typeArray('card_type')});
+                    this.state.types.push('全部')
                     this.query();
+
                 }
             }else{
                 handle();
@@ -167,7 +170,7 @@ export default class extends Component {
                         <div><span>客户电话：</span><input type="text" value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
                         <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
-                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value})} selected={this.state.card_name}/></div>
+                        <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value=='全部'?'':value})} selected="全部"/></div>
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>
