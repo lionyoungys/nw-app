@@ -11,7 +11,7 @@ import Select from './Select';
 const style = {marginBottom:'8px', fontSize:'12px'};
 /**
  * 订单支付弹窗
- * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
+ * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价,special_pay_amount:特殊情况下支付额}
  * @param {function} M1Read 读卡方法
  * @param {function} query 卡号查询 回调参数:卡号
  * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,pay_amount:pay_amount,passwd:passwd,[authcode:authcode]}
@@ -85,6 +85,7 @@ export default class extends Component {
             obj.pay_amount = this.props.data.pay_amount;
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
+            if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
             if (obj.amount < 0 || obj.pay_amount > obj.amount) return;
             if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
         } else {
@@ -110,7 +111,7 @@ export default class extends Component {
         ,   authCode = this.state.authCode
         ,   gateway = this.state.gateway
         ,   discount = data.discount || 100
-        ,   amount = 0 == gateway ? data.pay_amount : data.total_amount
+        ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount)
         ,   change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         return (
             <Window title='收银' width='632' height='532' onClose={this.props.onClose}>
