@@ -5,14 +5,18 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import MathUI from '../../UI/MathUI';
+import Pay from '../../UI/Payment';
 import Deduct from '../Clothes/Deduct';
 import Recharge from '../Recharge/App';
 import './Commoditysales.css';
 
+const token = 'token'.getData();
 export default class extends Component {
     constructor(props) {
         super(props);  
         this.state={
+            oid:null,
+            card:{},
             index:0,
             list: [],//所有数据
             allComList: [],//所有商品的数组
@@ -21,16 +25,24 @@ export default class extends Component {
             show:false,
             amount:'0',//总件数
             total:'0',//总金额
+            disAmount:0,   //可折金额
             discount:'100%',//折扣率
             disTotal:'0',//折后总价
             rechargeShow:false,
+            payShow:false
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
         this.deleteYes = this.deleteYes.bind(this);
         this.add = this.add.bind(this);
         this.sub = this.sub.bind(this);   
-        this.compute = this.compute.bind(this);             
+        this.compute = this.compute.bind(this);   
+        this.payment = this.payment.bind(this);    
+        this.delOrder = this.delOrder.bind(this);  
+        this.onClose = this.onClose.bind(this);
+        this.M1read = this.M1read.bind(this);   
+        this.paymentClose = this.paymentClose.bind(this); 
+        this.paymentCallback = this.paymentCallback.bind(this);
     };
     //进入页面获取数据
     componentDidMount(){
@@ -132,18 +144,119 @@ export default class extends Component {
 
         if (this.state.searchList.length == 0) return this.setState({ amount: '0', total:'0', disTotal: '0' });;
         var count = this.state.searchList.addKeyInArray('count');
-        var total = 0;
+        var total = 0
+        ,   disAmount = 0;
         for (let index = 0; index < this.state.searchList.length; index++) {
            total +=this.state.searchList[index].price * this.state.searchList[index].count;
+           if (1 == this.state.searchList[index].has_discount) {
+               disAmount = disAmount.add(this.state.searchList[index].price.multiply(this.state.searchList[index].count));
+           }
         }
         var distotal = total * parseFloat(this.state.discount)/100;
-        this.setState({ amount: count.toString(), total: total.toDecimal2(), disTotal: distotal.toDecimal2()});
+        this.setState({ amount: count.toString(), total: total.toDecimal2(), disTotal: distotal.toDecimal2(), disAmount:disAmount});
     }
     handleClick (e){
         this.setState({index:e.target.dataset.index});
     }
+    payment() {
+        /*用户姓名[user_name],用户手机号[user_mobile],商品id[clothing_id],
+        商品名称[cloting_name],商品类型[clothing_type],商品原价[raw_price],
+        是否打折[has_discount],件数[work_number],卡类型[card_type],卡号[card_number],住址[address],) 如果某项值没有 则给成空 */
+        let items = this.state.searchList
+        ,   len = items.length;
+        console.log(items);
+        if (len < 1) return
+        let data = [], j;
+        for (let i = 0;i < len;++i) {
+            if (items[i].count > 1) {
+                for (j = 0;j < items[i].count;++j) {
+                    data.push({
+                        user_name:'',
+                        user_mobile:'',
+                        clothing_id:items[i].id,
+                        cloting_name:items[i].name,
+                        clothing_type:items[i].goods_type,
+                        raw_price:items[i].price,
+                        has_discount:items[i].has_discount,
+                        work_number:1,
+                        card_type:'',
+                        card_number:'',
+                        address:''
+                    });
+                }
+            } else {
+                data.push({
+                    user_name:'',
+                    user_mobile:'',
+                    clothing_id:items[i].id,
+                    cloting_name:items[i].name,
+                    clothing_type:items[i].goods_type,
+                    raw_price:items[i].price,
+                    has_discount:items[i].has_discount,
+                    work_number:1,
+                    card_type:'',
+                    card_number:'',
+                    address:''
+                });
+            }
+        }
+        api.post('sellGoods', {token:token,amount:this.state.total,items:JSON.stringify(data)}, (res, ver, handle) => {
+            if (ver) {
+                this.setState({oid:res.result.order_id, payShow:true});
+            } else {
+                handle();
+            }
+        });
+    }
+    onClose() {this.delOrder(this.props.closeView);}
+
+    delOrder(callback) {
+        if (null != this.state.oid) {
+            api.post('del_order', {token:token, order_id:this.state.oid});
+        }
+        'function' === typeof callback && callback();
+    }
+    M1read() {
+        let obj = {};
+        if ('string' === typeof value && '' != value) {
+            obj.number = value;
+        }
+        obj.callback = (res) => {
+            this.setState({card:res});
+        }
+        EventApi.M1Read(obj);
+    }
+    paymentClose() {
+        this.delOrder(() => this.setState({oid:null, payShow:false, card:{}}));
+    }
+    paymentCallback(obj) {
+        if (null == this.state.oid) return;
+        let cid = this.state.card.id || null;
+        if (0 == obj.gateway && null == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let loadingEnd;
+        tool.ui.loading(handle => loadingEnd = handle);
+        api.post(
+            'orderPay', 
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
+            (res, ver, handle) => {
+                console.log(res);
+                loadingEnd();
+                if (ver) {
+                    tool.ui.success({callback:close => {
+                        close();
+                        this.props.closeView();
+                    }}); 
+                } else {
+                    handle();
+                }
+            },
+            () => loadingEnd()
+        );
+    }
     render() {  
-       
+        let noDisAmount = this.state.total.subtract(this.state.disAmount)
+        ,   discount = this.state.card.discount || 100
+        ,   pay_amount = noDisAmount.add( (this.state.disAmount * discount / 100) );
         let tabs=this.state.list.map((item,index)=>
                 <span key={'item'+index} data-index={index} 
                     className={this.state.index==index?'commoditysales-left-hover':null}
@@ -177,7 +290,7 @@ export default class extends Component {
             </tr> 
         );         
         return (       
-            <Window title='商品销售' onClose={this.props.closeView}>
+            <Window title='商品销售' onClose={this.onClose}>
                <div className="commoditysales-div">                 
                   <div className="commoditysales-div-right">                     
                       <div className="commoditysales-right-tab">
@@ -232,7 +345,7 @@ export default class extends Component {
                         <div className="commoditysales-footerdiv-rightboth">总件数: {parseInt(this.state.amount)}</div>
                         <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥{this.state.disTotal}</div>                    
                         <div className="commoditysales-footerdiv-rightboth">
-                            <button type='button' className='e-btn middle high'>收款</button>
+                            <button type='button' className='e-btn middle high' onClick={this.payment}>收款</button>
                         </div>
                         <div className="commoditysales-button">
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
@@ -243,6 +356,28 @@ export default class extends Component {
                </div> 
                 {this.state.show && <Deduct callback={() => this.setState({show: false})} onClose={() => this.setState({show:false})}/>}    
                 {this.state.rechargeShow && <Recharge closeView={() => this.setState({rechargeShow:false})}/>}
+                {/*  @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
+ * @param {function} M1Read 读卡方法
+ * @param {function} query 卡号查询 回调参数:卡号
+ * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,pay_amount:pay_amount,passwd:passwd,[authcode:authcode]} */}
+                {
+                    this.state.payShow 
+                    && 
+                    <Pay 
+                        onClose={this.paymentClose}
+                        data={{
+                            total_amount:this.state.total,
+                            dis_amount:this.state.disAmount,
+                            amount:noDisAmount,
+                            discount:discount,
+                            pay_amount:pay_amount,
+                            balance:(this.state.card.balance || 0),
+                        }}
+                        M1Read={this.M1read}
+                        query={this.M1read}
+                        callback={this.paymentCallback}
+                    />
+                }
             </Window>  
         );
     }

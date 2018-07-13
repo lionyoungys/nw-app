@@ -182,6 +182,23 @@
         }
         return (value / precision);
     }
+    String.prototype.multiply = 
+    Number.prototype.multiply = function() {
+        var len = arguments.length
+        ,   precision = 1000000  
+        ,   value = parseFloat(this)
+        ,   tempVal;
+        if (isNaN(value)) value = 0;
+        if (len < 1) return value;
+        for (var i = 0;i < len;++i) {
+            tempVal = parseFloat(arguments);
+            if (isNaN(tempVal)) tempVal = 0;
+            value = Math.floor(value * precision);
+            value *= Math.floor(tempVal * precision);
+            value /= (precision * precision);
+        }
+        return value;
+    }
     /**
     * 数值/字符串保留2位小数
     * @param {number} 输入字符串或者数值
