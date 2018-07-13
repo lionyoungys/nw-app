@@ -35,7 +35,8 @@
      * @return string
      */
     String.prototype.getData = function () {
-        return localStorage.getItem(this);
+        var data = localStorage.getItem(this);
+        return data ? data : '';
     }
     /**
      * 获取mime类型

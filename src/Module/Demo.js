@@ -19,9 +19,6 @@ export default class extends React.Component {
             show:false, 
             show2:false,
             updateCardShow:false, 
-            printerFontSize:'printer_font_size'.getData() || '13',
-            printerWidth:'printer_width'.getData() || '5.8',
-            printerUnit:'printer_unit'.getData() || 'px'
         }
         this.Equals = new tool.Equals({key:[1,2], value:{date:2, data:{ky:'cc'}}, dd:0});
     }
@@ -162,34 +159,6 @@ export default class extends React.Component {
                     ></LayerBox>
                 }
                 {this.state.updateCardShow && <UpdateCard onClose={() => this.setState({updateCardShow:false})}/>}
-                <br/>
-                <input type='text' value={this.state.printerFontSize} className='e-input' onChange={e => {
-                    let value = e.target.value;
-                    if ('' == value || !isNaN(value)) {
-                        this.setState({printerFontSize:value});
-                    }
-                }}/>
-                <select onChange={e => this.setState({printerUnit:e.target.value})}>
-                    <option selected={'px' == this.state.printerUnit}>px</option>
-                    <option selected={'pt' == this.state.printerUnit}>pt</option>
-                    <option selected={'em' == this.state.printerUnit}>em</option>
-                </select>
-                &emsp;
-                <input type='text' value={this.state.printerWidth} className='e-input' onChange={e => {
-                    let value = e.target.value;
-                    if ('' == value || !isNaN(value)) {
-                        this.setState({printerWidth:value});
-                    }
-                }}/>
-                cm
-                <button type='button' className='e-btn' onClick={() => {
-                    if (!isNaN(this.state.printerFontSize) && !isNaN(this.state.printerWidth)) {
-                        this.state.printerFontSize.setData('printer_font_size');
-                        this.state.printerWidth.setData('printer_width');
-                        this.state.printerUnit.setData('printer_unit');
-                    }
-                }}>确认设置</button>
-                <button type='button' className='e-btn' onClick={() => {EventApi.print('demo', null, 'printer'.getData())}}>打印</button>
            </Window>
         );
     }

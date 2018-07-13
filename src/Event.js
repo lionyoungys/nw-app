@@ -1,5 +1,6 @@
 //事件注册配置
 (function(window) {
+    const { execFileSync } = window.require('child_process');
     var e = {
         win:nw.Window.get(),
         printPageWin:null,
@@ -52,20 +53,28 @@
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')
-        ,   { execFileSync } = window.require('child_process')
         ,   scriptName = 'script/open_case.';
         if (os.release().split('.')[0] > 5) {
             let printer = 'open_case_printer'.getData();
             scriptName += 'exe';
-            printer ? execFileSync(scriptName, [printer]) : execFileSync(scriptName);
+            printer ? this.exec(scriptName, [printer]) : this.exec(scriptName);
         } else {
             try {
-                execFileSync(scriptName + 'com');
+                this.exec(scriptName + 'com');
             } catch (e) {
                 console.log(e.message);
             }
         }
     },
+    e.exec = function(file, args) {    //运行文件
+        if ('string' === typeof file) {
+            if (!tool.isArray(args)) args = [];
+            execFileSync(file, args)
+        }
+    }
+    e.printerSetting = function() {    //打开打印机设置
+        this.exec('rundll32.exe', ['shell32.dll,SHHelpShortcuts_RunDLL', 'PrintersFolder']);
+    }
     e.M1Read = function(obj) {    //读卡
         if ('object' !== typeof obj || !(obj.constructor === Object)) return;
         let loadingEnd;

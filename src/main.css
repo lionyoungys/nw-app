@@ -240,6 +240,13 @@ table{border-collapse: collapse}
     border: 1px solid #c2c2c2;
     outline-color: #6f9ec2;
 }
+/* 下拉选框样式 */
+.e-select{
+    height: 22px;
+    font-size: 12px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
 /* 多选框样式 */
 .e-checkbox{width: 15px;height: 15px;vertical-align: middle}
 /* 弹出层遮罩样式 */

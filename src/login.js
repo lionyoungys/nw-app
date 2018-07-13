@@ -297,7 +297,7 @@ class Login extends Component {
                     </div>
                     <div className='login-passwd-handle'>
                         <span className={this.state.remember ? 'checked' : null} onClick={this.remember}>记住密码</span>
-                        <span onClick={this.props.toggleStep} data-step='3'>找回密码</span>
+                        {/* <span onClick={this.props.toggleStep} data-step='3'>找回密码</span> */}
                     </div>
                     <div style={{paddingLeft:'10px'}}><button type='button' onClick={this.login}>登录</button></div>
                 </div>

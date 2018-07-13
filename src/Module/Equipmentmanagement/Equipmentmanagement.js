@@ -4,7 +4,6 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Select from '../../UI/Select';
 import Tab from '../../UI/Tab';
 
 const style = {height:'10px'};
@@ -13,38 +12,44 @@ export default class extends Component {
         super(props);  
         this.state = {
             checked: 0,
-            M1data:['SDT-HA'],
             printers:[
                 {
                     name:'printer'.getData(), 
-                    width:'printer_width'.getData(), 
-                    font_size:'printer_font_size'.getData(), 
-                    unit:'printer_unit'.getData(),
+                    width:'printer_width'.getData() || '58', 
+                    font_size:'printer_font_size'.getData() || '11', 
+                    unit:'printer_unit'.getData() || 'pt',
                     id:'printer'
                 },    //小票打印机
                 {
                     name:'clean_tag_printer'.getData(),
-                    width:'clean_tag_printer_width'.getData(),
-                    font_size:'clean_tag_printer_font_size'.getData(),
-                    unit:'clean_tag_printer_unit'.getData(),
+                    width:'clean_tag_printer_width'.getData() || '58',
+                    font_size:'clean_tag_printer_font_size'.getData() || '11',
+                    unit:'clean_tag_printer_unit'.getData() || 'pt',
                     id:'clean_tag_printer'
                 },    //水洗标签打印机
                 {
                     name:'glue_tag_printer'.getData(),
-                    width:'glue_tag_printer_width'.getData(),
-                    font_size:'glue_tag_printer_font_size'.getData(),
-                    unit:'glue_tag_printer_unit'.getData(),
+                    width:'glue_tag_printer_width'.getData() || '58',
+                    font_size:'glue_tag_printer_font_size'.getData() || '11',
+                    unit:'glue_tag_printer_unit'.getData() || 'pt',
                     id:'glue_tag_printer'
                 },    //不干胶标签打印机
-                {name:'SDT-HA'},    //射频读卡器
+                {name:'m1_reader'.getData(), id:'m1_reader'},    //射频读卡器
                 {name:'open_case_printer'.getData(), id:'open_case_printer'}    //钱箱连接打印机
             ],
+            M1data:['SDT-HA'],
             data:['无']    //打印机列表
         }
         this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
+        this.units = ['pt', 'px', 'em'];
+        this.style = {position:'absolute', bottom:'20px', right:'20px'};
         this.handleChange = this.handleChange.bind(this);
+        this.selectPrinter = this.selectPrinter.bind(this);
+        this.selectUnit = this.selectUnit.bind(this);
         this.print = this.print.bind(this);
+        this.open = this.open.bind(this);
         this.M1Read = this.M1Read.bind(this);
+        this.printerSetting = this.printerSetting.bind(this);
     }; 
     componentDidMount() {
         EventApi.printers(data => {
@@ -56,14 +61,34 @@ export default class extends Component {
         });
     }
     handleChange(e) {
-        let value = 'string' === typeof e ? e : e.target.value;
-        
+        let value = e.target.value
+        ,   name = e.target.dataset.name
+        ,   printer = this.state.printers[this.state.checked];
+        value.setData(printer.id + '_' + name);
+        this.state.printers[this.state.checked][name] = value;
+        this.setState({printers:this.state.printers});
     }
 
-    print(e) {
-        let printer = this.state[e.target.dataset.printer];
-        '无' != printer && EventApi.print('test', null, printer);
+    //设置打印机方法
+    selectPrinter(e) {
+        let value = e.target.value
+        ,   printer = this.state.printers[this.state.checked];
+        console.log(value);
+        '无' == value ? ''.setData(printer.id) : value.setData(printer.id);
+        this.state.printers[this.state.checked].name = value;
+        this.setState({printers: this.state.printers});
     }
+    //设置字体单位方法
+    selectUnit(e) {
+        let value = e.target.value
+        ,   printer = this.state.printers[this.state.checked];
+        value.setData(printer.id + '_unit');
+        this.state.printers[this.state.checked].unit = value;
+        this.setState({printers:this.state.printers});
+    }
+
+    print() {EventApi.print('test', null, this.state.printers[this.state.checked].name)}
+    open() {EventApi.open_case()}
     M1Read() {
         try {
             var card = M1Reader.get();
@@ -78,27 +103,56 @@ export default class extends Component {
         }
         return  tool.ui.success({msg:'读卡成功',callback:close => close()});
     }
+    printerSetting() {
+        EventApi.printerSetting();
+    }
 
     render() {
-        let isM1 = 3 == this.state.checked
-        ,   show = this.state.checked < 4
-        ,   printer = this.state.printers[this.state.checked]
-        ,   list = isM1 ? this.state.M1data : this.state.data;
+        let show = this.state.checked < 3
+        ,   isM1 = 3 == this.state.checked
+        ,   printer = this.state.printers[this.state.checked];
         return (
-            <Window title='设备管理' onClose={this.props.closeView} width="500" height='400'>
+            <Window title='设备管理' onClose={this.props.closeView} width="500" height='240'>
                 <Tab option={this.tabs} checked={this.state.checked} onChange={i => this.setState({checked:i})}/>
-                <div style={{marginLeft:'10px'}}>
-                    {isM1 ? '读卡器型号' : '打印机名称'}：<Select option={this.state.data} selected={printer.name} onChange={this.handleChange}/><br/>
-                    {show && <div>页面&emsp;宽度：<input type='number' value={printer.width} onChange={this.handleChange}/>&nbsp;mm</div>}
+                <div style={{marginLeft:'10px',fontSize:'12px',lineHeight:'2.5'}}>
+                    {isM1 ? '读卡器型号' : '打印机名称'}：
+                    <select className='e-select' onChange={this.selectPrinter} value={printer.name}>
+                        {(isM1 ? this.state.M1data : this.state.data).map((obj, index) => <option key={obj + index}>{obj}</option>)}
+                    </select>
+                    {show && <div>页面&emsp;宽度：<input type='number' className='e-input' value={printer.width} data-name='width' onChange={this.handleChange}/>&nbsp;mm</div>}
                     {
                         show 
                         && 
                         <div>
-                            字体&emsp;大小：<input type='number' value={printer.font_size} onChange={this.handleChange}/>&nbsp;
-                            <Select option={['pt', 'px', 'em']} selected={printer.unit}  onChange={this.handleChange}/>
+                            字体&emsp;大小：<input type='number' className='e-input' value={printer.font_size} data-name='font_size' onChange={this.handleChange}/>&nbsp;
+                            <select className='e-select'onChange={this.selectUnit} value={printer.unit}>
+                                {this.units.map(obj => <option key={obj}>{obj}</option>)}
+                            </select>
                         </div>
                     }
-                </div>                                                                     
+                    
+                </div>  
+                {
+                    isM1
+                    ?
+                    (<button style={this.style} type='button' className='e-btn' onClick={this.M1Read}>测试读卡</button>)
+                    :
+                    (
+                        4 == this.state.checked
+                        ?
+                        (<div style={this.style}>
+                            <button type='button' className='e-btn' onClick={this.printerSetting}>打印机设置</button>
+                            &emsp;
+                            <button type='button' className='e-btn' onClick={this.open}>开钱箱</button>
+                        </div>)
+                        :
+                        (<div style={this.style}>
+                            <button type='button' className='e-btn' onClick={this.printerSetting}>打印机设置</button>
+                            &emsp;
+                            <button type='button' className='e-btn' onClick={this.print}>打印测试页</button>
+                        </div>)
+                    )
+                }                                                                   
             </Window> 
         );            
     };
