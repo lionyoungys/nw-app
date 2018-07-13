@@ -94,6 +94,21 @@
     };
 
     /**
+     * 数组中指定key值进行相加返回相加总数
+     * @param Array 数组
+     * @param key 键 
+     * @return ret 相加总数,返回为floot
+     */
+    Array.prototype.addKeyInArray = function (key) {
+ 
+      var ret = 0, len = this.length;
+        for (var i = 0; i < len; ++i) {
+            ret += parseFloat(this[i][key]);
+        }
+        return ret;
+    };
+
+    /**
      * 数值或数值字符串转成百分数字符串
      * @return String
      */
@@ -166,6 +181,32 @@
             value -= Math.floor(parseFloat(arguments[i]) * precision);
         }
         return (value / precision);
+    }
+    /**
+    * 数值/字符串保留2位小数
+    * @param {number} 输入字符串或者数值
+    * @return {number} 返回为字符串类型
+    */
+    String.prototype.toDecimal2 =
+        Number.prototype.toDecimal2 = function () {
+        var f = parseFloat(this);
+        if (isNaN(f)) {
+            return false;
+        }
+        var f = Math.round(this * 10000) / 10000;
+        var s = f.toString();
+        var rs = s.indexOf('.');
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        if (s.length > rs + 3) {
+            s = s.substring(0, rs + 3)
+        } 
+        return s;
     }
 
     /**
