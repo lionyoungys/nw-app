@@ -55,7 +55,6 @@ export default class extends Component {
                 <td className='ali-wechat-check-tab-2'>{item.pay_type}</td>
                 <td className='ali-wechat-check-tab-3'>{item.pay_type}</td>
                 <td className='ali-wechat-check-tab-4'>{item.real_amount}</td>
-                <td className='ali-wechat-check-tab-5'>{item.real_amount * 0.01}</td>
                 <td className='ali-wechat-check-tab-6'>{item.balance}</td>
                 <td className='ali-wechat-check-tab-7'>{item.time}</td>
             </tr>
@@ -90,7 +89,6 @@ export default class extends Component {
                             <td className='ali-wechat-check-tab-2'>交易类型</td>
                             <td className='ali-wechat-check-tab-3'>备注</td>
                             <td className='ali-wechat-check-tab-4'>交易金额</td>
-                            <td className='ali-wechat-check-tab-5'>交易手续费</td>
                             <td className='ali-wechat-check-tab-6'>余额</td>
                             <td className='ali-wechat-check-tab-7'>交易时间</td>
                         </tr>

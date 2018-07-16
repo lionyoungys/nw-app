@@ -515,3 +515,7 @@ input::-webkit-outer-spin-button{
     cursor: default;
 }
 .ui-tab>span.checked{padding-bottom: 1px;color: #15458d;font-weight: bold}
+
+table tbody tr td{
+    word-break: break-all;
+}

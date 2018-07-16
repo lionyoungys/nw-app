@@ -446,7 +446,7 @@ export default class extends Component {
         }
         api.post(
             'get_clothes',
-            {token:token, uid:this.state.uid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            {token:token, uid:this.state.cid, amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
