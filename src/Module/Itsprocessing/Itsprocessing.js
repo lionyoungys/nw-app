@@ -17,7 +17,7 @@ export default class extends Component {
             returnCloth: [],//赔退衣物
             cause: '',//撤单原因
             orderNum:'',//订单号/流水号
-            orderNum_save: '',//数据请求后保存订单号/流水号
+            // orderNum_save: '',//数据请求后保存订单号/流水号
             cardPay:false,//是否卡付款
             returnCash:'',//退现金金额
             returnCard:'',//退卡金额
@@ -42,10 +42,15 @@ export default class extends Component {
             if (ver && res) {
                
                 let ress = res.result.list;
-                // for (let index = 0; index < ress.length; index++) {
-                //     ress[index].discount_price = '10'; 
-                // }
-                this.setState({ cardPay: res.result.card == 1 ? true : false, comeinCloth: ress,returnCloth:[],orderNum_save:this.state.orderNum,maxReturn:'0'})
+                if (ress.length == 0) {
+                    tool.ui.error({
+                        title: '提示', msg: '该订单没有可撤单衣物！', button: '确定', callback: (close, event) => {
+                            close();
+                        }
+                    });
+                }
+                this.setState({ cardPay: res.result.card == 1 ? true : false, comeinCloth: ress, returnCloth: [], maxReturn: '0' })
+                
             } else {
                 handle();
             }
@@ -55,7 +60,7 @@ export default class extends Component {
     doCompensate() {
 
         if (this.state.returnCloth.length == 0) return tool.ui.error({title: '提示', msg: '待退衣物不能为空！', button: '确定', callback: (close, event) => { close(); }});
-        if (this.state.orderNum !== this.state.orderNum_save) return tool.ui.error({ title: '提示', msg: '订单号/流水号已改变，请重新获取数据！', button: '确定', callback: (close, event) => { close(); } });
+        // if (this.state.orderNum !== this.state.orderNum_save) return tool.ui.error({ title: '提示', msg: '订单号/流水号已改变，请重新获取数据！', button: '确定', callback: (close, event) => { close(); } });
         if (this.state.orderNum.length == 0) return tool.ui.error({ title: '提示', msg: '订单号/流水号不能为空！', button: '确定', callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCard.length > 0 ) return tool.ui.error({ title: '提示', msg: '订单非卡支付，只能现金退款！', button: '确定', callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: '确定', callback: (close, event) => { close(); } });
@@ -65,7 +70,7 @@ export default class extends Component {
         let params = {
             token: 'token'.getData(), 
             ids: '[' + this.state.returnCloth.typeArray('id').join(',')+']',
-            oid: this.state.orderNum_save,
+            // oid: this.state.orderNum_save,
             cause: this.state.cause, 
             cash_amount: this.state.returnCash, 
             card_amount: this.state.returnCard, 
@@ -200,7 +205,6 @@ export default class extends Component {
                 </div>
             </div>
             </Window> 
-           
         );
     }
 }

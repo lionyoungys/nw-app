@@ -42,8 +42,7 @@ export default class extends Component {
             }else{
                 handle();
             }
-        }
-        );
+        });
     }
     componentDidMount(){
         this.query();
@@ -143,7 +142,7 @@ export default class extends Component {
         let cardtypes =this.state.cardtypes.map((item,index)=>
         <tr key={'item'+index}>
         <td>{item.card_type}</td>
-        <td>{item.price}</td>
+        <td>{item.real_price}</td>
         <td>{item.give_price}</td>
         <td>{item.made_price}</td>
         <td>{item.discount}%</td>

@@ -6,40 +6,39 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Nodata from '../../UI/Nodata';
 import './Businesstats.css';
-// import Page from '../../UI/Page'
-export default class extends Component {   
+import Page from '../../UI/Page';
+export default class extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
+            startdate:tool.date('Y-m-01'),enddate:tool.date('Y-m-d'),
             pay_type:'',
             list:[],
             page:1,
-            count:1,
+            count:0,
             nodatas:false,
-        }     
-        this.limit = 15;   
-        this.arrbutton = this.arrbutton.bind(this);          
+        }
+        this.limit = 15;
+        this.arrbutton = this.arrbutton.bind(this);       
     }; 
+    componentDidMount(){
+        this.arrbutton();
+    }
     arrbutton (page){
-        // console.log(this.state.pay_type)
-        // page = page || this.state.page;
+
+        page = page || this.state.page;
         api.post('Operating', {
             token:'token'.getData(),
             pay_type:this.state.pay_type,
             start_time:this.state.startdate,
             end_time:this.state.enddate,    
-            // page: page,
-            // limit: this.limit        
+            page: page,
+            limit: this.limit        
         }, (res, ver,handle) => {
                 if (ver && res) {
                     console.log(res);
-                    if(res.result.length>0){
-                        this.setState({list:res.result,nodatas:false})
-                    }else{
-                       this.setState({nodatas:true,list:[]})
-                    }
-                    
+                    this.setState({count:res.result.count});
+                    res.result.list.length > 0 ? this.setState({ list: res.result.list, nodatas: false, page: page}) : this.setState({ nodatas: true, list: [] });
                 }else{
                     handle();
                 }
@@ -64,7 +63,7 @@ export default class extends Component {
 
         </tr>
      )
-       var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={this.arrbutton}>{item}</button>);
+       var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={()=>this.arrbutton(1)}>{item}</button>);
        
       
        return (             
@@ -78,8 +77,7 @@ export default class extends Component {
                            {arr}
                          </div>
                 </div>
-               {/* <div className="ui-check-res bus-sta-num">衣物件数<b>15248</b>件</div> */}
-               <div className="ui-check-res">已为您找到<b>{this.state.list.length}</b>条数据</div>                  
+               <div className="ui-check-res">已为您找到<b>{this.state.count}</b>条数据</div>                  
                <table className='ui-table-base bus-sta-tab'>
                     <thead>
                         <tr>
@@ -103,10 +101,7 @@ export default class extends Component {
                     </tbody>
                 </table>
     
-                {/* <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.arrbutton(page)}/>    */}
-                      
-                   
-             
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.arrbutton(page)}/>   
              </Window> 
         );
     }

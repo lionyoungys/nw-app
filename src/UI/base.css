@@ -461,7 +461,6 @@ table tbody tr:nth-child(even):hover{
     display: block;
     background: url(./img/no-data.png) no-repeat;
     background-size: 96px 76px;
-    width: 150px;
     height: auto;
     padding-top: 96px;
     text-align: center;
@@ -470,7 +469,7 @@ table tbody tr:nth-child(even):hover{
     line-height: 22px;
     margin-left:368px;
     margin-top:105px;
-    margin-bottom:84px;
+    margin-bottom: 40px;
     background-position-x: 27px;
     min-width:150px;
     max-width:150px;
@@ -478,6 +477,13 @@ table tbody tr:nth-child(even):hover{
 }
 #no-data:hover{
     background-color:none; 
+}
+#no-data td{
+    min-height: 20px;
+    max-height: 20px;
+    max-width: 150px;
+    min-width: 150px;
+    text-align: center; 
 }
 
 table{background:#fff}

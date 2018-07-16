@@ -6,11 +6,13 @@
 .OperatingDetails_list{height:233px;}
 .OperatingDetails_list div{clear: both;}
 .OperatingDetails_list .OperatingDetails_list_box{height:193px;max-height:193px}
-
-
 #OperatingDetails_dataLeft div{float:left;margin-top:5px;}
 #OperatingDetails_dataLeft div:last-child{float:left;margin-left:17px;}
 
 #operating-div{
     overflow-x:auto;
+}
+#operating-div tbody{
+    overflow-x:auto;
+    max-height: 390px;
 }
