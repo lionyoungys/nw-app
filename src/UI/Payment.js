@@ -224,7 +224,8 @@ export default class extends Component {
 export class Recharge extends Component {
     constructor(props) {
         super(props);
-        this.state = {gateway:1,authCode:['','','',''], amount:''};
+        let zero = ( 0 == parseFloat(this.props.data.recharge || 0) );
+        this.state = {zero:zero,gateway:1,authCode:['','','',''],amount:''};
         this.input = [];
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -313,10 +314,10 @@ export class Recharge extends Component {
                         <div className={'e-fieldset' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}>
                             <img src='img/e-icon-cash.png'/>&nbsp;&nbsp;现金
                         </div>
-                        <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} data-gateway='2' onClick={this.handleGateway}>
+                        <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}>
                             <img src='img/e-icon-wechat.png'/>&nbsp;&nbsp;微信
                         </div>
-                        <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} data-gateway='3' onClick={this.handleGateway}>
+                        <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}>
                             <img src='img/e-icon-ali.png'/>&nbsp;&nbsp;支付宝
                         </div>
                     </div>

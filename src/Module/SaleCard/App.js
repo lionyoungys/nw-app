@@ -66,7 +66,7 @@ export default class extends React.Component {
         obj.birthday = this.state.birthday;
         obj.address = this.state.addr;
         obj.password = this.state.passwd;
-        obj.price = card.price;
+        obj.price = card.real_price;
         obj.made_price = card.made_price;
         obj.balance = card.price.add(card.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
@@ -95,7 +95,7 @@ export default class extends React.Component {
     }
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}
-        ,   amount = card.price ? card.price.add(card.made_price) : 0; 
+        ,   amount = card.real_price ? card.real_price.add(card.made_price) : 0; 
         return ( 
                 <Window title='售卡' onClose={this.props.closeView} width='512' height='440'>
                     <div className='salecard'>
@@ -145,7 +145,7 @@ export default class extends React.Component {
                     </div>
                     <div className='bottom'>
                     <div>
-                    <span>充值:</span><label>&yen;{card.price}</label>
+                    <span>充值:</span><label>&yen;{card.real_price}</label>
                     </div>
                     <div>
                     <span>赠送:</span><label>&yen;{card.give_price}</label>
@@ -167,7 +167,7 @@ export default class extends React.Component {
                             data={{
                                 type:card.card_type,
                                 discount:card.discount,
-                                recharge:card.price,
+                                recharge:card.real_price,
                                 balance:0,
                                 give:card.give_price,
                                 price:card.made_price,

@@ -71,7 +71,7 @@ export default class extends React.Component {
                         balance:this.state.balance,
                         discount:(this.state.discount / 10),
                         give:card.give_price,
-                        recharge:card.price,
+                        recharge:card.real_price,
                         gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                     };
                     EventApi.print('card', param, 'printer'.getData());
@@ -153,12 +153,12 @@ export default class extends React.Component {
                 <div className='recharge recharge-third'>
                     <div>
                         <div><label className='e-label'>充值卡类型：</label><Select option={this.state.types} onChange={value => this.setState({index:value.inObjArray(this.state.cards, 'card_type')})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label>&yen;{card.price}</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label>&yen;{card.real_price}</div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label>&yen;{card.give_price}</div>
                         <div><label className='e-label'>&emsp;&emsp;新折扣：</label>{card.discount}%</div>
                     </div>
                     <div className="recharge-four">
-                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold', width: '100%', textAlign:'center',}}>应收：&yen;{card.price}</div>
+                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold', width: '100%', textAlign:'center',}}>应收：&yen;{card.real_price}</div>
                         <button type='button' className='e-btn recharge-btn' onClick={() => '' != this.state.cid && this.setState({show:true})}>收银</button>
                     </div>
                 </div>
@@ -169,11 +169,11 @@ export default class extends React.Component {
                         data={{
                             type:this.state.card_name,
                             discount:this.state.discount,
-                            recharge:card.price,
+                            recharge:card.real_price,
                             balance:this.state.balance,
                             give:card.give_price,
                             price: 0,
-                            amount:card.price
+                            amount:card.real_price
                         }}
                         callback={this.callback}
                         onClose={() => this.setState({show:false})}
