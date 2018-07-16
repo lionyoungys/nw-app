@@ -11,7 +11,7 @@ const topMenu = [
             // {value:'欠款补交', view:'debt_pay',id:10},
             {value: '交期预警', view: 'delivery_warning', id: 11},
             {value: '撤单处理', view: 'its_processing', id: 12},
-            {value: '赔付', view: 'pay', id: 13},
+            // {value: '赔付', view: 'pay', id: 13},
             {value: 'demo', view: 'demo'},
             // {value:'编辑商品价格', view:'edit_shop_prices'},
             // {value:'编辑洗护价格', view:'edit_cleaning_prices'},

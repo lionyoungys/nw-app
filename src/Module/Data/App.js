@@ -72,7 +72,7 @@ export default class extends Component {
                     if (readLen == len && readLen == count) {
                         clearInterval(this.timeId);
                         this.timeId = null;
-                        if (size > 60000) {
+                        if (size > 80000) {
                             this.handleCancel();
                             return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
                         }

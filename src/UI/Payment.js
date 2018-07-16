@@ -38,6 +38,7 @@ export default class extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
         this.query = this.query.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
 
     componentDidMount() {
@@ -67,7 +68,9 @@ export default class extends Component {
             this.setState({authCode:this.state.authCode});
         }
     }
-
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.query();
+    }
     handleClick() {
         if (0 == this.state.gateway) {    //会员卡支付
             this.setState({show:true});
@@ -158,7 +161,7 @@ export default class extends Component {
                     </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                         <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
-                        <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
+                        <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
                         <button 
                             type='button' 
                             className='e-btn' 
