@@ -6,16 +6,20 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import './Managerquery.css'
+import Page from '../../UI/Page';
 
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
+            startdate:tool.date('Y-m-01'),enddate:tool.date('Y-m-d'),
             show: false,
             result: {},
             list:[],
+            page: 1,
+            count: 0,
         };
+        this.limit = 10;
         this.map = {
             free: '免费',
             freeBackCard: '免费退卡',
@@ -45,7 +49,9 @@ export default class extends Component {
         };
         this.query = this.query.bind(this);   
     };
-    query(){
+    componentDidMount() { this.query()}
+    query(page){
+        page = page || this.state.page;
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('managerSearch', {
@@ -57,7 +63,7 @@ export default class extends Component {
             done();
             if (ver && res) {
                 console.log(res)
-                this.setState({ result: res.result,list:res.result.list});
+                this.setState({ result: res.result,list:res.result.list,count:res.result.count,page:page});
             }else{
                 handle()
             }
@@ -70,7 +76,7 @@ export default class extends Component {
         for (let k in this.map) {
             temp = result[k] || {};
             arr.push(
-                <tr>
+                <tr key = {k}>
                     <td onClick={() => this.setState({ show: true })}>{this.map[k]}</td>
                     <td>{temp.amount || 0}</td>
                     <td>{temp.real_amount || 0}</td>
@@ -136,7 +142,8 @@ export default class extends Component {
                     <tbody>
                         {list}
                     </tbody>
-                </table>                          
+                </table> 
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />                         
             </Window>
         );
     }

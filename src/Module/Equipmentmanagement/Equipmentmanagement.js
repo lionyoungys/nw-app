@@ -129,8 +129,7 @@ export default class extends Component {
                                 {this.units.map(obj => <option key={obj}>{obj}</option>)}
                             </select>
                         </div>
-                    }
-                    
+                    }                    
                 </div>  
                 {
                     isM1

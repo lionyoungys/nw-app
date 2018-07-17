@@ -21,9 +21,9 @@ export default class extends Component {
             nodatas:false,
         }   
         this.limit = 15;     
-        this.Operatingdetail = this.Operatingdetail.bind(this);          
+        this.query = this.query.bind(this);          
     }; 
-    Operatingdetail (page){
+    query (page){
         console.log(this.state.pay_type)
         page = page || this.state.page;
         var prames = {
@@ -79,7 +79,7 @@ export default class extends Component {
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
                             </div>
-                            <button className="e-btn managerquery_btn" onClick = {()=>this.Operatingdetail(1)}>查询</button> 
+                        <button className="e-btn managerquery_btn" onClick={() => this.query(1)}>查询</button> 
                 </div>  
                 <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab" id="operating-div">
@@ -108,7 +108,7 @@ export default class extends Component {
                         </table> 
                     </div> 
             </div>   
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.arrbutton(page)} />                      
+            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />                      
             </Window>  
             
         );

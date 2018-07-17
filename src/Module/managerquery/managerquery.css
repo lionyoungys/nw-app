@@ -36,11 +36,11 @@
     overflow-x: auto;
 }
 .ui-table-base.man-que-tab-two tbody{
-    max-height:225px;
+    max-height:180px;
 }
 .ui-table-base.man-que-tab-two tr td{
-    max-width: 97px;
-    min-width: 97px;
+    max-width: 105px;
+    min-width: 105px;
 }
 
 /* 修改之后 */
