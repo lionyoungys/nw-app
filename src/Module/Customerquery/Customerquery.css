@@ -39,6 +39,7 @@
     font-size:12px;
     float: left;
     margin-left:3px;
+    text-indent: 4px;
 }
 .Customerquery-title div .ui-select-define{
     margin-left:3px;

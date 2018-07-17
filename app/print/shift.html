@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>交班打印</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        body{width: 5.8cm}
+        #container>div{
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="t-c">交班报表</div>
+    统计日期：<span id="start"></span>至<span id="end"></span><br/>
+    打印时间：<span id="now"></span>
+    <div id="container">
+        
+    </div>
+    <script src="common.js"></script>
+    <script>
+    _.init(function() {
+        _.page('printer_width', 'printer_font_size', 'printer_unit');
+        _.now();
+        _.inner('#start', _.GET.start);
+        _.inner('#end', _.GET.end);
+        try {
+            var data = JSON.parse(_.GET.data);
+        } catch (e) {
+            data = [];
+        }
+        var len = data.length
+        ,   html = '';
+        for (var i = 0;i < len;++i) {
+            if ('合计' == data[i].name || data[i].amount > 0 || data[i].real_amount > 0 || data[i].count > 0) {
+                html += '<div><span>'+data[i].name+'</span><span>'+data[i].amount+'</span><span>'+data[i].real_amount+'</span><span>'+data[i].count+'</span></div>';
+            }
+        }
+        _.inner('#container', html);
+    });
+    </script>
+</body>
+</html>

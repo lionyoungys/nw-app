@@ -478,7 +478,7 @@ table tbody tr:nth-child(even):hover{
 #no-data:hover{
     background-color:none; 
 }
-#no-data td{
+#no-data #no-data-noti{
     min-height: 20px;
     max-height: 20px;
     max-width: 150px;

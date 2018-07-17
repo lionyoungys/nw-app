@@ -58,6 +58,16 @@ export default class extends Component {
         api.post('successionHandle', {token: 'token'.getData() }, (res, ver, handle) => {
             console.log(res)
             handle();
+            if (ver) {
+                let arr = [{name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'}]
+                ,   temp;
+                for (let k in this.map) {
+                    temp = this.state.result[k] || {};
+                    arr.push({name:this.map[k], amount:(temp.amount || 0), real_amount:(temp.real_amount || 0), count:(temp.work_number || 0)});
+                }
+                console.log({data:JSON.stringify(arr), start:this.state.result.dateStartTime, end:this.state.result.dateEndTime});
+                EventApi.print('shift', {data:JSON.stringify(arr), start:this.state.result.dateStartTime, end:this.state.result.dateEndTime}, 'printer'.getData());
+            }
         });
     }
     render() {
