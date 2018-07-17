@@ -264,7 +264,7 @@ export class Recharge extends Component {
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0)};
         if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount || 0) > obj.amount) return;
+            if (parseFloat(this.props.data.amount || 0) > obj.amount) return;
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])

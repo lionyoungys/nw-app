@@ -39,6 +39,7 @@ export default class extends Component {
             update:false,    //用于判断衣物为添加还是修改
 
         };
+        this.date = tool.date('Y-m-d');
         this.counter = 1;    //编码累加计数属性
         this.M1read = this.M1read.bind(this);    //读卡
         this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
@@ -614,7 +615,7 @@ export default class extends Component {
                         <div>
                             <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
                             <div>折扣率：{discount}%</div>
-                            <div><b>*</b>取衣时间：<input type="date" className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
+                            <div><b>*</b>取衣时间：<input type="date" min={this.date} className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
                     </div>
                     <div className='clothes-footer-right'>
