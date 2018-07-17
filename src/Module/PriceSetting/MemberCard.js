@@ -51,7 +51,7 @@ export default class extends Component {
         let index=e.target.dataset.write;
         this.setState({index:index,id:this.state.cardtypes[index].id});
         console.log(this.state.id);
-        tool.ui.error({title:'提示',msg:'是否删除',button:'确定',callback:(close, event) => {
+        tool.ui.error({title:'提示',msg:'确定删除？',button:'确定',callback:(close, event) => {
             if(event=='click'){
                 api.post('delCardType', {
                     token:'token'.getData(),
@@ -77,7 +77,7 @@ export default class extends Component {
             token: 'token'.getData(),
             card_type: this.state.card_type,
             discount: this.state.discount,
-            price: this.state.real_price,
+            real_price: this.state.real_price,
             give_price: this.state.give_price,
             made_price: this.state.made_price
         }
@@ -116,7 +116,7 @@ export default class extends Component {
             id: this.state.id,
             card_type: this.state.card_type,
             discount: this.state.discount,
-            price: this.state.real_price,
+            real_price: this.state.real_price,
             give_price: this.state.give_price,
             made_price: this.state.made_price
         }

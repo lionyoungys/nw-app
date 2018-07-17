@@ -532,7 +532,7 @@ export default class extends Component {
         ,   discount = this.state.payCard.discount || ('' == this.state.discount ? 100 : this.state.discount)
         ,   tempDiscount
         ,   html = this.state.data.map((obj, index) => {
-            tempDiscount = obj.min_discount;
+            tempDiscount = obj.min_discount * 100;
             if (tempDiscount > 100) tempDiscount = 100;
             if (discount > tempDiscount) tempDiscount = discount;
             

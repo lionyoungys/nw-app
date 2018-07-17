@@ -68,7 +68,7 @@ export default class extends React.Component {
         obj.password = this.state.passwd;
         obj.price = card.real_price;
         obj.made_price = card.made_price;
-        obj.balance = card.price.add(card.give_price);
+        obj.balance = card.real_price.add(card.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
             if (ver) {
                 //console.log(res);

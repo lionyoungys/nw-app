@@ -77,7 +77,14 @@
     overflow: auto;
     border:1px solid #8db2e3; 
     height:448px;
+    overflow-y: hidden;
 }
+/* .change_card_table.right_table tbody{
+    display: block;
+}
+.change_card_table.right_table thead{
+    display: block;
+} */
 .change_card_table.right_table tbody tr:last-child{border-bottom:1px solid #8db2e3}
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */
@@ -97,3 +104,17 @@
    border-right: none;
 }
 .right_table tr:last-child{border-bottom:1px solid #8db2e3} 
+
+.right_table thead{
+    display:inline-block;
+    width:auto;
+    height:25px;
+}
+.right_table tbody{
+    max-height: 410px;
+    height: 410px;
+    overflow-y: auto;
+    width: auto;
+    display: inline-block;
+    overflow-x: hidden;
+}
