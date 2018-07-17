@@ -533,6 +533,7 @@ export default class extends Component {
         ,   tempDiscount
         ,   html = this.state.data.map((obj, index) => {
             tempDiscount = obj.min_discount;
+            if (tempDiscount > 100) tempDiscount = 100;
             if (discount > tempDiscount) tempDiscount = discount;
             
             let count = this.state.data.keyValCount('parent', obj.DATATAG)
