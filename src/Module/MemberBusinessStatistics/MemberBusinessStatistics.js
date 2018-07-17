@@ -27,12 +27,12 @@ export default class extends Component {
         this.pageCallback = this.pageCallback.bind(this);  
     };
     searchRes(page){
-        if ('' == this.state.name && '' == this.state.mobile && '' == this.state.cardNum) 
-        return tool.ui.error({
-            title: '提示', msg: '姓名/手机号/卡号至少填写一项信息', button: '确定', callback: (close, event) => {
-                close();
-            }
-        });
+        // if ('' == this.state.name && '' == this.state.mobile && '' == this.state.cardNum) 
+        // return tool.ui.error({
+        //     title: '提示', msg: '姓名/手机号/卡号至少填写一项信息', button: '确定', callback: (close, event) => {
+        //         close();
+        //     }
+        // });
         api.post('memSta', {
             token: 'token'.getData(),
             user_name: this.state.name,

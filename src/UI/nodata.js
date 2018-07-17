@@ -11,7 +11,7 @@ export default class extends React.Component {
     }  
     render() {       
         return (
-            <tr id="no-data" ><td id='no-data-noti'>没有找到符合条件的数据</td></tr>
+            <tr id="no-data"  style={{borderBottom:'none'}}><td id='no-data-noti'>没有找到符合条件的数据</td></tr>
         );
     }
 }

@@ -13,11 +13,11 @@ export default class extends Component {
     constructor(props) {
         super(props);  
         this.state={
-            user_total:'',
-            balance_total:'',
+            user_total:'0',
+            balance_total:'0',
             list:[],
             page:1,
-            count:1,
+            count:0,
             nodatas:false,
         };     
         this.limit = 15;
@@ -33,24 +33,14 @@ export default class extends Component {
         api.post('balanceTotal', { token: 'token'.getData(), page: page, limit: this.limit }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res)
-                if(res.result.list.length>0){
-                    this.setState({ 
-                        user_total: res.result.user_total, 
-                        balance_total: res.result.balance_total, 
-                        list: res.result.list, 
-                        count: res.result.count, 
-                        page:page,
-                        nodatas:false,
-                    });
-                }else{
-                    this.setState({
-                        nodatas:true,
-                        list:[],
-                        count:1,
-                        user_total:'',
-                        balance_total:'',
-                    })
-                }
+                this.setState({
+                    user_total: res.result.user_total || '0',
+                    balance_total: res.result.balance_total || '0',
+                    list: res.result.list,
+                    count: res.result.count || 0,
+                    page: res.result.list.length > 0 ? page:this.state.page,
+                    nodatas: res.result.list.length > 0 ?false :true,
+                });
                 
             } else {
                 handle();
@@ -74,7 +64,7 @@ export default class extends Component {
                <Window title='余额统计' onClose={this.props.closeView}>   
                     <div className="bal-head" >
                         <span>累计会员数：<b>{this.state.user_total}</b></span>
-                        <span>累计会员余额：<b>￥{this.state.balance_total}</b></span>
+                        <span>累计会员余额：<b>￥{this.state.balance_total}</b>元</span>
                     </div>
                     <table className='ui-table-base bal-sta-tab'>
                         <thead>

@@ -36,7 +36,7 @@ export default class extends Component {
             <td>{item.real_amount}</td>
             <td>{item.discount}</td>
             <td>{item.pay_type}</td>
-            <td>{itme.user_mobile}</td>
+            <td>{item.user_mobile}</td>
             <td>{item.user_name}</td>
             <td>{item.time}</td>
         </tr>

@@ -34,7 +34,7 @@ export default class extends Component {
                 this.setState({
                     total_amount: res.result.total_amount || '0',
                     list: res.result.list,
-                    count: res.result.count || '0',
+                    count: res.result.count || 0,
                     page: res.result.list.length > 0 ? page : this.state.page,
                     nodatas: res.result.list.length > 0 ? false : true,
                 });

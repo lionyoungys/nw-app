@@ -475,6 +475,7 @@ table tbody tr:nth-child(even):hover{
     max-width:150px;
     border-bottom:none;
 }
+
 #no-data:hover{
     background-color:none; 
 }
@@ -525,3 +526,4 @@ input::-webkit-outer-spin-button{
 table tbody tr td{
     word-break: break-all;
 }
+

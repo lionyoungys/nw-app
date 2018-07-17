@@ -1,6 +1,6 @@
 /**
  * 经营明细界面组件
- * @author fanyerong
+ * @author ranchong
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';

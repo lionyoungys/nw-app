@@ -84,7 +84,7 @@ export default class extends Component {
             if (ver) {
                 tool.ui.success({callback:(close) => {
                     close();    
-                    this.props.onClose();             
+                    this.props.onclose();             
                 }}); 
             }else{
                 tool.ui.error({msg:res.msg,callback:(close) => {
