@@ -12,8 +12,7 @@ const style = {marginBottom:'8px', fontSize:'12px'};
 /**
  * 订单支付弹窗
  * @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价,special_pay_amount:特殊情况下支付额}
- * @param {function} M1Read 读卡方法
- * @param {function} query 卡号查询 回调参数:卡号
+ * @param {function} M1Read 读卡方法 [回调参数:卡号]
  * @param {function} callback 回调方法 回调参数:{gateway:gateway,amount:amount,pay_amount:pay_amount,passwd:passwd,[authcode:authcode]}
  */
 export default class extends Component {
@@ -51,7 +50,7 @@ export default class extends Component {
         1 == gateway && EventApi.open_case();
     }
 
-    query() {'' != this.state.number && 'function' === typeof this.props.query && this.props.query(this.state.number)}
+    query() {'' != this.state.number && 'function' === typeof this.props.M1Read && this.props.M1Read(this.state.number)}
 
     handleChange(e) {
         let value = e.target.value;
