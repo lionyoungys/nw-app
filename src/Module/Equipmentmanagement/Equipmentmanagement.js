@@ -22,7 +22,7 @@ export default class extends Component {
                 },    //小票打印机
                 {
                     name:'clean_tag_printer'.getData(),
-                    width:'clean_tag_printer_width'.getData() || '58',
+                    width:'clean_tag_printer_width'.getData() || '110',
                     font_size:'clean_tag_printer_font_size'.getData() || '11',
                     unit:'clean_tag_printer_unit'.getData() || 'pt',
                     id:'clean_tag_printer'

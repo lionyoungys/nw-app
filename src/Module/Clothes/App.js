@@ -30,7 +30,7 @@ export default class extends Component {
         super(props);
         this.state = {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
-            mphone:'',maddr:'', ad:'',sn:'',
+            mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
@@ -457,6 +457,7 @@ export default class extends Component {
                         mphone:res.result.merchant.phone_number, 
                         maddr:res.result.merchant.maddress,
                         ad:res.result.merchant.mdesc,
+                        code_arr:res.result.orderItemInfo
                     });
                     if ('boolean' === typeof isTake && isTake) {
                         this.print();
@@ -709,7 +710,6 @@ export default class extends Component {
                             balance:(this.state.payCard.balance || this.state.balance || 0),
                         }}
                         M1Read={this.PAYM1read}
-                        query={this.PAYM1read}
                         callback={this.paymentCallback}
                     />
                 }

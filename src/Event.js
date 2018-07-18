@@ -22,6 +22,9 @@
         return 'print/' + page_name + '.html' + get;
     }
     e.print = function(page_name, param, printer, callback) {    //打印
+        //小票打印机：printer
+        //水洗标签打印机：clean_tag_printer
+        //不干胶标签打印机：glue_tag_printer
         if (null === this.printPageWin) {
             nw.Window.open(
                 this.getPrintPageName(page_name, param),

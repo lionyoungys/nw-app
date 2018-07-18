@@ -38,6 +38,12 @@
         barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
         first:function(name) {return document.querySelector(name)},
         all:function(name) {return document.querySelectorAll(name)},
+        create:function(nodeName, className, inner) {
+            var node = document.createElement(nodeName);
+            if ('string' === typeof className) node.className = className;
+            if ('string' === typeof inner || 'number' === typeof inner) node.innerHTML = inner;
+            return node;
+        },
         isNode:function(node) {return 'object' === typeof node && node instanceof Node},
         isNodeList:function(nodeList) {return 'object' === typeof nodeList && nodeList instanceof NodeList},
         elem:function(elem) {

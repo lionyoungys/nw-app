@@ -225,7 +225,7 @@
         var node = document.createElement(nodeName);
         if ('string' === typeof className) node.className = className;
         if ('string' === typeof inner || 'number' === typeof inner) node.innerHTML = inner;
-        return node
+        return node;
     }
     /**
      * 居中定位方法
