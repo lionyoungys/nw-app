@@ -106,7 +106,7 @@
 .right_table tr:last-child{border-bottom:1px solid #8db2e3} 
 
 .right_table thead{
-    display:inline-block;
+    display:block;
     width:auto;
     height:25px;
 }

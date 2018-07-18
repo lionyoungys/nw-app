@@ -34,6 +34,16 @@ export default class extends Component {
                 }
             });
         }
+        if (this.state.newPasOne.length < 6) {
+            return tool.ui.error({msg:'密码必须大于等于6位',callback:(close) => {
+                 close();
+             }});
+         }
+         if (!isNaN(this.state.newPasOne)) {
+             return tool.ui.error({msg:'密码不能为纯数字',callback:(close) => {
+                 close();
+             }});
+         }
         api.post('changePas', { token: 'token'.getData(), old_pass: this.state.oldPas, new_pass: this.state.newPasOne}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -65,16 +75,16 @@ export default class extends Component {
                     <div className='passwdupdate'>
                         <div className='passwdupdateborder'>
                             <div>
-                                <span>&emsp;&emsp;&emsp;原密码:</span><input type='text' className='inputborder' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
+                                <span>&emsp;&emsp;&emsp;原密码:</span><input type='password' className='inputborder' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
                             </div>
                             <div className='passwdupdate_pass'>
-                                <span>&emsp;&emsp;&emsp;新密码:</span><input type='text' className='inputborder' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
+                                <span>&emsp;&emsp;&emsp;新密码:</span><input type='password' className='inputborder' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
                             </div>
                             <div >
                                 <label>6位以上，且不能为纯数字</label>
                             </div>
                             <div>
-                                <span>再次输入密码:</span><input type='text' className='inputborder' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
+                                <span>再次输入密码:</span><input type='password' className='inputborder' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
                             </div>
 
                          </div>

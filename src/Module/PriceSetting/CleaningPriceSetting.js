@@ -296,7 +296,7 @@ export default class extends Component {
             itemList = this.state.itemLists[this.state.index].server.map((item,index)=>
                 <tr key={'item1'+index} data-index={index} onClick={this.handle}   
                 > 
-                    <td>{index+1}</td>
+                    <td>{item.id}</td>
                     <td>{item.item_name}</td>
                     <td>{item.dispose_type}</td>
                     <td>{item.materials}</td>
