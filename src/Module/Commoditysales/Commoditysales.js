@@ -73,8 +73,9 @@ export default class extends Component {
         }, () => done());
     }
     query(e){
-
-        if (this.state.searchNum.length == 0) return tool.ui.error({
+        var searchNum = e.target.dataset.id || e.target.parentNode.dataset.id || this.state.searchNum;
+        console.log(searchNum);
+        if (searchNum.length == 0) return tool.ui.error({
             title: '提示', msg: '商品编号不能为空', button: '确定', callback: (close, event) => {
                 close();
             }
@@ -85,7 +86,7 @@ export default class extends Component {
                 close();
             }
         });
-        let id = this.state.searchNum;
+        let id = searchNum;
         let sel_index = id.inObjArray(this.state.allComList, 'id');
         if (sel_index == -1) return tool.ui.error({
             title: '提示', msg: '商品不在库中', button: '确定', callback: (close, event) => {
@@ -270,7 +271,7 @@ export default class extends Component {
             'undefined' !== typeof this.state.list[this.state.index].goods
         ) {
             itemList = this.state.list[this.state.index].goods.map((item, index) =>
-                <tr key={'item' + index}>
+                <tr data-id={item.id} onClick={this.query} key={'item' + index}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>{item.has_discount == '1' ? '是' : '否'}</td>

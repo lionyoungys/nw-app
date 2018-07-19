@@ -187,7 +187,7 @@ export default class extends Component {
                     <Window title='新增组' onClose={() => this.setState({ show: false })}>
                         <div id="addGroup-srarch">
                             <span>组名称：</span>
-                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} />
+                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} autoFocus='autoFocus'/>
                             <button type='button' className='e-btn sureBtn' onClick={() => this.sure(true)}>确认</button>
                         </div>
                         <div id='addGroup-content'>

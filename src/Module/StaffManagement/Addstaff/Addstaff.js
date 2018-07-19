@@ -124,6 +124,7 @@ export default class extends Component {
             mobile:'',
         });
         this.staffauthlist();
+        
        
     }
     //请求员工权限列表
@@ -246,8 +247,8 @@ export default class extends Component {
                     <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={this.operatorAdd}>
                         {
                             <div className='addstaffborder'>
-                                <div className='margintop'>
-                            <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname}/>
+                            <div className='margintop'>
+                              <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname} autoFocus='autoFocus' />
                             </div>
                              <div>
                              <span>手机号:</span><input type='text' onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile}/>
@@ -283,7 +284,7 @@ export default class extends Component {
                         {
                             <div className='updatestaffborder'>
                                 <div className='margintop'>
-                                    <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})}/>
+                                    <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})} autoFocus='autoFocus'/>
                                 </div>
                                 <div className='mobilephone'>
                                     <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>

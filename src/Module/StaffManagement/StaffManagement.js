@@ -18,7 +18,8 @@ export default class extends Component {
         this.setState({show:true,hover:false})
     }
     switchstaff(){
-        this.setState({show:false,hover:true})
+        this.setState({show:false,hover:true});
+        
     }
     render() {      
         return ( 

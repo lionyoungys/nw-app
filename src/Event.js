@@ -127,8 +127,9 @@
         if ('string' !== typeof obj.sn || '' == obj.sn || obj.sn.length > 16) return tool.ui.error({msg:'卡号格式错误',callback:close => close()});
         obj.mid = obj.mid || 'merchant_id'.getData();
         obj.cid = obj.cid || '0';
-        api.post('card_exist', {recharge_number:obj.sn}, (res, ver, handle) => {
-            if (!ver || !res.result) return tool.ui.error({msg:'已重复的卡号',callback:close => close()});
+        api.post('card_exist', {recharge_number:obj.sn, token:'token'.getData()}, (res, ver) => {
+            console.log(res);
+            if (!ver || res.result) return tool.ui.error({msg:'已重复的卡号',callback:close => close()});
             try {
                 var result = M1Reader.set(obj);
             } catch (e) {
