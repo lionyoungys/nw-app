@@ -22,7 +22,7 @@ export default class extends Component {
             count:0,
             selectType: '',//2,微信。3，支付宝默认全部)
         }
-        this.type = ['全部', '支付宝', '微信','打款'];
+        this.type = ['全部', '支付宝', '微信'];
         this.limit = 15;
         this.query = this.query.bind(this);
         this.changePayType = this.changePayType.bind(this);

@@ -26,7 +26,8 @@ export default class extends Component {
             name:'',
             stock:'',
             price:'',
-            goods_type:''//类别
+            goods_type:'',//类别
+            goods_number:''//商品编码
         }
         this.limit = 1000;
         this.handleClick=this.handleClick.bind(this);
@@ -106,7 +107,8 @@ export default class extends Component {
             name:this.state.name,
             price:this.state.price,
             stock:this.state.stock,
-            has_discount:this.state.discount
+            has_discount:this.state.discount,
+            goods_number:this.state.goods_number
         }
         console.log(this.state.typeLists[this.state.typeindex].id)
         api.post('addGoods',params, (res, ver,handle) => {
@@ -162,7 +164,8 @@ export default class extends Component {
             name:this.state.itemLists[this.state.index].goods[write].name,
             stock:this.state.itemLists[this.state.index].goods[write].stock,
             price:this.state.itemLists[this.state.index].goods[write].price,
-            discount:this.state.itemLists[this.state.index].goods[write].has_discount
+            discount:this.state.itemLists[this.state.index].goods[write].has_discount,
+            goods_number:this.state.itemLists[this.state.index].goods[write].goods_number
         });
     }
     modYES(){
@@ -179,7 +182,8 @@ export default class extends Component {
             name: this.state.name,
             price: this.state.price,
             stock: this.state.stock,
-            has_discount: this.state.discount
+            has_discount: this.state.discount,
+            goods_number:this.state.goods_number
         } 
         console.log(params);
         api.post('modGoods', params, (res, ver,handle) => {
@@ -189,10 +193,7 @@ export default class extends Component {
                 this.componentDidMount();
                 handle({msg:'修改成功！'});
             }else{
-                console.log(res.msg);
-                    tool.ui.error({msg:'且须修改一项',callback:(close) => {
-                        close();
-                }});
+                handle();
             }
         }); 
     }
@@ -212,7 +213,7 @@ export default class extends Component {
             ) {
                 itemList = this.state.itemLists[this.state.index].goods.map((item,index)=>
                     <tr key={'item'+index}>
-                        <td>{item.id}</td>
+                        <td>{item.goods_number}</td>
                         <td>{item.name}</td>
                         <td>{item.has_discount=='1'?'是':'否'}</td>
                         <td>{item.stock}</td>
@@ -239,7 +240,7 @@ export default class extends Component {
                  <table className='change_card_table right_table' id="right_table">
                     <thead>
                         <tr>
-                            <td>商品编号</td>
+                            <td>商品条码</td>
                             <td>商品名称</td>
                             <td>允许折扣</td>
                             <td>库存</td>
@@ -271,6 +272,10 @@ export default class extends Component {
                                 <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-nor"><span>商品编码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品编码</div>
+                
+                            </div>
                             <div className="addnewprice-money">
                                 <input type='checkbox' className='e-checkbox' value={this.state.discount} onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
                             </div>
@@ -297,6 +302,10 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-nor"><span>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                
+                            </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-nor"><span>商品编码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品编码</div>
                 
                             </div>
                             <div className="addnewprice-money">

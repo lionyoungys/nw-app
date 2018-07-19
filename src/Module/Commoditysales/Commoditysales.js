@@ -43,6 +43,8 @@ export default class extends Component {
         this.M1read = this.M1read.bind(this);   
         this.paymentClose = this.paymentClose.bind(this); 
         this.paymentCallback = this.paymentCallback.bind(this);
+        this.judgeEnterPress = this.judgeEnterPress.bind(this);
+        this.searchBySN = this.searchBySN.bind(this);
     };
     //进入页面获取数据
     componentDidMount(){
@@ -72,22 +74,35 @@ export default class extends Component {
             }
         }, () => done());
     }
+   
     query(e){
-        var searchNum = e.target.dataset.id || e.target.parentNode.dataset.id || this.state.searchNum;
-        console.log(searchNum);
-        if (searchNum.length == 0) return tool.ui.error({
-            title: '提示', msg: '商品编号不能为空', button: '确定', callback: (close, event) => {
-                close();
-            }
-        });
-        if (this.state.list.length == 0) return tool.ui.error({
-            title: '提示', msg: '商品分类为空，需要刷新页面！', button: '确定', callback: (close, event) => {
-                this.componentDidMount();
-                close();
-            }
-        });
-        let id = searchNum;
-        let sel_index = id.inObjArray(this.state.allComList, 'id');
+        var searchNum;
+        let sel_index;
+        var judgeIndex = true;
+        console.log(typeof e);
+        if ("object" === typeof e) {
+            searchNum = e.target.dataset.id || e.target.parentNode.dataset.id;
+            console.log('点击商品'+searchNum);
+            sel_index = searchNum.inObjArray(this.state.allComList, 'id');
+            judgeIndex = true;
+        }else{
+            searchNum = this.state.searchNum;
+            console.log('搜索商品'+searchNum);
+            this.setState({ searchNum: '' });
+            if (searchNum.length == 0) return tool.ui.error({
+                title: '提示', msg: '商品编号不能为空', button: '确定', callback: (close, event) => {
+                    close();
+                }
+            });
+            if (this.state.list.length == 0) return tool.ui.error({
+                title: '提示', msg: '商品分类为空，需要刷新页面！', button: '确定', callback: (close, event) => {
+                    this.componentDidMount();
+                    close();
+                }
+            });
+            sel_index = searchNum.inObjArray(this.state.allComList, 'goods_number');
+            judgeIndex = false;
+        }
         if (sel_index == -1) return tool.ui.error({
             title: '提示', msg: '商品不在库中', button: '确定', callback: (close, event) => {
                 close();
@@ -98,19 +113,38 @@ export default class extends Component {
         let handleList = this.state.searchList;
         let exit = false;
         if (handleList.length > 0) {
-            for (let index = 0; index < handleList.length; index++) {
-                if (search.id == handleList[index].id) {
-                    exit = true;
-                    handleList[index].count += 1;
+            if (judgeIndex) {//判断id
+                for (let index = 0; index < handleList.length; index++) {
+                    if (search.id == handleList[index].id) {
+                        exit = true;
+                        handleList[index].count += 1;
+                        break;
+                    }
                 }
-            }
+            }else{//判断条形码
+                for (let index = 0; index < handleList.length; index++) {
+                    if (search.goods_number == handleList[index].goods_number) {
+                        exit = true;
+                        handleList[index].count += 1;
+                        break;
+                    }
+                }
+            } 
         }
         if (!exit) {//不存在
-            search.count =1;
+            search.count = 1;
             handleList.push(search);
         }
         this.setState({ searchList: handleList });
         this.compute();
+    }
+    //判断点击enter键
+    judgeEnterPress(e) {
+        13 == (e.keyCode || e.which) && this.query();
+    }
+    //判断搜索
+    searchBySN() {
+        this.query();
     }
     //删除
     deleteYes(e){
@@ -272,7 +306,7 @@ export default class extends Component {
         ) {
             itemList = this.state.list[this.state.index].goods.map((item, index) =>
                 <tr data-id={item.id} onClick={this.query} key={'item' + index}>
-                    <td>{item.id}</td>
+                    <td>{item.goods_number}</td>
                     <td>{item.name}</td>
                     <td>{item.has_discount == '1' ? '是' : '否'}</td>
                     <td>{item.stock}</td>
@@ -282,9 +316,9 @@ export default class extends Component {
         }  
         let searchList = this.state.searchList.map((item, index) =>
             <tr key={'item' + index}>
-                <td>{item.id}</td>
+                <td>{item.goods_number}</td>
                 <td>{item.name}</td>
-                <td>{item.has_discount == '1' ? '100%' : '100%'}</td>
+                <td>{item.has_discount == '1' ? '是' : '否'}</td>
                 <td>{item.price}</td>
                 <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
                 <td data-index={index} onClick={this.deleteYes}>删除</td>
@@ -298,9 +332,9 @@ export default class extends Component {
                          <table>
                              <thead>
                                  <tr>
-                                     <th>商品编码</th>
+                                     <th>商品条码</th>
                                      <th>商品名称</th>
-                                     <th>折扣率</th>
+                                     <th>允许折扣</th>
                                      <th>单价</th>
                                      <th>数量</th>
                                      <th>操作</th>
@@ -315,8 +349,8 @@ export default class extends Component {
                </div> 
                <div className="commoditysales-footerdiv">
                     <div className="commoditysales-right-top">
-                        <button className="e-btn commoditysales-right-btn" onClick = {this.query}>查询</button>
-                        <input type="text" className="commoditysales-right-text" placeholder="请输入/扫描商品编码" onChange={e =>this.setState({searchNum:e.target.value})}/>
+                        <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
+                        <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' placeholder="请输入/扫描商品条码" value ={this.state.searchNum} onKeyPress={this.judgeEnterPress} onChange={e =>this.setState({searchNum:e.target.value})}/>
                     </div>
                    <div className="commoditysales-div-left">
                       <div className="commoditysales-left-title">商品分类</div>
@@ -328,9 +362,9 @@ export default class extends Component {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>商品编号</th>
+                                    <th>商品条码</th>
                                     <th>商品名称</th>
-                                    <th>折扣</th>
+                                    <th>允许折扣</th>
                                     <th>库存</th>
                                     <th>单价</th>
                                 </tr>
