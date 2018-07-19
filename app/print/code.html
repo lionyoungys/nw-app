@@ -7,15 +7,22 @@
     <title>水洗条码打印</title>
     <link rel="stylesheet" href="base.css">
     <style>
-        body{width: 11cm;overflow-x: hidden;}
-        img{height: .6cm;width: 4cm}
-        .row{
+        body{
+            height: 1.4cm;
+            display: -webkit-flex;
+            display: flex;
+            align-items:center;
+        }
+        img{height: 1.2cm;width: 4cm}
+        #container{
+            width: 11cm;
             height: 1.2cm;
+            overflow: hidden;
             display: -webkit-flex;
             display: flex;
             justify-content: center;
         }
-        .row>div{
+        #container>div{
             display: -webkit-flex;
             display: flex;
             flex-direction:column;
@@ -25,41 +32,24 @@
 </head>
 <body>
     <div id="container">
+        <div>
+            <img id="code"/>
+        </div>
+        <div>
+            <span id="name">名称：羊绒上衣</span>
+            <span id="number">挂号：B-49</span>
+            <span id="sn">编码：1531994600724001</span>
+        </div>
     </div>
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
         _.init(function() {
             _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
-            try {
-                var data = JSON.parse(_.GET.data);
-            } catch (e) {
-                data = [];
-            }
-            var len = data.length
-            ,   container = _.first('#container')
-            ,   nodeList = [];
-            for (var i = 0;i < len;++i) {
-                nodeList[i] = {
-                    box:_.create('div', 'row'),
-                    first:_.create('div'),
-                    img:_.create('img'),
-                    f_span:_.create('span', null, data[i].clothing_number),
-                    second:_.create('div'),
-                    s_span:_.create('span', null, '名称：' + data[i].clothing_name),
-                    s_span2:_.create('span', null, '颜色：' + data[i].clothing_color),
-                    s_span3:_.create('span', null, '挂号：' + data[i].grid_num),
-                };
-                nodeList[i].box.appendChild(nodeList[i].first);
-                nodeList[i].box.appendChild(nodeList[i].second);
-                nodeList[i].first.appendChild(nodeList[i].img);
-                nodeList[i].first.appendChild(nodeList[i].f_span);
-                nodeList[i].second.appendChild(s_span);
-                nodeList[i].second.appendChild(s_span2);
-                nodeList[i].second.appendChild(s_span3);
-                container.appendChild(nodeList[i].box);
-                _.barcode(nodeList[i].img, data[i].clothing_number);
-            }
+            _.barcode('#code', _.GET.sn);
+            _.inner('#sn', '编码：' + _.GET.sn);
+            _.inner('#name', _.GET.name + ' ' + _.GET.color);
+            _.inner('#number', '衣挂号：' + _.GET.number);
         });
     </script>
 </body>

@@ -3,6 +3,8 @@
     const { execFileSync } = window.require('child_process');
     var e = {
         win:nw.Window.get(),
+        printPageQueue:[],    //打印队列
+        printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
     e.quit = function() {    //退出
@@ -25,17 +27,25 @@
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
-        if (null === this.printPageWin) {
+        if (!this.printPageLock && null === this.printPageWin) {
+            this.printPageLock = true
             nw.Window.open(
                 this.getPrintPageName(page_name, param),
-                {show: false},
+                {show:false},
                 function(new_win) {
                     e.printPageWin = new_win;
                     e.printPageWin.on('close', function() {
                         null !== e.printPageWin && e.printPageWin.close(true);
                         this.close(true);
                     });
-                    e.printPageWin.on('closed', function() {e.printPageWin = null});
+                    e.printPageWin.on('closed', function() {
+                        e.printPageLock = false;
+                        e.printPageWin = null;
+                        if (e.printPageQueue.length) {
+                            e.print(e.printPageQueue[0].page_name, e.printPageQueue[0].param, e.printPageQueue[0].printer, e.printPageQueue[0].callback);
+                            e.printPageQueue.splice(0, 1);
+                        }
+                    });
                     e.printPageWin.on('loaded', function() {
                         e.printPageWin.print({
                             autoprint:true,
@@ -52,7 +62,9 @@
                     });
                 }
             );
-        } 
+        } else {
+            this.printPageQueue.push({page_name:page_name, param:param, printer:printer, callback:callback});
+        }
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')

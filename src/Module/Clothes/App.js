@@ -393,11 +393,18 @@ export default class extends Component {
             gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         }, 'printer'.getData());
-        setTimeout(() => {
-            let printer = 'clean_tag_printer'.getData();
-            printer && EventApi.print('code', {data:JSON.stringify(this.state.code_arr)}, printer);
-            
-        }, 3000);
+        let printer = 'clean_tag_printer'.getData();
+        if (printer) {
+            let len = this.state.code_arr.length;
+            for (let i = 0;i < len;++i) {
+                EventApi.print('code', {
+                    sn:this.state.code_arr[i].clothing_number, 
+                    name:this.state.code_arr[i].clothing_name, 
+                    color:this.state.code_arr[i].clothing_color,
+                    number:this.state.code_arr[i].grid_num
+                }, printer);
+            }
+        }
     }
     takeCost() {
         if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});

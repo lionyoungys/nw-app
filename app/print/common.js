@@ -115,9 +115,10 @@
             var body = document.body
             ,   width = this.string(widthKey) ? localStorage.getItem(widthKey) : null
             ,   fontSize = this.string(fontSizeKey) ? localStorage.getItem(fontSizeKey) : null
-            ,   unit = this.string(unitKey) ? localStorage.getItem(unitKey) : 'pt';
+            ,   unit = this.string(unitKey) ? (localStorage.getItem(unitKey) || 'pt') : 'pt';
             if (width && !isNaN(width)) body.style.width = (width / 10) + 'cm';
             if (fontSize && !isNaN(fontSize)) body.style.fontSize = (fontSize + unit);
+            console.log(width, fontSize, unit);
         }
     };
     window._ = c;
