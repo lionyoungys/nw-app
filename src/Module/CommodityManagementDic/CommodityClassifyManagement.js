@@ -36,23 +36,22 @@ export default class extends Component {
                 console.log(res)
                 this.setState({goodtypelist:res.result.list})
             }
-        }
-        ); 
+        }); 
     }
     addYES(){
         api.post('goodaddType', {
             token:'token'.getData(),
             name:this.state.name
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({name:'',addshow:false})
                 this.componentDidMount()
                 this.props.onrefresh();
-                this.props.onclose();
+                // this.props.onclose();
             }
-        }
-        ); 
+            handle();
+        }); 
     }
     update(e){
         let index=e.target.dataset.write;
@@ -67,43 +66,42 @@ export default class extends Component {
             id:this.state.id,
             name:this.state.name
             
-    }, (res, ver) => {
+    }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({name:'',show:false})
                 this.componentDidMount();
                 this.props.onrefresh();
-                this.props.onclose();
+                // this.props.onclose();
             }
-        }
-        ); 
+            handle();
+        }); 
     }
     delete(){
         tool.ui.error({title:'提示',msg:'是否删除',button:'确定',callback:(close, event) => {
-            if(event=='click'){
-               api.post('gooddelType', {
-               token:'token'.getData(),
-               id:this.state.id
-               }, (res, ver,handle) => {
-               if (ver && res) {
-                     console.log(res)
-                     this.setState({show:false})
-                     this.componentDidMount();
-                     this.props.onrefresh();
-                     close();
-                     this.props.onclose();
-               }
-               handle();
-        }
-        ); 
-       }
-       else{
-           close();
-           this.setState({show:false})
-       }
-       }
-       }
-    );
+                if(event=='click'){
+                    api.post('gooddelType', {
+                    token:'token'.getData(),
+                    id:this.state.id
+                    }, (res, ver,handle) => {
+                        if (ver && res) {
+                                console.log(res)
+                                this.setState({show:false})
+                                this.componentDidMount();
+                                this.props.onrefresh();
+                                close();
+                                //  this.props.onclose();
+                                handle({msg:'删除成功！'});
+                        }else{
+                            handle();
+                        }
+                    }); 
+                }else{
+                    close();
+                    this.setState({show:false})
+                }
+            }
+       });
     }
     render() {
         let goodtypelist=this.state.goodtypelist.map((item,index)=>
@@ -143,9 +141,9 @@ export default class extends Component {
                 <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                         <p>分类名称:</p>
                         <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
-                        <button className='e-btn' onClick={this.save}>保存</button>
                         <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
                         <button className='e-btn' onClick={this.delete}>删除</button>
+                        <button className='e-btn' onClick={this.save}>保存</button>
 
                     </div>
                 </Window>

@@ -50,8 +50,7 @@ export default class extends Component {
                 console.log(res)
                 this.componentDidMount();
             }
-        }
-        ); 
+        }); 
     }
     render() {
         let goodtypelist=this.state.goodtypelist.map((item,index)=>

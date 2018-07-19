@@ -48,7 +48,7 @@ export default class extends Component {
                 this.setState({name:'',addshow:false})
                 this.componentDidMount()
                 this.props.refresh();
-                this.props.onClose();
+                // this.props.onClose();
             }
             handle();
         }); 
@@ -63,12 +63,10 @@ export default class extends Component {
         }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-               
                 this.setState({name:'',show:false})
                 this.componentDidMount()
-
                 this.props.refresh();
-                this.props.onClose();
+                // this.props.onClose();
             }
             handle();
         }); 
@@ -89,7 +87,7 @@ export default class extends Component {
                             this.componentDidMount()
                             this.props.refresh();
                             close();
-                            this.props.onClose();
+                            // this.props.onClose();
                         }
                         handle();
                     });
@@ -136,9 +134,9 @@ export default class extends Component {
                         <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                             <p>分类名称:</p>
                             <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
-                            <button className='e-btn' onClick={this.modYES}>保存</button>
                             <button className='e-btn' onClick={()=>this.setState({show:false})}>取消</button>
                             <button className='e-btn' onClick={this.deleteYES}>删除</button>
+                            <button className='e-btn' onClick={this.modYES}>保存</button>
                         </div>
                 </Window>
                 }

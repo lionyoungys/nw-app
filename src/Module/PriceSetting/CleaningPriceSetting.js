@@ -43,7 +43,7 @@ export default class extends Component {
             has_discount:1,//允许折扣
             transfer:1,//价格可调
             min_discount:'0',//折扣下限
-            min_transfer:'1',//可调下限
+            min_transfer:'0',//可调下限
             gradename:'',//档次
             materialsname:'',//材料名称
             goodindex:0,
@@ -115,10 +115,10 @@ export default class extends Component {
             this.setState({
             cate_id:this.state.cate_types[0].id,
             cate_name:this.state.cate_type[0],
-            disposetype:this.state.dispose_type[0],
-            gradename:this.state.grade[0],
+            disposetype:'',
+            gradename:'',
             gridname:'X',
-            materialsname:this.state.materials[0],
+            materialsname:'',
             })
         });   
     }
@@ -136,7 +136,10 @@ export default class extends Component {
             // online: 1,//在线接单
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
-            min_transfer:'1'//可调下线
+            min_transfer:'0',//可调下线
+            disposetype:'',
+            gradename:'',
+            materialsname:''
          
         })
     }
@@ -258,9 +261,9 @@ export default class extends Component {
                 min_discount: good.min_discount,
                 item_online_price: good.item_online_price,
                 cate_name: good.cate_name,
-                disposetype: good.dispose_type==null?this.state.disposetype:good.dispose_type,
-                gradename: good.grade,
-                materialsname: good.materials,
+                disposetype: good.dispose_type==''?this.state.disposetype:good.dispose_type,
+                gradename: good.grade==''?this.state.gradename:good.grade,
+                materialsname: good.materials==''?this.state.materialsname:good.materials,
                 gridname: good.grid,
                 image_url: good.image_url,
                 // online: good.state,//在线接单
@@ -303,7 +306,7 @@ export default class extends Component {
                     <td>{item.grade}</td>
                     <td>{item.item_off_price}</td>
                     <td>{item.item_online_price}</td>
-                    <td>{item.item_discount}</td>
+                    <td>{item.item_discount}%</td>
                     <td>{item.state==1?'在使用':'不在使用'}</td>
                     <td>{item.transfer==1?'是':'否'}</td>
                     <td>{item.has_discount==1?'是':'否'}</td>
@@ -358,9 +361,9 @@ export default class extends Component {
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange} /></div>
                                 <div><span><i>*</i> 衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
-                                <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} /></div>
-                                <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} /></div>
-                                <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} selected="无"/></div>
+                                <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} selected="无"/></div>
+                                <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} selected="无"/></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
@@ -389,11 +392,10 @@ export default class extends Component {
                         </div>
                         
                         <div className="addnewprice-btn">
-                            <button className="e-btn" onClick={()=>this.setState({show:false})}>取消</button>
                             <button className="e-btn" onClick={this.addYES}>确定</button>
+                            <button className="e-btn" onClick={()=>this.setState({show:false})}>取消</button>
                         </div>
                     </Window>
-
                 }
                  {
                     this.state.show1

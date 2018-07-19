@@ -3,6 +3,7 @@ export default class extends Component {
     constructor(props) {
         super(props); 
         this.state={
+            bankID:'',
             manager:'',
             bank:'',
             account:''
@@ -11,56 +12,36 @@ export default class extends Component {
     }
 
     componentDidMount() {
-        api.post('bankCard', {token:'token'.getData()}, (res, ver) => {
+        api.post('bankCard', {token:'token'.getData()}, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({manager:res.result.manager,
-                               bank:res.result.bank,
-                               account:res.result.account
-                
+                this.setState({
+                    manager:res.result.manager,
+                    bank:res.result.bank,
+                    account:res.result.account,
+                    bankID:res.result.id,
                 });
-        
-         }
-         else{
-            console.log(res.msg);
-            tool.ui.error({msg:res.msg,callback:(close) => {
-                close();
-            }});
-            
-        }
-        }
-        );
+            }else{
+              handle();
+            }
+        });
     }
     bankcardsave(){
         api.post('modBankCard', {token:'token'.getData(),
         manager:this.state.manager,
         bank:this.state.bank,
-        account:this.state.account
-    }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                if (ver && res) {
-                    console.log(res)
-                    tool.ui.success({callback:(close, event) => {
-                        close();
-                    }}); 
-                }else{
-                    console.log(res.msg);
-                    tool.ui.error({msg:res.msg,callback:(close) => {
-                        close();
-                    }});
-                    
-                }
-        
-         }
-        }
-        );
+        account:this.state.account,
+        id:this.state.bankID,
+        }, (res, ver,handle) => {
+
+            handle();
+        });
     }
     render(){
         return  (
             <div className="store_management_content_UnionPaycard">
                         
-            <p className='store_management_content_title'>门店基本信息</p>
+            <p className='store_management_content_title'>结算账号</p>
             <div>&emsp;开户行：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.bank} onChange={e => this.setState({bank:e.target.value})}/></div>
             <div>&emsp;&emsp;姓名：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.manager} onChange={e => this.setState({manager:e.target.value})}/></div>
             <div>银行卡号：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.account} onChange={e => this.setState({account:e.target.value})}/></div>

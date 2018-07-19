@@ -69,8 +69,11 @@ export default class extends Component {
                 recharge_number:res.recharge_number,
                 address:res.address,
             });
+            this.query(1);
         }
+      
         EventApi.M1Read(obj);
+      
     }
     query(page){
         console.log(page);
@@ -174,7 +177,7 @@ export default class extends Component {
                    </div>
                    <div className="Customerquery-right">
                       <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>
-                      <button className="Customerquery-over" onClick={this.M1Read}>读卡</button>
+                      <button className="Customerquery-over" onClick={this.M1Read} >读卡</button>
                     </div>
                 </div>
                 <div className="Customerquery-tab cust-tab" id="cust-tab">

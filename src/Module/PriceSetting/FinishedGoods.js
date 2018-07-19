@@ -70,7 +70,6 @@ export default class extends Component {
             discount:0,
             price:'' 
         });
-        if (this.state.typeLists.length > 0 && this.state.typeList.length > 0 ) return;
         this.getGoodTypeList();
     } 
     //获取商品类别列表
@@ -142,8 +141,10 @@ export default class extends Component {
                 close();
                 if (ver && res) {
                     this.componentDidMount();
-                }
-                handle();
+                    handle({msg:'删除成功！'});
+                }else{
+                    handle();
+                } 
             });
         }else{
             close();
@@ -179,21 +180,20 @@ export default class extends Component {
             price: this.state.price,
             stock: this.state.stock,
             has_discount: this.state.discount
-        }
-        console.log('打印修改数据');
+        } 
         console.log(params);
         api.post('modGoods', params, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({show2:false}); 
-                this.componentDidMount(); 
+                this.componentDidMount();
+                handle({msg:'修改成功！'});
             }else{
                 console.log(res.msg);
                     tool.ui.error({msg:'且须修改一项',callback:(close) => {
                         close();
                 }});
             }
-            
         }); 
     }
     render() {

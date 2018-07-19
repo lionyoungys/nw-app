@@ -20,14 +20,26 @@ export default class extends Component {
             bankInfo:{},
             list:[],
             count:0,
-            selectType:'全部',
+            selectType: '',//2,微信。3，支付宝默认全部)
         }
-        this.type =['全部','支付宝','微信'];
+        this.type = ['全部', '支付宝', '微信','打款'];
         this.limit = 15;
         this.query = this.query.bind(this);
+        this.changePayType = this.changePayType.bind(this);
     }
     componentDidMount(){
         this.query();
+    }
+    changePayType(value){
+        var pay_type = value;
+        console.log(pay_type);
+        if (pay_type == '全部') {
+            this.setState({ selectType:''})
+        } else if (pay_type == '支付宝') {
+            this.setState({ selectType: '3' })
+        } else if (pay_type == '微信') {
+            this.setState({ selectType: '2' })
+        }
     }
     query(page){
         page = page || this.state.page;
@@ -35,6 +47,7 @@ export default class extends Component {
             token: 'token'.getData(),
             page: this.state.page,
             limit: this.limit,
+            pay_way: this.state.selectType,
             start_time: this.state.startDate,
             end_time: this.state.endDate,
         }
@@ -51,10 +64,10 @@ export default class extends Component {
     render() {
         var list = this.state.list.map((item,index)=>
             <tr key= {'item'+index}>
-                <td className='ali-wechat-check-tab-1'>{item.serialsn}</td>
+                <td className='ali-wechat-check-tab-1'>{item.trade_sn}</td>
                 <td className='ali-wechat-check-tab-2'>{item.pay_type}</td>
-                <td className='ali-wechat-check-tab-3'>{item.pay_type}</td>
-                <td className='ali-wechat-check-tab-4'>{item.real_amount}</td>
+                <td className='ali-wechat-check-tab-3'>{item.remark}</td>
+                <td className='ali-wechat-check-tab-4'>{item.amount}</td>
                 <td className='ali-wechat-check-tab-6'>{item.balance}</td>
                 <td className='ali-wechat-check-tab-7'>{item.time}</td>
             </tr>
@@ -78,8 +91,8 @@ export default class extends Component {
                         <input type='date' className='ui-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
                     </span>
                     <span>
-                        <a><b>*</b>交易类型：</a>
-                        <Select option={this.type} onChange={value => this.setState({ selectType: value })} />
+                        <a><b>*</b>交易通道：</a>
+                        <Select option={this.type} onChange={value=>this.changePayType(value)} />
                     </span>  
                 </div>
                 <table className='ui-table-base ali-wechat-check-tab'>
@@ -87,7 +100,7 @@ export default class extends Component {
                         <tr>
                             <td className='ali-wechat-check-tab-1'>交易单号</td>
                             <td className='ali-wechat-check-tab-2'>交易类型</td>
-                            <td className='ali-wechat-check-tab-3'>备注</td>
+                            <td className='ali-wechat-check-tab-3'>交易用途</td>
                             <td className='ali-wechat-check-tab-4'>交易金额</td>
                             <td className='ali-wechat-check-tab-6'>余额</td>
                             <td className='ali-wechat-check-tab-7'>交易时间</td>

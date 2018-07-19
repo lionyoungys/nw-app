@@ -70,7 +70,7 @@ export default class extends Component {
                 <div className="loss-rep-right">
                     <p>注意：补换卡业务仅支持实体卡、IC卡</p>
                     <a><b>*</b>新卡号</a>
-                    <input type="text" className='e-input loss-rep-input' onChange={e=>this.setState({recharge_number:e.target.value})}/>
+                    <input type="text" autofocus="autofocus" className='e-input loss-rep-input' onChange={e=>this.setState({recharge_number:e.target.value})}/>
                     <div className='loss-rep-right-btn'>
                         <span>制卡费：¥{data.made_price || '0.00'}</span>
                         <button className="e-btn" onClick={this.handleClick}>确定</button>

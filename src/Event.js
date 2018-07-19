@@ -127,28 +127,31 @@
         if ('string' !== typeof obj.sn || '' == obj.sn || obj.sn.length > 16) return tool.ui.error({msg:'卡号格式错误',callback:close => close()});
         obj.mid = obj.mid || 'merchant_id'.getData();
         obj.cid = obj.cid || '0';
-        try {
-            var result = M1Reader.set(obj);
-        } catch (e) {
-            result = false;
-        }
-        if (!result) {
-            setTimeout(() => {
-                tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
+        api.post('card_exist', {recharge_number:obj.sn}, (res, ver, handle) => {
+            if (!ver || !res.result) return tool.ui.error({msg:'已重复的卡号',callback:close => close()});
+            try {
+                var result = M1Reader.set(obj);
+            } catch (e) {
+                result = false;
+            }
+            if (!result) {
+                setTimeout(() => {
+                    tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
+                        close();
+                        if ('click' == event) {
+                            this.M1Write(obj);
+                        } else {
+                            'function' === typeof obj.fail && obj.fail();
+                        }
+                    }});
+                }, 500);
+            } else {
+                tool.ui.success({msg:'写卡成功',callback:close => {
                     close();
-                    if ('click' == event) {
-                        this.M1Write(obj);
-                    } else {
-                        'function' === typeof obj.fail && obj.fail();
-                    }
+                    'function' === typeof obj.success && obj.success();
                 }});
-            }, 500);
-        } else {
-            tool.ui.success({msg:'写卡成功',callback:close => {
-                close();
-                'function' === typeof obj.success && obj.success();
-            }});
-        }
+            }
+        });
     }
 
     e.win.on('loaded', e.win.show);    //防止窗口渲染未完成时展示
