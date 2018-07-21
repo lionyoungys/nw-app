@@ -29,7 +29,8 @@ export default class extends Component {
             discount:'100%',//折扣率
             disTotal:'0',//折后总价
             rechargeShow:false,
-            payShow:false
+            payShow:false,
+            enterAble:true,//点击enter是否搜索
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
@@ -45,6 +46,8 @@ export default class extends Component {
         this.paymentCallback = this.paymentCallback.bind(this);
         this.judgeEnterPress = this.judgeEnterPress.bind(this);
         this.searchBySN = this.searchBySN.bind(this);
+        this.changeEnterAble = this.changeEnterAble.bind(this);
+        this.blurWithMsg = this.blurWithMsg.bind(this);
     };
     //进入页面获取数据
     componentDidMount(){
@@ -89,25 +92,12 @@ export default class extends Component {
             searchNum = this.state.searchNum;
             console.log('搜索商品'+searchNum);
             this.setState({ searchNum: '' });
-            if (searchNum.length == 0) return tool.ui.error({
-                title: '提示', msg: '商品编号不能为空', button: '确定', callback: (close, event) => {
-                    close();
-                }
-            });
-            if (this.state.list.length == 0) return tool.ui.error({
-                title: '提示', msg: '商品分类为空，需要刷新页面！', button: '确定', callback: (close, event) => {
-                    this.componentDidMount();
-                    close();
-                }
-            });
+            if (searchNum.length == 0) return this.blurWithMsg('商品条码不能为空！');
+            if (this.state.list.length == 0) return this.blurWithMsg('商品库存为空，需要刷新页面！');
             sel_index = searchNum.inObjArray(this.state.allComList, 'goods_number');
             judgeIndex = false;
         }
-        if (sel_index == -1) return tool.ui.error({
-            title: '提示', msg: '商品不在库中', button: '确定', callback: (close, event) => {
-                close();
-            }
-        });//没有在数组中
+        if (sel_index == -1) return this.blurWithMsg('商品不在库中！');//没有在数组中
         //从大数组找出具体数据
         let search = this.state.allComList[sel_index];
         let handleList = this.state.searchList;
@@ -117,6 +107,7 @@ export default class extends Component {
                 for (let index = 0; index < handleList.length; index++) {
                     if (search.id == handleList[index].id) {
                         exit = true;
+                        if (handleList[index].count * 1 + 1 > handleList[index].stock * 1) return this.blurWithMsg('库存不足！');
                         handleList[index].count += 1;
                         break;
                     }
@@ -125,6 +116,7 @@ export default class extends Component {
                 for (let index = 0; index < handleList.length; index++) {
                     if (search.goods_number == handleList[index].goods_number) {
                         exit = true;
+                        if (handleList[index].count * 1 + 1 > handleList[index].stock * 1) return this.blurWithMsg('库存不足！');
                         handleList[index].count += 1;
                         break;
                     }
@@ -135,12 +127,24 @@ export default class extends Component {
             search.count = 1;
             handleList.push(search);
         }
+        console.log('更新数据');
+        
         this.setState({ searchList: handleList });
         this.compute();
     }
+    //统一处理input失去焦点
+    blurWithMsg(msg){
+        this.input.blur();
+        this.setState({ enterAble: false });
+        tool.ui.hud({ msg: msg});
+    }
     //判断点击enter键
     judgeEnterPress(e) {
-        13 == (e.keyCode || e.which) && this.query();
+        13 == (e.keyCode || e.which) && this.state.enterAble && this.query();
+    }
+    //修改enter搜索是否可用
+    changeEnterAble() {
+        this.setState({ enterAble: true });
     }
     //判断搜索
     searchBySN() {
@@ -157,6 +161,7 @@ export default class extends Component {
     }
     //增加
     add(index) {
+        if (this.state.searchList[index].count * 1 + 1 > this.state.searchList[index].stock * 1) return this.blurWithMsg('库存不足！'); 
         this.state.searchList[index].count +=1;
         this.setState({ searchList: this.state.searchList });
         this.compute();
@@ -350,7 +355,7 @@ export default class extends Component {
                <div className="commoditysales-footerdiv">
                     <div className="commoditysales-right-top">
                         <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
-                        <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' placeholder="请输入/扫描商品条码" value ={this.state.searchNum} onKeyPress={this.judgeEnterPress} onChange={e =>this.setState({searchNum:e.target.value})}/>
+                        <input type="text" className="commoditysales-right-text" autoFocus= 'autoFocus' ref={input => this.input=input}  placeholder="请输入/扫描商品条码" value ={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e =>this.setState({searchNum:e.target.value})}/>
                     </div>
                    <div className="commoditysales-div-left">
                       <div className="commoditysales-left-title">商品分类</div>

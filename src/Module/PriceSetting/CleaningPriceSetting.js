@@ -66,10 +66,31 @@ export default class extends Component {
         this.handle=this.handle.bind(this);
         this.onchange=this.onchange.bind(this);
         this.query=this.query.bind(this);
+        this.search=this.search.bind(this);
     };  
     componentDidMount() {
         this.query();
     } 
+    search(e){
+        // if(''==this.state.item_name)
+        // { }else
+        // {
+        if(''==e.target.value)
+        return;
+        this.setState({item_name:e.target.value})
+        api.post('itemImage', {
+            token:'token'.getData(),
+            item_name:e.target.value
+    }, (res, ver,handle) => {
+            if (ver && res) {
+                console.log(res)
+                this.setState({list:res.result.list,count:res.result.count,image_url:res.result.list[0].url,image_id:res.result.list[0].id})
+            }else{
+                handle();
+            }
+        }
+        ); 
+    }
     query(){
         let done;
         tool.ui.loading(handle => done = handle);
@@ -249,6 +270,9 @@ export default class extends Component {
         let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
         let good = this.state.itemLists[this.state.index].server[good_index];
         console.log(good.dispose_type);
+        console.log(good.grade)
+        console.log(good.materials)
+        
         this.setState(
             {
                 goodindex: good_index,
@@ -261,9 +285,9 @@ export default class extends Component {
                 min_discount: good.min_discount,
                 item_online_price: good.item_online_price,
                 cate_name: good.cate_name,
-                disposetype: good.dispose_type==''?this.state.disposetype:good.dispose_type,
-                gradename: good.grade==''?this.state.gradename:good.grade,
-                materialsname: good.materials==''?this.state.materialsname:good.materials,
+                disposetype: good.dispose_type,
+                gradename: good.grade,
+                materialsname: good.materials,
                 gridname: good.grid,
                 image_url: good.image_url,
                 // online: good.state,//在线接单
@@ -360,7 +384,7 @@ export default class extends Component {
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange} /></div>
-                                <div><span><i>*</i> 衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})}/></div>
+                                <div><span><i>*</i> 衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={this.search}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} selected="无"/></div>
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} selected="无"/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value})} selected="无"/></div>
@@ -405,9 +429,9 @@ export default class extends Component {
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
-                                <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
-                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>
-                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname} onChange={value => this.setState({materialsname:value})} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
+                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>
+                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname} onChange={value => this.setState({materialsname:value})} /></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
@@ -442,7 +466,7 @@ export default class extends Component {
                     </Window>
                 }
                     {
-                        this.state.selectImg && <PhotoGallery onClose={this.onClose} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
+                        this.state.selectImg && <PhotoGallery onClose={this.onClose} item_name={this.state.item_name} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>
                     }
                     {
                         this.state.clothestypemanageshow&&<ColthesClassifyManagment onClose={()=>this.setState({clothestypemanageshow:false})} refresh={this.query}/>

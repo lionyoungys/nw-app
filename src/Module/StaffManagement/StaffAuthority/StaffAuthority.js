@@ -86,19 +86,21 @@ export default class extends Component {
         var authlists = this.state.authlist;
         tool.ui.ask({title:'删除权限',info:'提示:删除后组名将被永久删除！<br/>', callback:(close, event) => {
               //删除员工
-            close();
-            api.post('authDel', {
-                token:'token'.getData(),
-                id:id,
-                }, (res, ver,handle) => {
+            if (event == 'click' ) {
+                api.post('authDel', {
+                    token: 'token'.getData(),
+                    id: id,
+                }, (res, ver, handle) => {
                     if (ver && res) {
                         console.log(res);
-                        authlists.splice(index,1)  
-                        this.setState({ authlist: authlists})                       
-                    }else{
+                        authlists.splice(index, 1)
+                        this.setState({ authlist: authlists })
+                    } else {
                         handle();
                     }
-                });      
+                });    
+            }  
+            close();
         }});
     }
     handleArr(e){

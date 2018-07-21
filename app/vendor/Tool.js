@@ -153,7 +153,6 @@
     t.isArray = function(array) {
         return 'object' === typeof array && null !== array && array instanceof Array;
     }
-
     /**
      * 通过条件判断获取指定交集对象的属性值的和
      * @param {array} arr
@@ -186,7 +185,6 @@
         }
         return sum;
     }
-
     /**
      * 判断对象是否相等
      * @param {object} object 初始化对象
@@ -212,7 +210,6 @@
             return true;
         }
     }
-
     //ui对象实现
 
     /**
@@ -240,7 +237,6 @@
             node.style.left = '50%';
         }
     }
-
     /**
      * 界面弹出层工厂方法
      * @param name 弹出层名称
@@ -317,6 +313,28 @@
         bg.appendChild(loading);
         document.body.appendChild(bg);
         'function' === typeof callback && callback(function() {document.body.removeChild(bg)});
+    }
+    /**
+     * 自销提示框/蒙层
+     * @param {function} callback 回调函数，回传参数为加载结束方法
+     * msg,title,second
+     */
+    t.ui.hud = function (object) {
+        var bg = this.c('div', 't-ui-layer');
+        bg.style.opacity = '0';
+        var content = this.c(
+            'div',
+            't-ui-layer-hud',
+            'string' === typeof object.msg ?  object.msg : '错误信息提示'
+        );
+        document.body.appendChild(bg);
+        document.body.appendChild(content);
+        var timeout = setTimeout(() => {
+            document.body.removeChild(content);
+            document.body.removeChild(bg);
+            clearTimeout(timeout);
+        }, 'number' === typeof object.second ? object.second *1000 :2000 );
+        this.center(content);
     }
     window.tool = t;
 })(window);

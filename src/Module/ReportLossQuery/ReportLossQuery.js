@@ -10,8 +10,7 @@ import ReportLossQuery from './ReportLossQuery.css'
 export default class extends Component {   
     constructor(props) {
         super(props);
-        this.state = {startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d')};
-                   
+        this.state = {startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d')};                  
     }; 
     render() {
         return (

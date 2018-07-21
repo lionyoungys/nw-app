@@ -444,10 +444,12 @@ export default class extends Component {
         if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
         ,   pay_amount = 0
+        ,   amount = 0
         ,   craft_price = 0
         for (let i = 0;i < len;++i) {
             data[i].raw_price = data[i].raw_price || 0;
             pay_amount = pay_amount.add(data[i].raw_price, data[i].addition_price, data[i].addition_no_price);
+            amount = amount.add(data[i].raw_price);
             craft_price = craft_price.add(data[i].addition_price, data[i].addition_no_price);
             data[i].user_name = this.state.name;
             data[i].user_mobile = this.state.phone;
@@ -459,7 +461,7 @@ export default class extends Component {
         }
         api.post(
             'get_clothes',
-            {token:token, uid:this.state.cid || '', amount:pay_amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            {token:token, uid:this.state.cid || '', amount:amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {

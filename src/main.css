@@ -341,3 +341,19 @@ table{border-collapse: collapse}
     line-height: 36px;
     text-align: right;
 }
+/* 蒙层提示 */
+.t-ui-layer-hud{
+    min-width: 180px;
+    max-width: 240px;
+    height: auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, .65);
+    color: white;
+    padding: 5px;
+    word-wrap:break-word;
+    z-index:1000000;
+    border-radius: 8px;
+    overflow: hidden;
+}

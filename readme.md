@@ -63,5 +63,8 @@ npm install --global --production windows-build-tools
 nw-gyp rebuild --target=0.14.7 --arch=ia32
 node-pre-gyp rebuild --runtime=node-webkit --target=0.14.7 --target_arch=ia32
 
+########打包修改为管理员运行
+https://blog.csdn.net/x356982611/article/details/50386824
+
 
 

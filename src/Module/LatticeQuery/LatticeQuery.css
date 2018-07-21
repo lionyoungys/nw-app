@@ -183,13 +183,18 @@
     cursor: pointer;
 }
 .lattice-div-right span:hover{
-    background:#5f9dfa;
-    color:#fff;
+   background:#8ebcff; 
+   color:#fff;
 }
 .lattice-div-right span.index{
     color:#f00;
 }
 .lattice-div-right span.index:hover{
-    background:#5f9dfa;
+    
     color:#f00;
+}
+
+#latticeselect{background:#639bfc;color:#fff;}
+.lattice-div-right span.index#latticeselect{
+ color:#f00;
 }

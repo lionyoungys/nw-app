@@ -10,12 +10,12 @@ import Window from '../../UI/Window';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
+        this.state = {           
             selectLatDic:{},
             gridname:[],
             index:0,
-            list:[],         
+            list:[],  
+            indexselect:-1,       
         }  
         this.handleclick = this.handleclick.bind(this);   
         this.listquest = this.listquest.bind(this);          
@@ -31,7 +31,8 @@ export default class extends Component {
     }
     listquest (e){
         var item = e.target.dataset.item || e.target.parentNode.dataset.item;
-        var eng = this.state.selectLatDic.name
+        var eng = this.state.selectLatDic.name;
+        this.setState({indexselect:e.target.dataset.index || e.target.parentNode.dataset.index});
         var op =eng +'-'+ item;
         console.log(op)
         api.post('clothesQuery', {
@@ -42,8 +43,7 @@ export default class extends Component {
         }, (res, ver,handle) => {
             if (ver && res) {
                  console.log(res);
-                this.setState({list:res.result.list});
-                
+                this.setState({list:res.result.list});                
             }else{
                 handle();
             }
@@ -82,7 +82,7 @@ export default class extends Component {
             'undefined' !== typeof this.state.gridname[this.state.index].use_detail
         ) {           
             use_detail = this.state.gridname[this.state.index].use_detail.map((item,index)=>         
-                <span className={item.put_num>0?'index':null} onClick = {this.listquest} data-item ={item.number}>{item.number}#{item.put_num}件</span>          
+                <span className={item.put_num>0?'index':null} onClick = {this.listquest} data-item ={item.number} data-index={index} id={this.state.indexselect==index?'latticeselect':null}>{item.number}#{item.put_num}件</span>          
             );
         }
         let lists = this.state.list.map((item,index) =>

@@ -9,7 +9,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state={
-            item_name:'',
+            item_name:this.props.item_name,
             list:[],
             count:0,
             index:-1,
@@ -18,6 +18,9 @@ export default class extends Component {
         this.search=this.search.bind(this);
         this.handleclick=this.handleclick.bind(this);
     };
+    componentDidMount() {
+        this.search();
+    } 
     search(){
         if(''==this.state.item_name)
         return  tool.ui.error({msg:'请输入图片名称',callback:(close) => {
@@ -54,7 +57,7 @@ export default class extends Component {
                     <div className='photo-gal'>
                         <div className="photo-gal-head">
                             图片名称：
-                            <input className='e-input photo-gal-input' type="text" onChange={e=>this.setState({item_name:e.target.value})}/>
+                            <input className='e-input photo-gal-input' type="text" onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/>
                             <button className="e-btn" onClick={this.search}>搜索</button>
                         </div>
                         <p>以为您找到<b>{this.state.count}</b>张图片</p>

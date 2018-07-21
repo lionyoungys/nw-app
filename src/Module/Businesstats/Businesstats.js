@@ -63,9 +63,7 @@ export default class extends Component {
 
         </tr>
      )
-       var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={()=>this.arrbutton(1)}>{item}</button>);
-       
-      
+       var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={()=>this.arrbutton(1)}>{item}</button>);             
        return (             
             <Window title='营业统计' onClose={this.props.closeView}>   
                 <div className="revokedata_data">
@@ -99,8 +97,7 @@ export default class extends Component {
                        {list}
                         {this.state.nodatas&&<Nodata />}
                     </tbody>
-                </table>
-    
+                </table>   
                 <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.arrbutton(page)}/>   
              </Window> 
         );

@@ -77,7 +77,7 @@ export default class extends Component {
             <Window title='上挂' onClose={this.props.closeView}>
                 <div className="Hangon-div">
                     <span>请输入衣物编码</span>
-                    <input type="text" value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value})}/>
+                    <input type="text" value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value})} autoFocus='autoFocus'/>
                     <button className="e-btn hangon-btn" onClick={this.query}>查询</button>             
                 </div>
                 <table class='ui-table-base hangon-sear-res-tab'>
