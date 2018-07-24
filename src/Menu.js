@@ -98,6 +98,7 @@ const topMenu = [
             {value:'参数设置', view:'Parameter_Settings', id: 46},
             {value:'设备与打印机', view:'equipment_management', id: 47},
             {value:'数据导入',  view:'data', id: 48},
+            {value:'数据导入2',  view:'data'},
             {value:'密码修改', view:'passwd_update', id: 49},
             // {value:'其他设置', view:'colthes_classify_managment'},
             {value:'关于速洗达', view:'about_snl', id: 50}
