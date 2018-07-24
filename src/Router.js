@@ -1,5 +1,6 @@
 //类文件引入
 import Data from './Module/Data/App';
+import Data2 from './Module/Data/App2';
 import Clothes from './Module/Clothes/App' //收衣界面
 import Hangon from './Module/Hangon/Hangon'; //上挂
 import Takeclothes from './Module/Takeclothes/Takecloth'; //取衣
@@ -68,6 +69,7 @@ export default {
     debt_pay:Debtpay,// 欠款补交
     commodity_sales:Commoditysales ,//商品销售
     data:Data,
+    data2:Data2,
     revoke_data:RevokeData,//撤单统计
     operating_details:OperatingDetails,//营业明细
     member_info_update:MemberInfoUpdate,//会员信息修改

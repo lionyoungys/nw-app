@@ -240,6 +240,12 @@ table{border-collapse: collapse}
     border: 1px solid #c2c2c2;
     outline-color: #6f9ec2;
 }
+.e-file{
+    width: 150px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 /* 下拉选框样式 */
 .e-select{
     height: 22px;

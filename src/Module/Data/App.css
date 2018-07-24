@@ -25,3 +25,22 @@
     margin-right: 10px;
     margin-top: 10px;
 }
+.data-import{
+    height: 562px;
+    padding: 8px 16px;
+    margin: 8px;
+    font-size: 12px;
+    border: 1px solid #8db2e3;
+    border-radius: 3px;
+}
+.data-import>:first-child{
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #8db2e3;
+}
+.data-import-row{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+.data-import span{color: #063781}

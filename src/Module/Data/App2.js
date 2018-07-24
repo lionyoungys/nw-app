@@ -14,7 +14,9 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ID:'ID'.getData(),
             addr:null,
+            redo:false,
             data_tables:[    //数据表名,api地址,数据总数,已导入的总数
                 {name:'收活表', api:'new_order_work', total:0, count:0},
                 {name:'品牌', api:'new_merchant_brand', total:0, count:0},
@@ -47,102 +49,102 @@ export default class extends Component {
                 {name:'导轨信息表F', api:'new_merchant_grid_num_f', total:0, count:0},
             ],
         };
-        this.timeId = null;
-        this.loadingEnd = null;
-        this.handleCancel = this.handleCancel.bind(this);
+        this.len = this.state.data_tables.length;
+        this.connection = null;
+        this.loadingExit = null;
+        this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.verify = this.verify.bind(this);
+        this.loading = this.loading.bind(this);
+        this.loadingEnd = this.loadingEnd.bind(this);
     }
 
-    handleCancel() {
-        if (null !== this.loadingEnd) {
-            if (null !== this.timeId) {
-                clearInterval(this.timeId);
-                this.timeId = null;
+    componentDidMount() {
+        api.post('data_status', {token:token}, (res, ver) => {
+            if (ver) {
+                for(let i = 0;i < this.len;++i) {
+                    this.state.data_tables[i].count = res.result[this.state.data_tables[i].api];
+                }
+                this.setState({data_tables:this.state.data_tables});
             }
-            this.loadingEnd();
-            this.loadingEnd = null;
+        });
+    }
+
+    handleChange(e) {
+        let value = e.target.value;
+        this.setState({addr:value, redo:false});
+        this.connection = tool.include('node-adodb').connection( (this.state.redo ? this.state.addr : value), 'betterlife126126' );
+        for (let i = 0;i < this.len;++i) {
+            this.connection.query('SELECT count(*) as len FROM [' + this.state.data_tables[i].name + ']').then(arr => {
+                this.state.data_tables[i].total = arr[0].len;
+                this.setState({data_tables:this.state.data_tables});
+            }).catch(err => {
+                console.log(data[i], err);
+                if (!this.state.redo) {
+                    tool.ui.error({msg:'数据统计失败，请重试',callback:close => close()});
+                    this.setState({redo:true});
+                }
+            });
         }
     }
 
     handleClick() {
-        if (this.state.addr) {
-            let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126')
-            ,   read = []
-            ,   len = data.length
-            ,   count = 0
-            ,   size = 0
-            ,   error = '';
-            tool.ui.loading(handle => this.loadingEnd = handle);
-            for (let i = 0;i < len;++i) {
-                connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
-                    read.push({name:data[i], data:tableData});
-                }).catch(e => {
-                    console.log(data[i], e);
-                    error = '导入错误，请重试！';
-                });
-                connection.query('SELECT count(*) as len FROM [' + data[i] + ']').then(arr => {
-                    size += arr[0].len;
-                    ++count;
-                }).catch(e => {
-                    console.log(data[i], e);
-                    error = '导入错误，请重试！！！';
-                });
-                if ('' !== error) break;
-            }
-            if (null === this.timeId) {
-                this.timeId = setInterval(() => {
-                    let readLen = read.length;
-                    console.log(readLen);
-                    if ('' !== error) {
-                        this.handleCancel();
-                        return tool.ui.error({msg:error,callback:close => close()});
-                    }
-                    if (readLen == len && readLen == count) {
-                        clearInterval(this.timeId);
-                        this.timeId = null;
-                        if (size > 80000) {
-                            this.handleCancel();
-                            return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
-                        }
-                        //let bf = new Buffer(JSON.stringify(read));
-                        //console.log('buf', buf);
-                        //let postData = {token:token,txt:fs.createReadStream( new Blob([bf], {type:'text/plain'}) )};
-                        let dataFile = path.dirname(process.execPath) + '/data.txt';
-                        fs.writeFileSync(dataFile, JSON.stringify(read), 'utf8')
-                        let postData = {token:token,txt:fs.createReadStream(dataFile)};
-                        console.log(postData);
-                        api.post('UploadData', postData, (res, ver, handle) => {
-                            this.handleCancel();
-                            if (ver) {
-                                tool.ui.success({callback:close => {
-                                    close();
-                                    this.props.closeView();
-                                }});
-                            } else {
-                                this.handleCancel();
-                            }
-                        }, this.handleCancel);
-                    }
-                }, 1000);
+        if (null === this.connection) return tool.ui.error({msg:'请选择数据源',callback:close => close()});
+        let empty = true;
+        for (let i = 0;i < this.len;++i) {
+            if (this.state.data_tables[i].total > 0) {
+                empty = false;
+                break;
             }
         }
+        if (empty) return tool.ui.error({msg:'数据源数据为空',callback:close => close()});
+        this.verify(() => {
+            
+        });
     }
 
-    componentWillUnmount() {
-        null !== this.timeId && clearInterval(this.timeId);
+    verify(callback) {    //店信息->店ID
+        this.connection.query('SELECT 店ID as ID FROM [店信息]').then(data => {
+            data[0].ID;
+            if (this.state.ID && this.state.ID != data[0].ID) {
+                return tool.ui.error({msg:'数据源验证失败',callback:close => close()});
+            } else {
+                data[0].ID.setData('ID');
+                this.setState({ID:data[0].ID});
+                'function' === typeof callback && callback();
+            }
+        }).catch(err => {
+            return tool.ui.error({msg:'数据源验证失败',callback:close => close()});
+        });
     }
-
+    loading() {tool.ui.loading(handle => this.loadingExit = handle)}
+    loadingEnd() {
+        if (null !== this.loadingExit) {
+            this.loadingExit();
+            this.loadingExit = null;
+        }
+    }
     render() {
-        return (
-            <Window title='数据导入' onClose={this.props.closeView} width='352' height='240'>
-            <div className='data'>
-                <div className='data_border'>
-                    <div>
-                        <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({addr:e.target.value}) }/>
-                    </div>
-                </div>
-                <button onClick={this.handleClick} className='e-btn'>开始导入</button>
+        let html = this.state.data_tables.map(obj => 
+            <div className='data-import-row' key={obj.name}>
+                <span>{obj.name}</span>
+                <div><span>{obj.count}</span>&nbsp;/&nbsp;<span>{obj.total}</span></div>
             </div>
+        );
+        return (
+            <Window title='数据导入' onClose={this.props.closeView} width='600' height='632'>
+                <div className='data-import'>
+                    <div>
+                        <span>数据源：</span>
+                        <input className='e-file' type='file' onChange={this.handleChange}/>
+                        <em style={this.state.redo ? null : {display:'none'}}>
+                            &emsp;<button type='button' className='e-btn' onClick={this.handleChange}>重试</button>
+                        </em>
+                        &emsp;
+                        <button type='button' className='e-btn' onClick={this.handleClick}>开始导入</button>
+                    </div>
+                    {html}
+                </div>
             </Window>
         );
     }
