@@ -9,16 +9,44 @@ import React, {Component} from 'react';
 import './App.css';
 import Window from '../../UI/Window';
 
-const token = 'token'.getData()
-,     data = [
-    '收活表','品牌','颜色表','返洗衣物表','处理类别','洗后效果','备注','POS_备注','衣物类别','价格表',
-    '退赔记录表','欠费信息','POS_价格表','撤单信息表','转卡记录','挂失卡号','卡信息','收银表','卡类设置','客户信息表','其他收费',
-    '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
-];
+const token = 'token'.getData();
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {addr:null};
+        this.state = {
+            addr:null,
+            data_tables:[    //数据表名,api地址,数据总数,已导入的总数
+                {name:'收活表', api:'new_order_work', total:0, count:0},
+                {name:'品牌', api:'new_merchant_brand', total:0, count:0},
+                {name:'颜色表', api:'new_merchant_color', total:0, count:0},
+                {name:'返洗衣物表', api:'new_order_clean_back', total:0, count:0},
+                {name:'处理类别', api:'new_merchant_type', total:0, count:0},
+                {name:'洗后效果', api:'new_merchant_forecast', total:0, count:0},
+                {name:'备注', api:'new_merchant_flaw', total:0, count:0},
+                {name:'POS_备注', api:'new_pos_remark', total:0, count:0},
+                {name:'衣物类别', api:'new_merchant_items_type', total:0, count:0},
+                {name:'价格表', api:'new_merchant_items', total:0, count:0},
+                {name:'退赔记录表', api:'new_merchant_compensate', total:0, count:0},
+                {name:'欠费信息', api:'new_order_arrears', total:0, count:0},
+                {name:'POS_价格表', api:'new_pos_price', total:0, count:0},
+                {name:'撤单信息表', api:'new_order_back', total:0, count:0},
+                {name:'转卡记录', api:'new_merchant_cards_shift', total:0, count:0},
+                {name:'挂失卡号', api:'new_merchant_cards_loss', total:0, count:0},
+                {name:'卡信息', api:'new_merchant_cards_info', total:0, count:0},
+                {name:'收银表', api:'new_merchant_deal_info', total:0, count:0},
+                {name:'卡类设置', api:'new_merchant_cards', total:0, count:0},
+                {name:'客户信息表', api:'new_merchant_user', total:0, count:0},
+                {name:'其他收费', api:'new_merchant_other', total:0, count:0},
+                {name:'退赔类别', api:'new_merchant_compensate_type', total:0, count:0},
+                {name:'特殊处理', api:'new_merchant_addition', total:0, count:0},
+                {name:'导轨信息表A', api:'new_merchant_grid_num_a', total:0, count:0},
+                {name:'导轨信息表B', api:'new_merchant_grid_num_b', total:0, count:0},
+                {name:'导轨信息表C', api:'new_merchant_grid_num_c', total:0, count:0},
+                {name:'导轨信息表D', api:'new_merchant_grid_num_d', total:0, count:0},
+                {name:'导轨信息表E', api:'new_merchant_grid_num_e', total:0, count:0},
+                {name:'导轨信息表F', api:'new_merchant_grid_num_f', total:0, count:0},
+            ],
+        };
         this.timeId = null;
         this.loadingEnd = null;
         this.handleCancel = this.handleCancel.bind(this);
