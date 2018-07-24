@@ -72,7 +72,7 @@ export default class extends Component {
         let clothes = this.state.clothes.map((item,index)=>
             <tr key={'item'+index}>
                 <td>{index+1+(this.state.page-1)*this.limit}</td>
-                <td>{item.serialsn}</td>
+                <td>{item.serialsn==null?item.ordersn:item.serialsn}</td>
                 <td>{item.clothing_number}</td>
                 <td>{item.clothing_name}</td>
                 <td>{item.clothing_color}</td>
@@ -134,7 +134,7 @@ export default class extends Component {
                     <thead>
                         <tr>
                             <td></td>
-                            <td>流水号</td>
+                            <td>流水号/订单号</td>
                             <td>衣物编码</td>
                             <td>衣物名称</td>
                             <td>颜色</td>

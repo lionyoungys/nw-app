@@ -273,7 +273,7 @@ export default class extends Component {
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>商品编码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品编码</div>
+                                <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
                             </div>
                             <div className="addnewprice-money">
@@ -305,7 +305,7 @@ export default class extends Component {
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>商品编码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品编码</div>
+                                <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
                             </div>
                             <div className="addnewprice-money">
