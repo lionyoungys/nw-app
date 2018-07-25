@@ -86,7 +86,7 @@ class Main extends Component {
             </div>
         );
     }
-}
+}  
 
 //顶部菜单栏组件
 class MainTopMenu extends Component {

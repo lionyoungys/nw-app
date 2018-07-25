@@ -307,9 +307,9 @@
      * 加载框
      * @param {function} callback 回调函数，回传参数为加载结束方法
      */
-    t.ui.loading = function(callback) {
+    t.ui.loading = function(callback, notice) {
         var bg = this.c('div', 't-ui-layer')
-        ,   loading = this.c('div', 't-ui-loading');
+        ,   loading = this.c( 'div', 't-ui-loading', ('string' === typeof notice ? notice : '') );
         bg.appendChild(loading);
         document.body.appendChild(bg);
         'function' === typeof callback && callback(function() {document.body.removeChild(bg)});

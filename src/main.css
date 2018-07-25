@@ -282,13 +282,17 @@ table{border-collapse: collapse}
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{
-    width: 124px;
-    height: 124px;
+    width: 126px;
+    padding-top: 126px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
     position: fixed;
     top: 50%;left: 50%;
     z-index: 999999;
     background: url(img/t-ui-loading.gif) no-repeat;
-    margin: -62px 0 0 -62px;
+    margin: -120px 0 0 -62px;
 }
 /* 弹框样式 */
 .t-ui-layer{

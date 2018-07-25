@@ -23,6 +23,9 @@ export default class extends Component {
         this.limit = 15;     
         this.query = this.query.bind(this);          
     }; 
+    componentDidMount(){
+        this.query();
+    }
     query (page){
         console.log(this.state.pay_type)
         page = page || this.state.page;

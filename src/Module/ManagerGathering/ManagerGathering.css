@@ -125,7 +125,7 @@
     min-width:100px;
 }
 #ManagerGathering-detail table{height:auto}
-#ManagerGathering-detail table tbody{max-height:482px;height:auto}
+#ManagerGathering-detail table tbody{max-height:460px;height:auto}
 
 textarea{
     resize: none;  

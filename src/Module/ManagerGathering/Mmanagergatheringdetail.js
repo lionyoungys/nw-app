@@ -5,32 +5,43 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import './ManagerGathering.css';
+import Page from '../../UI/Page';
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={
-            result:[]
+            result:[],
+            page: 1,
+            count: 0,
         }
+        this.limit = 20;
+        this.query = this.query.bind(this);
     };
     componentDidMount(){
-        api.post('managerGatheringDetail',{
-            token:'token'.getData()
-            }  
-          , (res, ver, handle) => {
-                if (ver) {
-                    this.setState({result:res.result})      
-                    console.log(res)                                                                              
-                }else{
-                    handle();                
-                }
-            }
-          );
+        this.query();  
     }
+    query(page){
+        page = page || this.state.page;
+        let done;
+        tool.ui.loading(handle => done = handle);
+        api.post('managerGatheringDetail', {token: 'token'.getData(),page: page,limit: this.limit}
+            , (res, ver, handle) => {
+                console.log(res)
+                done();
+                if (ver && res) {
+                    console.log(res)
+                    this.setState({ result: res.result.list,page: page,count: res.result.count });
+                    
+                } else {
+                    handle();
+                }
+            }, () => done());
+        }
     render() {
         let result=this.state.result.map((item,index)=>
         <tr key={'item'+index}>                             
             <td>{item.serialsn}</td>
-            <td>{item.user_mobile}</td>
+            <td>{item.operator}</td>
             <td>{item.work_number}</td>
             <td>{item.amount}</td>
             <td>{item.real_amount}</td>
@@ -63,7 +74,7 @@ export default class extends Component {
                                     {result}
                                </tbody>
                            </table>
-                        
+                        <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
                         </div>
             </Window>
 

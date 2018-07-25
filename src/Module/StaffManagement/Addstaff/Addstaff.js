@@ -247,19 +247,19 @@ export default class extends Component {
                     <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={this.operatorAdd}>
                         {
                             <div className='addstaffborder'>
-                            <div className='margintop'>
-                              <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname} autoFocus='autoFocus' />
+                                <div className='margintop'>
+                                <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname} autoFocus='autoFocus' />
+                                </div>
+                                <div>
+                                <span>手机号:</span><input type='text' onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile}/>
+                                </div>                             
+                                <div >
+                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>
+                                </div>
+                                <div>
+                                <span className='passlimit'>初始密码为123456</span>
+                                </div>
                             </div>
-                             <div>
-                             <span>手机号:</span><input type='text' onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile}/>
-                             </div>                             
-                               <div >
-                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>
-                               </div>
-                               <div>
-                               <span className='passlimit'>初始密码为123456</span>
-                               </div>
-                               </div>
                         }
                     </LayerBox>
                 }

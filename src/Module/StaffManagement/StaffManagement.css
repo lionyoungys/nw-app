@@ -95,7 +95,7 @@
 
 } */
 .addstaffborder  span{
-    margin-top: 6px;
+    margin-top: 16px;
     width: 85px;
     height: 14px;
     display: inline-block;
@@ -106,7 +106,7 @@
 .addstaffborder span.passlimit{
     color: red;
     width: 45%;
-    margin-top: 0px;
+    margin-top: 6px;
     margin-bottom: 0px;
     float: left;
  }

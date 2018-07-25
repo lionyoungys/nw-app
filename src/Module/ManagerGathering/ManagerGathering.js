@@ -94,7 +94,7 @@ export default class extends Component {
         for (let k in this.map) {
             temp = result[k] || {};
             arr.push(
-                <tr>
+                <tr key={'item'+k}>
                     <td >{this.map[k]}</td>
                     <td>{temp.amount || 0}</td>
                     <td>{temp.real_amount || 0}</td>
