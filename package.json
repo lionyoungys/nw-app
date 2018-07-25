@@ -18,6 +18,7 @@
     "ffi": "^2.2.0",
     "highcharts": "^6.1.0",
     "node-adodb": "^4.2.2",
+    "rc-progress": "^2.2.5",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "text-encoding": "^0.6.4"

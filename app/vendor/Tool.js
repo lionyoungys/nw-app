@@ -307,12 +307,19 @@
      * 加载框
      * @param {function} callback 回调函数，回传参数为加载结束方法
      */
-    t.ui.loading = function(callback, notice) {
+    t.ui.loading = function(callback) {
         var bg = this.c('div', 't-ui-layer')
-        ,   loading = this.c( 'div', 't-ui-loading', ('string' === typeof notice ? notice : '') );
+        ,   loading = this.c( 'div', 't-ui-loading');
         bg.appendChild(loading);
         document.body.appendChild(bg);
-        'function' === typeof callback && callback(function() {document.body.removeChild(bg)});
+        'function' === typeof callback && callback(
+            function() {document.body.removeChild(bg)}, 
+            function(notice) {
+                if ('object' === typeof loading && loading instanceof Node && 'string' === typeof notice) {
+                    loading.innerHTML = notice;
+                }
+            }
+        );
     }
     /**
      * 自销提示框/蒙层

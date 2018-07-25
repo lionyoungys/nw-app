@@ -44,3 +44,29 @@
     justify-content: space-between;
 }
 .data-import span{color: #063781}
+.data-progress{
+    height: 100%;
+    width: 100%; 
+    position: absolute;
+    top: 0;left: 0;
+    background: rgba(0, 0, 0, .4);
+    border-radius: 8px;  
+}
+.data-progress-circle{
+    height: 240px;
+    width: 240px;
+    position: absolute;
+    top: 50%;left: 50%;
+    margin: -120px 0 0 -120px;
+}
+.data-progress-msg{
+    width: 160px;
+    height: 36px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -18px 0 0 -80px;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+}
