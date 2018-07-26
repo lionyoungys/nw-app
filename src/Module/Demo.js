@@ -43,12 +43,12 @@ export default class extends React.Component {
         tool.ui.error({title:'自定义标题',msg:'自定义弹出错误内容',button:'点我啦！',callback:(close, event) => {
             close();
         }});
-    }
+    } 
     warn() {
         tool.ui.warn({callback:(close, event) => {
-            close();
+            close(); 
         }});
-    }
+    } 
     warn2() { 
         tool.ui.warn({button:['是（Y）', '否（N）'],callback:(close, event) => {
             console.log(event);
