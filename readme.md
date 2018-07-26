@@ -64,7 +64,10 @@ nw-gyp rebuild --target=0.14.7 --arch=ia32
 node-pre-gyp rebuild --runtime=node-webkit --target=0.14.7 --target_arch=ia32
 
 ########打包修改为管理员运行
+下载 Resource Hacker ,导入nw.exe文件，打开mainfest文件，修改<requestedExecutionLevel level="requireAdministrator" uiAccess="false"/>  
 https://blog.csdn.net/x356982611/article/details/50386824
+########修改nw.exe的图标
+下载 Resource Hacker ,导入nw.exe文件，打开icon，选择替换的图标
 
 
 
