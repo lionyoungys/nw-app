@@ -41,7 +41,7 @@ export default class extends Component {
             data:['无']    //打印机列表
         }
         this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
-        this.units = ['pt', 'px', 'em'];
+        this.units = ['pt', 'px'];
         this.style = {position:'absolute', bottom:'20px', right:'20px'};
         this.handleChange = this.handleChange.bind(this);
         this.selectPrinter = this.selectPrinter.bind(this);
