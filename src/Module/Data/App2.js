@@ -15,7 +15,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ID:'ID'.getData(),
+            ID:'',
             addr:null,
             redo:false,
             progress:false,
@@ -69,6 +69,7 @@ export default class extends React.Component {
 
     componentDidMount() {
         api.post('data_status', {token:token}, (res, ver) => {
+            console.log(res);
             if (ver) {
                 for(let i = 0;i < this.len;++i) {
                     this.state.data_tables[i].count = res.result[this.state.data_tables[i].api];
@@ -124,14 +125,8 @@ export default class extends React.Component {
 
     verify(callback) {    //店信息->店ID
         this.connection.query('SELECT 店ID as ID FROM [店信息]').then(data => {
-            data[0].ID;
-            if (this.state.ID && this.state.ID != data[0].ID) {
-                return tool.ui.error({msg:'数据源验证失败,请使用上次选择的数据库',callback:close => close()});
-            } else {
-                data[0].ID.setData('ID');
-                this.setState({ID:data[0].ID});
-                'function' === typeof callback && callback();
-            }
+            this.setState({ID:data[0].ID});
+            'function' === typeof callback && callback();
         }).catch(err => {
             console.log('ver', err);
             return tool.ui.error({msg:'数据源验证失败',callback:close => close()});
@@ -146,6 +141,7 @@ export default class extends React.Component {
         }
         this.setState({progress:true});
         let data_table = this.state.data_tables[index];
+        console.log(data_table);
         fs.writeFileSync(
             this.file, 
             JSON.stringify( data_table.data.slice( data_table.count, this.limit.add(data_table.count) ) ), 
@@ -169,7 +165,7 @@ export default class extends React.Component {
 
     handleIndex() {
         for (let i = 0;i < this.len;++i) {
-            if (this.state.data_tables[i].total == this.state.data_tables[i].count) {
+            if (this.state.data_tables[i].total <= this.state.data_tables[i].count) {
                 continue;
             } else {
                 return i;
@@ -214,18 +210,12 @@ export default class extends React.Component {
             );
         }
         let percent = Math.floor(count * 100 / total);
-        // let html = this.state.data_tables.map(obj => 
-        //     <div className='data-import-row' key={obj.name}>
-        //         <span>{obj.name}</span>
-        //         <div><span>{obj.count}</span>&nbsp;/&nbsp;<span>{obj.total}</span></div>
-        //     </div>
-        // );
         return (
             <Window title='数据导入' onClose={this.props.closeView} width='600' height='632'>
                 <div className='data-import'>
                     <div>
                         <span>数据源：</span>
-                        <input className='e-file' type='file' onChange={this.handleChange}/>
+                        <input className='e-file' type='file' onChange={this.handleChange} accept='.btf'/>
                         <em style={this.state.redo ? null : {display:'none'}}>
                             &emsp;<button type='button' className='e-btn' onClick={this.handleChange}>重试</button>
                         </em>
