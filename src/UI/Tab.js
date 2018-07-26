@@ -4,7 +4,7 @@
  * @desc tab栏    option:[]
  */
 
-import {Component} from 'react';
+import React, {Component} from 'react';
 export default class extends Component {
     constructor(props) {
         super(props);
