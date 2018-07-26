@@ -20,7 +20,7 @@
         <img id="barcode" class="barcode"><br/>
         打印时间:<span id="now"></span><br/>
         <i class="dashed empty"></i>
-        衣物编码&emsp;&emsp;衣物名称&emsp;&emsp;颜色<br/>
+        衣物编码&emsp;名称&emsp;颜色&emsp;衣挂号<br/>
         <div id="clothes"></div>
         <i class="dashed empty"></i>
         总件数:<span id="count">3</span><br/>
@@ -91,20 +91,33 @@
         _.inner('#ad', get.ad);
         console.log(get);
         if (get.items) {
-            var items;
+            var items
+            ,   put_codes;
             try {
                 items = JSON.parse(get.items);
             } catch (e) {
                 items = [];
             }
+            try {
+                put_codes = JSON.parse(get.put_codes);
+            } catch (e) {
+                put_codes = [];
+            }
             console.log(items);
             var len = items.length
+            ,   pLen = put_codes.length
             ,   content = ''
-            ,   json, tempLen, j;
+            ,   json, tempLen, tempCode, p, j;
             _.inner('#count', len);
             for (var i = 0;i < len;++i) {
+                for (p = 0;p < pLen;++p) {
+                    if (items[i].clothing_number == put_codes[p].clothing_number) {
+                        tempCode = put_codes[p].grid_num;
+                        break;
+                    }
+                }
                 content += '<i class="empty"></i>' + 
-                    '<div>' + items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + '</div>' +
+                    '<div>' + items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + ' ' + tempCode + '</div>' +
                     ('' == items[i].sign ? '' : '<div>品牌:' + items[i].sign + '</div>') +
                     ('' == items[i].remark ? '' : '<div>瑕疵:' + items[i].remark + '</div>') +
                     ('' == items[i].forecast ? '' : '<div>洗后预估:' + items[i].forecast + '</div>') +
