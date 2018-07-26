@@ -375,6 +375,7 @@ export default class extends Component {
         EventApi.print('order', {
             sn:this.state.sn,
             items:JSON.stringify(this.state.data),
+            put_codes:JSON.stringify(this.state.code_arr),
             total:total,
             dis_amount:dis_amount,
             amount:no_dis_amount,
