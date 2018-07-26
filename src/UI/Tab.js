@@ -4,8 +4,8 @@
  * @desc tab栏    option:[]
  */
 
-import React from 'react';
-export default class extends React.Component {
+import {Component} from 'react';
+export default class extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -25,4 +25,15 @@ export default class extends React.Component {
             </div>
         );
     }
+}
+
+export class BlueTab extends Component {
+    constructor(props) {
+        super(props);
+    }
+     render() {
+        return (
+            <div className='ui-tab-blue'></div>
+        );
+     }
 }
