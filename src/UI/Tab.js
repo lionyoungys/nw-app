@@ -30,10 +30,20 @@ export default class extends Component {
 export class BlueTab extends Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick(e) {
+        let node = e.target;
+        'function' === typeof this.props.onChange && this.props.onChange(node.dataset.i, node.innerText);
     }
      render() {
         return (
-            <div className='ui-tab-blue'></div>
+            <div className='ui-tab-blue'>
+                {(this.props.option || []).map(
+                    (obj, i) => <span key={obj + i} data-i={i} className={this.props.checked == i ? 'checked' : null} onClick={this.handleClick}>{obj}</span>
+                )}
+                <div>{this.props.children}</div>
+            </div>
         );
      }
 }

@@ -522,6 +522,41 @@ input::-webkit-outer-spin-button{
     cursor: default;
 }
 .ui-tab>span.checked{padding-bottom: 1px;color: #15458d;font-weight: bold}
+.ui-tab-blue{
+    position: relative;
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    height: 28px;
+    border-bottom: 2px solid #5e9dfc;
+}
+.ui-tab-blue>span{
+    height: 28px;
+    line-height: 28px;
+    padding: 0 8px;
+    margin-right: 8px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+    cursor: default;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.ui-tab-blue>span:last-of-type{margin-right: 0}
+.ui-tab-blue>span.checked{
+    color: #fff;
+    border: none;
+    background: #5e9dfc;
+}
+.ui-tab-blue>div:last-child{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 table tbody tr td{
     word-break: break-all;

@@ -6,6 +6,7 @@
 import React from 'react';
 import Window from '../UI/Window';
 import {Table} from '../UI/Table';
+import {BuleTab, BlueTab} from '../UI/Tab';
 import LayerBox from '../UI/LayerBox';
 import SelectSearch from '../UI/SelectSearch';
 import Select from '../UI/Select';
@@ -19,6 +20,7 @@ export default class extends React.Component {
             show:false, 
             show2:false,
             updateCardShow:false, 
+            checked:0,
         }
         this.Equals = new tool.Equals({key:[1,2], value:{date:2, data:{ky:'cc'}}, dd:0});
     }
@@ -118,6 +120,17 @@ export default class extends React.Component {
                 <div>&emsp;结束时间：<input type="date" className='ui-date' value={this.state.enddate} onChange={e => this.setState({ enddate: e.target.value })} /></div>
                 <label className='e-label'>label样式：</label><input type='text' className='e-input'/>
                 <input type='checkbox' className='e-checkbox'/>多选框样式
+                <BlueTab 
+                    checked={this.state.checked}
+                    option={['待接单(4)','待上门(3)','已上门(4)','待配送','已完成']} 
+                    onChange={(i, v) => {
+                        console.log(i, v);
+                        this.setState({checked:i});
+                    }}
+                >
+                <input type='text' className='e-input'/>&emsp;
+                <button type='button' className='e-btn'>提交</button>
+                </BlueTab>
                 <Page/>
                 {
                     this.state.show
