@@ -267,17 +267,18 @@ table{border-collapse: collapse}
 /* 线包框 */
 .e-fieldset{
     display: inline-block;
-    width: 132px;
+    width: 107px;
     height: 41px;
     line-height: 41px;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    background: url(img/e-fieldset.png);
+    background-image: url(img/e-fieldset.png);
+    background-size: 107px 41px;
     cursor: default;
 }
 .e-fieldset>img{vertical-align: middle}
-.e-fieldset.checked{background: url(img/e-fieldset-checked.png)}
+.e-fieldset.checked{background-image: url(img/e-coil.png)}
 
 /* 工具类ui样式部分 */
 /* 加载框样式 */

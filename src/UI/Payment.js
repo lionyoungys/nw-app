@@ -21,7 +21,7 @@ export default class extends Component {
         let zero = ( 0 == parseFloat(this.props.data.total_amount || 0) );
         this.state = {
             zero: zero, 
-            gateway: ( zero ? 1 : 0 ),
+            gateway: ( zero ? 1 : 999 ),
             authCode:['','','',''], 
             amount:'', 
             number:'',
@@ -83,6 +83,7 @@ export default class extends Component {
         if ('function' !== typeof this.props.callback) return;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0), pay_amount:parseFloat(this.props.data.total_amount || 0), change:0};
+        if (999 == obj.gateway) obj.gateway = 0;
         if (0 == obj.gateway) {    //会员卡支付
             obj.pay_amount = this.props.data.pay_amount;
             obj.passwd = this.state.passwd;
@@ -117,7 +118,7 @@ export default class extends Component {
         ,   change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway) discount = 100;
         return (
-            <Window title='收银' width='632' height='532' onClose={this.props.onClose}>
+            <Window title='收银' width='632' height='420' onClose={this.props.onClose}>
                 <div className='ui-payment-title'>核对信息</div>
                 <div className='ui-payment-order'>
                     <div>
@@ -130,10 +131,10 @@ export default class extends Component {
                     </div>
                     <div>
                         <div><span>折扣率：</span>{discount}%</div>
-                        <div style={0 == gateway ? null : {display:'none'}}><span>卡余额：</span>&yen;{data.balance}</div>
+                        <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}><span>卡余额：</span>&yen;{data.balance}</div>
                     </div>
                 </div>
-                <div className='ui-payment-title2'>活动优惠</div>
+                {/* <div className='ui-payment-title2'>活动优惠</div>
                 <div className='ui-payment-reduce'>
                     <div><span>优惠：</span><Select option={this.state.option}/></div>
                     <div>
@@ -142,12 +143,15 @@ export default class extends Component {
                         &nbsp;&nbsp;
                         <button type='button' className='e-btn'>使用</button>
                     </div>
-                </div>
+                </div> */}
                 <div className='ui-payment-title2'>收款方式</div>
                 <div className='ui-payment-pay'>
                     <div className='ui-payment-gateway'>
+                        <div className={'e-fieldset' + (999 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='999' onClick={this.handleGateway}>
+                            <img src='img/e-icon-elec.png'/>&nbsp;&nbsp;电子卡
+                        </div>
                         <div className={'e-fieldset' + (0 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='0' onClick={this.handleGateway}>
-                            <img src='img/e-icon-vip.png'/>&nbsp;&nbsp;会员卡
+                            <img src='img/e-icon-ic.png'/>&nbsp;&nbsp;IC卡
                         </div>
                         <div className={'e-fieldset' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}>
                             <img src='img/e-icon-cash.png'/>&nbsp;&nbsp;现金
@@ -159,19 +163,30 @@ export default class extends Component {
                             <img src='img/e-icon-ali.png'/>&nbsp;&nbsp;支付宝
                         </div>
                     </div>
+                    <div className='ui-payment-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                        <div style={data.type ? {display:'none'} : null}>
+                            <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
+                            <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
+                            <button type='button' className='e-btn' onClick={this.query}>查询</button>
+                        </div>
+                        <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
+                            <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
+                            <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                        </div>
+                    </div>
                     <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
-                        <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
-                        <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
-                        <button 
-                            type='button' 
-                            className='e-btn' 
-                            onClick={this.query}
-                        >查询</button>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
+                        <div style={data.type ? {display:'none'} : {textAlign:'center',height:'100%',lineHeight:'54px'}}>
+                            <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
+                        </div>
+                        <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
+                            <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
+                            <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                        </div>
                     </div>
                     <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                         <div className='ui-payment-cash'>
                             实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                            &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
                         </div>
                     </div>
                     <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
@@ -191,11 +206,11 @@ export default class extends Component {
                         <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
                         <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                     </div>
-                    <div className='ui-payment-amount'>
+                    {/* <div className='ui-payment-amount'>
                         <div>应收：<span>&yen;{amount}</span></div>
                         <div>找零：<span>&yen;{change}</span></div>
                         <div>欠费：<span>&yen;{change > 0 ? 0 : (change * -1)}</span></div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='ui-payment-confirm'>
                     <button type='button' className='e-btn' onClick={this.handleClick}>立即收款</button>
