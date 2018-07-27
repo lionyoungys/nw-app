@@ -392,7 +392,7 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: 1px solid #8db2e3;
-    padding: 17px 24px;
+    padding: 17px 20px;
 }
 .ui-payment-gateway{
     display: -webkit-flex;
@@ -496,9 +496,6 @@ input::-webkit-inner-spin-button{
 input::-webkit-outer-spin-button{
     -webkit-appearance:none;
 }
-table tbody tr td{
-    word-break: break-all;
-}
 /* tab组件样式 */
 .ui-tab{
     width:100%;
@@ -525,7 +522,8 @@ table tbody tr td{
     cursor: default;
 }
 .ui-tab>span.checked{padding-bottom: 1px;color: #15458d;font-weight: bold}
-.ui-tab-blue{
 
+table tbody tr td{
+    word-break: break-all;
 }
 

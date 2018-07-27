@@ -290,7 +290,6 @@ export default class extends Component {
 
         let takeclothes=this.state.list.map((item,index)=> {
             tempChecked = this.state.checked[index] || [];
-            console.log(tempChecked);
             return (
                 <div style={{background:'#ffffff'}}>
                 <div className="Takeclothesdetail-title">
@@ -377,7 +376,9 @@ export default class extends Component {
                             dis_amount:dis_amount,
                             balance:this.state.payCard.balance || this.state.balance || 0,
                             pay_amount:pay_amount,
-                            special_pay_amount:order.debt
+                            special_pay_amount:order.debt,
+                            type:(this.state.payCard.card_name || this.state.card_name),
+                            number:(this.state.payCard.recharge_number || this.state.recharge_number)
                         }}
                         callback={this.paymentCallback}
                     />
