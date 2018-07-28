@@ -392,7 +392,7 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: 1px solid #8db2e3;
-    padding: 17px 20px;
+    padding: 17px 24px;
 }
 .ui-payment-gateway{
     display: -webkit-flex;
@@ -496,6 +496,9 @@ input::-webkit-inner-spin-button{
 input::-webkit-outer-spin-button{
     -webkit-appearance:none;
 }
+table tbody tr td{
+    word-break: break-all;
+}
 /* tab组件样式 */
 .ui-tab{
     width:100%;
@@ -522,43 +525,56 @@ input::-webkit-outer-spin-button{
     cursor: default;
 }
 .ui-tab>span.checked{padding-bottom: 1px;color: #15458d;font-weight: bold}
-.ui-tab-blue{
-    position: relative;
-    width: 100%;
+
+/* 线上tab组件 */
+.ui-tab-blue{  
+    width:872px;
+    height:30px;
+    max-height:30px;
+    margin:20px auto;
+    border-bottom:2px solid #5e9dfa;
     display: -webkit-flex;
     display: flex;
-    height: 28px;
-    border-bottom: 2px solid #5e9dfc;
+    align-items: flex-start;  
+    position: relative;   
 }
-.ui-tab-blue>span{
-    height: 28px;
-    line-height: 28px;
-    padding: 0 8px;
-    margin-right: 8px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    color: #000;
-    cursor: default;
+.ui-tab-blue span{
     font-size: 12px;
-    border: 1px solid #ccc;
-    border-bottom: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    margin-left: 6px;
+    height: 23px;
+    line-height: 23px;
+    padding:0 10px;
+    background: #fff;
+    border: 1px solid #8db2e3;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #333;
+    cursor: default;
+    margin-top:6px;
+    cursor: pointer;
 }
-.ui-tab-blue>span:last-of-type{margin-right: 0}
-.ui-tab-blue>span.checked{
+.ui-tab-blue span.checked{
+    padding-bottom:1px;
     color: #fff;
-    border: none;
-    background: #5e9dfc;
+    font-weight: bold;
+    background: #5f9dfa;
 }
-.ui-tab-blue>div:last-child{
-    height: 100%;
+.ui-tab-blue input.findonline{
+    width:182px;
+    height:22px;
+    border:1px solid #c2c2c2;
+    background:#f9f9f9;
+    font-size:12px;
+    line-height:22px;
     position: absolute;
-    top: 0;
-    right: 0;
+    right:123px;
+    color:#999;   
+    text-indent:4px; 
 }
-
-table tbody tr td{
-    word-break: break-all;
+.ui-tab-blue button.e-btn{
+    position:absolute;
+    right:40px;
+    cursor: pointer;
 }
 

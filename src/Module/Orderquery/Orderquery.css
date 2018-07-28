@@ -1,0 +1,237 @@
+
+/* 订单查询顶部 */
+.orderquery-title{
+    width:872px;
+    height:75px;
+    margin:12px auto;
+    border:1px solid #8db2e3;
+    background:#eef4fb;
+}
+.orderquery-title>div{
+    width:200px;
+    height:27px;
+    margin-top:25px;
+    float:left;
+    margin-left:34px;
+   
+}
+.orderquery-title>div:nth-child(1){
+    margin-left:0;
+}
+.orderquery-title>div:nth-child(2){
+    margin-left:0;
+}
+.orderquery-title>div span{
+    width:84px;
+    line-height: 24px;
+    color: #000;
+    font-size: 12px;
+    text-align: right;
+    float: left;
+}
+.orderquery-title>div .ui-select-define{
+    margin-left: 3px;
+    width:102px;
+    margin-top:-3px;
+    background:#f9f9f9;
+}
+.orderquery-title>div input{
+    width:198px;
+    height: 20px;
+    border: 1px solid #c2c2c2;
+    background: #f9f9f9;
+    color: #000;
+    font-size: 12px;
+    text-indent: 4px;
+}
+.orderquery-title>div button{
+    margin-right:22px;
+    float:right;
+}
+
+/* 订单列表的div */
+.orderquery-div{
+    width:872px;
+    height:385px;
+    max-height:385px;
+    border:1px solid #8db2e3;
+    background:#fff;
+    margin:0 auto;
+    overflow-x:hidden;
+}
+.orderquery-div table{
+    width:872px;
+    height:385px;
+}
+.orderquery-div table thead{
+    height:25px;
+    min-width:872px;
+    background:#89b0d4;
+    display:block;
+}
+.orderquery-div table thead tr{
+    min-width:872px;
+    height:25px;
+}
+.orderquery-div table thead tr th{
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    border-right: 1px solid #acc6de;
+}
+.orderquery-div table thead tr th:last-child{
+    border-right:none;
+}
+.orderquery-div table thead tr>th:nth-child(1){
+    min-width:105px;
+    max-width:105px;
+}
+.orderquery-div table thead tr>th:nth-child(2){
+    min-width:125px;
+    max-width:125px;
+}
+.orderquery-div table thead tr>th:nth-child(3){
+    min-width:84px;
+    max-width:84px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(4){
+    min-width:88px;
+    max-width:88px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(5){
+    min-width:78px;
+    max-width:78px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(6){
+    min-width:94px;
+    max-width:94px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(7){
+    min-width:78px;
+    max-width:78px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(8){
+    min-width:120px;
+    max-width:120px;
+    
+}
+.orderquery-div table thead tr>th:nth-child(9){
+    min-width:94px;
+    max-width:94px; 
+}
+/*  */
+.orderquery-div table tbody{
+  width:872px;
+  height:358px;
+  max-height:358px;
+  overflow-y:auto;
+  display:block;
+  overflow-x:hidden;
+}
+.orderquery-div table tbody tr{
+    width:872px;
+    height:auto;
+    min-width:25px;
+    border-bottom:1px solid #8db2e3;
+}
+.orderquery-div table tbody tr>td{
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+    height: auto;
+    min-height: 25px;
+    border-right: 1px solid #acc6de;
+    word-break:break-all;
+}
+.orderquery-div table tbody tr>td span{
+ width:100%;
+ min-height:25px;
+ border-bottom:1px solid #8db2e3;
+ display:block;
+ text-align:center;
+ word-break:break-all;
+ line-height:25px;
+ text-align:center;
+ color:#000;
+}
+.orderquery-div table tbody tr>td span:last-child{
+    border-bottom:none;
+}
+.orderquery-div table tbody tr>td:last-child{
+    border-right:none;
+}
+
+.orderquery-div table tbody tr>td:nth-child(1){
+    min-width:105px;
+    max-width:105px;
+}
+.orderquery-div table tbody tr>td:nth-child(2){
+    min-width:125px;
+    max-width:125px;
+}
+.orderquery-div table tbody tr>td:nth-child(3){
+    min-width:84px;
+    max-width:84px;
+   
+}
+.orderquery-div table tbody tr>td:nth-child(4){
+    min-width:88px;
+    max-width:88px;
+   
+}
+.orderquery-div table tbody tr>td:nth-child(5){
+    min-width:78px;
+    max-width:78px;
+   
+}
+.orderquery-div table tbody tr>td:nth-child(6){
+    min-width:94px;
+    max-width:94px;
+   
+}
+.orderquery-div table tbody tr>td:nth-child(7){
+    min-width:78px;
+    max-width:78px;
+   
+}
+.orderquery-div table tbody tr>td:nth-child(8){
+    min-width:120px;
+    max-width:120px;   
+}
+.orderquery-div table tbody tr>td:nth-child(9){
+    min-width:94px;
+    max-width:94px; 
+}
+.orderquery-div table tbody tr>td i{
+    line-height:25px;
+    color:#000;
+    margin:0 auto;
+    width:100%;
+    display:block;
+    font-style:normal;
+    font-size:12px;
+}
+.orderquery-div table tbody tr>td b{
+    width:100%;
+    display:block;
+    line-height:25px;
+    color:#169bd5;
+    font-weight:inherit;
+    font-size:12px;
+}
+.orderquery-div table tbody tr>td b:hover{
+    text-decoration:underline;
+}
+.orderquery-div table tbody>tr:hover{
+    background:none;
+}
+
+
+

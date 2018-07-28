@@ -38,11 +38,11 @@ export class BlueTab extends Component {
     }
      render() {
         return (
-            <div className='ui-tab-blue'>
-                {(this.props.option || []).map(
-                    (obj, i) => <span key={obj + i} data-i={i} className={this.props.checked == i ? 'checked' : null} onClick={this.handleClick}>{obj}</span>
-                )}
-                <div>{this.props.children}</div>
+            <div className='ui-tab-blue' style={this.props.style}>
+               {(this.props.tabs || []).map(
+                   (obj,i) => <span key={obj + i} data-i={i} className={this.props.checked == i ? 'checked' : null} onClick={this.handleClick}>{obj}</span>
+               )}
+               {this.props.children}
             </div>
         );
      }
