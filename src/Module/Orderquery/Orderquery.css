@@ -52,7 +52,7 @@
 /* 订单列表的div */
 .orderquery-div{
     width:872px;
-    height:385px;
+    height:auto;
     max-height:385px;
     border:1px solid #8db2e3;
     background:#fff;
@@ -61,7 +61,7 @@
 }
 .orderquery-div table{
     width:872px;
-    height:385px;
+    height:auto;
 }
 .orderquery-div table thead{
     height:25px;
@@ -129,7 +129,7 @@
 /*  */
 .orderquery-div table tbody{
   width:872px;
-  height:358px;
+  height:auto;
   max-height:358px;
   overflow-y:auto;
   display:block;
@@ -140,6 +140,9 @@
     height:auto;
     min-width:25px;
     border-bottom:1px solid #8db2e3;
+}
+.orderquery-div table tbody tr:last-child{
+    border-bottom:none;
 }
 .orderquery-div table tbody tr>td{
     text-align: center;
@@ -160,6 +163,7 @@
  line-height:25px;
  text-align:center;
  color:#000;
+ 
 }
 .orderquery-div table tbody tr>td span:last-child{
     border-bottom:none;
@@ -229,9 +233,7 @@
 .orderquery-div table tbody tr>td b:hover{
     text-decoration:underline;
 }
-.orderquery-div table tbody>tr:hover{
-    background:none;
-}
+
 
 
 

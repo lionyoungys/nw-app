@@ -186,12 +186,14 @@ class Login extends Component {
                 var mname = res.mname;
                 var token = res.token;
                 var pass = res.pass;
+                var mid = res.mid;
                 this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
                 console.log(this.state.remember)
                 aname.setData('aname');
                 mname.setData('mname');
                 token.setData('token');
-                res.mid.setData('merchant_id');
+                res.mid.setData('mid');
+                mid.setData('mid')
                 res.is_root.setData('is_root');
                 res.auth.setData('auth');
                 // nw.Window.open('main.html', nw.App.manifest.mainWindow);

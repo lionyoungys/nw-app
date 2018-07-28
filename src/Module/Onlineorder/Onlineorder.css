@@ -122,8 +122,7 @@
     width:100%;
     display:inline-block;
     min-height:25px;
-    text-align:center;
-    
+    text-align:center;    
     color:#000;
     word-break: break-all;
     border-bottom:1px solid #89b0d4;
@@ -136,6 +135,20 @@
     color:#ff1b20;
     font-style:normal;
 }
+.waiting .waiting-list tbody>tr td b{
+    display:inline-block;
+    width:36px;
+    height:16px;
+    border:1px solid #5f9dfa;
+    line-height:16px;
+    text-align:center;
+    font-size:12px;
+    color:#5f9dfa;
+}
+.waiting .waiting-list tbody>tr td b:hover{
+    color:#fff;
+    background:#5f9dfa;
+}
 .waiting-list tbody tr td button:first-child{
     margin:3px auto;
 }
@@ -145,6 +158,106 @@
 .waiting-list tbody tr>td button{
     cursor: pointer;
 }
-.waiting .waiting-list tbody>tr:hover{
+
+/* .waiting .waiting-list tbody>tr:hover{
     background:none;
+} */
+
+/* 订单配送样式 */
+.waiting #forshipping thead tr>th:nth-child(1){
+    min-width:90px;
+    max-width:90px;
+    
 }
+.waiting #forshipping tbody tr>td:nth-child(1){
+    min-width:90px;
+    max-width:90px;
+}
+.waiting #forshipping thead tr>th:nth-child(2){
+    min-width:130px;
+    max-width:130px;
+}
+.waiting #forshipping tbody tr>td:nth-child(2){
+    min-width:130px;
+    max-width:130px;
+}
+.waiting #forshipping thead tr>th:nth-child(3){
+    min-width:81px;
+    max-width:81px;
+}
+.waiting #forshipping tbody tr>td:nth-child(3){
+    min-width:81px;
+    max-width:81px;
+}
+.waiting #forshipping thead tr>th:nth-child(4){
+    min-width:100px;
+    max-width:100px;
+}
+.waiting #forshipping tbody tr>td:nth-child(4){
+    min-width:100px;
+    max-width:100px;
+    
+}
+.waiting #forshipping thead tr>th:nth-child(5){
+    min-width:110px;
+    max-width:110px;
+}
+.waiting #forshipping tbody tr>td:nth-child(5){
+    min-width:110px;
+    max-width:110px;
+}
+.waiting #forshipping thead tr>th:nth-child(6){
+    min-width:110px;
+    max-width:110px;
+}
+.waiting #forshipping tbody tr>td:nth-child(6){
+    min-width:110px;
+    max-width:110px;
+}
+.waiting #forshipping thead tr>th:nth-child(7){
+    min-width:75px;
+    max-width:75px;
+}
+.waiting #forshipping tbody tr>td:nth-child(7){
+    min-width:75px;
+    max-width:75px;
+}
+.waiting #forshipping thead tr>th:nth-child(8){
+    min-width:105px;
+    max-width:105px;
+}
+.waiting #forshipping tbody tr>td:nth-child(8){
+    min-width:105px;
+    max-width:105px;
+}
+.waiting #forshipping thead tr>th:nth-child(9){
+    min-width:64px;
+    max-width:64px;
+}
+.waiting #forshipping tbody tr>td:nth-child(9){
+    min-width:64px;
+    max-width:64px;
+}
+.waiting #forshipping tbody tr>td:last-child span{
+    border-bottom:none;
+}
+/* 超出部分隐藏 */
+.waiting #forshipping tbody tr>td:nth-child(4) span{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.waiting #forshipping tbody tr>td:nth-child(5) span{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.waiting #forshipping tbody tr>td:nth-child(6) span{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.waiting #forshipping tbody tr>td span{
+    display:block;
+}
+
