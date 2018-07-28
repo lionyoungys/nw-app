@@ -36,6 +36,7 @@ export default class extends Component {
         var op =eng +'-'+ item;
         console.log(op)
         api.post('clothesQuery', {
+            from:1,    //来源搁架查询
             token:'token'.getData(),
             grid_num:op,
             page:1,
