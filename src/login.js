@@ -31,6 +31,7 @@ class Main extends Component {
 
     componentDidMount() {
         api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
+            console.log(res);
             if (ver && res.has_upd) {
                 let files = [];
                 try {
