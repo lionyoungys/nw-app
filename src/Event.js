@@ -68,7 +68,7 @@
     },
     e.open_case = function() {    //打开钱箱
         let os = window.require('os')
-        ,   scriptName = 'script/open_case.';
+        ,   scriptName = 'script/open_case/open_case.';
         if (os.release().split('.')[0] > 5) {
             let printer = 'open_case_printer'.getData();
             scriptName += 'exe';
