@@ -4,8 +4,7 @@
  */
 const fs = window.require('fs'),
       process = window.require('process'),
-      { spawn, execFileSync, exec } = window.require('child_process'),
-      path = window.require('path');
+      { spawn, exec } = window.require('child_process');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import LayerBox from './UI/LayerBox';
@@ -76,12 +75,12 @@ class Download extends Component {
     constructor(props) {
         super(props);
         this.state = {notice:'正在下载软件更新包', progress:0, complete:false};
-        // this.total = this.downloaded = 0;
         this.timeId = null;
     }
 
     componentDidMount() {
-        let dir = path.dirname(process.execPath) + '/'
+        let path = window.require('path')
+        ,   dir = path.dirname(process.execPath) + '/'
         ,   zip = dir + 'update.zip'
         ,   exe = dir + 'script/7zip/7z.exe';
         api.download(
@@ -91,11 +90,10 @@ class Download extends Component {
             () => {
                 this.setState({progress:100, notice:'正在解压并安装软件更新包'});
                 this.timeId = setInterval(() => {
-                    let fInfo = fs.statSync(zip);
-                    if (fInfo.size > 0) {
+                    if (fs.statSync(zip).size > 0) {
                         clearInterval(this.timeId);
                         this.timeId = null;
-                        exec(`${exe} x -y "${zip}"`, (error, stdout, stderr) => {
+                        exec(`${exe} x -y "${zip}"`, error => {
                             if (error) {
                                 return tool.ui.error({msg:'安装失败', callback:close => close()});
                             } else {
@@ -104,41 +102,8 @@ class Download extends Component {
                         })
                     }
                 }, 1000);
-                // console.log(execFileSync('script/7zip/7z.exe', ['x', '-y', zip]));
-                // this.setState({complete:true});
             }
         );
-        /*let files = this.props.files
-        ,   len = files.length
-        ,   realPath = path.dirname(process.execPath)
-        ,   total = files.objTypeLen('resource')
-        ,   count = 0
-        ,   tempLen
-        ,   tempPath;
-        for (let i = 0;i < len;++i) {
-            tempLen = files[i].resource.length;
-            tempPath = ('' == files[i].local) ? (realPath + '/') : (realPath + '/' + files[i].local + '/');
-            !fs.existsSync(tempPath) && fs.mkdirSync(tempPath);
-            for (let j = 0;j < tempLen;++j) {
-                api.download(
-                    files[i].resource[j], 
-                    fs.createWriteStream(tempPath + files[i].resource[j].split('/').pop()), 
-                    null, 
-                    () => ++count
-                );
-            }
-        }*/
-        // this.timeId = setInterval(() => {
-        //     let progress = Math.floor(count / total * 100);
-        //     if (this.state.progress !== progress) {
-        //         if (100 == progress) {
-        //             clearInterval(this.timeId);
-        //             this.setState({complete:true, progress:0});
-        //         } else {
-        //             this.setState({progress:progress});
-        //         }
-        //     }
-        // }, 500);
     }
 
     restart() {    //程序重启
