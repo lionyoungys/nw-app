@@ -4,8 +4,7 @@
  */
 const fs = window.require('fs'),
       process = window.require('process'),
-      { spawn } = window.require('child_process'),
-      path = window.require('path');
+      { spawn, exec } = window.require('child_process');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import LayerBox from './UI/LayerBox';
@@ -25,28 +24,21 @@ win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:0, version:'', log:'', files:[]};
+        this.state = {index:0, version:'', log:'', zip:null};
         this.toggleStep = this.toggleStep.bind(this);
     }
 
     componentDidMount() {
-        api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
-            if (ver && res.has_upd) {
-                let files = [];
-                try {
-                    files = JSON.parse(res.package);
-                } catch (e) {}
-                this.setState({index:1,version:res.last_version,log:res.desc,files:files});
+        api.post('hot_upd', {version:nw.App.manifest.version}, (res, ver) => {
+            console.log(res);
+            if (ver && res.result.has_upd) {
+                this.setState({index:1,version:res.result.last_version,log:res.result.desc,zip:res.result.package});
             } else {
                 this.setState({index:2});
             }
         }, () => {this.setState({index:2})});
     }
-    toggleStep(e) {
-        this.setState({
-            index:e.target.dataset.step,
-            
-        })}
+    toggleStep(e) {this.setState({index:e.target.dataset.step})}
 
     render() {
         return (
@@ -54,7 +46,7 @@ class Main extends Component {
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
                 {[
                     <Launch/>,
-                    <Download version={this.state.version} log={this.state.log} files={this.state.files}/>,
+                    <Download version={this.state.version} log={this.state.log} zip={this.state.zip}/>,
                     <Login toggleStep={this.toggleStep}/>,
                     <Passwd toggleStep={this.toggleStep}/>
                 ][this.state.index]}
@@ -82,44 +74,36 @@ class Launch extends Component {
 class Download extends Component {
     constructor(props) {
         super(props);
-        this.state = {progress:0, complete:false};
-        this.total = this.downloaded = 0;
+        this.state = {notice:'正在下载软件更新包', progress:0, complete:false};
         this.timeId = null;
     }
 
     componentDidMount() {
-        console.log(this.props.files);
-        let files = this.props.files
-        ,   len = files.length
-        ,   realPath = path.dirname(process.execPath)
-        ,   total = files.objTypeLen('resource')
-        ,   count = 0
-        ,   tempLen
-        ,   tempPath;
-        for (let i = 0;i < len;++i) {
-            tempLen = files[i].resource.length;
-            tempPath = ('' == files[i].local) ? (realPath + '/') : (realPath + '/' + files[i].local + '/');
-            !fs.existsSync(tempPath) && fs.mkdirSync(tempPath);
-            for (let j = 0;j < tempLen;++j) {
-                api.download(
-                    files[i].resource[j], 
-                    fs.createWriteStream(tempPath + files[i].resource[j].split('/').pop()), 
-                    null, 
-                    () => ++count
-                );
+        let path = window.require('path')
+        ,   dir = path.dirname(process.execPath) + '/'
+        ,   zip = dir + 'update.zip'
+        ,   exe = dir + 'script/7zip/7z.exe';
+        api.download(
+            this.props.zip, 
+            fs.createWriteStream(zip),
+            state => this.setState({progress:state.progress_rate}),
+            () => {
+                this.setState({progress:100, notice:'正在解压并安装软件更新包'});
+                this.timeId = setInterval(() => {
+                    if (fs.statSync(zip).size > 0) {
+                        clearInterval(this.timeId);
+                        this.timeId = null;
+                        exec(`${exe} x -y "${zip}"`, error => {
+                            if (error) {
+                                return tool.ui.error({msg:'安装失败', callback:close => close()});
+                            } else {
+                                this.setState({complete:true});
+                            }
+                        })
+                    }
+                }, 1000);
             }
-        }
-        this.timeId = setInterval(() => {
-            let progress = Math.floor(count / total * 100);
-            if (this.state.progress !== progress) {
-                if (100 == progress) {
-                    clearInterval(this.timeId);
-                    this.setState({complete:true, progress:0});
-                } else {
-                    this.setState({progress:progress});
-                }
-            }
-        }, 500);
+        );
     }
 
     restart() {    //程序重启
@@ -147,7 +131,7 @@ class Download extends Component {
                     <div className='login-progress-bar'>
                         <div style={{width:progress}}></div>
                     </div>
-                    <div className='login-progress'>正在下载并安装更新包<span>{progress}</span></div>
+                    <div className='login-progress'>{this.state.notice}<span>{100 == this.state.progress ? null : progress}</span></div>
                 </div>)
         return (
             <div className='login-download'>
@@ -186,14 +170,12 @@ class Login extends Component {
                 var mname = res.mname;
                 var token = res.token;
                 var pass = res.pass;
-                var mid = res.mid;
                 this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
                 console.log(this.state.remember)
                 aname.setData('aname');
                 mname.setData('mname');
                 token.setData('token');
-                res.mid.setData('mid');
-                mid.setData('mid')
+                res.mid.setData('merchant_id');
                 res.is_root.setData('is_root');
                 res.auth.setData('auth');
                 // nw.Window.open('main.html', nw.App.manifest.mainWindow);
