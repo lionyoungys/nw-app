@@ -248,7 +248,7 @@ export default class extends Component {
             total:total,
             dis_amount:dis_amount,
             amount:no_dis_amount,
-            discount: (discount / 10),
+            discount: discount,
             real_amount:amount,
             name:this.state.user_name,
             phone:this.state.user_mobile,

@@ -23,22 +23,21 @@
         衣物编码&emsp;名称&emsp;颜色&emsp;衣挂号<br/>
         <div id="clothes"></div>
         <i class="dashed empty"></i>
-        总件数:<span id="count">3</span><br/>
-        总金额:&yen;<span id="total">30000</span><br/>
-        可折金额:&yen;<span id="dis_amount">30000</span><br/>
-        不可折金额:&yen;<span id="amount">30000</span><br/>
+        总金额:&yen;<span id="total">30000</span>&emsp;总件数:<span id="count">3</span><br/>
+        <!-- 可折金额:&yen;<span id="dis_amount">30000</span><br/>
+        不可折金额:&yen;<span id="amount">30000</span><br/> -->
         付款方式:<span id="gateway">现金</span><br/>
-        折扣:<span id="discount">8</span><br/>
-        折后价:&yen;<span id="real_amount">10000</span><br/>
+        折扣率:<span id="discount">80</span>%<br/>
         <div id="reduce_box">优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span></div>
         <div id="coupon_box">现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span></div>
-        <div id="pay_amount_box">实收:&yen;<span id="pay_amount">11554</span></div>
+        <div id="pay_amount_box">折后价:&yen;<span id="real_amount">10000</span>&emsp;实收:&yen;<span id="pay_amount">11554</span></div>
         <div id="change_box">找零:&yen;<span id="change">894</span></div>
         <div id="debt_box">欠款:&yen;<span id="debt">50</span></div>
         <div id="number_box">卡号:<span id="number">454555444444454</span></div>
         <div id="balance_box">余额:&yen;<span id="balance">4555</span></div>
         <i class="dashed"></i>
         客户姓名:<span id="name">yangyunlong</span><br/>
+        客户地址:<span id="uaddr">yangyunlong</span><br/>
         客户电话:<span id="phone">15011540794</span><br/>
         <div id="time_box">取衣时间:<span id="time">2018-11-12 05:07:00</span></div>
         <i class="dashed"></i>
@@ -69,8 +68,8 @@
         _.inner('#sn', get.sn);
         _.barcode('#barcode', get.sn);
         _.inner('#total', get.total);
-        _.inner('#dis_amount', get.dis_amount);
-        _.inner('#amount', get.amount);
+        // _.inner('#dis_amount', get.dis_amount);
+        // _.inner('#amount', get.amount);
         _.inner('#discount', get.discount);
         _.inner('#real_amount', get.real_amount);
         get.gateway ? _.inner('#gateway', get.gateway) : _.inner('#gateway', '未付款');
@@ -86,6 +85,7 @@
         get.time ? _.inner('#time', get.time) : _.hidd('#time_box');
         _.inner('#name', get.name);
         _.inner('#phone', get.phone);
+        _.inner('#uaddr', get.uaddr);
         _.inner('#addr', get.addr);
         _.inner('#mphone', get.mphone);
         _.inner('#ad', get.ad);
