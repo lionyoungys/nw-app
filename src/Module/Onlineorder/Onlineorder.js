@@ -49,10 +49,15 @@ export default class extends Component {
             }
         })
     }; 
+    // 切换tab 显示内容
     onChange (i){
         console.log(i)
         this.setState({checked:i})
         this.input.focus();
+        var index = i;
+        if(i==1){
+            alert(1)
+        }
     };
     render() { 
         var waiting = this.waiting.map((item,index) =><th key={'item'+index}>{item}</th>);
@@ -97,60 +102,12 @@ export default class extends Component {
                                    {waiting}
                                </tr>
                             </thead>
-                            <tbody>
-                                {/* <tr>
-                                    <td>
-                                        <span>183109639321234</span>
-                                    </td>
-                                    <td>
-                                        <span>2018-7-28 12:42:25 订单来源:微信</span>
-                                    </td>
-                                    <td>
-                                        <span>裤子</span>
-                                        <span>袜子</span>
-                                        <span>褂子</span>
-                                        <span>鞋</span>
-                                    </td>
-                                    <td>
-                                        <span>2件</span>
-                                        <span>2件</span>
-                                        <span>2件</span>
-                                        <span>2件</span>
-                                    </td>
-                                    <td><span>共10件约<i>￥52.02</i></span></td>
-                                    <td><span>姓名:张先生 手机号:18310963932 地址:万达广场3号楼1902</span></td>
-                                    <td>
-                                        <button className="e-btn">取消预约</button>
-                                        <button className="e-btn">接单</button>
-                                    </td>
-                                </tr> 
-                                <tr>
-                                    <td>
-                                        <span>183109639321234</span>
-                                    </td>
-                                    <td>
-                                        <span>2018-7-28 12:42:25 订单来源:微信</span>
-                                    </td>
-                                    <td>
-                                        <span>裤子</span>                                       
-                                    </td>
-                                    <td>
-                                        <span>2件</span>                                      
-                                    </td>
-                                    <td><span>共10件约<i>￥52.02</i></span></td>
-                                    <td><span>姓名:张先生 手机号:18310963932 地址:万达广场3号楼1902</span></td>
-                                    <td>
-                                        <button className="e-btn">取消预约</button>
-                                        <button className="e-btn">接单</button>
-                                    </td>
-                                </tr>                               */}
+                            <tbody>                               
                                 {waitinglist}
                             </tbody>
                         </table>
-                    </div>
-                        
-                    }
-                    
+                    </div>                       
+                    }                   
                     {/* 待上门 */}
                     {this.state.tab2&&<div className="waiting">
                         <table className="waiting-list">

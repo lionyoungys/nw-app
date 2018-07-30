@@ -83,7 +83,7 @@ export default class extends Component {
             <Window title='订单查询' onClose={this.props.closeView}> 
                <div className="orderquery-title">
                     <div>
-                       <span>定单状态：</span><Select />
+                       <span>订单状态：</span><Select />
                     </div>
                     <div>
                        <span>订单来源：</span><Select />
