@@ -372,29 +372,65 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
-        EventApi.print('order', {
-            sn:this.state.sn,
-            items:JSON.stringify(this.state.data),
-            put_codes:JSON.stringify(this.state.code_arr),
-            total:total,
-            uaddr:this.state.addr,
-            dis_amount:dis_amount,
-            amount:no_dis_amount,
-            discount: discount,
-            real_amount:amount,
-            name:this.state.name,
-            phone:this.state.phone,
-            time:this.state.time,
-            addr:this.state.maddr,
-            mphone:this.state.mphone,
-            ad:this.state.ad,
-            number:this.state.number,
-            balance:balance,
-            pay_amount:object.pay_amount,
-            change:object.change,
-            gateway:gateway,
-            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-        }, 'printer'.getData());
+        EventApi.print(
+            'order', 
+            {
+                sn:this.state.sn,
+                items:JSON.stringify(this.state.data),
+                put_codes:JSON.stringify(this.state.code_arr),
+                total:total,
+                uaddr:this.state.addr,
+                dis_amount:dis_amount,
+                amount:no_dis_amount,
+                discount: discount,
+                real_amount:amount,
+                name:this.state.name,
+                phone:this.state.phone,
+                time:this.state.time,
+                addr:this.state.maddr,
+                mphone:this.state.mphone,
+                ad:this.state.ad,
+                number:this.state.number,
+                balance:balance,
+                pay_amount:object.pay_amount,
+                change:object.change,
+                gateway:gateway,
+                debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+            }, 
+            'printer'.getData(),
+            () => {
+                tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
+                    EventApi.print(
+                        'order2', 
+                        {
+                            sn:this.state.sn,
+                            items:JSON.stringify(this.state.data),
+                            put_codes:JSON.stringify(this.state.code_arr),
+                            total:total,
+                            uaddr:this.state.addr,
+                            dis_amount:dis_amount,
+                            amount:no_dis_amount,
+                            discount: discount,
+                            real_amount:amount,
+                            name:this.state.name,
+                            phone:this.state.phone,
+                            time:this.state.time,
+                            addr:this.state.maddr,
+                            mphone:this.state.mphone,
+                            ad:this.state.ad,
+                            number:this.state.number,
+                            balance:balance,
+                            pay_amount:object.pay_amount,
+                            change:object.change,
+                            gateway:gateway,
+                            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+                        }, 
+                        'printer'.getData()
+                    );
+                    close();
+                }});
+            }
+        );
         let printer = 'clean_tag_printer'.getData();
         if (printer) {
             let len = this.state.code_arr.length;
