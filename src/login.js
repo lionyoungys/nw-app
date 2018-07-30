@@ -4,7 +4,7 @@
  */
 const fs = window.require('fs'),
       process = window.require('process'),
-      { spawn } = window.require('child_process'),
+      { spawn, execFileSync, exec } = window.require('child_process'),
       path = window.require('path');
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -25,29 +25,21 @@ win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.state = {index:0, version:'', log:'', files:[]};
+        this.state = {index:0, version:'', log:'', zip:null};
         this.toggleStep = this.toggleStep.bind(this);
     }
 
     componentDidMount() {
-        api.post('version', {version:nw.App.manifest.version}, (res, ver) => {
+        api.post('hot_upd', {version:nw.App.manifest.version}, (res, ver) => {
             console.log(res);
-            if (ver && res.has_upd) {
-                let files = [];
-                try {
-                    files = JSON.parse(res.package);
-                } catch (e) {}
-                this.setState({index:1,version:res.last_version,log:res.desc,files:files});
+            if (ver && res.result.has_upd) {
+                this.setState({index:1,version:res.result.last_version,log:res.result.desc,zip:res.result.package});
             } else {
                 this.setState({index:2});
             }
         }, () => {this.setState({index:2})});
     }
-    toggleStep(e) {
-        this.setState({
-            index:e.target.dataset.step,
-            
-        })}
+    toggleStep(e) {this.setState({index:e.target.dataset.step})}
 
     render() {
         return (
@@ -55,7 +47,7 @@ class Main extends Component {
                 <div className='login-drag'><i onClick={() => win.close()}></i></div>
                 {[
                     <Launch/>,
-                    <Download version={this.state.version} log={this.state.log} files={this.state.files}/>,
+                    <Download version={this.state.version} log={this.state.log} zip={this.state.zip}/>,
                     <Login toggleStep={this.toggleStep}/>,
                     <Passwd toggleStep={this.toggleStep}/>
                 ][this.state.index]}
@@ -83,14 +75,40 @@ class Launch extends Component {
 class Download extends Component {
     constructor(props) {
         super(props);
-        this.state = {progress:0, complete:false};
-        this.total = this.downloaded = 0;
+        this.state = {notice:'正在下载软件更新包', progress:0, complete:false};
+        // this.total = this.downloaded = 0;
         this.timeId = null;
     }
 
     componentDidMount() {
-        console.log(this.props.files);
-        let files = this.props.files
+        let dir = path.dirname(process.execPath) + '/'
+        ,   zip = dir + 'update.zip'
+        ,   exe = dir + 'script/7zip/7z.exe';
+        api.download(
+            this.props.zip, 
+            fs.createWriteStream(zip),
+            state => this.setState({progress:state.progress_rate}),
+            () => {
+                this.setState({progress:100, notice:'正在解压并安装软件更新包'});
+                this.timeId = setInterval(() => {
+                    let fInfo = fs.statSync(zip);
+                    if (fInfo.size > 0) {
+                        clearInterval(this.timeId);
+                        this.timeId = null;
+                        exec(`${exe} x -y "${zip}"`, (error, stdout, stderr) => {
+                            if (error) {
+                                return tool.ui.error({msg:'安装失败', callback:close => close()});
+                            } else {
+                                this.setState({complete:true});
+                            }
+                        })
+                    }
+                }, 1000);
+                // console.log(execFileSync('script/7zip/7z.exe', ['x', '-y', zip]));
+                // this.setState({complete:true});
+            }
+        );
+        /*let files = this.props.files
         ,   len = files.length
         ,   realPath = path.dirname(process.execPath)
         ,   total = files.objTypeLen('resource')
@@ -109,18 +127,18 @@ class Download extends Component {
                     () => ++count
                 );
             }
-        }
-        this.timeId = setInterval(() => {
-            let progress = Math.floor(count / total * 100);
-            if (this.state.progress !== progress) {
-                if (100 == progress) {
-                    clearInterval(this.timeId);
-                    this.setState({complete:true, progress:0});
-                } else {
-                    this.setState({progress:progress});
-                }
-            }
-        }, 500);
+        }*/
+        // this.timeId = setInterval(() => {
+        //     let progress = Math.floor(count / total * 100);
+        //     if (this.state.progress !== progress) {
+        //         if (100 == progress) {
+        //             clearInterval(this.timeId);
+        //             this.setState({complete:true, progress:0});
+        //         } else {
+        //             this.setState({progress:progress});
+        //         }
+        //     }
+        // }, 500);
     }
 
     restart() {    //程序重启
@@ -148,7 +166,7 @@ class Download extends Component {
                     <div className='login-progress-bar'>
                         <div style={{width:progress}}></div>
                     </div>
-                    <div className='login-progress'>正在下载并安装更新包<span>{progress}</span></div>
+                    <div className='login-progress'>{this.state.notice}<span>{100 == this.state.progress ? null : progress}</span></div>
                 </div>)
         return (
             <div className='login-download'>
