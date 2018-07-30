@@ -57,7 +57,7 @@
                         });
                         setTimeout(function() {
                             e.printPageWin.close(true);
-                            'function' === callback && callback();
+                            'function' === typeof callback && callback();
                         }, 1000);
                     });
                 }
