@@ -85,7 +85,20 @@ export default class extends React.Component {
                     recharge:obj.price,
                     gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
                 };
-                EventApi.print('card', param, 'printer'.getData());
+                EventApi.print(
+                    'card', 
+                    param, 
+                    'printer'.getData(),
+                    () => {
+                        tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
+                            EventApi.print(
+                                'card2', 
+                                param, 
+                                'printer'.getData()
+                            );
+                        }});
+                    }
+                );
                 handle({callback:this.props.closeView});
             }else{
                 handle();
