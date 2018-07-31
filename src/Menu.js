@@ -63,9 +63,10 @@ const topMenu = [
         id: 5,
         options:[
             {value:'经理收款', view:'manager_gathering', id: 32},
-            {value:'经理查询', view:'manager_query', id: 33},
+            // {value:'经理查询', view:'manager_query', id: 33},
+            {value:'营业统计', view:'manager_query', id: 33},
             {value:'经营日报', view:'operate_income', id: 34},
-            {value:'营业统计', view:'Busines_stats', id: 35},
+            // {value:'营业统计', view:'Busines_stats', id: 35},
             {value:'经营明细', view:'operating_details', id: 36},
             {value:'营业分析', view:'charts', id: 37},
             // {value:'欠款明细', view:'Balance_detail', id: 38},
