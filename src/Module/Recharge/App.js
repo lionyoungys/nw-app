@@ -85,6 +85,7 @@ export default class extends React.Component {
                                     param, 
                                     'printer'.getData()
                                 );
+                                close();
                             }});
                         }
                     );
