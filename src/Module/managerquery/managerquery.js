@@ -59,7 +59,7 @@ export default class extends Component {
             end_time:this.state.enddate,
             token:'token'.getData(),
             operator:''
-        }, (res, ver,handle) => {
+        }, (res, ver, handle) => {
             done();
             if (ver && res) {
                 console.log(res)
@@ -107,7 +107,7 @@ export default class extends Component {
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
                             </div>
-                            <button className="e-btn managerquery_btn" onClick={this.query}>查询</button> 
+                            <button className="e-btn managerquery_btn" onClick={() => this.query(this.state.page)}>查询</button> 
                 </div>                                    
                 <table className='ui-table-base man-que-tab'>
                     <thead>
