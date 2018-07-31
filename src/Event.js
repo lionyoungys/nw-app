@@ -167,6 +167,19 @@
         });
     }
 
+    e.notify = function(obj) {    //{title:'标题',body:'内容',onshow:func,onclick:func,onclose:func}
+        obj = tool.isObject(obj) ? obj : {title:'标题',body:'内容'}
+        if (Notification && 'granted' === Notification.permission) {
+            let notify = new Notification(obj.title, {body: obj.body, lang:"zh-CN", icon:'img/icon.png'});
+            notify.onshow = obj.onshow;
+            notify.onclose = obj.onclose;
+            notify.onclick = () => {
+                this.win.focus();
+                'function' === typeof obj.onclick && obj.onclick();
+            }
+        }
+    }
+
     e.win.on('loaded', e.win.show);    //防止窗口渲染未完成时展示
     e.win.on('close', function() {
         this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
