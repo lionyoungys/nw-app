@@ -66,6 +66,11 @@
     min-width:872px;
     max-height:430px;    
     display:block;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+.waiting-list tbody::-webkit-scrollbar{
+    width:0px;
 }
 .waiting-list tbody tr{
     width:872px;
@@ -259,5 +264,18 @@
 }
 .waiting #forshipping tbody tr>td span{
     display:block;
+}
+
+.waiting-list>tbody tr td s{
+    width: 100%;
+    display: block;
+    line-height: 25px;
+    color: #169bd5;
+    font-weight: inherit;
+    font-size: 12px;
+    text-decoration:none;
+}
+.waiting-list tbody tr td s:hover{
+    text-decoration:underline;
 }
 

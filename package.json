@@ -2,9 +2,9 @@
   "author": "Edwin Young",
   "license": "MIT",
   "scripts": {
-    "start": "webpack &&  F:/nwsdk/nw ./app",
-    "build": "F:/nwsdk/nw ./app",
-    "Edwin": "webpack && F:/nwsdk/nw ./app",
+    "start": "webpack &&  F:/nwsdk/shuxier30 ./app",
+    "build": "F:/nwsdk/shuxier30 ./app",
+    "Edwin": "webpack && F:/nwsdk/shuxier30 ./app",
     "Edwin_build": "F:/nwsdk/nw ./app",
     "p": "webpack",
     "fyr_start": "webpack && E:/nwjs-sdk-v0.14.7-win-ia32/nw ./app",

@@ -37,8 +37,23 @@ class Main extends Component {
         });
         EventApi.win.on('maximize', () => this.setState({max:true}));
         EventApi.win.on('minimize', () => this.setState({min:true}));
-    }
-    
+        // 新订单提示
+        setInterval(() => {       
+            api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {                     
+                ver && EventApi.notify(
+                    {
+                        title:'新订单提示', 
+                        body:'接到一个新订单，请注意查收',
+                        onshow:() => {
+                            this.audio.src = 'media/new_order.ogg';
+                            this.audio.play();
+                        },
+                        onclick:() => {this.changeView({view:'onlineorder'})}
+                    }
+                );                         
+            })           
+        }, 300000);       
+    }   
     //路由跳转方法
     changeView(e) {
         let view = null,    //视图
@@ -83,6 +98,7 @@ class Main extends Component {
                 <div className='main-container'>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})}/>}
                 </div>
+                <audio ref={audio => this.audio = audio}></audio>
             </div>
         );
     }
@@ -149,4 +165,5 @@ class MainLeftMenu extends Component {
         );
     }
 }
+
 ReactDOM.render(<Main/>, document.getElementById('root'));
