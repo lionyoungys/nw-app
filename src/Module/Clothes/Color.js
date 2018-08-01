@@ -15,7 +15,10 @@ export default class extends Component {
 
     handleClick() {'function' === typeof this.props.callback && this.props.callback(this.state.value)}
 
-    onChoice(e) {this.setState({value:e.target.innerText + '；' + this.state.value})}
+    onChoice(e) {
+        'function' === typeof this.props.callback && this.props.callback(e.target.innerText)
+        // this.setState({value:e.target.innerText + '；' + this.state.value});
+    }
 
     render() {
         if ('undefined' === typeof this.props.data || !(this.props.data instanceof Array)) return null;

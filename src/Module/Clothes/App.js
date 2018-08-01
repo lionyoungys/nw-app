@@ -209,7 +209,8 @@ export default class extends Component {
             let itemTime = tool.date('Y-m-d', data.deal_time);
             if ('' == time || time < itemTime) time = itemTime;
         }
-        this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
+        // this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
+        this.setState({show:4, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
     }
     setTemp(value) {
         if (this.state.update) {
@@ -310,7 +311,8 @@ export default class extends Component {
     showProblem(e) {this.setState({show:5,currentIndex:e.target.parentNode.dataset.index})}
     setForcast(value) {
         this.state.data[this.state.currentIndex].forecast = value;
-        this.setState({show:7, data:this.state.data});
+        this.setState({show:0, data:this.state.data});
+        // this.setState({show:7, data:this.state.data});
     }
     showForcast(e){this.setState({show:6,currentIndex:e.target.parentNode.dataset.index})}
     setPrice(obj) {
