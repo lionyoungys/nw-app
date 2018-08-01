@@ -54,6 +54,13 @@ class Main extends Component {
             })           
         }, 300000);       
     }   
+
+    componentDidCatch(error) {
+        console.log(error);
+        this.setState({view:null});
+        tool.ui.error({msg:'当前界面出了些状况，暂时无法使用！', callback:close => close()});
+    }
+
     //路由跳转方法
     changeView(e) {
         let view = null,    //视图
