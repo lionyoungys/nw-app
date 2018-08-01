@@ -23,9 +23,12 @@ export default class extends Component {
         console.log(this.state.forshippinglist)
     };   
     query(page) {
+        page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
-            mid:'mid'.getData(),                     
+            mid:'mid'.getData(),
+            page:this.state.page,
+            limit:this.limit                     
         }
         console.log(params)
         api.post('pending_distribution',params, (res,ver) => {           
@@ -35,6 +38,7 @@ export default class extends Component {
                     this.setState({   
                         count:res.result.count,                   
                         forshippinglist:res.result.order,
+                        page:page
                     })
                 }else{
                     console.log('没有要配送的订单,敬请等待')

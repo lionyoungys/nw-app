@@ -135,6 +135,9 @@
   display:block;
   overflow-x:hidden;
 }
+.orderquery-div table tbody::-webkit-scrollbar{
+    width:0px;
+}
 .orderquery-div table tbody tr{
     width:872px;
     height:auto;

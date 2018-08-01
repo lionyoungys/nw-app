@@ -63,6 +63,16 @@
         return str;
     }
 
+    t.objToArr = function(object) {
+        var arr = [];
+        if ('object' === typeof object) {
+            for (var k in object) {
+                arr.push(object[k]);
+            }
+        }
+        return arr;
+    }
+
     /**
      * 字符编码解析处理
      * @param {*mixd} data 字符编码转换的数据

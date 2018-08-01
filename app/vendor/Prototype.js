@@ -115,6 +115,69 @@
     Number.prototype.toRate = 
     String.prototype.toRate = function() {return (this * 100) + '%'};
 
+    Number.prototype.getOrderStatus = 
+    String.prototype.getOrderStatus = function () {
+        /*0:"下单"
+        1:"确认订单"
+        2:"已收衣"
+        3:"清洗中"
+        4:"完成清洗"
+        5:"送件完成"
+        50:"烘干中"
+        51:"熨烫中"
+        52:"质检中"
+        91:"已上挂"
+        99:"订单完成"
+        100:"临时订单"
+        101:"用户取消"
+        102:"店铺取消"
+        */
+       var arr = ['下单', '确认订单', '已收衣', '清洗中', '完成清洗', '送件完成'];
+       arr[50] = '烘干中';
+       arr[51] = '熨烫中';
+       arr[52] = '质检中';
+       arr[91] = '已上挂';
+       arr[99] = '订单完成';
+       arr[100] = '临时订单';
+       arr[101] = '用户取消';
+       arr[102] = '店铺取消';
+       if (!isNaN(this) && 'string' === typeof arr[this]) return arr[this];
+        switch (this) 
+        {
+            case '下单':
+                return 0;
+            case '确认订单':
+                return 1;
+            case '已收衣':
+                return 2;
+            case '清洗中':
+                return 3;
+            case '完成清洗':
+                return 4;
+            case '送件完成':
+                return 5;
+            case '烘干中':
+                return 50;
+            case '熨烫中':
+                return 51;
+            case '质检中':
+                return 52;
+            case '已上挂':
+                return 91;
+            case '订单完成':
+                return 99;
+            case '临时订单':
+                return 100;
+            case '用户取消':
+                return 101;
+            case '店铺取消':
+                return 102;
+            default:
+                return -1;
+        }
+    }
+
+
     /**
      * url参数字符串转对象
      * @return object

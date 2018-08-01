@@ -8,13 +8,14 @@ export default class extends Component {
     constructor(props) {
         super(props); 
         this.waiting = ['预约单号','下单时间','衣物名称','件数','合计','客户信息','操作'],
-        this.state = {            
+        this.state = {      
               waitinglist:[],
               page:1,
               count:0,
         }; 
         this.limit = 10;  
-        this.query = this.query.bind(this);           
+        this.query = this.query.bind(this);  
+        this.take_waiting = this.take_waiting.bind(this);        
     };         
     // 显示待接单列表  
     componentDidMount (){        
@@ -31,13 +32,15 @@ export default class extends Component {
             limit: this.limit ,                  
         }
         console.log(params)
-        api.post('pending_order',params, (res,ver) => {           
+        api.post('pending_order',params, (res,ver) => {  
+            console.log(ver)         
             if (ver && res) {
                 console.log(res); 
                 if(res.result.count>0){
                     this.setState({  
                         count:res.result.count,                     
                         waitinglist:res.result.order,
+                        page:page,
                     })
                 }else{
                     console.log('没有客户订单,敬请等待')
@@ -45,6 +48,11 @@ export default class extends Component {
             }
         })
     } 
+    // 接单
+    take_waiting (e){
+        var id = e.target.dataset.id; 
+        console.log(id)           
+    }
     render() {  
         var waiting = this.waiting.map((item,index) =><th key={'item'+index}>{item}</th>);      
         var waitinglist = this.state.waitinglist.map((item,index) =><tr key={'item'+index}>
@@ -66,7 +74,7 @@ export default class extends Component {
             <td><span>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
             <td>
                 <s>取消预约</s>
-                <s>接单</s>
+                <s data-id={item.id} onClick = {this.take_waiting} >接单</s>
             </td>
         </tr>
         )    

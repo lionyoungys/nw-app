@@ -8,17 +8,57 @@ import Select from '../../UI/Select';
 import Page from '../../UI/Page';
 import './Orderquery.css';
 
-
-
-
 export default class extends Component {
     constructor(props) {
         super(props);
         this.thead = ['订单号','衣物编码','衣物名称','价格','衣物状态','工艺加价','合计','客户信息','操作'];
-        this.print = this.print.bind(this) ;            
+        this.state = {
+            orderquerylist:[],
+            count:0,
+            page:1,
+            ostatus_name:'', // 状态名称
+            orderostatus:[],
+            online:[],
+            online_name:'',
+        }
+        this.limit = 10;  
+        this.query = this.query.bind(this);
+        this.print = this.print.bind(this) ;  // 打印        
     };
-    print (){
-       
+    componentDidMount (){
+        this.query();
+    }
+    query(page) {
+        console.log(page);
+        page = page || this.state.page;
+        api.post('ordersearch',{
+            token: 'token'.getData(),
+            page: page, 
+            limit: this.limit,
+            ostatus:this.state.ostatus_name.getOrderStatus()
+        }, (res,ver) => {           
+            if (ver && res) {
+                console.log(res);
+                if(res.result.list.length>0){
+                    let arr = tool.objToArr(res.result.ostatus);
+                    arr.unshift('全部');
+                    this.setState({
+                        orderquerylist:res.result.list,
+                        count:res.result.count,
+                        page:page,
+                        orderostatus: arr
+                    })  
+                }else{
+                    this.setState({
+                        orderquerylist:res.result.list,
+                        count:res.result.count,
+                        page:page,
+                    }) 
+                }                      
+            }
+        })
+    }
+    print (){       
         /*
             sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
             reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;
@@ -78,12 +118,29 @@ export default class extends Component {
         }
     }         
     render() {  
-        var thead = this.thead.map((item,index) =><th key={item +'index'}>{item}</th>)             
+        var thead = this.thead.map((item,index) =><th key={item +'index'}>{item}</th>)  
+        var orderquerylist = this.state.orderquerylist.map((item,index) =><tr key={'item'+index}>
+          <td><span>{item.ordersn}</span></td>
+          <td>{item.work.map((item,index)=><span>{item.clothing_number}</span>)}</td>
+          <td>{item.work.map((item,index)=><span>{item.clothing_name}</span>)}</td>
+          <td>{item.work.map((item,index)=><span>{item.discount_price}</span>)}</td>
+          <td>{item.work.map((item,index)=><span >
+             {item.status==3?'清洗中':item.status==4?'清洗完成':item.status==5?'已撤单':'已完成'}</span>)}
+          </td>
+          <td><span>保值费:{item.keep_price}<br/>工艺加价:{item.craft_price}<br/>运费:{item.freight_price}</span></td>
+          <td>合计:{item.total}<br/>共:{item.count}</td>
+          <td>订单来源:{item.is_online=='0'?'线下':'线上'}<br/>姓名:{item.user_name}<br/>地址:{item.address}</td>
+          <td>
+                <i>订单状态:{item.ostatus}</i>
+                <b >补打小票</b>
+                <b onClick={this.print}>补打条码</b></td>
+        </tr>
+        )           
         return (
             <Window title='订单查询' onClose={this.props.closeView}> 
                <div className="orderquery-title">
                     <div>
-                       <span>订单状态：</span><Select />
+                       <span>订单状态：</span><Select option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value=='全部'?'':value})} selected="全部"/>
                     </div>
                     <div>
                        <span>订单来源：</span><Select />
@@ -99,93 +156,16 @@ export default class extends Component {
                <div className="orderquery-div">
                   <table>
                       <thead>
-                          <tr>
-                              {thead}
-                          </tr>
+                            <tr>
+                               {thead}
+                            </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td>
-                                  <span>1831096393212345</span>
-                                </td>
-                              <td>
-                                  <span>1831096393214562</span>
-                                  <span>1831096393214562</span>
-                                  <span>1831096393214562</span>
-                                  <span>1831096393214562</span>
-                                  <span>1831096393214562</span>
-                              </td>
-                              <td>
-                                  <span>衬衫</span>
-                                  <span>裤子</span>
-                                  <span>外套</span>
-                                  <span>鞋</span>
-                                  <span>袜子</span>
-                              </td>
-                              <td>
-                                  <span>￥12.00</span>
-                                  <span>￥10.22</span>
-                                  <span>￥2.10</span>
-                                  <span>￥14.10</span>
-                                  <span>￥32.10</span>
-                              </td>
-                              <td>
-                                  <span>已清洗</span>
-                                  <span>已上挂</span>
-                                  <span>清洗中</span>
-                                  <span>未付款</span>
-                                  <span>待取件</span>
-                              </td>
-                              <td>
-                                 <span>上门服务费:￥4,保值清洗:￥2,优惠金额:￥2.30</span>                               
-                              </td>
-                              <td>
-                                 <span>合计:4件￥78.78</span>
-                              </td>
-                              <td>
-                                 <span>订单来源:微信姓名:范仔电话:18310963932地址:万达广场三号线1902</span>
-                              </td>
-                              <td>
-                                  <i>订单状态</i>
-                                  <b>补打小票</b>
-                                  <b>补打条码</b>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <span>1831096393212345</span>
-                                </td>
-                              <td>
-                                  <span>1831096393214562</span>                                  
-                              </td>
-                              <td>
-                                  <span>衬衫</span>
-                              </td>
-                              <td>
-                                  <span>￥12.00</span>
-                              </td>
-                              <td>
-                                  <span>已清洗</span>
-                              </td>
-                              <td>
-                                 <span>上门服务费:￥4,保值清洗:￥2,优惠金额:￥2.30</span>                               
-                              </td>
-                              <td>
-                                 <span>合计:4件￥78.78</span>
-                              </td>
-                              <td>
-                                 <span>订单来源:微信姓名:范仔电话:18310963932地址:万达广场三号线1902</span>
-                              </td>
-                              <td>
-                                  <i>订单状态</i>
-                                  <b >补打小票</b>
-                                  <b onClick={this.print}>补打条码</b>
-                              </td>
-                          </tr>
+                          {orderquerylist}
                       </tbody>
                   </table>
                </div> 
-               <Page   />                                                      
+               <Page   current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>                                                      
             </Window>
         );
     }

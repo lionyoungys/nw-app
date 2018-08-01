@@ -22,9 +22,12 @@ export default class extends Component {
     }; 
     // 网络请求
     query(page){
+        page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
-            mid:'mid'.getData(),                     
+            mid:'mid'.getData(),  
+            page:this.state.page,
+            limit:this.limit                   
         }
         console.log(params)
         api.post('have_door',params, (res,ver) => {           
@@ -34,6 +37,7 @@ export default class extends Component {
                     this.setState({ 
                         count:res.result.count,                     
                         outdoorlist:res.result.order,
+                        page:page
                     })
                 }else{
                     console.log('没有客户订单,敬请等待')
@@ -43,7 +47,7 @@ export default class extends Component {
     }   
     render() {  
         var outdoor = this.outdoor.map((item,index) =><th key={'item'+index}>{item}</th>);       
-        var outdoorlist = this.state.outdoorlist.map((item,index) =><tr key={'item'+index}>
+        var outdoorlist = this.state.outdoorlist.map((item,index) =><tr key={'item'+index} >
             <td><span>{item.ordersn}</span></td>
             <td><span>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</span></td>
             <td>{item.work.map((item,index)=> <span>{item.clothing_name}</span>)}</td>
@@ -52,7 +56,7 @@ export default class extends Component {
             <td index={index}><span>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
             <td>
                 <s>取消预约</s>
-                <s>已上门</s>
+                <s id={item.id}>已上门</s>
             </td>
         </tr>
         )    
