@@ -63,6 +63,7 @@ import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
 import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
 
 
+
 //路由对象
 export default {
     onlineorder:Onlineorder, // 线上订单处理

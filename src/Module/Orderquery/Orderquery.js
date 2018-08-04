@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import Page from '../../UI/Page';
+import Nodata from '../../UI/nodata';
 import './Orderquery.css';
 
 export default class extends Component {
@@ -20,42 +21,58 @@ export default class extends Component {
             orderostatus:[],
             online:[],
             online_name:'',
+            number:'',
+            nodatas:false,
         }
         this.limit = 10;  
         this.query = this.query.bind(this);
-        this.print = this.print.bind(this) ;  // 打印        
+        this.print = this.print.bind(this) ;  // 打印 
+        this.serch = this.serch.bind(this) ; //查询      
     };
+    // 初始化页面加载
     componentDidMount (){
         this.query();
+        this.input.focus();
+    }
+    //查询
+    serch (){
+        this.setState({orderquerylist:[]})
+       this.query();
     }
     query(page) {
         console.log(page);
-        page = page || this.state.page;
+        page = page || this.state.page;                                         
         api.post('ordersearch',{
             token: 'token'.getData(),
             page: page, 
             limit: this.limit,
-            ostatus:this.state.ostatus_name.getOrderStatus()
+            ostatus:this.state.ostatus_name=='下单'?'0':this.state.ostatus_name=='确认订单'?'1':this.state.ostatus_name=='已收衣'?'2':this.state.ostatus_name=='清洗中'?'3':this.state.ostatus_name=='完成清洗'?'4':this.state.ostatus_name=='送件完成'?'5':this.state.ostatus_name=='烘干中'?'50':this.state.ostatus_name=='熨烫中'?'51':this.state.ostatus_name=='质检中'?'52':this.state.ostatus_name=='已上挂'?'91':this.state.ostatus_name=='订单完成'?'99':this.state.ostatus_name=='临时订单'?'100':this.state.ostatus_name=='用户取消'?'101':this.state.ostatus_name=='店铺取消'?'102':'',
+            value:this.state.number,
+            is_online:this.state.online_name=='线下'?'0':this.state.online_name=='线上'?'1':''
         }, (res,ver) => {           
             if (ver && res) {
-                console.log(res);
-                if(res.result.list.length>0){
-                    let arr = tool.objToArr(res.result.ostatus);
-                    arr.unshift('全部');
+                 console.log(res);
+                if(res.result.list.length>0){                                                            
                     this.setState({
                         orderquerylist:res.result.list,
                         count:res.result.count,
                         page:page,
-                        orderostatus: arr
-                    })  
+                        orderostatus: res.result.ostatus.typeArray('name'),                                              
+                        online:res.result.is_online.typeArray('name'),  
+                        nodatas:false,                    
+                    }) 
+                    this.state.orderostatus.push('全部');
+                    this.state.online.push('全部');                                                    
                 }else{
                     this.setState({
                         orderquerylist:res.result.list,
                         count:res.result.count,
                         page:page,
+                        nodatas:true,
                     }) 
                 }                      
             }
+             
         })
     }
     print (){       
@@ -67,20 +84,7 @@ export default class extends Component {
             name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
         */
         
-        // if ('undefined' !== typeof gateway) {
-        //     if (0 == gateway) {
-        //         gateway = '会员卡支付';
-        //         if (!isNaN(balance)) balance = balance.subtract(object.pay_amount);
-        //     } else if (1 == gateway) {
-        //         gateway = '现金支付';
-        //     } else if (2 == gateway) {
-        //         gateway = '微信支付';
-        //     } else {
-        //         gateway = '支付宝支付';
-        //     }
-        // } else {
-        //     gateway = '未付款';
-        // }
+        
         // EventApi.print('order', {
         //     sn:222,
         //     items:JSON.stringify([{clothing_number:'12345',clothing_name:'你好',clothing_color:'蓝色',sign:'骆驼',remark:'污渍',forecast:'发白',raw_price:'20.25',has_discount:1}]),
@@ -106,8 +110,8 @@ export default class extends Component {
         let printer = 'clean_tag_printer'.getData();
         console.log(printer);
         if (printer) {
-            // let len = this.state.code_arr.length;
-            for (let i = 0;i < 3;++i) {
+             let len = this.state.orderquerylist.length;
+            for (let i = 0;i < len;++i) {
                 EventApi.print('code', {
                     sn:'1234', 
                     name:'你好', 
@@ -133,34 +137,34 @@ export default class extends Component {
           <td>
                 <i>订单状态:{item.ostatus}</i>
                 <b >补打小票</b>
-                <b onClick={this.print}>补打条码</b></td>
+                <b onClick={this.print} data-index={index} data-id={item.id}>补打条码</b></td>
         </tr>
         )           
         return (
             <Window title='订单查询' onClose={this.props.closeView}> 
                <div className="orderquery-title">
                     <div>
-                       <span>订单状态：</span><Select option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value=='全部'?'':value})} selected="全部"/>
+                       <span>订单状态：</span><Select  option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value=='全部'?'':value})} selected="全部"/>
                     </div>
                     <div>
-                       <span>订单来源：</span><Select />
+                       <span>订单来源：</span><Select option={this.state.online}  onChange={value => this.setState({online_name:value=='全部'?'':value})} selected="全部"/>
                     </div>   
                     <div>
-                       <input type="text" placeholder="订单号,流水号,姓名,手机号,卡号"/>
+                       <input type="text" placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />
                     </div>
-                    <div>
-                        <button className="e-btn">读卡</button>
-                        <button className="e-btn">查询</button>   
+                    <div>                        
+                        <button className="e-btn" onClick = {this.serch}>查询</button>   
                     </div>              
                </div> 
                <div className="orderquery-div">
                   <table>
                       <thead>
-                            <tr>
+                            <tr> 
                                {thead}
                             </tr>
                       </thead>
                       <tbody>
+                          {this.state.nodatas&&<Nodata />}
                           {orderquerylist}
                       </tbody>
                   </table>

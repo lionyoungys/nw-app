@@ -12,10 +12,12 @@ export default class extends Component {
               waitinglist:[],
               page:1,
               count:0,
+              id:'',
         }; 
         this.limit = 10;  
         this.query = this.query.bind(this);  
-        this.take_waiting = this.take_waiting.bind(this);        
+        this.take_waiting = this.take_waiting.bind(this); // 接单
+        this.no_waiting = this.no_waiting.bind(this); // 取消预约        
     };         
     // 显示待接单列表  
     componentDidMount (){        
@@ -27,7 +29,7 @@ export default class extends Component {
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
-            mid:'mid'.getData(),  
+            // mid:'mid'.getData(),  
             page: page, 
             limit: this.limit ,                  
         }
@@ -50,8 +52,35 @@ export default class extends Component {
     } 
     // 接单
     take_waiting (e){
-        var id = e.target.dataset.id; 
-        console.log(id)           
+        var id = e.target.dataset.id;        
+        api.post('order_taking',{
+            token:'token'.getData(),
+            oid:id
+        }, (res,ver) => {  
+            console.log('成功接单')        
+            if (ver && res) {
+                this.setState({waitinglist:[]});
+                this.componentDidMount();     
+            }
+        })               
+    }
+    // 取消预约
+    no_waiting (e){
+        var id = e.target.dataset.id;
+        this.setState({id:id})
+        let params={
+            token:'token'.getData(),
+            oid:id
+        }
+        console.log(params)
+        api.post('cancel_reservation',params, (res,ver) => {  
+            console.log(ver)         
+            if (ver && res) {
+                console.log('成功取消')
+                this.setState({waitinglist:[]});
+                this.componentDidMount();                     
+            }
+        })  
     }
     render() {  
         var waiting = this.waiting.map((item,index) =><th key={'item'+index}>{item}</th>);      
@@ -73,7 +102,7 @@ export default class extends Component {
             <td><span>共{item.count}件,约<i>￥{item.total}</i></span></td>
             <td><span>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
             <td>
-                <s>取消预约</s>
+                <s data-id={item.id} onClick = {this.no_waiting} >取消预约</s>
                 <s data-id={item.id} onClick = {this.take_waiting} >接单</s>
             </td>
         </tr>

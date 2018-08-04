@@ -52,7 +52,7 @@
 /* 订单列表的div */
 .orderquery-div{
     width:872px;
-    height:auto;
+    height:385px;
     max-height:385px;
     border:1px solid #8db2e3;
     background:#fff;
@@ -129,7 +129,7 @@
 /*  */
 .orderquery-div table tbody{
   width:872px;
-  height:auto;
+  height:358px;
   max-height:358px;
   overflow-y:auto;
   display:block;
@@ -143,9 +143,6 @@
     height:auto;
     min-width:25px;
     border-bottom:1px solid #8db2e3;
-}
-.orderquery-div table tbody tr:last-child{
-    border-bottom:none;
 }
 .orderquery-div table tbody tr>td{
     text-align: center;

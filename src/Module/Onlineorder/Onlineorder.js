@@ -21,7 +21,8 @@ export default class extends Component {
         this.view = [<Waitinglist />, <Door />,<Outdoor/>,<Forshipping/>,<Overorder/>]
         this.state = {
             tabindex:0,           
-            checked:0,                                 
+            checked:0, 
+            number:''                                
         }        
     }; 
     // 刷新 获取input光标  
@@ -42,7 +43,7 @@ export default class extends Component {
             <div>
                 <Window title='线上订单处理' onClose={this.props.closeView}>
                     <BlueTab tabs={this.tab} checked={this.state.checked} onChange={(i) => this.onChange(i)}>                        
-                        <input type="text" className="findonline" placeholder="订单号,流水号,姓名,卡号,手机号" ref={input =>this.input = input}/><button className="e-btn">查询</button>                       
+                        <input type="text" className="findonline" placeholder="订单号,流水号,姓名,卡号,手机号" ref={input =>this.input = input} value={this.state.number} onChange={e => this.setState({number:e.target.value})}/><button className="e-btn">查询</button>                       
                     </BlueTab> 
                     {this.view[this.state.tabindex]}
                 </Window>
