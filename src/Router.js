@@ -59,6 +59,8 @@ import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期
 import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
 import Pay from './Module/Pay/Pay'; //赔付
 import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
+import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
+
 
 
 //路由对象
@@ -125,4 +127,5 @@ export default {
     its_processing:Itsprocessing, //撤单处理
     pay:Pay, //赔付
     about_snl:Aboutsnl, //关于速洗达
+    orderquery:Orderquery , //订单查询
 };

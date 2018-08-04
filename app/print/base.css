@@ -5,6 +5,7 @@
 html, body{
     font-family: 黑体;
     font-size: 11pt;
+    color: #000;
     word-break: break-all;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;

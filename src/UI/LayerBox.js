@@ -10,9 +10,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
     }
-
     componentDidMount() {tool.ui.center(this.box)}
-
     render() {
         return (
             <div className='e-layer-bg'>

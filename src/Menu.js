@@ -24,6 +24,7 @@ const topMenu = [
         options:[
             {value:'格架查询', view:'lattice_query', id: 14},
             {value:'衣物查询', view:'clothes_query', id: 15},
+            {value:'订单查询', view:'orderquery' },
             {value:'交班', view:'Succession', id: 16},
             {value:'前台情况', view:'foreground_statistics', id: 18},           
             {value:'未付款统计', view:'unpaid_statistics', id: 19},
