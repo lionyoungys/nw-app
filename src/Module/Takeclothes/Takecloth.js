@@ -242,55 +242,31 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
-        EventApi.print(
-            'order', 
-            {
-                sn:this.state.list[this.state.current].ordersn,
-                items:JSON.stringify(this.state.list[this.state.current].item),
-                total:total,
-                dis_amount:dis_amount,
-                amount:no_dis_amount,
-                discount: discount,
-                real_amount:amount,
-                name:this.state.user_name,
-                phone:this.state.user_mobile,
-                addr:this.state.merchant.maddress,    //店铺地址
-                mphone:this.state.merchant.phone_number,    //店铺电话
-                ad:this.state.merchant.mdesc,    //店铺广告
-                number:this.state.recharge_number,
-                balance:balance,
-                pay_amount:object.pay_amount,
-                change:object.change,
-                gateway:gateway,
-                debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-            },
-            'printer'.getData(),
+        let param = {
+            sn:this.state.list[this.state.current].ordersn,
+            items:JSON.stringify(this.state.list[this.state.current].item),
+            total:total,
+            dis_amount:dis_amount,
+            amount:no_dis_amount,
+            discount: discount,
+            real_amount:amount,
+            name:this.state.user_name,
+            phone:this.state.user_mobile,
+            addr:this.state.merchant.maddress,    //店铺地址
+            mphone:this.state.merchant.phone_number,    //店铺电话
+            ad:this.state.merchant.mdesc,    //店铺广告
+            number:this.state.recharge_number,
+            balance:balance,
+            pay_amount:object.pay_amount,
+            change:object.change,
+            gateway:gateway,
+            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+        };
+        EventApi.print('order', param,'printer'.getData(),
             () => {
                 tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
-                    EventApi.print(
-                        'order2', 
-                        {
-                            sn:this.state.list[this.state.current].ordersn,
-                            items:JSON.stringify(this.state.list[this.state.current].item),
-                            total:total,
-                            dis_amount:dis_amount,
-                            amount:no_dis_amount,
-                            discount: discount,
-                            real_amount:amount,
-                            name:this.state.user_name,
-                            phone:this.state.user_mobile,
-                            addr:this.state.merchant.maddress,    //店铺地址
-                            mphone:this.state.merchant.phone_number,    //店铺电话
-                            ad:this.state.merchant.mdesc,    //店铺广告
-                            number:this.state.recharge_number,
-                            balance:balance,
-                            pay_amount:object.pay_amount,
-                            change:object.change,
-                            gateway:gateway,
-                            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-                        },
-                        'printer'.getData()
-                    );
+                    EventApi.print('order2', param,'printer'.getData());
+                    close();
                 }});
             }
         );
