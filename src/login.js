@@ -20,7 +20,7 @@ win.on('close', function() {
     this.close(true);    //关闭新窗口也关闭主窗口
 });
 win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
-//win.showDevTools();
+win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -80,9 +80,7 @@ class Download extends Component {
 
     componentDidMount() {
         let path = window.require('path')
-        ,   dir = path.dirname(process.execPath) + '/'
-        ,   zip = dir + 'update.zip'
-        ,   exe = dir + 'script/7zip/7z.exe';
+        ,   zip = path.dirname(process.execPath) + '/update.zip';
         api.download(
             this.props.zip, 
             fs.createWriteStream(zip),
@@ -93,7 +91,7 @@ class Download extends Component {
                     if (fs.statSync(zip).size > 0) {
                         clearInterval(this.timeId);
                         this.timeId = null;
-                        exec(`${exe} x -y "${zip}"`, error => {
+                        exec('update.bat', error => {
                             if (error) {
                                 return tool.ui.error({msg:'安装失败', callback:close => close()});
                             } else {
