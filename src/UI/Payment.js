@@ -116,7 +116,7 @@ export default class extends Component {
         ,   discount = data.discount || 100
         ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount)
         ,   change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
-        if (0 != gateway) discount = 100;
+        if (0 != gateway && 999 != gateway) discount = 100;
         return (
             <Window title='收银' width='632' height='420' onClose={this.props.onClose}>
                 <div className='ui-payment-title'>核对信息</div>
