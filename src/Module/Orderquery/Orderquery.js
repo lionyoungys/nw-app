@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import Page from '../../UI/Page';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 import './Orderquery.css';
 
 export default class extends Component {
@@ -22,8 +22,7 @@ export default class extends Component {
             online:[],
             online_name:'',
             number:'',
-            nodatas:false,
-            
+            nodatas:false,           
         }
         this.limit = 10;  
         this.query = this.query.bind(this);
@@ -96,12 +95,21 @@ export default class extends Component {
                 console.log('调取打印');
                 let data = res.result.order
                 ,   codes = data.work.map(obj => {
-                    return {clothing_number:obj.clothing_number, grid_num:obj.grid_num};
+                    return {
+                        clothing_number:obj.clothing_number,
+                        clothing_name:obj.clothing_name,
+                        clothing_color:obj.clothing_color,
+                        grid_num:obj.grid_num,
+                        sign:obj.sign,
+                        remark:obj.remark,
+                        forecast:obj.forecast
+                    };
                 });
                 var params = {
                     sn:data.ordersn,
                     items:JSON.stringify(data.work),
                     put_codes:JSON.stringify(codes),
+                    
                     total:data.total,
                     dis_amount:data.dis_amount,
                     amount:data.amount,
@@ -109,9 +117,9 @@ export default class extends Component {
                     real_amount:data.pay_amount,
                     name:data.user_name,
                     phone:data.user_mobile,
-                    time:'2018-5-25',    //取衣时间
-                    addr:647457575,      //店铺地址
-                    mphone:4745758758,   //店铺电话
+                    time:data.deal_time,    //取衣时间
+                    addr:data.maddress,      //店铺地址
+                    mphone:data.phone_number,   //店铺电话
                     ad:data.ad ? data.ad : '',    //店铺广告
                     number:data.card_number,
                     balance:data.balance ? data.balance : 0,
@@ -140,8 +148,8 @@ export default class extends Component {
                 EventApi.print('code', {
                     sn:items[i].clothing_number, 
                     name:items[i].clothing_name,
-                    color:items[i].color,
-                    number:'12445', // 衣挂号
+                    color:items[i].clothing_color,
+                    number:items[i].grid_num, // 衣挂号
                 }, printer);
             }
         }   
