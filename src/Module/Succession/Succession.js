@@ -45,8 +45,7 @@ export default class extends Component {
                 }                          
                 if (ver) {
                     
-                   let arrr = [{}];
-                   arrr.push({name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'})
+                   let arrr = [{name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'}];
                    for(let k in this.state.mlist){
                        arrr.push({name:this.state.mlist[k].name,amount:this.state.mlist[k].amount,real_amount:this.state.mlist[k].real_amount,count:this.state.mlist[k].work_number})
                    }

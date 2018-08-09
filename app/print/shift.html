@@ -37,7 +37,7 @@
         var len = data.length
         ,   html = '';
         for (var i = 0;i < len;++i) {
-            if ('合计' == data[i].name || data[i].amount > 0 || data[i].real_amount > 0 || data[i].count > 0) {
+            if (0 == i || '合计' == data[i].name || data[i].amount > 0 || data[i].real_amount > 0 || data[i].count > 0) {
                 html += '<div><span>'+data[i].name+'</span><span>'+data[i].amount+'</span><span>'+data[i].real_amount+'</span><span>'+data[i].count+'</span></div>';
             }
         }
