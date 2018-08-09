@@ -99,8 +99,9 @@
             _.inner('#count', len);
             for (var i = 0;i < len;++i) {
                 for (p = 0;p < pLen;++p) {
-                    if (items[i].clothing_number == put_codes[p].clothing_number) {
+                    if (items[i].clothing_number == put_codes[p].clothing_number && !put_codes[p].used) {
                         tempCode = put_codes[p].grid_num;
+                        put_codes[p].used = true;
                         break;
                     }
                 }

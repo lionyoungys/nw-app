@@ -23,8 +23,7 @@ class Main extends Component {
             param:null    //视图路由携带参数
         }
         this.changeView = this.changeView.bind(this);    //界面跳转方法
-    }
-    
+    }   
     componentDidMount() {
         EventApi.win.on('restore', () => {
             if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化

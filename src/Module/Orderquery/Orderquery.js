@@ -47,7 +47,7 @@ export default class extends Component {
             token: 'token'.getData(),
             page: page, 
             limit: this.limit,
-            ostatus:this.state.ostatus_name=='下单'?'0':this.state.ostatus_name=='确认订单'?'1':this.state.ostatus_name=='已收衣'?'2':this.state.ostatus_name=='清洗中'?'3':this.state.ostatus_name=='完成清洗'?'4':this.state.ostatus_name=='送件完成'?'5':this.state.ostatus_name=='烘干中'?'50':this.state.ostatus_name=='熨烫中'?'51':this.state.ostatus_name=='质检中'?'52':this.state.ostatus_name=='已上挂'?'91':this.state.ostatus_name=='订单完成'?'99':this.state.ostatus_name=='临时订单'?'100':this.state.ostatus_name=='用户取消'?'101':this.state.ostatus_name=='店铺取消'?'102':'',
+            ostatus:this.state.ostatus_name=='待接单'?'0':this.state.ostatus_name=='待上门'?'1':this.state.ostatus_name=='已上门'?'2':this.state.ostatus_name=='洗护中'?'3':this.state.ostatus_name=='完成清洗'?'4':this.state.ostatus_name=='送件完成'?'5':this.state.ostatus_name=='烘干中'?'50':this.state.ostatus_name=='熨烫中'?'51':this.state.ostatus_name=='质检中'?'52':this.state.ostatus_name=='已上挂'?'91':this.state.ostatus_name=='已完成'?'99':this.state.ostatus_name=='临时订单'?'100':this.state.ostatus_name=='已取消'?'101':this.state.ostatus_name=='已拒单'?'102':'',
             value:this.state.number,
             is_online:this.state.online_name=='线下'?'0':this.state.online_name=='线上'?'1':''
         }, (res,ver) => {           

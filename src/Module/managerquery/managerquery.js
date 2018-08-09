@@ -1,5 +1,5 @@
 /**
- * 经理查询
+ * 营业日报
  * @author  fanyerong
  */
 import React, { Component } from 'react';
@@ -14,39 +14,12 @@ export default class extends Component {
         this.state = {
             startdate:tool.date('Y-m-01'),enddate:tool.date('Y-m-d'),
             show: false,
-            result: {},
+            result: [],
             list:[],
             page: 1,
             count: 0,
         };
-        this.limit = 10;
-        this.map = {
-            free: '免费',
-            freeBackCard: '免费退卡',
-            cardPay: '刷卡',
-            cardOther: '刷卡其他',
-            cardReplenish: '刷卡补交',
-            cardGroup: '刷集团卡',
-            cardGroupOther: ' 刷集团卡其他',
-            cardGroupReplenish: '刷集团卡补交',
-            cardHand: '手持机刷卡',
-            cardHandReplenish: '手持机刷卡补交',
-            noPay: '未付款',
-            noPayReplenish: '未付款补交',
-            cash: '现金',
-            cashRecharge: '现金充值',
-            cashOther: '现金其他',
-            cashCard: '现金发卡',
-            cashReplenish: '现金补交',
-            cashBackCard: '现金退卡',
-            ticket: '赠券',
-            ticketRecharge: '赠券充值',
-            ticketOther: '赠券其他',
-            ticketCard: '赠券发卡',
-            ticketReplenish: '赠券补交',
-            ticketBackCard: '赠券退卡',
-            total: '合计'
-        };
+        this.limit = 10;       
         this.query = this.query.bind(this);   
     };
     componentDidMount() { this.query()}
@@ -54,7 +27,7 @@ export default class extends Component {
         page = page || this.state.page;
         let done;
         tool.ui.loading(handle => done = handle);
-        api.post('managerSearch', {
+        api.post('managerSearch1', {
             start_time:this.state.startdate,
             end_time:this.state.enddate,
             token:'token'.getData(),
@@ -63,27 +36,20 @@ export default class extends Component {
             done();
             if (ver && res) {
                 console.log(res)
-                this.setState({ result: res.result,list:res.result.list,count:res.result.count,page:page});
+                this.setState({result:res.result.info,list:res.result.list,count:res.result.count,page:page});
             }else{
                 handle()
             }
         },()=>done());
     }
     render() {
-        let arr = [],
-            result = this.state.result,
-            temp;
-        for (let k in this.map) {
-            temp = result[k] || {};
-            arr.push(
-                <tr key = {k}>
-                    <td onClick={() => this.setState({ show: true })}>{this.map[k]}</td>
-                    <td>{temp.amount || 0}</td>
-                    <td>{temp.real_amount || 0}</td>
-                    <td>{temp.work_number || 0}</td>
-                </tr>
-            );
-        } 
+        var arr = this.state.result.map((item,index) =><tr>
+          <td>{item.pay_type}</td>
+          <td>{item.amount}</td>
+          <td>{item.real_amount}</td>
+          <td>{item.work_number}</td>
+    }
+        </tr>)
         var list = this.state.list.map((item, index) => <tr key={'item'+index}>
             <td>{item.serialsn}</td>
             <td>{item.operator}</td>
@@ -100,7 +66,7 @@ export default class extends Component {
         </tr>
         )
         return (
-            <Window title='经理查询' onClose={this.props.closeView}>
+            <Window title='营业统计' onClose={this.props.closeView}>
                <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
                                 <div>操作员：<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
