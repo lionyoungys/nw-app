@@ -12,6 +12,7 @@
     width:872px;
     max-height:463px;
     background:#fff;
+    height:454px;
 }
 .waiting-list thead{
     width:872px;
@@ -62,7 +63,7 @@
 }
 .waiting-list tbody{
     width:872px;
-    height:auto;
+    height:430px;
     min-width:872px;
     max-height:430px;    
     display:block;
@@ -79,9 +80,7 @@
     height:auto;
     min-height:25px;
 }
-.waiting-list tbody tr:last-child{
-    border-bottom:none;
-}
+
 .waiting-list tbody tr td{
     height:auto;
     min-height:25px;

@@ -4,15 +4,19 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
+import Nodata from '../../UI/nodata'
+
 export default class extends Component {   
     constructor(props) {
         super(props); 
         this.overorder = ['预约单号','下单时间','衣物名称','件数','合计','客户信息','操作'],
-        this.state = {            
+        this.state = { 
+            nodatas:false,           
             overorderlist:[],
             page:1,
             count:0,
         };  
+        this.props.onRef(this);
         this.limit = 10;  
         this.query = this.query.bind(this);             
     };         
@@ -21,25 +25,37 @@ export default class extends Component {
         this.query();
     };  
     // 网络请求
-    query(page){
+    query(page, value){
+        value = value || '';
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
             mid:'mid'.getData(), 
             page:page,
-            limit:this.limit                    
+            limit:this.limit,
+            value:value,                    
         }
         console.log(params)
         api.post('off_thestocks',params, (res,ver) => {           
             if (ver && res) {
                 console.log(res); 
-                if(res.result.count>0){
+                if(res.result.order.length>0){
                     this.setState({  
                         count:res.result.count,                    
                         overorderlist:res.result.order,
-                        page:page
+                        page:page,
+                        nodatas:false
+
                     })
+                    this.props.callParent(res.result.count);
                 }else{
+                    this.setState({
+                        nodatas:true,
+                        count:0,
+                        overorderlist:[],
+                        page:1
+                    })
+                    this.props.callParent(res.result.count);
                     console.log('没有客户订单,敬请等待')
                 }             
             }
@@ -78,7 +94,8 @@ export default class extends Component {
                         {overorder}
                     </tr>
                     </thead>
-                    <tbody>                               
+                    <tbody> 
+                        {this.state.nodatas&&<Nodata />}                               
                         {overorderlist}
                     </tbody>
                 </table>

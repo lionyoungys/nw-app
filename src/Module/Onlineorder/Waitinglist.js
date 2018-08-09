@@ -4,16 +4,21 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
+import Nodata from '../../UI/nodata'
+
 export default class extends Component {   
     constructor(props) {
         super(props); 
         this.waiting = ['预约单号','下单时间','衣物名称','件数','合计','客户信息','操作'],
-        this.state = {      
+        this.state = {  
+              nodatas:false,    
               waitinglist:[],
               page:1,
               count:0,
               id:'',
+              number:this.props.value
         }; 
+        this.props.onRef(this);
         this.limit = 10;  
         this.query = this.query.bind(this);  
         this.take_waiting = this.take_waiting.bind(this); // 接单
@@ -24,27 +29,37 @@ export default class extends Component {
         this.query();
     };
     //网络请求     
-    query(page) {
+    query(page, value) {
         console.log(page);
+        value = value || '';
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
             // mid:'mid'.getData(),  
             page: page, 
-            limit: this.limit ,                  
+            limit: this.limit ,  
+            value:value,                
         }
         console.log(params)
-        api.post('pending_order',params, (res,ver) => {  
-            console.log(ver)         
+        api.post('pending_order',params, (res,ver) => { 
+            console.log('result', res);         
             if (ver && res) {
-                console.log(res); 
-                if(res.result.count>0){
+                if(res.result.order.length>0){
                     this.setState({  
                         count:res.result.count,                     
                         waitinglist:res.result.order,
                         page:page,
+                        nodatas:false,
                     })
+                    this.props.callParent(res.result.count);
                 }else{
+                    this.setState({
+                        nodatas:true,
+                        count:0,
+                        waitinglist:[],
+                        page:1,                      
+                    })
+                    this.props.callParent(res.result.count);
                     console.log('没有客户订单,敬请等待')
                 }             
             }
@@ -116,7 +131,8 @@ export default class extends Component {
                         {waiting}
                     </tr>
                     </thead>
-                    <tbody>                               
+                    <tbody>  
+                        {this.state.nodatas&&<Nodata />}                             
                         {waitinglist}
                     </tbody>
                 </table>

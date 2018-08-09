@@ -4,42 +4,78 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
+import Nodata from '../../UI/nodata'
+
 export default class extends Component {   
     constructor(props) {
         super(props); 
         this.outdoor = ['预约单号','下单时间','衣物名称','件数','合计','客户信息','操作'],
-        this.state = {            
+        this.state = {   
+            nodatas:false,         
             outdoorlist:[],
             page:1,
             count:0,
         };
+        this.props.onRef(this);
         this.limit = 10;  
-        this.query = this.query.bind(this);              
+        this.query = this.query.bind(this);   
+        this.outdoor_no = this.outdoor_no.bind(this); 
+        this.take_clothes = this.take_clothes.bind(this);  
+              
     };         
     // 显示已上门单列表  
     componentDidMount (){
         this.query() ;     
     }; 
+    // 取消预约
+    outdoor_no (e){
+      var id = e.target.dataset.id;
+      api.post('cancel_reservation',{
+        token:'token'.getData(),
+        oid:id
+      }, (res,ver) => {  
+        console.log('成功取消')        
+        if (ver) {
+            this.setState({outdoorlist:[]});
+            this.componentDidMount();     
+        }
+      })
+    }
+    take_clothes (e){
+        var id = e.target.dataset.id;
+        this.changeView({view:'clothes'})
+    }
     // 网络请求
-    query(page){
+    query(page, value){
+        value = value || '';
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
             mid:'mid'.getData(),  
             page:this.state.page,
-            limit:this.limit                   
+            limit:this.limit,
+            value:value,                    
         }
         console.log(params)
         api.post('have_door',params, (res,ver) => {           
             if (ver && res) {
                 console.log(res); 
-                if(res.result.count>0){
+                if(res.result.order.length>0){
                     this.setState({ 
                         count:res.result.count,                     
                         outdoorlist:res.result.order,
-                        page:page
+                        page:page,
+                        nodatas:false
                     })
+                    this.props.callParent(res.result.count);
                 }else{
+                    this.setState({
+                        nodatas:true,
+                        count:0,
+                        outdoorlist:[],
+                        page:1
+                    })
+                    this.props.callParent(res.result.count);
                     console.log('没有客户订单,敬请等待')
                 }             
             }
@@ -55,8 +91,8 @@ export default class extends Component {
             <td><span>共{item.count}件,约<i>￥{item.total}</i></span></td>
             <td index={index}><span>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
             <td>
-                <s>取消预约</s>
-                <s id={item.id}>已上门</s>
+                <s data-id={item.id} onClick = {this.outdoor_no}>取消预约</s>
+                <s data-id={item.id} onClick={this.take_clothes}>收衣</s>
             </td>
         </tr>
         )    
@@ -69,7 +105,8 @@ export default class extends Component {
                         {outdoor}
                     </tr>
                     </thead>
-                    <tbody>                               
+                    <tbody>   
+                        {this.state.nodatas&&<Nodata />}                             
                         {outdoorlist}
                     </tbody>
                 </table>

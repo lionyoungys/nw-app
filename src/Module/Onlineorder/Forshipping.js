@@ -4,47 +4,96 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page';
+import LayerBox from '../../UI/LayerBox';
+import Nodata from '../../UI/nodata'
 
 export default class extends Component {   
     constructor(props) {
         super(props); 
         this.forshipping = ['订单号','衣物编码','衣物名称','颜色','瑕疵','工艺加价','衣挂号','客户信息','操作'],
-        this.state = {            
+        this.state = { 
+            nodatas:false,           
             forshippinglist:[],
             page:1,
             count:0,
+            id:'',
         }; 
+        this.props.onRef(this);
         this.limit = 10;  
-        this.query = this.query.bind(this);             
+        this.query = this.query.bind(this); 
+        this.take_forshipping = this.take_forshipping.bind(this);            
     };         
     // 显示待配送列表  
     componentDidMount (){
         this.query();
         console.log(this.state.forshippinglist)
     };   
-    query(page) {
+    query(page, value) {
+        value = value || '';
         page = page || this.state.page;
         let params= {
+            oid:this.state.id,
             token:'token'.getData(), 
             mid:'mid'.getData(),
             page:this.state.page,
-            limit:this.limit                     
+            limit:this.limit,
+            value:value,                    
         }
         console.log(params)
         api.post('pending_distribution',params, (res,ver) => {           
             if (ver && res) {
                 console.log(res); 
-                if(res.result.count>0){
+                if(res.result.order.length>0){
                     this.setState({   
                         count:res.result.count,                   
                         forshippinglist:res.result.order,
-                        page:page
+                        page:page,
+                        nodatas:false,
                     })
+                    this.props.callParent(res.result.count);
                 }else{
+                    this.setState({
+                        nodatas:true,
+                        count:0,
+                        forshippinglist:[],
+                        page:1
+                    })
+                    this.props.callParent(res.result.count);
                     console.log('没有要配送的订单,敬请等待')
                 }             
             }
         })    
+    }
+
+    // 配送
+    take_forshipping (e){
+        var id = e.target.dataset.id;
+        this.setState({id:id})
+        tool.ui.error({title:'提示',msg:'该衣物是否将要配送？',button:'确定',callback:(close, event) => {
+            console.log(event)
+            if(event=='click'){
+            api.post('dispatching', {
+            token:'token'.getData(),
+            oid:this.state.id,
+            }, (res, ver) => {
+                if (ver) {
+                    tool.ui.success({callback:(close, event) => {
+                        close();
+                    }}); 
+                }else{
+                    console.log(res.msg);
+                    tool.ui.error({msg:'该衣物可能存在别的操作，暂时无法配送',callback:(close) => {
+                        close();
+                    }});                   
+                }
+                    close();              
+                    this.componentDidMount();
+                }
+            );
+         }else{
+             close();
+         }
+        }});       
     }
     render() {  
         var forshipping = this.forshipping.map((item,index) =><th key={'item'+index}>{item}</th>) 
@@ -57,7 +106,7 @@ export default class extends Component {
           <td>{item.work.map((item,index) =><span>{item.addition_remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.grid_num}</span>)}</td>
           <td index={index}><span>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
-          <td><span>订单状态</span><b>配送</b></td> 
+          <td><span>订单状态</span><b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
         </tr>
         )
         return ( 
@@ -71,6 +120,7 @@ export default class extends Component {
                    </tr>
                 </thead>
                 <tbody>
+                    {this.state.nodatas&&<Nodata />} 
                     {forshippinglist}                       
                 </tbody>
             </table>

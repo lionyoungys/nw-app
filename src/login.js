@@ -29,6 +29,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
+        console.log
         api.post('hot_upd', {version:nw.App.manifest.version}, (res, ver) => {
             console.log(res);
             if (ver && res.result.has_upd) {

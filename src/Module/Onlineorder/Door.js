@@ -4,6 +4,8 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
+import Nodata from '../../UI/nodata'
+
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -15,36 +17,66 @@ export default class extends Component {
               id:'',
               checked:this.props.checked,
               value:this.props.number,
+              nodatas:false,
         }; 
+        this.props.onRef(this);
         this.limit = 10;  
         this.query = this.query.bind(this);  
-        this.no_door = this.no_door.bind(this);              
+        this.no_door = this.no_door.bind(this);  
+        this.come_door = this.come_door.bind(this);            
     };         
     // 显示待上门单列表  
     componentDidMount (){        
         this.query();
     }; 
+    come_door (e){      
+        var id = e.target.dataset.id;        
+        api.post('come',{
+            token:'token'.getData(),
+            oid:id
+        }, (res,ver) => {  
+            console.log('已上门')        
+            if (ver) {
+                this.setState({doorlist:[],count:0,page:1});
+                this.componentDidMount();     
+            }
+        })  
+
+    }
     // 网络请求
-    query(page){
+    query(page, value){
         console.log(this.state.checked)
+        value = value || '';
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
             mid:'mid'.getData(),
             page:this.state.page,
-            limit:this.limit,            
+            limit:this.limit, 
+            value:value,             
         }
         console.log(params)
         api.post('come_door',params, (res,ver) => {           
             if (ver && res) {
                 console.log(res); 
-                if(res.result.count>0){
+                if(res.result.order.length>0){
                     this.setState({  
                         count:res.result.count,                    
                         doorlist:res.result.order,
-                        page:page
+                        page:page,
+                        nodatas:false,
+
                     })
+                    this.props.callParent(res.result.count);
                 }else{
+                    this.setState({
+                        nodatas:true,
+                        count:0,  
+                        doorlist:[],  
+                        page:1,
+                        
+                    })
+                    this.props.callParent(res.result.count);
                     console.log('没有客户订单,敬请等待')
                 }             
             }
@@ -52,15 +84,14 @@ export default class extends Component {
     } 
     // 取消预约
     no_door (e){
-        console.log(1)
-        var id = e.target.dataset.id;
-        this.setState({id:id})
-        let params={
+        var id = e.target.dataset.id; 
+        console.log(id)       
+        api.post('cancel_reservation',
+          {
             token:'token'.getData(),
-            oid:id
-        }
-        console.log(params)
-        api.post('cancel_reservation',params, (res,ver) => {  
+            oid:id,
+          },
+        (res,ver) => {  
             console.log(ver)         
             if (ver && res) {
                 console.log('成功取消')
@@ -90,7 +121,7 @@ export default class extends Component {
             <td index={index}><span>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/>地址：{item.work[0].address}</span></td>
             <td>
                 <s data-id={item.id} onClick = {this.no_door}>取消预约</s>
-                <s>待上门</s>
+                <s data-id={item.id} onClick = {this.come_door}>已上门</s>
             </td>
         </tr>
         )    
@@ -103,7 +134,8 @@ export default class extends Component {
                         {door}
                     </tr>
                     </thead>
-                    <tbody>                               
+                    <tbody> 
+                        {this.state.nodatas&&<Nodata />}                              
                         {doorlist}
                     </tbody>
                 </table>
