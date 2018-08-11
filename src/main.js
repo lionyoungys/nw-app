@@ -11,7 +11,7 @@ import './Event';
 import './main.css';
 import './UI/base.css';
 
-//EventApi.win.showDevTools();
+EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -37,13 +37,11 @@ class Main extends Component {
         EventApi.win.on('maximize', () => this.setState({max:true}));
         EventApi.win.on('minimize', () => this.setState({min:true}));
     }
-
     componentDidCatch(error) {
         console.log(error);
         this.setState({view:null});
         tool.ui.error({msg:'当前界面出了些状况，暂时无法使用！', callback:close => close()});
-    }
-    
+    }   
     //路由跳转方法
     changeView(e) {
         let view = null,    //视图

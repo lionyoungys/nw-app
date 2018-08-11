@@ -108,8 +108,7 @@ export default class extends Component {
                 var params = {
                     sn:data.ordersn,
                     items:JSON.stringify(data.work),
-                    put_codes:JSON.stringify(codes),
-                    
+                    put_codes:JSON.stringify(codes),                   
                     total:data.total,
                     dis_amount:data.dis_amount,
                     amount:data.amount,

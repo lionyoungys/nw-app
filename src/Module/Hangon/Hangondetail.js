@@ -65,7 +65,9 @@ export default class extends Component {
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({clothnums:res.result.list,clothnum:res.result.list.typeArray('number')})
+                this.setState({clothnums:res.result.list,clothnum:res.result.list.typeArray('number'),clothindex:0})
+                console.log('ref', this.input);
+                this.input.setState({selected:null});
             }else{
                 console.log(res)
             }
@@ -95,6 +97,7 @@ export default class extends Component {
                );
    }
     render() {
+        console.log('ll', this.state.clothnum);
         var arr = ['衣物编码','名称','品牌','颜色','瑕疵','洗后预估','衣挂号','交活定期','状态'].map((item,index) =><span key={'item'+index} >{item}</span>);
         var count = [this.props.data.clothing_number,
             this.props.data.clothing_name,
@@ -120,7 +123,7 @@ export default class extends Component {
                       <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick} selected={this.props.data.grid_num.split('-')[0]}/>
                    </div>
                    <div className="Hangon-right-select">
-                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]}/>
+                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]} ref={input => this.input = input}/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button><button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
                 </div>

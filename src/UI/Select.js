@@ -39,6 +39,8 @@ export default class extends React.Component {
         this.setState({minWidth:68+'px'});
     }
 
+
+
     handleChange(e) {
         let value = e.target.innerText,
             dataValue = e.target.dataset.value;
@@ -76,14 +78,14 @@ export default class extends React.Component {
             if ('string' === typeof propsOption[i]) {
                 option.push(
                     <div
-                        key={propsOption[i] + i}
+                        // key={propsOption[i] + i}
                         onClick={this.handleChange}
                     >{propsOption[i]}</div>
                 );
             } else if ('object' === typeof propsOption[i] && null !== propsOption[i]) {
                 option.push(
                     <div
-                        key={propsOption[i].key}
+                        // key={propsOption[i].key}
                         data-value={propsOption[i].key}
                         onClick={this.handleChange}
                     >{propsOption[i].value}</div>
