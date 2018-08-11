@@ -2,7 +2,6 @@
  * 新增组界面
  * @author ran chong
  */
-
 import React, { Component } from 'react';
 import './AddGroup.css';
 import Window from '../../UI/Window';
@@ -10,18 +9,15 @@ export default class extends Component {
     constructor(props) {
         super(props);
     };
-    render() {
-        
+    render() {        
         return (
-            <Window title='新增组' onClose={this.props.closeView}>
-               
+            <Window title='新增组' onClose={this.props.closeView}>              
                 <div id="addGroup-srarch">
                     <span>组名称:</span>
                     <input  type='text'/>
                     <button type='button' className='e-btn sureBtn'>确认</button>
                 </div>
-                <div id = 'addGroup-content'>
-                   
+                <div id = 'addGroup-content'>                  
                     <div className ='addGroup-content-cell'>
                         <div className='addGroup-content-cell-content'>
                             <ul>
@@ -36,7 +32,6 @@ export default class extends Component {
                             </ul>
                         </div>  
                     </div>
-
                     <div className='addGroup-content-cell'>
                         <div className='addGroup-content-cell-content'>
                             <ul>
@@ -51,7 +46,6 @@ export default class extends Component {
                             </ul>
                         </div>
                     </div>
-
                     <div className='addGroup-content-cell'>
                         <div className='addGroup-content-cell-content'>
                             <ul>

@@ -1,6 +1,6 @@
 {
   "name": "main",
-  "version": "3.0.912",
+  "version": "3.0.916",
   "description": "nw app",
   "main": "login.html",
   "repository": "none",
@@ -12,7 +12,7 @@
     "min_width": 600,
     "min_height": 450,
     "frame": false,
-    "show": false,
+    "show":false,
     "new_instance": true
   },
   "mainWindow": {

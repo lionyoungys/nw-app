@@ -435,14 +435,28 @@ export default class extends Component {
         );
         let printer = 'clean_tag_printer'.getData();
         if (printer) {
-            let len = this.state.code_arr.length;
+            let code_arr = this.state.code_arr
+            ,   len = code_arr.length;
             for (let i = 0;i < len;++i) {
-                EventApi.print('code', {
-                    sn:this.state.code_arr[i].clothing_number, 
-                    name:this.state.code_arr[i].clothing_name, 
-                    color:this.state.code_arr[i].clothing_color,
-                    number:this.state.code_arr[i].grid_num
+                EventApi.print('code2', {
+                    logo_name:'mname'.getData(), // 衣物店的名称
+                    sn:code_arr[i].clothing_number,  //衣物编码
+                    name:code_arr[i].clothing_name,
+                    color:code_arr[i].clothing_color,
+                    service:'',
+                    reark:code_arr[i].remark,
+                    forecast:code_arr[i].forecast,
+                    number:code_arr[i].grid_num, // 衣挂号
+                    time:code_arr[i].deal_time, // 取衣时间
+                    user_name:this.state.name,
+                    tell:this.state.phone,
                 }, printer);
+                // EventApi.print('code', {
+                //     sn:this.state.code_arr[i].clothing_number, 
+                //     name:this.state.code_arr[i].clothing_name, 
+                //     color:this.state.code_arr[i].clothing_color,
+                //     number:this.state.code_arr[i].grid_num
+                // }, printer);
             }
         }
     }

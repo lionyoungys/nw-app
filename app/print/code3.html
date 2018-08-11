@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>水洗条码打印</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        body{
+            height:2cm;
+            display: -webkit-flex;
+            display: flex;
+            align-items:center;
+            width:11cm;
+            overflow: hidden;
+        }
+        #container{
+            width:11cm;
+            padding-top: .1cm;
+            height:1.9cm;
+            overflow: hidden;
+            display: -webkit-flex;
+            /* display: flex; */
+            /* justify-content: center; */
+            font-size:10px;
+        }
+        .left{
+            width:4cm;
+            height:2cm;
+            float:left;
+            margin-left:1cm;
+            margin-right:0.2cm;
+        }
+        #logo_name{
+            margin-top:0.1cm;
+            font-size:12px;
+        } 
+        .right{
+            width:auto;
+            height:2cm;
+            float: left;
+        } 
+        .right span{          
+            width:auto;  
+            line-height:-1cm;  
+            display:inline-block;
+            height:auto;  
+            font-size:10px;
+            font-weight:bold;      
+        }  
+        img{
+            height:1cm;
+            width:4cm;
+            margin:0;
+        }   
+    </style>
+</head>
+<body>
+    <div id="container" onclick="win_print()">
+        <div class="left">
+            <span id="logo_name">荣仔的洗衣店</span>
+            <img id="code"/>
+            <span id="sn">254875412563</span>
+        </div>
+        <div class="right">
+            <span id="name">外套 粉色 干洗</span><br/>
+            <span id="xiaci">瑕疵：污渍</span><br/><span id="xihou">洗后预估：发白</span><br/>           
+            <span id="number">衣挂号：A-52</span>
+            <span id="time">取衣时间：2018-05-21</span><br/>
+            <span id="user">客户：范叶荣</span>
+            <span id="tell">电话：18310963932</span>           
+        </div>
+    </div>
+    <script src="JsBarcode.min.js"></script>
+    <script src="common.js"></script>
+    <script>
+        //let win = nw.Window.get();
+        //win.showDevTools();
+        _.init(function() {
+            _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
+              _.barcode('#code', _.GET.sn);
+            //  _.inner('#logo_name', _.GET.logo_name);
+            //  _.inner('#sn', _.GET.sn);                        
+            //  _.inner('#name', _.GET.name + ' ' + _.GET.color+ ' ' + _.GET.service);
+            //  _.inner('#xiaci','瑕疵：' +_.GET.reark);
+            //  _.inner('#xihou','洗后预估：' +_.GET.forecast);
+            //  _.inner('#number', '衣挂号：' + _.GET.number);
+            //  _.inner('#time', '时间：' + _.GET.time);
+            //  _.inner('#user', '客户：' + _.GET.user_name);
+            //  _.inner('#tell', '电话：' + _.GET.tell);
+        });
+        function win_print() {
+            win.print({
+                autoprint:true,
+                printer:localStorage.getItem('clean_tag_printer'),
+                headerFooterEnabled:false,
+                marginsType:3,
+                mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+            });
+        }
+    </script>
+</body>
+</html>
