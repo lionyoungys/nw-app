@@ -9,36 +9,41 @@
     <style>
         body{
             height:2cm;
-            display: -webkit-flex;
-            display: flex;
-            align-items:center;
+            /* display: -webkit-flex;
+            display: flex; */
+            /* align-items:center; */
             width:11cm;
             overflow: hidden;
         }
         #container{
-            width:11cm;
-            padding-top: .2cm;
-            height:1.9cm;
+            width:11cm;            
+            height:1.6cm;
             overflow: hidden;
-            display: -webkit-flex;
+            /* display: -webkit-flex;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box; */
+            margin-top: .4cm;
             /* display: flex; */
+            /* align-items: flex-end; */
             /* justify-content: center; */
-            font-size:10px;
+            font-size:9px;
         }
         .left{
             width:4cm;
-            height:2cm;
+            height:1.6cm;
             float:left;
-            margin-left:1cm;
+            margin-left:.7cm;
             margin-right:0.2cm;
         }
         #logo_name{
             margin-top:0.1cm;
-            font-size:12px;
+            font-size:9px;           
+            width:4cm;
+            text-align:center;
         } 
         .right{
             width:auto;
-            height:2cm;
+            height:1.6cm;
             float: left;
         } 
         .right span{          
@@ -46,14 +51,27 @@
             line-height:-1cm;  
             display:inline-block;
             height:auto;  
-            font-size:10px;
+            font-size:9px;
             font-weight:bold;      
         }  
         img{
-            height:1cm;
+            height:.6cm;
             width:4cm;
             margin:0;
-        }   
+            display:block;
+            padding: 0;
+        } 
+        #code{
+            height:.6cm;
+            width:4cm;
+            margin:0;
+            display:block;
+            padding: 0; 
+        } 
+        #sn{
+            text-align:center;
+            width:4cm;
+        } 
     </style>
 </head>
 <body>
@@ -64,8 +82,8 @@
             <span id="sn"></span>
         </div>
         <div class="right">
-            <span id="name"></span><br/>
-            <span id="xiaci"></span><br/><span id="xihou"></span><br/>           
+            <span id="name"></span>
+            <span id="xiaci"></span><br/>           
             <span id="number"></span>
             <span id="time"></span><br/>
             <span id="user"></span>
@@ -75,20 +93,19 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-        //let win = nw.Window.get();
-        //win.showDevTools();
+         //let win = nw.Window.get();
+         //win.showDevTools();  
         _.init(function() {
             _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
              _.barcode('#code', _.GET.sn);
              _.inner('#logo_name', _.GET.logo_name);
              _.inner('#sn', _.GET.sn);                        
              _.inner('#name', _.GET.name + ' ' + _.GET.color+ ' ' + _.GET.service);
-             _.inner('#xiaci','瑕疵：' +_.GET.reark);
-             _.inner('#xihou','洗后预估：' +_.GET.forecast);
-             _.inner('#number', '衣挂号：' + _.GET.number);
-             _.inner('#time', '取衣时间：' + _.GET.time);
-             _.inner('#user', '客户：' + _.GET.user_name);
-             _.inner('#tell', '电话：' + _.GET.tell);
+             _.inner('#xiaci','瑕疵:' +_.GET.reark);
+             _.inner('#number','衣挂号:' + _.GET.number);
+             _.inner('#time','取衣时间:' + _.GET.time);
+             _.inner('#user','客户:' + _.GET.user_name);
+             _.inner('#tell','电话:' + _.GET.tell);
         });
         function win_print() {
             win.print({

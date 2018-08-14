@@ -102,7 +102,6 @@ export default class extends Component {
                         grid_num:obj.grid_num,
                         sign:obj.sign,
                         remark:obj.remark,
-                        forecast:obj.forecast
                     };
                 });
                 var params = {

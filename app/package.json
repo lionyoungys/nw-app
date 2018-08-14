@@ -1,6 +1,12 @@
 {
   "name": "main",
+<<<<<<< .mine
   "version": "3.0.919",
+||||||| .r919
+  "version": "3.0.916",
+=======
+  "version": "3.0.920",
+>>>>>>> .r921
   "description": "nw app",
   "main": "login.html",
   "repository": "none",
