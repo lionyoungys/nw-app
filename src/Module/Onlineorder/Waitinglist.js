@@ -100,8 +100,8 @@ export default class extends Component {
     render() {  
         var waiting = this.waiting.map((item,index) =><th key={'item'+index}>{item}</th>);      
         var waitinglist = this.state.waitinglist.map((item,index) =><tr key={'item'+index}>
-            <td><span>{item.ordersn}</span></td>
-            <td><span>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</span></td>
+            <td>{item.ordersn}</td>
+            <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
             <td>{
                item.work.map((item,index)=>
                 <span>{item.clothing_name}</span>
@@ -114,8 +114,8 @@ export default class extends Component {
                )
             }
             </td>
-            <td><span>共{item.count}件,约<i>￥{item.total}</i></span></td>
-            <td><span>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
+            <td>共{item.count}件,约<i>￥{item.total}</i></td>
+            <td>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</td>
             <td>
                 <s data-id={item.id} onClick = {this.no_waiting} >取消预约</s>
                 <s data-id={item.id} onClick = {this.take_waiting} >接单</s>

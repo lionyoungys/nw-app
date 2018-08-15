@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
+import App from '../clothes/App'
 import Nodata from '../../UI/nodata'
 
 export default class extends Component {   
@@ -15,6 +16,10 @@ export default class extends Component {
             outdoorlist:[],
             page:1,
             count:0,
+            app:false,
+            phone:'',
+            id:'',
+            name:'',
         };
         this.props.onRef(this);
         this.limit = 10;  
@@ -43,7 +48,15 @@ export default class extends Component {
     }
     take_clothes (e){
         var id = e.target.dataset.id;
-        this.changeView({view:'clothes'})
+        var phone = e.target.dataset.phone;
+        var name = e.target.dataset.name;
+        console.log(id +'...'+phone+'...'+ name);
+        this.setState({
+            id:id,
+            phone:phone,
+            name:name,
+        })
+        this.setState({app:true})
     }
     // 网络请求
     query(page, value){
@@ -84,15 +97,15 @@ export default class extends Component {
     render() {  
         var outdoor = this.outdoor.map((item,index) =><th key={'item'+index}>{item}</th>);       
         var outdoorlist = this.state.outdoorlist.map((item,index) =><tr key={'item'+index} >
-            <td><span>{item.ordersn}</span></td>
-            <td><span>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</span></td>
+            <td>{item.ordersn}</td>
+            <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
             <td>{item.work.map((item,index)=> <span>{item.clothing_name}</span>)}</td>
             <td>{item.work.map((item,index) =><span>{item.work_number}</span>)}</td>
-            <td><span>共{item.count}件,约<i>￥{item.total}</i></span></td>
-            <td index={index}><span>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
+            <td>共{item.count}件,约<i>￥{item.total}</i></td>
+            <td index={index}>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</td>
             <td>
                 <s data-id={item.id} onClick = {this.outdoor_no}>取消预约</s>
-                <s data-id={item.id} onClick={this.take_clothes}>收衣</s>
+                <s data-id={item.id} onClick={this.take_clothes} data-phone={item.work[0].user_mobile} data-name={item.work[0].user_name}>收衣</s>
             </td>
         </tr>
         )    
@@ -111,7 +124,12 @@ export default class extends Component {
                     </tbody>
                 </table>
             </div>
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+            {
+                this.state.app
+                &&
+                <App   id={this.state.id} phone={this.state.phone} name={this.state.name} closeView={() => this.setState({app:false})}/>
+            }
+            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>            
         </div>         
         )           
     };

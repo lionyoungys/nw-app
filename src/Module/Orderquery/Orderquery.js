@@ -47,7 +47,7 @@ export default class extends Component {
             token: 'token'.getData(),
             page: page, 
             limit: this.limit,
-            ostatus:this.state.ostatus_name=='下单'?'0':this.state.ostatus_name=='确认订单'?'1':this.state.ostatus_name=='已收衣'?'2':this.state.ostatus_name=='清洗中'?'3':this.state.ostatus_name=='完成清洗'?'4':this.state.ostatus_name=='送件完成'?'5':this.state.ostatus_name=='烘干中'?'50':this.state.ostatus_name=='熨烫中'?'51':this.state.ostatus_name=='质检中'?'52':this.state.ostatus_name=='已上挂'?'91':this.state.ostatus_name=='订单完成'?'99':this.state.ostatus_name=='临时订单'?'100':this.state.ostatus_name=='用户取消'?'101':this.state.ostatus_name=='店铺取消'?'102':'',
+            ostatus:this.state.ostatus_name=='待接单'?'0':this.state.ostatus_name=='待上门'?'1':this.state.ostatus_name=='已上门'?'2':this.state.ostatus_name=='洗护中'?'3':this.state.ostatus_name=='完成清洗'?'4':this.state.ostatus_name=='送件完成'?'5':this.state.ostatus_name=='烘干中'?'50':this.state.ostatus_name=='熨烫中'?'51':this.state.ostatus_name=='质检中'?'52':this.state.ostatus_name=='已上挂'?'91':this.state.ostatus_name=='已完成'?'99':this.state.ostatus_name=='临时订单'?'100':this.state.ostatus_name=='已取消'?'101':this.state.ostatus_name=='已拒单'?'102':'',
             value:this.state.number,
             is_online:this.state.online_name=='线下'?'0':this.state.online_name=='线上'?'1':''
         }, (res,ver) => {           
@@ -102,14 +102,12 @@ export default class extends Component {
                         grid_num:obj.grid_num,
                         sign:obj.sign,
                         remark:obj.remark,
-                        forecast:obj.forecast
                     };
                 });
                 var params = {
                     sn:data.ordersn,
                     items:JSON.stringify(data.work),
-                    put_codes:JSON.stringify(codes),
-                    
+                    put_codes:JSON.stringify(codes),                   
                     total:data.total,
                     dis_amount:data.dis_amount,
                     amount:data.amount,
@@ -142,14 +140,24 @@ export default class extends Component {
         let printer = 'clean_tag_printer'.getData();
         console.log(printer);
         if (printer) {
+            let text = this.state.orderquerylist[index].mname;
+            let name = this.state.orderquerylist[index].user_name;
+            let phone = this.state.orderquerylist[index].user_mobile;
             let items = this.state.orderquerylist[index].work
             ,   len = items.length;
             for (let i = 0;i < len;++i) {
-                EventApi.print('code', {
-                    sn:items[i].clothing_number, 
+                EventApi.print('code2', {
+                    logo_name:text, // 衣物店的名称
+                    sn:items[i].clothing_number,  //衣物编码
                     name:items[i].clothing_name,
                     color:items[i].clothing_color,
+                    service:items[i].addition_remark,
+                    reark:items[i].reark,
+                    forecast:items[i].forecast,
                     number:items[i].grid_num, // 衣挂号
+                    time:items[i].deal_time, // 取衣时间
+                    user_name:name,
+                    tell:phone,
                 }, printer);
             }
         }   

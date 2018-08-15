@@ -75,7 +75,6 @@ export default class extends Component {
             <td>{item.user_mobile}</td>
             <td>{item.time}</td>
         </tr>) 
-
         return (            
             <Window title='未付款统计' onClose={this.props.closeView}>
                 <div className="unpaidstatistics_data">

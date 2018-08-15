@@ -13,6 +13,6 @@
     overflow-x:auto;
 }
 #operating-div tbody{
-    overflow-x:hidden;
+    overflow-x:auto;
     max-height: 390px;
 }

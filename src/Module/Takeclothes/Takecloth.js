@@ -215,8 +215,9 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = this.state.discount || 100;
-        this.state.list[this.state.current].item.map(obj => {
+        ,   discount = this.state.discount || 100
+        ,   list = this.state.list;
+        list[this.state.current].item.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
                 (1 == obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
@@ -227,7 +228,7 @@ export default class extends Component {
             no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
         let gateway = object.gateway
-        ,   balance = this.state.balance;
+        ,   balance = this.state.payCard.balance || this.state.balance || 0;
         if ('undefined' !== typeof gateway) {
             if (0 == gateway) {
                 gateway = '会员卡支付';
@@ -242,16 +243,18 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
+        let user_data = list[0] || {user_name:'',user_mobile:'',item:{address:''}};
         let param = {
-            sn:this.state.list[this.state.current].ordersn,
-            items:JSON.stringify(this.state.list[this.state.current].item),
+            sn:list[this.state.current].ordersn,
+            items:JSON.stringify(list[this.state.current].item),
             total:total,
             dis_amount:dis_amount,
             amount:no_dis_amount,
             discount: discount,
             real_amount:amount,
-            name:this.state.user_name,
-            phone:this.state.user_mobile,
+            name:user_data.user_name,
+            phone:user_data.user_mobile,
+            uaddr:(user_data.item ? user_data.item.address : ''),
             addr:this.state.merchant.maddress,    //店铺地址
             mphone:this.state.merchant.phone_number,    //店铺电话
             ad:this.state.merchant.mdesc,    //店铺广告
@@ -262,6 +265,7 @@ export default class extends Component {
             gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         };
+        console.log(param);
         EventApi.print('order', param,'printer'.getData(),
             () => {
                 tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {

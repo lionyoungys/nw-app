@@ -98,14 +98,14 @@ export default class extends Component {
     render() {  
         var forshipping = this.forshipping.map((item,index) =><th key={'item'+index}>{item}</th>) 
         var forshippinglist = this.state.forshippinglist.map((item,index) =><tr>
-          <td><span>{item.ordersn}</span></td>
+          <td>{item.ordersn}</td>
           <td>{item.work.map((item,index) =><span>{item.clothing_number}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.clothing_name}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.clothing_color}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.addition_remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.grid_num}</span>)}</td>
-          <td index={index}><span>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</span></td>
+          <td index={index}>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</td>
           <td><span>订单状态</span><b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
         </tr>
         )

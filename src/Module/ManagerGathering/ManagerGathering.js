@@ -12,41 +12,17 @@ export default class extends Component {
         super(props);
         this.state = {
             show:false, 
-            result:{},
+            arr:[],
             amount:0,//余额  
             lastbalance:0,//上次余额
             gathering:'',
             balance:'',
             fit:0,
             remark:'',
-        }
-        this.map = {
-            free:'免费',
-            freeBackCard:'免费退卡',
-            cardPay:'刷卡',
-            cardOther:'刷卡其他',
-            cardReplenish:'刷卡补交',
-            cardGroup:'刷集团卡',
-            cardGroupOther:' 刷集团卡其他',
-            cardGroupReplenish:'刷集团卡补交',
-            cardHand:'手持机刷卡',
-            cardHandReplenish:'手持机刷卡补交',
-            noPay:'未付款',
-            noPayReplenish:'未付款补交',
-            cash:'现金',
-            cashRecharge:'现金充值',
-            cashOther:'现金其他',
-            cashCard:'现金发卡',
-            cashReplenish:'现金补交',
-            cashBackCard:'现金退卡',
-            ticket:'赠券',
-            ticketRecharge:'赠券充值',
-            ticketOther:'赠券其他',
-            ticketCard:'赠券发卡',
-            ticketReplenish:'赠券补交',
-            ticketBackCard:'赠券退卡',
-            total:'合计'
-        };
+            dateStartTime:'',
+            dateEndTime:'',
+
+        }        
         this.payment=this.payment.bind(this);
         this.onclose = this.onclose.bind(this);
     };
@@ -54,12 +30,15 @@ export default class extends Component {
         this.setState({show:false})
     }
     componentDidMount(){
-        api.post('managerGathering',{token:'token'.getData()}  , (res, ver, handle) => {
+        api.post('managerGathering1',{token:'token'.getData()}  , (res, ver, handle) => {
+            console.log(res)
             if (ver) {
                 this.setState({
-                    result:res.result,
+                    arr:res.result.info,
                     amount:res.result.total.amount,
-                    lastbalance:res.result.balance
+                    lastbalance:res.result.balance,                   
+                    dateStartTime:res.result.dateStartTime,
+                    dateEndTime:res.result.dateEndTime,
                 })                                                                                    
             }else{
                 handle();                
@@ -79,7 +58,7 @@ export default class extends Component {
           , (res, ver, handle) => {
                 if (ver) {
                     console.log(res)
-                    this.setState({result:res.result})                                                                                    
+                    this.setState({arr:res.result.info})                                                                                    
                 }else{
                     handle();                
                 }
@@ -88,25 +67,17 @@ export default class extends Component {
        
     }
     render() {
-        let arr = [],
-            result = this.state.result,   
-            temp;
-        for (let k in this.map) {
-            temp = result[k] || {};
-            arr.push(
-                <tr key={'item'+k}>
-                    <td >{this.map[k]}</td>
-                    <td>{temp.amount || 0}</td>
-                    <td>{temp.real_amount || 0}</td>
-                    <td>{temp.work_number || 0}</td>
-                </tr>
-            );
-        } 
+        var arr = this.state.arr.map((item,index) =><tr>
+            <td>{item.pay_type}{item.name}</td>
+            <td>{item.amount}</td>
+            <td>{item.real_amount}</td>
+            <td>{item.work_number}</td>
+        </tr>)
         return (
             <Window title='经理收款' onClose={this.props.closeView} height='494'>
                <div className="man-head">
                     <a>收款情况</a>   
-                    <a>统计时间：{this.state.result.dateStartTime} 至{this.state.result.dateEndTime}</a>                    
+                     <a>统计时间：{this.state.dateStartTime} 至{this.state.dateEndTime}</a>                     
                 </div>
                 {/* 表格部分 欠费衣物信息*/}               
                 <table className='ui-table-base ManagerGathering-tab'>
@@ -119,7 +90,7 @@ export default class extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {arr}
+                       {arr} 
                     </tbody>
                 </table>
                 <div className="manager_gathering_bottom">
