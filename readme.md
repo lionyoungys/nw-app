@@ -6,6 +6,7 @@ script-src               -->    扩展文件源码
 print                    -->    打印界面文件夹
 
 app                      -->    运行目录
+app/config.js            -->    项目配置常量
 app/package.json         -->    系统配置文件
 app/login.html           -->    登录界面
 app/main.html            -->    系统主界面
