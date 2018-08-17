@@ -38,7 +38,10 @@ export default class extends React.Component {
         this.callback = this.callback.bind(this);
     }
     componentDidMount() {
-        api.post('cardType', {token:token}, (res, ver,handle) => {
+        api.post('cardType', {
+            token:token,
+            limit:200
+        }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
                 this.setState({ types: res.result.cardsType.typeArray('card_type'), cards:res.result.cardsType});

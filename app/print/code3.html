@@ -77,17 +77,17 @@
 <body>
     <div id="container" onclick="win_print()">
         <div class="left">
-            <span id="logo_name">荣仔的洗衣店</span>
+            <span id="logo_name">测试店铺洗衣服</span>
             <img id="code"/>
-            <span id="sn">254875412563</span>
+            <span id="sn">8545896521458546</span>
         </div>
         <div class="right">
-            <span id="name">外套 粉色 干洗</span><br/>
-            <span id="xiaci">瑕疵：污渍</span><br/><span id="xihou">洗后预估：发白</span><br/>           
-            <span id="number">衣挂号：A-52</span>
-            <span id="time">取衣时间：2018-05-21</span><br/>
-            <span id="user">客户：范叶荣</span>
-            <span id="tell">电话：18310963932</span>           
+            <span id="name">外套 白色</span>
+            <span id="xiaci">污渍</span><br/>           
+            <span id="number">衣挂号:A-345</span>
+            <span id="time">取衣时间:2018-05-26</span><br/>
+            <span id="user">客户:谁谁谁</span>
+            <span id="tell">电话:28310963932</span>           
         </div>
     </div>
     <script src="JsBarcode.min.js"></script>
@@ -97,12 +97,11 @@
         //win.showDevTools();
         _.init(function() {
             _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
-              _.barcode('#code', _.GET.sn);
+              _.barcode('#code', '8547896325412652');
             //  _.inner('#logo_name', _.GET.logo_name);
             //  _.inner('#sn', _.GET.sn);                        
             //  _.inner('#name', _.GET.name + ' ' + _.GET.color+ ' ' + _.GET.service);
             //  _.inner('#xiaci','瑕疵：' +_.GET.reark);
-            //  _.inner('#xihou','洗后预估：' +_.GET.forecast);
             //  _.inner('#number', '衣挂号：' + _.GET.number);
             //  _.inner('#time', '时间：' + _.GET.time);
             //  _.inner('#user', '客户：' + _.GET.user_name);

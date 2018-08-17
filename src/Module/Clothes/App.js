@@ -438,6 +438,19 @@ export default class extends Component {
             let code_arr = this.state.code_arr
             ,   len = code_arr.length;
             for (let i = 0;i < len;++i) {
+                console.log({
+                    logo_name:'mname'.getData(), // 衣物店的名称
+                    sn:code_arr[i].clothing_number,  //衣物编码
+                    name:code_arr[i].clothing_name,
+                    color:code_arr[i].clothing_color,
+                    service:'',
+                    reark:code_arr[i].remark,
+                    forecast:code_arr[i].forecast,
+                    number:code_arr[i].grid_num, // 衣挂号
+                    time:code_arr[i].deal_time, // 取衣时间
+                    user_name:this.state.name,
+                    tell:this.state.phone,
+                });
                 EventApi.print('code2', {
                     logo_name:'mname'.getData(), // 衣物店的名称
                     sn:code_arr[i].clothing_number,  //衣物编码
@@ -470,7 +483,7 @@ export default class extends Component {
         }});
     }
     cost(isTake) {
-        /**"user_name": "姓名",
+    /**"user_name": "姓名",
 	"user_mobile": "手机号",
 	"clothing_number": "衣物编码",
 	"clothing_id": "衣物id",

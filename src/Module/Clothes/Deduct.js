@@ -42,7 +42,7 @@ export default class extends Component {
             }
         );
     }
-    M1Read() {
+    M1Read(value) {
         let obj = {};
         if ('string' === typeof value && '' != value) {
             obj.number = value;

@@ -334,7 +334,13 @@
     margin: 0 10px;
     border: 1px solid #8db2e3;
 }
-.clothes-user-main-body{max-height:360px;overflow: auto}
+.clothes-user-main-body{
+    max-height:360px;
+    overflow: auto;  
+}
+.clothes-user-main-body::-webkit-scrollbar{
+    width:0px;
+}
 .clothes-user-main>:first-child{
     display: -webkit-flex;
     display: flex;
