@@ -11,3 +11,4 @@ app/login.js
 *.log
 *.zip
 printer_examples
+chn-escpos-master

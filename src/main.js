@@ -11,7 +11,7 @@ import './Event';
 import './main.css';
 import './UI/base.css';
 
-//EventApi.win.showDevTools();
+EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -44,6 +44,21 @@ class Main extends Component {
     }   
     //路由跳转方法
     changeView(e) {
+        let printer = tool.include('printer')
+        ,   template = "N\nS4\nD15\nq400\nR\nB20,10,0,1,2,30,173,B,\"barcode\"\nP0\n"
+        ,   barcode_text = 'this_is_barcode';
+        console.log(printer.getSupportedPrintFormats());
+        console.log(printer.getDefaultPrinterName());
+        printer.printDirect({data:template.replace(/barcode/, barcode_text) // or simple String: "some text"
+            //, printer:'Foxit Reader PDF Printer' // printer name, if missing then will print to default printer
+            , type: 'RAW' // type: RAW, TEXT, PDF, JPEG, .. depends on platform
+            , printer: printer.getDefaultPrinterName()
+            , success:function(jobID){
+                console.log("sent to printer with ID: "+jobID);
+                console.log("printed: "+barcode_text);
+            }
+            , error:function(err){console.log(err);}
+        });
         let view = null,    //视图
             param = null,    //视图携带参数
             eventName = null;
