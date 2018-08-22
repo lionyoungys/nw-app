@@ -33,7 +33,6 @@ export default class extends Component {
             grid:[],
             grids:[],
             page: 1,
-
             catetype_index: 0,
             item_name: '',//衣物名称
             cate_name:'',//衣物类别
@@ -427,7 +426,7 @@ export default class extends Component {
                     <Window title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>
