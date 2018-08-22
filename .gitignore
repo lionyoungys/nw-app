@@ -10,3 +10,4 @@ app/login.js
 *.sql
 *.log
 *.zip
+printer_examples
