@@ -53,7 +53,7 @@ src/Module下界面组件的继承属性
 param:携带参数
 
 ####
-生产环境软件同级目录须安装的node扩展:node-adodb, request, request-progress, ms, ffi, ref, text-encoding
+生产环境软件同级目录须安装的node扩展:node-adodb, request, request-progress, ms, ffi, ref, text-encoding, printer
 解决windows xp 下ffi扩展找不到的问题:在node_modules\ffi\src\win32-dlfcn.cc文件中，将里面的地96行和第99行的两行代码，对应的代码应该是：
      errorMode = GetErrorMode();  
      SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
