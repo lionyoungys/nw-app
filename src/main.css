@@ -33,6 +33,11 @@ table{border-collapse: collapse}
     box-sizing: border-box;
     background-color: #f5f5f5;
     padding-top: 108px;
+    overflow-y:auto;
+    overflow-x:hidden;  
+}
+.main-left::-webkit-scrollbar{
+    width:0;
 }
 .main-title{    /* 界面标题部分样式 */
     -webkit-app-region: drag;    /*窗口可移动*/
@@ -186,6 +191,14 @@ table{border-collapse: collapse}
 .main-left-menu>div:last-child>.main-member-search{background-image: url(img/main-member-search.png)}
 .main-left-menu>div:last-child>.main-income-today{background-image: url(img/main-income-today.png)}
 .main-left-menu>div:last-child>.main-open-case{background-image: url(img/main-open-case.png)}
+.main-left-menu>div:last-child>.main-laundry{background-image: url(img/main-laundry.png)}
+.main-left-menu>div:last-child>.main-factory{background-image: url(img/main-factory.png)}
+.main-left-menu>div:last-child>.main-clearn{background-image: url(img/main-clearn.png)}
+.main-left-menu>div:last-child>.main-hot{background-image: url(img/main-hot.png)}
+.main-left-menu>div:last-child>.main-ironing{background-image: url(img/main-ironing.png)}
+.main-left-menu>div:last-child>.main-quality{background-image: url(img/main-quality.png)}
+.main-left-menu>div:last-child>.main-outfactory{background-image: url(img/main-outfactory.png)}
+
 .main-left-menu>div:last-child>div:hover{
     background-color: #c3e3f9;
     border: 1px solid #6995c1;

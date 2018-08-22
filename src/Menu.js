@@ -119,15 +119,28 @@ const nav = [
 //左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
 const leftMenu = [
     {
-        value:'常用任务', 
+        value:'前台业务', 
         options:[
-            {value:'线上订单', class:'main-clothes', view:'onlineorder'},
+            // {value:'线上订单', class:'main-clothes', view:'onlineorder'},
             {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
             {value:'取衣',class:'main-take',view:'take_clothes', id: 9},
-            {value:'上挂',class:'main-put-on',view:'hangon', id: 8},
-            {value:'商品销售',class:'main-sell-goods',view:'commodity_sales', id: 10},
+            // {value:'上挂',class:'main-put-on',view:'hangon', id: 8},
+            // {value:'商品销售',class:'main-sell-goods',view:'commodity_sales', id: 10},
             {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
-            {value:'充值',class:'main-recharge',view:'recharge', id: 24}
+            {value:'充值',class:'main-recharge',view:'recharge', id: 24},
+        ]
+    },
+    {
+        value:'洗护管理', 
+        options:[           
+            {value:'送洗',class:'main-laundry',view:null, id: 25},
+            {value:'入厂',class:'main-factory',view:null, id: 26},
+            {value:'清洗',class:'main-clearn',view:null, id: 27},
+            {value:'烘干',class:'main-hot',view:null, id: 28},
+            {value:'熨烫',class:'main-ironing',view:null, id: 29},
+            {value:'质检',class:'main-quality',view:null, id: 30},
+            {value:'上挂',class:'main-put-on',view:'hangon', id: 8},
+            {value:'出厂',class:'main-outfactory',view:null, id: 31},
         ]
     },
     {

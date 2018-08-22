@@ -20,7 +20,11 @@ class Main extends Component {
             min:false,
             isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
-            param:null    //视图路由携带参数
+            param:null,   //视图路由携带参数
+            nav1:'none',
+            nav2:'none',
+            nav3:'none',
+            nav4:'none',
         }
         this.changeView = this.changeView.bind(this);    //界面跳转方法
     }
@@ -158,7 +162,7 @@ class MainLeftMenu extends Component {
     render() {
         let menuList = leftMenu.map(obj => 
             <div key={obj.value} className='main-left-menu'>
-                <div>{obj.value}</div>
+                <div onclick={this.navclick}>{obj.value}</div>
                 <div>
                     {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
                 </div>
