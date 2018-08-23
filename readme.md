@@ -69,5 +69,3 @@ node-pre-gyp rebuild --runtime=node-webkit --target=0.14.7 --target_arch=ia32
 https://blog.csdn.net/x356982611/article/details/50386824
 ########修改nw.exe的图标
 下载 Resource Hacker ,导入nw.exe文件，打开icon，选择替换的图标
-
-
