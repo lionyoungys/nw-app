@@ -10,6 +10,8 @@ import './Api';
 import './Event';
 import './main.css';
 import './UI/base.css';
+import './Elem/App.css';
+
 
 EventApi.win.showDevTools();
 class Main extends Component {
@@ -21,12 +23,9 @@ class Main extends Component {
             isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
             param:null,   //视图路由携带参数
-            nav1:'none',
-            nav2:'none',
-            nav3:'none',
-            nav4:'none',
+            
         }
-        this.changeView = this.changeView.bind(this);    //界面跳转方法
+        this.changeView = this.changeView.bind(this);    //界面跳转方法        
     }
     
     componentDidMount() {
@@ -158,12 +157,21 @@ class MainNav extends Component {
 class MainLeftMenu extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            nav1:'none',  //隐藏子级
+            nav2:'block',  // 显示子级
+        };
+        this.navclick = this.navclick.bind(this); // 绑定点击左侧导航事件
+    }
+    navclick (e){
+        var index = e.target.dataset.index;
+        console.log(index);        
     }
     render() {
-        let menuList = leftMenu.map(obj => 
+        let menuList = leftMenu.map((obj,index) => 
             <div key={obj.value} className='main-left-menu'>
-                <div onclick={this.navclick}>{obj.value}</div>
-                <div>
+                <div onClick = {this.navclick} data-index={index} data-item={obj.value}>{obj.value}</div>
+                <div data-id={index}>
                     {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
                 </div>
             </div>

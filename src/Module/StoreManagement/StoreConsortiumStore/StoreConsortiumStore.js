@@ -71,13 +71,9 @@ export default class extends Component {
                             <td className='store_management_assShop_table_add'>地址</td>
                             <td className='store_management_assShop_table_phone'>手机</td>
                             <td className='store_management_assShop_table_hamdle'>删除</td>
-                        </tr>
-                        
-                        
+                        </tr>                                             
                     </tbody>
                 </table>
-                
-
             </div> 
             {/*联营列表  */}
             <div className='store_management_content_associatedShop_applyList'>

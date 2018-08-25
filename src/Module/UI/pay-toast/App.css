@@ -1,0 +1,51 @@
+.pay-toast{
+    width: 400px;
+    height: 300px;
+    border: 1px solid #aec9d6;
+    border-radius: 10px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;left: 50%;
+    margin: -150px 0 0 -200px;
+    overflow: hidden;
+}
+.pay-toast>.m-close{position: absolute;top: 10px;right: 10px;}
+.pay-toast>div:first-of-type{
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    color: #537185;
+    font-size: 18px;
+    background: linear-gradient(#abdcf2, #d4ecfa);
+}
+
+.pay-toast>.card-verify{margin: 40px 0;text-align: center;}
+
+.pay-toast>.sms-code{text-align: center;}
+.pay-toast>.sms-code>input[type=text]{
+    height: 36px;
+    line-height: 36px;
+    width: 140px;
+}
+.pay-toast>.sms-code>span{
+    cursor: pointer;
+    color: #3596e3;
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+}
+
+.pay-toast>.special-verify{
+    margin: 20px 0;text-align: center;
+}
+.pay-toast>.special-amount{text-align: center;margin-bottom: 20px}
+.pay-toast>.special-amount>input[type=text]{
+    height: 36px;
+    line-height: 36px;
+    width: 140px;
+}
+.pay-toast>.special-amount>span{
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+}

@@ -1,0 +1,32 @@
+.item-cost{
+    width: 260px;
+    height: 150px;
+    border: 1px solid #3596e3;
+    display: inline-block;
+    border-radius: 5px;
+}
+.item-cost>div{padding: 0 10px;}
+.item-cost>:first-child{
+    background: #3596e3;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+}
+.item-cost>:nth-child(2),
+.item-cost>:nth-child(3),
+.item-cost>:last-child{
+    margin-top: 10px;
+    display: -webkit-flex;display: flex;
+    height: 26px;
+    line-height: 26px;
+    font-size: 14px;
+}
+.item-cost>:nth-child(2)>:first-child,
+.item-cost>:nth-child(3)>:first-child,
+.item-cost>:last-child>:first-child{
+    width: 60px;
+    text-align: right;
+    margin-right: 6px;
+}
+.item-cost>:nth-child(4)>:last-child{width: 174px}

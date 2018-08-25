@@ -250,7 +250,30 @@ table{border-collapse: collapse}
 .e-btn.large:hover{background: url(img/e-btn-8-hover.png)}
 .e-btn.large[readonly], 
 .e-btn.large[readonly]:hover{background: url(img/e-btn-8-readonly.png);color: #b2b2b2}
-
+/* 单选多选框样式 */
+.e-checkbox{
+    display: inline-block;
+    min-height: 17px;
+    line-height: 17px;
+    padding-left: 22px;
+    background-image: url(img/checkbox.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    cursor: pointer;
+    min-width: 15px;
+    width:auto;
+}
+.e-checkbox.checked{background-image: url(img/checkbox-checked.png)}
+.e-radio{
+    display: inline-block;
+    min-height: 16px;
+    padding-left: 20px;
+    background-image: url(img/radio.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    cursor: pointer;
+}
+.e-radio.checked{background-image: url(img/radio-checked.png)}
 /* 输入框样式 */
 .e-label{
     font-size: 14px;
@@ -280,7 +303,7 @@ table{border-collapse: collapse}
     -webkit-box-sizing: border-box;
 }
 /* 多选框样式 */
-.e-checkbox{width: 15px;height: 15px;vertical-align: middle}
+.e-checkbox{height: 15px;vertical-align: middle}
 /* 弹出层遮罩样式 */
 .e-layer-bg{
     background: rgba(0,0,0,.6);
@@ -393,4 +416,10 @@ table{border-collapse: collapse}
     z-index:1000000;
     border-radius: 8px;
     overflow: hidden;
+}
+/* 3.1增加样式 左菜单 */
+.main-left-menu div:first-child{
+    background:url(img/main-under.png) no-repeat;
+    background-position-x:150px;
+    background-position-y:center;
 }

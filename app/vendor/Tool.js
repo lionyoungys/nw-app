@@ -21,7 +21,11 @@
             return require(moduleName);
         }
     };    //工具类对象
-
+    /**
+     * 判断值是否存在
+     * @return boolean
+     */
+    t.isSet = function (value) {return ('undefined' !== typeof value && null !== value && '' !== value)}
     /**
      * 日期格式化函数
      * @param format 格式
@@ -113,7 +117,6 @@
         }
         return retStr;
     }
-
     /**
      * 对象克隆方法
      * @param {object} object 需要克隆的对象

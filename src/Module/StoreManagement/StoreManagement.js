@@ -8,14 +8,16 @@ import './StoreManagement.css'
 import StoreInfo from './StoreInfo/StoreInfo';
 import StoreBankCard from './StoreBankCard/StoreBankCard'
 import StoreOnline from './StoreOnline/StoreOnline'
-import StoreConsortiumStore from './StoreConsortiumStore/StoreConsortiumStore'
+// import StoreConsortiumStore from './StoreConsortiumStore/StoreConsortiumStore'
 import StoreSpecialOffers from './StoreSpecialOffers/StoreSpecialOffers'
+import Washmanagement from './Washmanagement/Washmanagement'
+
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state={index:0};
-        this.tab=['基本信息','结算账号','网店','优惠活动','联营店'];
-        this.views=[<StoreInfo/>,<StoreBankCard/>,<StoreOnline/>,<StoreSpecialOffers/>,<StoreConsortiumStore/>];
+        this.tab=['基本信息','结算账号','网店','优惠活动','洗护管理'];
+        this.views=[<StoreInfo/>,<StoreBankCard/>,<StoreOnline/>,<StoreSpecialOffers/>,<Washmanagement/>];
         this.handleClick=this.handleClick.bind(this);
     };
     handleClick(e){

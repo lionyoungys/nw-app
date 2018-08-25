@@ -133,14 +133,14 @@ const leftMenu = [
     {
         value:'洗护管理', 
         options:[           
-            {value:'送洗',class:'main-laundry',view:null, id: 25},
-            {value:'入厂',class:'main-factory',view:null, id: 26},
-            {value:'清洗',class:'main-clearn',view:null, id: 27},
-            {value:'烘干',class:'main-hot',view:null, id: 28},
-            {value:'熨烫',class:'main-ironing',view:null, id: 29},
-            {value:'质检',class:'main-quality',view:null, id: 30},
+            {value:'送洗',class:'main-laundry',view:'laundry', id: 25},
+            {value:'入厂',class:'main-factory',view:'Infactory', id: 26},
+            {value:'清洗',class:'main-clearn',view:'clear', id: 27},
+            {value:'烘干',class:'main-hot',view:'dry', id: 28},
+            {value:'熨烫',class:'main-ironing',view:'ironing', id: 29},
+            {value:'质检',class:'main-quality',view:'check', id: 30},
             {value:'上挂',class:'main-put-on',view:'hangon', id: 8},
-            {value:'出厂',class:'main-outfactory',view:null, id: 31},
+            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 31}, //
         ]
     },
     {

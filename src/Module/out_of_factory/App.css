@@ -1,0 +1,22 @@
+
+
+
+.out-title{
+    width:873px;
+    height:56px;
+    border:1px solid #89b0d4;
+    background:#eef4fb;
+    margin:18px auto;
+}
+.out-left{
+   float:left;
+   margin:14px 22px 0px;
+}
+.out-right{
+    float:right;
+    margin:14px 22px 0px;
+    font-size:14px;
+}
+.out-right .ui-select-define{
+    width:195px;
+}

@@ -1,0 +1,99 @@
+
+#Washmanagement-title {
+    width:700px;
+    height:47px;
+    line-height:47px;
+    color:#15458d;
+    font-size:14px;
+    margin-left:26px;
+}
+#shop-div{
+    width:830px;
+    height:348px;
+    margin-left:26px;
+}
+#shop-div>div{
+    width:161px;
+    height:151px;
+    border:2px solid #eeeeee;
+    margin-right:40px;
+    float: left;
+    margin-bottom:14px;
+}
+
+#shop-div>div:nth-child(1) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-songxi.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(2) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-ruchang.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(3) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-qingxi.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(4) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-honggan.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(5) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-yuntang.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(6) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-zhijian.png) no-repeat;
+    background-size:62px 70px;
+}
+#shop-div>div:nth-child(7) .shop-div1{
+    width:62px;
+    height:70px;
+    margin:24px auto 0;
+    background:url(./img/shop-chuchang.png) no-repeat;
+    background-size:62px 70px;
+}
+
+#shop-span{
+    width:62px;
+    height:17px;
+    margin:12px auto 0;
+    text-align:center;
+    color:#000;
+    font-size:12px;
+    line-height:17px;
+}
+#shop-span input{
+    display:block;
+    float: left;
+    width:18px;
+    height:17px;
+    margin-right:3px;
+}
+#shop-span b{
+    display:block;
+    float:left;
+    font-weight:inherit;
+    font-size:14px;
+}
+.store-button{
+    margin-left:26px;
+    cursor:pointer;
+}

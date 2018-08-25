@@ -64,6 +64,17 @@ import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
 import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
 
 
+// 3.1新增 工厂端
+import clear from './Module/clear/App'; // 清洗
+import Laundry from './Module/Laundry/App'; // 送洗
+import in_factory from './Module/in_factory/App'; // 入厂
+import dry from './Module/dry/App'; // 烘干
+import ironing from './Module/ironing/App'; // 熨烫
+import check from './Module/check/App'; // 质检
+import out_of_factory from './Module/out_of_factory/App'; // 出厂
+
+
+
 
 //路由对象
 export default {
@@ -131,4 +142,13 @@ export default {
     pay:Pay, //赔付
     about_snl:Aboutsnl, //关于速洗达
     orderquery:Orderquery , //订单查询
+
+    // 新增3.1工厂端
+    clear:clear, // 清洗
+    laundry:Laundry , // 送洗
+    Infactory:in_factory , //入厂
+    dry:dry , // 烘干
+    ironing:ironing , // 熨烫
+    check:check , //质检
+    outoffactory:out_of_factory , // 出厂
 };
