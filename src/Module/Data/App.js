@@ -10,10 +10,15 @@ import './App.css';
 import Window from '../../UI/Window';
 
 const token = 'token'.getData()
-,     data = [
-    '收活表','品牌','颜色表','返洗衣物表','处理类别','洗后效果','备注','POS_备注','衣物类别','价格表',
-    '退赔记录表','欠费信息','POS_价格表','撤单信息表','转卡记录','挂失卡号','卡信息','收银表','卡类设置','客户信息表','其他收费',
-    '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
+// ,     data = [
+//     '收活表','品牌','颜色表','返洗衣物表','处理类别','洗后效果','备注','POS_备注','衣物类别','价格表',
+//     '退赔记录表','欠费信息','POS_价格表','撤单信息表','转卡记录','挂失卡号','卡信息','收银表','卡类设置','客户信息表','其他收费',
+//     '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
+// ];
+,    data = [
+    'Add_Blacklist', 'Add_config', 'Add_MoneyBox', 'Adjunct', 'BlackList', 'Booking', 'brand', 'CancelExch', 'Card', 'CardExchange', 'CardType', 'Clothes', 'Color', 'Customer',
+    'Employee', 'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList', 'ExchangeListCancel', 'ExchangeListTmp', 'ExchangeServicePlus', 'ExchangeServicePlusCancel', 'Flaw','HangPoint',
+    'LeagueShop', 'Log', 'message', 'Popedom', 'PosbillNew','PosbillTmp','RefundClothes', 'RefundMent', 'Service', 'ServiceGrade', 'ServicePlus','Ticket', 'TransferList'
 ];
 export default class extends Component {
     constructor(props) {
@@ -38,12 +43,15 @@ export default class extends Component {
 
     handleClick() {
         if (this.state.addr) {
-            let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126')
+            //let connection = tool.include('node-adodb').connection(this.state.addr, 'betterlife126126')
+            var ADODB = window.require('node-adodb')
             ,   read = []
             ,   len = data.length
             ,   count = 0
             ,   size = 0
             ,   error = '';
+            let connection = ADODB.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + this.state.addr);
+            //return ADODB;
             tool.ui.loading(handle => this.loadingEnd = handle);
             for (let i = 0;i < len;++i) {
                 connection.query('SELECT * FROM [' + data[i] + ']').then(tableData => {
@@ -83,17 +91,17 @@ export default class extends Component {
                         fs.writeFileSync(dataFile, JSON.stringify(read), 'utf8')
                         let postData = {token:token,txt:fs.createReadStream(dataFile)};
                         console.log(postData);
-                        api.post('UploadData', postData, (res, ver, handle) => {
-                            this.handleCancel();
-                            if (ver) {
-                                tool.ui.success({callback:close => {
-                                    close();
-                                    this.props.closeView();
-                                }});
-                            } else {
-                                this.handleCancel();
-                            }
-                        }, this.handleCancel);
+                        // api.post('UploadData', postData, (res, ver, handle) => {
+                        //     this.handleCancel();
+                        //     if (ver) {
+                        //         tool.ui.success({callback:close => {
+                        //             close();
+                        //             this.props.closeView();
+                        //         }});
+                        //     } else {
+                        //         this.handleCancel();
+                        //     }
+                        // }, this.handleCancel);
                     }
                 }, 1000);
             }
