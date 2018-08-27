@@ -7,7 +7,7 @@
         printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
-    nw.Window.open('print/main.html', {show:true}, function(new_win) {
+    nw.Window.open('print/test.html', {show:false}, function(new_win) {
         e.printPageWin = new_win;
         e.printPageWin.on('close', function() {
             null !== e.printPageWin && e.printPageWin.close(true);
@@ -35,20 +35,46 @@
         }
         return 'print/' + page_name + '.html' + get;
     }
+    e.match = function (page_name, param, win) {
+        if (('/print/' + page_name + '.html') != win.location.pathname) return false;
+        let query_str = '';
+        if (tool.isObject(param)) {
+            query_str = tool.toUrlString(param);
+        } else if ('string' === typeof param) {
+            query_str = param;
+        }
+        return win.location.search.substr(1) == query_str;
+    }
     e.print = function(page_name, param, printer, callback) {    //打印
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
         if (!this.printPageLock) {
             this.printPageLock = true
-            this.printPageWin.window._.print(page_name, param, printer, () => {
-                this.printPageLock = false;
-                if (this.printPageQueue.length) {
-                    this.print(this.printPageQueue[0].page_name, this.printPageQueue[0].param, this.printPageQueue[0].printer, this.printPageQueue[0].callback);
-                    this.printPageQueue.splice(0, 1);
+            let print_win = this.printPageWin.window;
+            print_win.location.href = this.getPrintPageName(page_name, param);
+            let timeId = setInterval(() => {
+                console.log('############');
+                if (this.match(page_name, param, print_win)) {
+                    clearInterval(timeId);
+                    print_win.nw.Window.get().print({
+                        autoprint:true,
+                        printer:printer || '',
+                        headerFooterEnabled:false,
+                        marginsType:3,
+                        mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                        marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+                    });
+                    setTimeout(() => {
+                        this.printPageLock = false;
+                        if (this.printPageQueue.length) {
+                            this.print(this.printPageQueue[0].page_name, this.printPageQueue[0].param, this.printPageQueue[0].printer, this.printPageQueue[0].callback);
+                            this.printPageQueue.splice(0, 1);
+                        }
+                        'function' === typeof callback && callback();
+                    }, 10);
                 }
-                callback();
-            });
+            }, 10);
         } else {
             this.printPageQueue.push({page_name:page_name, param:param, printer:printer, callback:callback});
         }
