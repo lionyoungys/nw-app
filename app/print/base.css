@@ -11,6 +11,8 @@ html, body{
     -webkit-box-sizing: border-box;
 }
 .print-area{display: none}
+.area-58mm{width:5.8cm}
+.area-code{width: 11cm;height:1.6cm;overflow: hidden;font-size:9px;}
 .t-c{text-align: center}
 .t-r{text-align: right}
 .dashed{display: block;border-top: 1px dashed #000}

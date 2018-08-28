@@ -1,4 +1,8 @@
 (function(window) {
+    String.prototype.getData = function () {
+        var data = localStorage.getItem(this);
+        return data ? data : '';
+    }
     String.prototype.add = 
     Number.prototype.add = function() {
         var len = arguments.length
@@ -50,7 +54,7 @@
         },
         getPrintAreas:function() {    //获取打印区域列表
             if (null === printAreas) {
-                printAreas = this.all('print-area');
+                printAreas = this.all('.print-area');
                 printAreasCount = printAreas.length;
             }
             return printAreas;
@@ -58,7 +62,7 @@
         print:function(id, param, printer, callback) {
             var print_areas = this.getPrintAreas();
             for (var i = 0;i < printAreasCount;++i) {
-                print_areas[i].removeAttribute('style');
+                print_areas[i].style.display = 'none';
             }
             var area = this.first('#' + id);
             if (this.isNode(area)) {
@@ -69,7 +73,7 @@
                 'function' === typeof callback && setTimeout(callback, 10);
             }
         },
-        barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, width:2, height:30})},    //依赖JsBarcode
+        barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, width:2, height:30, margin:0})},    //依赖JsBarcode
         first:function(name) {return document.querySelector(name)},
         all:function(name) {return document.querySelectorAll(name)},
         create:function(nodeName, className, inner) {
@@ -129,6 +133,20 @@
                 +      (10 > second ? '0' + second : second);
             }
             return this.DATE;
+        },
+        currentDate:function() {
+            var date = new Date()
+                ,   month = date.getMonth() + 1
+                ,   day = date.getDate()
+                ,   hour = date.getHours()
+                ,   minute = date.getMinutes()
+                ,   second = date.getSeconds();
+                return date.getFullYear() + '-'
+                +      (10 > month ? '0' + month : month) + '-'
+                +      (10 > day ? '0' + day : day) + ' '
+                +      (10 > hour ? '0' + hour : hour) + ':'
+                +      (10 > minute ? '0' + minute : minute) + ':'
+                +      (10 > second ? '0' + second : second);
         },
         now:function() {
             this.inner('#now', this.date());

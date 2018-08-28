@@ -36,6 +36,7 @@
         return 'print/' + page_name + '.html' + get;
     }
     e.print = function(page_name, param, printer, callback) {    //打印
+        console.log(arguments);
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
@@ -47,7 +48,7 @@
                     this.print(this.printPageQueue[0].page_name, this.printPageQueue[0].param, this.printPageQueue[0].printer, this.printPageQueue[0].callback);
                     this.printPageQueue.splice(0, 1);
                 }
-                callback();
+                'function' === typeof callback && callback();
             });
         } else {
             this.printPageQueue.push({page_name:page_name, param:param, printer:printer, callback:callback});

@@ -6,98 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>订单打印</title>
     <link rel="stylesheet" href="base.css">
+    <style>
+        #code2>.left, #code3>.left{width:4cm;height:1.2cm;float:left;margin-left:.4cm;margin-right:.2cm;padding-top: .4cm;line-height: .96;}
+        #code2>.right, #code3>.right{width:6cm;overflow: hidden;height:1.46cm;float: left;padding-top: .14cm;line-height: .96;font-weight:bold;} 
+        #code2 img, #code3 img{
+            height:.6cm;
+            width:4cm;
+        }
+        #code2>.right>div, #code3>.right>div{height: 11px;overflow: hidden;}
+        #shift>.container>div{
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
-    <div class="print-area" id="order">
-        <div class="t-c mname">店铺简称</div>
-        <div class="t-c">留底单</div>
-        <i class="dashed"></i>
-        订单号:<span id="sn">68574930296857483734</span><br/>
-        <img id="barcode" class="barcode"><br/>
-        打印时间:<span id="now"></span><br/>
-        <i class="dashed empty"></i>
-        衣物编码&emsp;名称&emsp;颜色&emsp;衣挂号<br/>
-        <div id="clothes"></div>
-        <i class="dashed empty"></i>
-        总金额:&yen;<span id="total">30000</span>&emsp;总件数:<span id="count">3</span><br/>
-        <!-- 可折金额:&yen;<span id="dis_amount">30000</span><br/>
-        不可折金额:&yen;<span id="amount">30000</span><br/> -->
-        付款方式:<span id="gateway">现金</span><br/>
-        折扣率:<span id="discount">80</span>%<br/>
-        <div id="reduce_box">优惠:&yen;<span id="reduce">20000</span> <span id="reduce_cause">各种原因</span></div>
-        <div id="coupon_box">现金券:&yen;<span id="coupon">100</span> <span id="coupon_name">各种原因现金券</span></div>
-        <div id="pay_amount_box">折后价:&yen;<span id="real_amount">10000</span>&emsp;实收:&yen;<span id="pay_amount">11554</span></div>
-        <div id="change_box">找零:&yen;<span id="change">894</span></div>
-        <div id="debt_box">欠款:&yen;<span id="debt">50</span></div>
-        <div id="number_box">卡号:<span id="number">454555444444454</span></div>
-        <div id="balance_box">余额:&yen;<span id="balance">4555</span></div>
-        <i class="dashed"></i>
-        客户姓名:<span id="name">yangyunlong</span><br/>
-        客户地址:<span id="uaddr">yangyunlong</span><br/>
-        客户电话:<span id="phone">15011540794</span><br/>
-        <div id="time_box">取衣时间:<span id="time">2018-11-12 05:07:00</span></div>
-        <i class="dashed"></i>
-        操作员:<span id="employee">cidefdf</span>
-    </div>
+    <div class="print-area area-58mm" id="order"></div>
+    <div class="print-area area-58mm" id="order2"></div>
+    <div class="print-area area-58mm" id="card"></div>
+    <div class="print-area area-58mm" id="card2"></div>
+    <div class="print-area area-code" id="code2"></div>
+    <div class="print-area area-code" id="code3"></div>
+    <div class="print-area area-58mm" id="shift"></div>
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-        _.printHandle('order', function(param) {
-            document.body.style.width = '5.8cm';
+        _.printHandle('order', function(param) {order_print(param, true)});
+        _.printHandle('order2', function(param) {order_print(param, false)});
+        function order_print(param, type) {
             _.page('printer_width', 'printer_font_size', 'printer_unit');
-            _.now();
-            var get = param;
-            /*
-                sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
-                reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;pay_amount:实收;change:找零;debt:欠款;number:卡号;balance:余额;
-                name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
-            */
-            _.inner('.mname', localStorage.getItem('mname'));
-            _.inner('#employee', localStorage.getItem('aname'));
-            _.inner('#sn', get.sn);
-            _.barcode('#barcode', get.sn);
-            _.inner('#total', get.total);
-            // _.inner('#dis_amount', get.dis_amount);
-            // _.inner('#amount', get.amount);
-            _.inner('#discount', get.discount);
-            _.inner('#real_amount', get.real_amount);
-            get.gateway ? _.inner('#gateway', get.gateway) : _.inner('#gateway', '未付款');
-            get.reduce ? _.inner('#reduce', get.reduce) : _.hidd('#reduce_box');
-            get.reduce_cause ? _.inner('#reduce_cause', get.reduce_cause) : _.hidd('#reduce_cause');
-            get.coupon ? _.inner('#coupon', get.coupon) : _.hidd('#coupon_box');
-            get.coupon_name ? _.inner('#coupon_name', get.coupon_name) : _.hidd('#coupon_name');
-            get.pay_amount ? _.inner('#pay_amount', get.pay_amount) : _.hidd('#pay_amount_box');
-            get.change && get.change > 0 ? _.inner('#change', get.change) : _.hidd('#change_box');
-            get.debt && get.debt > 0 ? _.inner('#debt', get.debt) : _.hidd('#debt_box');
-            get.number ? _.inner('#number', get.number) : _.hidd('#number_box');
-            get.balance && get.balance > 0 ? _.inner('#balance', get.balance) : _.hidd('#balance_box');
-            get.time ? _.inner('#time', get.time) : _.hidd('#time_box');
-            _.inner('#name', get.name);
-            _.inner('#phone', get.phone);
-            _.inner('#uaddr', get.uaddr);
-            _.inner('#addr', get.addr);
-            _.inner('#mphone', get.mphone);
-            _.inner('#ad', get.ad);
-            console.log(get);
-            if (get.items) {
+            var html = '';
+            if (param.items) {
                 var items
                 ,   put_codes;
                 try {
-                    items = JSON.parse(get.items);
+                    items = JSON.parse(param.items);
                 } catch (e) {
                     items = [];
                 }
                 try {
-                    put_codes = JSON.parse(get.put_codes);
+                    put_codes = JSON.parse(param.put_codes);
                 } catch (e) {
                     put_codes = [];
                 }
                 console.log(items);
                 var len = items.length
                 ,   pLen = put_codes.length
-                ,   content = ''
                 ,   json, tempLen, tempCode, p, j;
-                _.inner('#count', len);
                 for (var i = 0;i < len;++i) {
                     for (p = 0;p < pLen;++p) {
                         if (items[i].clothing_number == put_codes[p].clothing_number && !put_codes[p].used) {
@@ -106,7 +62,7 @@
                             break;
                         }
                     }
-                    content += '<i class="empty"></i>' + 
+                    html += '<i class="empty"></i>' + 
                         '<div>' + items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + ' ' + tempCode + '</div>' +
                         ('' == items[i].sign ? '' : '<div>品牌:' + items[i].sign + '</div>') +
                         ('' == items[i].remark ? '' : '<div>瑕疵:' + items[i].remark + '</div>') +
@@ -120,12 +76,91 @@
                     if ('object' === typeof json) {
                         tempLen = json.length;
                         for (j = 0;j < tempLen;++j) {
-                            content += '<div>'+ json[j].name +':&yen;'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折') +'</div>';
+                            html += '<div>'+ json[j].name +':&yen;'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折') +'</div>';
                         }
                     }
                 }
-                _.inner('#clothes', content);
             }
+
+            var content = '<div class="t-c">' + ('mname'.getData()) + '</div><div class="t-c">' + (type ? '留底单' : '洗衣单') + '</div><i class="dashed"></i>'
+                        + '订单号:' + param.sn + '<br/><img class="barcode"><br/>打印时间:' + _.currentDate() + '<br/><i class="dashed empty"></i>'
+                        + '衣物编码&emsp;名称&emsp;颜色&emsp;衣挂号<br/>' + html + '<i class="dashed empty"></i>总金额:&yen;' + param.total + '&emsp;总件数:' + len + '<br/>'
+                        + '付款方式:' + (param.gateway || '未付款') + '<br/>折扣率:' + param.discount + '%<br/>';
+            if (param.reduce) content += '优惠:&yen;' + param.reduce + ' ' + param.reduce_cause || '' + '<br/>'; 
+            if (param.coupon) content += '现金券:&yen;' + param.coupon + ' ' + param.coupon_name || '' + '<br/>';
+            if (param.pay_amount) content += '折后价:&yen;' + param.real_amount + '&emsp;实收:&yen;' + param.pay_amount + '<br/>';
+            if (param.change) content += '找零:&yen;' + param.change + '<br/>';
+            if (param.debt) content += '欠款:&yen;' + param.debt + '<br/>';
+            if (param.number) content += '卡号:' + param.number + '<br/>';
+            if (param.balance) content += '余额:&yen;' + param.balance + '<br/>';
+            content += '<i class="dashed"></i>客户姓名:' +param.name+ '<br/>客户地址:' + param.uaddr + '<br/>客户电话:' + param.phone + '<br/>';
+            if (param.time) content += '取衣时间:' + param.time + '<br/><i class="dashed"></i>';
+            content += '操作员:' + 'aname'.getData() + '<br/>';
+            if (!type) {
+                content += '店铺地址:' + param.addr + '<br/>服务热线:' + param.mphone + '<i class="dashed"></i><div>' + param.ad + '</div>';
+            }
+            _.inner(
+                (type ? '#order' : '#order2'),
+                content
+            );
+            _.barcode('.barcode', param.sn);
+        }
+        _.printHandle('card',  function(param) {card_print(param, true)});
+        _.printHandle('card2', function(param) {card_print(param, false)});
+        function card_print(param, type) {    //会员卡打印
+            _.page('printer_width', 'printer_font_size', 'printer_unit');
+            _.inner(
+                (type ? '#card' : '#card2'), 
+                '<div class="t-c">' + (type ? '会员卡充值存根' : '会员卡充值回单') + '</div><div class="t-c">流水号:<span>' + param.sn + '</span></div>'
+                + '充值日期:<span>' + _.currentDate() + '</span><br/><i class="dashed"></i>客户电话:<span>' + param.phone + '</span><br/>'
+                + '客户姓名:<span>' + param.name + '</span><br/>卡&emsp;&emsp;号:<span>' + param.number + '</span><br/>'
+                + '折扣率:<span>' + ( (param.discount || 10) * 10 ) + '</span>%<br/>充值金额:&yen;<span>' + param.recharge + '</span><br/>'
+                + '赠送金额:&yen;<span>' + param.give + '</span><br/>卡内总额:&yen;<span>' + param.recharge.add(param.balance, param.give) + '</span>'
+                + '&emsp;店员:<span>' + 'aname'.getData() + '</span><br/>付款方式:<span>' + param.gateway + '</span><i class="dashed"></i>'
+                + '本店地址:<span>' + param.addr + '</span><br/>查询电话:<span>' + param.mphone + '</span>'
+            );
+        }
+        _.printHandle('code2', function(param) {    //水洗码打印
+            _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
+            _.inner(
+                '#code2', 
+                '<div class="left">' + param.logo_name + '<img id="code2_code"/>' + param.sn + '</div>'
+                + '<div class="right"><div>' + (param.name + ' ' + param.color + ' ' + param.service) + '</div>'
+                + '<div>瑕疵:' + param.reark + '</div><div>衣挂号:' + param.number + ' 取衣时间:' + param.time + '</div>'
+                + '<div>客户:' + param.user_name + ' 电话:' + param.tell + '</div></div>'
+            );
+            _.barcode('#code2_code', param.sn);
+        });
+        _.printHandle('code3', function(param) {    //水洗码测试页打印
+            _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
+            _.inner(
+                '#code3', 
+                '<div class="left">荣仔的洗衣店<img id="code3_code"/>254875412563</div>'
+                + '<div class="right"><div>外套 粉色 干洗</div>'
+                + '<div>瑕疵：污渍</div><div>洗后预估：发白</div><div>衣挂号：A-52 取衣时间：2018-05-21</div>'
+                + '<div>客户：范叶荣 电话：18310963932</div></div>'
+            );
+            _.barcode('#code3_code', '254875412563');
+        });
+        _.printHandle('shift', function(param) {    //交班打印
+            _.page('printer_width', 'printer_font_size', 'printer_unit');
+            try {
+                var data = JSON.parse(param.data);
+            } catch (e) {
+                data = [];
+            }
+            var len = data.length
+            ,   html = '';
+            for (var i = 0;i < len;++i) {
+                if (0 == i || '合计' == data[i].name || data[i].amount > 0 || data[i].real_amount > 0 || data[i].count > 0) {
+                    html += '<div><span>'+data[i].name+'</span><span>'+data[i].amount+'</span><span>'+data[i].real_amount+'</span><span>'+data[i].count+'</span></div>';
+                }
+            }
+            _.inner(
+                '#shift',
+                '<div class="t-c">交班报表</div>统计日期：' + param.start + '至' + param.end + '<br/>打印时间：' + _.currentDate()
+                + '<div class="container">' + html + '</div>'
+            );
         });
     </script>
 </body>
