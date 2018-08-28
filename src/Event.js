@@ -7,7 +7,7 @@
         printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
-    nw.Window.open('print/main.html', {show:true}, function(new_win) {
+    nw.Window.open('print/main.html', {show:false}, function(new_win) {
         e.printPageWin = new_win;
         e.printPageWin.on('close', function() {
             null !== e.printPageWin && e.printPageWin.close(true);
