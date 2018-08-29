@@ -48,7 +48,6 @@ changeView(obj);
 closeView();    
     关闭界面方法：
 
-
 src/Module下界面组件的继承属性
 param:携带参数
 

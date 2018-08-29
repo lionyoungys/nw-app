@@ -3,3 +3,10 @@
 .laundry{
     margin-top:0;
 }
+.photo-btn{
+    color:#169bd5;
+    font-weight:inherit;
+}
+.photo-btn:hover{
+    text-decoration:underline;
+}

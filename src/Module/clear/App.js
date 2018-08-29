@@ -42,11 +42,16 @@ export default class extends React.Component {
 
     componentDidMount() {this.query();}
     query() {
-        api.post('clean', {           
+        api.post('clear', {           
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({data:res.data.result,value:'',show:false})
+                console.log(res)
+                this.setState({
+                    data:res.result,
+                    value:'',
+                    show:false,
+                })
             }
         });
     }
@@ -54,9 +59,10 @@ export default class extends React.Component {
         api.post('operate_search', {           
             token:'token'.getData(),
             status:state,
-            clean_sn:this.state.value,
+            clothing_number:this.state.value,
         }, (res, ver) => {
             if (ver && res) {
+                console.log(res)
                 this.query();
             }else{
                 let index = this.state.value.inObjectArray(this.state.data, 'clean_sn');
@@ -183,22 +189,22 @@ export default class extends React.Component {
                             checked={-1 !== obj.id.inArray(this.state.checked)}
                             value={obj.id}
                             onClick={this.handleChecked}
-                        >{obj.clean_sn}</OptionBox>
+                        >{obj.clothing_number}</OptionBox>
                         :
-                        obj.clean_sn
+                        obj.clothing_number
                     }
                 </td>
-                <td>{obj.item_name}</td>
+                <td>{obj.clothing_name}</td>
                 <td>{obj.problem}</td>
+                <td>{obj.remark}</td>
+                <td>{obj.pinpai}</td>
                 <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
+                <td>￥：0.00</td>
+                <td>￥:23.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.image.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.work.length}张</span>
                     &emsp;
-                    <button type='button' className='e-btn editor small' data-index={index} onClick={this.uploadShow}>上传图片</button>
+                    <b data-index={index} onClick={this.uploadShow} className="photo-btn">上传图片</b>
                 </td>
             </tr>
         );

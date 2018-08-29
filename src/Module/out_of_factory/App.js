@@ -46,13 +46,13 @@ export default class extends React.Component {
     }
     query(teamId) {
         teamId = tool.isSet(teamId) ? teamId : this.state.teamId;
-        api.post('out_of_factory', {           
+        api.post('out_factory', {           
             token:'token'.getData(),
             mer_id:teamId
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res.data);
-                this.setState({data:res.data.result.data});
+                console.log(res.result);
+                this.setState({data:res.result});
             }
         });        
     }
@@ -113,6 +113,7 @@ export default class extends React.Component {
                 }
         });
     }
+
     render() {
         let option = this.state.team.map(obj => {
             return {key:obj.accept_id, value:obj.mname};
@@ -173,17 +174,17 @@ class Tbody extends React.Component {
                             value={obj.id}
                             checked={-1 !== obj.id.inArray(this.props.checked)}
                             onClick={this.props.onChecked}
-                        >{obj.clean_sn}</OptionBox>
+                        >{obj.clothing_number}</OptionBox>
                     }
                 </td>
-                <td>{obj.item_name}</td>
+                <td>{obj.clothing_name}</td>
                 <td>{obj.put_sn}</td>
+                <td>{obj.remark}</td>
                 <td>{obj.put_sn}</td>
-                <td>{obj.put_sn}</td>
-                <td>{obj.put_sn}</td>
-                <td>{obj.put_sn}</td>
-                <td>{obj.put_sn}</td>
-                <td>{obj.put_sn}</td>
+                <td>{obj.forecast}</td>
+                <td>￥:0.00</td>
+                <td>￥:0.00</td>
+                <td>荣仔的洗衣店</td>
             </tr>
         );
         return (<tbody>{html}</tbody>);

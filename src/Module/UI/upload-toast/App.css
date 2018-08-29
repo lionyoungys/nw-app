@@ -1,7 +1,7 @@
 .upload-toast{
     width: 375px;
     height: 280px;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     position: fixed;
     top: 50%;left: 50%;
     margin: -160px 0 0 -187.5px;
@@ -12,24 +12,23 @@
 }
 .upload-toast>div{-webkit-box-sizing: border-box;box-sizing: border-box;width: 100%}
 .upload-toast>div:first-child{
-    background: #3596e3;
-    color: #fff;
-    height: 40px;
-    line-height: 40px;
-    font-size: 18px;
-    position: absolute;
-    top: 0;left: 0;
-    padding: 0 10px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 16px;
+    background: url(img/t-ui-layer-title.png) 0;
+    font-size: 14px;
+    color: #15458d;
+    overflow: hidden;
 }
 .upload-toast>div:first-child>span{font-size: 14px}
 .upload-toast>div:first-child>i.fa-times{
     position: absolute;
-    top: 6px;
-    right: 10px;
+    top:0px;
+    right:4px;
     font-size: 26px;
     color: #fff;
 }
-.upload-toast>div:first-child>i.fa-times:hover{background: #2cd3d2;cursor: default}
+/* .upload-toast>div:first-child>i.fa-times:hover{background: #2cd3d2;cursor: default} */
 .upload-toast>div:last-child{
     padding: 10px 10px 0;
     display:-webkit-flex;display: flex;
@@ -40,3 +39,7 @@
 }
 .upload-toast>div:last-child>div{margin: 0 10px 10px 0}
 .upload-toast>div:last-child>div:nth-child(4n+0){margin-right: 0}
+#up-photo{
+    border-top:0;
+    background:none;
+}

@@ -22,8 +22,7 @@ class Main extends Component {
             min:false,
             isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
-            param:null,   //视图路由携带参数
-            
+            param:null,   //视图路由携带参数sss           
         }
         this.changeView = this.changeView.bind(this);    //界面跳转方法        
     }
@@ -43,17 +42,19 @@ class Main extends Component {
         // 新订单提示
         setInterval(() => {       
             api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {                     
-                ver && EventApi.notify(
-                    {
-                        title:'新订单提示', 
-                        body:'接到一个新订单，请注意查收',
-                        onshow:() => {
-                            this.audio.src = 'media/new_order.ogg';
-                            this.audio.play();
-                        },
-                        onclick:() => {this.changeView({view:'onlineorder'})}
-                    }
-                );                         
+                if(res.result.length>0){
+                    ver && EventApi.notify(
+                        {
+                            title:'新订单提示', 
+                            body:'接到一个新订单，请注意查收',
+                            onshow:() => {
+                                this.audio.src = 'media/new_order.ogg';
+                                this.audio.play();
+                            },
+                            onclick:() => {this.changeView({view:'onlineorder'})}
+                        }
+                    );          
+                }               
             })           
         }, 300000);       
     }   

@@ -34,13 +34,13 @@ export default class extends React.Component {
             </div>
         );
         return (
-            <div className='upload-toast'>
+            <div className='upload-toast t-ui-layer-box'>
                 <div>
                     上传照片
                     <span>&nbsp;&nbsp;{!this.props.infinite && '(最多不超过12张)'}</span>
                     <i className="fa fa-times" onClick={this.props.onClose}></i>
                 </div>
-                <div>
+                <div id="up-photo">
                     {images}
                     {this.props.images.length > 11 && !this.props.infinite ? null : (<div className='m-img-box upload' onClick={this.chooseImage}></div>)}
                 </div>

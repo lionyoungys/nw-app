@@ -27,8 +27,7 @@ export default class extends React.Component {
             uploadShow:false,
             lightboxShow:false,
             index:null,
-            selectedshop:'',
-            shop:['速洗达工厂','荣仔的洗衣店','全部']
+            
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
@@ -45,24 +44,32 @@ export default class extends React.Component {
 
     componentDidMount() {this.query();}
     query() {
-        api.post('clean', {           
+        api.post('laundry_wash', {           
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({data:res.data.result,value:'',show:false})
+                console.log(res)
+                this.setState({
+                    data:res.result,
+                    value:'',
+                    show:false,
+                })
             }
         });
     }
-    onSearch() {
-        api.post('operate_search', {           
+
+    //通过衣服编码查询操作
+    onSearch() { 
+        console.log(this.state.value)
+        api.post('take_laundry', {           
             token:'token'.getData(),
             status:state,
-            clean_sn:this.state.value,
+            clothing_number:this.state.value,
         }, (res, ver) => {
             if (ver && res) {
                 this.query();
             }else{
-                let index = this.state.value.inObjectArray(this.state.data, 'clean_sn');
+                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
                  if (-1 != index) {
                      if (this.state.data[index].assist == 1 || this.state.data[index].clean_state == 1) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
@@ -78,6 +85,7 @@ export default class extends React.Component {
         });
     }
     handleAllChecked(value, checked) {
+        console.log(this.state.data.length)
         if (checked) {
             this.setState({checked:[],all:false});
         } else {
@@ -186,22 +194,22 @@ export default class extends React.Component {
                             checked={-1 !== obj.id.inArray(this.state.checked)}
                             value={obj.id}
                             onClick={this.handleChecked}
-                        >{obj.clean_sn}</OptionBox>
+                        >{obj.clothing_number}</OptionBox>
                         :
-                        obj.clean_sn
+                        obj.clothing_number
                     }
                 </td>
-                <td>{obj.item_name}</td>
-                <td>{obj.problem}</td>
+                <td>{obj.clothing_name}</td>
+                <td>{obj.clothing_color}</td>
+                <td>{obj.remark}</td>
                 <td>{obj.forecast}</td>
                 <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
+                <td>￥:20.00</td>
+                <td>￥:0.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.image.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
-                    <button type='button' className='e-btn editor small' data-index={index} onClick={this.uploadShow}>上传图片</button>
+                    <b  className='photo-btn' data-index={index} onClick={this.uploadShow}>上传图片</b>
                 </td>
             </tr>
         );
@@ -209,17 +217,14 @@ export default class extends React.Component {
         <Window title='送洗' onClose={this.props.closeView}> 
             <div className="out-title">
                 <div className='right out-left'>
-                    <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                    <button className="e-btn hangon-btn" callback={this.onSearch}>查询</button>
+                    <input type="text" value={this.state.value} onChange={e => this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
+                    <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                 </div> 
-                <div className='right out-right'>
-                    选择工厂：<Select  option={this.state.shop}  onChange={e=>this.setState({selectedshop:e.target.value}) } selected="全部"/>
-                </div>
             </div>
             <div className='clean laundry'>                   
                     <div className='e-box'>
                         <table className='e-table border'>
-                            <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>衣物状态</th></tr></thead>
+                            <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>上传图片</th></tr></thead>
                             <tbody>{html}</tbody>
                         </table>
                     </div>

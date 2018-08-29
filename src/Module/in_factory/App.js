@@ -15,12 +15,12 @@ export default class extends React.Component {
         super(props);
         //this.props.onRef(this);
         this.state = {
-            data:[], 
+            data:[],
             checked:[], 
             all:false,
             value:'',
             selectedshop:'',
-            shop:['速洗达工厂','荣仔的洗衣店','全部']
+            shop:['速洗达工厂','荣仔的洗衣店','全部'],
         };
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -30,15 +30,20 @@ export default class extends React.Component {
     componentDidMount() {
         this.query();
     }
+
     query() {
         api.post('in_factory', {                      
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({data:res.data.result});                
-            }
-        });
+                console.log(res.result)
+                this.setState({
+                    data:res.result,
+                });                
+            }         
+        });       
     }
+
     handleAllChecked(value, checked) {
         if (checked) {
             this.setState({checked:[],all:false});
@@ -79,11 +84,11 @@ export default class extends React.Component {
                 this.setState({checked:[],all:false});
                 this.query();                
             }else{
-                alert(res.data.msg);
+                alert(res.msg);
             }
         });
     }
-
+    
     render() {
         let html = this.state.data.map(obj => 
             <div className='e-box' key={obj.date}>
@@ -113,7 +118,7 @@ export default class extends React.Component {
                       <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
                       <button className="e-btn hangon-btn">查询</button>
                   </div>
-               </div>
+                </div>
                 {html}
                 <Empty show={this.state.data.length < 1}/>
                 <div className='clean-top'>
@@ -135,6 +140,7 @@ class Tbody extends React.Component {
     }
 
     render() {
+        //console.log(this.state.data);
         let html = this.props.data.map(obj => 
             <tr key={obj.id}>
                 <td>
@@ -142,16 +148,16 @@ class Tbody extends React.Component {
                         value={obj.id}
                         checked={-1 !== obj.id.inArray(this.props.checked)}
                         onClick={this.props.onChecked}
-                    >{obj.clean_sn}</OptionBox>
+                    >{obj.clothing_number}</OptionBox>
                 </td>
+                <td>{obj.clothing_name}</td>
                 <td>{obj.item_name}</td>
+                <td>{obj.remark}</td>
                 <td>{obj.item_name}</td>
-                <td>{obj.item_name}</td>
-                <td>{obj.item_name}</td>
-                <td>{obj.item_name}</td>
-                <td>{obj.item_name}</td>
-                <td>{obj.item_name}</td> 
-                <td>{obj.item_name}</td>               
+                <td>{obj.forecast}</td>
+                <td>￥：0.00</td>
+                <td>￥：0.00</td> 
+                <td>速洗达店铺</td>               
             </tr>
         );
         return (<tbody>{html}</tbody>);

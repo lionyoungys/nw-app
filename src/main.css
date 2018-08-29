@@ -303,7 +303,7 @@ table{border-collapse: collapse}
     -webkit-box-sizing: border-box;
 }
 /* 多选框样式 */
-.e-checkbox{height: 15px;vertical-align: middle}
+.e-checkbox{vertical-align: middle}
 /* 弹出层遮罩样式 */
 .e-layer-bg{
     background: rgba(0,0,0,.6);

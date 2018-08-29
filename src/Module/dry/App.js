@@ -38,27 +38,30 @@ export default class extends React.Component {
 
     componentDidMount() {this.query()}
     query() {
-        api.post('item_list', {           
+        api.post('dry_over', {           
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
+                console.log(res)
                 this.setState({
-                    data:res.data.result,
+                    data:res.result,
                     value:'',
                 })
             }
         });
     }
+
+    // 烘干里边通过衣服编码搜索加到烘干目录
     onSearch() {
-        api.post('operate_search', {           
+        api.post('take_dry', {           
             token:'token'.getData(),
             status:state,
-            clean_sn:this.state.value
+            clothing_number:this.state.value
         }, (res, ver) => {
             if (ver && res) {
                 this.query();
             }else{
-                let index = this.state.value.inObjectArray(this.state.data, 'clean_sn');
+                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
                 if (-1 != index) {
                     if (this.state.data[index].assist == 1) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
@@ -68,7 +71,7 @@ export default class extends React.Component {
                     }
                 } else {
                     this.setState({value:''});
-                    alert(res.data.msg);
+                    alert(res.msg);
                 }
                 this.setState({value:''});
             }
@@ -101,17 +104,21 @@ export default class extends React.Component {
         }
     }
     handleCleaned() {
+        console.log(this.state.checked)
         if (this.state.checked.length < 1) return;
-        api.post('handle_done', {           
+        api.post('dry_over', {           
             token:'token'.getData(),
-            itemids:this.state.checked.toString(),
+            wid:this.state.checked.toString(),
             moduleid:state
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({checked:[], all:'false',})
+                this.setState({
+                    checked:[], 
+                    all:'false',
+                })
                 this.query();
             }else{
-                alert(res.data.msg);
+                alert(res.msg);
             }
         });
     }
@@ -166,7 +173,7 @@ export default class extends React.Component {
     }
 
     render() {
-        let html = this.state.data.map( (obj, index) =>
+        let html = this.state.data.map((obj,index) =>
             <tr key={obj.id} className={obj.assist != 1 ? null : 'disabled'}>
                 <td>
                     {
@@ -177,22 +184,22 @@ export default class extends React.Component {
                             checked={-1 !== obj.id.inArray(this.state.checked)}
                             value={obj.id}
                             onClick={this.handleChecked}
-                        >{obj.clean_sn}</OptionBox>
+                        >{obj.clothing_number}</OptionBox>
                         :
-                        obj.clean_sn
+                        obj.clothing_number
                     }
                 </td>
-                <td>{obj.item_name}</td>
+                <td>{obj.clothing_name}</td>
                 <td>{obj.problem}</td>
+                <td>{obj.remark}</td>
                 <td>{obj.forecast}</td>
                 <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
+                <td>￥:0.00</td>
+                <td>￥:23.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.image.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.work.length}张</span>
                     &emsp;
-                    <button type='button' className='e-btn editor small' data-index={index} onClick={this.uploadShow}>上传图片</button>
+                    <b className='photo-btn' data-index={index} onClick={this.uploadShow}>上传图片</b>
                 </td>
             </tr>
         );
@@ -200,7 +207,7 @@ export default class extends React.Component {
         <Window title='烘干' onClose={this.props.closeView}>
              <div className='right'>
                 <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                <button className="e-btn hangon-btn" callback={this.onSearch}>查询</button>
+                <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
              </div> 
             <div className='clean'>               
                 <div className='e-box'>
