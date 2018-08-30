@@ -10,6 +10,7 @@ import OptionBox from '../../Elem/OptionBox';        //新增
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
 import Select from '../../UI/Select';
+import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
 const state = 3, word = '清洗';
 
@@ -143,22 +144,23 @@ export default class extends React.Component {
          });       
     }
 
-    delete(urlIndex) {
-        let index = this.state.index,
-            url = this.state.data[index].tempImages[index];
-         api.post(
-            'unload', 
-             {token:this.props.token,item_id:this.state.data[index].id,url:url},
-             (response, verify) => {
-                 if (verify) {
-                    let realIndex = url.inArray(this.state.data[index].tempImages),
-                         realIndex2 = url.inArray(this.state.data[index].image);
-                     -1 !== realIndex && this.state.data[index].tempImages.splice(realIndex, 1);
-                     -1 !== realIndex2 && this.state.data[index].image.splice(realIndex2, 1);
-                     this.setState({data:this.state.data});
-                 }
-            }
-        );
+    delete(url, index) {
+        console.log(url, index);
+        // let index = this.state.index,
+        //     url = this.state.data[index].tempImages[index];
+        //  api.post(
+        //     'unload', 
+        //      {token:this.props.token,item_id:this.state.data[index].id,url:url},
+        //      (response, verify) => {
+        //          if (verify) {
+        //             let realIndex = url.inArray(this.state.data[index].tempImages),
+        //                  realIndex2 = url.inArray(this.state.data[index].image);
+        //              -1 !== realIndex && this.state.data[index].tempImages.splice(realIndex, 1);
+        //              -1 !== realIndex2 && this.state.data[index].image.splice(realIndex2, 1);
+        //              this.setState({data:this.state.data});
+        //          }
+        //     }
+        // );
     }
     //新增方法
     uploadShow(e) {
@@ -228,7 +230,21 @@ export default class extends React.Component {
                             <tbody>{html}</tbody>
                         </table>
                     </div>
-                    <UploadToast
+                    {
+                        this.state.uploadShow 
+                        && 
+                        <ImgUploadWindow 
+                            onClose={() => this.setState({uploadShow:false})} 
+                            onDelete={this.delete}
+                            onUpload={stream => console.log(stream)}
+                            imgs={[
+                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2017/12/08/5a2a4cbc92a221.04314417.png',
+                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2018/02/24/5a91092a4361e6.52455338.png',
+                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2018/02/24/5a910919623317.71434187.png',
+                            ]}
+                        />
+                    }
+                    {/* <UploadToast
                         show={this.state.uploadShow}
                         images={
                             null !== this.state.index && tool.isSet(this.state.data[this.state.index].tempImages) 
@@ -239,7 +255,7 @@ export default class extends React.Component {
                         onDelete={this.delete}
                         onChoose={this.upload}
                         onClose={() => this.setState({uploadShow:false})}
-                    />
+                    /> */}
                     <ImageLightbox
                         show={this.state.lightboxShow}
                         images={

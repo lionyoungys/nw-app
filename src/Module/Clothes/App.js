@@ -376,6 +376,7 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
+        var limit = false;
         EventApi.print(
             'order', 
             {
@@ -404,6 +405,8 @@ export default class extends Component {
             'printer'.getData(),
             () => {
                 tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
+                    if (limit) return;
+                    limit = true;
                     EventApi.print(
                         'order2', 
                         {

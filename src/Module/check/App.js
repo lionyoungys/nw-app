@@ -183,9 +183,9 @@ export default class extends React.Component {
                 <td>￥:0.00</td>
                 <td>￥:23.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.work.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
-                    <button type='button' className='e-btn editor small' data-index={index} onClick={this.uploadShow}>上传图片</button>
+                    <b className='photo-btn' data-index={index} onClick={this.uploadShow}>上传图片</b>
                 </td>
             </tr>
         );

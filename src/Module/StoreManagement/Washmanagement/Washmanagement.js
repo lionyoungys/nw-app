@@ -3,8 +3,9 @@ import React, {Component} from 'react';
 import './Washmanagement.css'
 export default class extends Component {   
     constructor(props) {
-        super(props);  
-        this.list=['送洗','入厂','清洗','烘干','熨烫','质检','出厂'];       
+        super(props);         
+        this.list=['送洗','入厂','清洗','烘干','熨烫','质检','出厂']; 
+        this.arr=[]  
     }
     
     render(){

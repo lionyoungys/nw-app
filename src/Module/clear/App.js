@@ -74,7 +74,7 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                  } else {
-                    alert(res.data.msg);
+                    alert(res.msg);
                 }
                 this.setState({value:''});
             }

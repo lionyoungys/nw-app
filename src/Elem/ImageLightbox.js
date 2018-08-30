@@ -18,6 +18,7 @@ export default class extends React.Component {
     }
     render() {
         if (!this.props.show || !this.props.images.length) return null;
+        console.log('this is show element');
 
         return (
             <div className='image-light-box'>

@@ -41,20 +41,19 @@ class Main extends Component {
         EventApi.win.on('minimize', () => this.setState({min:true}));
         // 新订单提示
         setInterval(() => {       
-            api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {                     
-                if(res.result.length>0){
-                    ver && EventApi.notify(
-                        {
-                            title:'新订单提示', 
-                            body:'接到一个新订单，请注意查收',
-                            onshow:() => {
-                                this.audio.src = 'media/new_order.ogg';
-                                this.audio.play();
-                            },
-                            onclick:() => {this.changeView({view:'onlineorder'})}
-                        }
-                    );          
-                }               
+            api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {
+                console.log(res);
+                ver && EventApi.notify(
+                    {
+                        title:'新订单提示', 
+                        body:'接到一个新订单，请注意查收',
+                        onshow:() => {
+                            this.audio.src = 'media/new_order.ogg';
+                            this.audio.play();
+                        },
+                        onclick:() => {this.changeView({view:'onlineorder'})}
+                    }
+                );                                
             })           
         }, 300000);       
     }   
