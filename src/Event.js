@@ -40,6 +40,7 @@
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
         if (!this.printPageLock) {
+            console.log('arg', arguments);
             this.printPageLock = true
             this.printPageWin.window._.print(page_name, param, printer, () => {
                 this.printPageLock = false;
