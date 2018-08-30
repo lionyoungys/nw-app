@@ -1,7 +1,7 @@
 /**
  * 图片上传窗口组件
  * @author Edwin Young
- * @desc onClose:窗口关闭事件;onDelete(图片地址, 图片索引):删除事件;onUpload(文件流对象):文件上传事件;imgs:包含图片url的一维数组
+ * @desc onClose:窗口关闭事件;onDelete(图片地址, 图片索引):删除事件;onUpload({path:文件路径, stream:可读的文件流对象}):文件上传事件;imgs:包含图片url的一维数组
  */
 import React from 'react';
 import Window from './Window';
@@ -20,7 +20,10 @@ export default class extends React.Component{
     }
 
     //上传图片事件
-    onUpload(e) {'function' === typeof this.props.onUpload && this.props.onUpload(fs.createReadStream(e.target.value));}
+    onUpload(e) {
+        let path = e.target.value;
+        'function' === typeof this.props.onUpload && this.props.onUpload({path:path, stream:fs.createReadStream(path)});
+    }
 
     render() {
         return (
