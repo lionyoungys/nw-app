@@ -4,13 +4,16 @@
 *{margin: 0;padding: 0}
 html, body{
     font-family: 黑体;
-    font-size: 11pt;
     line-height: 1;
     color: #000;
+    font-size: 11pt;
     word-break: break-all;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+.print-area{display: none}
+.area-58mm{width:5.8cm}
+.area-code{width: 11cm;height:1.6cm;overflow: hidden;font-size:9px;}
 .t-c{text-align: center}
 .t-r{text-align: right}
 .dashed{display: block;border-top: 1px dashed #000}
