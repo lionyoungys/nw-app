@@ -79,7 +79,7 @@ export default class extends React.Component {
                 len = data.length,
                 checked = [];
             for (let i = 0;i < len;++i) {
-                if (data[i].assist == 0) checked.push(data[i].id);
+                if (data[i].state == false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
         }
@@ -97,16 +97,22 @@ export default class extends React.Component {
         }
     }
     handleCleaned() {
-        console.log(this.state.checked)
+        console.log(this.state.checked);
         if (this.state.checked.length < 1) return;
         api.post('check_btn', {           
             token:'token'.getData(),
-            wid:this.state.checked.toString(),
-            moduleid:state
+            wid:this.state.checked
+            // moduleid:state
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({checked:[],all:false});
-                this.query();
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                    this.setState({
+                        checked:[],
+                        all:false
+                    });
+                    this.query();
+                }});
             }else{
                 alert(res.msg);
             }

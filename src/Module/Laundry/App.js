@@ -27,8 +27,9 @@ export default class extends React.Component {
             //新增state属性
             uploadShow:false,
             lightboxShow:false,
-            index:null,
-            
+            index:null, 
+            selected_shop:[],
+            selected_id:''          
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
@@ -41,6 +42,7 @@ export default class extends React.Component {
         //新增
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
+        this.select_factory = this.select_factory.bind(this);
     }
 
     componentDidMount() {this.query();}
@@ -58,7 +60,18 @@ export default class extends React.Component {
             }
         });
     }
-
+    
+    // 点击选择要入的工厂
+    select_factory (){
+        api.post('factory_id', {           
+            token:'token'.getData(),
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res)    ;
+                this.setState({select_shop:res.result.typeArray('mname'), })           
+            }
+        });
+    }
     //通过衣服编码查询操作
     onSearch() { 
         console.log(this.state.value)
@@ -68,7 +81,10 @@ export default class extends React.Component {
             clothing_number:this.state.value,
         }, (res, ver) => {
             if (ver && res) {
-                this.query();
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                    this.query();
+                }});               
             }else{
                 let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
                  if (-1 != index) {
@@ -79,24 +95,39 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                  } else {
-                    alert(res.data.msg);
+                    alert(res.msg);
                 }
                 this.setState({value:''});
             }
         });
     }
     handleAllChecked(value, checked) {
-        console.log(this.state.data.length)
-        if (checked) {
-            this.setState({checked:[],all:false});
-        } else {
+        //console.log(this.state.data.length)
+        //console.log(checked); false
+        if (checked==false) {
             let data = this.state.data,
                 len = data.length,
                 checked = [];
             for (let i = 0;i < len;++i) {
-                if (data[i].assist == 0 && data[i].clean_state == 0) checked.push(data[i].id);
+                if (data[i].state == false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
+            // this.setState({
+            //     checked:[],
+            //     all:false
+            // });
+        } else {
+            this.setState({
+                checked:[],
+                all:false
+            });
+            // let data = this.state.data,
+            //     len = data.length,
+            //     checked = [];
+            // for (let i = 0;i < len;++i) {
+            //     if (data[i].assist == 0 && data[i].clean_state == 0) checked.push(data[i].id);
+            // }
+            // this.setState({checked:checked,all:true});
         }
     }
     handleChecked(value,checked) {
@@ -111,17 +142,27 @@ export default class extends React.Component {
             this.setState({checked:this.state.checked});
         }
     }
+    //入厂
     handleCleaned() {
         //item_cleaned
+        //console.log(this.state.checked)
         if(this.state.checked.length < 1) return;
-        api.post('item_cleaned', {  
-            itemids:this.state.checked.toString(),
-            moduleid:state,         
+        api.post('take_factory', {  
+            wid:this.state.checked.toString(),                   
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({checked:[],all:false});
-                this.query();
+                console.log(res)
+                if(res.result.state==true){
+                    tool.ui.success({callback:(close, event) => {
+                        close();
+                        this.setState({
+                            checked:[],
+                            all:false,
+                        });
+                        this.query();
+                    }});                                       
+                } 
             }
         });            
     }
@@ -169,18 +210,24 @@ export default class extends React.Component {
     lightboxShow(e) {
         this.setState({lightboxShow:true, index:e.target.dataset.index});
     }
-    handleClick() {    //退回      
+    // 送洗操作
+    handleClick() {   
+        console.log(this.state.checked)       
          if (this.state.checked.length < 1) return;
-         api.post('into_factory', {  
-            itemids:this.state.checked.toString(),
-            moduleid:22,type:2,        
+         api.post('wsah_btn', {  
+            wid:this.state.checked,                  
             token:'token'.getData(),
         }, (res, ver) => {
+            console.log(res)
             if (ver && res) {
-                this.setState({checked:[],all:false});
+               // console.log(res)
+                this.setState({
+                    checked:[],
+                    all:false,
+                });
                 this.query();
             }else{
-                alert(res.data.msg);
+                alert(res.msg);
             }
         });
     }
@@ -222,6 +269,9 @@ export default class extends React.Component {
                     <input type="text" value={this.state.value} onChange={e => this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                 </div> 
+                <div className='right out-right' onClick = {this.select_factory}>
+                        选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({selected_id:value=='全部'?'':value})} selected="请选择厂家"/>
+                </div>
             </div>
             <div className='clean laundry'>                   
                     <div className='e-box'>
@@ -273,9 +323,8 @@ export default class extends React.Component {
                             &emsp;&nbsp;
                             <button type='button' className='e-btn confirm' onClick={this.handleCleaned}>入厂</button>
                             &emsp;
-                            <button className='e-btn confirm' onClick={this.handleClick}>送洗</button>
-                        </div>
-                        
+                            <button className='e-btn confirm' onClick={this.handleClick}>已送洗</button>
+                        </div>                       
                     </div>               
             </div>
         </Window>

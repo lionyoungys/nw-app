@@ -88,7 +88,7 @@ export default class extends React.Component {
                 len = data.length,
                 checked = [];
             for (let i = 0;i < len;++i) {
-                if (data[i].assist == 0 && data[i].clean_state == 0) checked.push(data[i].id);
+                if (data[i].state == false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
         }
@@ -108,8 +108,8 @@ export default class extends React.Component {
     handleCleaned() {
         //item_cleaned
         if(this.state.checked.length < 1) return;
-        api.post('item_cleaned', {  
-            itemids:this.state.checked.toString(),
+        api.post('clean_btn', {  
+            wid:this.state.checked.toString(),
             moduleid:state,         
             token:'token'.getData(),
         }, (res, ver) => {
@@ -173,7 +173,7 @@ export default class extends React.Component {
                 this.setState({checked:[],all:false});
                 this.query();
             }else{
-                alert(res.data.msg);
+                alert(res.msg);
             }
         });
     }
@@ -202,7 +202,7 @@ export default class extends React.Component {
                 <td>￥：0.00</td>
                 <td>￥:23.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.work.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
                     <b data-index={index} onClick={this.uploadShow} className="photo-btn">上传图片</b>
                 </td>
@@ -212,7 +212,7 @@ export default class extends React.Component {
         <Window title='清洗' onClose={this.props.closeView}> 
             <div className='right'>
                 <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                <button className="e-btn hangon-btn" callback={this.onSearch}>查询</button>
+                <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
             </div>         
             <div className='clean'>                   
                     <div className='e-box'>

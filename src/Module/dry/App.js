@@ -16,7 +16,8 @@ export default class extends React.Component {
         super(props);
         // this.props.onRef(this);
         this.state = {
-            value:'',data:[],
+            value:'',
+            data:[],
             checked:[],
             all:false,
             loading:null,
@@ -86,7 +87,7 @@ export default class extends React.Component {
                 len = data.length,
                 checked = [];
             for (let i = 0;i < len;++i) {
-                if (data[i].assist == 0) checked.push(data[i].id);
+                if (data[i].state==false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
         }
@@ -197,7 +198,7 @@ export default class extends React.Component {
                 <td>￥:0.00</td>
                 <td>￥:23.00</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.work.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
                     <b className='photo-btn' data-index={index} onClick={this.uploadShow}>上传图片</b>
                 </td>

@@ -76,7 +76,7 @@ export default class extends React.Component {
                 len = data.length,
                 checked = [];
             for (let i = 0;i < len;++i) {
-                if (data[i].assist == 0) checked.push(data[i].id);
+                if (data[i].state == false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
         }
@@ -95,9 +95,9 @@ export default class extends React.Component {
     }
     handleCleaned() {
         if (this.state.checked.length < 1) return;
-        api.post('handle_done', {           
+        api.post('itoning_btn', {           
             token:'token'.getData(),
-            itemids:this.state.checked.toString(),
+            wid:this.state.checked.toString(),
             moduleid:state
         }, (res, ver) => {
             if (ver && res) {
