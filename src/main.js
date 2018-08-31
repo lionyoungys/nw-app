@@ -157,21 +157,21 @@ class MainNav extends Component {
 class MainLeftMenu extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            nav1:'none',  //隐藏子级
-            nav2:'block',  // 显示子级
-        };
-        this.navclick = this.navclick.bind(this); // 绑定点击左侧导航事件
+        this.handleClick = this.handleClick.bind(this);
     }
-    navclick (e){
-        var index = e.target.dataset.index;
-        console.log(index);        
+    handleClick(e) {
+        let node = e.target.parentNode;
+        if (node.classList.contains('main-left-menu-hidd')) {
+            node.classList.remove('main-left-menu-hidd');
+        } else {
+            node.classList.add('main-left-menu-hidd');
+        }
     }
     render() {
-        let menuList = leftMenu.map((obj,index) => 
-            <div key={obj.value} className='main-left-menu'>
-                <div onClick = {this.navclick} data-index={index} data-item={obj.value}>{obj.value}</div>
-                <div data-id={index}>
+        let menuList = leftMenu.map(obj => 
+            <div key={obj.value} className='main-left-menu main-left-menu-hidd'>
+                <div onClick={this.handleClick}>{obj.value}</div>
+                <div>
                     {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
                 </div>
             </div>
