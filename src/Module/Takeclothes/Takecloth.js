@@ -266,9 +266,12 @@ export default class extends Component {
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         };
         console.log(param);
+        var limit = false;
         EventApi.print('order', param,'printer'.getData(),
             () => {
                 tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
+                    if (limit) return;
+                    limit = true;
                     EventApi.print('order2', param,'printer'.getData());
                     close();
                 }});

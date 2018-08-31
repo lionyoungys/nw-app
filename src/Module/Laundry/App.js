@@ -17,7 +17,7 @@ export default class extends React.Component {
         super(props);
         //this.props.onRef(this);
         this.state = {
-            value:'',
+            shop_id:'',
             data:[],
             checked:[],
             all:false,
@@ -29,18 +29,18 @@ export default class extends React.Component {
             selected_shop:[],
             selected_id:''        
         };
-        this.onSearch = this.onSearch.bind(this);
-        this.handleAllChecked = this.handleAllChecked.bind(this);
-        this.handleCleaned = this.handleCleaned.bind(this);
-        this.handleChecked = this.handleChecked.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.onUpload = this.onUpload.bind(this);
-        this.query = this.query.bind(this);
-        this.onDelete = this.onDelete.bind(this);
+        this.onSearch = this.onSearch.bind(this); //搜索
+        this.handleAllChecked = this.handleAllChecked.bind(this); //全选
+         this.handleCleaned = this.handleCleaned.bind(this); //入厂
+        this.handleChecked = this.handleChecked.bind(this); // 单选
+        this.handleClick = this.handleClick.bind(this); //送洗
+        this.onUpload = this.onUpload.bind(this);   //文件上传
+        this.query = this.query.bind(this);      // 方法
+        this.onDelete = this.onDelete.bind(this);  // 删除
         //新增
-        this.uploadShow = this.uploadShow.bind(this);
-        this.lightboxShow = this.lightboxShow.bind(this);
-        this.select_factory = this.select_factory.bind(this);
+        // this.uploadShow = this.uploadShow.bind(this);
+        // this.lightboxShow = this.lightboxShow.bind(this);
+         this.select_factory = this.select_factory.bind(this); //入厂列表
     }
 
     componentDidMount() {this.query();}
@@ -72,10 +72,11 @@ export default class extends React.Component {
                     tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
                 }
                 this.setState({select_shop:tmp_arr});
-                //this.setState({select_shop:res.result.typeArray('mname'), })           
+                this.setState({select_shop:res.result.typeArray('mname'), })           
             }
         });
     }
+    
     //通过衣服编码查询操作
     onSearch() { 
         console.log(this.state.value)
@@ -105,9 +106,9 @@ export default class extends React.Component {
             }
         });
     }
-    handleAllChecked(value, checked) {
-        //console.log(this.state.data.length)
-        //console.log(checked); false
+
+    //全选
+    handleAllChecked(value, checked) {       
         if (checked==false) {
             let data = this.state.data,
                 len = data.length,
@@ -116,22 +117,13 @@ export default class extends React.Component {
                 if (data[i].state == false) checked.push(data[i].id);
             }
             this.setState({checked:checked,all:true});
-            // this.setState({
-            //     checked:[],
-            //     all:false
-            // });
+            
         } else {
             this.setState({
                 checked:[],
                 all:false
             });
-            // let data = this.state.data,
-            //     len = data.length,
-            //     checked = [];
-            // for (let i = 0;i < len;++i) {
-            //     if (data[i].assist == 0 && data[i].clean_state == 0) checked.push(data[i].id);
-            // }
-            // this.setState({checked:checked,all:true});
+           
         }
     }
     handleChecked(value,checked) {
@@ -147,17 +139,16 @@ export default class extends React.Component {
         }
     }
     //入厂
-    handleCleaned() {
-        //item_cleaned
-        //console.log(this.state.checked)
-        if(this.state.checked.length < 1) return;
+    handleCleaned() {       
+        if(this.state.checked.length < 1) return;      
         api.post('take_factory', {  
-            wid:this.state.checked.toString(),                   
+            wid:JSON.stringify(this.state.checked), 
+            rid:this.state.shop_id,                  
             token:'token'.getData(),
         }, (res, ver) => {
+            console.log(res)
             if (ver && res) {
-                console.log(res)
-                if(res.result.state==true){
+                console.log(res)               
                     tool.ui.success({callback:(close, event) => {
                         close();
                         this.setState({
@@ -165,8 +156,11 @@ export default class extends React.Component {
                             all:false,
                         });
                         this.query();
-                    }});                                       
-                } 
+                    }});                                                      
+            }else{
+                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    close();
+                }});
             }
         });            
     }
@@ -202,31 +196,36 @@ export default class extends React.Component {
         console.log(url, index);
     }
     //新增方法
-    uploadShow(e) {
-        this.setState({uploadShow:true, index:e.target.dataset.index});
-    }
-    lightboxShow(e) {
-        this.setState({lightboxShow:true, index:e.target.dataset.index});
-    }
+    // uploadShow(e) {
+    //     this.setState({uploadShow:true, index:e.target.dataset.index});
+    // }
+    // lightboxShow(e) {
+    //     this.setState({lightboxShow:true, index:e.target.dataset.index});
+    // }
     // 送洗操作
     handleClick() {   
-        console.log(this.state.checked) 
-        console.log(typeof this.state.checked);      
+        //console.log(this.state.checked) 
+        //console.log(typeof this.state.checked);      
          if (this.state.checked.length < 1) return;
          api.post('wsah_btn', {  
-            wid:this.state.checked,                  
+            wid:JSON.stringify(this.state.checked),                  
             token:'token'.getData(),
         }, (res, ver) => {
             console.log(res)
             if (ver && res) {
                // console.log(res)
+               tool.ui.success({callback:(close, event) => {
+                close();
                 this.setState({
                     checked:[],
                     all:false,
                 });
                 this.query();
+               }});                                
             }else{
-                alert(res.msg);
+                tool.ui.error({title:'提示',msg:'res.msg',button:'确定',callback:(close, event) => {
+                    close();
+                }});
             }
         });
     }
@@ -269,7 +268,7 @@ export default class extends React.Component {
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                 </div> 
                 <div className='right out-right' onClick = {this.select_factory}>
-                        选择工厂：<Select  option={this.state.select_shop}  onChange={value => console.log(value)} selected="请选择厂家"/>
+                                    选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({shop_id:value})} selected="请选择厂家"/>
                 </div>
             </div>
             <div className='clean laundry'>                   

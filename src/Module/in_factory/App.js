@@ -90,7 +90,7 @@ export default class extends React.Component {
     }
     
     render() {
-        let html = this.state.data.map(obj => 
+        /*let html = this.state.data.map(obj => 
             <div className='e-box' key={obj.date}>
                 <div className='in-factory-date'>{obj.date}</div>
                     <table className='m-table m-text-c tr-b'>
@@ -110,7 +110,7 @@ export default class extends React.Component {
                         <Tbody data={obj.list} onChecked={this.onChecked} checked={this.state.checked}/>
                     </table>
             </div>
-        );
+        );*/
         return (
             <Window title='入厂' onClose={this.props.closeView}>
                 <div className="out-title">
@@ -119,7 +119,22 @@ export default class extends React.Component {
                       <button className="e-btn hangon-btn">查询</button>
                   </div>
                 </div>
-                {html}
+                <table className='m-table m-text-c tr-b'>
+                    <thead>
+                        <tr className='m-bg-white'>
+                            <th>衣物编码</th>
+                            <th>衣物名称</th>
+                            <th>颜色</th>
+                            <th>瑕疵</th>
+                            <th>品牌</th>
+                            <th>洗后预估</th>
+                            <th>工艺加价</th>
+                            <th>单价</th>
+                            <th>衣物来源</th>
+                        </tr>
+                    </thead>
+                    <Tbody data={this.state.data} onChecked={this.onChecked} checked={this.state.checked}/>
+                </table>
                 <Empty show={this.state.data.length < 1}/>
                 <div className='clean-top'>
                     <div className='left'>

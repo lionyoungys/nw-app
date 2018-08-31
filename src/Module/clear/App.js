@@ -110,12 +110,15 @@ export default class extends React.Component {
         if(this.state.checked.length < 1) return;
         api.post('clean_btn', {  
             wid:this.state.checked.toString(),
-            moduleid:state,         
+            //moduleid:state,         
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({checked:[],all:false});
-                this.query();
+                tool.ui.success({callback:(close, event) => {                   
+                    close();
+                    this.setState({checked:[],all:false});
+                    this.query();
+                }});               
             }
         });            
     }
