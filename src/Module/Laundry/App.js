@@ -5,14 +5,12 @@
 
 import React from 'react';
 import Window from '../../UI/Window';
-import Search from '../UI/search/App';
 import OptionBox from '../../Elem/OptionBox';        //新增
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
-import UploadToast from '../UI/upload-toast/App';    //新增
 import Select from '../../UI/Select';
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
-const state = 3, word = '清洗';
+const token = 'token'.getData();
 
 export default class extends React.Component {
     constructor(props) {
@@ -29,16 +27,16 @@ export default class extends React.Component {
             lightboxShow:false,
             index:null, 
             selected_shop:[],
-            selected_id:''          
+            selected_id:''        
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.onUpload = this.onUpload.bind(this);
         this.query = this.query.bind(this);
-        this.upload = this.upload.bind(this);
-        this.delete = this.delete.bind(this);
+        this.onDelete = this.onDelete.bind(this);
         //新增
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
@@ -67,8 +65,14 @@ export default class extends React.Component {
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res)    ;
-                this.setState({select_shop:res.result.typeArray('mname'), })           
+                console.log(res);
+                let len = res.result.length
+                ,   tmp_arr = [];
+                for (var i = 0;i < len;++i) {
+                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
+                }
+                this.setState({select_shop:tmp_arr});
+                //this.setState({select_shop:res.result.typeArray('mname'), })           
             }
         });
     }
@@ -166,42 +170,36 @@ export default class extends React.Component {
             }
         });            
     }
-    upload(base64, image) {
-         let index = this.state.index;
-         api.post('item_upload', {                      
-            token:'token'.getData(),
-            item_id:this.state.data[index].id,
-            image:image
-         }, (res, ver) => {
-            if (ver && res) {
-                if (tool.isSet(this.state.data[index].tempImages)) {
-                    this.state.data[index].tempImages.push(response.data.result);
-                    } else {
-                         this.state.data[index].tempImages = [response.data.result];
-                        }
-                        this.state.data[index].image.push(response.data.result);
-                        this.setState({data:this.state.data});
-            }
-         });       
+    onUpload(file) {    //文件上传
+        let done;
+        tool.ui.loading(handle => done = handle);
+        let index = this.state.index;
+        api.post(
+            'item_img_upload', 
+            {token:token, wid:this.state.data[index].id, pic:file.stream}, 
+            (res, ver, notice) => {
+                done();
+                if (ver) {
+                    this.state.data[index].img.push(res.result);
+                    this.setState({data:this.state.data});
+                } else {
+                    notice();
+                }
+            }, 
+            () => {done()}
+        );
+
     }
 
-    delete(url, index) {
+    onDelete(url, index) {    //文件删除
+        let item_index = this.state.index;
+        api.post('item_img_delete', {token:token, wid:this.state.data[item_index].id, pic:url}, (res, ver) => {
+            if (ver) {
+                this.state.data[item_index].img.splice(index, 1);
+                this.setState({data:this.state.data});
+            }
+        });
         console.log(url, index);
-        // let index = this.state.index,
-        //     url = this.state.data[index].tempImages[index];
-        //  api.post(
-        //     'unload', 
-        //      {token:this.props.token,item_id:this.state.data[index].id,url:url},
-        //      (response, verify) => {
-        //          if (verify) {
-        //             let realIndex = url.inArray(this.state.data[index].tempImages),
-        //                  realIndex2 = url.inArray(this.state.data[index].image);
-        //              -1 !== realIndex && this.state.data[index].tempImages.splice(realIndex, 1);
-        //              -1 !== realIndex2 && this.state.data[index].image.splice(realIndex2, 1);
-        //              this.setState({data:this.state.data});
-        //          }
-        //     }
-        // );
     }
     //新增方法
     uploadShow(e) {
@@ -212,7 +210,8 @@ export default class extends React.Component {
     }
     // 送洗操作
     handleClick() {   
-        console.log(this.state.checked)       
+        console.log(this.state.checked) 
+        console.log(typeof this.state.checked);      
          if (this.state.checked.length < 1) return;
          api.post('wsah_btn', {  
             wid:this.state.checked,                  
@@ -270,7 +269,7 @@ export default class extends React.Component {
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                 </div> 
                 <div className='right out-right' onClick = {this.select_factory}>
-                        选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({selected_id:value=='全部'?'':value})} selected="请选择厂家"/>
+                        选择工厂：<Select  option={this.state.select_shop}  onChange={value => console.log(value)} selected="请选择厂家"/>
                 </div>
             </div>
             <div className='clean laundry'>                   
@@ -285,27 +284,11 @@ export default class extends React.Component {
                         && 
                         <ImgUploadWindow 
                             onClose={() => this.setState({uploadShow:false})} 
-                            onDelete={this.delete}
-                            onUpload={stream => console.log(stream)}
-                            imgs={[
-                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2017/12/08/5a2a4cbc92a221.04314417.png',
-                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2018/02/24/5a91092a4361e6.52455338.png',
-                                'http://snltest.oss-cn-beijing.aliyuncs.com/clean/2018/02/24/5a910919623317.71434187.png',
-                            ]}
+                            onDelete={this.onDelete}
+                            onUpload={this.onUpload}
+                            imgs={this.state.data[this.state.index].img}
                         />
                     }
-                    {/* <UploadToast
-                        show={this.state.uploadShow}
-                        images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].tempImages) 
-                            ? 
-                            this.state.data[this.state.index].tempImages : []
-                        }
-                        infinite={true}
-                        onDelete={this.delete}
-                        onChoose={this.upload}
-                        onClose={() => this.setState({uploadShow:false})}
-                    /> */}
                     <ImageLightbox
                         show={this.state.lightboxShow}
                         images={
