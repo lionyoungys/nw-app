@@ -246,7 +246,7 @@ export class Recharge extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
-        EventApi.open_case();
+        //EventApi.open_case();
     }
 
     componentDidMount() {
@@ -385,7 +385,7 @@ export class UpdateCard extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
-        EventApi.open_case();
+        //EventApi.open_case();
     }
 
     componentDidMount() {
