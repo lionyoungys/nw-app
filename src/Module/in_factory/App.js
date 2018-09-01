@@ -9,7 +9,6 @@ import Empty from '../../Elem/Empty';
 import Select from '../../UI/Select';
 import './App.css';
 
-
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -30,37 +29,42 @@ export default class extends React.Component {
     componentDidMount() {
         this.query();
     }
-
+    // 查询
     query() {
+        let done;
+        tool.ui.loading(handle => done = handle);
         api.post('in_factory', {                      
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res.result)
+                console.log(res);
+                done();
                 this.setState({
                     data:res.result,
                 });                
             }         
-        });       
+        },()=>done());       
     }
-
-    handleAllChecked(value, checked) {
-        if (checked) {
-            this.setState({checked:[],all:false});
-        } else {
-            let data = this.state.data, len = data.length;
-            if (len < 1) return;
-            let tempLen = null, checked = [];
+    // 全选
+    handleAllChecked(value, checked) {       
+        if (checked==false) {
+            let data = this.state.data,
+                len = data.length,
+                checked = [];
             for (let i = 0;i < len;++i) {
-                tempLen = data[i].list.length;
-                if (tempLen < 1) continue;
-                for (let j = 0;j < tempLen;++j) {
-                    checked.push(data[i].list[j].id);
-                }
-            } 
+                if (data[i].state == false) checked.push(data[i].id);
+            }
             this.setState({checked:checked,all:true});
+            
+        } else {
+            this.setState({
+                checked:[],
+                all:false
+            });
+           
         }
     }
+    // 单选
     onChecked(value, checked) {
         if (checked) {
             let index = value.inArray(this.state.checked);
@@ -73,78 +77,67 @@ export default class extends React.Component {
             this.setState({checked:this.state.checked});
         }
     }
-    handleClick() {    //退回
+    //退回
+    handleClick() {    
         if (this.state.checked.length < 1) return;
         api.post('into_factory', {                      
             token:'token'.getData(),
-            itemids:this.state.checked.toString(),
-            moduleid:22,
+            wid:JSON.stringify(this.state.checked),          
         }, (res, ver) => {
             if (ver && res) {
-                this.setState({checked:[],all:false});
-                this.query();                
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                    this.setState({checked:[],all:false});
+                    this.query();
+                }});                                               
             }else{
-                alert(res.msg);
+                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    close();
+                }});
             }
         });
     }
     
-    render() {
-        /*let html = this.state.data.map(obj => 
-            <div className='e-box' key={obj.date}>
-                <div className='in-factory-date'>{obj.date}</div>
-                    <table className='m-table m-text-c tr-b'>
-                        <thead>
-                            <tr className='m-bg-white'>
-                                <th>衣物编码</th>
-                                <th>衣物名称</th>
-                                <th>颜色</th>
-                                <th>瑕疵</th>
-                                <th>品牌</th>
-                                <th>洗后预估</th>
-                                <th>工艺加价</th>
-                                <th>单价</th>
-                                <th>衣物来源</th>
-                            </tr>
-                        </thead>
-                        <Tbody data={obj.list} onChecked={this.onChecked} checked={this.state.checked}/>
-                    </table>
-            </div>
-        );*/
+    render() {      
         return (
             <Window title='入厂' onClose={this.props.closeView}>
+            
                 <div className="out-title">
                   <div className='right out-left'>
                       <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
                       <button className="e-btn hangon-btn">查询</button>
                   </div>
                 </div>
-                <table className='m-table m-text-c tr-b'>
-                    <thead>
-                        <tr className='m-bg-white'>
-                            <th>衣物编码</th>
-                            <th>衣物名称</th>
-                            <th>颜色</th>
-                            <th>瑕疵</th>
-                            <th>品牌</th>
-                            <th>洗后预估</th>
-                            <th>工艺加价</th>
-                            <th>单价</th>
-                            <th>衣物来源</th>
-                        </tr>
-                    </thead>
-                    <Tbody data={this.state.data} onChecked={this.onChecked} checked={this.state.checked}/>
-                </table>
-                <Empty show={this.state.data.length < 1}/>
-                <div className='clean-top'>
-                    <div className='left'>
-                        <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>
-                        &emsp;&emsp;
-                        已选择<span className='e-orange'>&nbsp;{this.state.checked.length}&nbsp;</span>件
-                        &emsp;&nbsp;
-                        <button className='e-btn confirm' onClick={this.handleClick}>打包退回</button>
-                    </div>
-                </div>                                                   
+                <div className="clean laundry">
+                    <div className='e-box'>
+                        <table className="in-factory">
+                            <thead>
+                                <tr>
+                                    <th>衣物编码</th>
+                                    <th>衣物名称</th>
+                                    <th>颜色</th>
+                                    <th>瑕疵</th>
+                                    <th>品牌</th>
+                                    <th>洗后预估</th>
+                                    <th>工艺加价</th>
+                                    <th>单价</th>
+                                    <th>衣物来源</th>
+                                </tr>
+                            </thead>
+                            <Tbody data={this.state.data} onChecked={this.onChecked} checked={this.state.checked}/>
+                        </table>
+                        <Empty show={this.state.data.length < 1}/>
+                    </div>   
+                    <div className='clean-top'>
+                        <div className='left'>
+                            <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>
+                            &emsp;&emsp;
+                            已选择<span className='e-orange'>&nbsp;{this.state.checked.length}&nbsp;</span>件
+                            &emsp;&nbsp;
+                            <button className='e-btn confirm' onClick={this.handleClick}>打包退回</button>
+                        </div>
+                    </div> 
+                </div>                                           
             </Window>
         );
     }
@@ -166,13 +159,13 @@ class Tbody extends React.Component {
                     >{obj.clothing_number}</OptionBox>
                 </td>
                 <td>{obj.clothing_name}</td>
-                <td>{obj.item_name}</td>
+                <td>{obj.clothing_color}</td>
                 <td>{obj.remark}</td>
-                <td>{obj.item_name}</td>
-                <td>{obj.forecast}</td>
-                <td>￥：0.00</td>
-                <td>￥：0.00</td> 
-                <td>速洗达店铺</td>               
+                <td>{obj.sign}</td>
+                <td>{obj.forecast}</td>                
+                <td>{obj.addition_price}</td>
+                <td>{obj.raw_price}</td>
+                <td>{obj.mname}</td>               
             </tr>
         );
         return (<tbody>{html}</tbody>);

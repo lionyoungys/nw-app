@@ -38,25 +38,28 @@ export default class extends React.Component {
         this.query = this.query.bind(this);      // 方法
         this.onDelete = this.onDelete.bind(this);  // 删除
         //新增
-        // this.uploadShow = this.uploadShow.bind(this);
-        // this.lightboxShow = this.lightboxShow.bind(this);
+         this.uploadShow = this.uploadShow.bind(this);
+         this.lightboxShow = this.lightboxShow.bind(this);
          this.select_factory = this.select_factory.bind(this); //入厂列表
     }
 
     componentDidMount() {this.query();}
     query() {
+        let done;
+        tool.ui.loading(handle => done = handle);
         api.post('laundry_wash', {           
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                console.log(res);
+                done();
                 this.setState({
                     data:res.result,
                     value:'',
                     show:false,
                 })
             }
-        });
+        },()=>done());
     }
     
     // 点击选择要入的工厂
@@ -126,6 +129,7 @@ export default class extends React.Component {
            
         }
     }
+    //单选
     handleChecked(value,checked) {
         if (checked) {
             let index = value.inArray(this.state.checked);
@@ -164,6 +168,7 @@ export default class extends React.Component {
             }
         });            
     }
+
     onUpload(file) {    //文件上传
         let done;
         tool.ui.loading(handle => done = handle);
@@ -196,16 +201,14 @@ export default class extends React.Component {
         console.log(url, index);
     }
     //新增方法
-    // uploadShow(e) {
-    //     this.setState({uploadShow:true, index:e.target.dataset.index});
-    // }
-    // lightboxShow(e) {
-    //     this.setState({lightboxShow:true, index:e.target.dataset.index});
-    // }
-    // 送洗操作
-    handleClick() {   
-        //console.log(this.state.checked) 
-        //console.log(typeof this.state.checked);      
+    uploadShow(e) {
+        this.setState({uploadShow:true, index:e.target.dataset.index});
+    }
+    lightboxShow(e) {
+        this.setState({lightboxShow:true, index:e.target.dataset.index});
+    }
+    //送洗操作
+    handleClick() {              
          if (this.state.checked.length < 1) return;
          api.post('wsah_btn', {  
             wid:JSON.stringify(this.state.checked),                  
@@ -231,10 +234,10 @@ export default class extends React.Component {
     }
     render() {
         let html = this.state.data.map( (obj, index) =>
-            <tr key={obj.id} className={!(obj.assist == 1 || obj.clean_state == 1) ? null : 'disabled'}>
+            <tr key={obj.id} className={!(obj.state == false ) ? null : 'disabled'}>
                 <td>
                     {
-                        !(obj.assist == 1 || obj.clean_state == 1)
+                        (obj.state == false)
                         ?
                         <OptionBox
                             type='checkbox'
@@ -249,10 +252,10 @@ export default class extends React.Component {
                 <td>{obj.clothing_name}</td>
                 <td>{obj.clothing_color}</td>
                 <td>{obj.remark}</td>
-                <td>{obj.forecast}</td>
-                <td>{obj.forecast}</td>
-                <td>￥:20.00</td>
-                <td>￥:0.00</td>
+                <td>{obj.sign}</td>
+                <td>{obj.forecast}</td>               
+                <td>{obj.addition_price}</td>
+                <td>{obj.raw_price}</td>
                 <td>
                     <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
@@ -265,7 +268,7 @@ export default class extends React.Component {
             <div className="out-title">
                 <div className='right out-left'>
                     <input type="text" value={this.state.value} onChange={e => this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                    <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
+                    <button className="e-btn hangon-btn" onClick={this.onSearch}>添加</button>
                 </div> 
                 <div className='right out-right' onClick = {this.select_factory}>
                                     选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({shop_id:value})} selected="请选择厂家"/>

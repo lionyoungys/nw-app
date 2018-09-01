@@ -9,8 +9,10 @@ import Search from '../UI/search/App';
 import OptionBox from '../../Elem/OptionBox';        //新增
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
+import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
-const state = 3, word = '清洗';
+const state = 3, word = '送洗';
+const token = 'token'.getData();
 
 export default class extends React.Component {
     constructor(props) {
@@ -33,8 +35,10 @@ export default class extends React.Component {
         this.handleChecked = this.handleChecked.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
-        this.upload = this.upload.bind(this);
-        this.delete = this.delete.bind(this);
+        //this.upload = this.upload.bind(this);
+        this.onUpload = this.onUpload.bind(this);
+        
+        this.onDelete = this.onDelete.bind(this);  // 删除
         //新增
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
@@ -42,19 +46,23 @@ export default class extends React.Component {
 
     componentDidMount() {this.query();}
     query() {
+        let done;
+        tool.ui.loading(handle => done = handle);
         api.post('clear', {           
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                console.log(res);
+                done();
                 this.setState({
                     data:res.result,
                     value:'',
                     show:false,
                 })
             }
-        });
+        },()=>done());
     }
+    // 搜索查询
     onSearch() {
         api.post('operate_search', {           
             token:'token'.getData(),
@@ -80,6 +88,7 @@ export default class extends React.Component {
             }
         });
     }
+    //全选
     handleAllChecked(value, checked) {
         if (checked) {
             this.setState({checked:[],all:false});
@@ -93,6 +102,7 @@ export default class extends React.Component {
             this.setState({checked:checked,all:true});
         }
     }
+    //单选
     handleChecked(value,checked) {
         if (checked) {
             let index = value.inArray(this.state.checked);
@@ -105,60 +115,62 @@ export default class extends React.Component {
             this.setState({checked:this.state.checked});
         }
     }
+    // 已清洗
     handleCleaned() {
         //item_cleaned
         if(this.state.checked.length < 1) return;
         api.post('clean_btn', {  
-            wid:this.state.checked.toString(),
+            wid:JSON.stringify(this.state.checked),
             //moduleid:state,         
             token:'token'.getData(),
         }, (res, ver) => {
+            console.log(res)
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {                   
                     close();
                     this.setState({checked:[],all:false});
                     this.query();
                 }});               
+            }else{
+                tool.ui.error({title:'错误提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    close();
+                }});
             }
         });            
     }
-    upload(base64, image) {
-         let index = this.state.index;
-         api.post('item_upload', {                      
-            token:'token'.getData(),
-            item_id:this.state.data[index].id,
-            image:image
-         }, (res, ver) => {
-            if (ver && res) {
-                if (tool.isSet(this.state.data[index].tempImages)) {
-                    this.state.data[index].tempImages.push(response.data.result);
-                    } else {
-                         this.state.data[index].tempImages = [response.data.result];
-                        }
-                        this.state.data[index].image.push(response.data.result);
-                        this.setState({data:this.state.data});
-            }
-         });       
-    }
-
-    delete(urlIndex) {
-        let index = this.state.index,
-            url = this.state.data[index].tempImages[index];
-         api.post(
-            'unload', 
-             {token:this.props.token,item_id:this.state.data[index].id,url:url},
-             (response, verify) => {
-                 if (verify) {
-                    let realIndex = url.inArray(this.state.data[index].tempImages),
-                         realIndex2 = url.inArray(this.state.data[index].image);
-                     -1 !== realIndex && this.state.data[index].tempImages.splice(realIndex, 1);
-                     -1 !== realIndex2 && this.state.data[index].image.splice(realIndex2, 1);
-                     this.setState({data:this.state.data});
-                 }
-            }
+    
+    onUpload(file) {    //文件上传
+        let done;
+        tool.ui.loading(handle => done = handle);
+        let index = this.state.index;
+        api.post(
+            'item_img_upload', 
+            {token:token, wid:this.state.data[index].id, pic:file.stream}, 
+            (res, ver, notice) => {
+                done();
+                if (ver) {
+                    this.state.data[index].img.push(res.result);
+                    this.setState({data:this.state.data});
+                } else {
+                    notice();
+                }
+            }, 
+            () => {done()}
         );
+
     }
-    //新增方法
+    
+    onDelete(url, index) {    //文件删除
+        let item_index = this.state.index;
+        api.post('item_img_delete', {token:token, wid:this.state.data[item_index].id, pic:url}, (res, ver) => {
+            if (ver) {
+                this.state.data[item_index].img.splice(index, 1);
+                this.setState({data:this.state.data});
+            }
+        });
+        console.log(url, index);
+    }
+   //新增方法
     uploadShow(e) {
         this.setState({uploadShow:true, index:e.target.dataset.index});
     }
@@ -182,10 +194,10 @@ export default class extends React.Component {
     }
     render() {
         let html = this.state.data.map( (obj, index) =>
-            <tr key={obj.id} className={!(obj.assist == 1 || obj.clean_state == 1) ? null : 'disabled'}>
+            <tr key={obj.id} className={!(obj.state == false) ? null : 'disabled'}>
                 <td>
                     {
-                        !(obj.assist == 1 || obj.clean_state == 1)
+                        (obj.state == false)
                         ?
                         <OptionBox
                             type='checkbox'
@@ -198,12 +210,12 @@ export default class extends React.Component {
                     }
                 </td>
                 <td>{obj.clothing_name}</td>
-                <td>{obj.problem}</td>
+                <td>{obj.clothing_color}</td>
                 <td>{obj.remark}</td>
-                <td>{obj.pinpai}</td>
-                <td>{obj.forecast}</td>
-                <td>￥：0.00</td>
-                <td>￥:23.00</td>
+                <td>{obj.sign}</td>
+                <td>{obj.forecast}</td>               
+                <td>{obj.addition_price}</td>
+                <td>{obj.raw_price}</td>
                 <td>
                     <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxShow}>{obj.img.length}张</span>
                     &emsp;
@@ -224,18 +236,16 @@ export default class extends React.Component {
                             <tbody>{html}</tbody>
                         </table>
                     </div>
-                    <UploadToast
-                        show={this.state.uploadShow}
-                        images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].tempImages) 
-                            ? 
-                            this.state.data[this.state.index].tempImages : []
-                        }
-                        infinite={true}
-                        onDelete={this.delete}
-                        onChoose={this.upload}
-                        onClose={() => this.setState({uploadShow:false})}
-                    />
+                    {
+                        this.state.uploadShow 
+                        && 
+                        <ImgUploadWindow 
+                            onClose={() => this.setState({uploadShow:false})} 
+                            onDelete={this.onDelete}
+                            onUpload={this.onUpload}
+                            imgs={this.state.data[this.state.index].img}
+                        />
+                    }
                     <ImageLightbox
                         show={this.state.lightboxShow}
                         images={
