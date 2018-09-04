@@ -566,7 +566,6 @@ export default class extends Component {
             {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
-                loadingEnd();
                 if (ver) {
                     this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
                     tool.ui.success({callback:close => {
@@ -576,6 +575,7 @@ export default class extends Component {
                 } else {
                     handle();
                 }
+                loadingEnd();
             },
             () => loadingEnd()
         );
