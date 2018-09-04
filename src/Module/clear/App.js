@@ -29,7 +29,7 @@ export default class extends React.Component {
             lightboxShow:false,
             index:null
         };
-        this.onSearch = this.onSearch.bind(this);
+        //this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -43,7 +43,8 @@ export default class extends React.Component {
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
     }
-
+    
+    
     componentDidMount() {this.query();}
     query() {
         let done;
@@ -63,31 +64,31 @@ export default class extends React.Component {
         },()=>done());
     }
     // 搜索查询
-    onSearch() {
-        api.post('operate_search', {           
-            token:'token'.getData(),
-            status:state,
-            clothing_number:this.state.value,
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.query();
-            }else{
-                let index = this.state.value.inObjectArray(this.state.data, 'clean_sn');
-                 if (-1 != index) {
-                     if (this.state.data[index].assist == 1 || this.state.data[index].clean_state == 1) return;
-                    let index2 = this.state.data[index].id.inArray(this.state.checked);
-                 if (-1 === index2) {
-                        this.state.checked.push(this.state.data[index].id);
-                        this.setState({checked:this.state.checked});
-                    }
-                 } else {
-                    alert(res.msg);
-                }
-                this.setState({value:''});
-            }
-        });
-    }
+    // onSearch() {
+    //     api.post('operate_search', {           
+    //         token:'token'.getData(),
+    //         status:state,
+    //         clothing_number:this.state.value,
+    //     }, (res, ver) => {
+    //         if (ver && res) {
+    //             console.log(res)
+    //             this.query();
+    //         }else{
+    //             let index = this.state.value.inObjectArray(this.state.data, 'clean_sn');
+    //              if (-1 != index) {
+    //                  if (this.state.data[index].assist == 1 || this.state.data[index].clean_state == 1) return;
+    //                 let index2 = this.state.data[index].id.inArray(this.state.checked);
+    //              if (-1 === index2) {
+    //                     this.state.checked.push(this.state.data[index].id);
+    //                     this.setState({checked:this.state.checked});
+    //                 }
+    //              } else {
+    //                 alert(res.msg);
+    //             }
+    //             this.setState({value:''});
+    //         }
+    //     });
+    // }
     //全选
     handleAllChecked(value, checked) {
         if (checked) {
@@ -225,10 +226,10 @@ export default class extends React.Component {
         );
         return (
         <Window title='清洗' onClose={this.props.closeView}> 
-            <div className='right'>
+            {/* <div className='right'>
                 <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
                 <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
-            </div>         
+            </div>          */}
             <div className='clean'>                   
                     <div className='e-box'>
                         <table className='e-table border'>

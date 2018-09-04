@@ -10,6 +10,7 @@ import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import Select from '../../UI/Select';
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
+// import { stat } from 'fs';
 const token = 'token'.getData();
 
 export default class extends React.Component {
@@ -27,7 +28,9 @@ export default class extends React.Component {
             lightboxShow:false,
             index:null, 
             selected_shop:[],
-            selected_id:''        
+            selected_id:'',
+            select_shop:'',
+            sel_id:''
         };
         this.onSearch = this.onSearch.bind(this); //搜索
         this.handleAllChecked = this.handleAllChecked.bind(this); //全选
@@ -75,7 +78,7 @@ export default class extends React.Component {
                     tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
                 }
                 this.setState({select_shop:tmp_arr});
-                this.setState({select_shop:res.result.typeArray('mname'), })           
+                //this.setState({select_shop:res.result.typeArray('mname'), })           
             }
         });
     }
@@ -84,8 +87,7 @@ export default class extends React.Component {
     onSearch() { 
         console.log(this.state.value)
         api.post('take_laundry', {           
-            token:'token'.getData(),
-            status:state,
+            token:'token'.getData(),           
             clothing_number:this.state.value,
         }, (res, ver) => {
             if (ver && res) {
@@ -96,14 +98,17 @@ export default class extends React.Component {
             }else{
                 let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
                  if (-1 != index) {
-                     if (this.state.data[index].assist == 1 || this.state.data[index].clean_state == 1) return;
-                    let index2 = this.state.data[index].id.inArray(this.state.checked);
+                     if (this.state.data[index].state == true) return;
+                     let index2 = this.state.data[index].id.inArray(this.state.checked);
                  if (-1 === index2) {
                         this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
                     }
-                 } else {
-                    alert(res.msg);
+                 } else {                   
+                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                        close();
+                        this.setState({value:''});
+                    }});
                 }
                 this.setState({value:''});
             }
@@ -119,14 +124,12 @@ export default class extends React.Component {
             for (let i = 0;i < len;++i) {
                 if (data[i].state == false) checked.push(data[i].id);
             }
-            this.setState({checked:checked,all:true});
-            
+            this.setState({checked:checked,all:true});            
         } else {
             this.setState({
                 checked:[],
                 all:false
-            });
-           
+            });     
         }
     }
     //单选
@@ -143,16 +146,16 @@ export default class extends React.Component {
         }
     }
     //入厂
-    handleCleaned() {       
+    handleCleaned() {  
+        console.log(this.state.sel_id)                  
         if(this.state.checked.length < 1) return;      
         api.post('take_factory', {  
             wid:JSON.stringify(this.state.checked), 
-            rid:this.state.shop_id,                  
+            rid:this.state.sel_id,                 
             token:'token'.getData(),
         }, (res, ver) => {
-            console.log(res)
-            if (ver && res) {
-                console.log(res)               
+            //console.log(res)
+            if (ver && res) {                        
                     tool.ui.success({callback:(close, event) => {
                         close();
                         this.setState({
@@ -226,7 +229,7 @@ export default class extends React.Component {
                 this.query();
                }});                                
             }else{
-                tool.ui.error({title:'提示',msg:'res.msg',button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
                     close();
                 }});
             }
@@ -271,7 +274,7 @@ export default class extends React.Component {
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>添加</button>
                 </div> 
                 <div className='right out-right' onClick = {this.select_factory}>
-                                    选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({shop_id:value})} selected="请选择厂家"/>
+                    选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({sel_id:value})} selected="请选择厂家"/>
                 </div>
             </div>
             <div className='clean laundry'>                   

@@ -23,7 +23,7 @@ export default class extends React.Component {
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
         this.query = this.query.bind(this);
-        this.goBack = this.goBack.bind(this);        
+        //this.goBack = this.goBack.bind(this);        
 
         this.onUpload = this.onUpload.bind(this);       
         this.onDelete = this.onDelete.bind(this);  // 删除
@@ -52,26 +52,35 @@ export default class extends React.Component {
     }
     // 搜索查询
     onSearch() {
+        console.log(this.state.value);
         api.post('take_ironing', {           
-            token:'token'.getData(),
-            state:state,
+            token:'token'.getData(),          
             clothing_number:this.state.value
         }, (res, ver) => {
             if (ver && res) {
-                this.query();
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                    this.query();
+                }});   
             }else{
+                console.log(res)
                 let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
                 if (-1 != index) {
-                     if (this.state.data[index].assist == 1) return;
+                     if (this.state.data[index].state == true) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
                      if (-1 === index2) {
                         this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
                     }
                 } else {
-                   alert(res.data.msg);
+                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                        close();                       
+                    }});
                 }
                  this.setState({value:''});
+                 tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    close();                       
+                }});
             }
         });
     }
@@ -126,10 +135,10 @@ export default class extends React.Component {
         });
     }
     // 反流
-    goBack() {
-        if (this.state.checked.length != 1) return alert('返流项目需选中单个项目返流');
-        this.props.changeView({view:'go_back',param:{state:state,id:this.state.checked[0]}});
-    }
+    // goBack() {
+    //     if (this.state.checked.length != 1) return alert('返流项目需选中单个项目返流');
+    //     this.props.changeView({view:'go_back',param:{state:state,id:this.state.checked[0]}});
+    // }
     onUpload(file) {    //文件上传
         let done;
         tool.ui.loading(handle => done = handle);
@@ -240,7 +249,7 @@ export default class extends React.Component {
                         &emsp;&nbsp;
                         <button type='button' className='e-btn confirm' onClick={this.handleCleaned}>已{word}</button>
                         &emsp;
-                        <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button>
+                        {/* <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button> */}
                     </div>
                 </div>               
             </div>

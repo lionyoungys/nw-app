@@ -80,7 +80,7 @@ export default class extends React.Component {
     //退回
     handleClick() {    
         if (this.state.checked.length < 1) return;
-        api.post('into_factory', {                      
+        api.post('return_factory', {                      
             token:'token'.getData(),
             wid:JSON.stringify(this.state.checked),          
         }, (res, ver) => {
@@ -101,14 +101,7 @@ export default class extends React.Component {
     render() {      
         return (
             <Window title='入厂' onClose={this.props.closeView}>
-            
-                <div className="out-title">
-                  <div className='right out-left'>
-                      <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                      <button className="e-btn hangon-btn">查询</button>
-                  </div>
-                </div>
-                <div className="clean laundry">
+                <div className="clean">
                     <div className='e-box'>
                         <table className="in-factory">
                             <thead>

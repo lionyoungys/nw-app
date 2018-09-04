@@ -15,16 +15,22 @@ export default class extends React.Component {
         super(props);
         //this.props.onRef(this);
         this.state = {
+            shop_id:'',
             value:'',
             data:[], 
             checked:[], 
             all:false, 
+            selected_shop:[],
+            selected_id:'',
+            select_shop:'',
+            sel_id:''
         };
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.onChecked = this.onChecked.bind(this);
         this.query = this.query.bind(this);
-        
+        this.select_factory = this.select_factory.bind(this); //入厂列表
+        this.change_select = this.change_select.bind(this) ; // 选择要出厂的店铺商家
     }
 
     // 查询 - 搜索
@@ -74,14 +80,47 @@ export default class extends React.Component {
             this.setState({checked:this.state.checked});
         }
     }
-   
-    handleClick() {    //出厂
-        if (this.state.checked.length < 1 ) return;
+   // 点击选择要入的工厂
+    select_factory (){
+        api.post('factory_id', {           
+            token:'token'.getData(),
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res);
+                let len = res.result.length
+                ,   tmp_arr = [];
+                for (var i = 0;i < len;++i) {
+                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
+                }
+                this.setState({select_shop:tmp_arr});
+                //this.setState({select_shop:res.result.typeArray('mname'), })           
+            }
+        });
+    }
+    //选择要出厂的商家
+    change_select (value){
+        console.log(value)
+        this.setState({sel_id:value});
+        api.post('factory_id', {           
+            token:'token'.getData(),
+            rid:this.state.sel_id 
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res);
+                this.query();         
+            }
+        });
+    }
 
+    handleClick() {    //出厂
+        console.log(this.state.sel_id)
+        if (this.state.checked.length < 1 ) return;
         api.post('out_to_factory', {           
             token:'token'.getData(),
-            wid:JSON.stringify(this.state.checked),           
+            wid:JSON.stringify(this.state.checked),  
+            rid:this.state.sel_id ,      
         }, (res, ver) => {
+            console.log(res)
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {
                     close();
@@ -99,11 +138,10 @@ export default class extends React.Component {
     render() {    
         return (
         <Window title='出厂' onClose={this.props.closeView}>            
-                <div className="out-title">
-                    <div className='right out-left'>
-                        <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
-                        <button className="e-btn hangon-btn" >查询</button>
-                    </div>                   
+                <div className="out-title">                  
+                    <div className='right out-right left out-left' onClick = {this.select_factory}>
+                      选择门店：<Select  option={this.state.select_shop}  onChange={(value) => this.change_select(value)} selected="请选择门店"/>
+                    </div>
                 </div>
                 <div className="clean laundry">
                    <div className="e-box">

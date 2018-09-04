@@ -55,6 +55,8 @@ export default class extends React.Component {
     }
 
     callback(obj) {
+        let loadingEnd;
+        tool.ui.loading(handle => loadingEnd = handle);
         let card = this.state.cards[this.state.index];
         obj.token = token;
         obj.user_name = this.state.name;
@@ -107,8 +109,8 @@ export default class extends React.Component {
             }else{
                 handle();
             }
-            
-        });
+            loadingEnd();
+        }, () => loadingEnd());
     }
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}
