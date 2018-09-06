@@ -28,7 +28,35 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
+        /* [{
+	"DATATAG": "1536203412737001",
+	"clothing_number": "1536203412737001",
+	"clothing_id": "36764",
+	"clothing_name": "连体裤 真丝",
+	"clothing_color": "",
+	"clothing_grids": "",
+	"clothing_type": "裤子类",
+	"raw_price": "45.00",
+	"remark": "",
+	"deal_time": 1536462612,
+	"grid_num": "",
+	"addition_remark": "",
+	"addition_price": 0,
+	"addition_no_price": 0,
+	"addition_discount": "",
+	"forecast": "",
+	"work_number": 1,
+	"sign": "",
+	"min_discount": 10,
+	"has_discount": "1",
+	"transfer": "1",
+	"min_transfer": "0.00",
+	"parent": null
+}]*/
+        console.log('###########################');
         console.log(this.props.items);
+        console.log('###########################');
+        let items = this.props.items.work || [];
         this.state = {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
@@ -38,13 +66,12 @@ export default class extends Component {
             card:{},    //卡数据
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
-            id:this.props.id, //从线上收衣带来的用户id
+            //id:this.props.id, //从线上收衣带来的用户id
             //additem:this.props.items
             
         };
         this.date = tool.date('Y-m-d');
         this.counter = 1;    //编码累加计数属性
-        this.M1read = this.M1read.bind(this);    //读卡
         this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
@@ -69,7 +96,6 @@ export default class extends Component {
         this.updatePrice = this.updatePrice.bind(this);    //修改衣物单价
         this.showUpdatePrice = this.showUpdatePrice.bind(this);    //展示修改衣物单价组件
         this.onClose = this.onClose.bind(this);
-        this.tempUser = this.tempUser.bind(this);    //展示用户信息填写
         this.setUser = this.setUser.bind(this);    //设置用户信息
         this.del = this.del.bind(this);    //项目删除方法
         this.copy = this.copy.bind(this);    //项目复制
@@ -117,27 +143,6 @@ export default class extends Component {
                 this.setState({price:res.result.list});
             } else {handle()}
         });
-    }
-
-    M1read(value) {
-        let obj = {};
-        if ('string' === typeof value && '' != value) {
-            obj.number = value;
-        }
-        obj.callback = (res) => {
-            this.setState({
-                number:res.recharge_number,
-                cid:res.id,
-                phone:res.user_mobile,
-                name:res.user_name,
-                balance:res.balance,
-                type:res.card_name,
-                discount:res.discount,
-                addr:res.address,
-                card:res
-            });
-        }
-        EventApi.M1Read(obj);
     }
     PAYM1read(value) {
         let obj = {};
@@ -464,7 +469,7 @@ export default class extends Component {
         }
     }
     takeCost() {
-        return console.log(this.state.data);
+        return console.log(JSON.stringify(this.state.data));
         if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
@@ -574,10 +579,6 @@ export default class extends Component {
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
-    tempUser() {
-        if ('' === this.state.number && '' === this.state.phone && '' === this.state.name) return;
-        this.setState({show:15});
-    }
     onClose() {
         if (this.state.data.length > 0) {
             tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
@@ -628,7 +629,7 @@ export default class extends Component {
                     <div onClick={this.showBrand}>{obj.work.map((item,index)=><span>{item.sign}</span>)}</div>
                     <div onClick={this.showForcast}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
                     <div onClick={this.showPrice}>{obj.total}</div>
-                    <div onClick={this.showUpdatePrice}>{obj.work.map((item,index)=><span>{item.work_number}</span>)}</div>
+                    <div onClick={this.showUpdatePrice}></div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div>
                         <span onClick={this.copy}>复制</span>

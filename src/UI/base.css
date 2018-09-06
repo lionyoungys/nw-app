@@ -333,8 +333,8 @@
     height: 14px;
     cursor: pointer;
 }
-.ui-math-sub{left: 0;background: url(img/ui-subtract.png)}
-.ui-math-add{right: 0;background: url(img/ui-add.png)}
+.ui-math-sub{left:0px;background: url(img/ui-subtract.png)}
+.ui-math-add{right:0px;background: url(img/ui-add.png)}
 /* 支付组件样式 */
 .ui-payment-title, .ui-payment-title2{
     height: 40px;
