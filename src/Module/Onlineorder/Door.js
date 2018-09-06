@@ -45,13 +45,13 @@ export default class extends Component {
     }
     // 网络请求
     query(page, value){
-        console.log(this.state.checked)
+        console.log(this.state.checked,page)
         value = value || '';
         page = page || this.state.page;
         let params= {
             token:'token'.getData(), 
             mid:'mid'.getData(),
-            page:this.state.page,
+            page:page,
             limit:this.limit, 
             value:value,             
         }

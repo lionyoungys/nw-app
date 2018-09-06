@@ -12,6 +12,7 @@ import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 const state = 52, word = '质检';
 const token = 'token'.getData();
+// import { stat } from 'fs';
 
 export default class extends React.Component {
     constructor(props) {

@@ -35,7 +35,7 @@ export default class extends Component {
             oid:this.state.id,
             token:'token'.getData(), 
             mid:'mid'.getData(),
-            page:this.state.page,
+            page:page,
             limit:this.limit,
             value:value,                    
         }

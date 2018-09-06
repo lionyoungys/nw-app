@@ -20,6 +20,14 @@
     //         return false;
     //     }
     // }
+    String.prototype.repeat = function(count) {
+        var str = '';
+        if (isNaN(count)) count = 1;
+        for (var i = 0;i < count;++i) {
+            str += this;
+        }
+        return str;
+    }
 
     /**
      * localStorage数据存储

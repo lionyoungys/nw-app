@@ -391,3 +391,9 @@
 
 .clothes-user-main-body>div:nth-child(odd){background:#fff}
 .clothes-user-main-body>div:nth-child(even){background:#f0f5f9}
+
+
+
+/* 线上收衣添加衣物 */
+.add-item-online{margin-top:35px;}
+.add-item-btn{margin-top:30px}

@@ -1,5 +1,5 @@
 /**
- * 送洗界面组件
+ * 清洗界面组件
  * @author yangyunlong
  */
 
@@ -11,7 +11,8 @@ import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
-const state = 3, word = '送洗';
+const state = 3, word = '清洗';
+// import { stat } from 'fs';
 const token = 'token'.getData();
 
 export default class extends React.Component {
@@ -264,7 +265,7 @@ export default class extends React.Component {
                             &emsp;&nbsp;
                             <button type='button' className='e-btn confirm' onClick={this.handleCleaned}>已{word}</button>
                             &emsp;
-                            <button className='e-btn confirm' onClick={this.handleClick}>退回</button>
+                            {/* <button className='e-btn confirm' onClick={this.handleClick}>退回</button> */}
                         </div>
                         
                     </div>               

@@ -11,6 +11,7 @@ import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 const state = 51, word = '熨烫';
+// import { stat } from 'fs';
 const token = 'token'.getData();
 
 export default class extends React.Component {

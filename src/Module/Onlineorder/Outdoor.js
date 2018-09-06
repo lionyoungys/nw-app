@@ -4,7 +4,7 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
-import App from '../clothes/App'
+import App from '../clothes/add_item'
 import Nodata from '../../UI/nodata'
 
 export default class extends Component {   
@@ -20,6 +20,7 @@ export default class extends Component {
             phone:'',
             id:'',
             name:'',
+            arritem:[]
         };
         this.props.onRef(this);
         this.limit = 10;  
@@ -46,15 +47,11 @@ export default class extends Component {
         }
       })
     }
-    take_clothes (e){
-        var id = e.target.dataset.id;
-        var phone = e.target.dataset.phone;
-        var name = e.target.dataset.name;
-        console.log(id +'...'+phone+'...'+ name);
+    take_clothes (item){
+        //var arritem = e.target.dataset.item;
+        //console.log(arritem)
         this.setState({
-            id:id,
-            phone:phone,
-            name:name,
+            arritem:item,           
         })
         this.setState({app:true})
     }
@@ -65,7 +62,7 @@ export default class extends Component {
         let params= {
             token:'token'.getData(), 
             mid:'mid'.getData(),  
-            page:this.state.page,
+            page:page,
             limit:this.limit,
             value:value,                    
         }
@@ -105,7 +102,7 @@ export default class extends Component {
             <td index={index}>客户姓名：{item.work[0].user_name}<br/>客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</td>
             <td>
                 <s data-id={item.id} onClick = {this.outdoor_no}>取消预约</s>
-                <s data-id={item.id} onClick={this.take_clothes} data-phone={item.work[0].user_mobile} data-name={item.work[0].user_name}>收衣</s>
+                <s onClick={() =>this.take_clothes(item)}>收衣</s>
             </td>
         </tr>
         )    
@@ -127,7 +124,7 @@ export default class extends Component {
             {
                 this.state.app
                 &&
-                <App   id={this.state.id} phone={this.state.phone} name={this.state.name} closeView={() => this.setState({app:false})}/>
+                <App items={this.state.arritem} id={this.state.id} phone={this.state.phone} name={this.state.name} closeView={() => this.setState({app:false})}/>
             }
             <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>            
         </div>         

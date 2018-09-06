@@ -80,10 +80,10 @@ export default class extends Component {
                     if (readLen == len && readLen == count) {
                         clearInterval(this.timeId);
                         this.timeId = null;
-                        if (size > 80000) {
-                            this.handleCancel();
-                            return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
-                        }
+                        // if (size > 80000) {
+                        //     this.handleCancel();
+                        //     return tool.ui.error({msg:'数据量过大！！',callback:close => close()});
+                        // }
                         //let bf = new Buffer(JSON.stringify(read));
                         //console.log('buf', buf);
                         //let postData = {token:token,txt:fs.createReadStream( new Blob([bf], {type:'text/plain'}) )};

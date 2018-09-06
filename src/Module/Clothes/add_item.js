@@ -38,8 +38,8 @@ export default class extends Component {
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
             id:this.props.id, //从线上收衣带来的用户id
-            phone:this.props.phone, // 从线上订单带来的用户电话号
-            name:this.props.name, // 从线上订单带来的用户名字
+            additem:this.props.items
+            
         };
         this.date = tool.date('Y-m-d');
         this.counter = 1;    //编码累加计数属性
@@ -80,6 +80,13 @@ export default class extends Component {
     }
 
     componentDidMount() {
+
+       // console.log(this.state.data.push(this.state.additem));
+        this.state.data.push(this.state.additem)
+        console.log(this.state.data)
+             
+        
+
         tool.KeyCode.listenEnter(this.phoneInput, this.tempUser);
         tool.KeyCode.listenEnter(this.nameInput, this.tempUser);
         tool.KeyCode.listenEnter(this.numberInput, this.tempUser);
@@ -555,6 +562,7 @@ export default class extends Component {
             {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
+                loadingEnd();
                 if (ver) {
                     this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
                     tool.ui.success({callback:close => {
@@ -564,7 +572,6 @@ export default class extends Component {
                 } else {
                     handle();
                 }
-                loadingEnd();
             },
             () => loadingEnd()
         );
@@ -622,14 +629,14 @@ export default class extends Component {
             no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
             return (
                 <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
-                    <div onClick={this.showCode}>{obj.clothing_number}</div>
-                    <div onClick={this.showItem}>{obj.clothing_name}</div>
-                    <div onClick={this.showColor}>{obj.clothing_color}</div>
-                    <div onClick={this.showProblem}>{obj.remark}</div>
-                    <div onClick={this.showBrand}>{obj.sign}</div>
-                    <div onClick={this.showForcast}>{obj.forecast}</div>
-                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft).toFixed(2)}</div>
-                    <div onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</div>
+                    <div onClick={this.showCode}>{obj.work.map((item,index)=><span>{item.clothing_number}</span>)}</div>
+                    <div onClick={this.showItem}>{obj.work.map((item,index)=><span>{item.clothing_name}</span>)}</div>
+                    <div onClick={this.showColor}>{obj.work.map((item,index)=><span>{item.clothing_color}</span>)}</div>
+                    <div onClick={this.showProblem}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
+                    <div onClick={this.showBrand}>{obj.work.map((item,index)=><span>{item.sign}</span>)}</div>
+                    <div onClick={this.showForcast}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
+                    <div onClick={this.showPrice}>{obj.total}</div>
+                    <div onClick={this.showUpdatePrice}>{obj.work.map((item,index)=><span>{item.work_number}</span>)}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div>
                         <span onClick={this.copy}>复制</span>
@@ -641,46 +648,12 @@ export default class extends Component {
         });
         return (
             <Window title='收衣' onClose={this.onClose}>
-                <div className='clothes-user'>
-                    <b>*</b>手机：
-                    <input 
-                        type='text' 
-                        className='e-input' 
-                        ref={input => this.phoneInput = input}
-                        style={{width:'100px'}} 
-                        value={this.state.phone} 
-                        onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                    />
-                    <b>*</b>姓名：
-                    <input 
-                        type='text' 
-                        className='e-input' 
-                        ref={input => this.nameInput = input}
-                        style={{width:'100px'}} 
-                        value={this.state.name} 
-                        onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                    />
-                    卡号：
-                    <input 
-                        type='text' 
-                        className='e-input' 
-                        ref={input => this.numberInput = input}
-                        style={{width:'100px'}} 
-                        value={this.state.number} 
-                        onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                    />
-                    地址：<input type='text' className='e-input' style={{width:'160px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
-                    <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
-                    &emsp;
-                    <button type='button' className='e-btn' onClick={this.M1read}>读卡</button>
-                </div>
-                <div className='clothes-header'>
+                
+                <div className='clothes-header add-item-online'>
                     <div><b>*</b>衣物编码</div><div><b>*</b>衣物名称</div><div>颜色</div><div>瑕疵</div><div>品牌</div>
                     <div>洗后预估</div><div>工艺加价</div><div><b>*</b>单价</div><div><b>*</b>数量</div><div>操作</div>
                 </div>
                 <div className='clothes-body'>{html}</div>
-                
-                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn' onClick={() => this.setState({show:1})}>添加衣物</button></div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>
@@ -695,14 +668,8 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className='clothes-footer-right'>
-                        <div>
-                            <button type='button' className='e-btn middle high' onClick={this.cost}>收银</button>
-                            <button type='button' className='e-btn middle high' data-take='take' onClick={this.takeCost}>取衣付款</button>
-                        </div>
-                        <div>
-                            <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
-                            <button type='button' className='e-btn' onClick={() => this.setState({show:17})}>充值</button>
-                            <button type='button' className='e-btn' onClick={() => this.setState({show:13})}>卡扣款</button>
+                        <div>                           
+                            <button type='button' className='e-btn middle high add-item-btn' data-take='take' onClick={this.takeCost} >提交订单</button>
                         </div>
                     </div>
                 </div>

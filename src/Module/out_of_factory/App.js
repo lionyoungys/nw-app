@@ -107,7 +107,7 @@ export default class extends React.Component {
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res);
-                this.query();         
+                this.setState({data:res.result})         
             }
         });
     }
@@ -124,8 +124,11 @@ export default class extends React.Component {
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {
                     close();
-                    this.setState({checked:[],all:false});
-                    this.query();
+                    this.setState({
+                        checked:[],
+                        all:false,
+                        data:res.result
+                    });                  
                 }});                  
             }else{
                 tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
