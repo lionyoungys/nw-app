@@ -28,47 +28,48 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
-        /* [{
-	"DATATAG": "1536203412737001",
-	"clothing_number": "1536203412737001",
-	"clothing_id": "36764",
-	"clothing_name": "连体裤 真丝",
-	"clothing_color": "",
-	"clothing_grids": "",
-	"clothing_type": "裤子类",
-	"raw_price": "45.00",
-	"remark": "",
-	"deal_time": 1536462612,
-	"grid_num": "",
-	"addition_remark": "",
-	"addition_price": 0,
-	"addition_no_price": 0,
-	"addition_discount": "",
-	"forecast": "",
-	"work_number": 1,
-	"sign": "",
-	"min_discount": 10,
-	"has_discount": "1",
-	"transfer": "1",
-	"min_transfer": "0.00",
-	"parent": null
-}]*/
-        console.log('###########################');
-        console.log(this.props.items);
-        console.log('###########################');
-        let items = this.props.items.work || [];
+        let order = this.props.items
+        ,   items = this.props.items.work || []
+        ,   len = items.length
+        ,   arr = [];
+        if (len > 0) {
+            for (var i = 0;i < len;++i) {
+                arr.push({
+                    parent:null,
+                    DATATAG:items[i].clothing_number,
+                    clothing_number:items[i].clothing_number,
+                    clothing_id:items[i].clothing_id,
+                    clothing_name:items[i].clothing_name,
+                    clothing_color:items[i].clothing_color,
+                    remark:items[i].remark,
+                    grid_num:items[i].grid_num,
+                    addition_remark:items[i].addition_remark,
+                    addition_price:0,
+                    addition_no_price:0,
+                    addition_discount:'',
+                    forecast:items[i].forecast,
+                    work_number:items[i].work_number,
+                    sign:'',
+                    has_discount:items[i].has_discount,
+                    clothing_grids:items[i].clothing_grids,
+                    clothing_type:items[i].clothing_type,
+                    raw_price:items[i].raw_price,
+                    deal_time:items[i].deal_time,
+                    min_discount:items[i].min_discount,
+                    transfer:items[i].transfer,
+                    min_transfer:items[i].min_transfer,
+                });
+            }
+        }
         this.state = {
-            oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            oid:order.id,uid:this.props.id,phone:order.user_mobile,name:order.user_name,number:'',cid:null,addr:order.address,time:tool.date('Y-m-d', order.otime),type:'',balance:0,discount:'100',    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
-            data:[],    //本地存储数据
+            data:arr,    //本地存储数据
             card:{},    //卡数据
             payCard:{},
-            update:false,    //用于判断衣物为添加还是修改
-            //id:this.props.id, //从线上收衣带来的用户id
-            //additem:this.props.items
-            
+            update:false,    //用于判断衣物为添加还是修改            
         };
         this.date = tool.date('Y-m-d');
         this.counter = 1;    //编码累加计数属性
@@ -102,8 +103,6 @@ export default class extends Component {
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
         this.print = this.print.bind(this);
         this.paymentClose = this.paymentClose.bind(this);
-        this.delOrder = this.delOrder.bind(this);
-        this.takeCost = this.takeCost.bind(this);
     }
 
     componentDidMount() {
@@ -162,7 +161,7 @@ export default class extends Component {
             this.state.data[this.state.currentIndex].clothing_id = item.id
             this.state.data[this.state.currentIndex].clothing_name = item.item_name;
             this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
-            this.state.data[this.state.currentIndex].raw_price = item.item_off_price;
+            this.state.data[this.state.currentIndex].raw_price = item.item_online_price;
             this.state.data[this.state.currentIndex].deal_time = day;
             this.state.data[this.state.currentIndex].min_discount = item.min_discount;
             this.state.data[this.state.currentIndex].has_discount = item.has_discount;
@@ -174,7 +173,7 @@ export default class extends Component {
                     clothing_id:item.id, 
                     clothing_name:item.item_name, 
                     clothing_type:item.cate_name, 
-                    raw_price:item.item_off_price, 
+                    raw_price:item.item_online_price, 
                     deal_time:day, 
                     min_discount:item.min_discount,
                     has_discount:item.has_discount,
@@ -192,7 +191,7 @@ export default class extends Component {
                 clothing_color: '', 
                 clothing_grids: '',
                 clothing_type: item.cate_name,
-                raw_price: item.item_off_price,
+                raw_price: item.item_online_price,
                 remark: item.item_flaw || '',
                 deal_time: tool.timestamp(item.item_cycle),
                 grid_num: '',
@@ -468,41 +467,7 @@ export default class extends Component {
             }
         }
     }
-    takeCost() {
-        return console.log(JSON.stringify(this.state.data));
-        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
-        if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
-        tool.ui.warn({msg:'您确定客户取衣付款吗？', button:['是（Y）', '否（N）'],callback:(close, event) => {
-            0 == event && this.cost(true);
-            close();
-        }});
-    }
-    cost(isTake) {
-        /**"user_name": "姓名",
-	"user_mobile": "手机号",
-	"clothing_number": "衣物编码",
-	"clothing_id": "衣物id",
-	"clothing_name": "衣物名称",
-	"clothing_color": "衣物颜色",
-	"clothing_grids": "衣物网格",
-	"clothing_type": "衣物类型",
-	"raw_price": "衣物原价",
-	"remark": "瑕疵",
-	"deal_time": 交活时间戳,
-    "grid_num": "格架号",
-    "addition_remark":附加服务（工艺加价）
-    "addition_price":附加服务费
-    addition_no_price:不可折金额
-    "addition_discount":附加服务费是否打折(0,不打折。1，打折)
-    "forecast":洗后预估效果
-    "work_number":件数
-    "sign":衣物品牌
-    "card_type":卡类型
-    "address":住址 */
-    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
-        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
+    cost() {
         let len = this.state.data.length;
         if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
@@ -522,25 +487,28 @@ export default class extends Component {
             delete data[i].DATATAG;
             delete data[i].parent;
         }
+        console.log(this.props);
+        
+        console.log({token:token, is_online:1, order_id:this.state.oid, uid:this.state.cid || '', user_id:this.state.uid, amount:amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)});
         api.post(
             'get_clothes',
-            {token:token, uid:this.state.cid || '', amount:amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
+            {token:token, is_online:1, order_id:this.state.oid, uid:this.state.cid || '', user_id:this.state.uid, amount:amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver, handle) => {
-                console.log(res);
                 if (ver) {
-                    this.setState({
-                        oid:res.result.order_id, 
-                        sn:res.result.ordersn, 
-                        mphone:res.result.merchant.phone_number, 
-                        maddr:res.result.merchant.maddress,
-                        ad:res.result.merchant.mdesc,
-                        code_arr:res.result.orderItemInfo
-                    });
-                    if ('boolean' === typeof isTake && isTake) {
-                        this.print();
-                        return this.props.closeView();
-                    }
-                    this.setState({show:14});
+                    this.props.closeView();
+                    // this.setState({
+                    //     oid:res.result.order_id, 
+                    //     sn:res.result.ordersn, 
+                    //     mphone:res.result.merchant.phone_number, 
+                    //     maddr:res.result.merchant.maddress,
+                    //     ad:res.result.merchant.mdesc,
+                    //     code_arr:res.result.orderItemInfo
+                    // });
+                    // if ('boolean' === typeof isTake && isTake) {
+                    //     this.print();
+                    //     return this.props.closeView();
+                    // }
+                    // this.setState({show:14});
                 } else {
                     handle();
                 }
@@ -574,71 +542,23 @@ export default class extends Component {
         );
     }
     paymentClose() {
-        this.setState({payCard:{}});
-        this.delOrder(() => this.setState({oid:null, show:0}));
+        this.setState({payCard:{},show:0});
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
     onClose() {
         if (this.state.data.length > 0) {
             tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
-                0 == event && this.delOrder(this.props.closeView);
+                0 == event && this.props.closeView();
                 close();
             }});
         } else {
-            this.delOrder(this.props.closeView);
+            this.props.closeView();
         }
-    }
-
-    delOrder(callback) {
-        if (null != this.state.oid) {
-            api.post('del_order', {token:token, order_id:this.state.oid});
-        }
-        'function' === typeof callback && callback();
     }
 
 
     render() {
-        /*let total = 0    //总金额
-        ,   amount = 0    //折后金额
-        ,   dis_amount = 0
-        ,   no_dis_amount = 0
-        ,   discount = this.state.payCard.discount || ('' == this.state.discount ? 100 : this.state.discount)
-        ,   tempDiscount
-        ,   html = this.state.data.map((obj, index) => {
-            tempDiscount = obj.min_discount;
-            if (tempDiscount > 100) tempDiscount = 100;
-            if (discount > tempDiscount) tempDiscount = discount;
-            
-            let count = this.state.data.keyValCount('parent', obj.DATATAG)
-            ,   total_craft = tool.arrObjValsSum(this.state.data, ['addition_no_price', 'addition_price'], {parent:obj.DATATAG});
-            total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
-            amount = amount.add( 
-                (obj.has_discount ? (Math.floor(obj.raw_price * tempDiscount) / 100) : obj.raw_price), 
-                obj.addition_no_price, 
-                (Math.floor(obj.addition_price * tempDiscount) / 100)
-            );
-            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
-            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
-            return (
-                <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
-                    <div onClick={this.showCode}>{obj.work.map((item,index)=><span>{item.clothing_number}</span>)}</div>
-                    <div onClick={this.showItem}>{obj.work.map((item,index)=><span>{item.clothing_name}</span>)}</div>
-                    <div onClick={this.showColor}>{obj.work.map((item,index)=><span>{item.clothing_color}</span>)}</div>
-                    <div onClick={this.showProblem}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
-                    <div onClick={this.showBrand}>{obj.work.map((item,index)=><span>{item.sign}</span>)}</div>
-                    <div onClick={this.showForcast}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
-                    <div onClick={this.showPrice}>{obj.total}</div>
-                    <div onClick={this.showUpdatePrice}></div>
-                    <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
-                    <div>
-                        <span onClick={this.copy}>复制</span>
-                        &emsp;
-                        <span onClick={this.del}>删除</span>
-                    </div>
-                </div>
-            );
-        });*/
         let total = 0    //总金额
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
@@ -703,7 +623,7 @@ export default class extends Component {
                     </div>
                     <div className='clothes-footer-right'>
                         <div>                           
-                            <button type='button' className='e-btn middle high add-item-btn' data-take='take' onClick={this.takeCost} >提交订单</button>
+                            <button type='button' className='e-btn middle high add-item-btn' data-take='take' onClick={this.cost} >提交订单</button>
                         </div>
                     </div>
                 </div>
