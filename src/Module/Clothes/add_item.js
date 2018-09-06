@@ -28,6 +28,7 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props.items);
         this.state = {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
@@ -654,6 +655,7 @@ export default class extends Component {
                     <div>洗后预估</div><div>工艺加价</div><div><b>*</b>单价</div><div><b>*</b>数量</div><div>操作</div>
                 </div>
                 <div className='clothes-body'>{html}</div>
+                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn' onClick={() => this.setState({show:1})}>添加衣物</button></div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>

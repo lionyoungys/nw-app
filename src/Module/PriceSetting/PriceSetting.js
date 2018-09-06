@@ -12,7 +12,7 @@ export default class extends Component {
         super(props);
         this.state={index:0};
         this.tab=['会员卡','洗护服务','库存商品'];
-        this.views=[<MemberCard/>,<CleaningPriceSetting/>,<FinishedGoods/>];
+        this.views=[<MemberCard/>, <CleaningPriceSetting/>, <FinishedGoods/>];
         this.handleClick=this.handleClick.bind(this);
     };  
     handleClick(e){
