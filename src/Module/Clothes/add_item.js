@@ -39,7 +39,7 @@ export default class extends Component {
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
             id:this.props.id, //从线上收衣带来的用户id
-            additem:this.props.items
+            //additem:this.props.items
             
         };
         this.date = tool.date('Y-m-d');
@@ -81,16 +81,6 @@ export default class extends Component {
     }
 
     componentDidMount() {
-
-       // console.log(this.state.data.push(this.state.additem));
-        this.state.data.push(this.state.additem)
-        console.log(this.state.data)
-             
-        
-
-        tool.KeyCode.listenEnter(this.phoneInput, this.tempUser);
-        tool.KeyCode.listenEnter(this.nameInput, this.tempUser);
-        tool.KeyCode.listenEnter(this.numberInput, this.tempUser);
         api.post('clothes', {token:token, page:page, limit:limit}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 let len = res.result.type.length;
@@ -474,6 +464,7 @@ export default class extends Component {
         }
     }
     takeCost() {
+        return console.log(this.state.data);
         if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
@@ -607,7 +598,7 @@ export default class extends Component {
 
 
     render() {
-        let total = 0    //总金额
+        /*let total = 0    //总金额
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
@@ -638,6 +629,46 @@ export default class extends Component {
                     <div onClick={this.showForcast}>{obj.work.map((item,index)=><span>{item.remark}</span>)}</div>
                     <div onClick={this.showPrice}>{obj.total}</div>
                     <div onClick={this.showUpdatePrice}>{obj.work.map((item,index)=><span>{item.work_number}</span>)}</div>
+                    <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
+                    <div>
+                        <span onClick={this.copy}>复制</span>
+                        &emsp;
+                        <span onClick={this.del}>删除</span>
+                    </div>
+                </div>
+            );
+        });*/
+        let total = 0    //总金额
+        ,   amount = 0    //折后金额
+        ,   dis_amount = 0
+        ,   no_dis_amount = 0
+        ,   discount = this.state.payCard.discount || ('' == this.state.discount ? 100 : this.state.discount)
+        ,   tempDiscount
+        ,   html = this.state.data.map((obj, index) => {
+            tempDiscount = obj.min_discount;
+            if (tempDiscount > 100) tempDiscount = 100;
+            if (discount > tempDiscount) tempDiscount = discount;
+            
+            let count = this.state.data.keyValCount('parent', obj.DATATAG)
+            ,   total_craft = tool.arrObjValsSum(this.state.data, ['addition_no_price', 'addition_price'], {parent:obj.DATATAG});
+            total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
+            amount = amount.add( 
+                (obj.has_discount ? (Math.floor(obj.raw_price * tempDiscount) / 100) : obj.raw_price), 
+                obj.addition_no_price, 
+                (Math.floor(obj.addition_price * tempDiscount) / 100)
+            );
+            dis_amount = dis_amount.add((obj.has_discount ? obj.raw_price : 0), obj.addition_price);
+            no_dis_amount.add((obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
+            return (
+                <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
+                    <div onClick={this.showCode}>{obj.clothing_number}</div>
+                    <div onClick={this.showItem}>{obj.clothing_name}</div>
+                    <div onClick={this.showColor}>{obj.clothing_color}</div>
+                    <div onClick={this.showProblem}>{obj.remark}</div>
+                    <div onClick={this.showBrand}>{obj.sign}</div>
+                    <div onClick={this.showForcast}>{obj.forecast}</div>
+                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft).toFixed(2)}</div>
+                    <div onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</div>
                     <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
                     <div>
                         <span onClick={this.copy}>复制</span>
