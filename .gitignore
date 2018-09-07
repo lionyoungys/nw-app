@@ -4,6 +4,7 @@ app/node_modules
 src/Api.js
 app/main.js
 app/login.js
+app/config.js
 .svn
 *.ldb
 *.btf
