@@ -7,14 +7,14 @@
         printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
-    nw.Window.open('print/main.html', {show:false}, function(new_win) {
-        e.printPageWin = new_win;
-        e.printPageWin.on('close', function() {
-            null !== e.printPageWin && e.printPageWin.close(true);
-            this.close(true);
-        });
-        e.printPageWin.on('closed', function() {e.printPageWin = null;});
-    });
+    // nw.Window.open('print/main.html', {show:false}, function(new_win) {
+    //     e.printPageWin = new_win;
+    //     e.printPageWin.on('close', function() {
+    //         null !== e.printPageWin && e.printPageWin.close(true);
+    //         this.close(true);
+    //     });
+    //     e.printPageWin.on('closed', function() {e.printPageWin = null;});
+    // });
     e.quit = function() {    //退出
         nw.Window.open('login.html', nw.App.manifest.window);
         if (null !== this.printPageWin) {    //关闭打印控制界面
@@ -35,7 +35,10 @@
         }
         return 'print/' + page_name + '.html' + get;
     }
-    e.print = function(page_name, param, printer, callback) {    //打印
+    e.print = function(page_name, param, printer_name, callback) {    //打印
+        'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
+        console.log(printer[page_name]);
+        return;
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
@@ -55,6 +58,7 @@
         }
     },
     e.open_case = function() {    //打开钱箱
+        return printer.openCashbox();
         let os = window.require('os')
         ,   scriptName = 'script/open_case/open_case.';
         if (os.release().split('.')[0] > 5) {
