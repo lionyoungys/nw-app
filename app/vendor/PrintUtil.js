@@ -281,7 +281,8 @@
         draw2PxPoint: function(canvas) {
             var tmp = []
             ,   k = 0
-            ,   hc = canvas.height / 24;
+            ,   hc = canvas.height / 24
+            ,   b;
             for (var j = 0; j < hc; ++j) {
                 tmp[k++] = 0x1B;
                 tmp[k++] = 0x2A;    //0x1B 2A 表示图片打印指令
@@ -291,8 +292,8 @@
                 for (var i = 0; i < canvas.width; ++i) {
                     for (var m = 0; m < 3; ++m) {
                         for (var n = 0; n < 8; ++n) {
-                            var b = this.px2byte(i, j * 24 + m * 8 + n, canvas);
-                            tmp[k] = tmp[k] ? tmp[k] : 0;
+                            b = this.px2byte(i, j * 24 + m * 8 + n, canvas);
+                            tmp[k] = tmp[k] || 0;
                             tmp[k] += tmp[k] + b;
                         }
                         k++;
