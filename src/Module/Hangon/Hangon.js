@@ -40,26 +40,26 @@ export default class extends Component {
         return tool.ui.error({msg:'请输入衣物编码',callback:(close) => {
             close();
         }});
-        api.post('hang', {
-            token:'token'.getData(),
-            clothing_number:this.state.clothing_number,   
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res)
-                this.setState({result:res.result})
-                if(res.result.length==1){
-                    this.setState({show:true});
-                }
-                // () => this.setState({ show: true, click: true })
-            }else{
-                console.log(res);
-                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
-                    this.setState({result:[]})
-                    close();
-                }});
-            }
-        }
-    );
+            api.post('hang', {
+                token:'token'.getData(),
+                clothing_number:this.state.clothing_number,   
+            }, (res, ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    this.setState({result:res.result})
+                    if(res.result.length==1){
+                        this.setState({show:true});
+                    }
+                    // () => this.setState({ show: true, click: true })
+                }else{
+                        console.log(res);
+                        tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                            this.setState({result:[]})
+                            close();
+                        }});
+                   }
+               }
+            );
     }
     render() {
         let result=this.state.result.map((item,index)=>
@@ -77,7 +77,7 @@ export default class extends Component {
             <Window title='上挂' onClose={this.props.closeView}>
                 <div className="Hangon-div">
                     <span>请输入衣物编码</span>
-                    <input type="text" value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value})} autoFocus='autoFocus'/>
+                    <input type="text" value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value.trim()})} autoFocus='autoFocus'/>
                     <button className="e-btn hangon-btn" onClick={this.query}>查询</button>             
                 </div>
                 <table class='ui-table-base hangon-sear-res-tab'>

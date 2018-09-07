@@ -32,7 +32,10 @@ export default class extends Component {
         );
     }
     storesave(){
-        api.post('modInfo', {token:'token'.getData(),phone_number:this.state.phone_number}, (res, ver) => {
+        api.post('modInfo', {
+            token:'token'.getData(),
+            phone_number:this.state.phone_number}, 
+            (res, ver) => {
             if (ver && res) {
                 console.log(res)
                 tool.ui.success({callback:(close, event) => {
