@@ -3,6 +3,7 @@ node_modules
 app/node_modules
 src/Api.js
 app/main.js
+app/config.js
 app/login.js
 .svn
 *.ldb
