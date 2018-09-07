@@ -87,7 +87,13 @@ export default class extends Component {
         this.setState({printers:this.state.printers});
     }
 
-    print() {EventApi.print('code3',null, this.state.printers[this.state.checked].name)}
+    print() {
+        if (1 == this.state.checked) {
+            EventApi.print('code3',null, this.state.printers[this.state.checked].name)
+        } else {
+            EventApi.print('test',null, this.state.printers[this.state.checked].name)
+        }
+    }
     open() {EventApi.open_case()}
     M1Read() {
         try {
