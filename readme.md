@@ -16,7 +16,7 @@ app/media                -->    媒体文件夹
 app/vendor               -->    外部引入插件或工具包文件夹
 app/vendor/include.js    -->    全局引用无需babel编译使用的node库
 app/vendor/Tool.js       -->    工具封装库
-app/vendor/M1Reader.js     -->    读卡器操作对象封装
+app/vendor/M1Reader.js   -->    读卡器操作对象封装
 app/vendor/Prototype.js  -->    原型函数库
 app/vendor/KeyCode.js    -->    输入法强制转换为英文函数库
 app/node_modules         -->    node模块文件夹
@@ -53,7 +53,7 @@ src/Module下界面组件的继承属性
 param:携带参数
 
 ####
-生产环境软件同级目录须安装的node扩展:node-adodb, request, request-progress, ms, ffi, ref, text-encoding, printer
+生产环境软件同级目录须安装的node扩展:node-adodb, request, request-progress, ms, ffi, ref, text-encoding, printer, bufferhelper, iconv-lite
 解决windows xp 下ffi扩展找不到的问题:在node_modules\ffi\src\win32-dlfcn.cc文件中，将里面的地96行和第99行的两行代码，对应的代码应该是：
      errorMode = GetErrorMode();  
      SetErrorMode(errorMode | SEM_FAILCRITICALERRORS);
