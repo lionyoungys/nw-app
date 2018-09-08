@@ -163,12 +163,13 @@ class Login extends Component {
     login() {
            api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
             if (ver && res) {
+                return console.log(res);
                 var aname = res.aname;
                 var mname = res.mname;
                 var token = res.token;
                 var pass = res.pass;
                 this.state.remember? (this.state.merchant.setData('mid'),this.state.name.setData('name'),this.state.passwd.setData('passwd')):'';
-                console.log(this.state.remember)
+                console.log(this.state.remember);
                 aname.setData('aname');
                 mname.setData('mname');
                 token.setData('token');
