@@ -13,8 +13,9 @@ export default class extends Component {
             Doortomoney:'' //上门满减金额   
         } 
         this.onlinesave = this.onlinesave.bind(this) ;
+        this.on_start = this.on_start.bind(this);
     }
-
+ 
     componentDidMount() {
         api.post('online', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
@@ -29,7 +30,13 @@ export default class extends Component {
             }
         })
     }
+    //开始接单按钮
+    on_start (defaultChecked){
+       
+    }
+    // 提交修改
     onlinesave(){
+        
         var parment = {
             mrange:this.state.Service,
             mstatus:this.state.tstate,
@@ -37,6 +44,7 @@ export default class extends Component {
             freight_free_num:this.state.Doortonumber,
             freight_free_amount:this.state.Doortomoney, 
         }
+        console.log(parment)
         api.post('modOnline', {
                 token:'token'.getData(),
                 parment,
@@ -62,7 +70,7 @@ export default class extends Component {
                 <div className='store_management_content_onlineStore_open' style={{display:this.state.tstate==12?'none':'block'}}>
                     <div>
                         &emsp;接单状态：&emsp;
-                        <input type="radio" name="take_order"  defaultChecked={this.state.tstate==10?"true":false}/> 开始接单&emsp;<input type="radio" name="take_order" defaultChecked={this.state.tstate=='11'?"true":"false"}/> 停止接单
+                        <input type="radio" name="take_order"  defaultChecked={this.state.tstate==10?"true":false} onClick={this.on_start}/> 开始接单&emsp;<input type="radio" name="take_order" defaultChecked={this.state.tstate=='11'?"true":"false"}/> 停止接单
                     </div>
                     <div>&emsp;服务范围：&emsp;<input type='text' className='e-input' value={this.state.Service} onChange={e=>this.setState({Service:e.target.value})}/><a>km</a></div>
                     <div>上门服务费：&emsp;<input type='text' className='e-input' value={this.state.Doorto} onChange={e=>this.setState({Doorto:e.target.value})}/><a>元</a></div>

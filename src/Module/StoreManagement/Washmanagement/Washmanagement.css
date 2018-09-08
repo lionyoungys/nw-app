@@ -74,9 +74,9 @@
 }
 
 #shop-span{
-    width:62px;
+    width:66px;
     height:17px;
-    margin:12px 60px 0;
+    margin:12px 50px 0;
     text-align:center;
     color:#000;
     font-size:12px;
@@ -92,8 +92,6 @@
 }
 
 #shop-span b{
-    display:block;
-    float:left;
     font-weight:inherit;
     font-size:14px;
 }

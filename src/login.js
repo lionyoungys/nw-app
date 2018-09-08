@@ -163,8 +163,6 @@ class Login extends Component {
     login() {
            api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
             if (ver && res) {
-
-                console.log(res);
                 var aname = res.aname;
                 var mname = res.mname;
                 var token = res.token;
@@ -177,6 +175,7 @@ class Login extends Component {
                 res.mid.setData('merchant_id');
                 res.is_root.setData('is_root');
                 res.auth.setData('auth');
+                JSON.stringify(res.module).setData('module');
                 // nw.Window.open('main.html', nw.App.manifest.mainWindow);
                 // win.close();
                 //1 != res.is_root && res.auth.setData('auth');

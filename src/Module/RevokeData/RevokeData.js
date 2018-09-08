@@ -10,8 +10,14 @@ import Page from '../../UI/Page';
 export default class extends Component {   
     constructor(props) {
         super(props);    
-        this.state={startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),
-        orderBack:[],item:[],orderCount:'',itemCount:''};
+        this.state={
+            startdate:tool.date('Y-m-d'),
+            enddate:tool.date('Y-m-d'),
+            orderBack:[],
+            item:[],
+            orderCount:'',
+            itemCount:''
+        };
         this.arrbutton = this.arrbutton.bind(this);   
     }; 
     arrbutton(e){

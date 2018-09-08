@@ -29,6 +29,7 @@ export default class extends Component {
     componentDidMount (){        
         this.query();
     }; 
+    // 已上门
     come_door (e){      
         var id = e.target.dataset.id;        
         api.post('come',{
