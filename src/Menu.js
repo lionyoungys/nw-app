@@ -220,7 +220,7 @@ if ('object' === typeof modules && modules instanceof Array) {
     ,   modulesLen = modules.length
     ,   hasModule = false;
     for (var i = 0;i < leftMenuLen;++i) {
-        if (isNaN(leftMenu[1].options[i].id)) {
+        if (!isNaN(leftMenu[1].options[i].id)) {
             for (var j = 0;j < modulesLen;++j) {
                 if (leftMenu[1].options[i].id == modules[j].id) {
                     hasModule = true;
@@ -239,6 +239,4 @@ if ('object' === typeof modules && modules instanceof Array) {
         }
     }
 }
-console.log(modules);
-console.log(leftMenu);
 export {topMenu, nav, leftMenu};
