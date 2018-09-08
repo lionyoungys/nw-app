@@ -154,16 +154,17 @@ export default class extends React.Component {
             rid:this.state.sel_id,                 
             token:'token'.getData(),
         }, (res, ver) => {
-            //console.log(res)
-            if (ver && res) {                        
-                    tool.ui.success({callback:(close, event) => {
-                        close();
-                        this.setState({
-                            checked:[],
-                            all:false,
-                        });
-                        this.query();
-                    }});                                                      
+            console.log(res)
+            if (ver && res) {   
+                printer.intoFactory('printer'.getData(), res.result);                 
+                tool.ui.success({callback:(close, event) => {
+                    close();
+                    this.setState({
+                        checked:[],
+                        all:false,
+                    });
+                    this.query();
+                }});                                                      
             }else{
                 tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
                     close();
