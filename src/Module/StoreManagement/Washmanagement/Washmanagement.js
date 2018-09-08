@@ -10,22 +10,47 @@ export default class extends Component {
         super(props);   
         this.state={
             list:[],
-            checked:[]
+            checked:[],  
+                  
         };
+
        this.handleChecked = this.handleChecked.bind(this);  
        this.btn_up = this.btn_up.bind(this);      
     }
-    componentDidMount() {
+    componentDidMount() {       
         api.post('shop_module', {token:token}, (res,ver) => {
             if (ver && res) {
                 console.log(res)    
-                this.setState({list:res.result})           
+                this.setState({
+                    list:res.pmodule,                  
+                });  
+
+                let len = res.result.length; 
+                let leng = this.state.list.length;
+                var arr=[]
+                for(let i = 0; i<len; i++ ){
+                   arr.push(res.result[i].id)
+                }
+                for(let i = 0; i<leng; i++ ){
+                    arr.push(res.pmodule[i].id)
+                }
+ 
+                const filterUnique = arr => arr.filter(i => arr.indexOf(i) !== arr.lastIndexOf(i))
+                //console.log(filterUnique(arr));
+                var aa = filterUnique(arr)
+                for(var i = 0,len = aa.length;i < len;i++){ 
+                    !RegExp(aa[i],"g").test(this.state.checked.join(",")) && (this.state.checked.push(aa[i])); 
+                } 
+                this.setState({checked:this.state.checked})
+                //console.log(this.state.checked)
+
             }else{
                 handle();
             }
         });
     }
     handleChecked(value,checked) {
+        console.log(this.state.checked)
         if (checked) {
             console.log(1)
             let index = value.inArray(this.state.checked);
@@ -57,6 +82,7 @@ export default class extends Component {
         });
     }
     render(){
+        console.log(this.state.checked)
         var list = this.state.list.map((item,index) =><div>
             <div className="shop-div1"></div>
             <div id="shop-span">

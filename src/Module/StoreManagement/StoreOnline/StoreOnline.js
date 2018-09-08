@@ -30,14 +30,18 @@ export default class extends Component {
             }
         })
     }
+
     //开始接单按钮
-    on_start (defaultChecked){
-       
+    on_start (e){
+        if (e.target.value != this.state.tstate) {
+            '11' == this.state.tstate ? this.setState({tstate: '10'}) : this.setState({tstate: '11'});
+        }
     }
+
     // 提交修改
-    onlinesave(){
-        
+    onlinesave(){      
         var parment = {
+            token:'token'.getData(),
             mrange:this.state.Service,
             mstatus:this.state.tstate,
             freight_price:this.state.Doorto,
@@ -45,16 +49,15 @@ export default class extends Component {
             freight_free_amount:this.state.Doortomoney, 
         }
         console.log(parment)
-        api.post('modOnline', {
-                token:'token'.getData(),
-                parment,
-            }, (res, ver) => {
+        api.post('modOnline', parment, (res, ver) => {
                     if (ver && res) {
                         tool.ui.success({callback:(close, event) => {
-                            console.log(res)
+                            close()
                         }}); 
                     }else{
-                        console.log(parment)
+                        tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                            close();
+                        }});
                     }
                 }
         );
@@ -70,7 +73,7 @@ export default class extends Component {
                 <div className='store_management_content_onlineStore_open' style={{display:this.state.tstate==12?'none':'block'}}>
                     <div>
                         &emsp;接单状态：&emsp;
-                        <input type="radio" name="take_order"  defaultChecked={this.state.tstate==10?"true":false} onClick={this.on_start}/> 开始接单&emsp;<input type="radio" name="take_order" defaultChecked={this.state.tstate=='11'?"true":"false"}/> 停止接单
+                        <input type="radio" name="take_order" value='10' checked={this.state.tstate==10?true:false} onClick={this.on_start}/> 开始接单&emsp;<input type="radio" name="take_order" onClick={this.on_start} checked={this.state.tstate=='11'?true:false} value='11'/> 停止接单
                     </div>
                     <div>&emsp;服务范围：&emsp;<input type='text' className='e-input' value={this.state.Service} onChange={e=>this.setState({Service:e.target.value})}/><a>km</a></div>
                     <div>上门服务费：&emsp;<input type='text' className='e-input' value={this.state.Doorto} onChange={e=>this.setState({Doorto:e.target.value})}/><a>元</a></div>
