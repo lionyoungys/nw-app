@@ -99,6 +99,7 @@
                     .text('订单号:' + param.sn)
                     .align('c')
                     .barcode(param.sn, (param.sn.length > 14 ? null : {width:3}))
+                    .line()
                     .align('l')
                     .text('打印时间:' + this.now())
                     .text('衣物编码   名称   颜色   衣挂号');

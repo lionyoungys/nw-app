@@ -276,7 +276,6 @@
             var canvas = document.createElement('canvas');
             JsBarcode(canvas, code, config);
             this.draw2PxPoint(canvas);
-            this.writeCmd('NEW_LINE');
             return this;
         },
         draw2PxPoint: function(canvas) {
