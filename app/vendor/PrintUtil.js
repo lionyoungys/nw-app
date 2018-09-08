@@ -301,6 +301,7 @@
                     }
                 }
             }
+            tmp[k++] = 10;
             tmp[k++] = 0x1B;
             tmp[k++] = 0x32;
             this.queue.concat(new Buffer(tmp));
