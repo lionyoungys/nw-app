@@ -122,6 +122,7 @@ export default class extends React.Component {
         }, (res, ver) => {
             console.log(res)
             if (ver && res) {
+                printer.outofFactory('printer'.getData(), res.result);
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.setState({

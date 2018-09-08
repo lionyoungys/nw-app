@@ -105,6 +105,28 @@
                     .print(callback);
             });
         },
+        outofFactory: function(printer_name, param, callback) {    //出厂厂打印
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                this.align('c')
+                    .text(param.mname + '出厂单凭证')
+                    .dashed()
+                    .align('l')
+                    .text('订单号:' + param.oid)
+                    .text('打印时间：' + this.now())
+                    .dashed()
+                    .text('出厂门店:' + param.mname)
+                    .text('送返门店:' + param.ename)
+                    .text('总件数:' + param.count)
+                    .text('操作员:' + param.operator)
+                    .text('接收人签字:')
+                    .dashed()
+                    .text('店铺地址:' + param.maddress)
+                    .text('服务热线:' + param.phone_number)
+                    .line(3)
+                    .print(callback);
+            });
+        },
         openCashbox: function(printer_name, param, callback) {
             new PrintUtil(printer_name, function(err, msg) {
                 if (err) return alert(msg);
