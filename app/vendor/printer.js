@@ -194,7 +194,7 @@
                     .text('折扣率:' + param.discount);
                 param.reduce && this.text('优惠:￥' + param.reduce + ' ' + param.reduce_cause);
                 param.coupon && this.text('现金券:￥' + param.coupon + ' ' + param.coupon_name);
-                param.pay_amount && this.text('折后价:￥' + real_amount + '实收:￥' + param.pay_amount);
+                param.pay_amount && this.text('折后价:￥' + param.real_amount + '实收:￥' + param.pay_amount);
                 param.change && this.text('找零:￥' + param.change);
                 param.debt && this.text('欠款:￥' + param.debt);
                 param.number && this.text('卡号:' + param.number);

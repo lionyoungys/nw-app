@@ -28,10 +28,22 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
+    let win = nw.Window.get();
+    //win.showDevTools();
     _.init(function() {
         //_.page('glue_tag_printer_width', 'glue_tag_printer_font_size', 'glue_tag_printer_unit');
         _.barcode('#barcode','123456789123456789');
     });
+    function win_print() {
+            win.print({
+                autoprint:true,
+                printer:localStorage.getItem('clean_tag_printer'),
+                headerFooterEnabled:false,
+                marginsType:3,
+                mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+            });
+        }
     </script>
 </body>
 </html>
