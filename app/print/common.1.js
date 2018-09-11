@@ -20,9 +20,20 @@
     }
     Node.prototype.show = function() {this.style.display = '';}
     Node.prototype.hidd = function() {this.style.display = 'none';}
+    var win = nw.Window.get()
+    ,   printConfig = {
+            autoprint:true,
+            headerFooterEnabled:false,
+            marginsType:3,
+            mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+            marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+        }
+    ,   printAreas = null    //打印区域列表
+    ,   printAreasCount = 0;
     var c = {
         GET:{},
         DATE:null,
+        handleList:{},
         init:function(func) {    //初始化函数
             var str = window.location.search.substring(1);    //获取url的get参数
             if ('' != str) {
@@ -38,7 +49,31 @@
             }
             if ('function' === typeof func) window.onload = func;
         },
-        barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, height:30, margin:0})},    //依赖JsBarcode
+        printHandle:function(id, func) {
+            if ('string' === typeof id && id.length > 0 && 'function' === typeof func) this.handleList[id] = func;
+        },
+        getPrintAreas:function() {    //获取打印区域列表
+            if (null === printAreas) {
+                printAreas = this.all('.print-area');
+                printAreasCount = printAreas.length;
+            }
+            return printAreas;
+        },
+        print:function(id, param, printer, callback) {
+            var print_areas = this.getPrintAreas();
+            for (var i = 0;i < printAreasCount;++i) {
+                print_areas[i].style.display = 'none';
+            }
+            var area = this.first('#' + id);
+            if (this.isNode(area)) {
+                area.style.display = 'block';
+                this.handleList[id](param);
+                printConfig.printer = printer || '';
+                win.print(printConfig);
+                'function' === typeof callback && setTimeout(callback, 10);
+            }
+        },
+        barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, width:2, height:30, margin:0})},    //依赖JsBarcode
         first:function(name) {return document.querySelector(name)},
         all:function(name) {return document.querySelectorAll(name)},
         create:function(nodeName, className, inner) {
