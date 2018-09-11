@@ -23,7 +23,11 @@
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab{
     max-height: 475px;
+    height:467px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab tbody{
     max-height: 450px;
+}
+.ui-table-base.ManagerGathering-tab.ope-inc-tab tbody tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }

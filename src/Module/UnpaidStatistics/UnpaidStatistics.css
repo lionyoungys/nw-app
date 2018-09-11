@@ -105,6 +105,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 5px;
     max-height: 380px;
     overflow-x: auto;
+    height: 380px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
 
@@ -113,4 +114,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
     min-width: 110px;
     max-width: 110px;
+}
+.ui-table-base.unpaidstatistics_table_Arrearage tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }

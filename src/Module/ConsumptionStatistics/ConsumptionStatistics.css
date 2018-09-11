@@ -18,7 +18,6 @@
     color: red;
 }
 .ui-table-base.bal-sta-tab.consun-tab{
-
     max-height: 400px;
 }
 .ui-table-base.bal-sta-tab.consun-tab tbody{
@@ -31,6 +30,5 @@
     max-width: 139px;
 }
 .ui-table-base.bal-sta-tab.consun-tab thead tr td:first-child{
-
     background: none;
 }

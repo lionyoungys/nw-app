@@ -90,6 +90,8 @@ export default class extends Component {
     print() {
         if (1 == this.state.checked) {
             EventApi.print('code3',null, this.state.printers[this.state.checked].name)
+        } else if (2 == this.state.checked) {
+            EventApi.print('test2',null, this.state.printers[this.state.checked].name)
         } else {
             EventApi.print('test',null, this.state.printers[this.state.checked].name)
         }

@@ -65,6 +65,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     max-height: 475px;
     /* overflow-x: auto; */
+    height:475px;
 }
 .ui-table-base.succession-tab tbody{
 

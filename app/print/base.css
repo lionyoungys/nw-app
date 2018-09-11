@@ -15,6 +15,7 @@ html, body{
 .area-code{width: 11cm;height:1.6cm;overflow: hidden;font-size:9px;}
 .t-c{text-align: center}
 .t-r{text-align: right}
+.only-line{height: 22px;max-height: 22px;overflow: hidden;}
 .dashed{display: block;border-top: 1px dashed #000}
 .barcode{display: inline-block;height: 50px;width: 100%}
 .empty{display: block;height: 5px}

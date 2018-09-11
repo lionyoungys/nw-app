@@ -42,6 +42,7 @@
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
+    height: 448px;
 }
 .ui-table-base.bal-sta-tab tr td{
 
@@ -58,5 +59,8 @@
     background-size: 10px 10px;
     background-position-x: 27px;
     background-position-y: 12px;
+}
+.ui-table-base.bal-sta-tab tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }
 

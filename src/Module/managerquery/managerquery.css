@@ -34,6 +34,7 @@
     margin-top: 15px;
     max-width: 874px;
     overflow-x: auto;
+    height: 218px;
 }
 .ui-table-base.man-que-tab-two tbody{
     max-height:180px;
@@ -42,7 +43,9 @@
     max-width: 105px;
     min-width: 105px;
 }
-
+.ui-table-base.man-que-tab-two tr:last-child{
+    border:1px solid #8db2e3;
+}
 /* 修改之后 */
 .ui-table-base.man-que-tab{
 

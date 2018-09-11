@@ -115,8 +115,7 @@ export default class extends Component {
                           {name}
                     </div>
                     <div className="lattice-div-right">
-                        {use_detail}
-                       
+                        {use_detail}                      
                     </div>
                 </div> 
                 <div className="Payout-detail bothpayout-detail" id="bothpayout-detail">               
@@ -135,8 +134,8 @@ export default class extends Component {
                                 <th>卡号</th> 
                             </tr>                                  
                         </thead>
-                        <tbody >
-                            {lists}
+                        <tbody>
+                           {lists}
                         </tbody>
                     </table>                       
                 </div>

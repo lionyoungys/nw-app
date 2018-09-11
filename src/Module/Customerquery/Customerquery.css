@@ -136,17 +136,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position-y:11px;
 }
 .Customerquery-tab table tbody{
-   min-width:868px;
-    height:auto;
+    min-width:868px;
+    height:355px;
     max-height:355px;
     overflow-y: auto;
     display:inline-block;
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 .Customerquery-tab table tbody tr{
     min-width:868px;
     height:25px;
     display:inline-block;
+}
+.Customerquery-tab table tbody tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }
 .Customerquery-tab table tbody tr:nth-child(odd){background: #fff;}
 .Customerquery-tab table tbody tr:nth-child(even){background: #f0f5f9;}

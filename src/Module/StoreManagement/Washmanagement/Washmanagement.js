@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import './Washmanagement.css'
 import OptionBox from '../../../Elem/OptionBox';
+//import { BADQUERY } from 'dns';
 //import { connect } from 'tls';
 
 const token = 'token'.getData();
@@ -13,18 +14,21 @@ export default class extends Component {
             checked:[],  
                   
         };
-
+       this.query = this.query.bind(this);
        this.handleChecked = this.handleChecked.bind(this);  
        this.btn_up = this.btn_up.bind(this);      
     }
     componentDidMount() {       
+        this.query()
+    }
+
+    query (){
         api.post('shop_module', {token:token}, (res,ver) => {
             if (ver && res) {
                 console.log(res)    
                 this.setState({
                     list:res.pmodule,                  
                 });  
-
                 let len = res.result.length; 
                 let leng = this.state.list.length;
                 var arr=[]
@@ -33,8 +37,7 @@ export default class extends Component {
                 }
                 for(let i = 0; i<leng; i++ ){
                     arr.push(res.pmodule[i].id)
-                }
- 
+                } 
                 const filterUnique = arr => arr.filter(i => arr.indexOf(i) !== arr.lastIndexOf(i))
                 //console.log(filterUnique(arr));
                 var aa = filterUnique(arr)
@@ -43,7 +46,6 @@ export default class extends Component {
                 } 
                 this.setState({checked:this.state.checked})
                 //console.log(this.state.checked)
-
             }else{
                 handle();
             }
@@ -70,19 +72,21 @@ export default class extends Component {
             token:token,
             moduleid:JSON.stringify(this.state.checked),
         }, (res,ver) => {
+            console.log(res)
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {
                     close();
-                }});                            
+                    this.query();
+                }});                                            
             }else{
                 tool.ui.error({title:'错误提示',msg:res.msg,button:'确定',callback:(close, event) => {
-                    close();
+                    close();                   
                 }});
             }
         });
     }
     render(){
-        console.log(this.state.checked)
+       // console.log(this.state.checked)
         var list = this.state.list.map((item,index) =><div>
             <div className="shop-div1"></div>
             <div id="shop-span">

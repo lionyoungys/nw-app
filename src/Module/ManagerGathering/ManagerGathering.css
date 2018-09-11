@@ -26,6 +26,7 @@
 
     max-height: 230px;
     overflow-y: auto;
+    height: 230px;
 
 }
 .ui-table-base.ManagerGathering-tab tbody{
@@ -36,6 +37,9 @@
 
     min-width: 218px;
     max-width: 218px;
+}
+.ui-table-base.ManagerGathering-tab tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }
 .manager_gathering_bottom{
 
