@@ -3,10 +3,11 @@
     const { execFileSync } = window.require('child_process');
     var e = {
         win:nw.Window.get(),
+        printPageNames:['code2', 'code3', 'test2'],
         printPageQueue:[],    //打印队列
         printPageLock:false,      //打印线程锁
-        printPageWin:null,
     };
+    e.printPageCount = e.printPageNames.length,
     e.quit = function() {    //退出
         nw.Window.open('login.html', nw.App.manifest.window);
         this.win.close(true);    //关闭主界面
@@ -24,33 +25,37 @@
         return 'print/' + page_name + '.html' + get;
     }
     e.print = function(page_name, param, printer_name, callback) {    //打印
-        if ('code2' != page_name && 'code3' != page_name) {
-            return 'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
+        let printCmd = true;
+        for (var i = 0;i < this.printPageCount;++i) {
+            if (this.printPageNames[i] == page_name) {
+                printCmd = false;
+                break;
+            }
         }
+        if (printCmd) return 'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
-        if (!this.printPageLock && null === this.printPageWin) {
+        if (!this.printPageLock) {
             this.printPageLock = true
             nw.Window.open(
                 this.getPrintPageName(page_name, param),
                 {show:false},
                 function(new_win) {
-                    e.printPageWin = new_win;
-                    e.printPageWin.on('close', function() {
-                        null !== e.printPageWin && e.printPageWin.close(true);
+                    new_win.on('close', function() {
+                        null !== new_win && new_win.close(true);
                         this.close(true);
                     });
-                    e.printPageWin.on('closed', function() {
+                    new_win.on('closed', function() {
                         e.printPageLock = false;
-                        e.printPageWin = null;
+                        new_win = null;
                         if (e.printPageQueue.length) {
                             e.print(e.printPageQueue[0].page_name, e.printPageQueue[0].param, e.printPageQueue[0].printer_name, e.printPageQueue[0].callback);
                             e.printPageQueue.splice(0, 1);
                         }
                     });
-                    e.printPageWin.on('loaded', function() {
-                        e.printPageWin.print({
+                    new_win.on('loaded', function() {
+                        new_win.print({
                             autoprint:true,
                             printer:printer_name || '',
                             headerFooterEnabled:false,
@@ -59,7 +64,7 @@
                             marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
                         });
                         setTimeout(function() {
-                            e.printPageWin.close(true);
+                            new_win.close(true);
                             'function' === typeof callback && callback();
                         }, 1000);
                     });
