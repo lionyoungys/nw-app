@@ -7,14 +7,6 @@
     <title>水洗条码打印</title>
     <link rel="stylesheet" href="base.css">
     <style>
-        body{
-            height:1.6cm;
-            /* display: -webkit-flex;
-            display: flex; */
-            /* align-items:center; */
-            width:11cm;
-            overflow: hidden;
-        }
         #container{
             width:11cm;            
             height:1.6cm;
@@ -89,19 +81,20 @@
     <script src="JsBarcode.min.js"></script>
     <script src="common.js"></script>
     <script>
-         //let win = nw.Window.get();
-         //win.showDevTools();  
+        //  let win = nw.Window.get();
+        //  win.showDevTools();  
         _.init(function() {
+            _.GET.time = _.GET.time || '';
             _.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
-             _.barcode('#code', _.GET.sn);
-             _.inner('#logo_name', _.GET.logo_name);
-             _.inner('#sn', _.GET.sn);                        
-             _.inner('#name', _.GET.name + ' ' + _.GET.color+ ' ' + _.GET.service);
-             _.inner('#xiaci','瑕疵:' +_.GET.reark);
-             _.inner('#number','衣挂号:' + _.GET.number);
-             _.inner('#time','取衣时间:' + _.GET.time);
-             _.inner('#user','客户:' + _.GET.user_name);
-             _.inner('#tell','电话:' + _.GET.tell);
+            _.barcode('#code', _.GET.sn);
+            _.inner('#logo_name', _.GET.logo_name);
+            _.inner('#sn', _.GET.sn);                        
+            _.inner('#name', _.GET.name + ' ' + _.GET.color+ ' ' + _.GET.service);
+            _.inner('#xiaci','瑕疵:' +_.GET.reark);
+            _.inner('#number','衣挂号:' + _.GET.number);
+            _.inner('#time','取衣时间:' + _.GET.time.split(' ')[0]);
+            _.inner('#user','客户:' + _.GET.user_name);
+            _.inner('#tell','电话:' + _.GET.tell);
         });
         function win_print() {
             win.print({
