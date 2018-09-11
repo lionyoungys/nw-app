@@ -3,10 +3,12 @@
     const { execFileSync } = window.require('child_process');
     var e = {
         win:nw.Window.get(),
+        printPageNames:['code2', 'code3', 'test2', 'put_it_on'],
         printPageQueue:[],    //打印队列
         printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
+    e.printPageCount = e.printPageNames.length,
     e.quit = function() {    //退出
         nw.Window.open('login.html', nw.App.manifest.window);
         this.win.close(true);    //关闭主界面
@@ -24,9 +26,14 @@
         return 'print/' + page_name + '.html' + get;
     }
     e.print = function(page_name, param, printer_name, callback) {    //打印
-        if ('code2' != page_name && 'code3' != page_name && 'test2' != page_name) {
-            return 'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
+        let printCmd = true;
+        for (var i = 0;i < this.printPageCount;++i) {
+            if (this.printPageNames[i] == page_name) {
+                printCmd = false;
+                break;
+            }
         }
+        if (printCmd) return 'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer

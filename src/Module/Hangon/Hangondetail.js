@@ -74,16 +74,26 @@ export default class extends Component {
         });
     }
     putOn(){
-        console.log(this.state.clothnums[this.state.clothindex])
+        //console.log(this.state.clothnums[this.state.clothindex])
         let puton={
             token:'token'.getData(),
             id:this.props.data.id,   
             put_id:-1==this.state.clothindex?"":this.state.clothnums[this.state.clothindex].id
         }
-        console.log(puton)
+        //console.log('props',this.props);
+        //console.log('param', puton);
         api.post('putOn',
         puton, (res, ver) => {
             if (ver) {
+                let printer_name = 'glue_tag_printer'.getData();
+                if (printer_name) {
+                    let data = this.props.data;
+                    EventApi.print(
+                        'put_it_on', 
+                        {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
+                        printer_name
+                    );
+                }
                 tool.ui.success({callback:(close) => {
                     close();    
                     this.props.onclose();             
