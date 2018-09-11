@@ -7,20 +7,8 @@
         printPageLock:false,      //打印线程锁
         printPageWin:null,
     };
-    // nw.Window.open('print/main.html', {show:false}, function(new_win) {
-    //     e.printPageWin = new_win;
-    //     e.printPageWin.on('close', function() {
-    //         null !== e.printPageWin && e.printPageWin.close(true);
-    //         this.close(true);
-    //     });
-    //     e.printPageWin.on('closed', function() {e.printPageWin = null;});
-    // });
     e.quit = function() {    //退出
         nw.Window.open('login.html', nw.App.manifest.window);
-        if (null !== this.printPageWin) {    //关闭打印控制界面
-            this.printPageWin.window.close();
-            this.printPageWin.close(true);
-        }
         this.win.close(true);    //关闭主界面
     }
     e.printers = function (callback) {    //获取打印机列表
@@ -36,29 +24,54 @@
         return 'print/' + page_name + '.html' + get;
     }
     e.print = function(page_name, param, printer_name, callback) {    //打印
-        'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
-        console.log(printer[page_name]);
-        return;
+        if ('code2' != page_name && 'code3' != page_name) {
+            return 'function' === typeof printer[page_name] && printer[page_name](printer_name, param, callback);
+        }
         //小票打印机：printer
         //水洗标签打印机：clean_tag_printer
         //不干胶标签打印机：glue_tag_printer
-        if (!this.printPageLock) {
+        if (!this.printPageLock && null === this.printPageWin) {
             this.printPageLock = true
-            this.printPageWin.window._.print(page_name, param, printer, () => {
-                this.printPageLock = false;
-                if (this.printPageQueue.length) {
-                    this.print(this.printPageQueue[0].page_name, this.printPageQueue[0].param, this.printPageQueue[0].printer, this.printPageQueue[0].callback);
-                    this.printPageQueue.splice(0, 1);
+            nw.Window.open(
+                this.getPrintPageName(page_name, param),
+                {show:false},
+                function(new_win) {
+                    e.printPageWin = new_win;
+                    e.printPageWin.on('close', function() {
+                        null !== e.printPageWin && e.printPageWin.close(true);
+                        this.close(true);
+                    });
+                    e.printPageWin.on('closed', function() {
+                        e.printPageLock = false;
+                        e.printPageWin = null;
+                        if (e.printPageQueue.length) {
+                            e.print(e.printPageQueue[0].page_name, e.printPageQueue[0].param, e.printPageQueue[0].printer_name, e.printPageQueue[0].callback);
+                            e.printPageQueue.splice(0, 1);
+                        }
+                    });
+                    e.printPageWin.on('loaded', function() {
+                        e.printPageWin.print({
+                            autoprint:true,
+                            printer:printer_name || '',
+                            headerFooterEnabled:false,
+                            marginsType:3,
+                            mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                            marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+                        });
+                        setTimeout(function() {
+                            e.printPageWin.close(true);
+                            'function' === typeof callback && callback();
+                        }, 1000);
+                    });
                 }
-                'function' === typeof callback && callback();
-            });
+            );
         } else {
-            this.printPageQueue.push({page_name:page_name, param:param, printer:printer, callback:callback});
+            this.printPageQueue.push({page_name:page_name, param:param, printer_name:printer_name, callback:callback});
         }
     },
     e.open_case = function() {    //打开钱箱
-        return printer.openCashbox();
-        let os = window.require('os')
+        printer.openCashbox();
+        /*let os = window.require('os')
         ,   scriptName = 'script/open_case/open_case.';
         if (os.release().split('.')[0] > 5) {
             let printer = 'open_case_printer'.getData();
@@ -70,7 +83,7 @@
             } catch (e) {
                 console.log(e.message);
             }
-        }
+        }*/
     },
     e.exec = function(file, args) {    //运行文件
         if ('string' === typeof file) {
@@ -174,10 +187,6 @@
     e.win.on('loaded', e.win.show);    //防止窗口渲染未完成时展示
     e.win.on('close', function() {
         this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-        if (null !== e.printPageWin) {    //关闭打印控制界面
-            e.printPageWin.window.close();
-            e.printPageWin.close(true);
-        }
         null !== e.win && e.win.close(true);    //虽然关了,但实际上它还在工作
         this.close(true);    //关闭新窗口也关闭主窗口
     });
