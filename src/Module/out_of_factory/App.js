@@ -92,6 +92,7 @@ export default class extends React.Component {
                 for (var i = 0;i < len;++i) {
                     tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
                 }
+                console.log(tmp_arr)
                 this.setState({select_shop:tmp_arr});
                 //this.setState({select_shop:res.result.typeArray('mname'), })           
             }

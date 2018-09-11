@@ -10,7 +10,7 @@ import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import Select from '../../UI/Select';
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
-// import { stat } from 'fs';
+//import { stat } from 'fs';
 const token = 'token'.getData();
 
 export default class extends React.Component {

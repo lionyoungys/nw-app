@@ -34,7 +34,7 @@
             this.printPageLock = true
             nw.Window.open(
                 this.getPrintPageName(page_name, param),
-                {show:true},
+                {show:false},
                 function(new_win) {
                     e.printPageWin = new_win;
                     e.printPageWin.on('close', function() {
@@ -50,18 +50,18 @@
                         }
                     });
                     e.printPageWin.on('loaded', function() {
-                        // e.printPageWin.print({
-                        //     autoprint:true,
-                        //     printer:printer_name || '',
-                        //     headerFooterEnabled:false,
-                        //     marginsType:3,
-                        //     mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
-                        //     marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
-                        // });
-                        // setTimeout(function() {
-                        //     e.printPageWin.close(true);
-                        //     'function' === typeof callback && callback();
-                        // }, 1000);
+                        e.printPageWin.print({
+                            autoprint:true,
+                            printer:printer_name || '',
+                            headerFooterEnabled:false,
+                            marginsType:3,
+                            mediaSize:{'name':'CUSTOM', 'width_microns':58000, 'custom_display_name':'Letter', 'is_default':true},
+                            marginsCustom:{"marginBottom":0,"marginLeft":13,"marginRight":22,"marginTop":0}
+                        });
+                        setTimeout(function() {
+                            e.printPageWin.close(true);
+                            'function' === typeof callback && callback();
+                        }, 1000);
                     });
                 }
             );

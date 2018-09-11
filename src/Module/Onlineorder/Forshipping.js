@@ -69,7 +69,7 @@ export default class extends Component {
     take_forshipping (e){
         var id = e.target.dataset.id;
         this.setState({id:id})
-        tool.ui.error({title:'提示',msg:'该衣物是否将要配送？',button:'确定',callback:(close, event) => {
+        tool.ui.error({title:'提示',msg:'配送操作不可返回，是否确认提交',button:'确定',callback:(close, event) => {
             console.log(event)
             if(event=='click'){
             api.post('dispatching', {
@@ -82,7 +82,7 @@ export default class extends Component {
                     }}); 
                 }else{
                     console.log(res.msg);
-                    tool.ui.error({msg:'该衣物可能存在别的操作，暂时无法配送',callback:(close) => {
+                    tool.ui.error({msg:'该订单可能存在别的操作，暂时无法配送',callback:(close) => {
                         close();
                     }});                   
                 }
