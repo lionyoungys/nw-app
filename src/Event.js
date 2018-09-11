@@ -42,7 +42,6 @@
                 this.getPrintPageName(page_name, param),
                 {show:false},
                 function(new_win) {
-                    console.log(new_win);
                     new_win.on('close', function() {
                         null !== new_win && new_win.close(true);
                         this.close(true);
