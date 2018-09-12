@@ -162,7 +162,15 @@ export default class extends Component {
             {
                 this.state.app
                 &&
-                <App items={this.state.arritem} id={this.state.id} phone={this.state.phone} name={this.state.name} closeView={() => this.setState({app:false})}/>
+                <App 
+                    items={this.state.arritem} 
+                    id={this.state.id} 
+                    phone={this.state.phone} 
+                    name={this.state.name} 
+                    closeView={() => {
+                        this.query();
+                        this.setState({app:false});
+                    }}/>
             }
             <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>  
             {                
