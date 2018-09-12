@@ -87,7 +87,7 @@ export default class extends Component {
                     }});                   
                 }
                     close();              
-                    this.componentDidMount();
+                    this.query();
                 }
             );
          }else{
@@ -105,13 +105,12 @@ export default class extends Component {
           <td>{item.work.map((item,index) =><span>{item.remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.addition_remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.grid_num}</span>)}</td>
-          <td index={index}>客户姓名：{item.work[0].user_name}<br/> 客户电话：{item.work[0].user_mobile}<br/> 地址：{item.work[0].address}</td>
-          <td><span>订单状态</span><b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
+          <td index={index}>客户姓名：{item.user_name}<br/> 客户电话：{item.user_mobile}<br/> 地址：{item.address}</td>
+          <td><span>订单状态:</span>{item.ostatus}<b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
         </tr>
         )
         return ( 
         <div>
-
             <div className="waiting">
               <table className="waiting-list" id="forshipping">
                 <thead>

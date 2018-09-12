@@ -38,11 +38,11 @@
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
 #balancestatistics_title_left{width:51%;margin-right:11px;float:left;margin-left:11px;height:57px;margin-bottom:12px}
 .ui-table-base.bal-sta-tab{
-    max-height: 448px;
+    max-height: 415px;
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
-    height: 448px;
+    height: 415px;
 }
 .ui-table-base.bal-sta-tab tr td{
 

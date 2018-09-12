@@ -33,6 +33,7 @@ table{border-collapse: collapse}
     box-sizing: border-box;
     background-color: #f5f5f5;
     padding-top: 108px;
+    padding-bottom: 56px;
     overflow-y:auto;
     overflow-x:hidden;  
 }
@@ -426,3 +427,4 @@ table{border-collapse: collapse}
     background-position-x:150px;
     background-position-y:center;
 }
+

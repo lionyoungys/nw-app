@@ -13,7 +13,7 @@ const topMenu = [
             {value: '交期预警', view: 'delivery_warning', id: 11},
             {value: '撤单处理', view: 'its_processing', id: 12},
             // {value: '赔付', view: 'pay', id: 13},
-            {value: 'demo', view: 'demo'},
+            //{value: 'demo', view: 'demo'},
             // {value:'编辑商品价格', view:'edit_shop_prices'},
             // {value:'编辑洗护价格', view:'edit_cleaning_prices'},
         ]
@@ -121,7 +121,7 @@ const leftMenu = [
     {
         value:'前台业务', 
         options:[
-            // {value:'线上订单', class:'main-clothes', view:'onlineorder'},
+            {value:'线上订单', class:'main-clothes', view:'onlineorder'},
             {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
             {value:'取衣',class:'main-take',view:'take_clothes', id: 9},
             // {value:'上挂',class:'main-put-on',view:'hangon', id: 8},

@@ -280,4 +280,30 @@
 .waiting-list tbody tr td s:hover{
     text-decoration:underline;
 }
-
+.why-list div{
+    background:url(./img/checkbox.png) no-repeat;
+    background-size:18px 17px;
+    width: auto;
+    height: 28px;
+    line-height:28px;
+    color: #000;
+    font-size: 12px;
+    text-indent: 24px; 
+    background-position-y:center; 
+    margin:10px 28px;
+}
+.why-list div.whyselected{
+    background:url(./img/checkbox-checked.png) no-repeat;
+    background-size:18px 17px;
+    width: auto;
+    height: 28px;
+    line-height:28px;
+    color: #000;
+    font-size: 12px;
+    text-indent: 24px; 
+    background-position-y:center;   
+    margin:10px 28px;
+}
+.sure-btn{
+    margin-left:233px;
+}

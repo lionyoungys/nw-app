@@ -1,0 +1,16 @@
+
+
+.m-pointer{
+    width:auto;
+}
+.fa{
+  width:18px;
+  height:17px;
+  background:url(./img/checkbox.png);
+  display:inline-block;
+}
+.fa-check-square{
+    width:18px;
+    height:17px;
+    background:url(./img/checkbox-checked.png);
+}

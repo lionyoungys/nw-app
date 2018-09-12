@@ -13,7 +13,7 @@ import './UI/base.css';
 import './Elem/App.css';
 
 
-EventApi.win.showDevTools();
+//EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -168,18 +168,26 @@ class MainLeftMenu extends Component {
         }
     }
     render() {
-        let menuList = leftMenu.map(obj => 
-            <div key={obj.value} className='main-left-menu main-left-menu-hidd'>
-                <div onClick={this.handleClick}>{obj.value}</div>
-                <div>
-                    {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
+        let className;
+        let menuList = leftMenu.map((obj, index) => {
+            if (index < 2) {
+                className = 'main-left-menu';
+            } else {
+                className = 'main-left-menu main-left-menu-hidd';
+            }
+            return (
+                <div key={obj.value} className={className}>
+                    <div onClick={this.handleClick}>{obj.value}</div>
+                    <div>
+                        {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        });
         return (
-            <div className='main-left'>
+            <div className='main-left'>              
                 <div className='main-task-bar'></div>
-                {menuList}
+                {menuList}             
             </div>
         );
     }

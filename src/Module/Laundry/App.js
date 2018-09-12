@@ -203,7 +203,7 @@ export default class extends React.Component {
             }
         });
         console.log(url, index);
-    }
+    }    
     //新增方法
     uploadShow(e) {
         this.setState({uploadShow:true, index:e.target.dataset.index});
@@ -211,6 +211,7 @@ export default class extends React.Component {
     lightboxShow(e) {
         this.setState({lightboxShow:true, index:e.target.dataset.index});
     }
+    
     //送洗操作
     handleClick() {              
          if (this.state.checked.length < 1) return;

@@ -3,6 +3,7 @@
  * @author yangyunlong
  */
 import React from 'react';
+import './checkbox.css';
 
 //复选框    checked:true/false(是否选中)    children:值    onClick:点击回调(arg:children, arg:checked)
 export default class extends React.Component {

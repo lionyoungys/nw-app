@@ -19,10 +19,14 @@ export default class extends Component {
     componentDidMount() {
         api.post('online', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
-                console.log(res)
+                console.log(res);
+                if(res.result.mstatus==12){
+                    this.setState({tstate:11})
+                }else{
+                   this.setState({tstate:res.result.mstatus}) //状态 10-正常营业 11-休息中 12-未开通  
+                }
                 this.setState({                                       
-                    Service:res.result.mrange, //服务范围
-                    tstate:res.result.mstatus, //状态 10-正常营业 11-休息中 12-未开通                   
+                    Service:res.result.mrange, //服务范围                                     
                     Doorto:res.result.freight_price ,// 上门服务费
                     Doortonumber:res.result.freight_free_num , //上门满减数量
                     Doortomoney:res.result.freight_free_amount , // 上门满减金额
@@ -65,12 +69,8 @@ export default class extends Component {
     render(){
         return  (          
             <div className='store_management_content_onlineStore'>
-                <p className='store_management_content_title'>网店设置：</p>
-                <div className='store_management_content_onlineStore_no_open' style={{display:this.state.tstate==12?'block':'none'}}>
-                    <img width='177px' height='111'></img>
-                    <p>您还没有开通网店</p>                   
-                </div>
-                <div className='store_management_content_onlineStore_open' style={{display:this.state.tstate==12?'none':'block'}}>
+                <p className='store_management_content_title'>网店设置：</p>                
+                <div className='store_management_content_onlineStore_open'>
                     <div>
                         &emsp;接单状态：&emsp;
                         <input type="radio" name="take_order" value='10' checked={this.state.tstate==10?true:false} onClick={this.on_start}/> 开始接单&emsp;<input type="radio" name="take_order" onClick={this.on_start} checked={this.state.tstate=='11'?true:false} value='11'/> 停止接单
