@@ -28,16 +28,23 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.counter = 1;    //编码累加计数属性
         let order = this.props.items
         ,   items = this.props.items.work || []
         ,   len = items.length
         ,   arr = [];
         if (len > 0) {
+            let tmpNumber;
             for (var i = 0;i < len;++i) {
+                tmpNumber = items[i].clothing_number;
+                if (null == tmpNumber || '' == tmpNumber) {
+                    tmpNumber = this.counter.timeCode();
+                    ++this.counter;
+                }
                 arr.push({
                     parent:null,
                     DATATAG:items[i].clothing_number,
-                    clothing_number:items[i].clothing_number,
+                    clothing_number:tmpNumber,
                     clothing_id:items[i].clothing_id,
                     clothing_name:items[i].clothing_name,
                     clothing_color:items[i].clothing_color,
@@ -72,7 +79,6 @@ export default class extends Component {
             update:false,    //用于判断衣物为添加还是修改            
         };
         this.date = tool.date('Y-m-d');
-        this.counter = 1;    //编码累加计数属性
         this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
