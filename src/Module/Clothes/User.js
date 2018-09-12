@@ -19,6 +19,7 @@ export default class extends React.Component {
             type:this.props.type || '',
             data:[]
         };
+        console.log(this.state);
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.query = this.query.bind(this);
@@ -28,7 +29,7 @@ export default class extends React.Component {
     componentDidMount() {
         api.post(
             'readCard', 
-            {token:'token'.getData(), cardNumber:this.props.number, user_name:this.props.name, user_mobile:this.props.phone}, 
+            {token:'token'.getData(), cardNumber:this.props.number || '', user_name:this.props.name || '', user_mobile:this.props.phone || ''}, 
             (res, ver) => {
                 console.log(res);
                 if (ver) {
