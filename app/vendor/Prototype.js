@@ -162,6 +162,28 @@
         }
     }
 
+    Number.prototype.getItemStatusName = 
+    String.prototype.getItemStatusName = function() {
+        switch (Number(this)) 
+        {
+            case 4:
+                return '已取走';
+            case 212:
+                return '已取走';
+            case 5:
+                return '已撤单';
+            case 109:
+                return '已上挂';
+            case 112:
+                return '已入厂';
+            case 113:
+                return '已入厂';
+            default:
+                return '清洗中';
+            
+        }
+    }
+
     
 
     /**
