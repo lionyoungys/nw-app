@@ -71,7 +71,7 @@ export default class extends Component {
         13 == (e.keyCode || e.which) && this.query();
     }
     handleClick() {
-        if (0 == this.state.gateway) {    //会员卡支付
+        if (0 == this.state.gateway || 999 == this.state.gateway) {    //会员卡支付
             this.setState({show:true});
         } else {
             this.onConfirm();
