@@ -56,6 +56,7 @@
                 this.align('c')
                     .text('试试看能否正确扫描条码')
                     .barcode(code)
+                    .line()
                     .text(code)
                     .line(3)
                     .print(callback);
