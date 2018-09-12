@@ -72,14 +72,13 @@
     window.PrintUtil = function(printer_name, callback) {
         //判断打印机名称是否传入，若未传入则使用默认打印机
         this.printer = ('string' !== typeof printer_name || 0 == printer_name.length) ? node_printer.getDefaultPrinterName() : printer_name;
-        try {
-            node_printer.getPrinter(this.printer);
+        /*try {
+            node_printer.getPrinter(this.printer);    //windows xp系统不兼容getPrinter方法,会出现闪退现象
         } catch (err) {
             'function' === typeof callback && callback.call(this, err, '打印机不存在!');
             return;
-        }
+        }*/
         this.queue = new BufferHelper();    //escpos指令队列
-        this.queue.concat(new Buffer('\x5E\x58\x41'));
         this.writeCmd('INIT');
         this.zpl = '';
         'function' === typeof callback && callback.call(this, null, 'Get printer success');
