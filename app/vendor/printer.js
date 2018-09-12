@@ -60,7 +60,7 @@
                     .text(code)
                     .line(3)
                     .print(callback);
-            });
+                });
         },
         shift: function(printer_name, param, callback) {    //交班打印
             new PrintUtil(printer_name, function(err, msg) {
