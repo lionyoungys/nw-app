@@ -1,7 +1,7 @@
 /**
  * esc/pos打印工具模块
  * @author Edwin Young
- * @desc 依赖js库:JsBarcode;依赖node_module:printer, bufferhelper, iconv-lite
+ * 
  */
 (function(window) {
     var node_printer = require('printer')
@@ -72,12 +72,12 @@
     window.PrintUtil = function(printer_name, callback) {
         //判断打印机名称是否传入，若未传入则使用默认打印机
         this.printer = ('string' !== typeof printer_name || 0 == printer_name.length) ? node_printer.getDefaultPrinterName() : printer_name;
-        /*try {
-            node_printer.getPrinter(this.printer);    //windows xp系统不兼容getPrinter方法,会出现闪退现象
+        try {
+            node_printer.getPrinter(this.printer);
         } catch (err) {
             'function' === typeof callback && callback.call(this, err, '打印机不存在!');
             return;
-        }*/
+        }
         this.queue = new BufferHelper();    //escpos指令队列
         this.queue.concat(new Buffer('\x5E\x58\x41'));
         this.writeCmd('INIT');
@@ -275,14 +275,13 @@
             }
             var canvas = document.createElement('canvas');
             JsBarcode(canvas, code, config);
-            this.draw2PxPoint(canvas);
+            this.queue.concat(new Buffer(this.draw2PxPoint(canvas)));
             return this;
         },
         draw2PxPoint: function(canvas) {
             var tmp = []
             ,   k = 0
-            ,   hc = canvas.height / 24
-            ,   b;
+            ,   hc = canvas.height / 24;
             for (var j = 0; j < hc; ++j) {
                 tmp[k++] = 0x1B;
                 tmp[k++] = 0x2A;    //0x1B 2A 表示图片打印指令
@@ -292,8 +291,8 @@
                 for (var i = 0; i < canvas.width; ++i) {
                     for (var m = 0; m < 3; ++m) {
                         for (var n = 0; n < 8; ++n) {
-                            b = this.px2byte(i, j * 24 + m * 8 + n, canvas);
-                            tmp[k] = tmp[k] || 0;
+                            var b = this.px2byte(i, j * 24 + m * 8 + n, canvas);
+                            tmp[k] = tmp[k] ? tmp[k] : 0;
                             tmp[k] += tmp[k] + b;
                         }
                         k++;
@@ -302,7 +301,7 @@
             }
             tmp[k++] = 0x1B;
             tmp[k++] = 0x32;
-            this.queue.concat(new Buffer(tmp));
+            return tmp;
         },
         /**
          * 像素转打印数值
@@ -346,6 +345,31 @@
                 }
             });
         },
+        /**
+         * control commands 下载图片
+         * @param {string} store 存储位置:R/E/B/A;默认R
+         * @param {string} imgName 图片名称,默认UNKNOWN
+         * @param {number} size 图片总字节数
+         * @param {number} w 图片每行字节数
+         * @param {string} data 图片16进制数据
+         * @return {object} 当前对象
+         */
+        zplDG:function(store, imgName, size, w, data) {
+            this.zpl += '~DG';
+            if ('string' === typeof store) {
+                store = store.toUpperCase();
+                if ('R' !== store && 'E' !== store && 'B' !== store && 'A' !== store) {
+                    this.zpl += 'R:';
+                } else {
+                    this.zpl += (store + ':');
+                }
+            } else {
+                this.zpl += 'R:';
+            }
+            this.zpl += ( ('string' !== typeof imgName || imgName.length < 1 ? 'UNKNOWN' : imgName) + '.GRF' );
+            this.zpl += (',' + size + ',' + w + ',' + data);
+            return this;
+        },
         zplStart: function() {
             this.zpl += '^XA';
             this.zpl += '^CW1,ANMDJ.TTF^CI28';    //使用utf-8编码
@@ -353,6 +377,10 @@
         },
         zplEnd: function() {
             this.zpl += '^XZ';
+            return this;
+        },
+        zplHeight: function (h) {
+            if (!isNaN(h)) this.zpl += '^LL';
             return this;
         },
         /**
@@ -416,6 +444,16 @@
             if ('boolean' !== typeof displayValue) displayValue = true;
             if ('string' !== typeof UCCModel || 1 !== UCCModel.length) UCCModel = 'A';
             this.zpl += ('^BY2^BCN,' + h + ',' + (displayValue ? 'Y' : 'N') + ',' + (aboveValue ? 'Y' : 'N') + ',Y,' + UCCModel.toUpperCase() + '^FD' + value + '^FS');
+            return this;
+        },
+        /**
+         * 切纸
+         * @param {number} mode 0/1
+         * @return {object} 当前对象
+         */
+        zplCut: function(mode) {
+            if (isNaN(mode) || (0 != mode && 1 != mode)) mode = '';
+            this.zpl += ('^CN' + mode);
             return this;
         },
         /**
