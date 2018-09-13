@@ -117,7 +117,7 @@ export default class extends Component {
             this.props.data.forecast,
             this.props.data.grid_num,
             this.props.data.deal_time,
-            this.props.data.status==3?'未取走':this.props.data.status==4?'已取走':'已撤单'].map((item,index) =><span key={'item'+index} >{item}</span>);
+            this.props.data.status.getItemStatusName()].map((item,index) =><span key={'item'+index} >{item}</span>);
         return (
             <Window title='上挂详情' onClose={this.props.onClose} width='567' height='382'>
                 <div className="Hangon-left">
