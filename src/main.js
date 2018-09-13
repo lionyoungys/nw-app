@@ -192,7 +192,6 @@ class MainLeftMenu extends Component {
             ,   modulesLen = modules.length
             ,   hasModule = false
             ,   tmp;
-            console.log(leftMenu);
             for (var i = 0;i < len;++i) {
                 if (!isNaN(menu[1].options[i].id)) {
                     for (var j = 0;j < modulesLen;++j) {

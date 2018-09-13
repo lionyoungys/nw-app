@@ -341,7 +341,7 @@ export default class extends Component {
                                     <td>{item1.clothing_color}</td>
                                     <td>{item1.remark}</td>
                                     <td>{item1.grid_num}</td>
-                                    <td>{item1.status==3?'未取走':item1.status==4?'已取走':'已撤单'}</td>
+                                    <td>{item1.status.getItemStatusName()}</td>
                                 </tr>
                             )
                         }
