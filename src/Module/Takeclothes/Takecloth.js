@@ -258,7 +258,7 @@ export default class extends Component {
             addr:this.state.merchant.maddress,    //店铺地址
             mphone:this.state.merchant.phone_number,    //店铺电话
             ad:this.state.merchant.mdesc,    //店铺广告
-            number:this.state.recharge_number,
+            number:this.state.payCard.recharge_number || this.state.recharge_number,
             balance:balance,
             pay_amount:object.pay_amount,
             change:object.change,
