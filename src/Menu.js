@@ -121,7 +121,7 @@ const leftMenu = [
     {
         value:'前台业务', 
         options:[
-            {value:'线上订单', class:'main-clothes', view:'onlineorder'},
+            {value:'线上订单', class:'main-clothes', view:'onlineorder', state:'count'},    //state:使用组件的state的键读取状态值
             {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
             {value:'取衣',class:'main-take',view:'take_clothes', id: 9},
             // {value:'上挂',class:'main-put-on',view:'hangon', id: 8},

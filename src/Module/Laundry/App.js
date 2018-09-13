@@ -83,20 +83,9 @@ export default class extends React.Component {
         });
     }
     
-    //通过衣服编码查询操作
+    
     onSearch() { 
-        console.log(this.state.value)
-        api.post('take_laundry', {           
-            token:'token'.getData(),           
-            clothing_number:this.state.value,
-        }, (res, ver) => {
-            if (ver && res) {
-                tool.ui.success({callback:(close, event) => {
-                    close();
-                    this.query();
-                }});               
-            }else{
-                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
+                let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
                  if (-1 != index) {
                      if (this.state.data[index].state == true) return;
                      let index2 = this.state.data[index].id.inArray(this.state.checked);
@@ -105,16 +94,14 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                  } else {                   
-                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
                         close();
                         this.setState({value:''});
                     }});
                 }
                 this.setState({value:''});
-            }
-        });
-    }
-
+    }       
+    
     //全选
     handleAllChecked(value, checked) {       
         if (checked==false) {

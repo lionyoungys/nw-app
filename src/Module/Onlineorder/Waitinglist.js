@@ -65,7 +65,7 @@ export default class extends Component {
             value:value,                
         }
         api.post('pending_order',params, (res,ver) => { 
-           // console.log('result', res);         
+            console.log(res);         
             if (ver && res) {
                 if(res.result.order.length>0){
                     this.setState({  
@@ -142,7 +142,7 @@ export default class extends Component {
             <td>{item.ordersn}</td>
             <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
             <td>{
-               item.work.map((item,index)=>
+                item.work.map((item,index)=>
                 <span>{item.clothing_name}</span>
                 )
             }

@@ -62,17 +62,19 @@ export default class extends React.Component {
                     this.query();
                 }});    
             }else{
-                console.log(res)
-                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
+                //console.log(res)
+                let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
+                console.log(this.state.data,this.state.value)
+               // console.log(index)
                  if (-1 != index) {
                     if (this.state.data[index].state == true) return;
-                     let index2 = this.state.data[index].id.inArray(this.state.checked);
+                        let index2 = this.state.data[index].id.inArray(this.state.checked);
                     if (-1 === index2) {
                          this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
-                   }
+                    }
                  } else {
-                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
                         close();
                         this.setState({value:''});
                     }});                    

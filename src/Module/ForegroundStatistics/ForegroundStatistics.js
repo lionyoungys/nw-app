@@ -22,8 +22,8 @@ export default class extends Component {
         }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res);
-                if(res.result.length>0){
-                    this.setState({list:res.result,nodatas:false})
+                if(res.result.list.length>0){
+                    this.setState({list:res.result.list,nodatas:false,})
                 }else{
                     this.setState({nodatas:true,list:[]})
                 }
@@ -49,10 +49,8 @@ export default class extends Component {
              <td>{item.time}</td>
              <td>{item.recharge_number}</td>
              <td>{item.card_type}</td>
-
         </tr>
-     )
-   
+     )   
         return (             
             <Window title='前台情况' onClose={this.props.closeView}>   
                 <div className="ope-inc-head for-sta-head">

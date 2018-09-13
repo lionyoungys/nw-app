@@ -62,7 +62,7 @@ export default class extends React.Component {
 
     // 烘干里边通过衣服编码搜索加到烘干目录
     onSearch() {
-        console.log(this.state.value)
+       console.log(this.state.value)
         api.post('take_dry', {           
             token:'token'.getData(),           
             clothing_number:this.state.value
@@ -73,8 +73,9 @@ export default class extends React.Component {
                     this.query();
                 }}); 
             }else{
-                console.log(res)
-                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
+                //console.log(res)
+                let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
+                console.log(index)
                 if (-1 != index) {
                     if (this.state.data[index].state == true) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
@@ -83,7 +84,7 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                 } else {                    
-                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
                         close();
                         this.setState({value:''});
                     }});
@@ -91,8 +92,7 @@ export default class extends React.Component {
                 this.setState({value:''});
             }
         });
-    }
-    
+    }   
     // 全选
     handleAllChecked(value, checked) {
         if (checked) {

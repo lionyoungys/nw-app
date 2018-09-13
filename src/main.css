@@ -157,6 +157,21 @@ table{border-collapse: collapse}
     margin-left: 13px;
     margin-bottom: 10px;
 }
+.main-left-menu>div>div{position: relative}
+.main-left-menu>div>div>i{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 16px;
+    min-width: 16px;
+    line-height: 16px;
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50px;
+    background: red;
+}
 .main-left-menu>div:first-child{
     font-weight: bold;
     padding-bottom: 7px;

@@ -65,7 +65,7 @@ export default class extends React.Component {
                 }});   
             }else{
                 console.log(res)
-                let index = this.state.value.inObjectArray(this.state.data, 'clothing_number');
+                let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
                 if (-1 != index) {
                      if (this.state.data[index].state == true) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
@@ -74,14 +74,11 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                 } else {
-                    tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
                         close();                       
                     }});
                 }
-                 this.setState({value:''});
-                 tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
-                    close();                       
-                }});
+                 
             }
         });
     }

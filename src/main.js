@@ -13,7 +13,7 @@ import './UI/base.css';
 import './Elem/App.css';
 
 
-//EventApi.win.showDevTools();
+EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -38,24 +38,7 @@ class Main extends Component {
             }
         });
         EventApi.win.on('maximize', () => this.setState({max:true}));
-        EventApi.win.on('minimize', () => this.setState({min:true}));
-        // 新订单提示
-        setInterval(() => {       
-            api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {
-                console.log(res);
-                ver && EventApi.notify(
-                    {
-                        title:'新订单提示', 
-                        body:'接到一个新订单，请注意查收',
-                        onshow:() => {
-                            this.audio.src = 'media/new_order.ogg';
-                            this.audio.play();
-                        },
-                        onclick:() => {this.changeView({view:'onlineorder'})}
-                    }
-                );                                
-            })           
-        }, 300000);       
+        EventApi.win.on('minimize', () => this.setState({min:true}));      
     }   
 
     componentDidCatch(error) {
@@ -108,7 +91,6 @@ class Main extends Component {
                 <div className='main-container'>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})}/>}
                 </div>
-                <audio ref={audio => this.audio = audio}></audio>
             </div>
         );
     }
@@ -157,6 +139,7 @@ class MainNav extends Component {
 class MainLeftMenu extends Component {
     constructor(props) {
         super(props);
+        this.state = {count:0};
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(e) {
@@ -167,6 +150,27 @@ class MainLeftMenu extends Component {
             node.classList.add('main-left-menu-hidd');
         }
     }
+    componentDidMount() {
+        // 新订单提示
+        this.timeId = setInterval(() => {       
+            api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {
+                console.log(res);
+                if (ver) {
+                    this.setState({count:res.result.length});
+                    EventApi.notify({
+                        title:'新订单提示', 
+                        body:'接到一个新订单，请注意查收',
+                        onshow:() => {
+                            this.audio.src = 'media/new_order.ogg';
+                            this.audio.play();
+                        },
+                        onclick:() => {this.props.changeView({view:'onlineorder'})}
+                    });  
+                }                              
+            })           
+        }, 300000); 
+    }
+    componentWillUnmount() {clearInterval(this.timeId)}
     render() {
         let className;
         let menuList = leftMenu.map((obj, index) => {
@@ -179,7 +183,17 @@ class MainLeftMenu extends Component {
                 <div key={obj.value} className={className}>
                     <div onClick={this.handleClick}>{obj.value}</div>
                     <div>
-                        {obj.options.map(obj2 => <div className={obj2.class} key={obj2.value} data-view={obj2.view} data-event={obj2.event} onClick={this.props.changeView}>{obj2.value}</div>)}
+                        {
+                            obj.options.map(obj2 => 
+                                <div 
+                                    className={obj2.class} 
+                                    key={obj2.value} 
+                                    data-view={obj2.view} 
+                                    data-event={obj2.event} 
+                                    onClick={this.props.changeView}
+                                >{obj2.value}{obj2.state && !isNaN(this.state[obj2.state]) && this.state[obj2.state] > 0 && <i>{this.state[obj2.state]}</i>}</div>
+                            )
+                        }
                     </div>
                 </div>
             );
@@ -187,7 +201,8 @@ class MainLeftMenu extends Component {
         return (
             <div className='main-left'>              
                 <div className='main-task-bar'></div>
-                {menuList}             
+                {menuList}
+                <audio ref={audio => this.audio = audio} style={{display:'none'}}></audio>             
             </div>
         );
     }

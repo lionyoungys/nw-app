@@ -11,8 +11,7 @@ export default class extends Component {
         super(props);   
         this.state={
             list:[],
-            checked:[],  
-                  
+            checked:[],                   
         };
        this.query = this.query.bind(this);
        this.handleChecked = this.handleChecked.bind(this);  
@@ -23,6 +22,8 @@ export default class extends Component {
     }
 
     query (){
+        //let done;
+       // tool.ui.loading(handle => done = handle);
         api.post('shop_module', {token:token}, (res,ver) => {
             if (ver && res) {
                 console.log(res)    
