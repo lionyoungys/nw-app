@@ -24,11 +24,16 @@ export default class extends Component {
         this.query = this.query.bind(this);   
     }; 
     componentDidMount(){this.query()};
-    query(page) {
-        
+    query(page) {       
         page = page || this.state.page;
         console.log('页码'+page);
-        api.post('rechargeSta', { token: 'token'.getData(), start_time: this.state.startdate, end_time: this.state.enddate,page: page, limit:this.limit }, (res, ver, handle) => {
+        api.post('rechargeSta', { 
+            token: 'token'.getData(), 
+            start_time: this.state.startdate, 
+            end_time: this.state.enddate,
+            page: page, 
+            limit:this.limit
+         }, (res, ver, handle) => {
             if (ver && res) {
                 console.log(res);
                 this.setState({

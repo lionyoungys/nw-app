@@ -18,14 +18,13 @@ export default class extends Component {
             count:0,
             nodatas:false,
         }
-        this.limit = 15;
+        this.limit = 10;
         this.arrbutton = this.arrbutton.bind(this);       
     }; 
     componentDidMount(){
         this.arrbutton();
     }
     arrbutton (page){
-
         page = page || this.state.page;
         api.post('Operating', {
             token:'token'.getData(),

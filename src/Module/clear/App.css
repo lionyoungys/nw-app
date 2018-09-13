@@ -21,11 +21,22 @@
     width:800px;
     float: left;
 }
-.right{
+.right1{
     margin-right: 11px;
-    width: 279px;
+    width:319px;
     float: right;
     margin-top:25px;
+}
+.right1 input {
+    border: 1px solid #c2c2c2;
+    background: #f9f9f9;
+    width: 221px;
+    height: 20px;
+    text-indent: 8px;
+    color: #000;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 0;
 }
 .e-box{
   width:872px;

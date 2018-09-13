@@ -144,7 +144,7 @@ export default class extends React.Component {
         return (
         <Window title='出厂' onClose={this.props.closeView}>            
                 <div className="out-title">                  
-                    <div className='right out-right left out-left' onClick = {this.select_factory}>
+                    <div className='right1 out-right left out-left' onClick = {this.select_factory}>
                       选择门店：<Select  option={this.state.select_shop}  onChange={(value) => this.change_select(value)} selected="请选择门店"/>
                     </div>
                 </div>

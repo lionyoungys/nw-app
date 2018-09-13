@@ -14,7 +14,7 @@ export default class extends Component {
         this.state = {
             startdate:tool.date('Y-m-01'),enddate:tool.date('Y-m-d'),
             show: false,
-            result: [],
+            result: [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
             list:[],
             page: 1,
             count: 0,
@@ -31,7 +31,9 @@ export default class extends Component {
             start_time:this.state.startdate,
             end_time:this.state.enddate,
             token:'token'.getData(),
-            operator:''
+            operator:'',
+            page: page, 
+            limit:this.limit
         }, (res, ver, handle) => {
             done();
             if (ver && res) {

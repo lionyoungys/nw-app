@@ -212,7 +212,7 @@ export default class extends React.Component {
         );
         return (
          <Window title='质检' onClose={this.props.closeView}>
-            <div className='right'>
+            <div className='right1'>
                 <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
                 <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
             </div> 

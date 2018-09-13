@@ -10,6 +10,19 @@
    float:left;
    margin:14px 22px 0px;
 }
+.out-left input{
+    border: 1px solid #c2c2c2;
+    background: #f9f9f9;
+    width: 221px;
+    height: 20px;
+    text-indent: 8px;
+    color: #000;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 0;
+}
+
+
 .out-right{
     float:right;
     margin:14px 22px 0px;

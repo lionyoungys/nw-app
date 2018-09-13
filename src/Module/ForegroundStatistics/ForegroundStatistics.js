@@ -6,6 +6,8 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Nodata from '../../UI/Nodata';
 import './ForegroundStatistics.css';
+import Page from '../../UI/Page';
+
 
 export default class extends Component {   
     constructor(props) {
@@ -14,18 +16,31 @@ export default class extends Component {
             startdate:tool.date('Y-m-d'),enddate:tool.date('Y-m-d'),          
             list:[],
             nodatas:false,
-        }              
+            page: 1,
+            count: 0,
+        }  ;
+        this.limit = 10; 
+        this.query = this.query.bind(this);
     }; 
-    componentDidMount(){        
+    componentDidMount(){ this.query() }
+    query(page){
+        page = page || this.state.page;
         api.post('Operating', {
-            token:'token'.getData()    
+            token:'token'.getData() ,
+            page: page, 
+            limit:this.limit  
         }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res);
                 if(res.result.list.length>0){
-                    this.setState({list:res.result.list,nodatas:false,})
+                    this.setState({
+                        list:res.result.list,
+                        nodatas:false,
+                        count:res.result.count,
+                        page:page
+                    })
                 }else{
-                    this.setState({nodatas:true,list:[]})
+                    this.setState({nodatas:true,list:[],count:'0'})
                 }
                   
             }else{
@@ -34,6 +49,7 @@ export default class extends Component {
             }
         });
     }
+
     render() {
         var list =  this.state.list.map((item,index) =>
         <tr key={'item'+index}>
@@ -57,7 +73,7 @@ export default class extends Component {
                     <a>统计时间：{tool.date('Y-m-d') +'  00：00：00'} 至{tool.date('Y-m-d  H：i：s')}</a>
                     <a>衣物件数：{this.state.list.length}件</a>
                 </div>
-                <div class="ui-check-res ReportLossQuery">已为您找到：<b>{this.state.list.length}</b>条记录</div>
+                <div class="ui-check-res ReportLossQuery">已为您找到：<b>{this.state.count}</b>条记录</div>
                 <table className='ui-table-base for-sta-tab'>
                     <thead>
                         <tr>
@@ -80,6 +96,7 @@ export default class extends Component {
                       {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
              </Window> 
         );
     }

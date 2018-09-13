@@ -18,11 +18,17 @@
     overflow-x: auto;
 }
 .ui-table-base.bus-sta-tab tbody{
-
     max-height:379px;
 }
 .ui-table-base.bus-sta-tab tr td{
-
     max-width: 107px;
     min-width: 107px;
 }
+/* #busin-data{
+    height:300px;
+    max-height:300px;
+}
+#busin-data tbody{
+    height: 300px;
+    max-height:300px;
+} */
