@@ -40,7 +40,8 @@ export default class extends React.Component {
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('out_factory', {           
-            token:'token'.getData(),           
+            token:'token'.getData(),  
+            rid:this.state.sel_id,         
         }, (res, ver) => {
                 if (ver && res) {
                     done();
@@ -102,15 +103,7 @@ export default class extends React.Component {
     change_select (value){
         console.log(value)
         this.setState({sel_id:value});
-        api.post('factory_id', {           
-            token:'token'.getData(),
-            rid:this.state.sel_id 
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res);
-                this.setState({data:res.result})         
-            }
-        });
+        this.query()
     }
 
     handleClick() {    //出厂

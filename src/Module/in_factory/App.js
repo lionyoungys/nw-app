@@ -79,6 +79,7 @@ export default class extends React.Component {
     }
     //退回
     handleClick() {    
+        console.log(JSON.stringify(this.state.checked))
         if (this.state.checked.length < 1) return;
         api.post('return_factory', {                      
             token:'token'.getData(),
