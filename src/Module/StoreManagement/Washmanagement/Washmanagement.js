@@ -75,6 +75,7 @@ export default class extends Component {
         }, (res,ver) => {
             console.log(res)
             if (ver && res) {
+                this.props.leftMenuReload(this.state.checked);
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.query();

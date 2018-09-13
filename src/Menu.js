@@ -134,13 +134,13 @@ const leftMenu = [
         value:'洗护管理', 
         options:[           
             {value:'送洗',class:'main-laundry',view:'laundry', id: 111},
-            {value:'入厂',class:'main-factory',view:'Infactory', id: 112},
             {value:'清洗',class:'main-clearn',view:'clear', id: 100},
             {value:'烘干',class:'main-hot',view:'dry', id: 102},
             {value:'熨烫',class:'main-ironing',view:'ironing', id: 104},
             {value:'质检',class:'main-quality',view:'check', id: 106},
+            {value:'入厂',class:'main-factory',view:'Infactory', id: 112},
+            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 114},
             {value:'上挂',class:'main-put-on',view:'hangon'},
-            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 114}, //
         ]
     },
     {
@@ -206,36 +206,6 @@ if (1 != is_root) {
                 --j;
                 --tempLen;
             }
-        }
-    }
-}
-//模块隐藏显示判断
-try {
-    var modules = JSON.parse('module'.getData());
-} catch (e) {
-    modules = [];
-}
-if ('object' === typeof modules && modules instanceof Array) {
-    var leftMenuLen = leftMenu[1].options.length
-    ,   modulesLen = modules.length
-    ,   hasModule = false;
-    for (var i = 0;i < leftMenuLen;++i) {
-        if (!isNaN(leftMenu[1].options[i].id)) {
-            for (var j = 0;j < modulesLen;++j) {
-                if (leftMenu[1].options[i].id == modules[j].id) {
-                    hasModule = true;
-                    break;
-                }
-            }
-        } else {
-            hasModule = true;
-        }
-        if (hasModule) {
-            hasModule = false;
-        } else {
-            leftMenu[1].options.splice(i, 1);
-            --i;
-            --leftMenuLen;
         }
     }
 }

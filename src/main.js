@@ -24,7 +24,8 @@ class Main extends Component {
             view:null,    //视图路由名称
             param:null,   //视图路由携带参数sss           
         }
-        this.changeView = this.changeView.bind(this);    //界面跳转方法        
+        this.changeView = this.changeView.bind(this);    //界面跳转方法  
+        this.leftMenuReload = this.leftMenuReload.bind(this);    //左侧菜单重新加载      
     }
     
     componentDidMount() {
@@ -69,6 +70,8 @@ class Main extends Component {
         }
     }
 
+    leftMenuReload(modules) {this.MainLeftMenu.reload(modules)}
+
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
         return (
@@ -87,9 +90,9 @@ class Main extends Component {
                     <MainNav changeView={this.changeView}/>
                 </div>
                 {/* 界面左侧菜单栏 */}
-                <MainLeftMenu changeView={this.changeView}/>
+                <MainLeftMenu ref={menu => this.MainLeftMenu = menu} changeView={this.changeView}/>
                 <div className='main-container'>
-                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})}/>}
+                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} leftMenuReload={this.leftMenuReload}/>}
                 </div>
             </div>
         );
@@ -139,18 +142,12 @@ class MainNav extends Component {
 class MainLeftMenu extends Component {
     constructor(props) {
         super(props);
-        this.state = {count:0};
+        this.state = {leftMenu:leftMenu, count:0};
         this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick(e) {
-        let node = e.target.parentNode;
-        if (node.classList.contains('main-left-menu-hidd')) {
-            node.classList.remove('main-left-menu-hidd');
-        } else {
-            node.classList.add('main-left-menu-hidd');
-        }
+        this.reload = this.reload.bind(this);
     }
     componentDidMount() {
+        this.reload();
         // 新订单提示
         this.timeId = setInterval(() => {       
             api.post('new_order',{token:'token'.getData(), mid:'mid'.getData()}, (res,ver) => {
@@ -171,9 +168,57 @@ class MainLeftMenu extends Component {
         }, 300000); 
     }
     componentWillUnmount() {clearInterval(this.timeId)}
+
+    handleClick(e) {
+        let node = e.target.parentNode;
+        if (node.classList.contains('main-left-menu-hidd')) {
+            node.classList.remove('main-left-menu-hidd');
+        } else {
+            node.classList.add('main-left-menu-hidd');
+        }
+    }
+
+    reload(modules) {
+        if (!tool.isArray(modules)) {
+            try {
+                modules = JSON.parse('module'.getData());
+            } catch (e) {
+                modules = [];
+            }
+        }
+        if ('object' === typeof modules && modules instanceof Array) {
+            let menu = tool.clone(leftMenu)
+            ,   len = menu[1].options.length
+            ,   modulesLen = modules.length
+            ,   hasModule = false
+            ,   tmp;
+            console.log(leftMenu);
+            for (var i = 0;i < len;++i) {
+                if (!isNaN(menu[1].options[i].id)) {
+                    for (var j = 0;j < modulesLen;++j) {
+                        tmp = isNaN(modules[j]) ? modules[j].id : modules[j];
+                        if (menu[1].options[i].id == tmp) {
+                            hasModule = true;
+                            break;
+                        }
+                    }
+                } else {
+                    hasModule = true;
+                }
+                if (hasModule) {
+                    hasModule = false;
+                } else {
+                    menu[1].options.splice(i, 1);
+                    --i;
+                    --len;
+                }
+            }
+            this.setState({leftMenu:menu});
+        }
+    }
     render() {
         let className;
-        let menuList = leftMenu.map((obj, index) => {
+        let menuList = this.state.leftMenu.map((obj, index) => {
             if (index < 2) {
                 className = 'main-left-menu';
             } else {
