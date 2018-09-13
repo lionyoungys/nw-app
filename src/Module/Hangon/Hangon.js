@@ -80,7 +80,7 @@ export default class extends Component {
                     <input type="text" value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value.trim()})} autoFocus='autoFocus'/>
                     <button className="e-btn hangon-btn" onClick={this.query}>查询</button>             
                 </div>
-                <table class='ui-table-base hangon-sear-res-tab'>
+                <table className='ui-table-base hangon-sear-res-tab'>
                     <thead>
                         <tr>
                             <td>衣物编码</td>
