@@ -359,7 +359,7 @@ export default class extends Component {
             no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
         let gateway = object.gateway
-        ,   balance = this.state.balance;
+        ,   balance = this.state.payCard.balance || this.state.balance;
         if ('undefined' !== typeof gateway) {
             if (0 == gateway) {
                 gateway = '会员卡支付';
@@ -375,63 +375,34 @@ export default class extends Component {
             gateway = '未付款';
         }
         var limit = false;
-        EventApi.print(
-            'order', 
-            {
-                sn:this.state.sn,
-                items:JSON.stringify(this.state.data),
-                put_codes:JSON.stringify(this.state.code_arr),
-                total:total,
-                uaddr:this.state.addr,
-                dis_amount:dis_amount,
-                amount:no_dis_amount,
-                discount: discount,
-                real_amount:amount,
-                name:this.state.name,
-                phone:this.state.phone,
-                time:this.state.time,
-                addr:this.state.maddr,
-                mphone:this.state.mphone,
-                ad:this.state.ad,
-                number:this.state.number,
-                balance:balance,
-                pay_amount:object.pay_amount,
-                change:object.change,
-                gateway:gateway,
-                debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-            }, 
-            'printer'.getData(),
-            () => {
+        let param = {
+            sn:this.state.sn,
+            items:JSON.stringify(this.state.data),
+            put_codes:JSON.stringify(this.state.code_arr),
+            total:total,
+            uaddr:this.state.addr,
+            dis_amount:dis_amount,
+            amount:no_dis_amount,
+            discount: discount,
+            real_amount:amount,
+            name:this.state.name,
+            phone:this.state.phone,
+            time:this.state.time,
+            addr:this.state.maddr,
+            mphone:this.state.mphone,
+            ad:this.state.ad,
+            number:this.state.payCard.recharge_number || this.state.number,
+            balance:balance,
+            pay_amount:object.pay_amount,
+            change:object.change,
+            gateway:gateway,
+            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+        };
+        EventApi.print('order', param, 'printer'.getData(), () => {
                 tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
                     if (limit) return;
                     limit = true;
-                    EventApi.print(
-                        'order2', 
-                        {
-                            sn:this.state.sn,
-                            items:JSON.stringify(this.state.data),
-                            put_codes:JSON.stringify(this.state.code_arr),
-                            total:total,
-                            uaddr:this.state.addr,
-                            dis_amount:dis_amount,
-                            amount:no_dis_amount,
-                            discount: discount,
-                            real_amount:amount,
-                            name:this.state.name,
-                            phone:this.state.phone,
-                            time:this.state.time,
-                            addr:this.state.maddr,
-                            mphone:this.state.mphone,
-                            ad:this.state.ad,
-                            number:this.state.number,
-                            balance:balance,
-                            pay_amount:object.pay_amount,
-                            change:object.change,
-                            gateway:gateway,
-                            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
-                        }, 
-                        'printer'.getData()
-                    );
+                    EventApi.print('order2', param, 'printer'.getData());
                     close();
                 }});
             }
