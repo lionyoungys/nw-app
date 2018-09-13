@@ -108,7 +108,7 @@ export default class extends Component {
                     tool.ui.success({callback:(close) => {
                         this.takecloth();
                         close();
-                        this.setState({show2:false,checked:[]})    
+                        this.setState({show2:false,checked:[]})
                     }}
                    ); 
                                                                                                           
@@ -127,19 +127,24 @@ export default class extends Component {
     }
     handleAllChecked(e) {
         let index = e.target.dataset.index
-        ,   tempChecked = this.state.checked[index] || [];
-        if (this.state.list[index].item.matchLen({status:3}) == tempChecked.length) {
+        ,   tempChecked = this.state.checked[index] || []
+        ,   tmpCheckedCount = 0;
+        this.state.list[index].item.map(obj => {
+            if (4 != obj.status) ++tmpCheckedCount;
+        });
+        console.log(tmpCheckedCount);
+        console.log(this.state.list[index].item);
+        if (tmpCheckedCount == tempChecked.length) {
             this.state.checked[index] = [];
         } else {
             let len = this.state.list[index].item.length;
             this.state.checked[index] = [];
             for (var i = 0;i < len;++i) {
-                if (3 == this.state.list[index].item[i].status) {
+                if (4 != this.state.list[index].item[i].status) {
                     this.state.checked[index].push(Number(this.state.list[index].item[i].id));
                 }
             }
         }
-        console.log('checked', this.state.checked);
         this.setState({checked:this.state.checked});
     }
     M1Read(e) {
@@ -301,10 +306,12 @@ export default class extends Component {
         ,   dis_amount = order.discount_amount || 0
         ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100)
         ,   total_amount = amount.add(dis_amount)
-        ,   tempChecked;
+        ,   tempChecked
+        ,   tmpCheckedCount;
 
         let takeclothes=this.state.list.map((item,index)=> {
             tempChecked = this.state.checked[index] || [];
+            tmpCheckedCount = 0;
             return (
                 <div style={{background:'#ffffff'}}>
                 <div className="Takeclothesdetail-title">
@@ -333,24 +340,27 @@ export default class extends Component {
                     </thead>
                     <tbody>
                         {
-                            item.item.map((item1,index2) =>
-                                <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
-                                    <td>{index2+1}</td>
-                                    <td><input type="checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{display:((item.pay_state==1?true:false)&&(item1.status==4?false:true))==true?'block':'none'}}/><span>{item1.clothing_number}</span></td>
-                                    <td>{item1.clothing_name}</td>
-                                    <td>{item1.clothing_color}</td>
-                                    <td>{item1.remark}</td>
-                                    <td>{item1.grid_num}</td>
-                                    <td>{item1.status.getItemStatusName()}</td>
-                                </tr>
-                            )
+                            item.item.map((item1,index2) => {
+                                if (4 != item1.status) ++tmpCheckedCount;
+                                return (
+                                    <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
+                                        <td>{index2+1}</td>
+                                        <td><input type="checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{display:((item.pay_state==1?true:false)&&(item1.status==4?false:true))==true?'block':'none'}}/><span>{item1.clothing_number}</span></td>
+                                        <td>{item1.clothing_name}</td>
+                                        <td>{item1.clothing_color}</td>
+                                        <td>{item1.remark}</td>
+                                        <td>{item1.grid_num}</td>
+                                        <td>{item1.status.getItemStatusName()}</td>
+                                    </tr>
+                                );
+                            })
                         }
                     </tbody>
                 </table> 
             </div>
             <div className="Takeclothesdetail-footer">
                 <div className="Takeclothesdetail-footer-left" style={{display:item.pay_state==1?'block':'none'}}>
-                <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == item.item.matchLen({status:3})} />全选/全不选</div>
+                <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
                     <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
                     <button className="take-over" onClick={() => this.setState({show2:true,takeclothindex:index})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
