@@ -59,7 +59,7 @@ export default class extends React.Component {
     handleChange(value) {
         let index = value.inObjArray(this.state.cards, 'card_type')
         ,   card = this.state.cards[index];
-        this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price})
+        this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price});
     }
 
     handleClick() {
