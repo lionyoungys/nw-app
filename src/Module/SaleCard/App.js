@@ -25,21 +25,41 @@ export default class extends React.Component {
             birthday:'1970-01-01', 
             sex:'男', 
             addr:'', 
+            amount:'',
+            give:'',
+            discount:100,
+            made_price:'',
             show:false,
             writeData:{}
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.callback = this.callback.bind(this);
     }; 
     componentDidMount() {
-        api.post('cardType', {token:token}, (res,ver,handle) => {
+        api.post('cardType', {token:token,limit:200}, (res,ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({ cards: res.result.cardsType, types: res.result.cardsType.typeArray('card_type')});
+                let cards = res.result.cardsType
+                ,   first = cards.length > 0 ? cards[0] : {real_price:0,made_price:0,give_price:0,discount:100};
+                this.setState({ 
+                    cards: cards, 
+                    types: cards.typeArray('card_type'), 
+                    amount:first.real_price,
+                    give:first.give_price,
+                    discount:first.discount,
+                    made_price:first.made_price
+                });
             }else{
                 handle();
             }
         });
+    }
+
+    handleChange(value) {
+        let index = value.inObjArray(this.state.cards, 'card_type')
+        ,   card = this.state.cards[index];
+        this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price})
     }
 
     handleClick() {
@@ -47,6 +67,8 @@ export default class extends React.Component {
         if ('' == this.state.phone) return tool.ui.error({msg:'手机号不能为空！',callback:close => close()});
         if (isNaN(this.state.phone) || 11 != this.state.phone.length) return tool.ui.error({msg:'手机号格式不正确！',callback:close => close()});
         if (this.state.passwd != this.state.passwd2) return tool.ui.error({msg:'2次密码不正确！',callback:close => close()});
+        if (isNaN(this.state.amount) || this.state.amount < 0) return tool.ui.error({msg:'充值金额不正确！',callback:close => close()});
+        if (isNaN(this.state.discount) || this.state.discount < 0) return tool.ui.error({msg:'折扣率不正确！',callback:close => close()});
         if ('' != this.state.number) {
             EventApi.M1Write({sn:this.state.number, success:() => this.setState({show:true})});
         } else {
@@ -63,14 +85,15 @@ export default class extends React.Component {
         obj.user_mobile = this.state.phone;
         obj.recharge_number = this.state.number;
         obj.card_name = card.card_type;
-        obj.discount = card.discount;
+        obj.discount = this.state.discount;
         obj.sex = this.state.sex;
         obj.birthday = this.state.birthday;
         obj.address = this.state.addr;
         obj.password = this.state.passwd;
-        obj.price = card.real_price;
-        obj.made_price = card.made_price;
-        obj.balance = card.real_price.add(card.give_price);
+        obj.price = this.state.amount;
+        obj.give_price = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
+        obj.made_price = (isNaN(this.state.made_price) || this.state.made_price < 0 ? 0 : this.state.made_price);
+        obj.balance = this.state.amount.add(obj.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
             if (ver) {
                 //console.log(res);
@@ -82,7 +105,7 @@ export default class extends React.Component {
                     name:obj.user_name,
                     number:obj.recharge_number,
                     balance:0,
-                    give:card.give_price,
+                    give:obj.give_price,
                     discount:(obj.discount / 10),
                     recharge:obj.price,
                     gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
@@ -114,7 +137,7 @@ export default class extends React.Component {
     }
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {}
-        ,   amount = card.real_price ? card.real_price.add(card.made_price) : 0; 
+        ,   total = (this.state.amount || 0).add(this.state.made_price || 0); 
         return ( 
                 <Window title='售卡' onClose={this.props.closeView} width='512' height='440'>
                     <div className='salecard'>
@@ -123,7 +146,7 @@ export default class extends React.Component {
                             <span>卡类型:</span>&nbsp;&nbsp;
                             <Select 
                                 option={this.state.types} 
-                                onChange={value => this.setState({index:value.inObjArray(this.state.cards, 'card_type')})}
+                                onChange={this.handleChange}
                             />
                         </div>
                         <div>
@@ -164,18 +187,18 @@ export default class extends React.Component {
                     </div>
                     <div className='bottom'>
                     <div>
-                    <span>充值:</span><label>&yen;{card.real_price}</label>
+                    <span>充值:</span><label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></label>
                     </div>
                     <div>
-                    <span>赠送:</span><label>&yen;{card.give_price}</label>
+                    <span>赠送:</span><label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></label>
                     </div>
                     <div>
-                        <span>折扣率:</span><label>{card.discount}%</label>
+                        <span>折扣率:</span><label><input className='e-input' type='number' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>%</label>
                     </div>
                     <div>
-                        <span>制卡费:</span><label>&yen;{card.made_price}</label>
+                        <span>制卡费:</span><label><input className='e-input' type='number' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/></label>
                     </div>
-                        <span className='textred'>应收合计：&yen;{amount}</span>
+                        <span className='textred'>应收合计：&yen;{total}</span>
                         <button type='button' className='e-btn' onClick={this.handleClick}>收银</button>
                     </div>
                     </div>
@@ -185,12 +208,12 @@ export default class extends React.Component {
                         <Recharge
                             data={{
                                 type:card.card_type,
-                                discount:card.discount,
-                                recharge:card.real_price,
+                                discount:this.state.discount,
+                                recharge:this.state.amount,
                                 balance:0,
-                                give:card.give_price,
-                                price:card.made_price,
-                                amount:amount
+                                give:this.state.give,
+                                price:this.state.made_price,
+                                amount:total
                             }}
                             callback={this.callback}
                             onClose={() => this.setState({show:false})}
