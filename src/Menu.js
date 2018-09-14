@@ -154,7 +154,7 @@ const leftMenu = [
     {
         value:'其他', 
         options:[
-            {value:'开钱箱',class:'main-open-case',view:null, event:'open_case'}
+            {value:'开钱箱',class:'main-open-case',view:'open_cash_box'}
         ]
     },
 ];

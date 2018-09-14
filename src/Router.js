@@ -62,6 +62,7 @@ import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
 import Pay from './Module/Pay/Pay'; //赔付
 import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
 import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
+import OpenCashBox from './Module/OpenCashBox';    //开钱箱界面
 
 
 // 3.1新增 工厂端
@@ -142,6 +143,7 @@ export default {
     pay:Pay, //赔付
     about_snl:Aboutsnl, //关于速洗达
     orderquery:Orderquery , //订单查询
+    open_cash_box:OpenCashBox,    //开钱箱
 
     // 新增3.1工厂端
     clear:clear, // 清洗
