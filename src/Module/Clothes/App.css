@@ -75,7 +75,7 @@
 .clothes-footer-left>:first-child>:first-child,
 .clothes-footer-left>:last-child>:first-child{width: 164px}
 .clothes-footer-left>:first-child>:nth-child(2),
-.clothes-footer-left>:last-child>:nth-child(2){width: 176px}
+.clothes-footer-left>:last-child>:nth-child(2){width: 150px}
 .clothes-footer-right{
     width: 226px;
     text-align: center;

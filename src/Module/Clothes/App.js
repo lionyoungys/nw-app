@@ -29,7 +29,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+            oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',consume:0,    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
@@ -667,7 +667,8 @@ export default class extends Component {
                         <div>
                             <div>总件数：{this.state.data.length}件</div>
                             <div>总金额：&yen;{total.toFixed(2)}</div>
-                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;{amount.toFixed(2)}</div>
+                            <div style={{fontSize:'14px',color:'red',minWidth:'120px'}}>折后价：&yen;{amount.toFixed(2)}</div>
+                            <div>已消费总额：&yen;{this.state.consume}</div>
                         </div>
                         <div>
                             <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
