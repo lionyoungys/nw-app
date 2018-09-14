@@ -82,8 +82,6 @@ export default class extends React.Component {
             }
         });
     }
-    
-    
     onSearch() { 
                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
                  if (-1 != index) {

@@ -80,7 +80,9 @@ export default class extends Component {
         this.setState({item_name:e.target.value})
         api.post('itemImage', {
             token:'token'.getData(),
-            item_name:e.target.value
+            item_name:e.target.value,
+            page:1,
+            limit:1000
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)

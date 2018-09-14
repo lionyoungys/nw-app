@@ -12,7 +12,6 @@ import './main.css';
 import './UI/base.css';
 import './Elem/App.css';
 
-
 EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
@@ -163,6 +162,8 @@ class MainLeftMenu extends Component {
                         },
                         onclick:() => {this.props.changeView({view:'onlineorder'})}
                     });  
+                } else {
+                    this.setState({count:0});
                 }                              
             })           
         }, 300000); 

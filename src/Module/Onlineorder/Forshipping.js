@@ -82,9 +82,15 @@ export default class extends Component {
                     }}); 
                 }else{
                     console.log(res.msg);
-                    tool.ui.error({msg:'该订单可能存在别的操作，暂时无法配送',callback:(close) => {
-                        close();
-                    }});                   
+                    if(res.code==1000){
+                        tool.ui.error({msg:'该订单可能存在别的操作，暂时无法配送',callback:(close) => {
+                            close();
+                        }}); 
+                    }else{
+                        tool.ui.error({msg:res.msg,callback:(close) => {
+                            close();
+                        }});
+                    }                                     
                 }
                     close();              
                     this.query();

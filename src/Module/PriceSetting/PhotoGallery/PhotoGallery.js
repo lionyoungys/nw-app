@@ -28,7 +28,9 @@ export default class extends Component {
         }});
         api.post('itemImage', {
             token:'token'.getData(),
-            item_name:this.state.item_name
+            item_name:this.state.item_name,
+            page:1,
+            limit:1000
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)

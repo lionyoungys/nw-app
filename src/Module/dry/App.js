@@ -62,18 +62,19 @@ export default class extends React.Component {
 
     // 烘干里边通过衣服编码搜索加到烘干目录
     onSearch() {
-       console.log(this.state.value)
+      // console.log(this.state.value)
         api.post('take_dry', {           
             token:'token'.getData(),           
             clothing_number:this.state.value
         }, (res, ver) => {
+            console.log(ver)
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.query();
                 }}); 
             }else{
-                //console.log(res)
+                //console.log(ver)
                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
                 console.log(index)
                 if (-1 != index) {

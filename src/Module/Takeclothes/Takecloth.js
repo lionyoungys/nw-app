@@ -1,6 +1,6 @@
 /**
  * 取衣界面
- * @author fanyerong
+ * @author wangjun
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
