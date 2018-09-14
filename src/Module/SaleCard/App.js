@@ -59,7 +59,7 @@ export default class extends React.Component {
     handleChange(value) {
         let index = value.inObjArray(this.state.cards, 'card_type')
         ,   card = this.state.cards[index];
-        this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price})
+        this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price});
     }
 
     handleClick() {
@@ -91,7 +91,7 @@ export default class extends React.Component {
         obj.address = this.state.addr;
         obj.password = this.state.passwd;
         obj.price = this.state.amount;
-        obj.give_price = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
+        obj.give = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
         obj.made_price = (isNaN(this.state.made_price) || this.state.made_price < 0 ? 0 : this.state.made_price);
         obj.balance = this.state.amount.add(obj.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
@@ -105,7 +105,7 @@ export default class extends React.Component {
                     name:obj.user_name,
                     number:obj.recharge_number,
                     balance:0,
-                    give:obj.give_price,
+                    give:obj.give,
                     discount:(obj.discount / 10),
                     recharge:obj.price,
                     gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
