@@ -73,7 +73,6 @@ export default class extends React.Component {
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         let give = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
-        console.log({token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give});
         api.post(
             'recharge', 
             {token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give}, 
