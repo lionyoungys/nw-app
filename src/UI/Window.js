@@ -15,7 +15,6 @@ export default class extends React.Component {
         style.marginLeft = (-1 * style.width / 2) + 'px';
         style.width += 'px';
         style.height += 'px';
-        console.log(style);
         return (
             <div className='e-layer-bg'>
                 <div className='ui-window' style={style}>
