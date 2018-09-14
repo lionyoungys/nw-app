@@ -8,25 +8,17 @@ import React from 'react';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {width:'900', height:'624', marginTop:'-312px', marginLeft:'-450px'};
     }
-
-    componentDidMount() {
-        let width = this.props.width || this.state.width,
-            height = this.props.height || this.state.height;
-        if (width == this.state.width && height == this.state.height) {
-            this.setState({width:width + 'px', height:height + 'px'});
-        } else {
-            let marginTop = (-height / 2) + 'px',
-                marginLeft = (-width / 2) + 'px';
-                this.setState({width:width + 'px', height:height + 'px', marginTop:marginTop, marginLeft:marginLeft});
-        }
-    }
-
     render() {
+        let style = {width:this.props.width || 900, height:this.props.height || 624};
+        style.marginTop = (-1 * style.height / 2) + 'px',
+        style.marginLeft = (-1 * style.width / 2) + 'px';
+        style.width += 'px';
+        style.height += 'px';
+        console.log(style);
         return (
             <div className='e-layer-bg'>
-                <div className='ui-window' style={this.state}>
+                <div className='ui-window' style={style}>
                     <div>{this.props.title}<i onClick={this.props.onClose}></i></div>
                     {this.props.children}
                 </div>
