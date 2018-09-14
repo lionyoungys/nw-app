@@ -93,6 +93,7 @@ export default class extends React.Component {
             phone:data.user_mobile || '', 
             addr:data.address || '', 
             balance:data.balance || 0,
+            consume:data.consume || 0,
             discount:data.discount || '',
             type:data.card_name || '',
             cid:data.id,
