@@ -3,13 +3,8 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import router from './Router';
 import {topMenu, nav, leftMenu} from './Menu';
-import './Api';
-import './Event';
-import './main.css';
-import './UI/base.css';
 
 class Main extends Component {
     constructor(props) {
@@ -45,19 +40,24 @@ class Main extends Component {
     changeView(e) {
         let view = null,    //视图
             param = null,    //视图携带参数
-            eventName = null;
+            eventName = null,
+            propsName = null;
         if ('object' === typeof e.target) {    //视图及参数赋值
             let dataset = e.target.dataset;
             if ('string' === typeof dataset.view) view = dataset.view;
             if ('undefined' !== typeof dataset.param) param = dataset.param;
-            if ('string' === typeof dataset.event) eventName = dataset.event
+            if ('string' === typeof dataset.event) eventName = dataset.event;
+            if ('string' === typeof dataset.props) propsName = dataset.props;
         } else {
             if ('string' === typeof e.view) view = e.view;
             if ('undefined' !== typeof e.param) param = e.param;
-            if ('string' === typeof e.event) eventName = e.event
+            if ('string' === typeof e.event) eventName = e.event;
+            if ('string' === typeof e.props) propsName = e.props;
         }
         if (eventName && 'function' === typeof EventApi[eventName]) {    //若为事件处理而非跳转视图,则处理事件
             EventApi[eventName]();
+        } else if (propsName && 'function' === typeof this.props[propsName]) {
+            this.props[propsName]();
         } else {
             null !== view && this.state.view !== view && this.setState({view:view,param:param});
         }
@@ -74,10 +74,10 @@ class Main extends Component {
                         <div>
                             <div className='main-mini' onClick={() => EventApi.win.minimize()}></div>
                             <div className='main-max' onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}></div>
-                            <div className='main-close' onClick={() => EventApi.quit()}></div>
+                            <div className='main-close' onClick={this.props.redirect}></div>
                         </div>
                     </div>
-                    <MainTopMenu changeView={this.changeView}/>
+                    <MainTopMenu changeView={this.changeView} redirect={this.props.redirect}/>
                     <MainNav changeView={this.changeView}/>
                 </div>
                 {/* 界面左侧菜单栏 */}
@@ -106,6 +106,7 @@ class MainTopMenu extends Component {
                             key={obj2.value}
                             data-view={obj2.view}
                             data-event={obj2.event}
+                            data-props={obj2.props}
                             onClick={this.props.changeView}
                         ><div data-view={obj2.view}>【{obj2.value}】</div></div>
                     )}
@@ -122,7 +123,7 @@ class MainNav extends Component {
     }
     render() {
         let navList = nav.map(obj => 
-            <div key={obj.value}><div className={obj.class} data-view={obj.view} data-event={obj.event} onClick={this.props.changeView}>{obj.value}</div></div>
+            <div key={obj.value}><div className={obj.class} data-view={obj.view} data-event={obj.event} data-props={obj.props} onClick={this.props.changeView}>{obj.value}</div></div>
         );
         return (
             <div className='main-nav'>{navList}</div>
@@ -151,4 +152,4 @@ class MainLeftMenu extends Component {
         );
     }
 }
-ReactDOM.render(<Main/>, document.getElementById('root'));
+export default Main;

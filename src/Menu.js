@@ -114,7 +114,7 @@ const nav = [
     {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
     {value:'充值',class:'main-recharge',view:'recharge', id: 24},
     {value:'营业日报',class:'main-income',view:'operate_income', id: 17},
-    {value:'退出',class:'main-quit',view:null, event:'quit'},
+    {value:'退出',class:'main-quit',view:null, props:'redirect'},
 ];
 //左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
 const leftMenu = [

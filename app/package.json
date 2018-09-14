@@ -2,7 +2,7 @@
   "name": "main",
   "version": "3.0.975",
   "description": "nw app",
-  "main": "login.html",
+  "main": "app.html",
   "repository": "none",
   "author": "Edwin Young",
   "license": "MIT",
