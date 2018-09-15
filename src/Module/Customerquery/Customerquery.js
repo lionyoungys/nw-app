@@ -120,8 +120,8 @@ export default class extends Component {
         let pramas = {
             token: token,
             recharge_number: this.state.list[index].recharge_number,
-            user_mobile: this.state.list[index].user_mobile,
-            user_name: this.state.list[index].user_name,
+            // user_mobile: this.state.list[index].user_mobile,
+            // user_name: this.state.list[index].user_name,
             page: 1,
             limit: 1000,
         }
