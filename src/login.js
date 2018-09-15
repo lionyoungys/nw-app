@@ -170,7 +170,7 @@ class Login extends Component {
                 if(pass==1){
                     this.setState({show:true})
                 }else{
-                    this.props.redirect();
+                    this.props.redirect(1);
                 }
             } else {
                
@@ -228,7 +228,7 @@ class Login extends Component {
                     callback: (close, event) => {
                         close();
                         this.setState({show:false});
-                        this.props.redirect();
+                        this.props.redirect(1);
                     }
                 });
             } else {
