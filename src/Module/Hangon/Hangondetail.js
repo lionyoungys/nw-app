@@ -17,8 +17,9 @@ export default class extends Component {
             clothnum:'',//衣挂号名称
             clothindex:-1,//衣挂号索引
         }
-        this.handleClick=this.handleClick.bind(this);
-        this.putOn=this.putOn.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.putOn = this.putOn.bind(this);
+        this.put_yes = this.put_yes.bind(this);
     };
     componentDidMount(){
         api.post('grid', {
@@ -80,34 +81,61 @@ export default class extends Component {
             id:this.props.data.id,   
             put_id:-1==this.state.clothindex?"":this.state.clothnums[this.state.clothindex].id
         }
-        //console.log('props',this.props);
-        //console.log('param', puton);
         api.post('putOn',
-        puton, (res, ver) => {
-            if (ver) {
-                let printer_name = 'glue_tag_printer'.getData();
-                if (printer_name) {
-                    let data = this.props.data;
-                    EventApi.print(
-                        'put_it_on', 
-                        {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
-                        printer_name
-                    );
+            puton, (res, ver) => {
+                if (ver) {
+                    let printer_name = 'glue_tag_printer'.getData();
+                    if (printer_name) {
+                        let data = this.props.data;
+                        EventApi.print(
+                            'put_it_on', 
+                            {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
+                            printer_name
+                        );
+                    }
+                    tool.ui.success({callback:(close) => {
+                        close();    
+                        this.props.onclose();             
+                    }}); 
+                }else{
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
                 }
-                tool.ui.success({callback:(close) => {
-                    close();    
-                    this.props.onclose();             
-                }}); 
-            }else{
-                tool.ui.error({msg:res.msg,callback:(close) => {
-                    close();
-                }});
             }
+        );
+    }
+    put_yes (){
+        let puton={
+            token:'token'.getData(),
+            wid:this.props.data.id,   
+        }
+        api.post('putyes',
+            puton, (res, ver) => {
+                if (ver) {
+                    let printer_name = 'glue_tag_printer'.getData();
+                    if (printer_name) {
+                        let data = this.props.data;
+                        EventApi.print(
+                            'put_it_on', 
+                            {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
+                            printer_name
+                        );
+                    }
+                    tool.ui.success({callback:(close) => {
+                        close();    
+                        this.props.onclose();             
+                    }}); 
+                }else{
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                        close();
+                    }});
                 }
-               );
-   }
+            }
+        );
+    }
     render() {
-        console.log('ll', this.state.clothnum);
+        //console.log('ll', this.state.clothnum);
         var arr = ['衣物编码','名称','品牌','颜色','瑕疵','洗后预估','衣挂号','交活定期','状态'].map((item,index) =><span key={'item'+index} >{item}</span>);
         var count = [this.props.data.clothing_number,
             this.props.data.clothing_name,
@@ -125,7 +153,7 @@ export default class extends Component {
                       {arr}
                    </div>
                    <div className="Hangon-left-count">
-                     {count}
+                       {count}
                    </div>
                 </div>
                 <div className="Hangon-right">
@@ -135,10 +163,9 @@ export default class extends Component {
                    <div className="Hangon-right-select">
                       <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]} ref={input => this.input = input}/>
                    </div>
-                   <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button><button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
+                   <button className="e-btn Hangon-right-btn" onClick={this.putOn}>修改后上挂</button><button className="e-btn Hangon-right-btn" onClick={this.put_yes} >上挂</button>
                 </div>
-            </Window>
-           
+            </Window>          
         );
     }
 }

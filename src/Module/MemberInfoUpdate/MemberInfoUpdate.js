@@ -28,7 +28,8 @@ export default class extends Component {
             recharge_number: card.recharge_number || '',    //卡号
             card_name: card.card_name || '',    //卡类型
             discount: card.discount || '',    //折扣
-            time: card.time || ''    //售卡日期      
+            time: card.time || '' ,   //售卡日期      
+            
         };    
         this.query = this.query.bind(this);
         this.onchange=this.onchange.bind(this);
@@ -116,6 +117,7 @@ export default class extends Component {
                 time:res.time,
                 recharge_number:res.recharge_number,
                 address:res.address,
+                
             });
         }
         EventApi.M1Read(obj);
@@ -126,12 +128,12 @@ export default class extends Component {
         <div className="memberinfoupdate">
         <div className="recharge recharge-first">
             <div>
-                        <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
+                    <label htmlFor='card_id' className='e-label'>卡号：</label>
+                    <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})}/>&nbsp;
+                    <button type='button' className='e-btn' onClick={this.query}>查询</button>&nbsp;
+                    <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
             </div>
-            <div><label className='e-label'>卡ID：</label>{this.state.cid}</div>
+                <div><label className='e-label'>卡ID：</label>{this.state.cid}</div>
             </div>
             <div className="memberinfoupdate_bottomborder">
             <div>
