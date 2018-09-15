@@ -14,3 +14,8 @@
 #return-card{
     width:215px;
 }
+
+
+/* 更改后的退卡界面样式 */
+.return-div>div{ line-height: 33px}
+#recharge-third-div{width:217.5px;}

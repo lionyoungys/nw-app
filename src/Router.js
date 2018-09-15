@@ -23,8 +23,9 @@ import Recharge from './Module/Recharge/App';
 import OperateIncome from './Module/OperateIncome/OperateIncome';
 import SaleCard from './Module/SaleCard/App';
 import ChangeCard from './Module/ChangeCard/ChangeCard';//换卡
+import ReturnCard from './Module/ReturnCard/ReturnCard1'; // 退卡
 import ReportLossMain from './Module/ReportLossMain/ReportLossMain';//挂失主页面
-import ReturnCard from './Module/ReturnCard/ReturnCard';
+//import ReturnCard from './Module/ReturnCard/ReturnCard';
 import ManagerGathering from './Module/ManagerGathering/ManagerGathering';//经理收款
 
 import PriceSetting from './Module/PriceSetting/PriceSetting'; // 洗护价格设置
