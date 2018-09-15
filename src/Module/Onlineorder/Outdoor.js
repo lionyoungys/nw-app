@@ -4,7 +4,7 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
-import App from '../clothes/add_item'
+import App from '../Clothes/add_item'
 import Nodata from '../../UI/nodata'
 import Window from '../../UI/Window';
 
