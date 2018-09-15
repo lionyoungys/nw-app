@@ -90,6 +90,7 @@ export default class extends React.Component {
         });
     }
     onSearch() { 
+               
                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
                  if (-1 != index) {
                      if (this.state.data[index].state == true) return;
@@ -98,12 +99,12 @@ export default class extends React.Component {
                         this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
                     }
-                 } else {                   
-                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
-                        close();
-                        this.setState({value:''});
-                    }});
-                }
+                    } else {                     
+                        tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
+                            close();
+                            this.setState({value:''});
+                        }});  
+                    }
                 this.setState({value:''});
                 this.input.focus()
     }       

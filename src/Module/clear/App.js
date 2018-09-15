@@ -2,7 +2,6 @@
  * 清洗界面组件
  * @author yangyunlong
  */
-
 import React from 'react';
 import Window from '../../UI/Window';
 import Search from '../UI/search/App';
@@ -34,7 +33,7 @@ export default class extends React.Component {
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+       // this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
         //this.upload = this.upload.bind(this);
         this.onUpload = this.onUpload.bind(this);       
@@ -61,7 +60,7 @@ export default class extends React.Component {
             token:'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
-                console.log(res);
+               // console.log(res);
                 done();
                 this.setState({
                     data:res.result,
@@ -139,7 +138,7 @@ export default class extends React.Component {
             //moduleid:state,         
             token:'token'.getData(),
         }, (res, ver) => {
-            console.log(res)
+           // console.log(res)
             if (ver && res) {
                 tool.ui.success({callback:(close, event) => {                   
                     close();
@@ -183,7 +182,7 @@ export default class extends React.Component {
                 this.setState({data:this.state.data});
             }
         });
-        console.log(url, index);
+       // console.log(url, index);
     }
    //新增方法
     uploadShow(e) {
@@ -192,21 +191,21 @@ export default class extends React.Component {
     lightboxShow(e) {
         this.setState({lightboxShow:true, index:e.target.dataset.index});
     }
-    handleClick() {    //退回      
-         if (this.state.checked.length < 1) return;
-         api.post('into_factory', {  
-            itemids:this.state.checked.toString(),
-            moduleid:22,type:2,        
-            token:'token'.getData(),
-        }, (res, ver) => {
-            if (ver && res) {
-                this.setState({checked:[],all:false});
-                this.query();
-            }else{
-                alert(res.msg);
-            }
-        });
-    }
+    // handleClick() {    //退回      
+    //      if (this.state.checked.length < 1) return;
+    //      api.post('into_factory', {  
+    //         itemids:this.state.checked.toString(),
+    //         moduleid:22,type:2,        
+    //         token:'token'.getData(),
+    //     }, (res, ver) => {
+    //         if (ver && res) {
+    //             this.setState({checked:[],all:false});
+    //             this.query();
+    //         }else{
+    //             alert(res.msg);
+    //         }
+    //     });
+    // }
     render() {
         let html = this.state.data.map( (obj, index) =>
             <tr key={obj.id} className={!(obj.state == false) ? null : 'disabled'}>

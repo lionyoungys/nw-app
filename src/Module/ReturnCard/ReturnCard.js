@@ -102,7 +102,6 @@ export default class extends Component {
                      </div>
                      </div>
                     </Window>
-
        );
     }
 }

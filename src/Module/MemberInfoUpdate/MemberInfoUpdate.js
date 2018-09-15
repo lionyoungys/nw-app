@@ -116,7 +116,6 @@ export default class extends Component {
                 time:res.time,
                 recharge_number:res.recharge_number,
                 address:res.address,
-
             });
         }
         EventApi.M1Read(obj);

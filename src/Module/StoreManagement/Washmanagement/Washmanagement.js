@@ -26,13 +26,13 @@ export default class extends Component {
        // tool.ui.loading(handle => done = handle);
         api.post('shop_module', {token:token}, (res,ver) => {
             if (ver && res) {
-                console.log(res)    
+               // console.log(res)    
                 this.setState({
                     list:res.pmodule,                  
                 });  
                 let len = res.result.length; 
                 let leng = this.state.list.length;
-                var arr=[]
+                var arr=[];
                 for(let i = 0; i<len; i++ ){
                    arr.push(res.result[i].id)
                 }
@@ -52,28 +52,30 @@ export default class extends Component {
             }
         });
     }
+
     handleChecked(value,checked) {
-        console.log(this.state.checked)
+        //console.log(this.state.checked)
         if (checked) {
-            console.log(1)
+            //console.log(1)
             let index = value.inArray(this.state.checked);
             if (-1 !== index) {
                 this.state.checked.splice(index, 1);
                 this.setState({checked:this.state.checked});
             }
         } else {
-            console.log(2)
+           // console.log(2)
             this.state.checked.push(value);
             this.setState({checked:this.state.checked});
         }
     }
+
     btn_up (){
-        console.log(JSON.stringify(this.state.checked))
+        //console.log(JSON.stringify(this.state.checked))
         api.post('up_module', {
             token:token,
             moduleid:JSON.stringify(this.state.checked),
         }, (res,ver) => {
-            console.log(res)
+            //console.log(res)
             if (ver && res) {
                 this.props.leftMenuReload(this.state.checked);
                 tool.ui.success({callback:(close, event) => {
@@ -87,6 +89,7 @@ export default class extends Component {
             }
         });
     }
+
     render(){
        // console.log(this.state.checked)
         var list = this.state.list.map((item,index) =><div>
