@@ -6,21 +6,8 @@ const fs = window.require('fs'),
       process = window.require('process'),
       { spawn, exec } = window.require('child_process');
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import LayerBox from './UI/LayerBox';
-import './Api';
-import './login.css';
-import './UI/base.css';
 
-let win = nw.Window.get();
-win.on('loaded', win.show);    //防止窗口渲染未完成时展示
-win.on('close', function() {
-    this.hide();    //关闭时先进行隐藏以让用户觉得立即关闭
-    null !== win && win.close(true);    //虽然关了,但实际上它还在工作
-    this.close(true);    //关闭新窗口也关闭主窗口
-});
-win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
-//win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -44,11 +31,11 @@ class Main extends Component {
     render() {
         return (
             <div id='login' className='launch'>
-                <div className='login-drag'><i onClick={() => win.close()}></i></div>
+                <div className='login-drag'><i onClick={this.props.close}></i></div>
                 {[
                     <Launch/>,
                     <Download version={this.state.version} log={this.state.log} zip={this.state.zip}/>,
-                    <Login toggleStep={this.toggleStep}/>,
+                    <Login toggleStep={this.toggleStep} redirect={this.props.redirect}/>,
                     <Passwd toggleStep={this.toggleStep}/>
                 ][this.state.index]}
             </div>
@@ -181,10 +168,9 @@ class Login extends Component {
                 // win.close();
                 //1 != res.is_root && res.auth.setData('auth');
                 if(pass==1){
-                   this.setState({show:true})
+                    this.setState({show:true})
                 }else{
-                nw.Window.open('main.html', nw.App.manifest.mainWindow);
-                win.close();
+                    this.props.redirect();
                 }
             } else {
                
@@ -242,8 +228,7 @@ class Login extends Component {
                     callback: (close, event) => {
                         close();
                         this.setState({show:false});
-                        nw.Window.open('main.html', nw.App.manifest.mainWindow);
-                        win.close();
+                        this.props.redirect();
                     }
                 });
             } else {
@@ -365,4 +350,4 @@ class Passwd extends Component {
     }
 }
 
-ReactDOM.render(<Main/>, document.getElementById('root'));
+export default Main;

@@ -33,7 +33,6 @@ export default class extends Component {
             grid:[],
             grids:[],
             page: 1,
-
             catetype_index: 0,
             item_name: '',//衣物名称
             cate_name:'',//衣物类别
@@ -80,9 +79,7 @@ export default class extends Component {
         this.setState({item_name:e.target.value})
         api.post('itemImage', {
             token:'token'.getData(),
-            item_name:e.target.value,
-            page:1,
-            limit:1000
+            item_name:e.target.value
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
@@ -235,8 +232,7 @@ export default class extends Component {
             min_transfer:this.state.min_transfer
         }
         console.log(params)
-        api.post('addItem', params, (res, ver,handle) => {
-          
+        api.post('addItem', params, (res, ver,handle) => {         
             if (ver && res) {
                 console.log(res)
                 this.componentDidMount();
@@ -248,35 +244,32 @@ export default class extends Component {
     
     deleteYES(){
         api.post('delItem', {
-            token:'token'.getData(),
-            id:this.state.server_id,
-    }, (res, ver,handle) => {
-            
-            if (ver && res) {
-                console.log(res)
-                this.componentDidMount();
-                this.setState({show1:false});
+                token:'token'.getData(),
+                id:this.state.server_id,
+        }, (res, ver,handle) => {           
+                if (ver && res) {
+                    console.log(res)
+                    this.componentDidMount();
+                    this.setState({show1:false});
+                }
+                   handle();
             }
-            handle();
-        }
-    );
+        )
     }
 
     onClose(){
         this.setState({selectImg:false})
     }
-    handle(e){
 
+    handle(e){
         this.request();
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
         let good = this.state.itemLists[this.state.index].server[good_index];
         console.log(good.dispose_type);
         console.log(good.grade)
-        console.log(good.materials)
-        
-        this.setState(
-            {
+        console.log(good.materials)       
+        this.setState({           
                 goodindex: good_index,
                 show1:true,
                 server_id: good.id,
@@ -298,7 +291,6 @@ export default class extends Component {
                 min_transfer:good.min_transfer,//可调下限
             });     
     }
-
     onchange(value){
         console.log(this.state.cate_types[value.inObjArray(this.state.cate_types, 'name')].id)
         this.setState({
@@ -325,7 +317,7 @@ export default class extends Component {
             itemList = this.state.itemLists[this.state.index].server.map((item,index)=>
                 <tr key={'item1'+index} data-index={index} onClick={this.handle}   
                 > 
-                    <td>{index+1}</td>
+                    <td>{item.id}</td>
                     <td>{item.item_name}</td>
                     <td>{item.dispose_type}</td>
                     <td>{item.materials}</td>
@@ -372,7 +364,7 @@ export default class extends Component {
                             <td>允许折扣</td>
                             <td>衣物类别</td>
                             <td>洗护周期</td>
-                             <td>格架</td>
+                            <td>格架</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -429,7 +421,7 @@ export default class extends Component {
                     <Window title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={value => this.setState({catetype_index:value.inObjArray(this.state.cate_type, 'name')})} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} /></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>

@@ -30,9 +30,16 @@ export default class extends React.Component {
         this.onDelete = this.onDelete.bind(this);  // 删除
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
 
-    componentDidMount() {this.query()}
+    componentDidMount() {
+        this.input.focus();
+        this.query();
+    }
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.onSearch();
+    } 
     query() {
         let done;
         tool.ui.loading(handle => done = handle);
@@ -60,6 +67,7 @@ export default class extends React.Component {
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.query();
+                    this.input.focus()
                 }});    
             }else{
                 //console.log(res)
@@ -73,10 +81,12 @@ export default class extends React.Component {
                          this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
                     }
+                    this.input.focus()
                  } else {
                     tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
                         close();
                         this.setState({value:''});
+                        this.input.focus()
                     }});                    
                 }
                 this.setState({value:''});
@@ -213,7 +223,7 @@ export default class extends React.Component {
         return (
          <Window title='质检' onClose={this.props.closeView}>
             <div className='right1'>
-                <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
+                <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
                 <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
             </div> 
             <div className='clean'>

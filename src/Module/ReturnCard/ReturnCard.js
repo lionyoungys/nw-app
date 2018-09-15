@@ -98,9 +98,7 @@ export default class extends Component {
                              </div>
                           </div>
                           <button type='button' className='e-btn' readOnly>退卡</button>
-                     </div>
-                  
-                    
+                     </div>                                   
                      </div>
                      </div>
                     </Window>

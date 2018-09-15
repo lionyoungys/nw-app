@@ -32,6 +32,7 @@ export default class extends React.Component {
             select_shop:'',
             sel_id:''
         };
+
         this.onSearch = this.onSearch.bind(this); //搜索
         this.handleAllChecked = this.handleAllChecked.bind(this); //全选
          this.handleCleaned = this.handleCleaned.bind(this); //入厂
@@ -44,9 +45,15 @@ export default class extends React.Component {
          this.uploadShow = this.uploadShow.bind(this);
          this.lightboxShow = this.lightboxShow.bind(this);
          this.select_factory = this.select_factory.bind(this); //入厂列表
+         this.onKeyPress = this.onKeyPress.bind(this);
     }
-
-    componentDidMount() {this.query();}
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.onSearch();
+    }   
+    componentDidMount() {
+        this.input.focus();
+        this.query();
+    }
     query() {
         let done;
         tool.ui.loading(handle => done = handle);
@@ -98,6 +105,7 @@ export default class extends React.Component {
                     }});
                 }
                 this.setState({value:''});
+                this.input.focus()
     }       
     
     //全选
@@ -257,7 +265,7 @@ export default class extends React.Component {
         <Window title='送洗' onClose={this.props.closeView}> 
             <div className="out-title">
                 <div className='right1 out-left'>
-                    <input type="text" value={this.state.value} onChange={e => this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
+                    <input type="text" value={this.state.value} onChange={e => this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>添加</button>
                 </div> 
                 <div className='right1 out-right' onClick = {this.select_factory}>

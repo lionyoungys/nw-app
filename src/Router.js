@@ -26,7 +26,7 @@ import OperateIncome from './Module/OperateIncome/OperateIncome';
 import SaleCard from './Module/SaleCard/App';
 import ChangeCard from './Module/ChangeCard/ChangeCard';//换卡
 import ReportLossMain from './Module/ReportLossMain/ReportLossMain';//挂失主页面
-import ReturnCard from './Module/ReturnCard/ReturnCard';
+import ReturnCard from './Module/ReturnCard/ReturnCard1'; // 退卡
 import ManagerGathering from './Module/ManagerGathering/ManagerGathering';//经理收款
 
 import PriceSetting from './Module/PriceSetting/PriceSetting'; // 洗护价格设置
@@ -127,6 +127,7 @@ export default {
     ConsumptionStatistics:ConsumptionStatistics, //消费统计
     ReportLossQuery:ReportLossQuery, //挂失查询
     CardQueries:CardQueries,  //退卡查询
+
     ParameterSettings:ParameterSettings, //参数设置
     passwd_update:PasswdUpdate,//密码修改
     clothe_stat:Clothestat ,// 衣物统计

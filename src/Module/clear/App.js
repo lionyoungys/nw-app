@@ -42,10 +42,18 @@ export default class extends React.Component {
         //新增
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
-    
-    
-    componentDidMount() {this.query();}
+
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.onSearch();
+    }
+
+    componentDidMount() {
+        this.input.focus();
+        this.query();
+    }
+
     query() {
         let done;
         tool.ui.loading(handle => done = handle);
@@ -69,9 +77,11 @@ export default class extends React.Component {
                  if (-1 != index) {
                      if (this.state.data[index].state == true) return;
                     let index2 = this.state.data[index].id.inArray(this.state.checked);
+                    this.input.focus()
                  if (-1 === index2) {
                         this.state.checked.push(this.state.data[index].id);
                         this.setState({checked:this.state.checked});
+                        this.input.focus()
                     }
                  } else {
                     api.post('take_laundry', {           
@@ -84,7 +94,8 @@ export default class extends React.Component {
                                     if(index==-1){
                                         tool.ui.success({callback:(close, event) => {
                                         close();
-                                        this.query()
+                                        this.query();
+                                        this.input.focus();
                                     }});
                                 }                        
                         }
@@ -230,7 +241,7 @@ export default class extends React.Component {
         return (
         <Window title='清洗' onClose={this.props.closeView}> 
             <div className='right1'>
-                <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码'/>                       
+                <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
                 <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
             </div>         
             <div className='clean'>                   

@@ -41,7 +41,7 @@ const topMenu = [
             { value:'充值', view:'recharge', id: 24},
             { value:'会员信息修改', view:'member_info_update', id: 25},
             { value:'挂失、补换卡',view:'loss_reissue_change_card', id: 26},
-            // { value:'退卡', view:'return_card', id: 27},
+            { value:'退卡', view:'return_card', id: 27},
             // { value:'挂失查询', view:'report_loss_query'},
             // { value:'退卡查询', view:'card_queries', id: 28},
             // {value:'会员消费查询', view:'Member_ship_query'},
@@ -114,7 +114,7 @@ const nav = [
     {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
     {value:'充值',class:'main-recharge',view:'recharge', id: 24},
     {value:'营业日报',class:'main-income',view:'operate_income', id: 17},
-    {value:'退出',class:'main-quit',view:null, event:'quit'},
+    {value:'退出',class:'main-quit',view:null, props:'redirect'},
 ];
 //左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
 const leftMenu = [

@@ -5,6 +5,7 @@ src/Api.js
 app/main.js
 app/config.js
 app/login.js
+app/app.js
 .svn
 *.ldb
 *.btf
