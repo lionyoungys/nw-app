@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 import './OperatingDetails.css';
 import Page from '../../UI/Page';
 
