@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import {Table} from '../../UI/Table';
-import LayerBox from '../../Ui/LayerBox';
 import './ReportLossMain.css';
 
 export default class extends Component {

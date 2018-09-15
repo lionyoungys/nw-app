@@ -8,7 +8,7 @@ import Page from '../../UI/Page';
 import './Customerquery.css';
 import './Membersdetail.css';
 import Select from '../../UI/Select';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 
 const token = 'token'.getData();
 export default class extends Component {

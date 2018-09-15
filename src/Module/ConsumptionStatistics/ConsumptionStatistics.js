@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import './ConsumptionStatistics.css'
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 
 export default class extends Component {   
     constructor(props) {

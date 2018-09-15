@@ -7,7 +7,7 @@ import Window from '../../UI/Window';
 import Pages from '../../UI/Page';
 import Select from '../../UI/Select';
 import './AlipayWechatChecking.css';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 
 export default class extends Component {
     constructor(props) {

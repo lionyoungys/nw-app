@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './UnpaidStatistics.css';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 import Page from "../../UI/Page";
 
 export default class extends Component {

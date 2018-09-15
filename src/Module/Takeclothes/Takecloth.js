@@ -7,7 +7,7 @@ import Window from '../../UI/Window';
 import LayerBox from '../../UI/LayerBox';
 import Payment from '../../UI/Payment';
 import './Takeclothes.css';
-import Nodata from '../../UI/Nodata'
+import Nodata from '../../UI/nodata'
 const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {

@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 import Balancedetail from './Balancedetail.css'; 
 export default class extends Component {
     constructor(props) {        

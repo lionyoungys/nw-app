@@ -4,7 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Nodata from '../../UI/Nodata';
+import Nodata from '../../UI/nodata';
 import './ForegroundStatistics.css';
 import Page from '../../UI/Page';
 
