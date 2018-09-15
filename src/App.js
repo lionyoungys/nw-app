@@ -50,7 +50,7 @@ class App extends Component {
     close() {nw.App.quit()}
     //界面重定向方法
     redirect(index) {
-        if (isNaN(index) || this.windows.length > index) {
+        if (isNaN(index) || index >= this.windows.length) {
             index = (0 == this.state.sign ? 1 : 0);
         }
         let args, len, i;
