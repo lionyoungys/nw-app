@@ -192,7 +192,7 @@
                     this.text('总金额:￥' + param.total + ' 总件数:' + len);
                 }
                 this.text('付款方式:' + (param.gateway ? param.gateway : '未付款'))
-                    .text('折扣率:' + param.discount);
+                    .text('折扣率:' + param.discount + '%');
                 param.reduce && this.text('优惠:￥' + param.reduce + ' ' + param.reduce_cause);
                 param.coupon && this.text('现金券:￥' + param.coupon + ' ' + param.coupon_name);
                 param.pay_amount && this.text('折后价:￥' + param.real_amount + '实收:￥' + param.pay_amount);
@@ -226,7 +226,7 @@
                     .dashed().text('客户电话:' + param.phone)
                     .text('客户姓名:' + param.name)
                     .text('卡  号:' + param.number)
-                    .text('折扣率:' + (param.discount || 10) * 10)
+                    .text('折扣率:' + (param.discount || 10) * 10 + '%')
                     .text('充值金额:￥' + param.recharge)
                     .text('赠送金额:￥' + param.give)
                     .text('卡内总额:￥' + param.recharge.add(param.balance, param.give) + ' 店员:' + 'aname'.getData())
