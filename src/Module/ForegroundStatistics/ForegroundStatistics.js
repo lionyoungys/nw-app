@@ -8,7 +8,6 @@ import Nodata from '../../UI/nodata';
 import './ForegroundStatistics.css';
 import Page from '../../UI/Page';
 
-
 export default class extends Component {   
     constructor(props) {
         super(props);     

@@ -177,7 +177,7 @@ export default class extends Component {
                 this.state.show
                 &&               
                 <div>
-                    <Window  onClose={this.props.closeView} width='340' height='260'>
+                    <Window  onClose={() => this.setState({show:false})} width='340' height='260'>
                         <div className="why-list">
                             {whyshow}
                         </div>

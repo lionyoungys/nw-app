@@ -38,7 +38,7 @@ export default class extends Component {
     //查询
     serch (){
         this.setState({orderquerylist:[]})
-       this.query();
+        this.query();
     }
     query(page) {
         console.log(page);
@@ -52,7 +52,7 @@ export default class extends Component {
             is_online:this.state.online_name=='线下'?'0':this.state.online_name=='线上'?'1':''
         }, (res,ver) => {           
             if (ver && res) {
-                 console.log(res);
+                // console.log(res);
                 if(res.result.list.length>0){                                                            
                     this.setState({
                         orderquerylist:res.result.list,

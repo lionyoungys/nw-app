@@ -412,6 +412,8 @@ export default class extends Component {
                             discount:discount,
                             pay_amount:pay_amount,
                             balance:(this.state.card.balance || 0),
+                            type:(this.state.card.card_name || ''),
+                            number:(this.state.card.recharge_number || '')
                         }}
                         M1Read={this.M1read}
                         query={this.M1read}
