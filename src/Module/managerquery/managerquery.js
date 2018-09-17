@@ -31,12 +31,19 @@ export default class extends Component {
             start_time:this.state.startdate,
             end_time:this.state.enddate,
             token:'token'.getData(),
-            operator:''
+            operator:'',
+            page:page,
+            limit:this.limit
         }, (res, ver, handle) => {
             done();
             if (ver && res) {
                 console.log(res)
-                this.setState({result:res.result.info,list:res.result.list,count:res.result.count,page:page});
+                this.setState({
+                    result:res.result.info,
+                    list:res.result.list,
+                    count:res.result.count,
+                    page:page
+                });
             }else{
                 handle()
             }
