@@ -4,7 +4,8 @@ const config = {
     mode: 'development',
     devtool: 'eval-source-map',    //生成Source Maps,这里选择eval-source-map
     entry: {
-      app: buildPath + 'App.js'
+        login: buildPath + 'login.js',
+        main: buildPath + 'main.js'
     },
     output: {
         filename: '[name].js',

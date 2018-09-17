@@ -2,7 +2,7 @@
   "name": "速洗达商户平台",
   "version": "3.1.94",
   "description": "nw app",
-  "main": "app.html",
+  "main": "login.html",
   "repository": "none",
   "author": "Edwin Young",
   "license": "MIT",

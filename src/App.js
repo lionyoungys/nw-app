@@ -47,6 +47,7 @@ class App extends Component {
         ];
         this.close = this.close.bind(this);
         this.redirect = this.redirect.bind(this);
+        this.save = this.save.bind(this);
     }
     close() {nw.App.quit()}
     //界面重定向方法
@@ -68,9 +69,17 @@ class App extends Component {
         this.setState({sign:Math.floor(index)});
     }
 
+    save(object) {
+        if ('object' === typeof object && null !== object && object.constructor === Object) {
+            for (var k in object) {
+                localStorage.setItem(k, object[k]);
+            }
+        }
+    }
+
     render() {
         let A = this.windows[this.state.sign].view;
-        return <A redirect={this.redirect} Window={win} close={this.close}/>
+        return <A redirect={this.redirect} Window={win} close={this.close} save={this.save}/>
     }
 }
 ReactDOM.render(<App/>, document.getElementById('root'));
