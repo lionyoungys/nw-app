@@ -136,6 +136,7 @@ export default class extends Component {
                 type:res.card_name,
                 discount:res.discount,
                 addr:res.address,
+                consume:res.consume || 0,
                 card:res
             });
         }
