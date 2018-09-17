@@ -256,7 +256,7 @@ export default class extends Component {
         }
         'function' === typeof callback && callback();
     }
-    M1read() {
+    M1read(value) {
         let obj = {};
         if ('string' === typeof value && '' != value) {
             obj.number = value;
