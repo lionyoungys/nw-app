@@ -31,6 +31,7 @@ export default class extends Component {
             show:false
         };
         this.input = [];
+        this.waiting = false;
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
@@ -80,7 +81,8 @@ export default class extends Component {
 
     onConfirm() {
         this.setState({show:false});
-        if ('function' !== typeof this.props.callback) return;
+        if ('function' !== typeof this.props.callback || this.waiting) return;
+        this.waiting = true;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0), pay_amount:parseFloat(this.props.data.total_amount || 0), change:0};
         if (999 == obj.gateway) obj.gateway = 0;
@@ -89,7 +91,10 @@ export default class extends Component {
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
             if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
-            if (obj.amount < 0 || obj.pay_amount > obj.amount) return;
+            if (obj.amount < 0 || obj.pay_amount > obj.amount) {
+                this.waiting = false;
+                return;
+            }
             if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
         } else {
             if (
@@ -103,10 +108,12 @@ export default class extends Component {
             ) {
                 obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
             } else {
+                this.waiting = false;
                 return;
             }
         }
         this.props.callback(obj);
+        this.waiting = false;
     }
 
     render() {
@@ -242,6 +249,7 @@ export class Recharge extends Component {
         let zero = ( 0 == parseFloat(this.props.data.recharge || 0) );
         this.state = {zero:zero,gateway:1,authCode:['','','',''],amount:''};
         this.input = [];
+        this.waiting = false;
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
@@ -275,11 +283,15 @@ export class Recharge extends Component {
     }
 
     onConfirm() {
-        if ('function' !== typeof this.props.callback) return;
+        if ('function' !== typeof this.props.callback || this.waiting) return;
+        this.waiting = true;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0)};
         if (1 == obj.gateway) {
-            if (parseFloat(this.props.data.amount || 0) > obj.amount) return;
+            if (parseFloat(this.props.data.amount || 0) > obj.amount) {
+                this.waiting = false;
+                return;
+            }
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
@@ -292,10 +304,12 @@ export class Recharge extends Component {
             ) {
                 obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
             } else {
+                this.waiting = false;
                 return;
             }
         }
         this.props.callback(obj);
+        this.waiting = false;
     }
 
     render() {
@@ -381,6 +395,7 @@ export class UpdateCard extends Component {
         super(props);
         this.state = {gateway:1,authCode:['','','',''], amount:''};
         this.input = [];
+        this.waiting = false;
         this.handleGateway = this.handleGateway.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.setAuthCode = this.setAuthCode.bind(this);
@@ -414,11 +429,15 @@ export class UpdateCard extends Component {
     }
 
     onConfirm() {
-        if ('function' !== typeof this.props.callback) return;
+        if ('function' !== typeof this.props.callback || this.waiting) return;
+        this.waiting = true;
         let authCode = this.state.authCode
         ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0)};
         if (1 == obj.gateway) {
-            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount || 0) > obj.amount) return;
+            if ('' == obj.amount || obj.amount <= 0 || parseFloat(this.props.data.amount || 0) > obj.amount) {
+                this.waiting = false;
+                return;
+            }
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
@@ -431,10 +450,12 @@ export class UpdateCard extends Component {
             ) {
                 obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
             } else {
+                this.waiting = false;
                 return;
             }
         }
         this.props.callback(obj);
+        this.waiting = false;
     }
 
     render() {
