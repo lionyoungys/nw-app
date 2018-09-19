@@ -133,8 +133,8 @@ export default class extends Component {
             }
             this.state.grid.push('任意格架')
             this.setState({
-            cate_id:this.state.cate_types[0].id,
-            cate_name:this.state.cate_type[0],
+            // cate_id:this.state.cate_types[0].id,
+            // cate_name:this.state.cate_type[0],
             disposetype:'',
             gradename:'',
             gridname:'X',
@@ -266,9 +266,12 @@ export default class extends Component {
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
         let good_index=e.target.dataset.index || e.target.parentNode.dataset.index;
         let good = this.state.itemLists[this.state.index].server[good_index];
+        console.log(this.state.index);
+        console.log(this.state.goodindex);
         console.log(good.dispose_type);
         console.log(good.grade)
         console.log(good.materials)       
+        console.log(good.cate_name);
         this.setState({           
                 goodindex: good_index,
                 show1:true,
