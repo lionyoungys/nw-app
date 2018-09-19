@@ -34,14 +34,14 @@ export default class extends React.Component {
     }
 
     // 查询 - 搜索
-    componentDidMount() {this.query()}
-    query() {
+    //componentDidMount() {this.query()}
+    query(rid) {
         //teamId = tool.isSet(teamId) ? teamId : this.state.teamId;
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('out_factory', {           
             token:'token'.getData(),  
-            rid:this.state.sel_id,         
+            rid:rid || this.state.sel_id,         
         }, (res, ver) => {
                 if (ver && res) {
                     done();
@@ -103,7 +103,7 @@ export default class extends React.Component {
     change_select (value){
         console.log(value)
         this.setState({sel_id:value});
-        this.query()
+        this.query(value)
     }
 
     handleClick() {    //出厂
