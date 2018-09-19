@@ -40,7 +40,10 @@ export default class extends Component {
                         }, (res, ver) => {
                             if (ver && res) {
                                 console.log(res)
-                                this.setState({clothnums:res.result.list,clothnum:res.result.list.typeArray('number')})
+                                this.setState({
+                                    clothnums:res.result.list,
+                                    clothnum:res.result.list.typeArray('number')
+                                })
                             }else{
                                 console.log(res)
                             }
@@ -66,7 +69,10 @@ export default class extends Component {
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({clothnums:res.result.list,clothnum:res.result.list.typeArray('number'),clothindex:0})
+                this.setState({
+                    clothnums:res.result.list,
+                    clothnum:res.result.list.typeArray('number'),clothindex:0
+                })
                 console.log('ref', this.input);
                 this.input.setState({selected:null});
             }else{
@@ -84,19 +90,10 @@ export default class extends Component {
         api.post('putOn',
             puton, (res, ver) => {
                 if (ver) {
-                    let printer_name = 'glue_tag_printer'.getData();
-                    if (printer_name) {
-                        let data = this.props.data;
-                        EventApi.print(
-                            'put_it_on', 
-                            {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
-                            printer_name
-                        );
-                    }
-                    tool.ui.success({callback:(close) => {
-                        close();    
-                        this.props.onclose();             
-                    }}); 
+                    tool.ui.error({title:'提示',msg:'修改成功请重新上挂',button:'确定',callback:(close, event) => {
+                        close();
+                        // this.props.onclose();  
+                    }});                         
                 }else{
                     tool.ui.error({msg:res.msg,callback:(close) => {
                         close();
@@ -106,6 +103,7 @@ export default class extends Component {
         );
     }
     put_yes (){
+        console.log(this.state.clothindex)
         let puton={
             token:'token'.getData(),
             wid:this.props.data.id,   
@@ -118,7 +116,13 @@ export default class extends Component {
                         let data = this.props.data;
                         EventApi.print(
                             'put_it_on', 
-                            {name:data.clothing_name,color:data.clothing_color,number:data.grid_num,sn:data.clothing_number,user:data.user_name}, 
+                            {
+                                name:data.clothing_name,
+                                color:data.clothing_color,
+                                number:data.grid_num,
+                                sn:data.clothing_number,
+                                user:data.user_name
+                            }, 
                             printer_name
                         );
                     }
@@ -163,7 +167,7 @@ export default class extends Component {
                    <div className="Hangon-right-select">
                       <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]} ref={input => this.input = input}/>
                    </div>
-                   <button className="e-btn Hangon-right-btn" onClick={this.putOn}>修改后上挂</button><button className="e-btn Hangon-right-btn" onClick={this.put_yes} >上挂</button>
+                   <button className="e-btn Hangon-right-btn" onClick={this.putOn}>格架号修改</button><button className="e-btn Hangon-right-btn" onClick={this.put_yes} >上挂</button>
                 </div>
             </Window>          
         );

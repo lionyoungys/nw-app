@@ -90,12 +90,9 @@ export default class extends React.Component {
                         if (ver && res) {
                            // console.log(ver)                                                             
                                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
-                                    if(index==-1){
-                                        tool.ui.success({callback:(close, event) => {
-                                        close();
+                                    if(index==-1){                                       
                                         this.query();
-                                        this.input.focus();
-                                    }});
+                                        this.input.focus();                                   
                                 }                        
                         }
                     })
