@@ -141,7 +141,11 @@ export default class extends React.Component {
     }
     //入厂
     handleCleaned() {  
-        console.log(this.state.sel_id)                  
+        if(this.state.sel_id=='') {
+            return  tool.ui.error({title:'提示',msg:'请选择入厂商家',button:'确定',callback:(close, event) => {
+                close();
+            }});              
+        }
         if(this.state.checked.length < 1) return;      
         api.post('take_factory', {  
             wid:JSON.stringify(this.state.checked), 

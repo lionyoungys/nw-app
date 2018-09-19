@@ -67,12 +67,9 @@ export default class extends React.Component {
             token:'token'.getData(),          
             clothing_number:this.state.value
         }, (res, ver) => {
-            if (ver && res) {
-                tool.ui.success({callback:(close, event) => {
-                    close();
+            if (ver && res) {               
                     this.query();
-                    this.input.focus()
-                }});   
+                    this.input.focus()                
             }else{
                 console.log(res)
                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');

@@ -12,7 +12,7 @@ import Window from '../../UI/Window';
 export default class extends Component {   
     constructor(props) {
         super(props); 
-        this.waiting = ['预约单号','下单时间','衣物名称','件数','合计','客户信息','操作'],
+        this.waiting = ['预约单号','预约时间','衣物名称','件数','合计','客户信息','操作'],
         this.state = {  
               nodatas:false,    
               waitinglist:[],

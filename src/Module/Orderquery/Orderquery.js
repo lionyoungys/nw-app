@@ -41,7 +41,7 @@ export default class extends Component {
         this.query();
     }
     query(page) {
-        console.log(page);
+       // console.log(page);
         page = page || this.state.page;                                         
         api.post('ordersearch',{
             token: 'token'.getData(),
@@ -52,7 +52,7 @@ export default class extends Component {
             is_online:this.state.online_name=='线下'?'0':this.state.online_name=='线上'?'1':''
         }, (res,ver) => {           
             if (ver && res) {
-                // console.log(res);
+                 console.log(res);
                 if(res.result.list.length>0){                                                            
                     this.setState({
                         orderquerylist:res.result.list,
@@ -72,8 +72,7 @@ export default class extends Component {
                         nodatas:true,
                     }) 
                 }                      
-            }
-             
+            }            
         })
     }
     print (e){       
@@ -168,9 +167,9 @@ export default class extends Component {
           <td><span>{item.ordersn}</span></td>
           <td>{item.work.map((item,index)=><span>{item.clothing_number}</span>)}</td>
           <td>{item.work.map((item,index)=><span>{item.clothing_name}</span>)}</td>
-          <td>{item.work.map((item,index)=><span>{item.discount_price}</span>)}</td>
+          <td>{item.work.map((item,index)=><span>{item.raw_price}</span>)}</td>
           {/* <td>{item.work.map((item,index)=><span >{item.status==3?'清洗中':item.status==4?'清洗完成':item.status==5?'已撤单':'已完成'}</span>)} */}
-          <td>{item.work.map((item,index)=><span >{item.status.getItemStatusName()}</span>)}
+          <td>{item.work.map((item,index)=><span >{item.status}</span>)}
           </td>
           <td><span>保值费:{item.keep_price}<br/>工艺加价:{item.craft_price}<br/>运费:{item.freight_price}</span></td>
           <td>合计:{item.total}元<br/>共:{item.count}件</td>
@@ -179,7 +178,7 @@ export default class extends Component {
                 <i>订单状态:{item.ostatus}</i>
                 <b onClick={this.print} data-index={index} data-id={item.id}>补打小票</b>
                 <b onClick = {this.prints} data-id={item.id} data-index={index}>补打条码</b></td>
-        </tr>
+          </tr>
         )           
         return (
             <Window title='订单查询' onClose={this.props.closeView}> 

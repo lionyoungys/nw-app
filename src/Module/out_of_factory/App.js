@@ -107,7 +107,12 @@ export default class extends React.Component {
     }
 
     handleClick() {    //出厂
-        console.log(this.state.sel_id)
+        //console.log(this.state.sel_id);
+        if(this.state.sel_id=='') {
+            return  tool.ui.error({title:'提示',msg:'请选择出厂商家',button:'确定',callback:(close, event) => {
+                close();
+            }});              
+        }
         if (this.state.checked.length < 1 ) return;
         api.post('out_to_factory', {           
             token:'token'.getData(),
@@ -144,10 +149,10 @@ export default class extends React.Component {
                 <div className="clean laundry">
                    <div className="e-box">
                         <table className='out-factory'>
-                            <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>送返门店</th></tr></thead>
+                            <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>衣挂号</th><th>洗后预估</th><th>单价</th><th>送返门店</th></tr></thead>
                             <Tbody  data={this.state.data} onChecked={this.onChecked} checked={this.state.checked}/>
                         </table>
-                        <Empty show={this.state.data.length < 1}/>
+                        <Empty show={this.state.data.length < 1} />
                     </div>
                     <div className='clean-top'>
                         <div className='left'>
@@ -189,8 +194,8 @@ class Tbody extends React.Component {
                 <td>{obj.clothing_color}</td>
                 <td>{obj.remark}</td>
                 <td>{obj.sign}</td>
-                <td>{obj.forecast}</td>              
-                <td>{obj.addition_remark}</td>
+                <td>{obj.grid_num}</td>
+                <td>{obj.forecast}</td>                             
                 <td>{obj.raw_price}</td>
                 <td>{obj.mname}</td>
             </tr>

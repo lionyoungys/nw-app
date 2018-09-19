@@ -43,7 +43,8 @@ export default class extends Component {
     }
 
     // 提交修改
-    onlinesave(){      
+    onlinesave(){   
+           
         var parment = {
             token:'token'.getData(),
             mrange:this.state.Service,
@@ -52,14 +53,14 @@ export default class extends Component {
             freight_free_num:this.state.Doortonumber,
             freight_free_amount:this.state.Doortomoney, 
         }
-        console.log(parment)
+        console.log(parment);
         api.post('modOnline', parment, (res, ver) => {
                     if (ver && res) {
                         tool.ui.success({callback:(close, event) => {
                             close()
                         }}); 
                     }else{
-                        tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                        tool.ui.error({title:'提示',msg:'请选择至少选择修改一项，或者直接关闭',button:'确定',callback:(close, event) => {
                             close();
                         }});
                     }
