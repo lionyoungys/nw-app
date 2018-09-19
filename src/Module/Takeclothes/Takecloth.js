@@ -220,7 +220,7 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = this.state.discount || 100
+        ,   discount = this.state.payCard.discount || this.state.discount || 100
         ,   list = this.state.list;
         list[this.state.current].item.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);

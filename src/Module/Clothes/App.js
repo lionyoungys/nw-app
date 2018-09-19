@@ -350,7 +350,7 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = '' == this.state.discount ? 100 : this.state.discount;
+        ,   discount = this.state.payCard.discount || this.state.discount || 100;
         this.state.data.map(obj => {
             total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
             amount = amount.add( 
