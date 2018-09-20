@@ -154,9 +154,9 @@ export default class extends Component {
     }
     add(index) {
         let item = this.state.item[this.state.categoryIndex][index]
-        ,   time = this.state.time;
+        ,   time = this.state.time
+        ,   day = tool.timestamp(item.item_cycle);
         if (this.state.update) {
-            let day = tool.timestamp(item.item_cycle);
             this.state.data[this.state.currentIndex].clothing_id = item.id
             this.state.data[this.state.currentIndex].clothing_name = item.item_name;
             this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
@@ -192,7 +192,7 @@ export default class extends Component {
                 clothing_type: item.cate_name,
                 raw_price: item.item_off_price,
                 remark: item.item_flaw || '',
-                deal_time: tool.timestamp(item.item_cycle),
+                deal_time: day,
                 grid_num: '',
                 addition_remark:'',
                 addition_price: 0,
@@ -209,7 +209,7 @@ export default class extends Component {
             };
             ++this.counter;
             this.state.data.push(data);
-            let itemTime = tool.date('Y-m-d', data.deal_time);
+            let itemTime = tool.date('Y-m-d', day);
             if ('' == time || time < itemTime) time = itemTime;
         }
         // this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
