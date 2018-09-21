@@ -34,7 +34,7 @@ export default class extends React.Component {
     }
 
     // 查询 - 搜索
-    //componentDidMount() {this.query()}
+    componentDidMount() {this.query()}
     query(rid) {
         //teamId = tool.isSet(teamId) ? teamId : this.state.teamId;
         let done;
@@ -124,19 +124,11 @@ export default class extends React.Component {
                 printer.outofFactory('printer'.getData(), res.result);
                 tool.ui.success({callback:(close, event) => {
                     close();
-                    if(res.result.length>0){
-                        this.setState({
-                            checked:[],
-                            all:false,  
-                            data:res.result                      
-                        });
-                    }else{
-                        this.setState({
-                            checked:[],
-                            all:false,  
-                            data:[],                  
-                        }); 
-                    }                                      
+                    this.query();
+                    this.setState({
+                        all:false,
+                        checked:[],
+                    })                                                
                 }});  
                // console.log(typeof(this.state.data)) ;               
             }else{

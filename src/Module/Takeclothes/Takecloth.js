@@ -296,8 +296,18 @@ export default class extends Component {
         }
         this.setState({checked:this.state.checked});     
     }
-    paymore (e){       
-        this.setState({id:e.target.dataset.id,current:e.target.dataset.index});                        
+    paymore (e){  
+        var  is = e.target.dataset.isonline;
+        if(is==1){
+            tool.ui.error({title:'提示',msg:'该订单为线上订单，请在用户端支付',button:'确定',callback:(close, event) => {
+                close();
+            }}); 
+        } else{
+            this.setState({
+                id:e.target.dataset.id,
+                current:e.target.dataset.index
+            });   
+        }                                      
     }
     render() {
         let order = null === this.state.current ? {} : this.state.list[this.state.current]
@@ -362,7 +372,7 @@ export default class extends Component {
                 <div className="Takeclothesdetail-footer-left" style={{display:item.pay_state==1?'block':'none'}}>
                 <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
-                    <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
+                    <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
                     <button className="take-over" onClick={() => this.setState({show2:true,takeclothindex:index})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
                     <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}

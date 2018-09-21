@@ -20,10 +20,8 @@ export default class extends Component {
         this.onClose=this.onClose.bind(this);
         this.query=this.query.bind(this);
         this.handleClick=this.handleClick.bind(this);
-
     };
     onclose(){
-
         this.setState({show:false});
         this.props.closeView();
     }
@@ -116,8 +114,7 @@ export default class extends Component {
                         }}/> 
                         // <HangonSearchRes onClose={this.onclose} />) 
                 }
-            </Window>
-           
+            </Window>         
         );
     }
 }
