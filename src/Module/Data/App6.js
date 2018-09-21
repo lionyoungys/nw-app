@@ -10,12 +10,7 @@ import './App.css';
 import Window from '../../UI/Window';
 
 const token = 'token'.getData()
-// ,     data = [
-//     '收活表','品牌','颜色表','返洗衣物表','处理类别','洗后效果','备注','POS_备注','衣物类别','价格表',
-//     '退赔记录表','欠费信息','POS_价格表','撤单信息表','转卡记录','挂失卡号','卡信息','收银表','卡类设置','客户信息表','其他收费',
-//     '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
-// ];
-,    data = [
+,     data = [
     'Add_Blacklist', 'Add_config', 'Add_MoneyBox', 'Add_MoneyBoxLog', 'Adjunct', 'appraise', 'Barcode', 'brand', 'CancelExch', 'Card', 'card_recharge_log', 'card_upgrade_log', 'CardAccount', 'CardExchange', 'CardTranList', 
     'CardType', 'Clothes', 'Clothes_Sync', 'ClothesSvrDisc', 'Color', 'ConvertCardLog', 'Customer', 'customer_favor', 'Dict_OutlayItem', 'Discount', 'DonateSegment',
     'Employee', 'ex_netbill', 'ex_takeclothes_bycard', 'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList', 'ExchangeListCancel', 'ExchangeServicePlus', 'ExchangeServicePlusCancel', 'ExchListPic', 'exchseq_list', 'Flaw', 'hangarea', 'HangPoint',
