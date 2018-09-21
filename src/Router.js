@@ -63,6 +63,7 @@ import Pay from './Module/Pay/Pay'; //赔付
 import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
 import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
 import OpenCashBox from './Module/OpenCashBox';    //开钱箱界面
+import Data6 from './Module/Data/App6';    //金熨斗数据导入6.0版本
 
 
 // 3.1新增 工厂端
@@ -87,6 +88,8 @@ export default {
     commodity_sales:Commoditysales ,//商品销售
     data:Data,
     data2:Data2,
+    data6:Data6,
+
     revoke_data:RevokeData,//撤单统计
     operating_details:OperatingDetails,//营业明细
     member_info_update:MemberInfoUpdate,//会员信息修改

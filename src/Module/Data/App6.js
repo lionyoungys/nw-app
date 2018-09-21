@@ -16,9 +16,12 @@ const token = 'token'.getData()
 //     '导轨信息表','导轨信息表A','导轨信息表B','导轨信息表C','导轨信息表D','导轨信息表E','导轨信息表F','退赔类别','特殊处理',
 // ];
 ,    data = [
-    'Add_Blacklist', 'Add_config', 'Add_MoneyBox', 'Adjunct', 'BlackList', 'Booking', 'brand', 'CancelExch', 'Card', 'CardExchange', 'CardType', 'Clothes', 'Color', 'Customer',
-    'Employee', 'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList', 'ExchangeListCancel', 'ExchangeListTmp', 'ExchangeServicePlus', 'ExchangeServicePlusCancel', 'Flaw','HangPoint',
-    'LeagueShop', 'Log', 'message', 'Popedom', 'PosbillNew','PosbillTmp','RefundClothes', 'RefundMent', 'Service', 'ServiceGrade', 'ServicePlus','Ticket', 'TransferList'
+    'Add_Blacklist', 'Add_config', 'Add_MoneyBox', 'Add_MoneyBoxLog', 'Adjunct', 'appraise', 'Barcode', 'brand', 'CancelExch', 'Card', 'card_recharge_log', 'card_upgrade_log', 'CardAccount', 'CardExchange', 'CardTranList', 
+    'CardType', 'Clothes', 'Clothes_Sync', 'ClothesSvrDisc', 'Color', 'ConvertCardLog', 'Customer', 'customer_favor', 'Dict_OutlayItem', 'Discount', 'DonateSegment',
+    'Employee', 'ex_netbill', 'ex_takeclothes_bycard', 'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList', 'ExchangeListCancel', 'ExchangeServicePlus', 'ExchangeServicePlusCancel', 'ExchListPic', 'exchseq_list', 'Flaw', 'hangarea', 'HangPoint',
+    'LeagueShop', 'MD_Attendance', 'MD_ClothesSwap', 'MD_ClothesSwapDetails', 'MD_ClothesSwapLog', 'MD_Employee', 'message', 'Popedom', 'PosbillNew','PosbillTmp','RefundClothes', 'RefundMent', 'SC_CardExch', 'SC_CardExchCancel', 
+    'SC_ShopRegInfo', 'SendMsg', 'Service', 'ServiceGrade', 'ServicePlus',
+    'shop_outlay_detail', 'ShopLog', 'sms_log', 'SvrBill', 'sync_log', 'Ticket', 'ticket_kind', 'ticket_reclaim', 'ticket_reclaim_cancel', 'TransferList', 'washcenter'
 ];
 export default class extends Component {
     constructor(props) {
