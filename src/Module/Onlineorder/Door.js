@@ -8,7 +8,6 @@ import Nodata from '../../UI/nodata'
 import OptionBox from '../../Elem/OptionBox';
 import Window from '../../UI/Window';
 
-
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -115,7 +114,7 @@ export default class extends Component {
             limit:this.limit, 
             value:value,             
         }
-        console.log(params)
+       // console.log(params)
         api.post('come_door',params, (res,ver) => {           
             if (ver && res) {
                 console.log(res); 

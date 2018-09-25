@@ -459,9 +459,27 @@
 
 }
 .store_management_content_associatedShop_part div button{
-
     margin-right: 0;
 }
-   
+
+.e-input.in-fo{
+   width:460px;
+   height:123px;
+}
+
+.store_management_content_baseInfo div.store-detail{
+    width:546px;
+    height:157px;
+    line-height:20px;
+    margin-top:8px;
+}
+.store_management_content_baseInfo div.store-detail span{
+    display: block;
+    line-height: 120px;
+    border: none;
+    background: none;
+    text-indent: 0px;
+    float: left;
+}
 
 

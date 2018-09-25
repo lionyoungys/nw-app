@@ -9,7 +9,8 @@ export default class extends Component {
             province:'',
             city:'',
             mstatus:'',
-            maddress:''
+            maddress:'',
+            info:'',
         }  
         this.storesave = this.storesave.bind(this);
     }
@@ -17,8 +18,15 @@ export default class extends Component {
         api.post('merchantInfo', {token:'token'.getData()}, (res, ver) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({id:res.result.id,mname:res.result.mname,phone_number:res.result.phone_number,
-                province:res.result.province,city:res.result.city,mstatus:res.result.mstatus,maddress:res.result.maddress});
+                this.setState({
+                    id:res.result.id,
+                    mname:res.result.mname,
+                    phone_number:res.result.phone_number,
+                    province:res.result.province,
+                    city:res.result.city,
+                    mstatus:res.result.mstatus,
+                    maddress:res.result.maddress
+                });
         
          }
          else{
@@ -34,8 +42,9 @@ export default class extends Component {
     storesave(){
         api.post('modInfo', {
             token:'token'.getData(),
-            phone_number:this.state.phone_number}, 
-            (res, ver) => {
+            phone_number:this.state.phone_number,
+            mdesc:this.state.info
+        },(res, ver) => {
             if (ver && res) {
                 console.log(res)
                 tool.ui.success({callback:(close, event) => {
@@ -47,8 +56,7 @@ export default class extends Component {
                     close();
                 }});
             }
-        }
-        );
+        }); 
     }
     render(){
         return  (
@@ -69,6 +77,7 @@ export default class extends Component {
                 </div>
                 <div>详细地址：&emsp;<span className='store_management_disable_span'>{this.state.maddress}</span></div>
                 <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.phone_number} onChange={e => this.setState({phone_number:e.target.value})}/></div>
+                <div className="store-detail"><span>店铺说明：</span>&emsp;<textarea className="e-input in-fo" value={this.state.info} onChange={e=>{this.setState({info:e.target.value})}}></textarea></div>
                 <button className='e-btn'  onClick={this.storesave}>保存</button>
         </div> 
         );

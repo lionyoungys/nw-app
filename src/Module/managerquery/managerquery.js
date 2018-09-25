@@ -1,6 +1,6 @@
 /**
  * 营业日报
- * @author  fanyerong
+ * @author  wangjun
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
@@ -38,9 +38,14 @@ export default class extends Component {
             done();
             if (ver && res) {
                 console.log(res)
-                this.setState({result:res.result.info,list:res.result.list,count:res.result.count,page:page});
+                this.setState({
+                    result:res.result.info,
+                    list:res.result.list,
+                    count:res.result.count,
+                    page:page
+                });
             }else{
-                handle()
+                handle();
             }
         },()=>done());
     }

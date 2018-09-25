@@ -159,8 +159,7 @@ export default class extends Component {
             min_transfer:'0',//可调下线
             disposetype:'',
             gradename:'',
-            materialsname:''
-         
+            materialsname:''        
         })
     }
     handleClick(e){

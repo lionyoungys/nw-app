@@ -30,15 +30,15 @@
 }
 /* table部分 */
 .ui-table-base.man-que-tab-two{
-    max-height:305px;
+    max-height:274px;
     margin-top: 15px;
     max-width: 874px;
     overflow-x: auto;
-    height:305px;
+    height:274px;
 }
 .ui-table-base.man-que-tab-two tbody{
-    max-height:260px;
-    height:260px;
+    max-height:230px;
+    height:230px;
 }
 .ui-table-base.man-que-tab-two tr td{
     max-width: 105px;
