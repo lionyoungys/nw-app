@@ -83,27 +83,23 @@
         this.zpl = '';
         'function' === typeof callback && callback.call(this, null, 'Get printer success');
     }
-    var now;
     PrintUtil.prototype = {
         config:{
             barcode:{displayValue:false, height:60, margin:0}
         },
         now:function() {
-            if (!now) {
-                var date = new Date()
-                ,   month = date.getMonth() + 1
-                ,   day = date.getDate()
-                ,   hour = date.getHours()
-                ,   minute = date.getMinutes()
-                ,   second = date.getSeconds();
-                now = date.getFullYear() + '-'
-                +      (10 > month ? '0' + month : month) + '-'
-                +      (10 > day ? '0' + day : day) + ' '
-                +      (10 > hour ? '0' + hour : hour) + ':'
-                +      (10 > minute ? '0' + minute : minute) + ':'
-                +      (10 > second ? '0' + second : second);
-            }
-            return now;
+            var date = new Date()
+            ,   month = date.getMonth() + 1
+            ,   day = date.getDate()
+            ,   hour = date.getHours()
+            ,   minute = date.getMinutes()
+            ,   second = date.getSeconds();
+            return date.getFullYear() + '-'
+            +      (10 > month ? '0' + month : month) + '-'
+            +      (10 > day ? '0' + day : day) + ' '
+            +      (10 > hour ? '0' + hour : hour) + ':'
+            +      (10 > minute ? '0' + minute : minute) + ':'
+            +      (10 > second ? '0' + second : second);
         },
         /**
          * 执行命令
