@@ -19,36 +19,23 @@ export default class extends React.Component {
             addr:null,
             redo:false,
             progress:false,
+            /*'brand', 'Card', 'CardType', 'Color', 'Flaw', 'Service', 'Clothes', 'HangPoint', 'Customer',
+    'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList','ExchangeListCancel', 'CardExchange' */
             data_tables:[    //数据表名,api地址,数据总数,已导入的总数,数据读取存储
-                {name:'收活表', api:'new_order_work', total:0, count:0, data:[]},
-                {name:'品牌', api:'new_merchant_brand', total:0, count:0, data:[]},
-                {name:'颜色表', api:'new_merchant_color', total:0, count:0, data:[]},
-                {name:'返洗衣物表', api:'new_order_clean_back', total:0, count:0, data:[]},
-                {name:'处理类别', api:'new_merchant_type', total:0, count:0, data:[]},
-                {name:'洗后效果', api:'new_merchant_forecast', total:0, count:0, data:[]},
-                {name:'备注', api:'new_merchant_flaw', total:0, count:0, data:[]},
-                {name:'POS_备注', api:'new_pos_remark', total:0, count:0, data:[]},
-                {name:'衣物类别', api:'new_merchant_items_type', total:0, count:0, data:[]},
-                {name:'价格表', api:'new_merchant_items', total:0, count:0, data:[]},
-                {name:'退赔记录表', api:'new_merchant_compensate', total:0, count:0, data:[]},
-                {name:'欠费信息', api:'new_order_arrears', total:0, count:0, data:[]},
-                {name:'POS_价格表', api:'new_pos_price', total:0, count:0, data:[]},
-                {name:'撤单信息表', api:'new_order_back', total:0, count:0, data:[]},
-                {name:'转卡记录', api:'new_merchant_cards_shift', total:0, count:0, data:[]},
-                {name:'挂失卡号', api:'new_merchant_cards_loss', total:0, count:0, data:[]},
-                {name:'卡信息', api:'new_merchant_cards_info', total:0, count:0, data:[]},
-                {name:'收银表', api:'new_merchant_deal_info', total:0, count:0, data:[]},
-                {name:'卡类设置', api:'new_merchant_cards', total:0, count:0, data:[]},
-                {name:'客户信息表', api:'new_merchant_user', total:0, count:0, data:[]},
-                {name:'其他收费', api:'new_merchant_other', total:0, count:0, data:[]},
-                {name:'退赔类别', api:'new_merchant_compensate_type', total:0, count:0, data:[]},
-                {name:'特殊处理', api:'new_merchant_addition', total:0, count:0, data:[]},
-                {name:'导轨信息表A', api:'new_merchant_grid_num_a', total:0, count:0, data:[]},
-                {name:'导轨信息表B', api:'new_merchant_grid_num_b', total:0, count:0, data:[]},
-                {name:'导轨信息表C', api:'new_merchant_grid_num_c', total:0, count:0, data:[]},
-                {name:'导轨信息表D', api:'new_merchant_grid_num_d', total:0, count:0, data:[]},
-                {name:'导轨信息表E', api:'new_merchant_grid_num_e', total:0, count:0, data:[]},
-                {name:'导轨信息表F', api:'new_merchant_grid_num_f', total:0, count:0, data:[]},
+                {name:'brand', api:'brand_v4', total:0, count:0, data:[]},
+                {name:'Card', api:'card_v4', total:0, count:0, data:[]},
+                {name:'CardType', api:'cardtype_v4', total:0, count:0, data:[]},
+                {name:'Color', api:'color_v4', total:0, count:0, data:[]},
+                {name:'Flaw', api:'flaw_v4', total:0, count:0, data:[]},
+                {name:'Service', api:'service_v4', total:0, count:0, data:[]},
+                {name:'Clothes', api:'clothes_v4', total:0, count:0, data:[]},
+                {name:'HangPoint', api:'hangpoint_v4', total:0, count:0, data:[]},
+                {name:'Customer', api:'customer_v4', total:0, count:0, data:[]},
+                {name:'ExchangeBill', api:'exchangebill_v4', total:0, count:0, data:[]},
+                {name:'ExchangeBillCancel', api:'exchangebillcancel_v4', total:0, count:0, data:[]},
+                {name:'ExchangeList', api:'exchangelist_v4', total:0, count:0, data:[]},
+                {name:'ExchangeListCancel', api:'exchangelistcancel_v4', total:0, count:0, data:[]},
+                {name:'CardExchange', api:'cardexchange_v4', total:0, count:0, data:[]},
             ],
         };
         this.len = this.state.data_tables.length;
@@ -68,11 +55,11 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        api.post('data_status', {token:token}, (res, ver) => {
+        api.post('data_status_v4', {token:token}, (res, ver) => {
             console.log(res);
             if (ver) {
                 for(let i = 0;i < this.len;++i) {
-                    this.state.data_tables[i].count = res.result[this.state.data_tables[i].api];
+                    this.state.data_tables[i].count = res.result[this.state.data_tables[i].api.replace('_v4', '')];
                 }
                 this.setState({data_tables:this.state.data_tables});
             }
@@ -215,7 +202,7 @@ export default class extends React.Component {
                 <div className='data-import'>
                     <div>
                         <span>数据源：</span>
-                        <input className='e-file' type='file' onChange={this.handleChange} accept='.btf'/>
+                        <input className='e-file' type='file' onChange={this.handleChange} accept='.btf,.mdb'/>
                         <em style={this.state.redo ? null : {display:'none'}}>
                             &emsp;<button type='button' className='e-btn' onClick={this.handleChange}>重试</button>
                         </em>
