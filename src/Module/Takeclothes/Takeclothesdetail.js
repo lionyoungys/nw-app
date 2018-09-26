@@ -324,8 +324,7 @@ export default class extends Component {
                             <div className="takeclothes-people">
                                 该客户确定要取走衣物
                             </div>
-                        }
-                   
+                        }                   
                     </LayerBox>
                 }
                 </Window> 

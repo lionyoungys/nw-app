@@ -437,9 +437,10 @@ export default class extends Component {
             }
         }
     }
-    takeCost() {
-        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
+    takeCost() {       
+        //console.log(this.state.phone--this.state.name);    
+        if (undefined == this.state.phone || '' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
+        if (undefined == this.state.name || ''==this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         tool.ui.warn({msg:'您确定客户取衣付款吗？', button:['是（Y）', '否（N）'],callback:(close, event) => {
             0 == event && this.cost(true);
@@ -468,9 +469,9 @@ export default class extends Component {
     "sign":衣物品牌
     "card_type":卡类型
     "address":住址 */
-    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
-        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
-        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
+    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型     
+        if (undefined == this.state.phone || ''== this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
+        if (undefined == this.state.name || '' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         let len = this.state.data.length;
         if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
