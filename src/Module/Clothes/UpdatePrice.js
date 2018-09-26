@@ -18,8 +18,10 @@ export default class extends Component {
         this.setState({value:value})
     }
     handleClick() {
-        let value = parseFloat(this.state.value);
-        '' !== value && value >= this.props.min_price && 'function' === typeof this.props.callback && this.props.callback(value);
+        let value = parseFloat(this.state.value)
+        ,   min_price = this.props.min_price;
+        if (isNaN(min_price)) min_price = 0;
+        '' !== value && value >= min_price && 'function' === typeof this.props.callback && this.props.callback(value);
     }
 
     render() {
