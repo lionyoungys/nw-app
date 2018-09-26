@@ -23,10 +23,10 @@ export default class extends React.Component {
     'ExchangeBill', 'ExchangeBillCancel', 'ExchangeList','ExchangeListCancel', 'CardExchange' */
             data_tables:[    //数据表名,api地址,数据总数,已导入的总数,数据读取存储
                 {name:'brand', api:'brand_v4', total:0, count:0, data:[]},
-                {name:'Card', api:'card_v4', total:0, count:0, data:[]},
-                {name:'CardType', api:'cardtype_v4', total:0, count:0, data:[]},
                 {name:'Color', api:'color_v4', total:0, count:0, data:[]},
                 {name:'Flaw', api:'flaw_v4', total:0, count:0, data:[]},
+                {name:'CardType', api:'cardtype_v4', total:0, count:0, data:[]},
+                {name:'Card', api:'card_v4', total:0, count:0, data:[]},
                 {name:'Service', api:'service_v4', total:0, count:0, data:[]},
                 {name:'Clothes', api:'clothes_v4', total:0, count:0, data:[]},
                 {name:'HangPoint', api:'hangpoint_v4', total:0, count:0, data:[]},
@@ -71,7 +71,7 @@ export default class extends React.Component {
         let value = e.target.value
         ,   readed = 0;
         this.setState({addr:value, redo:false});
-        this.connection = tool.include('node-adodb').connection( (this.state.redo ? this.state.addr : value), 'SovellAdminV6' );
+        this.connection = tool.include('node-adodb').connection( (this.state.redo ? this.state.addr : value), '' );
         for (let i = 0;i < this.len;++i) {
             this.connection.query('SELECT * FROM [' + this.state.data_tables[i].name + ']').then(data => {
                 this.state.data_tables[i].data = data;
@@ -111,13 +111,14 @@ export default class extends React.Component {
     }
 
     verify(callback) {    //店信息->店ID
-        this.connection.query('SELECT 店ID as ID FROM [店信息]').then(data => {
+        'function' === typeof callback && callback();
+        /*this.connection.query('SELECT 店ID as ID FROM [店信息]').then(data => {
             this.setState({ID:data[0].ID});
             'function' === typeof callback && callback();
         }).catch(err => {
             console.log('ver', err);
             return tool.ui.error({msg:'数据源验证失败',callback:close => close()});
-        });
+        });*/
     }
 
     handleImport() {
