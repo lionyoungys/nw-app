@@ -1,7 +1,7 @@
 const buildPath = __dirname + '/src/';
 
 const config = {
-    mode: 'development',
+    mode: 'production',
     devtool: 'eval-source-map',    //生成Source Maps,这里选择eval-source-map
     entry: {
         login: buildPath + 'login.js',
