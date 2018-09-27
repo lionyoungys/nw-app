@@ -5,6 +5,7 @@
 (function(window){
     var request = window.require('request')
     ,   progress = window.require('request-progress')
+    ,   LOCK = null
     ,   defaultParameter = {};
     var a = {
         config:{
@@ -73,6 +74,8 @@
      * @return void
      */
     a.get = function (uri, success, error) {
+        if (LOCK === uri) return;
+        LOCK = uri;
         request(this.U(uri), (err, res, body) => {
             if (!err && 200 === res.statusCode) {
                 try {
@@ -117,6 +120,7 @@
                 'function' === typeof error && error();
                 tool.ui.error({msg:this.config.hostError,callback:close => close()});
             }
+            LOCK = null;
         });
     }
 
@@ -130,6 +134,8 @@
      * @return void
      */
     a.post = function(uri, object, success, error) {
+        if (LOCK === uri) return;
+        LOCK = uri;
         request.post({url:this.U(uri), formData: object}, (err, res, body) => {
             if (!err && 200 === res.statusCode) {
                 try {
@@ -178,6 +184,7 @@
                 'function' === typeof error && error();
                 tool.ui.error({msg:this.config.hostError,callback:close => close()});
             }
+            LOCK = null;
         });
     }
 
