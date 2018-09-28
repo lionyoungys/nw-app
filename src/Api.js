@@ -77,6 +77,7 @@
         if (LOCK === uri) return;
         LOCK = uri;
         request(this.U(uri), (err, res, body) => {
+            LOCK = null;
             if (!err && 200 === res.statusCode) {
                 try {
                     let data = JSON.parse(body)
@@ -120,7 +121,6 @@
                 'function' === typeof error && error();
                 tool.ui.error({msg:this.config.hostError,callback:close => close()});
             }
-            LOCK = null;
         });
     }
 
@@ -137,6 +137,7 @@
         if (LOCK === uri) return;
         LOCK = uri;
         request.post({url:this.U(uri), formData: object}, (err, res, body) => {
+            LOCK = null;
             if (!err && 200 === res.statusCode) {
                 try {
                     let data = JSON.parse(body)
@@ -184,7 +185,6 @@
                 'function' === typeof error && error();
                 tool.ui.error({msg:this.config.hostError,callback:close => close()});
             }
-            LOCK = null;
         });
     }
 
