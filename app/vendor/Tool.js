@@ -343,5 +343,69 @@
         }, 'number' === typeof object.second ? object.second *1000 :2000 );
         this.center(content);
     }
+    
+    /**
+     * 通过创建tips对象,使鼠标悬停至指定标签时的展示tips提示
+     * @param {object} node 节点对象
+     * @return {void}
+     */
+    t.ui.tips = function (node) {
+        if ('object' === typeof node && node instanceof Node) {
+            var body = document.body
+            ,   typeName = 'tips'
+            ,   timeout = null
+            ,   tipsNode  = null;
+            node.addEventListener('mouseover', function(e) {
+                timeout = setTimeout(handleMouseOver, 500);
+            });
+            node.addEventListener('mouseout', handleMouseOut);
+            function handleMouseOver (e) {
+                var text = node.getAttribute(typeName);
+                if ('string' === typeof text && text.length > 0) {
+                    var left = 0
+                    ,   top = node.offsetHeight + 5
+                    ,   tmpNode = node;
+                    while(true) {
+                        left += tmpNode.offsetLeft;
+                        top += tmpNode.offsetTop;
+                        if ('BODY' === tmpNode.offsetParent.tagName) {
+                            break;
+                        } else {
+                            tmpNode = tmpNode.offsetParent;
+                        }
+                    }
+                    tipsNode = t.ui.c('div', null, text);
+                    var mark = t.ui.c('i');
+                    tipsNode.appendChild(mark);
+                    body.appendChild(tipsNode);
+                    mark.style.borderWidth = '0 6px 6px';
+                    mark.style.borderColor = 'transparent transparent rgba(0, 0, 0, .8)';
+                    mark.style.borderStyle = 'solid';
+                    mark.style.position = 'absolute';
+                    mark.style.top = '-6px';
+                    mark.style.right = (node.offsetWidth - 6) / 2 + 'px';
+                    tipsNode.style.background = 'rgba(0, 0, 0, .8)';
+                    tipsNode.style.color = '#fff';
+                    tipsNode.style.fontSize = '14px';
+                    tipsNode.style.borderRadius = '5px';
+                    tipsNode.style.padding = '0 10px';
+                    tipsNode.style.position = 'fixed';
+                    tipsNode.style.top = top + 'px';
+                    tipsNode.style.left = left - tipsNode.offsetWidth + node.offsetWidth + 'px';
+                    tipsNode.style.zIndex = '999999';
+                }
+            };
+            function handleMouseOut (e) {
+                if (null !== timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+                if ('object' === typeof tipsNode && tipsNode instanceof Node) {
+                    body.removeChild(tipsNode);
+                    tipsNode = null;
+                }
+            }
+        }
+    }
     window.tool = t;
 })(window);
