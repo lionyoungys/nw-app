@@ -386,9 +386,9 @@
                     mark.style.right = (node.offsetWidth - 6) / 2 + 'px';
                     tipsNode.style.background = 'rgba(0, 0, 0, .8)';
                     tipsNode.style.color = '#fff';
-                    tipsNode.style.fontSize = '14px';
+                    tipsNode.style.fontSize = '12px';
                     tipsNode.style.borderRadius = '5px';
-                    tipsNode.style.padding = '0 10px';
+                    tipsNode.style.padding = '0 6px';
                     tipsNode.style.position = 'fixed';
                     tipsNode.style.top = top + 'px';
                     tipsNode.style.left = left - tipsNode.offsetWidth + node.offsetWidth + 'px';
