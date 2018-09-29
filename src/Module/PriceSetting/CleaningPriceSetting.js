@@ -200,8 +200,7 @@ export default class extends Component {
                 this.componentDidMount();
             }
             handle();
-        }
-    ); 
+        });    
     }
     addYES(){
         // console.log(this.state.cate_types[this.state.catetype_index].id);
@@ -210,11 +209,10 @@ export default class extends Component {
         if(''==this.state.item_off_price) return  tool.ui.error({msg:'线下价格不能为空！',callback:close => close()});
         // if(this.state.min_discount.number) return tool.ui.error({msg:'折扣下限只能输入数字！',callback:close => close()});
         // if(this.state.min_transfer.number) return tool.ui.error({msg:'调节下限只能输入数字！',callback:close => close()});
-
         let params={
             token:'token'.getData(),
-            cate_id:this.state.cate_id,
-            cate_name:this.state.cate_name,
+            cate_id:this.state.cate_id == ''?'2035':this.state.cate_id,
+            cate_name:this.state.cate_name ==''?'单烫类':this.state.cate_name,
             dispose_type:this.state.disposetype,
             item_name:this.state.item_name,
             item_off_price:this.state.item_off_price,
@@ -379,7 +377,7 @@ export default class extends Component {
                     <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange} /></div>
+                                <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange}/></div>
                                 <div><span><i>*</i> 衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={this.search}/></div>
                                 <div><span>处理类别：</span><Select option={this.state.dispose_type} onChange={value => this.setState({disposetype:value})} selected="无"/></div>
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value})} selected="无"/></div>
@@ -393,11 +391,9 @@ export default class extends Component {
                             <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
                                 <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({ gridname:value})}/>
-                                </div>
-                          
+                                </div>                         
                             </div>
                         </div>
-
                         <div className="addnewprice-two">
                             <div><span><i>*</i> 线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value,item_online_price:e.target.value})}/>元</div>
                             <div><span>折扣下限：</span><input className='e-input addnewprice-input' type="text" value={this.state.min_discount} onChange={e=>this.setState({min_discount:e.target.value})}/>%</div>

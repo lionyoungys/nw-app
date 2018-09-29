@@ -135,6 +135,7 @@ export default class extends React.Component {
             JSON.stringify( data_table.data.slice( data_table.count, this.limit.add(data_table.count) ) ), 
             'utf8'
         );
+        
         api.post(data_table.api, {token:token, db_id:this.state.ID, data:fs.createReadStream(this.file)}, res => {
             console.log(res);
             if (2000 == res.code) {

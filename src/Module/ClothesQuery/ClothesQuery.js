@@ -38,20 +38,21 @@ export default class extends Component {
     query(page){
         console.log(page);
         page = page || this.state.page;
-        let params= {token:'token'.getData(),
-        start_time:this.state.start_time,
-        end_time:this.state.end_time,
-        status:this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
-        serialsn:this.state.serialsn,
-        user_name:this.state.user_name,
-        cardNumber:this.state.cardNumber,
-        user_mobile:this.state.user_mobile,
-        clothing_name:this.state.clothing_name,
-        clothing_color:this.state.clothing_color,
-        grid_num:this.state.grid_num,
-        page:page,
-        limit:this.limit,
-    }
+        let params= {
+            token:'token'.getData(),
+            start_time:this.state.start_time,
+            end_time:this.state.end_time,
+            status:this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
+            serialsn:this.state.serialsn,
+            user_name:this.state.user_name,
+            cardNumber:this.state.cardNumber,
+            user_mobile:this.state.user_mobile,
+            clothing_name:this.state.clothing_name,
+            clothing_color:this.state.clothing_color,
+            grid_num:this.state.grid_num,
+            page:page,
+            limit:this.limit,
+        }
         console.log(params)
         api.post('clothesQuery',params, (res, ver,handle) => {
             if (ver && res) {
@@ -60,15 +61,13 @@ export default class extends Component {
                     this.setState({clothes:res.result.list,count:res.result.count,page:page,nodatas:false})
                 }else{
                     this.setState({nodatas:true,clothes:[],count:0})
-                }
-                
+                }               
             }else{
                 handle;
             }
         });
     }
-    render() {
-        
+    render() {       
         let clothes = this.state.clothes.map((item,index)=>
             <tr key={'item'+index}>
                 <td>{index+1+(this.state.page-1)*this.limit}</td>
@@ -114,6 +113,7 @@ export default class extends Component {
                             <span>结束日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                         </div> 
                         <div>
+                            
                             <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
                         </div>   
                         <div>
