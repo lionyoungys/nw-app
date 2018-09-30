@@ -241,9 +241,9 @@
      * 居中定位方法
      * @param node 界面展示节点
      */
-    t.ui.center = function (node) {
+    t.ui.center = function (node, isFixed) {
         if (node instanceof Node) {
-            node.style.position = 'absolute';
+            node.style.position = isFixed ? 'fixed' : 'absolute';
             node.style.marginTop = -node.offsetHeight / 2 + 'px';
             node.style.marginLeft = -node.offsetWidth / 2 + 'px';
             node.style.top = '50%';
@@ -253,64 +253,54 @@
     /**
      * 界面弹出层工厂方法
      * @param name 弹出层名称
-     * @param object 弹出层定义对象 {title:标题,msg:弹出提示,info:详细描述信息,button:按钮值,callback(关闭方法, 事件名称:close||click):回调函数}
+     * @param object 弹出层定义对象 {title:标题,msg:弹出提示,info:详细描述信息,button:[按钮值, 按钮值],callback(关闭方法, 事件名称:close||click):回调函数}
      */
     t.ui.LayerFactory = function (name, object) {
-        var bg = this.c('div', 't-ui-layer');
-        var layer = this.c('div', 't-ui-layer-box');
-        var title = this.c('div', null, 'string' === typeof object.title ? object.title : '提示');
-        var close = this.c('i');
-        var msg = '';
+        if (!t.isObject(object)) object = {};
+        var bg = this.c('div', 't-ui-layer-bg')
+        ,   layer = this.c('div', 't-ui-layer ' + name)
+        ,   close = this.c('i')
+        ,   btnArea = this.c('div', 't-ui-layer-btn-area')
+        ,   btn = this.c('button', 'e-btn')
+        ,   btn_b = this.c('button', 'e-btn-b');
+        btn.type = btn_b.type = 'button';
+        bg.appendChild(layer);    //追加节点
+        layer.appendChild( this.c('span', null, 'string' === typeof object.title ? object.title : '提示') );
+        layer.appendChild(close);
+        close.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, 'close')}
+        var msg = ''
+        ,   values = object.button || [];
         if ('string' === typeof object.msg) {
             msg = object.msg
         } else {
-            if ('ask' === name) {
-                msg = '确认要删除此内容？';
-            } else if ('error' === name) {
+            if ('error' === name) {
+                btn.innerText = values[0] || '返回';
+                btnArea.appendChild(btn);
+                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '返回')}
                 msg = '操作失败';
             } else if ('warn' === name) {
+                btn_b.innerText = values[0] || '取消';
+                btn.innerText = values[1] || '确定';
+                btnArea.appendChild(btn_b);
+                btnArea.appendChild(btn);
+                btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
+                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
                 msg = '已操作过此步骤';
             } else {
+                btn_b.innerText = values[0] || '取消';
+                btn.innerText = values[1] || '确定';
+                btnArea.appendChild(btn_b);
+                btnArea.appendChild(btn);
+                btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
+                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
                 msg = '操作成功';
             }
         }
-        var content = this.c(
-            'div', 
-            null, 
-            '<div><img src="img/t-ui-' + name + '.png"/>' + msg + '</div>' 
-            + 
-            ('string' === typeof object.info ? '<div>' + object.info + '</div>' : '')
-        );
-        var bottom = this.c('div');
-        bg.appendChild(layer);    //追加节点
-        layer.appendChild(title);
-        title.appendChild(close);
-        close.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'close')}
-        layer.appendChild(content);
-        layer.appendChild(bottom);
-        var button;
-        if ('object' === typeof object.button && object.button instanceof Array) {
-            var btnLen = (object.button.length - 1);
-            button = [];
-            for (var i = 0;i <= btnLen;++i) {
-                button.push(this.c('button', 'e-btn', 'string' === typeof object.button[i] ? object.button[i] : i));
-                button[i].type = 'button';
-                button[i].setAttribute('data-i', i);
-                if (i !== btnLen) button[i].style.marginRight = '8px';
-                bottom.appendChild(button[i]);
-                button[i].onclick = function() {
-                    'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, this.dataset.i);
-                }
-            }
-        } else {
-            button = this.c('button', 'e-btn', 'string' === typeof object.button ? object.button : '确认');
-            button.type = 'button';
-            bottom.appendChild(button);
-            button.onclick = function() {'function' === typeof object.callback && object.callback(function() {document.body.removeChild(bg)}, 'click')}
-        }
+        layer.appendChild( this.c('div', 't-ui-layer-content', msg) );
+        layer.appendChild(btnArea);
         document.body.appendChild(bg);
-        this.center(layer);
-        
+        this.center(layer, true);
+        function handleClose() {document.body.removeChild(bg)}
     }
     t.ui.ask = function ask(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.error = function error(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
@@ -321,7 +311,7 @@
      * @param {function} callback 回调函数，回传参数为加载结束方法
      */
     t.ui.loading = function(callback) {
-        var bg = this.c('div', 't-ui-layer')
+        var bg = this.c('div', 't-ui-layer-bg')
         ,   loading = this.c( 'div', 't-ui-loading');
         bg.appendChild(loading);
         document.body.appendChild(bg);
@@ -340,7 +330,7 @@
      * msg,title,second
      */
     t.ui.hud = function (object) {
-        var bg = this.c('div', 't-ui-layer');
+        var bg = this.c('div', 't-ui-layer-bg');
         bg.style.opacity = '0';
         var content = this.c(
             'div',
