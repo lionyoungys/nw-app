@@ -270,32 +270,33 @@
         close.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, 'close')}
         var msg = ''
         ,   values = object.button || [];
-        if ('string' === typeof object.msg) {
-            msg = object.msg
+        console.log(object.button);
+        console.log(object.button || []);
+        if ('error' === name) {
+            console.log(values[0] || '返回');
+            btn.innerText = values[0] || '返回';
+            btnArea.appendChild(btn);
+            btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '返回')}
+            msg = '操作失败';
+        } else if ('warn' === name) {
+            btn_b.innerText = values[0] || '取消';
+            btn.innerText = values[1] || '确定';
+            btnArea.appendChild(btn_b);
+            btnArea.appendChild(btn);
+            btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
+            btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
+            msg = '已操作过此步骤';
         } else {
-            if ('error' === name) {
-                btn.innerText = values[0] || '返回';
-                btnArea.appendChild(btn);
-                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '返回')}
-                msg = '操作失败';
-            } else if ('warn' === name) {
-                btn_b.innerText = values[0] || '取消';
-                btn.innerText = values[1] || '确定';
-                btnArea.appendChild(btn_b);
-                btnArea.appendChild(btn);
-                btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
-                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
-                msg = '已操作过此步骤';
-            } else {
-                btn_b.innerText = values[0] || '取消';
-                btn.innerText = values[1] || '确定';
-                btnArea.appendChild(btn_b);
-                btnArea.appendChild(btn);
-                btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
-                btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
-                msg = '操作成功';
-            }
+            btn_b.innerText = values[0] || '取消';
+            btn.innerText = values[1] || '确定';
+            btnArea.appendChild(btn_b);
+            btnArea.appendChild(btn);
+            btn_b.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '取消')}
+            btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[1] || '确定')}
+            msg = '操作成功';
         }
+        if ('string' === typeof object.msg) msg = object.msg
+        
         layer.appendChild( this.c('div', 't-ui-layer-content', msg) );
         layer.appendChild(btnArea);
         document.body.appendChild(bg);

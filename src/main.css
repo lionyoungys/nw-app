@@ -23,6 +23,9 @@ table{border-collapse: collapse}
     border-bottom: 2px solid #6bb4ec;
     background-size: 100% 106px;
     z-index: 1;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 17px;
 }
 .main-left{    /* 界面左侧样式 */
     position: absolute;
@@ -42,17 +45,24 @@ table{border-collapse: collapse}
 }
 .main-title{    /* 界面标题部分样式 */
     -webkit-app-region: drag;    /*窗口可移动*/
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 10px 0 0 34px;
     height: 17px;
+    width: 100%;
     line-height: 17px;
-    background: url(img/main-title.png) no-repeat 8px 10px;
+    background-color: #6bb4ec;
+    background-image: url(img/main-title.png);
+    background-repeat: no-repeat;
+    background-position: 8px 10px;
+    z-index: 100;
 }
 .main-title>div{    /* 界面窗口控制容器样式 */
     -webkit-app-region: no-drag;
     position: absolute;
     top: 0;right: 0;
-    width: 78px;
+    width: 110px;
     height: 19px;
     overflow: hidden;
 }

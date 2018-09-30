@@ -106,7 +106,50 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .t-ui-layer-bg{z-index: 999999}
 /* UI组件样式 */
-.ui-window{    /* 弹出窗口样式 */
+.ui-window{    /* 窗口样式 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    z-index: 10;
+}
+.ui-window-head{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #fff;
+}
+.ui-window-head>i{
+    height: 26px;
+    width: 26px;
+    background-image: url(images/ui-window-back.png);
+    position: absolute;
+    top: 11px;
+    left: 13px;
+}
+.ui-window-body{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 100px;
+}
+.ui-window-body>div{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.ui-dish{    /* 盘子样式 */
     width: 881px;
     height: 487px;
     background: #fff;
@@ -118,7 +161,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     -webkit-box-sizing: border-box;
     padding-top: 48px;
 }
-.ui-window>:first-child{
+.ui-dish>:first-child{
     width: 100%;
     height: 48px;
     position: absolute;
@@ -131,7 +174,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-.ui-window>:first-child>span{
+.ui-dish>:first-child>span{
     height: 16px;
     line-height: 16px;
     float: left;
@@ -144,7 +187,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-repeat: no-repeat;
     background-position: -2px 0;
 }
-.ui-window>:first-child>i{
+.ui-dish>:first-child>i{
     float: right;
     height: 16px;
     width: 16px;

@@ -76,15 +76,15 @@ class Main extends Component {
         return (
             <div id='main'>
                 {/* 界面顶部菜单栏 */}
-                <div className='main-top'>
-                    <div className='main-title'>
-                        {'mname'.getData()}&nbsp;【操作员：{'aname'.getData()}】&nbsp;【软件版本：{nw.App.manifest.version}】
-                        <div>
-                            <div className='main-mini' onClick={() => EventApi.win.minimize()}></div>
-                            <div className='main-max' onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}></div>
-                            <div className='main-close' onClick={() => EventApi.quit()}></div>
-                        </div>
+                <div className='main-title'>
+                    {'mname'.getData()}&nbsp;【操作员：{'aname'.getData()}】&nbsp;【软件版本：{nw.App.manifest.version}】
+                    <div>
+                        <div className='main-mini' onClick={() => EventApi.win.minimize()}></div>
+                        <div className='main-max' onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}></div>
+                        <div className='main-close' onClick={() => EventApi.quit()}></div>
                     </div>
+                </div>
+                <div className='main-top'>
                     <MainTopMenu changeView={this.changeView}/>
                     <MainNav changeView={this.changeView}/>
                 </div>

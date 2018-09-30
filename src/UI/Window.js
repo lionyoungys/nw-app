@@ -10,27 +10,19 @@ export default class extends React.Component {
         super(props);
     }
     render() {
-        let className = 'ui-window'
-        ,   style = {};
-        if ('string' === typeof this.props.className) className += (' ' + this.props.className);
-        if (tool.isObject(this.props.style)) {
-            for (var k in this.props.style) {
-                style[k] = this.props.style[k];
+        let style = this.props.style || {};
+        if (this.props.padding) {
+            if ('boolean' === typeof this.props.padding) {
+                style.padding = '20px';
+            } else {
+                style.padding = this.props.padding;
             }
         }
-        if (!isNaN(this.props.width)) {
-            style.width = this.props.width + 'px';
-            style.marginLeft = (-1 * this.props.width / 2) + 'px';
-        }
-        if (!isNaN(this.props.height)) {
-            style.height = this.props.height + 'px';
-            style.marginTop = (-1 * this.props.height / 2) + 'px';
-        }
         return (
-            <div className='e-layer-bg'>
-                <div className={className} style={style}>
-                    <div><span>{this.props.title}</span><i onClick={this.props.onClose}></i></div>
-                    {this.props.children}
+            <div className='ui-window'>
+                <div className='ui-window-head'><i onClick={this.props.onClose}></i>{this.props.title}</div>
+                <div className='ui-window-body'>
+                    <div style={style}>{this.props.children}</div>
                 </div>
             </div>
         );
