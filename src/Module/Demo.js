@@ -5,12 +5,6 @@
 
 import React from 'react';
 import Window from '../UI/Window';
-import {Table} from '../UI/Table';
-import LayerBox from '../UI/LayerBox';
-import SelectSearch from '../UI/SelectSearch';
-import Select from '../UI/Select';
-import Page from '../UI/Page';
-import {UpdateCard} from '../UI/Payment';
 
 export default class extends React.Component {
     constructor(props) {
@@ -19,7 +13,7 @@ export default class extends React.Component {
     }
     render() {
         return (
-            <Window title='测试窗口' onClose={this.props.closeView} width='600' height='600'>
+            <Window title='测试窗口' onClose={this.props.closeView}>
                 <button type='button' className='e-btn'>样式1</button>&nbsp;
                 <button type='button' className='e-btn' readOnly>样式1只读</button>&nbsp;
                 <button type='button' className='e-btn-b'>样式2</button><br/>

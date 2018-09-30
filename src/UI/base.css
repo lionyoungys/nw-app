@@ -1,35 +1,3 @@
-/* 弹出窗口样式 */
-.ui-window{
-    background: #e3effd;
-    position: absolute;
-    top: 50%;left: 50%;
-    border: 1px solid #8899ad;
-    border-radius: 8px;
-}
-.ui-window>:first-child,
-.ui-layer-box>:first-child{
-    height: 36px;
-    line-height: 36px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding-left: 16px;
-    background: url(img/t-ui-layer-title.png) left center;
-    font-size: 14px;
-    color: #15458d;
-    font-weight: bold;
-    overflow: hidden;
-}
-.ui-window>:first-child>i,
-.ui-layer-box>:first-child>i{
-    float: right;
-    width: 15px;
-    height: 15px;
-    margin: 10px 12px 0 0;
-    background: url(img/t-ui-layer-close.png);
-    cursor: default;
-}
-.ui-window>:first-child>i:hover,
-.ui-layer-box>:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}
 /* 弹出层容器组件 */
 .ui-layer-box{
     min-width: 358px;
