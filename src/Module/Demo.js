@@ -6,6 +6,7 @@
 import React from 'react';
 import Window from '../UI/Window';
 import Dish from '../UI/Dish';
+import Empty from '../UI/Empty';
 
 export default class extends React.Component {
     constructor(props) {
@@ -61,6 +62,7 @@ export default class extends React.Component {
                         <button type='button' className='e-btn-b' onClick={this.handleEat2}>尝尝小龙虾</button>
                     </Dish>
                 }
+                <Empty>暂无数据</Empty>
            </Window>
         );
     }

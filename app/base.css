@@ -195,6 +195,15 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-position: -5px -5px;
     margin: 16px 30px 0 0;
 }
+.ui-empty{
+    padding-top: 136px;
+    background-image: url(images/ui-empty.jpg);
+    background-repeat: no-repeat;
+    background-position: center 0;
+    text-align: center;
+    font-size: 14px;
+    color: #9a9a9a;
+}
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{
