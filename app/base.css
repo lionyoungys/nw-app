@@ -206,20 +206,57 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #9a9a9a;
 }
 /* 分页组件样式 */
-.ui-page{height: 28px;font-size: 16px}
-.ui-page>i{font-style: normal;color: red}
-.ui-page>span{
+.ui-page{height: 28px;font-size: 14px;line-height: 28px;}
+.ui-page>span, .ui-page>i, .ui-page>button, .ui-page>input{float: left;}
+.ui-page>span{color: #000;font-size: 14px}
+.ui-page>span:first-of-type{font-size: 16px}
+.ui-page>i{
+    font-style: normal;
     display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 10px;
-    border: 1px solid #9a9a9a;
-    border-radius: 5px;
-    background: #eee;
+    height: 28px;
+    min-width: 28px;
+    background-color: #f2f5f5;
+    text-align: center;
+    color: #000;
+    border-radius: 4px;
+    margin: 0 8px;
     cursor: pointer;
-    margin-left: 5px;
 }
-.ui-page>span:first-of-type{margin-left: 10px}
+.ui-page>.ui-page-current{
+    background-color: #3fbfdc;
+    color: #fff;
+    font-weight: bolder;
+}
+.ui-page>button{
+    height: 28px;
+    background-color: #f2f5f5;
+    color: #000;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    padding-right: 22px;
+    text-align: right;
+    margin: 0 8px;
+    background-image: url(images/ui-page-down.png);
+    background-repeat: no-repeat;
+    background-position: 64px center;
+}
+.ui-page>input{
+    height: 28px;
+    width: 50px;
+    padding: 0;
+    margin: 0 8px;
+    background-color: #f2f5f5;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+.ui-page-previous, .ui-page-next{
+    background-image: url(images/ui-page-previous.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.ui-page-next{background-image: url(images/ui-page-next.png);}
 
 
 /* 工具类ui样式部分 */
