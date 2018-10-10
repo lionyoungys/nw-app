@@ -11,8 +11,6 @@ import './Event';
 import './main.css';
 import './UI/base.css';
 import './Elem/App.css';
-
-//EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -77,11 +75,12 @@ class Main extends Component {
             <div id='main'>
                 {/* 界面顶部菜单栏 */}
                 <div className='main-title'>
-                    {'mname'.getData()}&nbsp;【操作员：{'aname'.getData()}】&nbsp;【软件版本：{nw.App.manifest.version}】
+                    <span>{'mname'.getData()}</span>
                     <div>
-                        <div className='main-mini' onClick={() => EventApi.win.minimize()}></div>
-                        <div className='main-max' onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}></div>
-                        <div className='main-close' onClick={() => EventApi.quit()}></div>
+                        <i class="fas fa-user"></i> {'aname'.getData()}&emsp;<i class="e-icon-windows"></i> 版本:{nw.App.manifest.version}
+                        <span onClick={() => EventApi.win.minimize()}><i class="fas fa-minus"></i></span>
+                        <span onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}><i class="far fa-window-maximize"></i></span>
+                        <span onClick={() => EventApi.quit()}><i class="fas fa-times"></i></span>
                     </div>
                 </div>
                 <div className='main-top'>
