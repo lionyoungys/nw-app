@@ -24,17 +24,17 @@ export default class extends React.Component {
         }
     }
     render() {
-        let current = this.props.current || 1
+        let current = isNaN(this.props.current) ? 1 : Number(this.props.current)
         ,   total = this.props.total || 0
         ,   fetch = this.props.fetch || 20
         ,   last = Math.ceil(total / fetch);
         return (
             <div className="ui-page">
                 <span>共{total}条</span>
-                <i className='ui-page-previous'></i>
+                <i className='ui-page-previous' onClick={this.handleClick} data-val={1 == current ? 1 : (current - 1)}></i>
                 <i className='ui-page-current'>1</i>
                 <i>2</i>
-                <i className='ui-page-next'></i>
+                <i className='ui-page-next' onClick={this.handleClick} data-val={last == current ? last : (current + 1)}></i>
                 <button type='button'>{fetch}条/页</button>
                 <span>跳至</span>
                 <input type='text' value={this.state.value} onChange={this.handleChange}/>

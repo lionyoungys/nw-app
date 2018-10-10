@@ -206,7 +206,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #9a9a9a;
 }
 /* 分页组件样式 */
-.ui-page{height: 28px;font-size: 14px;line-height: 28px;}
+.ui-page{height: 28px;font-size: 14px;line-height: 28px;min-width: 400px}
 .ui-page>span, .ui-page>i, .ui-page>button, .ui-page>input{float: left;}
 .ui-page>span{color: #000;font-size: 14px}
 .ui-page>span:first-of-type{font-size: 16px}
@@ -219,9 +219,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     text-align: center;
     color: #000;
     border-radius: 4px;
-    margin: 0 8px;
+    margin-right: 8px;
     cursor: pointer;
 }
+.ui-page>i:first-of-type{margin-left: 8px}
 .ui-page>.ui-page-current{
     background-color: #3fbfdc;
     color: #fff;
