@@ -228,26 +228,6 @@
 
     max-width: 80px;
 }
-/* 数学计算组件样式 */
-.ui-math{
-    position: relative;
-    display: inline-block;
-    min-width: 32px;
-    min-height: 14px;
-    font-size: 12px;
-    text-align: center;
-    padding: 0 14px;
-}
-.ui-math-sub, .ui-math-add{
-    position: absolute;
-    top: 50%;
-    margin-top: -7px;
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
-}
-.ui-math-sub{left:0px;background: url(img/ui-subtract.png)}
-.ui-math-add{right:0px;background: url(img/ui-add.png)}
 /* 支付组件样式 */
 .ui-payment-title, .ui-payment-title2{
     height: 40px;
