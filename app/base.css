@@ -91,6 +91,7 @@ body{font-family: 微软雅黑,serif;}
     outline: none;
 }
 .e-input:focus{border: 1px solid #3fc0db}
+.e-input.e-error:focus{border: 1px solid #f60000}
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 14px}
 input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 14px}
 input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 14px}
@@ -204,6 +205,23 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     font-size: 14px;
     color: #9a9a9a;
 }
+/* 分页组件样式 */
+.ui-page{height: 28px;font-size: 16px}
+.ui-page>i{font-style: normal;color: red}
+.ui-page>span{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    border: 1px solid #9a9a9a;
+    border-radius: 5px;
+    background: #eee;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.ui-page>span:first-of-type{margin-left: 10px}
+
+
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{

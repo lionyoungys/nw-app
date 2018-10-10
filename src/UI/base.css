@@ -398,23 +398,6 @@
     color:red;
     font-size: 14px;
 }
-/* 分页组件样式 */
-.ui-page{height: 22px;font-size: 12px;text-align: right;position: absolute;bottom:27px;right:21px;}
-.ui-page>i{font-style: normal;color: red}
-.ui-page>span{
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 10px;
-    border: 1px solid #9a9a9a;
-    border-radius: 5px;
-    background: #eee;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.ui-page>span:first-of-type{margin-left: 10px}
-
-
 /* 给表格加选中样式 */
 table tbody tr:nth-child(odd):hover{
     background:#cce8ff;
