@@ -1,107 +1,48 @@
 /**
  * 下拉框组件
  * @author Edwin Young
- * @desc option:选项列表[value,value,value];onChange:回调操作(value);selected:默认选中的选项
+ * @desc option:选项列表[value,value,value]|[{key:'', value:''},{key:'', value:''}];onChange:回调操作(value);value:选中的选项
  */
 
 import React from 'react';
 export default class extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = {
-            selected:'string' === typeof this.props.selected && '' !== this.props.selected ? this.props.selected : null, 
-            show:false,
-            minWidth:null
-        };
-        this.uniqueID = new Date().getTime() + Math.random();
         this.handleChange = this.handleChange.bind(this);
-        this.toggleShow = this.toggleShow.bind(this);
     } 
 
-    componentDidMount() {
-        document.addEventListener("click", e => {
-            let len = e.path.length
-            ,   isSelf = false;
-            for (let i = 0;i < len;++i) {
-                if (
-                    1 == e.path[i].nodeType 
-                    && 
-                    'string' === typeof e.path[i].dataset.unique 
-                    && 
-                    e.path[i].dataset.unique == this.uniqueID
-                ) {
-                    isSelf = true;
-                }
-            }
-            !isSelf && this.state.show && this.setState({show:false});
-        });
-        this.setState({minWidth:68+'px'});
-    }
-
     handleChange(e) {
-        let value = e.target.innerText,
-            dataValue = e.target.dataset.value;
-        this.setState({selected:value, show:false})
         if ('function' === typeof this.props.onChange) {
-            'string' === typeof dataValue ? this.props.onChange(dataValue) : this.props.onChange(value);
+            let value = e.target.innerText
+            ,   key = e.target.dataset.key;
+            if ('string' === typeof key) {
+                this.props.onChange({key:key, value:value});
+            } else {
+                this.props.onChange({key:'', value:value});
+            }
         }
     }
-    toggleShow(e) {!this.props.readOnly && this.setState({show:!this.state.show})}
     
     render() {
-        let propsOption = ('object' === typeof this.props.option && this.props.option instanceof Array) ? this.props.option : []
-        ,   len = propsOption.length
-        ,   option = []
-        ,   selected = this.state.selected;
-        if (null === selected && len > 0) {
-            selected = 'string' === typeof propsOption[0] ? propsOption[0] : propsOption[0].value;
-        }
-        for (let i = 0;i < len;++i) {
-            if (null === this.state.selected && 0 === i) {
-                continue;
-            } else if ('string' === typeof propsOption[i] && this.state.selected === propsOption[i]) {
-                continue;
-            } else if (
-                'object' === typeof propsOption[i] 
-                &&
-                null !== propsOption[i]
-                && 
-                'string' === typeof propsOption[i].value
-                &&
-                this.state.selected === propsOption[i].value
-            ) {
-                continue;
-            }
-            if ('string' === typeof propsOption[i]) {
-                option.push(
-                    <div
-                        key={propsOption[i] + i}
-                        onClick={this.handleChange}
-                    >{propsOption[i]}</div>
-                );
-            } else if ('object' === typeof propsOption[i] && null !== propsOption[i]) {
-                option.push(
-                    <div
-                        key={propsOption[i].key}
-                        data-value={propsOption[i].key}
-                        onClick={this.handleChange}
-                    >{propsOption[i].value}</div>
-                );
+        let value = this.props.value || ''
+        ,   options = tool.isArray(this.props.option) ? this.props.option : []
+        ,   len = options.length
+        ,   arr = [];
+        for (var i = 0;i < len;++i) {
+            if ('string' === typeof options[i]) {
+                if (value === options[i]) continue;
+                arr.push(<div key={options[i] + '_' + i} onClick={this.handleChange}>{options[i]}</div>)
+            } else if (tool.isObject(options[i])) {
+                if (value === options[i].value) continue;
+                arr.push(<div key={options[i].key} data-key={options[i].key} onClick={this.handleChange}>{options[i].value}</div>);
             }
         }
         return (
-            <div
-                className={`ui-select-define ui-select${this.state.show ? ' ui-select-show' : ''}${this.props.readOnly ? ' ui-select-readonly' : ''}`}
-                style={{minWidth:this.state.minWidth}}
-                data-unique={this.uniqueID}
-            >
-                <i onClick = {this.toggleShow}></i>
-                <div
-                    className='ui-select-selected'
-                    onClick = {this.toggleShow}
-                >{selected}</div>
-                <div className='ui-select-option'>{option}</div>
+            <div className='ui-select'>
+                <input className='e-input' type='text' disabled placeholder='请选择...' value={value}/>
+                <section>
+                    <div>{arr}</div>
+                </section>
             </div>
         );
     }

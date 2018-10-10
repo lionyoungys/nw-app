@@ -8,11 +8,12 @@ import Window from '../UI/Window';
 import Dish from '../UI/Dish';
 import Empty from '../UI/Empty';
 import Page from '../UI/Page';
+import Select from '../UI/Select';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false}
+        this.state = {dish:false, selectVal:'麻辣香锅'}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -52,6 +53,7 @@ export default class extends React.Component {
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
                 <input type='text' className='e-input' placeholder='输入内容'/>&emsp;<input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
+                <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => this.setState({selectVal:obj.value})}/><br/>
                 {
                     this.state.dish 
                     && 

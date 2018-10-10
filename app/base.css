@@ -83,6 +83,7 @@ body{font-family: 微软雅黑,serif;}
     line-height: 35px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    background-color: #fff;
     border: 1px solid #d7dee4;
     border-radius: 4px;
     padding: 0 15px;
@@ -258,7 +259,90 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-position: center center;
 }
 .ui-page-next{background-image: url(images/ui-page-next.png);}
-
+/* 下拉框组件 */
+.ui-select{
+    display: inline-block;
+    width: 186px;
+    height: 35px;
+    position: relative;
+    vertical-align: middle;
+}
+.ui-select>.e-input{
+    padding-right: 24px;
+    background-image: url(images/ui-select-down.png);
+    background-repeat: no-repeat;
+    background-position: 160px center;
+}
+.ui-select>.e-input:disabled{background-color: #fff}
+.ui-select:hover>.e-input{border: 1px solid #3fc0db}
+.ui-select>section{display: none}
+.ui-select:hover>section{
+    display: block;
+    position: absolute;
+    left: 0;top: 0;
+    width: 100%;
+    padding-top: 48px;
+}
+.ui-select:hover>section>div{
+    width: 100%;
+    background-color: #fff;
+    padding: 4px 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    -moz-box-shadow: 1px 1px 1px #d9d9d9;
+    box-shadow: 1px 1px 1px #d9d9d9;
+}
+.ui-select:hover>section>div>div{
+    height: 28px;
+    width: 100%;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 16px;
+    font-size: 14px;
+    cursor: default;
+}
+.ui-select:hover>section>div>div:hover{background-color: #eaf1f7}
+.ui-select>i{
+    height: 100%;
+    width: 18px;
+    background: url(img/ui-select-grey.png) no-repeat center center;
+    position: absolute;
+    top: 0;right: 0;
+    z-index: 1;
+    cursor: default;
+}
+.ui-select:hover>i{background: url(img/ui-select-blue.png) no-repeat center center}
+.ui-select.ui-select-readonly>i, .ui-select.ui-select-readonly:hover>i{background: url(img/ui-select-readonly.png) no-repeat center center}
+.ui-select-selected{
+    height: 20px;
+    padding: 0 24px 0 6px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border: 1px solid #c2c2c2;
+    cursor: default;
+}
+.ui-select:hover>.ui-select-selected{border: 1px solid #6f9ec2}
+.ui-select.ui-select-readonly:hover>.ui-select-selected{border: 1px solid #c2c2c2}
+.ui-select-option{
+    background: #fff;
+    border: 1px solid #c2c2c2;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    min-width: 100%;
+    max-height: 160px;
+    overflow-y: auto;
+    border-top: 0;
+    white-space:nowrap;    /* 文字不换行 */
+    position: absolute;
+    top: 22px;
+    left: 0;
+    z-index: 10;
+    cursor: default;
+}
+.ui-select:hover .ui-select-option{border: 1px solid #6f9ec2}
+.ui-select-option>div{padding: 0 24px 0 6px}
+.ui-select-option>div:hover{background: #66b8f8;color: #fff}
 
 /* 工具类ui样式部分 */
 /* 加载框样式 */

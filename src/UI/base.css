@@ -113,63 +113,8 @@
     background: url(img/ui-search-blue.png) no-repeat center center;
     border-color: #6f9ec2;
 }
-/* 下拉框组件 */
-.ui-select{
-    display: inline-block;
-    height: 22px;
-    line-height: 20px;
-    position: relative;
-    overflow: hidden;
-    vertical-align: middle;
-    border-radius: 3px;
-    font-size: 12px;
-    background: #fff;
-}
-.ui-select.ui-select-readonly{background: #efefef}
-.ui-select.ui-select-show{overflow: visible}
-.ui-select>i{
-    height: 100%;
-    width: 18px;
-    background: url(img/ui-select-grey.png) no-repeat center center;
-    position: absolute;
-    top: 0;right: 0;
-    z-index: 1;
-    cursor: default;
-}
-.ui-select:hover>i{background: url(img/ui-select-blue.png) no-repeat center center}
-.ui-select.ui-select-readonly>i, .ui-select.ui-select-readonly:hover>i{background: url(img/ui-select-readonly.png) no-repeat center center}
-.ui-select-selected{
-    height: 20px;
-    padding: 0 24px 0 6px;
-    border-top-left-radius:3px;
-    border-top-right-radius:3px;
-    border: 1px solid #c2c2c2;
-    cursor: default;
-}
-.ui-select:hover>.ui-select-selected{border: 1px solid #6f9ec2}
-.ui-select.ui-select-readonly:hover>.ui-select-selected{border: 1px solid #c2c2c2}
-.ui-select-option{
-    background: #fff;
-    border: 1px solid #c2c2c2;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    min-width: 100%;
-    max-height: 160px;
-    overflow-y: auto;
-    border-top: 0;
-    white-space:nowrap;    /* 文字不换行 */
-    position: absolute;
-    top: 22px;
-    left: 0;
-    z-index: 10;
-    cursor: default;
-}
-.ui-select:hover .ui-select-option{border: 1px solid #6f9ec2}
-.ui-select-option>div{padding: 0 24px 0 6px}
-.ui-select-option>div:hover{background: #66b8f8;color: #fff}
 /* 时间选择框的样式（右侧带箭头） */
 .ui-date{
-
     width: 140px;
     height: 20px;    
     background-size: 100% 100%;
