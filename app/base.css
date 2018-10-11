@@ -21,14 +21,16 @@ body{font-size: 14px}
     -ms-user-select:none;
 }
 /* icon */
-.e-icon-windows{
+.e-icon-logo, .e-icon-user, .e-icon-windows{
     display: inline-block;
     height: 12px;
     width: 12px;
-    background-image: url(images/e-icon-windows.png);
-    background-position: -1px -1px;
-    vertical-align: middle;
+    background-image: url(images/icons.png);
+    background-position: 0 0px;
+    vertical-align: text-bottom;
 }
+.e-icon-user{background-position: 0 13px}
+.e-icon-windows{background-position: 12px 0}
 /* 按钮样式 */
 .e-btn{
     padding: 0;

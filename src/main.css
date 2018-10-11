@@ -12,10 +12,11 @@ html, body, #root, #main{width: 100%;height: 100%}
     -ms-user-select:none;
 }
 .main-title{    /* 界面标题部分样式 */
+    -webkit-app-region: drag;    /*窗口可移动*/
+    font-size: 12px;
     height: 32px;
     width: 100%;
     line-height: 32px;
-    -webkit-app-region: drag;    /*窗口可移动*/
     position: fixed;
     top: 0;
     left: 0;
@@ -26,12 +27,6 @@ html, body, #root, #main{width: 100%;height: 100%}
     z-index: 100;
     color: #fff;
 
-}
-.main-title>span{
-    padding-left: 26px;
-    background-image: url(images/icon.png);
-    background-repeat: no-repeat;
-    background-position: 6px center;
 }
 .main-title>div{
     position: relative;

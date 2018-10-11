@@ -75,12 +75,12 @@ class Main extends Component {
             <div id='main'>
                 {/* 界面顶部菜单栏 */}
                 <div className='main-title'>
-                    <span>{'mname'.getData()}</span>
+                    &nbsp;<i className='e-icon-logo'></i> {'mname'.getData()}
                     <div>
-                        <i class="fas fa-user"></i> {'aname'.getData()}&emsp;<i class="e-icon-windows"></i> 版本:{nw.App.manifest.version}
-                        <span onClick={() => EventApi.win.minimize()}><i class="fas fa-minus"></i></span>
-                        <span onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}><i class="far fa-window-maximize"></i></span>
-                        <span onClick={() => EventApi.quit()}><i class="fas fa-times"></i></span>
+                        <i className="e-icon-user"></i> {'aname'.getData()}&emsp;<i className="e-icon-windows"></i> 版本:{nw.App.manifest.version}
+                        <span onClick={() => EventApi.win.minimize()}><i className="fas fa-minus"></i></span>
+                        <span onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}><i className="far fa-window-maximize"></i></span>
+                        <span onClick={() => EventApi.quit()}><i className="fas fa-times"></i></span>
                     </div>
                 </div>
                 <div className='main-top'>
