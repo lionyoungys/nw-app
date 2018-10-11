@@ -163,12 +163,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     -webkit-box-sizing: border-box;
 }
 .ui-dish{    /* 盘子样式 */
-    width: 881px;
+    width: 658px;
     height: 487px;
     background: #fff;
     position: absolute;
     top: 50%;left: 50%;
-    margin: -243.5px 0 0 -440.5px;
+    margin: -243.5px 0 0 -329px;
     border-radius: 8px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
