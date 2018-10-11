@@ -50,206 +50,44 @@ html, body, #root, #main{width: 100%;height: 100%}
     position: absolute;
     top: 0;left: 0;
     width: 100%;
-    height: 76px;
-    background: -webkit-linear-gradient(left, #3abbd5, #35bfc5);    /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(right, #3abbd5, #35bfc5);    /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(right, #3abbd5, #35bfc5);    /* Firefox 3.6 - 15 */
-    background: linear-gradient(to right, #3abbd5, #35bfc5);    /* 标准的语法 */
-    border-bottom: 2px solid #6bb4ec;
+    height: 108px;
+    background: -webkit-linear-gradient(left, #3fc0db, #3cc4cb);    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #3fc0db, #3cc4cb);    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #3fc0db, #3cc4cb);    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #3fc0db, #3cc4cb);    /* 标准的语法 */
     z-index: 1;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 17px;
+    padding-top: 32px;
 }
 .main-top>div{
+    height: 76px;
+    width: 100%;
     background-image: url(images/main-head-bg.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.main-left{    /* 界面左侧样式 */
-    position: absolute;
-    top: 0;left: 0;
-    width: 198px;
-    height: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-    padding-top: 108px;
-    padding-bottom:80px;
-    overflow-y:auto;
-    overflow-x:hidden;  
-}
-.main-left::-webkit-scrollbar{
-    width:0;
-}
-/* 顶部菜单栏 */
-.main-menu{
-    margin-top: 8px;
-    height: 30px;
-}
-.main-menu>div{
-    position: relative;
-    float: left;
-    width: 105px;
-    height: 100%;
-    line-height: 28px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+.main-top>div>span{
+    height: 76px;
+    width: 112px;
+    line-height: 76px;
     text-align: center;
-    margin-right: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.main-menu>div:first-child{margin-left: 9px}
-.main-menu>div:last-child{margin-right: 0}
-.main-menu>div:hover{border: 1px solid #4e80a2;background: #bbd9ef}
-.main-menu>div .main-menu-options{display: none}
-.main-menu>div:hover .main-menu-options{display: block}
-/* 顶部菜单栏子选项样式 */
-.main-menu-options{
-    position: absolute;
-    top: 29px;left: 0;
-    text-align: left;
-    padding: 13px 0;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    box-shadow:2px 2px 2px rgba(0,0,0,.28);
-    background: #fff;
-}
-.main-menu-options>div{
-    height: 30px;
-    line-height: 30px;
+    float: left;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-}
-.main-menu-options>div:hover{
-    background: #bbd9ef;
-}
-.main-menu-options>div>div{
-    margin: 0 20px;
-    padding-left: 13px;
-    white-space: nowrap;
-}
-/* 顶部导航栏样式 */
-.main-nav{
-    margin: 3px 0 0 8px;
-    height: 35px;
-}
-.main-nav>div{
-    float: left;
-    width: 122px;
-    height: 35px;
-    line-height: 35px;
-    margin-right: 10px;
-    background: url(img/main-nav.png);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bolder;
     cursor: default;
 }
-.main-nav>div:last-child{margin-right: 0}
-.main-nav>div>div{
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    padding-left: 59px;
-}
-.main-nav>div>.main-clothes:nth-child(1){
-    background: url(img/main-clothes.png) no-repeat 27px center;
-}
-.main-nav>div>.main-clothes:nth-child(2){background: url(img/main-clothes.png) no-repeat 27px center}
-.main-nav>div>.main-sale-card{background: url(img/main-sale-card.png) no-repeat 27px center}
-.main-nav>div>.main-recharge{background: url(img/main-recharge.png) no-repeat 27px center}
-.main-nav>div>.main-income{background: url(img/main-income.png) no-repeat 11px center;padding-left: 36px}
-.main-nav>div>.main-quit{background: url(img/main-quit.png) no-repeat 27px center}
-/* 左侧菜单栏样式 */
-.main-task-bar{
-    height: 57px;
-    background: url(img/main-task-bar.png) no-repeat 11px 11px;
-}
-.main-left-menu{
-    margin-left: 13px;
-    margin-bottom: 10px;
-}
-.main-left-menu>div>div{position: relative}
-.main-left-menu>div>div>i{
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 16px;
-    min-width: 16px;
-    line-height: 16px;
-    font-style: normal;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-    border-radius: 50px;
-    background: red;
-}
-.main-left-menu>div:first-child{
-    font-weight: bold;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #4b92b7;
-    margin-bottom: 6px;
-}
-.main-left-menu>div:last-child{
-    margin-left: 10px;
-}
-.main-left-menu.main-left-menu-hidd>div:last-child{
-    display: none;
-}
-.main-left-menu>div:last-child>div{
-    width: 162px;
-    height: 30px;
-    line-height: 30px;
-    padding-left: 32px;
-    color: #064798;
-    background-repeat: no-repeat;
-    background-position: 3px center;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    cursor: pointer;
-}
-.main-left-menu>div:last-child>.main-clothes:nth-child(1){
-    background-image: url(img/main_clothes_online.png);
-    background-size:20px 19px;
-}
-.main-left-menu>div:last-child>.main-clothes:nth-child(2){background-image: url(img/main-clothes.png)}
-.main-left-menu>div:last-child>.main-take{background-image: url(img/main-take.png)}
-.main-left-menu>div:last-child>.main-put-on{background-image: url(img/main-put-on.png)}
-.main-left-menu>div:last-child>.main-sell-goods{background-image: url(img/main-sell-goods.png)}
-.main-left-menu>div:last-child>.main-sale-card{background-image: url(img/main-sale-card.png)}
-.main-left-menu>div:last-child>.main-recharge{background-image: url(img/main-recharge.png)}
-.main-left-menu>div:last-child>.main-clothes-search{background-image: url(img/main-clothes-search.png)}
-.main-left-menu>div:last-child>.main-member-search{background-image: url(img/main-member-search.png)}
-.main-left-menu>div:last-child>.main-income-today{background-image: url(img/main-income-today.png)}
-.main-left-menu>div:last-child>.main-open-case{background-image: url(img/main-open-case.png)}
-.main-left-menu>div:last-child>.main-laundry{background-image: url(img/main-laundry.png)}
-.main-left-menu>div:last-child>.main-factory{background-image: url(img/main-factory.png)}
-.main-left-menu>div:last-child>.main-clearn{background-image: url(img/main-clearn.png)}
-.main-left-menu>div:last-child>.main-hot{background-image: url(img/main-hot.png)}
-.main-left-menu>div:last-child>.main-ironing{background-image: url(img/main-ironing.png)}
-.main-left-menu>div:last-child>.main-quality{background-image: url(img/main-quality.png)}
-.main-left-menu>div:last-child>.main-outfactory{background-image: url(img/main-outfactory.png)}
-
-.main-left-menu>div:last-child>div:hover{
-    background-color: #c3e3f9;
-    border: 1px solid #6995c1;
-}
+.main-top>div>span[data-checked='1']{border-bottom: 5px solid #00e7fe;background-color: #34b9d2;}
 .main-container{
     height: 100%;
     position: relative;
-    background-image: url(img/main-container.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     overflow: auto;
     user-select:text;
     -webkit-user-select:text;
     -moz-user-select:text;
     -ms-user-select:text;
-}
-/* 3.1增加样式 左菜单 */
-.main-left-menu div:first-child{
-    background:url(img/main-under.png) no-repeat;
-    background-position-x:150px;
-    background-position-y:center;
 }
 

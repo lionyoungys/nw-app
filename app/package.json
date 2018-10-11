@@ -17,8 +17,8 @@
   },
   "mainWindow": {
     "icon": "img/icon.png",
-    "min_width": 1024,
-    "min_height": 737,
+    "min_width": 800,
+    "min_height": 568,
     "frame": false,
     "show": false
   }

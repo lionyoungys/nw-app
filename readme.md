@@ -25,9 +25,9 @@ app/vendor/KeyCode.js    -->    输入法强制转换为英文函数库
 app/node_modules         -->    node模块文件夹
 
 src                      -->    开发目录
+src/Menus                -->    菜单选项目录
 src/Api.js               -->    api请求封装框架
 src/Router.js            -->    路由配置
-src/Menu.js              -->    菜单配置
 src/Event.js             -->    事件注册配置
 src/login.js             -->    登录界面开发文件
 src/login.css            -->    登录界面样式文件

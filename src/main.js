@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
-import {topMenu, nav, leftMenu} from './Menu';
+import Menu from './Men';
 import './Api';
 import './Event';
 import './main.css';
@@ -19,8 +19,11 @@ class Main extends Component {
             min:false,
             isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
-            param:null,   //视图路由携带参数sss           
+            param:null,   //视图路由携带参数
+            MenuIndex:0,    //当前选中的菜单id 
+
         }
+        this.handleClick = this.handleClick.bind(this);
         this.changeView = this.changeView.bind(this);    //界面跳转方法  
         this.leftMenuReload = this.leftMenuReload.bind(this);    //左侧菜单重新加载      
     }
@@ -44,6 +47,8 @@ class Main extends Component {
         this.setState({view:null});
         tool.ui.error({msg:'当前界面出了些状况，暂时无法使用！', callback:close => close()});
     }
+
+    handleClick(e) {this.setState({MenuIndex:e.target.dataset.index});}
 
     //路由跳转方法
     changeView(e) {
@@ -71,9 +76,12 @@ class Main extends Component {
 
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
+        let tabs = Menu.map((obj, index) => 
+            <span key={obj.id} data-index={index} data-checked={this.state.MenuIndex == index ? '1' : ''} onClick={this.handleClick}>{obj.value}</span>
+        );
         return (
             <div id='main'>
-                {/* 界面顶部菜单栏 */}
+                {/* 界面顶部标题栏 */}
                 <div className='main-title'>
                     &nbsp;<i className='e-icon-logo'></i> {'mname'.getData()}
                     <div>
@@ -83,14 +91,8 @@ class Main extends Component {
                         <span onClick={() => EventApi.quit()}><i className="fas fa-times"></i></span>
                     </div>
                 </div>
-                <div className='main-top'>
-                    <div>
-                        <MainTopMenu changeView={this.changeView}/>
-                        <MainNav changeView={this.changeView}/>
-                    </div>
-                </div>
-                {/* 界面左侧菜单栏 */}
-                <MainLeftMenu ref={menu => this.MainLeftMenu = menu} changeView={this.changeView}/>
+                {/* 界面顶部菜单栏 */}
+                <div className='main-top'><div>{tabs}</div></div>
                 <div className='main-container'>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} leftMenuReload={this.leftMenuReload}/>}
                 </div>
@@ -100,7 +102,7 @@ class Main extends Component {
 }  
 
 //顶部菜单栏组件
-class MainTopMenu extends Component {
+/*class MainTopMenu extends Component {
     constructor(props) {
         super(props);
     }
@@ -252,6 +254,6 @@ class MainLeftMenu extends Component {
             </div>
         );
     }
-}
+}*/
 
 ReactDOM.render(<Main/>, document.getElementById('root'));
