@@ -1,54 +1,37 @@
-.clothes-user{
-    height: 48px;
-    line-height: 48px;
-    border: 1px solid #8db2e3;
-    margin: 14px 12px;
-    color: #063781;
-    padding-left: 18px;
-    font-size: 12px;
-    background: #eef4fb;
-}
-.clothes-user>input{margin-right: 18px}
-.clothes-user b,.clothes-footer-left b,.clothes-header b{
-    font-size: 12px;
-    color: red;
-}
+.clothes-user{padding: 28px 20px;}
+.clothes-user sup{color: red}
+.clothes-user>div{padding-bottom: 12px}
 .clothes-header{
     display: -webkit-flex;
     display: flex;
-    margin: 0 12px;
-    font-weight: bold;
-    color: #fff;
-    border-left: 1px solid #acc6de;
-    border-right: 1px solid #acc6de;
-    background: #89b0d4;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    background-color: #f5f8fa;
+    padding: 0 20px;
 }
 
 .clothes-header>div, .clothes-body>div>div{
-    border-right: 1px solid #acc6de;
-    min-height: 26px;
-    line-height: 26px;
+    min-height: 40px;
     text-align: center;
-    font-size: 12px;
     word-break: break-all;
     cursor: default;
 }
-.clothes-header>:last-child, .clothes-body>div>:last-child{border-right: none;width: 72px}
+.clothes-header>:last-child, .clothes-body>div>:last-child{width: 72px}
 .clothes-header>:nth-child(1), .clothes-body>div>:nth-child(1){width: 92px}
 .clothes-header>:nth-child(2), .clothes-body>div>:nth-child(2){width: 164px}
 .clothes-header>:nth-child(3), .clothes-body>div>:nth-child(3){width: 76px}
-.clothes-header>:nth-child(4), .clothes-body>div>:nth-child(4){width: 76px}
-.clothes-header>:nth-child(5), .clothes-body>div>:nth-child(5){width: 76px}
-.clothes-header>:nth-child(6), .clothes-body>div>:nth-child(6){width: 78px}
-.clothes-header>:nth-child(7), .clothes-body>div>:nth-child(7){width: 74px}
-.clothes-header>:nth-child(8), .clothes-body>div>:nth-child(8){width: 70px}
-.clothes-header>:nth-child(9), .clothes-body>div>:nth-child(9){width: 70px}
-.clothes-body>div>:nth-child(10){cursor: default;color: #2152ed}
+/* .clothes-header>:nth-child(4), .clothes-body>div>:nth-child(4){width: 76px} */
+.clothes-header>:nth-child(4), .clothes-body>div>:nth-child(5){width: 76px}
+.clothes-header>:nth-child(5), .clothes-body>div>:nth-child(6){width: 78px}
+.clothes-header>:nth-child(6), .clothes-body>div>:nth-child(7){width: 74px}
+.clothes-header>:nth-child(7), .clothes-body>div>:nth-child(8){width: 70px}
+.clothes-header>:nth-child(8), .clothes-body>div>:nth-child(9){width: 70px}
+.clothes-body>div>:nth-child(9){cursor: default;color: #3fbfdc}
 .clothes-body{
-    margin: 0 12px;
+    padding: 0 20px;
     max-height: 328px;
-    border: 1px solid #acc6de;
-    border-top: none;
+    color: #a8a8a8;
     overflow: auto;
 }
 .clothes-body>div{display: -webkit-flex;display: flex}

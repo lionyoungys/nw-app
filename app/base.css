@@ -142,12 +142,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-color: #fff;
 }
 .ui-window-head>i{
-    height: 16px;
-    width: 16px;
+    height: 14px;
+    padding-left: 20px;
     background-image: url(images/ui-window-back.png);
+    background-repeat: no-repeat;
+    color: #868785;
+    font-size: 14px;
     position: absolute;
-    top: 10px;
+    top: 11px;
     left: 12px;
+    font-style: normal;
+    line-height: 1;
 }
 .ui-window-body{
     height: 100%;

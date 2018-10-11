@@ -270,10 +270,7 @@
         close.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, 'close')}
         var msg = ''
         ,   values = object.button || [];
-        console.log(object.button);
-        console.log(object.button || []);
         if ('error' === name) {
-            console.log(values[0] || '返回');
             btn.innerText = values[0] || '返回';
             btnArea.appendChild(btn);
             btn.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, values[0] || '返回')}
