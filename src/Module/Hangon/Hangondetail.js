@@ -86,7 +86,7 @@ export default class extends Component {
             id:this.props.data.id,   
             put_id:-1==this.state.clothindex?"":this.state.clothnums[this.state.clothindex].id
         }
-        api.post('putOn',
+        api.post('putyes',
             puton, (res, ver) => {
                 if (ver) {
                     let printer_name = 'glue_tag_printer'.getData();

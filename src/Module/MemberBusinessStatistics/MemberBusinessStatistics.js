@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import './MemberBusinessStatistics.css';
 import Page from '../../UI/Page'
-import { retry } from 'rxjs/operators';
+//import { retry } from 'rxjs/operators';
 
 export default class extends Component {
     constructor(props) {

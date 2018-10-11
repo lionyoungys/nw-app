@@ -117,7 +117,7 @@ export default class extends Component {
         )
         return ( 
         <div>
-            <div className="waiting">
+            <div className="waiting" id="forshipping1">
               <table className="waiting-list" id="forshipping">
                 <thead>
                    <tr>

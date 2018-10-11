@@ -324,15 +324,14 @@
     font-size: 14px;
 }
 /* 给表格加选中样式 */
+ table tbody tr:nth-child(even):hover{
+    background:#c3eaf2;
+    cursor: pointer;
+} 
 table tbody tr:nth-child(odd):hover{
-    background:#cce8ff;
+    background:#c3eaf2;
     cursor: pointer;
-}
-table tbody tr:nth-child(even):hover{
-    background:#cce8ff;
-    cursor: pointer;
-}
-
+} 
 #no-data{
     display: block;
     background: url(./img/no-data.png) no-repeat;
@@ -343,7 +342,7 @@ table tbody tr:nth-child(even):hover{
     color: #333;
     font-size: 12px;
     line-height: 22px;
-    margin-left:368px;
+    margin-left:297px;
     margin-top:105px;
     margin-bottom: 40px;
     background-position-x: 27px;
@@ -404,21 +403,22 @@ table tbody tr td{
 
 /* 线上tab组件 */
 .ui-tab-blue{  
-    width:872px;
-    height:30px;
-    max-height:30px;
+    width:800px;
+    height:37px;
+    max-height:37px;
     margin:20px auto;
-    border-bottom:2px solid #5e9dfa;
+    border-bottom:2px solid #3fc0db;
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;  
     position: relative;   
+    /* margin-top:88px; */
 }
 .ui-tab-blue span{
     font-size: 12px;
     margin-left: 6px;
-    height: 23px;
-    line-height: 23px;
+    height:30px;
+    line-height: 30px;
     padding:0 10px;
     background: #fff;
     border:1px solid #d8dce5;
@@ -434,7 +434,7 @@ table tbody tr td{
     /* padding-bottom:1px; */
     color: #fff;
     font-weight: bold;
-    background: #5f9dfa;
+    background: #3fc0db;
 }
 .ui-tab-blue input.findonline{
     width:182px;
@@ -447,6 +447,7 @@ table tbody tr td{
     right:123px;
     color:#000;   
     text-indent:4px; 
+    top:5px;
 }
 .ui-tab-blue button.e-btn{
     position:absolute;

@@ -169,7 +169,7 @@ export default class extends Component {
           <td>{item.work.map((item,index)=><span>{item.clothing_name}</span>)}</td>
           <td>{item.work.map((item,index)=><span>{item.raw_price}</span>)}</td>
           {/* <td>{item.work.map((item,index)=><span >{item.status==3?'清洗中':item.status==4?'清洗完成':item.status==5?'已撤单':'已完成'}</span>)} */}
-          <td>{item.work.map((item,index)=><span >{item.status}</span>)}
+          <td>{item.work.map((item,index)=><span >{item.sta}</span>)}
           </td>
           <td><span>保值费:{item.keep_price}<br/>工艺加价:{item.craft_price}<br/>运费:{item.freight_price}</span></td>
           <td>合计:{item.total}元<br/>共:{item.count}件</td>
