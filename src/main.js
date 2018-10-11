@@ -84,8 +84,10 @@ class Main extends Component {
                     </div>
                 </div>
                 <div className='main-top'>
-                    <MainTopMenu changeView={this.changeView}/>
-                    <MainNav changeView={this.changeView}/>
+                    <div>
+                        <MainTopMenu changeView={this.changeView}/>
+                        <MainNav changeView={this.changeView}/>
+                    </div>
                 </div>
                 {/* 界面左侧菜单栏 */}
                 <MainLeftMenu ref={menu => this.MainLeftMenu = menu} changeView={this.changeView}/>
