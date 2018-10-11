@@ -108,7 +108,13 @@ class Container extends Component {
     render() {
         console.log(this.props.menus);
         let html = this.props.menus.map(obj => 
-            <span key={obj.value} data-view={obj.view} data-event={obj.event} onClick={this.props.changeView}>{obj.value}</span>
+            <span
+                key={obj.value} 
+                data-view={obj.view} 
+                data-event={obj.event} 
+                onClick={this.props.changeView} 
+                className={obj.className ? 'main-menus-' + obj.className : null}
+            >{obj.value}</span>
         );
         return (
             <div className='main-container'>

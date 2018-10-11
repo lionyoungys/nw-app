@@ -106,11 +106,20 @@ html, body, #root, #main{width: 100%;height: 100%}
     text-align: center;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 78px;
-    background-color: #35bfc5;
+    padding-top: 80px;
     border-radius: 8px;
     margin: 0 46px 46px 0;
     cursor: default;
+    background-repeat: no-repeat;
 }
 .main-menus>span:nth-child(4n + 0) {margin-right: 0}
-
+/* 菜单项目样式 */
+.main-menus-default{background-color: #35bfc5;}
+.main-menus-clothes{background-color: #48baf3;background-image: url(images/main-menus-clothes.png);background-position: center 24px;}
+.main-menus-online{background-color: #f17878;background-image: url(images/main-menus-online.png);background-position: center 24px;}
+.main-menus-puton{background-color: #feb446;background-image: url(images/main-menus-puton.png);background-position: center 24px;}
+.main-menus-take{background-color: #32b8f0;background-image: url(images/main-menus-take.png);background-position: center 24px;}
+.main-menus-goods{background-color: #40cbab;background-image: url(images/main-menus-goods.png);background-position: center 24px;}
+.main-menus-card{background-color: #31b9f0;background-image: url(images/main-menus-card.png);background-position: center 24px;}
+.main-menus-recharge{background-color: #23cb76;background-image: url(images/main-menus-recharge.png);background-position: center 24px;}
+.main-menus-cancel{background-color: #32bdb3;background-image: url(images/main-menus-cancel.png);background-position: center 24px;}
