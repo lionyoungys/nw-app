@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import '../../../UI/bothpages.css'  //公共样式
 import '../StaffManagement.css';
 import Window from '../../../UI/Window';
-import {topMenu} from '../../../Menu.js';
+import {topMenu} from '../../../Menus.js';
 export default class extends Component {   
     constructor(props) {
         super(props);   

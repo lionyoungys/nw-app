@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import router from './Router';
-import Menu from './Men';
+import Menus from './Menus';
 import './Api';
 import './Event';
 import './main.css';
@@ -44,7 +44,7 @@ class Main extends Component {
 
     componentDidCatch(error) {
         console.log(error);
-        this.setState({view:null});
+        this.setState({view:null, MenuIndex:0});
         tool.ui.error({msg:'当前界面出了些状况，暂时无法使用！', callback:close => close()});
     }
 
@@ -76,8 +76,8 @@ class Main extends Component {
 
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
-        let tabs = Menu.map((obj, index) => 
-            <span key={obj.id} data-index={index} data-checked={this.state.MenuIndex == index ? '1' : ''} onClick={this.handleClick}>{obj.value}</span>
+        let tabs = Menus.map((obj, index) => 
+            <span key={obj.key} data-index={index} data-checked={this.state.MenuIndex == index ? '1' : ''} onClick={this.handleClick}>{obj.value}</span>
         );
         return (
             <div id='main'>
@@ -93,14 +93,31 @@ class Main extends Component {
                 </div>
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'><div>{tabs}</div></div>
-                <div className='main-container'>
+                <Container menus={Menus[this.state.MenuIndex].options} changeView={this.changeView}>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} leftMenuReload={this.leftMenuReload}/>}
-                </div>
+                </Container>
             </div>
         );
     }
 }  
+class Container extends Component {
+    constructor(props) {
+        super(props);
+    }
 
+    render() {
+        console.log(this.props.menus);
+        let html = this.props.menus.map(obj => 
+            <span key={obj.value} data-view={obj.view} data-event={obj.event} onClick={this.props.changeView}>{obj.value}</span>
+        );
+        return (
+            <div className='main-container'>
+                <div className='main-menus'>{html}</div>
+                {this.props.children}
+            </div>
+        );
+    }
+}
 //顶部菜单栏组件
 /*class MainTopMenu extends Component {
     constructor(props) {

@@ -1,8 +1,8 @@
 //顶部菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
-const topMenu = [
+const Menus = [
     {
         value:'前台业务', 
-        id :1,
+        key :'Frontend',
         options:[
             {value:'线上订单', view:'onlineorder'},
             {value:'收衣', view:'clothes', id: 7},
@@ -19,8 +19,22 @@ const topMenu = [
         ]
     },
     {
+        value:'洗护管理', 
+        key: 'CleaningManagement',
+        options:[
+            {value:'送洗',class:'main-laundry',view:'laundry', id: 111},
+            {value:'清洗',class:'main-clearn',view:'clear', id: 100},
+            {value:'烘干',class:'main-hot',view:'dry', id: 102},
+            {value:'熨烫',class:'main-ironing',view:'ironing', id: 104},
+            {value:'质检',class:'main-quality',view:'check', id: 106},
+            {value:'入厂',class:'main-factory',view:'Infactory', id: 112},
+            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 114},
+            {value:'上挂',class:'main-put-on',view:'hangon'},
+        ]
+    },
+    {
         value:'信息查询', 
-        id:2,
+        key:'InfoQuery',
         options:[
             {value:'格架查询', view:'lattice_query', id: 14},
             {value:'衣物查询', view:'clothes_query', id: 15},
@@ -33,7 +47,7 @@ const topMenu = [
             {value:'消费统计', view:'consum_ption_statistics', id:22},     
         ]
     },
-    {
+    /*{
         value:'客户管理', 
         id: 3,
         options:[
@@ -50,16 +64,16 @@ const topMenu = [
             // { value: '换卡', view:'exchange_card'}, 
             { value:'客户信息查询', view:'customer_query', id: 29},            
         ]
-    },
+    },*/
     {
         value:'信息统计', 
-        id: 4,
+        key: 'InfoStatistics',
         options:[
             {value:'撤单统计', view:'revoke_data', id: 30},
             // {value:'赔付统计', view:'payout_stats', id: 31}
         ]
     },
-    {
+    /*{
         value:'财务统计', 
         id: 5,
         options:[
@@ -78,22 +92,22 @@ const topMenu = [
             {value: '微信、支付宝对账', view:'alipayWechat_checking', id: 42},
         ]
     },
-    // {
-    //     value:'店铺管理', 
-    //     options:[
-    //         {value:'门店信息', view:null},
-    //         {value:'我的网店', view:null},
-    //         {value:'商品与分类', view:null},
-    //         {value:'员工管理', view:'staff_management'},
-    //         {value:'卡券中心', view:null},
-    //         {value:'优惠活动', view:null},
-    //         {value:'密码与安全', view:null},
-    //         {value:'数据导入', view:'data'}
-    //     ]
-    // },
+    {
+        value:'店铺管理', 
+        options:[
+            {value:'门店信息', view:null},
+            {value:'我的网店', view:null},
+            {value:'商品与分类', view:null},
+            {value:'员工管理', view:'staff_management'},
+            {value:'卡券中心', view:null},
+            {value:'优惠活动', view:null},
+            {value:'密码与安全', view:null},
+            {value:'数据导入', view:'data'}
+        ]
+    },*/
     {
         value:'设置', 
-        id: 6,
+        key: 'Setting',
         options:[
             {value:'门店管理', view:'store_management', id: 43},
             {value:'员工与权限', view:'staff_management', id: 44},
@@ -171,22 +185,22 @@ if (1 != is_root) {
     } catch (e) {
         authArr = [];
     }
-    var topMenuLen = topMenu.length
+    var topMenuLen = Menus.length
     ,   navLen = nav.length
     ,   leftMenuLen = leftMenu.length
     ,   i
     ,   tempLen
     ,   j;
     for (i = 0;i < topMenuLen;++i) {
-        if ('undefined' !== typeof topMenu[i].id && -1 === topMenu[i].id.inArray(authArr)) {
-            topMenu.splice(i, 1);
+        if ('undefined' !== typeof Menus[i].id && -1 === Menus[i].id.inArray(authArr)) {
+            Menus.splice(i, 1);
             --i;
             --topMenuLen;
         } else {
-            tempLen = topMenu[i].options.length;
+            tempLen = Menus[i].options.length;
             for (j = 0;j < tempLen;++j) {
-                if ('undefined' !== typeof topMenu[i].options[j].id && -1 === topMenu[i].options[j].id.inArray(authArr)) {
-                    topMenu[i].options.splice(j, 1);
+                if ('undefined' !== typeof Menus[i].options[j].id && -1 === Menus[i].options[j].id.inArray(authArr)) {
+                    Menus[i].options.splice(j, 1);
                     --j;
                     --tempLen;
                 }
@@ -211,4 +225,5 @@ if (1 != is_root) {
         }
     }
 }
-export {topMenu, nav, leftMenu};
+export default Menus;
+//export {Menus, nav, leftMenu};
