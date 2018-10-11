@@ -49,7 +49,7 @@ export default class extends React.Component {
                 <button type='button' className='e-btn' onClick={this.handleCLickForWarn}>警告弹窗</button>&nbsp;
                 <button type='button' className='e-btn' disabled>样式禁用</button>&nbsp;
                 <button type='button' className='e-btn-b' onClick={this.handleClickForError}>失败弹窗</button><br/>
-                <button type='button' className='e-btn' onClick={() => this.setState({dish:true})}>盘子里的菜</button><br/>
+                <button type='button' className='e-btn larger' onClick={() => this.setState({dish:true})}>盘子里的菜</button><br/>
                 <label><input type='checkbox' className='e-checkbox' value='111' onClick={e => console.log(e.target)}/> 你好</label><br/>
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>

@@ -35,8 +35,8 @@ body{font-size: 14px}
 .e-btn{
     padding: 0;
     margin: 0;
-    width: 80px;
-    height: 35px;
+    width: 62px;
+    height: 28px;
     text-align: center;
     background-color: #3fc0db;
     font-size: 14px;
@@ -53,8 +53,8 @@ body{font-size: 14px}
 .e-btn-b{
     padding: 0;
     margin: 0;
-    width: 80px;
-    height: 35px;
+    width: 62px;
+    height: 28px;
     text-align: center;
     background-color: #fff;
     font-size: 14px;
@@ -66,6 +66,7 @@ body{font-size: 14px}
     -webkit-box-sizing: border-box;
     outline: none;
 }
+.e-btn.larger,.e-btn-b.larger{width: 82px}
 .e-btn-b:active{color: #3fc0db;border: 1px solid #3fc0db}
 /* 复选框、单选框样式:该样式仅适用于Chrome、Safari、iOS Safari、Android Browser下，其他浏览器会出现兼容问题 */
 .e-checkbox, .e-radio{
@@ -89,9 +90,9 @@ body{font-size: 14px}
 .e-radio:checked{background-image: url(images/e-radio-checked.png);border: none}
 /* 输入框样式 */
 .e-input{
-    width: 186px;
-    height: 35px;
-    line-height: 35px;
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     background-color: #fff;
