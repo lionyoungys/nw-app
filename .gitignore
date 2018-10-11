@@ -12,3 +12,4 @@ app/app.js
 *.sql
 *.log
 *.zip
+node_modules_copy

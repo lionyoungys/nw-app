@@ -4,6 +4,7 @@ pc.sql                   -->    热更新数据表
 shell.txt                -->    node扩展所需的脚本命令
 script-src               -->    扩展文件源码
 print                    -->    打印界面文件夹
+node_modules_copy        -->    将目录下的模块文件夹复制到node_modules目录下
 
 app                      -->    运行目录
 app/config.js            -->    项目配置常量
