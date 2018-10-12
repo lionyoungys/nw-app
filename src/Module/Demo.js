@@ -53,6 +53,7 @@ export default class extends React.Component {
                 <label><input type='checkbox' className='e-checkbox' value='111' onClick={e => console.log(e.target)}/> 你好</label><br/>
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
+                <input type='date' className='e-date'/><br/>
                 <input type='text' className='e-input' placeholder='输入内容'/>&emsp;<input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => this.setState({selectVal:obj.value})}/>
                 &emsp;

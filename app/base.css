@@ -312,7 +312,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-shadow: 1px 1px 1px #d9d9d9;
     overflow-y: auto;
     overflow-x:hidden;
-    height:200px;
+    max-height:200px;
     overflow-y:auto;
 }
 .ui-select:hover>section>div>div{
@@ -475,6 +475,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
     background-position: 126px center;
+    color: #646766;
 }
 .e-date:focus{border: 1px solid #3fc0db}
 .e-date::-webkit-inner-spin-button, 
