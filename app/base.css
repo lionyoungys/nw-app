@@ -67,6 +67,7 @@ body{font-size: 14px}
     outline: none;
 }
 .e-btn.larger,.e-btn-b.larger{width: 82px}
+.e-btn.mini, .e-btn-b.mini{width: 56px;height: 20px;font-size: 12px;}
 .e-btn-b:active{color: #3fc0db;border: 1px solid #3fc0db}
 /* 复选框、单选框样式:该样式仅适用于Chrome、Safari、iOS Safari、Android Browser下，其他浏览器会出现兼容问题 */
 .e-checkbox, .e-radio{
@@ -153,6 +154,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     left: 12px;
     font-style: normal;
     line-height: 1;
+    cursor: pointer;
 }
 .ui-window-body{
     height: 100%;
@@ -298,6 +300,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     left: 0;top: 0;
     width: 100%;
     padding-top: 48px;
+    z-index:9;
 }
 .ui-select:hover>section>div{
     width: 100%;
@@ -307,6 +310,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     -moz-box-shadow: 1px 1px 1px #d9d9d9;
     box-shadow: 1px 1px 1px #d9d9d9;
+    overflow-y: auto;
+    overflow-x:hidden;
+    height:200px;
+    overflow-y:auto;
 }
 .ui-select:hover>section>div>div{
     height: 28px;

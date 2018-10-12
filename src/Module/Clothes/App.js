@@ -652,15 +652,18 @@ export default class extends Component {
                     <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
                     <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
                 </div>
-                <div className='clothes-body'>{html}</div>
-                
-                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
+                <div className='clothes-container'>
+                    <div>
+                        <div className='clothes-body'>{html}</div>
+                        <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
+                    </div>
+                </div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>
                             <div>总件数：{this.state.data.length}件</div>
                             <div>总金额：&yen;{total.toFixed(2)}</div>
-                            <div style={{fontSize:'14px',color:'red',minWidth:'120px'}}>折后价：&yen;{amount.toFixed(2)}</div>
+                            <div style={{color:'red',minWidth:'120px'}}>折后价：&yen;{amount.toFixed(2)}</div>
                             <div>已消费总额：&yen;{this.state.consume}</div>
                         </div>
                         <div>
@@ -671,13 +674,13 @@ export default class extends Component {
                     </div>
                     <div className='clothes-footer-right'>
                         <div>
-                            <button type='button' className='e-btn middle high' onClick={this.cost}>收银</button>
-                            <button type='button' className='e-btn middle high' data-take='take' onClick={this.takeCost}>取衣付款</button>
+                            <button type='button' className='e-btn larger' onClick={this.cost}>收银</button>
+                            <button type='button' className='e-btn larger' data-take='take' onClick={this.takeCost}>取衣付款</button>
                         </div>
                         <div>
-                            <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
-                            <button type='button' className='e-btn' onClick={() => this.setState({show:17})}>充值</button>
-                            <button type='button' className='e-btn' onClick={() => this.setState({show:13})}>卡扣款</button>
+                            <button type='button' className='e-btn-b mini' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
+                            <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:17})}>充值</button>
+                            <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:13})}>卡扣款</button>
                         </div>
                     </div>
                 </div>

@@ -16,17 +16,17 @@
     width:287px;
     height:318px;
     float:left;
-    border:1px solid #8db2e3;
-    margin:11px 0 0 11px;
-    background:#eef4fb;
+    border:1px solid #d8dce7;
+    margin:34px 0 0 65px;
+    background:#f6f7fb;
 }
 .Hangon-left-title{
     width:98px;
     float: left;
-    border-right:1px solid #8db2e3;
+    /* border-right:1px solid #8db2e3; */
     max-height:318px;
     overflow-y:auto;
-    border-bottom: 1px solid #8db2e3;
+    /* border-bottom: 1px solid #8db2e3; */
 }
 .Hangon-left-title::-webkit-scrollbar{
   width: 0px;
@@ -34,13 +34,13 @@
 .Hangon-left-title span{
     display:block;
     width:98px;
-    height:28px;
-    line-height:28px;
-    color:#063781;
+    height:35px;
+    line-height:35px;
+    color:#6f7279;
     font-weight:bold;
     font-size:12px;
     text-indent:14px;
-    border-bottom:1px solid #8db2e3;
+    /* border-bottom:1px solid #8db2e3; */
 }
 .Hangon-left-title span:last-child{border-bottom:none;}
 .Hangon-left-count{
@@ -56,45 +56,43 @@
 .Hangon-left-count span{
     display:block;
     width:188px;
-    height:28px;
-    line-height:28px;
-    color:#063781;
+    height:35px;
+    line-height:35px;
+    color:#a4a5a7;
     /* font-weight:bold; */
     font-size:12px;
     text-indent:14px;
-    border-bottom:1px solid #8db2e3;
+    /* border-bottom:1px solid #8db2e3; */
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
-.Hangon-left-count span:nth-child(10){
+.Hangon-left-count span:nth-child(8){
     color:#f00;
 }
 .Hangon-right{
-    height:256px;
+    height:318px;
     width:242px;
     float:right;
-    margin:11px 11px 0 0;
-    margin-left:11px 0 0 11px;
-    background:#eef4fb;
-    padding-top:62px;
-    border:1px solid #8db2e3
+    margin:34px 65px 0 0;
+    background:#f6f7fb;
+    border:1px solid #d8dce7
 }
 .Hangon-right .Hangon-right-select{
-    width:207px;
+    width:318px;
     height:24px;
-    margin:18px auto 0;
+    margin:18px auto;
 }
 .Hangon-right .Hangon-right-select span{
-    display:block;
-    float:left;
-    height:22px;
-    line-height:22px;
-    color:#15458d;
-    font-size:12px;
-    text-align:right;
-    width:53px;
-    margin-right:5px;
+    height: 24px;
+    line-height: 24px;
+    color: #646567;
+    font-size: 12px;
+    text-align: right;
+    width: 53px;
+    margin-right: 5px;
+    display: block;
+    float: left;
 }
 .Hangon-right .Hangon-right-select .ui-select-define{
     width:146px;
@@ -111,23 +109,22 @@
 }
 
 .e-btn.Hangon-right-btn{
-
     margin-top: 100px;
     margin-left: 38px;
     margin-right: 0px;
 }
 .ui-table-base.hangon-sear-res-tab{
-
-    max-height: 530px
-
+    max-height: 360px
 }
 .ui-table-base.hangon-sear-res-tab tr td{
-
-   min-width: 124px; 
-   max-width: 124px;
-
+   min-width: 107px; 
+   max-width: 107px;
 }
 .ui-table-base.hangon-sear-res-tab tbody{
+    max-height:360px;
+}
 
-    max-height: 505px;
+/* 修改样式 */
+.ui-table-base.hangon-sear-res-tab{
+    border:none;
 }

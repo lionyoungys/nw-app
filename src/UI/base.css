@@ -29,8 +29,6 @@
 .ui-table.border tr:last-child{border-bottom: 1px solid #acc6de}
 .ui-table>thead>tr{background: #89b0d4;color: #fff;font-weight: bold}
 
-
-
 /* 附带下拉框的搜索框样式 */
 .ui-select-search{
     display: -webkit-inline-flex;
@@ -129,7 +127,6 @@
 }
 
 .ui-date:hover{
-
     background:#fff url(./img/hoverselect.png) no-repeat;
     background-size: 20px 24px;
     background-position: 101% -1px;
@@ -143,20 +140,19 @@
     margin:8px 13px;
     height: auto;
     /* 可自定义 */
-    width: 874px;
-    max-height: 400px;
-    border: 1px solid #8db2e3;
+    width:768px;
+    max-height:384px;
     overflow: hidden;
+    margin: 0 auto;
 }
 .ui-table-base tr td,.ui-table-base tr th{
-
     padding: 0;
     width: auto;
     height: 25px;
     line-height: 25px;
     font-size: 12px;
     text-align: center;
-    border-right: 1px solid #a4c0da;
+    /* border-right: 1px solid #a4c0da; */
     word-wrap: break-word;
     /* 根据具体情况设置最小宽度 */
     /* min-width: 91px; */
@@ -165,24 +161,25 @@
     border-right:none;
 }
 .ui-table-base thead tr{
-    background-color: #89b0d4;
-    color: white;
+    background-color: #f6f7fb;
+    color: #7a7a7c;
     /* font-weight: bold; */
+    display:inline-block;
 }
 .ui-table-base tbody tr{
-    background-color: #f0f5f9;
-    color: black;
+    color: #999;
+    display:inline-block;
 }
-.ui-table-base tbody tr:nth-child(odd){
-    background-color: #fff;
+.ui-table-base tbody tr:last-child{
+    border-bottom:1px solid #ebf0f6;
 }
 .ui-table-base tbody{
-
     display:inline-block;
     /* 可以自定义 （减去一行高度）*/
     max-height: 375px;
     overflow-x: hidden;
     overflow-y: auto;
+    width:768px;
 }
 /* .ui-table-base tbody::-webkit-scrollbar{
     width: 0;
@@ -201,11 +198,10 @@
     max-height: 200px;
 }
 .ui-table-base.auto-width tr td{
-
     min-width: 120px;
 }
-.ui-table-base.auto-width tbody{
 
+.ui-table-base.auto-width tbody{
     overflow-x: hidden;
     overflow-y: auto;
     /* 根据自己需要设置 */
@@ -213,7 +209,6 @@
 }
 /*整体宽度一定，每列宽度根据内容自由分配（不能滑动）*/
 .ui-table-base.adaption-width{
-
     display: table;
 }
 .ui-table-base.adaption-width thead{
@@ -225,7 +220,6 @@
     display: table-row-group;
 }
 .ui-table-base.adaption-width tr td{
-
     max-width: 80px;
 }
 /* 支付组件样式 */

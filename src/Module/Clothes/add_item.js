@@ -607,18 +607,22 @@ export default class extends Component {
         });
         return (
             <Window title='收衣' onClose={this.onClose}>
-                <div className='clothes-header add-item-online'>
+                <div className='clothes-header add-item-online' style={{top:'0'}}>
                     <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
                     <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
                 </div>
-                <div className='clothes-body'>{html}</div>
-                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
+                <div className='clothes-container' style={{paddingTop:'40px'}}>
+                    <div>
+                        <div className='clothes-body'>{html}</div>
+                        <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
+                    </div>
+                </div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>
                             <div>总件数：{this.state.data.length}件</div>
                             <div>总金额：&yen;{total.toFixed(2)}</div>
-                            <div style={{fontSize:'14px',color:'red'}}>折后价：&yen;{amount.toFixed(2)}</div>
+                            <div style={{color:'red'}}>折后价：&yen;{amount.toFixed(2)}</div>
                         </div>
                         <div>
                             <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
@@ -628,7 +632,7 @@ export default class extends Component {
                     </div>
                     <div className='clothes-footer-right'>
                         <div>                           
-                            <button type='button' className='e-btn middle high add-item-btn' data-take='take' onClick={this.cost} >提交订单</button>
+                            <button type='button' className='e-btn larger' data-take='take' onClick={this.cost} >提交订单</button>
                         </div>
                     </div>
                 </div>
