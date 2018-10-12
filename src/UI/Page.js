@@ -15,6 +15,7 @@ export default class extends React.Component {
 
     handleClick(e) {'function' === typeof this.props.callback && this.props.callback(Number(e.target.dataset.val))}
     handleChange(e) {
+        console.log(e.target.event);
         let value = e.target.value;
         if (!isNaN(value)) {
             let total = this.props.total || 0
@@ -31,11 +32,11 @@ export default class extends React.Component {
         return (
             <div className="ui-page">
                 <span>共{total}条</span>
+                <div><button type='button'>{fetch}条/页</button></div>
                 <i className='ui-page-previous' onClick={this.handleClick} data-val={1 == current ? 1 : (current - 1)}></i>
                 <i className='ui-page-current'>1</i>
                 <i>2</i>
                 <i className='ui-page-next' onClick={this.handleClick} data-val={last == current ? last : (current + 1)}></i>
-                <button type='button'>{fetch}条/页</button>
                 <span>跳至</span>
                 <input type='text' value={this.state.value} onChange={this.handleChange}/>
                 <span>页</span>

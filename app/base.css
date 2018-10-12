@@ -226,7 +226,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 /* 分页组件样式 */
 .ui-page{height: 28px;font-size: 14px;line-height: 28px;min-width: 400px}
-.ui-page>span, .ui-page>i, .ui-page>button, .ui-page>input{float: left;}
+.ui-page>span, .ui-page>div, .ui-page>i, .ui-page>button, .ui-page>input{float: left;}
 .ui-page>span{color: #000;font-size: 14px}
 .ui-page>span:first-of-type{font-size: 16px}
 .ui-page>i{
@@ -241,36 +241,37 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     margin-right: 8px;
     cursor: pointer;
 }
-.ui-page>i:first-of-type{margin-left: 8px}
-.ui-page>.ui-page-current{
-    background-color: #3fbfdc;
-    color: #fff;
-    font-weight: bolder;
-}
-.ui-page>button{
-    height: 28px;
-    background-color: #f2f5f5;
+.ui-page>.ui-page-current{font-weight: bolder}
+.ui-page>div{width: 80px;height: 28px;display: inline-block;position: relative;overflow: visible;margin: 0 8px;}
+.ui-page>div>button{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
     color: #000;
     outline: none;
-    border: none;
-    padding-left: 10px;
-    padding-right: 22px;
-    text-align: right;
-    margin: 0 8px;
-    background-image: url(images/ui-page-down.png);
-    background-repeat: no-repeat;
-    background-position: 64px center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #e6ebf5;
+    text-align: center;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
 }
+.ui-page>div:hover>button{border: 1px solid #3fbfdc}
 .ui-page>input{
     height: 28px;
     width: 50px;
     padding: 0;
     margin: 0 8px;
-    background-color: #f2f5f5;
+    background-color: #fff;
+    border: 1px solid #e6ebf5;
     outline: none;
-    border: none;
     text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 4px;
 }
+.ui-page>input:focus{border: 1px solid #3fbfdc}
 .ui-page-previous, .ui-page-next{
     background-image: url(images/ui-page-previous.png);
     background-repeat: no-repeat;

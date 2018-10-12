@@ -11,6 +11,8 @@ import './Event';
 import './main.css';
 import './UI/base.css';
 import './Elem/App.css';
+
+EventApi.win.showDevTools();
 class Main extends Component {
     constructor(props) {
         super(props);
