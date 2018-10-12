@@ -11,7 +11,7 @@
     height: 46px;
     line-height: 46px;
 }
-.recharge-first>:first-child{float: left;height: 100%}
+.recharge-first>:first-child{float: left;height: 100%;margin-top: 10px}
 .recharge-first>:last-child{float: right;height: 100%}
 
 .recharge-second{

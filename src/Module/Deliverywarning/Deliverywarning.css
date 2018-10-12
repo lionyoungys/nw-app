@@ -3,16 +3,16 @@
 /* 交期预警 */
 .Deliverywarning-title{
     width:768px;
-    height:58px;
+    height:55px;
     margin:0 auto 12px;
     border-bottom:1px solid #fafafa;
     text-align:right;
-    line-height: 59px;
+    line-height: 55px;
 }
 .Deliverywarning-title span{
     color:#000;
     font-size:14px;
-    line-height:58px;
+    line-height:55px;
     margin-left:16px;
 }
 .Deliverywarning-title .e-input.del-war-input{

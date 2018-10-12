@@ -1,10 +1,10 @@
 
 .out-title{
-    width:873px;
+    width:778px;
     height:56px;
-    border:1px solid #89b0d4;
-    background:#eef4fb;
-    margin:18px auto;
+    border:1px solid #d8dce5;
+    background:#f6f7fb;
+    margin:0px auto 9px;  
 }
 .out-left{
    float:left;
@@ -24,9 +24,10 @@
 
 
 .out-right{
-    float:right;
+    float:left;
     margin:14px 22px 0px;
     font-size:14px;
+    line-height: 31px;
 }
 .out-right .ui-select-define{
     width:195px;
