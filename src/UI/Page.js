@@ -15,10 +15,20 @@ export default class extends React.Component {
         this.defaultShow = 4;
     }
 
-    handleClick(e) {'function' === typeof this.props.callback && this.props.callback(Number(e.target.dataset.val))}
+    handleClick(e) {
+        if ('function' === typeof this.props.callback) {
+            let value = Number(e.target.dataset.val)
+            ,   current = isNaN(this.props.current) ? 1 : Number(this.props.current)
+            ,   total = this.props.total || 0
+            ,   fetch = this.props.fetch || 20
+            ,   last = Math.ceil(total / fetch);
+            current != value && value > 0 && last >= value && this.props.callback(value)
+        }
+    }
     handleChange(e) {
-        let value = Number(e.target.value);
+        let value = e.target.value;
         if (!isNaN(value)) {
+            value = Number(value);
             let current = isNaN(this.props.current) ? 1 : Number(this.props.current)
             ,   total = this.props.total || 0
             ,   fetch = this.props.fetch || 20
@@ -39,21 +49,20 @@ export default class extends React.Component {
         ,   last = Math.ceil(total / fetch)
         ,   pages = []
         ,   start = 1;
+        if (current > last) current = 1;
         if (show < 1) show = this.defaultShow;
-        //if (last < 2) return null;
         pages.push(
             <i 
-                className={2 > current ? 'ui-page-previous' : 'ui-page-previous disabled'} 
+                className={'ui-page-previous' + (2 > current ? ' disabled' : '')} 
                 onClick={this.handleClick}
                 data-val={current - 1}
             ></i>
         );
         if (last > show) {
-            let difference = (last - current)
-            ,   half = Math.floor(show / 2);
-            if (current > 6) {
-                start = (current - 5);    //计算第一页
-                if (difference < 4) start -= (4 - difference);
+            if (current <= show / 2 + 1) {
+                start = 1;
+            } else if (current > show / 2 + 1) {
+                start = current - show / 2;
             }
         }
         while(start <= last) {
@@ -70,7 +79,7 @@ export default class extends React.Component {
         }
         pages.push(
             <i 
-                className={last != current ? 'ui-page-next' : 'ui-page-next-d'} 
+                className={'ui-page-next' + (last > current ? '' : ' disabled')} 
                 onClick={this.handleClick}
                 data-val={current + 1}
             ></i>
