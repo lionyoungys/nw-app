@@ -1,28 +1,27 @@
 /* 撤单处理 */
 .Itsprocessing-title button{margin-left:5px;}
-.Itsprocessing-title {width:872px;margin-bottom:0}
+.Itsprocessing-title {width:768px;margin-bottom:0}
 .Itsprocessing-title .e-input.its-pro-input{
-
     width: 150px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
 .Itsprocessing-count{
-    width:872px;
-    height:337px;
-    margin:0 auto;
+    width: 768px;
+    height: 265px;
+    margin: 0 auto;
 }
 .Itsprocessing-count-left{
-    width:398px;
-    height:337px;
-    float:left;
+    width: 343px;
+    height: 265px;
+    float: left;
 }
 .Itsprocessing-count-title {
-    width:398px;
+    width:343px;
     height:35px;
     line-height:38px;
-    color:#15458d;
+    color:#000;
     font-size:14px;
 }
 .Itsprocessing-count-title span{
@@ -33,16 +32,16 @@
     color:#f00;
 }
 .Itsprocessing-count-take{
-    width:398px;
-    height:298px;
-    border:1px solid #8db2e3;
-    background:#eef4fb;
+    width: 343px;
+    height: 225px;
+    border: 1px solid #e6e7ec;
+    background: #eef4fb;
 }
 .Itsprocessing-count-take div{
     height:22px;
     line-height:22px;  
     padding-left:18px;
-    border:1px solid #8db2e3;
+    border:1px solid #e6e7ec;
     margin:6px 10px;
 }
 
@@ -51,7 +50,7 @@
     height:22px;
     line-height:22px; 
     padding-left:18px;
-    border:1px solid #8db2e3;
+    border:1px solid #e6e7ec;
     margin:6px 10px;
 }
 
@@ -62,11 +61,11 @@
 }
 
 .Itsprocessing-count-transfer{
-    width:41px;
-    height:251px;
+    width: 41px;
+    height: 200px;
     float: left;
-    margin-left:17px;
-    margin-top:95px;
+    margin-left: 17px;
+    margin-top: 57px;
 }
 .Itsprocessing-count-transfer span{
     display:block;
@@ -81,90 +80,86 @@
     height:35px;
 }
 .Itsprocessing-count-transfer span:first-child{
-    background: url(./img/Itsprocessing-btn.png) no-repeat;
+    background: url(./img/chedan-z.png) no-repeat;
     background-position:center center;
  }
 .Itsprocessing-count-transfer span:last-child{
-    background: url(./img/Itsprocessing-returnbtn.png) no-repeat;
+    background: url(./img/chedan-y.png) no-repeat;
     background-position:center center;
  }
 
 .Itsprocessing-count-right{float:right;}
 .Itsprocessing-footer{
-    width:872px;
-    height:67px;
-    margin:0 auto;
+    width: 868px;
+    height: 80px;
+    margin: 0 auto;
     clear: both;
-    margin-top:11px;
 }
 .Itsprocessing-footer span{
     float: left;
-    width:61px;
-    height:61px;
-    line-height:61px;
-    color:#333;
-    font-size:12px;
-    text-align:right;
-    display:block;
+    width: 61px;
+    height: 20px;
+    line-height: 20px;
+    color: #333;
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    margin-left: 10px;
 }
 
 .Itsprocessing-footer-text{
-    width:801px;
-    border:1px solid #8db2e3;
+    width: 768px;
+    border: 1px solid #e6e7ec;
     background: #fff;
-    font-size:12px;
-    height:61px;
+    font-size: 12px;
+    height: 60px;
     float: left;
-    margin-left:10px;
+    margin-left: 10px;
     padding: 4px 5px;
     box-sizing: border-box;
 }
 
 .Itsprocessing-footer-left{
     float: left;
-    width:874px;
-    height:auto;
+    width: 768px;
+    height: 80px;
 }
 
 /*  */
 .ui-table-base.sing-tab{
-    width:100%;
-    max-height:298px;
-    border:none;
-    margin:0;
-    height:298px;
+    width: 100%;
+    max-height: 224px;
+    border: none;
+    margin: 0;
+    height: 298px;
 }
 .ui-table-base.sing-tab tbody{
-    max-height:273px;
+    max-height:180px;
     overflow-y:auto;    
 }
 .ui-table-base.sing-tab tr td{
-   min-width:99px;
-   max-width:99px;
-}
-.ui-table-base.sing-tab tr:last-child{
-    border-bottom:1px solid #8db2e3;
+   min-width:83px;
+   max-width:83px;
 }
 .Itsprocessing-footer-div{
-    width:870px;
-    height:32px;
-    margin:8px auto;
-    
+    width:768px;
+    height:25px;
+    margin:10px auto;  
 }
 .Itsprocessing-footer-div span{
     float: left;
-    width:61px;
-    height:32px;
-    line-height:32px;
-    color:#333;
-    font-size:12px;
-    text-align:right;
-    display:block;
+    width: 61px;
+    height: 27px;
+    line-height: 27px;
+    color: #333;
+    font-size: 12px;
+    text-align: right;
+    display: block;
 }
 .Itsprocessing-footer-div input{
     display: block;
     width:264px;
-    height:30px;
+    height:23px;
     border:1px solid #ccc;
     padding: 0 5px;
     float: left;
@@ -210,9 +205,8 @@
 }
 
 .Itsprocessing-footer-div b.sure-save{
-    background:#409eff;
+    background:#3ebddd;
     color:#fff;
-    border:1px solid #409eff;
 }
 .Itsprocessing-footer-div span.Itsprocessing-footer-span{
     width:94px;

@@ -339,7 +339,7 @@ export default class extends Component {
                 <table cellPadding="0" cellSpacing="0" border="0">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>序号</th>
                             <th>衣物编码</th>
                             <th>衣物名称</th>
                             <th>颜色</th>
@@ -354,8 +354,8 @@ export default class extends Component {
                                 if (4 != item1.status) ++tmpCheckedCount;
                                 return (
                                     <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
-                                        <td>{index2+1}</td>
-                                        <td><input type="checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{display:((item.pay_state==1?true:false)&&(item1.status==4?false:true))==true?'block':'none'}}/><span>{item1.clothing_number}</span></td>
+                                        <td><input type="checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item.pay_state == 1 ? true : false) && (item1.status == 4 ? false : true)) == true ? 'inline' : 'none' }} /><span>{index2 + 1}</span></td>
+                                        <td>{item1.clothing_number}</td>
                                         <td>{item1.clothing_name}</td>
                                         <td>{item1.clothing_color}</td>
                                         <td>{item1.remark}</td>
@@ -377,12 +377,12 @@ export default class extends Component {
                     <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                     <div style={{display:item.pay_state!=1?'block':'none'}}>
-                    {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
-                    <div style={{display:'none'}}><span style={{color:'#000000'}}>价格:</span> ￥{item.debt}</div>
+                        {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
+                                <div style={{ display: 'none' }}><span style={{ color: '#000000' }}>价格:</span> ￥{item.debt}</div><div><span style={{ color: '#000000' }}>衣服件数{item.item_count}件 </span></div>
                     </div>
                 </div>                       
             </div>
-            <div style={{height:'5px',width:'871px',background:'#cce8ff',marginTop:'15px'}}></div>
+                    <div style={{ height: '5px', width: '871px', background: '#cce8ff', margin: '8px auto 0px'}}></div>
             </div>
             
             );

@@ -1,55 +1,93 @@
 .salecard div.top{
-    width: 492px;
-    height: 85px;
-    margin: 9px auto;
-    border: 1px solid #8db2e3;  
+    margin: 10px,auto;
+}
+.salecard .top div.top-div{
+    padding-top: 16px;
+    margin-top: 0;
 }
 .salecard .top div span{
-    width: 68px;
+    width: 124px;
     text-align: right;
+    font-size: 14px;
     display: inline-block;
+    color: black
  }
-
- .salecard>div span input{
-    margin-top: 14px;
-    margin-left: 9px;
-    width: 151px;
-    height: 20px;
-    outline: none;
-    border:1px solid #c4c2c2;  
+ .salecard_left_direction{
+     width: 460px;
+     float: left;
  }
+.salecard .top div span label{
+    color: #ff0000;
+}
 .salecard div.middle{
-    width: 492px;
+    width: 731px;
     height: 154px;
     margin: 9px auto;
-    border: 1px solid #8db2e3;  
 }
 .salecard div.bottom{
-    width: 492px;
+    width: 731px;
     height: 124px;
     margin: 9px auto;
     border: 1px solid #8db2e3;  
 }
-.salecard_leftdirection{
-    float: left;
-    width: 250px;
-    height: 36px;
-    line-height: 50px;
+.salecard .top_hr{
+    color: #d9dde4;
+    margin-top: 14px;
+    margin-left: 17px;
+    margin-right: 17px;
 }
-.salecard .middle .salecard_leftdirection span{
-    width: 68px;
+.salecard_leftdirection{
+   
+    height: 36px;
+    line-height: 35px;
+}
+.bottom_hr{
+    color: #d9dde4;
+    margin-top: 50px;
+}
+.bottom_text{
+    margin-top: 31px;
+    margin-left: 64px;
+}
+.bottom_text div{
+    float: right;
+    margin-right: 30px;
+    text-align: center
+}
+.vertical_line{
+    height:250px; 
+    width:1px; 
+    margin-top: 20px;
+    border-left:1px #d9dde4 solid;
+    float: left;
+}
+.salecard .salecard_leftdirection span{
+    width: 124px;
     text-align: right;
     display: inline-block; 
 }
-.salecard .salecard_leftdirection input{
-    display: inline-block; 
+.salecard_rightdirection{
+   display: inline-block;
 }
-.salecard .salecard_rightdirection{
-    float: right;
-    margin-right: 30px;
+.salecard_rightdirection div span{
+    width: 80px;
+    text-align: right;
+    float: left;
+}
+.salecard_rightdirection .salecard_money{
+    font-weight: bold;
+    margin-left: 43px;
+    margin-top: 27px;
+}
+.salecard_rightdirection button{
+    margin-left: 95px;
+    margin-top: 20px;
+}
+.salecard_rightdirection button:last-child{
+    margin-left: 10px;
 }
 .salecard .bottom div span{
-    width: 68px;
+    width: 124px;
     text-align: right;
     display: inline-block;
  }
@@ -71,18 +109,22 @@
      right: 20px;
      bottom: 17px;
  }
- .salecard .bottom .textred{
+ .salecard .textred{
      color: red;
      font-size: 14px;
-     right: 20px;;
-     position: absolute;
-     bottom: 62px;
      font-weight:bold;
+     margin-right: 12px;
+ }
+ .salecard_rightdirection div:first-child{
+     margin-top: 25px;
+ }
+ .salecard_rightdirection div{
+     margin-top: 10px;
  }
  .salecard>.bottom>div{
      margin-top: 5px;
  }
- .salecard .top div span{
+ .salecard .top div {
      margin-top: 14px;
  }
  .salecard_leftdirection>span>label{

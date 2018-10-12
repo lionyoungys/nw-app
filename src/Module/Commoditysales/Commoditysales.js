@@ -353,10 +353,6 @@ export default class extends Component {
                   </div>
                </div> 
                <div className="commoditysales-footerdiv">
-                    <div className="commoditysales-right-top">
-                        <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
-                        <input type="text" className="commoditysales-right-text" autoFocus= 'autoFocus' ref={input => this.input=input}  placeholder="请输入/扫描商品条码" value ={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e =>this.setState({searchNum:e.target.value})}/>
-                    </div>
                    <div className="commoditysales-div-left">
                       <div className="commoditysales-left-title">商品分类</div>
                       <div className="commoditysales-left-count">
@@ -364,6 +360,10 @@ export default class extends Component {
                       </div>
                     </div>
                     <div className="commoditysales-footerdiv-left">
+                        <div className="commoditysales-right-top">
+                            <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
+                            <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
+                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -384,14 +384,12 @@ export default class extends Component {
                         <div className="commoditysales-footerdiv-rightboth">折扣率: {this.state.discount}</div>
                         <div className="commoditysales-footerdiv-rightboth">总件数: {parseInt(this.state.amount)}</div>
                         <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥{this.state.disTotal}</div>                    
-                        <div className="commoditysales-footerdiv-rightboth">
+                        <div className="commoditysales-footerdiv-rightboth-btndiv">
                             <button type='button' className='e-btn middle high' onClick={this.payment}>收款</button>
-                        </div>
-                        <div className="commoditysales-button">
-                            <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>&nbsp;
-                            <button type='button' className='e-btn' onClick={() => this.setState({rechargeShow:true})}>充值</button>&nbsp;
-                            <button type='button' className='e-btn' onClick={() => this.setState({show:true})} >卡扣款</button>
-                        </div>                  
+                            <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
+                            <button type='button' className='e-btn' onClick={() => this.setState({ rechargeShow: true })}>充值</button>
+                            <button type='button' className='e-btn' onClick={() => this.setState({ show: true })} >卡扣款</button>
+                        </div>                 
                     </div>                           
                </div> 
                 {this.state.show && <Deduct callback={() => this.setState({show: false})} onClose={() => this.setState({show:false})}/>}    

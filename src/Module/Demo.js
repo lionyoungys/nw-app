@@ -14,7 +14,7 @@ import MathUI from '../UI/MathUI';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', number:0}
+        this.state = {dish:false, selectVal:'麻辣香锅', number:0, total:10, current:1}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -54,7 +54,8 @@ export default class extends React.Component {
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
                 <input type='date' className='e-date'/><br/>
-                <input type='text' className='e-input' placeholder='输入内容'/>&emsp;<input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
+                <input type='text' className='e-input' placeholder='输入内容' value={this.state.total} onChange={e => this.setState({total:e.target.value})}/>&emsp;
+                <input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => this.setState({selectVal:obj.value})}/>
                 &emsp;
                 <MathUI onAdd={() => this.setState({number:this.state.number+1})} onSub={() => this.setState({number:this.state.number-1})}>{this.state.number}</MathUI><br/>
@@ -69,7 +70,7 @@ export default class extends React.Component {
                         <button type='button' className='e-btn-b' onClick={this.handleEat2}>尝尝小龙虾</button>
                     </Dish>
                 }
-                <Page/>
+                <Page total={this.state.total} current={this.state.current} callback={value => this.setState({current:value})}/>
                 <Empty>暂无数据</Empty>
            </Window>
         );

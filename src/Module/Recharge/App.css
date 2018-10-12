@@ -1,14 +1,13 @@
 .recharge{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    border: 1px solid #8db2e3;
+    border: 1px solid #ecf0f9;
     width: 608px;
     margin: 0 auto;
     padding: 0 25px;
     font-size: 12px;
 }
 .recharge-first{
-    margin-top: 8px;
     height: 46px;
     line-height: 46px;
 }
@@ -37,7 +36,7 @@
 .recharge-third>:first-child{
     height: 100%;
     width: 277.5px;
-    border-right: 1px solid #8db2e3;
+    border-right: 1px solid #ecf0f9;
     float: left;
 }
 .recharge-third>:first-child>div{line-height: 28px}

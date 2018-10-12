@@ -2,11 +2,12 @@
 
 /* 交期预警 */
 .Deliverywarning-title{
-    width:870px;
+    width:768px;
     height:58px;
-    margin:16px auto 12px;
-    background: #eef4fb;
-    border:1px solid #8db2e3
+    margin:0 auto 12px;
+    border-bottom:1px solid #fafafa;
+    text-align:right;
+    line-height: 59px;
 }
 .Deliverywarning-title span{
     color:#000;

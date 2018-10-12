@@ -147,6 +147,7 @@ export default class extends Component {
                       <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]} ref={input => this.input = input}/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
+                   <button className="e-btn Hangon-right-btn" onClick={this.putOn}>取消</button>
                 </div>
             </Window>          
         );

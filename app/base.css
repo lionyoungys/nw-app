@@ -110,6 +110,63 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #a
 input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 14px}
 input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 14px}
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-size: 14px}
+/* 线包框 */
+.e-fieldset{
+    display: inline-block;
+    width: 107px;
+    height: 41px;
+    line-height: 41px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-image: url(img/e-fieldset.png);
+    background-size: 107px 41px;
+    cursor: default;
+}
+.e-fieldset>img{vertical-align: middle}
+.e-fieldset.checked{background-image: url(img/e-coil.png)}
+.e-file{
+    width: 150px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+/* 下拉选框样式 */
+.e-select{
+    height: 22px;
+    font-size: 12px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+/* 日期选框样式 */
+.e-date{
+    width: 148px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 26px 0 8px;
+    position: relative;
+    background-color: #fff;
+    background-image: url(images/ui-select-down.png);
+    background-repeat: no-repeat;
+    background-position: 126px center;
+    color: #646766;
+}
+.e-date:focus{border: 1px solid #3fc0db}
+.e-date::-webkit-inner-spin-button, 
+.e-date::-webkit-clear-button{display: none}
+.e-date::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
 /* 弹出层遮罩 */
 .e-layer-bg, .t-ui-layer-bg{
     background: rgba(0,0,0,.6);
@@ -161,13 +218,16 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 76px;
+    padding-top: 75px;
 }
 .ui-window-body>div{
     width: 100%;
     height: 100%;
     background-color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     position: relative;
+    border-top: 1px solid #f0f0f0;
 }
 .ui-dish{    /* 盘子样式 */
     width: 658px;
@@ -278,10 +338,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-position: center center;
 }
 .ui-page-next{background-image: url(images/ui-page-next.png);}
+.ui-page-previous.disabled{background-image: url(images/ui-page-previous-d.png);}
+.ui-page-next.disabled{background-image: url(images/ui-page-next-d.png);}
 /* 下拉框组件 */
 .ui-select{
     display: inline-block;
-    width: 186px;
+    width: 166px;
     height: 35px;
     position: relative;
     vertical-align: middle;
@@ -290,7 +352,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     padding-right: 24px;
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
-    background-position: 160px center;
+    background-position: 145px center;
 }
 .ui-select>.e-input:disabled{background-color: #fff}
 .ui-select:hover>.e-input{border: 1px solid #3fc0db}
@@ -431,61 +493,4 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     z-index:1000000;
     border-radius: 8px;
     overflow: hidden;
-}
-/* 线包框 */
-.e-fieldset{
-    display: inline-block;
-    width: 107px;
-    height: 41px;
-    line-height: 41px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    background-image: url(img/e-fieldset.png);
-    background-size: 107px 41px;
-    cursor: default;
-}
-.e-fieldset>img{vertical-align: middle}
-.e-fieldset.checked{background-image: url(img/e-coil.png)}
-.e-file{
-    width: 150px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-/* 下拉选框样式 */
-.e-select{
-    height: 22px;
-    font-size: 12px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-/* 日期选框样式 */
-.e-date{
-    width: 148px;
-    height: 28px;
-    font-size: 14px;
-    border: 1px solid #e6ebf5;
-    border-radius: 4px;
-    outline: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    padding: 0 26px 0 8px;
-    position: relative;
-    background-color: #fff;
-    background-image: url(images/ui-select-down.png);
-    background-repeat: no-repeat;
-    background-position: 126px center;
-    color: #646766;
-}
-.e-date:focus{border: 1px solid #3fc0db}
-.e-date::-webkit-inner-spin-button, 
-.e-date::-webkit-clear-button{display: none}
-.e-date::-webkit-calendar-picker-indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
 }

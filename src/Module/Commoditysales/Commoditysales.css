@@ -2,23 +2,21 @@
 
 /* 商品销售 */
 .commoditysales-div{
-    width:870px;
-    height:276px;
+    width:99%;
+    height:45%;
     border:1px solid #8db2e3;
-    margin:9px auto;
+    margin:0px auto;
     background: #eef4fb
 }
 .commoditysales-div-left{
     float: left;
     width: 93px;
-    height:265px;
-    margin-left: 0px;
-    margin-top: -28px;
+    height: 265px;
 }
 .commoditysales-left-title{
     width:93px;
-    height:28px;
-    line-height:28px;
+    height:30px;
+    line-height:30px;
     color:#000;
     font-size:12px;
     text-align:center;
@@ -26,10 +24,10 @@
 .commoditysales-left-count{
     width:93px;
     height:auto;
-    max-height:236px;
+    max-height:230px;
     overflow-y:auto; 
     border:1px solid #8db2e3;
-    height:236px;
+    height:230px;
 }
 .commoditysales-left-count span{
     display:block;
@@ -51,16 +49,16 @@
     color:#fff;
 }
 .commoditysales-div-right{
-    width: 870px;
-    height:276px;   
+    width: 100%;
+    height:100%;   
 }
 .commoditysales-right-top{
-    width:621px;
-    height:38px;
+    width:521px;
+    height:30px;
 }
 .commoditysales-right-btn{
     float:right;
-    margin:7px 3px;
+    margin:0px 3px;
     cursor:pointer;
 }
 .commoditysales-right-text{
@@ -73,28 +71,28 @@
     font-size:12px;
     line-height:22px;
     margin-right:8px;
-    margin-top:7px;
     text-indent:12px;
     
 }
 .commoditysales-right-tab{
-    width: 870px;
+    width: 100%;
     height: auto;
-    max-height:287px;
+    max-height:99%;
 }
 .commoditysales-right-tab table{
-    width:754px;
+    width:805px;
     height:auto;
     max-height:240px;
+    display: block;
 }
 .commoditysales-right-tab table thead{
-    width: 870px;
-    height: 25px;
+    width: 806px;
     display: block;
     background: #89b0d4;
 }
 .commoditysales-right-tab table thead tr{
-    width:auto;height:25px;
+    width:100%;
+    height:25px;
 }
 .commoditysales-right-tab table thead tr th{
     color: #fff;
@@ -103,24 +101,24 @@
     line-height: 25px;
     border-right: 1px solid #acc6de;
     text-align: center;
-    min-width: 145px;
+    min-width: 129px;
 }
 .commoditysales-right-tab table thead tr th:last-child{
     border-right:none;
 }
 .commoditysales-right-tab table tbody{
     display: block;
-    max-height:249px;
+    max-height:197px;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 870px;
+    width: 806px;
 }
 .commoditysales-right-tab table tbody tr{width:auto;height:25px}
 .commoditysales-right-tab table tbody tr:nth-child(odd){background:#fff;}
 .commoditysales-right-tab table tbody tr:nth-child(even){background:#f0f5f9;}
 .commoditysales-right-tab table tbody tr:last-child{border-bottom:1px solid #8db2e3;}
 .commoditysales-right-tab table tbody tr td{
-    min-width: 145px;
+    min-width: 129px;
     text-align: center;
     color: #000;
     font-size: 12px;
@@ -133,9 +131,9 @@
 
 /* 底部div */
 .commoditysales-footerdiv{
-    width:872px;
-    height:272px;
-    margin:8px auto;
+    width:99%;
+    height:53%;
+    margin:5px auto;
 }
 .commoditysales-footerdiv-left{
     width:520px;
@@ -145,9 +143,10 @@
 }
 .commoditysales-footerdiv-left table{
     width:520px;
-    max-height:240px;
+    max-height:230px;
     border:1px solid #acc6de;
-    height:240px;
+    height:230px;
+    display: block;
 }
 .commoditysales-footerdiv-left table thead{
     width:520px;
@@ -196,25 +195,29 @@
     color: #2151ed;
 }
 .commoditysales-footerdiv-right{
-    width:241px;
+    width:163px;
     height:260px;
     border:1px solid #8db2e3;
     background:#eef4fb;
-    float:right;
-    padding-top:10px;
-    margin-top:-32px;
+    float:left;
+    margin-left:5px;
 }
 .commoditysales-footerdiv-right .commoditysales-footerdiv-rightboth{
-    height:30px;
-    line-height:38px;
-    padding-left:18px;
+    height:27px;
+    line-height:27px;
+    text-align: center;
     color:#063781;
     font-size:12px;
     font-weight:bold;
-    margin-top:3px;
+    margin-top:2px;
 }
-.commoditysales-footerdiv-rightboth button{
-    margin:24px 43px;
+.commoditysales-footerdiv-rightboth-btndiv{
+    text-align: center;
+    margin-top:2px;
+    height: 142px;
+}
+.commoditysales-footerdiv-rightboth-btndiv button{
+    margin:3px 43px;
     cursor: pointer;
 }
 .commoditysales-button{margin:40px 6px}

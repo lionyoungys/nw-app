@@ -21,7 +21,7 @@
     line-height:22px;
     float:right;
     text-indent: 5px;
-    margin-top: 6px;
+    margin-top: 2px;
 }
 
 .Takeclothes-div-title{
@@ -57,7 +57,7 @@
 }
 /* table */
 .Takeclothes-tab{
-    width:871px;
+    width:846px;
     height:auto;
     max-height:445px;    
     margin:auto;
@@ -65,8 +65,8 @@
     overflow-x:hidden;
     overflow-y:hidden;
 }
-.Takeclothes-tab table{width:870px;height:auto;max-height:444px;}
-.Takeclothes-tab table thead{min-width:870px;height:25px;background:#89b0d4;display:block;}
+.Takeclothes-tab table{width:846px;height:auto;max-height:444px;}
+.Takeclothes-tab table thead{min-width:846px;height:25px;background:#89b0d4;display:block;}
 .Takeclothes-tab table thead tr{width:auto;height:25px}
 .Takeclothes-tab table thead tr th{
     width:auto;
@@ -77,19 +77,19 @@
     height:25px;
     line-height:25px;
     border-right:1px solid #acc6de;
-    min-width:129px;
-    max-width: 129px;
+    min-width:120px;
+    max-width: 120px;
     word-break: break-word;
 }
 /* .Takeclothes-tab table thead tr th:last-child{border-right:none;} */
 .Takeclothes-tab table thead tr th:first-child{
-    min-width:31px;
-    width:31px;
+    min-width:60px;
+    width:60px;
     padding:0;    
-    background:url(./img/revokedata_list_box_span.png) no-repeat;
+    /* background:url(./img/revokedata_list_box_span.png) no-repeat;
     background-size:10px 10px;
     background-position-x:17px;
-    background-position-y:11px;
+    background-position-y:11px; */
     padding:0px;
 }
 .Takeclothes-tab table thead tr th:last-child{border-right:none}
@@ -112,14 +112,18 @@
     height:25px;
     line-height:25px;
     border-right:1px solid #acc6de;
-    min-width:129px;
+    min-width:120px;
     cursor: pointer;
-    max-width: 129px;
+    max-width: 120px;
 }
 .Takeclothes-tab table tbody tr td:first-child{
-    min-width:31px;
-    width:31px;
+    width: auto;
+    min-width:60px;
+    width:60px;
     padding:0px;
+    height:25px;
+    line-height:25px;
+
 }
 .Takeclothes-tab table tbody tr td:last-child{
     border-right:none;
@@ -174,7 +178,14 @@
 .Takeclothesdetail-tab table tbody{
     overflow-x:hidden;
 }
-.Takeclothesdetail-tab table tbody tr td input{width:15px;height:15px;cursor:pointer}
+.Takeclothesdetail-tab table tbody tr td input{
+    width:15px;
+    height:15px;
+    cursor:pointer;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
 .Takeclothesdetail-footer{
     width:872px;
     height:24px;
@@ -192,7 +203,7 @@
     width:14px;
     height:14px;
     float: left;
-    margin-top:5px;
+    margin: 5px 5px 0px 12px;
     cursor:pointer;
 }
 
@@ -264,7 +275,6 @@
 .Takeclothesdetail-tab table tbody tr td span{
     font-size: 12px;
     color: #000;
-    display: block;
     line-height: 25px;
 }
 

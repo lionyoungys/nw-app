@@ -146,7 +146,6 @@ export default class extends Component {
             <Window title='撤单处理' onClose={this.props.closeView} width="902" height="626"> 
             <div>
                 <div className="Deliverywarning-title Itsprocessing-title">
-                  <span>订单号/流水号:</span>
                   <input type="text" className='e-input its-pro-input' onChange = {e=>this.setState({orderNum:e.target.value})}/> 
                    <button className="e-btn" onClick={this.searchOrder}>查询</button>                  
                 </div>  
@@ -198,10 +197,10 @@ export default class extends Component {
                   </div>                 
                 </div> 
                 <div className="Itsprocessing-footer-div">
-                   <span>退款金额：</span><input type="number" onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多{this.state.maxReturn}元</span>
+                   <span>退款金额：</span><input type="number" onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
                 </div>
                 <div className="Itsprocessing-footer-div">
-                   <span>卡退款：</span><input type="number" onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <span className="Itsprocessing-footer-span"><i>*</i>最多{this.state.maxReturn}元</span><b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
+                   <span>卡退款：</span><input type="number" onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
                 </div>
             </div>
             </Window> 
