@@ -669,7 +669,7 @@ export default class extends Component {
                         <div>
                             <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
                             <div>折扣率：{discount}%</div>
-                            <div>取衣时间：<input type="date" min={this.date} className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
+                            <div>取衣时间：<input type="date" min={this.date} className='e-date' value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
                     </div>
                     <div className='clothes-footer-right'>

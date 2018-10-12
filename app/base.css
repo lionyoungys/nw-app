@@ -459,3 +459,31 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+/* 日期选框样式 */
+.e-date{
+    width: 148px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 26px 0 8px;
+    position: relative;
+    background-color: #fff;
+    background-image: url(images/ui-select-down.png);
+    background-repeat: no-repeat;
+    background-position: 126px center;
+}
+.e-date:focus{border: 1px solid #3fc0db}
+.e-date::-webkit-inner-spin-button, 
+.e-date::-webkit-clear-button{display: none}
+.e-date::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
