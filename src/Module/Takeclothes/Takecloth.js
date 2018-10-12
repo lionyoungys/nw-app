@@ -382,8 +382,7 @@ export default class extends Component {
                     </div>
                 </div>                       
             </div>
-            <div style={{height:'10px',background:'#cce8ff',marginTop:'10px'}}
-            ></div>
+            <div style={{height:'5px',width:'871px',background:'#cce8ff',marginTop:'15px'}}></div>
             </div>
             
             );
@@ -396,7 +395,11 @@ export default class extends Component {
                        <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} onKeyPress={this.onKeyPress}/>
                     </div>  
                     <div className="Takeclothes-div-title" style={{display:this.state.title}}>已为您找到<b>{this.state.count}</b>条数据</div>
-                    <div style={{maxHeight: '500px',overflowY: 'auto'}}>{takeclothes}</div>
+                   <div className= "Takeclothes-tab-div">
+                        <div>
+                            {takeclothes}
+                        </div>
+                    </div>
                 {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
                 {
                     null !== this.state.current
