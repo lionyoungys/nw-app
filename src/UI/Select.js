@@ -1,7 +1,7 @@
 /**
  * 下拉框组件
  * @author Edwin Young
- * @desc option:选项列表[value,value,value]|[{key:'', value:''},{key:'', value:''}];onChange:回调操作(value);value:选中的选项
+ * @desc option:选项列表[value,value,value]|[{key:'', value:''},{key:'', value:''}];onChange:回调操作({key:'',value:'',index:''});value:选中的选项;pair:[key, value]通过给定数组对应寻找option中对应的key,value
  */
 
 import React from 'react';
@@ -9,32 +9,36 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-    } 
+    }
 
     handleChange(e) {
         if ('function' === typeof this.props.onChange) {
-            let value = e.target.innerText
-            ,   key = e.target.dataset.key;
-            if ('string' === typeof key) {
-                this.props.onChange({key:key, value:value});
-            } else {
-                this.props.onChange({key:'', value:value});
-            }
+            this.props.onChange({key:e.target.dataset.key, value:e.target.innerText, index:Number(e.target.dataset.index)});
         }
     }
     
     render() {
-        let value = this.props.value || ''
+        let K = 'key'
+        ,   V = 'value'
+        ,   value = this.props.value || ''
         ,   options = tool.isArray(this.props.option) ? this.props.option : []
         ,   len = options.length
-        ,   arr = [];
+        ,   arr = []
+        ,   tmp;    //临时key
+        if (tool.isArray(this.props.pair)) {
+            if ('string' === typeof this.props.pair[0] || 'number' === typeof this.props.pair[0]) K = this.props.pair[0];
+            if ('string' === typeof this.props.pair[1] || 'number' === typeof this.props.pair[1]) V = this.props.pair[1];
+        }
         for (var i = 0;i < len;++i) {
             if ('string' === typeof options[i]) {
                 if (value === options[i]) continue;
-                arr.push(<div key={options[i] + '_' + i} onClick={this.handleChange}>{options[i]}</div>)
+                tmp = tool.UUID();
+                arr.push(<div key={tmp} data-key={tmp} data-index={i} onClick={this.handleChange}>{options[i]}</div>);
             } else if (tool.isObject(options[i])) {
-                if (value === options[i].value) continue;
-                arr.push(<div key={options[i].key} data-key={options[i].key} onClick={this.handleChange}>{options[i].value}</div>);
+                if ('undefined' === typeof options[i][V] || value === options[i][V]) continue;
+                tmp = options[i][K];
+                if ('string' !== typeof tmp && 'number' !== typeof tmp) tmp = tool.UUID();
+                arr.push(<div key={tmp} data-key={tmp} data-index={i} onClick={this.handleChange}>{options[i][V]}</div>);
             }
         }
         return (
