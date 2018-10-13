@@ -23,8 +23,9 @@
 .right1{
     margin-right: 11px;
     width:319px;
-    float:left;
-    margin-top:8pxx;
+    float:right;
+    margin-top:19px;
+
 }
 .right1 input {
     border: 1px solid #c2c2c2;
@@ -48,7 +49,7 @@
 .e-box table thead{
     width:100%;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
     display:block;
 }
 .e-box table thead tr{
@@ -56,16 +57,12 @@
     height:25px;
 }
 .e-box table thead tr th{
-    color:#fff;
+    color:#636466;
     font-size:12px;
-    border-right:1px solid #acc6de;
     text-align:center;
     box-sizing:border-box;
     -moz-box-sizing:border-box; 
     -webkit-box-sizing:border-box;
-}
-.e-box table thead tr th:last-child{
-    border-right:none;
 }
 .e-box table tbody{
     width:780px;
@@ -74,36 +71,29 @@
     height:345px;
     display:block; 
 }
+
 .e-box table tbody tr{
     min-height:25px;
     width:100%;
+    display: -webkit-box;
+    border-bottom:1px solid #ecf0f9;
 }
-.e-box table tbody tr:last-child{
-    border-bottom:1px solid #acc6de;
-}
-.e-box table tbody tr:nth-of-type(odd){
-    background:#f0f5f9;
-}
-.e-box table tbody tr:nth-of-type(even){
-    background:#fff;
-}
+
 .clean .e-table>tbody>tr.disabled{
     color: #808080;
 }
+
 .e-box table tbody tr td{
-    color:#000;
+    color:#c3c3c3;
     font-size:12px;
     text-align:center;
-    border-right:1px solid #acc6de;
     box-sizing:border-box;
    -moz-box-sizing:border-box; 
     -webkit-box-sizing:border-box; 
     word-break:break-all;
     height:25px;
 }
-.e-box table tbody tr td:last-child{
-    border:none;
-}
+
 .e-box table tbody::-webkit-scrollbar{
     width:0px;
 }

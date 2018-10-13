@@ -10,7 +10,7 @@
     min-height: 17px;
     line-height: 17px;
     padding-left: 22px;
-    background-image: url(img/checkbox.png);
+    background-image: url(img/gaiban-n.png);
     background-repeat: no-repeat;
     background-position: 0;
     cursor: pointer;
@@ -18,8 +18,20 @@
     width: auto;
 }
 .in-factory tbody tr td .e-radio.checked{
-    background-image: url(img/checkbox-checked.png)
+    background-image: url(img/gaiban-y.png)
 }
 .e-checkbox.checked {
-    background-image: url(img/checkbox-checked.png);
+    background-image: url(img/gaiban-y.png);
+}
+.e-checkbox{
+    display: inline-block;
+    min-height: 17px;
+    line-height: 17px;
+    padding-left: 22px;
+    background-image: url(img/gaiban-n.png);
+    background-repeat: no-repeat;
+    background-position: 0;
+    cursor: pointer;
+    min-width: 15px;
+    width: auto;
 }

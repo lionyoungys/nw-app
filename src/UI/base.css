@@ -430,6 +430,7 @@ table tbody tr td{
     font-weight: bold;
     background: #3fc0db;
 }
+
 .ui-tab-blue input.findonline{
     width:182px;
     height:22px;
@@ -443,6 +444,7 @@ table tbody tr td{
     text-indent:4px; 
     top:5px;
 }
+
 .ui-tab-blue button.e-btn{
     position:absolute;
     right:40px;
@@ -451,7 +453,7 @@ table tbody tr td{
 
 /* 3.1.1工厂新增 */
 .e-box table tbody tr td{
-    color:#000;
+    color:#999999;
     font-size:12px;
     word-break:break-all;
 }
