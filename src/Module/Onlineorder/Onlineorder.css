@@ -286,7 +286,7 @@
 }
 .why-list div{
     background:url(./img/checkbox.png) no-repeat;
-    background-size:18px 17px;
+    background-size:14px 14px;
     width: auto;
     height: 28px;
     line-height:28px;
@@ -297,8 +297,8 @@
     margin:10px 28px;
 }
 .why-list div.whyselected{
-    background:url(./img/checkbox-checked.png) no-repeat;
-    background-size:18px 17px;
+    background:url(./images/e-checkbox-checked.png) no-repeat;
+    background-size:14px 14px;
     width: auto;
     height: 28px;
     line-height:28px;

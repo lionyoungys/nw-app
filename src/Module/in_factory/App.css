@@ -4,22 +4,9 @@
     text-align: center;
 }
 
-
 .in-factory tbody tr td .e-radio{
     display: inline-block;
     min-height: 17px;
     line-height: 17px;
-    padding-left: 22px;
-    background-image: url(img/checkbox.png);
-    background-repeat: no-repeat;
-    background-position: 0;
-    cursor: pointer;
-    min-width: 15px;
     width: auto;
-}
-.in-factory tbody tr td .e-radio.checked{
-    background-image: url(img/checkbox-checked.png)
-}
-.e-checkbox.checked {
-    background-image: url(img/checkbox-checked.png);
-}
+} 

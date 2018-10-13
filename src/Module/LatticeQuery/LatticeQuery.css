@@ -58,7 +58,7 @@
     width:873px;
     height:410px;
     overflow-x:auto;
-    border:1px solid #8db2e3;
+    border:1px solid #d7dee4;
     max-height:410px;
     margin:auto;
     overflow-y:hidden;
@@ -86,7 +86,7 @@
     display: block;
     width: 94px;
     height: 27px;
-    border: 1px solid #89b0d4;
+    border: 1px solid #d7dee4;
     font-size: 12px;
     color: #000;
     text-align: center;
@@ -126,13 +126,14 @@
 }
 
 .lattice-div-left{
-    width:90px;
-    height:350px;
-    max-height:350px;
-    border:1px solid #8db2e3;
+    margin-left: 16px;
+    width:70px;
+    height:295px;
+    max-height:295px;
+    border:1px solid #d7dee4;
     float:left;
     overflow-y:auto;
-    background:#eef4fb;
+    background:#f5f8fa;
     overflow-x:hidden;
     cursor: pointer;
 }
@@ -141,9 +142,9 @@
 }
 .lattice-div-left span{
     display:block;
-    width:90px;
-    height:28px;
-    line-height:28px;
+    width:70px;
+    height:30px;
+    line-height:30px;
     background:url(./img/cleaning_price_set.png) no-repeat;
     background-size:77px 2px;
     background-position:bottom center;
@@ -152,19 +153,19 @@
     text-align:center;
 }
 .lattice-div-left span.selected{
-    background:#5f9dfa;
+    background:#3abbd5;
     color:#fff;
 }
 
 .lattice-div-right{
-    width:772px;
-    height:350px;
-    border:1px solid #8db2e3;
+    width:683px;
+    height:295px;
+    border:1px solid #d7dee4;
     float:right;
-    max-height:350px;
+    max-height:295px;
     overflow-y: auto;
     overflow-x:hidden;
-    background:#eef4fb;
+    background:#f5f8fa;
 }
 .lattice-div-right::-webkit-scrollbar {
     width:5px;
@@ -173,7 +174,7 @@
     display:inline-block;
     width:64px;
     height:24px;
-    border:1px solid #8db2e3;
+    border:1px solid #d7dee4;
     color:#afafaf;
     background:#fff;
     font-size:14px;
@@ -194,7 +195,7 @@
     color:#f00;
 }
 
-#latticeselect{background:#639bfc;color:#fff;}
+#latticeselect{background:#3abbd5;color:#fff;}
 .lattice-div-right span.index#latticeselect{
  color:#f00;
 }
