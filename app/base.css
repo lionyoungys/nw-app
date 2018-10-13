@@ -111,6 +111,27 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #a
 input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 14px}
 input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 14px}
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-size: 14px}
+/* 选项 */
+.e-option{
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    width: 86px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    overflow: hidden;
+    color: #000;
+    background-color: #f5f8fa;
+    cursor: default;
+    font-style: normal;
+}
+.e-option:hover{
+    color: #3fbfdc;
+    border-color: #3fbfdc;
+    background-color: #fff;
+}
 /* 线包框 */
 .e-fieldset{
     display: inline-block;

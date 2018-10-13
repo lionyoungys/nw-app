@@ -393,9 +393,33 @@
 .clothes-code>:first-child, .clothes-code>:last-child>:last-child{border: none}
 .clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 188px}
 .clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 192px}
-
-
-
 /* 线上收衣添加衣物 */
 .add-item-online{margin-top:35px;}
 .add-item-btn{margin-top:30px}
+/* 新版本样式 */
+.clothes-cate-top{
+    height: 54px;
+    align-items: center;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin: 0 20px 46px;
+}
+.clothes-cate-top>span{
+    height: 100%;
+    border-bottom: 2px solid #3fc0db;
+    color: #3fc0db;
+    line-height: 54px;
+}
+.clothes-cate-body{
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 226px;
+    margin: 0 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.clothes-cate-body>i{margin: 0 24px 16px 0}
+.clothes-cate-body>i:nth-child(6n){margin-right: 0}
