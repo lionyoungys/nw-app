@@ -607,7 +607,7 @@ export default class extends Component {
         });
         return (
             <Window title='收衣' onClose={this.onClose}>
-                <div className='clothes-header add-item-online' style={{top:'0'}}>
+                <div className='clothes-header' style={{top:'0'}}>
                     <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
                     <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
                 </div>
@@ -627,11 +627,11 @@ export default class extends Component {
                         <div>
                             <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
                             <div>折扣率：{discount}%</div>
-                            <div>取衣时间：<input type="date" min={this.date} className="ui-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
+                            <div>取衣时间：<input type="date" min={this.date} className="e-date" value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
                         </div>
                     </div>
                     <div className='clothes-footer-right'>
-                        <div>                           
+                        <div style={{lineHeight:'82px'}}>
                             <button type='button' className='e-btn larger' data-take='take' onClick={this.cost} >提交订单</button>
                         </div>
                     </div>
