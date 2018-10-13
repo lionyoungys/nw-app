@@ -21,7 +21,7 @@ body{font-size: 14px}
     -ms-user-select:none;
 }
 /* icon */
-.e-icon-logo, .e-icon-user, .e-icon-windows{
+.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close{
     display: inline-block;
     height: 12px;
     width: 12px;
@@ -31,6 +31,7 @@ body{font-size: 14px}
 }
 .e-icon-user{background-position: 0 13px}
 .e-icon-windows{background-position: 12px 0}
+.e-icon-close{background-position: 12px 12px}
 /* 按钮样式 */
 .e-btn{
     padding: 0;
@@ -440,11 +441,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     top: 12px;
     left: 12px;
 }
-.t-ui-layer>i{
-    height: 12px;
-    width: 12px;
-    background-image: url(images/icons.png);
-    background-position: 12px 12px;
+.t-ui-layer>.e-icon-close{
     position: absolute;
     top: 14px;
     right: 20px;

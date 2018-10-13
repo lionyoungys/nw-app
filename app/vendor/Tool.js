@@ -259,7 +259,7 @@
         if (!t.isObject(object)) object = {};
         var bg = this.c('div', 't-ui-layer-bg')
         ,   layer = this.c('div', 't-ui-layer')
-        ,   close = this.c('i')
+        ,   close = this.c('i', 'e-icon-close')
         ,   btnArea = this.c('div', 't-ui-layer-btn-area')
         ,   btn = this.c('button', 'e-btn')
         ,   btn_b = this.c('button', 'e-btn-b');
