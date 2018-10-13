@@ -120,7 +120,6 @@
 }
 .lattice-div{
     width:872px;
-    height:352px;
     margin:0 auto;
     margin-bottom:10px;
 }
@@ -161,7 +160,7 @@
     width:683px;
     height:295px;
     border:1px solid #d7dee4;
-    float:right;
+    margin-left: 100px;
     max-height:295px;
     overflow-y: auto;
     overflow-x:hidden;
@@ -172,7 +171,7 @@
 }
 .lattice-div-right span{
     display:inline-block;
-    width:64px;
+    width:55px;
     height:24px;
     border:1px solid #d7dee4;
     color:#afafaf;
@@ -198,4 +197,53 @@
 #latticeselect{background:#3abbd5;color:#fff;}
 .lattice-div-right span.index#latticeselect{
  color:#f00;
+}
+.lattice table{
+    width:770px;
+    height:176px;
+    max-width:770px;
+    overflow-x:auto;
+    margin-left: 16px;
+    overflow-y:hidden;
+    display:block;
+}
+.lattice table thead{
+    width:870px;
+    height:25px;
+    background:#f5f8fa;
+}
+.lattice table thead tr{width:870px;height:25px;}
+.lattice table thead tr th{
+    width:130px;
+    height:25px;
+    border-right:1px solid #acc6de;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    max-width:130px;
+}
+.Plattice table tbody{
+    width:auto;
+    height:156px;
+    max-height:156px;
+    overflow-y:auto;  
+    display:inline-block;
+    overflow-x:hidden;
+}
+.lattice table tbody tr{width:870px;height:25px;}
+.lattice table tbody tr:nth-child(odd){background:#fff;}
+.lattice table tbody tr:nth-child(even){background:#f0f5f9;}
+
+.lattice table tbody tr td{
+    width:130px;
+    height:auto;
+    border-right:1px solid #e9f0f5;
+    color:#000;
+    font-size:12px;
+    text-align:center;
+    max-width:130px;
+}
+.lattice table tbody tr td:first-child{
+    width:31px;
+    min-width:31px;
 }

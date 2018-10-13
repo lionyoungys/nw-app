@@ -88,7 +88,6 @@ export default class extends Component {
         }
         let lists = this.state.list.map((item,index) =>
            <tr key={index}>
-              <td>{index+1}</td>
               <td>{item.serialsn}</td>
               <td>{item.clothing_number}</td>
               <td>{item.clothing_name}</td>
@@ -118,11 +117,10 @@ export default class extends Component {
                         {use_detail}                      
                     </div>
                 </div> 
-                <div className="Payout-detail bothpayout-detail" id="bothpayout-detail">               
+                <div className="lattice bothpayout-detail" id="bothpayout-detail">               
                     <table>
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>流水号</th>
                                 <th>衣物编码</th>
                                 <th>衣物名称</th>
