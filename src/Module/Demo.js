@@ -14,7 +14,7 @@ import MathUI from '../UI/MathUI';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', number:0, total:10, current:1}
+        this.state = {dish:false, selectVal:'麻辣香锅', number:0, total:100, current:1, fetch:20}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -70,7 +70,13 @@ export default class extends React.Component {
                         <button type='button' className='e-btn-b' onClick={this.handleEat2}>尝尝小龙虾</button>
                     </Dish>
                 }
-                <Page total={this.state.total} current={this.state.current} callback={value => this.setState({current:value})}/>
+                <Page 
+                    total={this.state.total} 
+                    current={this.state.current} 
+                    fetch={this.state.fetch} 
+                    onUpdateFetch={value => this.setState({fetch:value})} 
+                    callback={value => this.setState({current:value})}
+                />
                 <Empty>暂无数据</Empty>
            </Window>
         );

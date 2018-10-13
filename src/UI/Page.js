@@ -1,7 +1,7 @@
 /**
  * 分页组件
  * @author Edwin Young
- * @desc current:当前页数,默认1;total:总条目,默认0;fetch:每页条目,默认20;show:展示页码条目数;callback:点击页码处理,返回参数为跳转的页码;
+ * @desc current:当前页数,默认1;total:总条目,默认0;fetch:每页条目,默认20;show:展示页码条目数;callback:点击页码处理,返回参数为跳转的页码;onUpdateFetch:当切换每页条目的回调函数,回调参数为条目数值
  */
 
 import React from 'react';
@@ -12,6 +12,7 @@ export default class extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleChangeFetch = this.handleChangeFetch.bind(this);
         this.defaultShow = 4;
     }
 
@@ -32,6 +33,9 @@ export default class extends React.Component {
         e.persist();
         let code = e.keyCode || e.which;
         13 === code && !isNaN(this.state.value) && 'function' === typeof this.props.callback && this.props.callback(Number(this.state.value));
+    }
+    handleChangeFetch(e) {
+        'function' === typeof this.props.onUpdateFetch && this.props.onUpdateFetch(Number(e.target.dataset.fetch));
     }
     render() {
         let current = isNaN(this.props.current) ? 1 : Number(this.props.current)
@@ -79,7 +83,18 @@ export default class extends React.Component {
         return (
             <div className="ui-page">
                 <span>共{total}条</span>
-                <div><button type='button'>{fetch}条/页</button></div>
+                <div>
+                    <button type='button'>{fetch}条/页</button>
+                    <section className='ui-page-fetch'>
+                        <div>
+                            <i></i><i></i>
+                            <div data-fetch='20' data-checked={20 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>20条/页</div>
+                            <div data-fetch='40' data-checked={40 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>40条/页</div>
+                            <div data-fetch='60' data-checked={60 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>60条/页</div>
+                            <div data-fetch='80' data-checked={80 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>80条/页</div>
+                        </div>
+                    </section>
+                </div>
                 {pages}
                 {/* <i className='ui-page-previous' onClick={this.handleClick} data-val={1 == current ? 1 : (current - 1)}></i>
                 <i className='ui-page-current'>1</i>
@@ -88,12 +103,6 @@ export default class extends React.Component {
                 <span>跳至</span>
                 <input type='text' value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
                 <span>页</span>
-                {/* 第<i>{current}</i>页/共<i>{last}</i>页
-                每页<i>{fetch}</i>条，共<i>{total}</i>条
-                <span onClick={this.handleClick} data-val='1'>首页</span>
-                <span onClick={this.handleClick} data-val={1 == current ? 1 : (current - 1)}>上一页</span>
-                <span onClick={this.handleClick} data-val={last == current ? last : (current + 1)}>下一页</span>
-                <span onClick={this.handleClick} data-val={last}>尾页</span> */}
             </div>
         );
     }

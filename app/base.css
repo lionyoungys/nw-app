@@ -287,7 +287,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 /* 分页组件样式 */
 .ui-page{height: 28px;font-size: 14px;line-height: 28px;min-width: 400px}
-.ui-page>span, .ui-page>div, .ui-page>i, .ui-page>button, .ui-page>input{float: left;}
+.ui-page>*{float: left;}
 .ui-page>span{color: #000;font-size: 14px}
 .ui-page>span:first-of-type{font-size: 16px}
 .ui-page>i{
@@ -304,6 +304,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .ui-page>.ui-page-current{font-weight: bolder}
 .ui-page>div{width: 80px;height: 28px;display: inline-block;position: relative;overflow: visible;margin: 0 8px;}
+.ui-page-fetch{display: none;}
 .ui-page>div>button{
     width: 100%;
     height: 100%;
@@ -319,6 +320,49 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     margin: 0;
 }
 .ui-page>div:hover>button{border: 1px solid #3fbfdc}
+.ui-page>div:hover>.ui-page-fetch{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 42px;
+}
+.ui-page>div:hover>.ui-page-fetch>div{
+    position: relative;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    padding: 10px 0;
+    background-color: #fff;
+}
+.ui-page>div:hover>.ui-page-fetch>div>i:first-of-type{
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    margin-left: -9px;
+    border-width: 0 9px 9px;
+    border-color: transparent transparent #e6ebf5;
+    border-style: solid;
+}
+.ui-page>div:hover>.ui-page-fetch>div>i:last-of-type{
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #fff;
+    border-style: solid;
+}
+.ui-page>div:hover>.ui-page-fetch>div>div{
+    color: #000;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    cursor: default;
+}
+.ui-page>div:hover>.ui-page-fetch>div>div[data-checked=true]{color: #3fbfdc}
+.ui-page>div:hover>.ui-page-fetch>div>div:hover{background-color: #ebeff7}
 .ui-page>input{
     height: 28px;
     width: 50px;
@@ -363,7 +407,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: absolute;
     left: 0;top: 0;
     width: 100%;
-    padding-top: 48px;
+    padding-top: 36px;
     z-index:9;
 }
 .ui-select:hover>section>div{
@@ -375,9 +419,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     -moz-box-shadow: 1px 1px 1px #d9d9d9;
     box-shadow: 1px 1px 1px #d9d9d9;
     overflow-y: auto;
-    overflow-x:hidden;
     max-height:200px;
-    overflow-y:auto;
 }
 .ui-select:hover>section>div>div{
     height: 28px;
