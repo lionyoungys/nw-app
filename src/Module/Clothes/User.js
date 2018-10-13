@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 export default class extends React.Component {
     constructor(props) {
@@ -112,7 +112,7 @@ export default class extends React.Component {
             </div>
         );
         return (
-            <Window title='填写客户信息' height='532' width='782' onClose={this.props.onClose}>
+            <Dish title='填写客户信息' onClose={this.props.onClose}>
                 {/* <div className='clothes-user-top'>
                     <div>
                         <div>
@@ -153,12 +153,12 @@ export default class extends React.Component {
                         <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
                     </div>
                 </div> */}
-                <div style={{height:'10px'}}></div>
+                <div style={{height:'20px'}}></div>
                 <div className='clothes-user-main'>
                     <div><div>用户ID</div><div>姓名</div><div>手机</div><div>卡号</div><div>余额</div><div>消费金额</div><div>地址</div></div>
                     <div className='clothes-user-main-body'>{html}</div>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

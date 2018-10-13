@@ -336,41 +336,40 @@
 .clothes-user-top>:first-child>div .e-input{width: 126px;margin-right: 38px}
 .clothes-user-top>:first-child>div>:first-child{width: 66px;text-align: right}
 .clothes-user-main{
-    max-height: 388px;
+    max-height: 298px;
     margin: 0 10px;
-    border: 1px solid #8db2e3;
 }
-.clothes-user-main-body{max-height:360px;overflow: auto}
+.clothes-user-main-body{max-height:270px;overflow: auto}
 .clothes-user-main>:first-child{
     display: -webkit-flex;
     display: flex;
-    min-height: 26px;
-    line-height: 26px;
-    font-size: 12px;
-    color: #fff;
-    background: #89b0d4;
+    min-height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: #000;
+    background: #f5f8fa;
     text-align: center;
 }
 .clothes-user-main-body>div{
     display: -webkit-flex;
     display: flex;
-    min-height: 26px;
-    line-height: 26px;
-    font-size: 12px;
+    min-height: 16px;
+    padding: 10px 0;
+    font-size: 14px;
     text-align: center;
     word-break: break-all;
+    color: #a7a7a7;
 }
-.clothes-user-main>:first-child>div, .clothes-user-main-body>div>div{border-right: 1px solid #acc6de}
-.clothes-user-main>:first-child>div:last-child,
-.clothes-user-main-body>div>div:last-child{border-right: none}
 .clothes-user-main>:first-child>div,
-.clothes-user-main-body>div>div{width: 92px}
-.clothes-user-main>:first-child>div:nth-child(1),
-.clothes-user-main-body>div>div:nth-child(1) {width: 84px}
+.clothes-user-main-body>div>div{width: 74px;padding-right: 6px}
+.clothes-user-main>:first-child>div:last-of-type,
+.clothes-user-main-body>div>div:last-of-type{padding-right: 0}
+.clothes-user-main>:first-child>div:nth-child(3),
+.clothes-user-main-body>div>div:nth-child(3) {width: 78px}
 .clothes-user-main>:first-child>div:nth-child(7),
-.clothes-user-main-body>div>div:nth-child(7) {width: 180px}
+.clothes-user-main-body>div>div:nth-child(7) {width: 116px}
 .clothes-user-main>:first-child>div:nth-child(4),
-.clothes-user-main-body>div>div:nth-child(4) {width: 124px}
+.clothes-user-main-body>div>div:nth-child(4) {width: 114px}
 
 /* code.js衣物编码界面 */
 .clothes-code{
@@ -394,9 +393,6 @@
 .clothes-code>:first-child, .clothes-code>:last-child>:last-child{border: none}
 .clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 188px}
 .clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 192px}
-
-.clothes-user-main-body>div:nth-child(odd){background:#fff}
-.clothes-user-main-body>div:nth-child(even){background:#f0f5f9}
 
 
 
