@@ -8,10 +8,12 @@
     font-size: 12px;
 }
 .recharge-first{
-    height: 46px;
-    line-height: 46px;
+    height: 55px;
+    line-height: 55px;
+    margin-top: 23px;
+    background:#f4f7f7;
 }
-.recharge-first>:first-child{float: left;height: 100%;margin-top: 10px}
+.recharge-first>:first-child{float: left;height: 100%;}
 .recharge-first>:last-child{float: right;height: 100%}
 
 .recharge-second{
@@ -28,15 +30,12 @@
 
 .recharge-third{
     height: 140px;
-    margin-top: 8px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    border:0px;
+    padding-top: 35px;
     font-size: 12px;
 }
 .recharge-third>:first-child{
     height: 100%;
-    width: 277.5px;
-    border-right: 1px solid #ecf0f9;
     float: left;
 }
 .recharge-third>:first-child>div{line-height: 28px}
@@ -47,9 +46,12 @@
     text-align: right;
     float: right;
 } */
-.recharge-third .recharge-four{float:right;height: 100%;width: 49%;}
+.recharge-four{float:right;height: 100%;width: 100%;
+background:#fafafb;}
 .recharge-four .recharge-btn{margin-left: 102px;margin-top: 12px;}
-
+.recharge-third div div{
+    display: inline;
+}
 .recharge-third div div .ui-select-define{
     width:92px;
     min-width:92px;
