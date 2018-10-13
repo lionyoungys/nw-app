@@ -428,49 +428,56 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 /* 弹框样式 */
 .t-ui-layer{
-    min-width: 386px;
-    min-height: 234px;
+    min-width: 302px;
+    min-height: 180px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
     position: fixed;
     top: 50%;
     left: 50%;
-    margin: -117px 0 0 -193px;
+    margin: -90px 0 0 -151px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 118px;
-    background-repeat: no-repeat;
-    background-position: center 50px;
+    padding-top: 90px;
 }
-.t-ui-layer.success{background-image: url(images/t-ui-success.png)}
-.t-ui-layer.error{background-image: url(images/t-ui-error.png)}
-.t-ui-layer.warn{background-image: url(images/t-ui-warn.png)}
 .t-ui-layer>span{
-    height: 20px;
-    line-height: 20px;
-    font-size: 20px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
     font-weight: bolder;
     color: #5a5e66;
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 12px;
+    left: 12px;
 }
 .t-ui-layer>i{
-    height: 16px;
-    width: 16px;
-    background-image: url(images/t-ui-close.png);
-    background-position: -5px -5px;
+    height: 12px;
+    width: 12px;
+    background-image: url(images/icons.png);
+    background-position: 12px 12px;
     position: absolute;
-    top: 16px;
-    right: 24px;
+    top: 14px;
+    right: 20px;
 }
-.t-ui-layer-content{
+.t-ui-layer-icon{
+    width: 40px;
     height: 40px;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -20px;
+    background-repeat: no-repeat;
+}
+.t-ui-layer-icon.success{background-image: url(images/t-ui-layer-icons.png);background-position: 0 0;}
+.t-ui-layer-icon.warn{background-image: url(images/t-ui-layer-icons.png);background-position: -40px 0;}
+.t-ui-layer-icon.error{background-image: url(images/t-ui-layer-icons.png);background-position: 0 -40px;}
+.t-ui-layer-content{
+    height: 30px;
     width: 100%;
     text-align: center;
     font-size: 14px;
-    color: #5a5e66;
+    color: #656565;
 }
 .t-ui-layer-btn-area{
     height: 35px;

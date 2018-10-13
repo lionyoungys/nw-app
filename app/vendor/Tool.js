@@ -258,7 +258,7 @@
     t.ui.LayerFactory = function (name, object) {
         if (!t.isObject(object)) object = {};
         var bg = this.c('div', 't-ui-layer-bg')
-        ,   layer = this.c('div', 't-ui-layer ' + name)
+        ,   layer = this.c('div', 't-ui-layer')
         ,   close = this.c('i')
         ,   btnArea = this.c('div', 't-ui-layer-btn-area')
         ,   btn = this.c('button', 'e-btn')
@@ -267,6 +267,7 @@
         bg.appendChild(layer);    //追加节点
         layer.appendChild( this.c('span', null, 'string' === typeof object.title ? object.title : '提示') );
         layer.appendChild(close);
+        layer.appendChild(this.c('div', 't-ui-layer-icon ' + name));
         close.onclick = function() {'function' === typeof object.callback && object.callback(handleClose, 'close')}
         var msg = ''
         ,   values = object.button || [];
