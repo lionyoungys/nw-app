@@ -26,19 +26,11 @@ export default class extends React.Component {
         }
     }
     handleChange(e) {
-        let value = e.target.value;
-        if (!isNaN(value)) {
-            value = Number(value);
-            let current = isNaN(this.props.current) ? 1 : Number(this.props.current)
-            ,   total = this.props.total || 0
-            ,   fetch = this.props.fetch || 20
-            ,   last = Math.ceil(total / fetch);
-            current != value && value > 0 && last >= value && this.setState({value: Number(value)});
-        }
+        this.setState({value: e.target.value});
     }
     handleKeyPress(e) {
         e.persist();
-        let code = e.keyCode||e.which;
+        let code = e.keyCode || e.which;
         13 === code && !isNaN(this.state.value) && 'function' === typeof this.props.callback && this.props.callback(Number(this.state.value));
     }
     render() {
