@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 export default class extends Component {
     constructor(props) {
@@ -21,13 +21,13 @@ export default class extends Component {
             <i key={obj.id} data-index={index} onClick={this.handleClick}>{obj.name}</i>
         );
         return (
-            <Window title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'>
                     <span>衣物类别</span>
                     <button type='button' className='e-btn' onClick={this.props.onClick}>临时衣物</button>
                 </div>
                 <div className='clothes-editor-body'>{html}</div>
-            </Window>
+            </Dish>
         );
     }
 }

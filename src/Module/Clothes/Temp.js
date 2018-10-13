@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 export default class extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export default class extends Component {
 
     render() {
         return (
-            <Window title='编辑衣物信息' height='315' width='362' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' height='315' width='362' onClose={this.props.onClose}>
                 <div className='clothes-temp-top'>临时衣物</div>
                 <div className='clothes-temp-body'>
                     <div>
@@ -49,7 +49,7 @@ export default class extends Component {
                     &nbsp;&nbsp;
                     <button type='button' className='e-btn' onClick={this.handleClick}>确认</button>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

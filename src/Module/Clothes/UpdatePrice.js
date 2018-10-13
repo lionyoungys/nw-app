@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 export default class extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export default class extends Component {
 
     render() {
         return (
-            <Window title='编辑衣物信息' width='333' height='260' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' width='333' height='260' onClose={this.props.onClose}>
                 <div className='clothes-temp-top'>单价修改</div>
                 <div className='clothes-update-price'>
                     <div><span>请输入价格：</span><input type='text' value={this.state.value} onChange={this.handleChange} className='e-input'/>&nbsp;&nbsp;元</div>
@@ -35,7 +35,7 @@ export default class extends Component {
                 <div style={{textAlign:'right', marginRight:'16px'}}>
                     <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

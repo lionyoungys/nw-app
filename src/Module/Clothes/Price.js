@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 
 export default class extends Component {
@@ -50,7 +50,7 @@ export default class extends Component {
             );
         });
         return (
-            <Window title='编辑衣物信息' width='648' height='452' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' width='648' height='452' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'><span>工艺加价</span></div>
                 <div className='clothes-price-data'>
                     <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
@@ -61,7 +61,7 @@ export default class extends Component {
                     && 
                     <Layer json={this.props.data[this.state.tempIndex].json} price={this.props.price} onClose={() => this.setState({show:false})} callback={this.callback}/>
                 }
-            </Window>
+            </Dish>
         );
     }
 }
@@ -152,14 +152,14 @@ class Layer extends Component {
             );
         });
         return (
-            <Window title='工艺加价' height='360' width='436' onClose={this.props.onClose}>
+            <Dish title='工艺加价' height='360' width='436' onClose={this.props.onClose}>
                 <div className='clothes-price-main'>{html}</div>
                 <div className='clothes-price-bottom'>
                     <button type='button' className='e-btn' onClick={this.props.onClose}>取消</button>
                     &nbsp;&nbsp;
                     <button type='button' className='e-btn' onClick={this.handleClick}>确认</button>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

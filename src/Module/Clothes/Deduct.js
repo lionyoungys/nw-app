@@ -3,7 +3,7 @@
  * @author Edwin Young
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 
 const token = 'token'.getData();
 export default class extends Component {
@@ -61,7 +61,7 @@ export default class extends Component {
 
     render() {
         return (
-            <Window title='编辑衣物信息' height='420' width='533' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' height='420' width='533' onClose={this.props.onClose}>
                 <div className='clothes-deduct-top'>
                     <div style={{marginBottom:'10px'}}>请客户打开微信公众号【速洗达洗衣平台】，出示付款码</div>
                     <input 
@@ -90,7 +90,7 @@ export default class extends Component {
                         <button type='button' className='e-btn' onClick={this.handleClick}>确认</button>
                     </div>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }
