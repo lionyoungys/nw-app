@@ -24,14 +24,14 @@ const Menus = [
         value:'洗护管理', 
         key: 'CleaningManagement',
         options:[
-            {value:'送洗',class:'main-laundry',view:'laundry', id: 111, className:'default'},
-            {value:'清洗',class:'main-clearn',view:'clear', id: 100, className:'default'},
-            {value:'烘干',class:'main-hot',view:'dry', id: 102, className:'default'},
-            {value:'熨烫',class:'main-ironing',view:'ironing', id: 104, className:'default'},
-            {value:'质检',class:'main-quality',view:'check', id: 106, className:'default'},
-            {value:'入厂',class:'main-factory',view:'Infactory', id: 112, className:'default'},
-            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 114, className:'default'},
-            {value:'上挂',class:'main-put-on',view:'hangon', className:'default'},
+            {value:'送洗', view:'laundry', id: 111, className:'to-clean'},
+            {value:'入厂', view:'Infactory', id: 112, className:'into'},
+            {value:'清洗', view:'clear', id: 100, className:'cleaning'},
+            {value:'烘干', view:'dry', id: 102, className:'dry'},
+            {value:'熨烫', view:'ironing', id: 104, className:'iron'},
+            {value:'质检', view:'check', id: 106, className:'check'},
+            {value:'出厂', view:'outoffactory', id: 114, className:'out-of'},
+            {value:'返流审核', view:null, className:'back'},
         ]
     },
     {
