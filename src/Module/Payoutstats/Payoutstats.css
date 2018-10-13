@@ -244,9 +244,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-width:31px;
 }
 .Payout-detail{
-    width:870px;
-    height:auto;
-    margin:0 auto;
+    width: 780px;
+    height: auto;
+    margin: 0 auto;
 }
 .Payout-detail-title{
     width:870px;
@@ -259,19 +259,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Payout-detail-title b{font-weight:inherit;margin-left:12px;}
 .Payout-detail-title b i{font-style:normal;color:#063781}
 .Payout-detail table{
-    width:874px;
-    height:122px;
-    height: 178px;
-    border:1px solid #8db2e3;
-    max-width:874px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    display:block;
+    width: 780px;
+    height: 176px;
+    max-width: 870px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: block;
 }
 .Payout-detail table thead{
-    width:870px;
+    width:780px;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
 .Payout-detail table thead tr{width:870px;height:25px;}
 .Payout-detail table thead tr th{
@@ -293,15 +291,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .Payout-detail table tbody{
     width:auto;
-    height:138px;
-    max-height:138px;
+    height:90px;
+    max-height:90px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;
 }
-.Payout-detail table tbody tr{width:870px;height:25px;}
-.Payout-detail table tbody tr:nth-child(odd){background:#fff;}
-.Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
+.Payout-detail table tbody tr{width:780px;height:25px;display: -webkit-box}
 
 .Payout-detail table tbody tr td{
     width:88px;
@@ -316,14 +312,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width:31px;
     min-width:31px;
 }
-#bothpayout-detail table tbody{
-    height:135px;
-    max-height:135px;
-}
 #bothpayout-detail table{ 
-    max-height:175px;
+    max-height:136px;
 }
-#bothpayout-detail table tbody tr:last-child{
-    border-bottom:1px solid #8db2e3 
-}
+
  
