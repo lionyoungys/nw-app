@@ -56,8 +56,9 @@ export default class extends React.Component {
         });
     }
 
-    handleChange(value) {
-        let index = value.inObjArray(this.state.cards, 'card_type')
+    handleChange(obj) {
+        let value = obj.value
+        ,   index = value.inObjArray(this.state.cards, 'card_type')
         ,   card = this.state.cards[index];
         this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price});
     }
@@ -145,6 +146,7 @@ export default class extends React.Component {
                             <div className='top-div'>
                             <span><label>*</label>卡类型:</span>&nbsp;&nbsp;
                             <Select 
+                                value={card.card_type}
                                 option={this.state.types} 
                                 onChange={this.handleChange}
                             />
@@ -179,22 +181,22 @@ export default class extends React.Component {
                 </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>生日:</span>&nbsp;&nbsp;<input type='text' className='inputborder' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>生日:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>设置密码:</span>&nbsp;&nbsp;<input type='text' className='inputborder' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>设置密码:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>确认密码:</span>&nbsp;&nbsp;<input type='text' className='inputborder' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>确认密码:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>地址:</span>&nbsp;&nbsp;<input type='text' className='inputborder' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>地址:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
             </span>
             </div>
             </div>

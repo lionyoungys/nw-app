@@ -56,7 +56,7 @@ export default class extends React.Component {
                 <input type='date' className='e-date'/><br/>
                 <input type='text' className='e-input' placeholder='输入内容' value={this.state.total} onChange={e => this.setState({total:e.target.value})}/>&emsp;
                 <input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
-                <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => this.setState({selectVal:obj.value})}/>
+                <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => {console.log(obj);this.setState({selectVal:obj.value})}}/>
                 &emsp;
                 <MathUI onAdd={() => this.setState({number:this.state.number+1})} onSub={() => this.setState({number:this.state.number-1})}>{this.state.number}</MathUI><br/>
                 {

@@ -1,5 +1,5 @@
 .salecard div.top{
-    margin: 10px,auto;
+    margin: 10px auto;
 }
 .salecard .top div.top-div{
     padding-top: 16px;
@@ -124,7 +124,7 @@
  .salecard>.bottom>div{
      margin-top: 5px;
  }
- .salecard .top div {
+ .salecard .top>div {
      margin-top: 14px;
  }
  .salecard_leftdirection>span>label{
