@@ -80,11 +80,11 @@
     height:35px;
 }
 .Itsprocessing-count-transfer span:first-child{
-    background: url(./img/chedan-z.png) no-repeat;
+    background: url(./images/chedan-z.png) no-repeat;
     background-position:center center;
  }
 .Itsprocessing-count-transfer span:last-child{
-    background: url(./img/chedan-y.png) no-repeat;
+    background: url(./images/chedan-y.png) no-repeat;
     background-position:center center;
  }
 

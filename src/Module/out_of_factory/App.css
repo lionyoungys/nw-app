@@ -38,7 +38,7 @@
     min-height: 17px;
     line-height: 17px;
     padding-left: 22px;
-    background-image: url(img/gaiban-n.png);
+    background-image: url(img/checkbox.png);
     background-repeat: no-repeat;
     background-position: 0;
     cursor: pointer;
@@ -46,6 +46,6 @@
     width: auto;
 }
 .out-factory tbody tr td .e-radio.checked{
-    background-image: url(img/gaiban-y.png);
+    background-image: url(img/checkbox-checked.png);
 }
 

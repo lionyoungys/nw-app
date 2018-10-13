@@ -71,14 +71,25 @@ body{font-size: 14px}
 .e-btn.mini, .e-btn-b.mini{width: 56px;height: 20px;font-size: 12px;}
 .e-btn-b:active{color: #3fc0db;border: 1px solid #3fc0db}
 /* 复选框、单选框样式:该样式仅适用于Chrome、Safari、iOS Safari、Android Browser下，其他浏览器会出现兼容问题 */
-
+.e-checkbox, .e-radio{
+    -webkit-appearance:none;
+    width: 14px;
+    height: 14px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 2px;
+    vertical-align: middle;
+    outline: none;
+}
 .e-checkbox:checked{
-    background-image: url(img/gaiban-y.png) no-repeat;
+    background-image: url(images/e-checkbox-checked.png);
     background-position: -2px -2px;
     border: none;
 }
-/* .e-radio{border-radius: 50%} */
-.e-radio:checked{background-image: url(img/gaiban-y.png);border: none}
+.e-radio{border-radius: 50%}
+.e-radio:checked{background-image: url(images/e-radio-checked.png);border: none}
 /* 输入框样式 */
 .e-input{
     width: 166px;
