@@ -24,7 +24,7 @@ html, body, #root, #main{width: 100%;height: 100%}
     background: -o-linear-gradient(right, #3abbd5, #35bfc5);    /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(right, #3abbd5, #35bfc5);    /* Firefox 3.6 - 15 */
     background: linear-gradient(to right, #3abbd5, #35bfc5);    /* 标准的语法 */
-    z-index: 100;
+    z-index: 999999;
     color: #fff;
 }
 .main-title>div{

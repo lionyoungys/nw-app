@@ -13,7 +13,7 @@ export default class extends React.Component {
         let style = this.props.style || {};
         if (this.props.padding) {
             if ('boolean' === typeof this.props.padding) {
-                style.padding = '20px';
+                style.padding = '16px';
             } else {
                 style.padding = this.props.padding;
             }
