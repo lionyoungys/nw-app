@@ -458,22 +458,23 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    min-width: 16px;
-    min-height: 18px;
+    min-width: 15px;
+    min-height: 15px;
     font-size: 14px;
     text-align: center;
-    padding: 0 18px;
+    padding: 0 15px;
 }
 .ui-math-sub, .ui-math-add{
     position: absolute;
     top: 50%;
-    margin-top: -9px;
-    width: 18px;
-    height: 18px;
+    margin-top: -7.5px;
+    width: 15px;
+    height: 15px;
+    background-image: url(images/ui-math.png);
     cursor: pointer;
 }
-.ui-math-sub{left:0px;background-image: url(images/ui-math-subtract.png);background-position: -1px -1px}
-.ui-math-add{right:0px;background-image: url(images/ui-math-add.png);background-position: -1px -1px}
+.ui-math-sub{left:0px;background-position: 0px 0px}
+.ui-math-add{right:0px;background-position: 15px 0px}
 
 /* 工具类ui样式部分 */
 /* 加载框样式 */
