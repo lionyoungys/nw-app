@@ -100,7 +100,7 @@
     margin: 0 14px;
     height: 48px;
 }
-.clothes-editor-top>span{font-size: 14px;color: #15458d;font-weight: bold}
+.clothes-editor-top>span{font-weight: bold;color: #3fc0db}
 .clothes-editor-body{
     display: -webkit-flex;
     display: flex;
@@ -180,43 +180,26 @@
 .clothes-body>div:nth-child(even){background: #f0f5f9}
 .clothes-problem-body>i{margin: 0 22px 16px 0}
 .clothes-problem-body>i:nth-child(6n){margin-right: 0}
-/* .clothes-problem-body>i{
-    font-style: normal;
-    font-size: 12px;
-    height: 28px;
-    line-height: 28px;
-    width: 90px;
-    text-align: center;
-    margin: 0 8px 8px 0;
-    background: #cde1f7;
-    overflow: hidden;
-    cursor: default;
-}
-.clothes-problem-body>i:nth-child(6n){margin-right: 0}
-.clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold} */
 /* price.js工艺加价界面样式 */
 .clothes-price-data{
     margin: 0 14px;
     max-height: 352px;
     overflow: auto;
-    border: 1px solid #8db2e3;
 }
 .clothes-price-data>div{
     min-height: 26px;
     line-height: 26px;
-    font-size: 12px;
     text-align: center;
     display: -webkit-flex;
     display: flex;
 }
 .clothes-price-data>div:first-child{
-    background: #89b0d4;
-    color: #fff;
+    background-color: #f5f8fa;
     font-weight: bold;
 }
 .clothes-price-data>div>div:nth-child(1){width: 146px}
-.clothes-price-data>div>div:nth-child(2){border-left: 1px solid #acc6de;border-right: 1px solid #acc6de;width: 370px}
-.clothes-price-data>div>div:nth-child(3){width: 84px;color: #2151ed;cursor: default}
+.clothes-price-data>div>div:nth-child(2){width: 370px}
+.clothes-price-data>div>div:nth-child(3){width: 84px;color: #3fc0db;cursor: default}
 .clothes-price-data>div:first-child>div:nth-child(3){color: #fff;cursor: auto}
 .clothes-price-main{
     margin: 12px;
@@ -232,12 +215,11 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-size: 12px;
-    border: 1px solid #8db2e3;
     padding: 0 25px 0 10px;
 }
 .clothes-price .e-input{width: 102px}
 .clothes-price>:first-child{width: 130px}
-.clothes-price>:nth-child(2){width: 148px}
+.clothes-price>:nth-child(2){width: 144px}
 .clothes-price-bottom{margin-right: 18px;text-align: right}
 /* temp.js临时衣物界面样式 */
 .clothes-temp-top{
@@ -270,12 +252,11 @@
 .clothes-update-price{
     height: 136px;
     margin: 0 12px 8px;
-    border: 1px solid #8db2e3;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 32px;
+    padding-top: 26px;
 }
-.clothes-update-price>div>:first-child{width: 116px;text-align: right;color: #15458d}
+.clothes-update-price>div>:first-child{width: 116px;text-align: right;}
 .clothes-update-price>div input{width: 131px}
 .clothes-deduct-top{
     height: 74px;
