@@ -249,25 +249,24 @@
     line-height: 40px;
     margin: 0 12px;
     font-size: 14px;
-    color: #15458d;
+    color: #3fc0db;
     font-weight: bold;
 }
 .clothes-temp-body{
     height: 183px;
     margin: 0 12px 12px;
-    border: 1px solid #8db2e3;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-top: 24px;
+    padding-top: 20px;
 
 }
 .clothes-temp-body>div, .clothes-update-price>div{
     display: -webkit-flex;
     display: flex;
-    font-size: 12px;
-    padding-bottom: 13px;
+    padding-bottom: 12px;
+    line-height: 28px;
 }
-.clothes-temp-body>div>:first-child{width: 136px;text-align: right;color: #15458d}
+.clothes-temp-body>div>:first-child{width: 110px;text-align: right;}
 .clothes-temp-footer{
     margin: 0 16px;
     text-align: right;

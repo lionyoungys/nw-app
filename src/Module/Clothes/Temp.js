@@ -26,19 +26,20 @@ export default class extends Component {
                 <div className='clothes-temp-body'>
                     <div>
                         <span>临时衣物名称：</span>
-                        <input type='text' style={{width:'148px'}} value={this.state.name} onChange={e => this.setState({name:e.target.value})}/>
+                        <input type='text' className='e-input' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/>
                     </div>
                     <div>
                         <span>价格：</span>
-                        <input type='text' style={{width:'121px'}} value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;&nbsp;元
+                        <input type='text' className='e-input' value={this.state.price} onChange={e => this.setState({price:e.target.value})}/>&nbsp;元
                     </div>
                     <div>
                         <span>交活天数：</span>
-                        <input type='text' style={{width:'121px'}} value={this.state.day} onChange={e => this.setState({day:e.target.value})}/>&nbsp;&nbsp;天
+                        <input type='text' className='e-input' value={this.state.day} onChange={e => this.setState({day:e.target.value})}/>&nbsp;天
                     </div>
-                    <div style={{paddingTop:'7px'}}><span></span>
+                    <div style={{height:'auto', lineHeight:1}}><span></span>
                         <input 
                             type='checkbox' 
+                            className='e-checkbox'
                             checked={this.state.discount ? 'checked' : ''} 
                             onClick={() => this.setState({discount:!this.state.discount})}
                         />&nbsp;允许打折
