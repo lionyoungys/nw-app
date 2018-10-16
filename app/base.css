@@ -21,7 +21,7 @@ body{font-size: 14px}
     -ms-user-select:none;
 }
 /* icon */
-.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close{
+.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-payment{
     display: inline-block;
     height: 12px;
     width: 12px;
@@ -32,6 +32,7 @@ body{font-size: 14px}
 .e-icon-user{background-position: 0 13px}
 .e-icon-windows{background-position: 12px 0}
 .e-icon-close{background-position: 12px 12px}
+.e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
 .e-btn{
     padding: 0;
@@ -295,11 +296,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     font-weight: bolder;
     font-size: 16px;
     color: #fff;
-    margin: 11px 0 0 24px;
-    padding-left: 16px;
+    margin: 11px 0 0 20px;
+    padding-left: 18px;
     background-image: url(images/ui-file-alt.png);
     background-repeat: no-repeat;
-    background-position: -2px 0;
+    background-position: 0 center;
 }
 .ui-dish>:first-child>i{
     float: right;
@@ -568,6 +569,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     cursor: pointer;
 }
 /* 支付组件样式 */
+.ui-payment{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 14px 24px 16px;
+}
 .ui-payment-title, .ui-payment-title2{
     height: 40px;
     line-height: 40px;
