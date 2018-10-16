@@ -382,7 +382,7 @@ export default class extends Component {
                     </div>
                 </div>                       
             </div>
-                    <div style={{ height: '5px', width: '871px', background: '#cce8ff', margin: '8px auto 0px'}}></div>
+                    <div style={{ height: '5px', width: '850px', background: '#cce8ff', margin: '8px auto 0px'}}></div>
             </div>
             
             );
@@ -392,7 +392,7 @@ export default class extends Component {
                     <div className="Takeclothes-title">
                        <button className="e-btn Takeclothes-title-btn" onClick={this.M1Read}>读卡</button>
                        <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
-                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} onKeyPress={this.onKeyPress}/>
+                       <input type="text" className="e-input" placeholder='姓名,手机号,订单号,卡号,流水号' value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} onKeyPress={this.onKeyPress}/>
                     </div>  
                     <div className="Takeclothes-div-title" style={{display:this.state.title}}>已为您找到<b>{this.state.count}</b>条数据</div>
                    <div className= "Takeclothes-tab-div">

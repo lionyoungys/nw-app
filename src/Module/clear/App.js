@@ -236,9 +236,9 @@ export default class extends React.Component {
         );
         return (
         <Window title='清洗' onClose={this.props.closeView}> 
-            <div className='right1'>
-                <input type="text" value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
-                <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
+                <div className='right1 topdiv'>
+                    <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
+                    <input type="text" className='e-input' value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
             </div>         
             <div className='clean'>                   
                     <div className='e-box'>

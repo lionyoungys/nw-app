@@ -1,18 +1,18 @@
 
 /* 订单查询顶部 */
 .orderquery-title{
-    width:780px;
+    width:765px;
     height:75px;
     margin:12px auto;
     border:1px solid #d8dce5;
-    background:#f6f7fb;
+    background:#f5f8fa;
 }
 
 .orderquery-title div .ui-select {width:110px}
 .orderquery-title div .ui-select input{width:115px}
 
 .orderquery-title>div{
-    width:200px;
+    width:204px;
     height:27px;
     margin-top:25px;
     float:left;
@@ -26,7 +26,7 @@
     margin-left:0;
 }
 .orderquery-title>div span{
-    width:84px;
+    width:73px;
     line-height: 24px;
     color: #000;
     font-size: 12px;
@@ -58,7 +58,6 @@
     width:872px;
     height:385px;
     max-height:385px;
-    border:1px solid #8db2e3;
     background:#fff;
     margin:0 auto;
     overflow-x:hidden;
@@ -68,9 +67,9 @@
     height:auto;
 }
 .orderquery-div table thead{
-    height:25px;
+    height:30px;
     min-width:872px;
-    background:#89b0d4;
+    background:#f5f8fa;
     display:block;
 }
 .orderquery-div table thead tr{
@@ -79,7 +78,7 @@
 }
 .orderquery-div table thead tr th{
     text-align: center;
-    color: #fff;
+    color: #000;
     font-size: 12px;
     height: 25px;
     line-height: 25px;
@@ -89,46 +88,46 @@
     border-right:none;
 }
 .orderquery-div table thead tr>th:nth-child(1){
-    min-width:105px;
-    max-width:105px;
+    min-width:76px;
+    max-width:76px;
 }
 .orderquery-div table thead tr>th:nth-child(2){
     min-width:125px;
     max-width:125px;
 }
 .orderquery-div table thead tr>th:nth-child(3){
+    min-width:73px;
+    max-width:73px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(4){
+    min-width:70px;
+    max-width:70px;
+   
+}
+.orderquery-div table thead tr>th:nth-child(5){
     min-width:84px;
     max-width:84px;
    
 }
-.orderquery-div table thead tr>th:nth-child(4){
-    min-width:88px;
-    max-width:88px;
-   
-}
-.orderquery-div table thead tr>th:nth-child(5){
-    min-width:78px;
-    max-width:78px;
-   
-}
 .orderquery-div table thead tr>th:nth-child(6){
-    min-width:94px;
-    max-width:94px;
+    min-width:89px;
+    max-width:89px;
    
 }
 .orderquery-div table thead tr>th:nth-child(7){
-    min-width:78px;
-    max-width:78px;
+    min-width:73px;
+    max-width:73px;
    
 }
 .orderquery-div table thead tr>th:nth-child(8){
-    min-width:120px;
-    max-width:120px;
+    min-width:113px;
+    max-width:113px;
     
 }
 .orderquery-div table thead tr>th:nth-child(9){
-    min-width:94px;
-    max-width:94px; 
+    min-width:73px;
+    max-width:73px; 
 }
 /*  */
 .orderquery-div table tbody{
@@ -154,7 +153,6 @@
     font-size: 12px;
     height: auto;
     min-height: 25px;
-    border-right: 1px solid #acc6de;
     word-break:break-all;
 }
 .orderquery-div table tbody tr>td span{
@@ -177,8 +175,8 @@
 }
 
 .orderquery-div table tbody tr>td:nth-child(1){
-    min-width:105px;
-    max-width:105px;
+    min-width:60px;
+    max-width:60px;
 }
 .orderquery-div table tbody tr>td:nth-child(2){
     min-width:125px;
@@ -190,8 +188,8 @@
    
 }
 .orderquery-div table tbody tr>td:nth-child(4){
-    min-width:88px;
-    max-width:88px;
+    min-width:35px;
+    max-width:35px;
    
 }
 .orderquery-div table tbody tr>td:nth-child(5){

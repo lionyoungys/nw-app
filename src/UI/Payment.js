@@ -127,19 +127,19 @@ export default class extends Component {
         return (
             <Dish title='收银' width='560' height='390' icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
-                    <div className='ui-payment-title'>核对信息</div>
-                    <div className='ui-payment-order'>
+                    <div className='ui-payment-head'>核对信息</div>
+                    <div className='ui-payment-detail'>
                         <div>
-                            <div><span>不可折金额：</span>&yen;{data.amount}</div>
-                            <div><span>原价：</span>&yen;{data.total_amount}</div>
+                            <div>不可折金额：&yen;{data.amount}</div>
+                            <div>原价：&yen;{data.total_amount}</div>
                         </div>
                         <div>
-                            <div><span>可折金额：</span>&yen;{data.dis_amount}</div>
-                            <div><span>折后价：</span>&yen;{0 != gateway && 999 != gateway ? data.total_amount : data.pay_amount}</div>
+                            <div>可折金额：&yen;{data.dis_amount}</div>
+                            <div>折后价：&yen;{0 != gateway && 999 != gateway ? data.total_amount : data.pay_amount}</div>
                         </div>
                         <div>
-                            <div><span>折扣率：</span>{discount}%</div>
-                            <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}><span>卡余额：</span>&yen;{data.balance}</div>
+                            <div>折扣率：{discount}%</div>
+                            <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{data.balance}</span></div>
                         </div>
                     </div>
                     {/* <div className='ui-payment-title2'>活动优惠</div>

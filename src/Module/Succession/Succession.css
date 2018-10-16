@@ -72,10 +72,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-height: 450px;
 }
 .ui-table-base.succession-tab tr td{
-    min-width: 218px;
-    max-width: 218px;
+    min-width: 189px;
+    max-width: 189px;
 }
 .ui-table-base.succession-tab tr:last-child{
-    border-bottom:1px solid #8db2e3;
+    /* border-bottom:1px solid #8db2e3; */
 }
 

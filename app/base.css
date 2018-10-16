@@ -13,6 +13,7 @@ body{font-size: 14px}
 .e-f14{font-size: 14px}
 .e-f16{font-size: 16px}
 .e-f20{font-size: 20px}
+.e-fb{font-weight: bolder}
 /* 文本不可选中 */
 .e-select-disabled{
     user-select:none;
@@ -576,7 +577,28 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     -webkit-box-sizing: border-box;
     padding: 14px 24px 16px;
 }
-.ui-payment-title, .ui-payment-title2{
+.ui-payment-head{
+    border-left: 3px solid #3fbfdc;
+    padding-left: 6px;
+    margin-bottom: 14px;
+}
+.ui-payment-detail{
+    height: 76px;
+    width: 510px;
+    border: 1px solid #e6ebf5;
+    background-color: #f5f8fa;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 15px 14px;
+    color: #666;
+}
+.ui-payment-detail>div{
+    width: 160px;
+    height: 100%;
+    float: left;
+}
+.ui-payment-detail>div>div:first-child{margin-bottom: 12px}
+.ui-payment-title2{
     height: 40px;
     line-height: 40px;
     margin-left: 16px;
