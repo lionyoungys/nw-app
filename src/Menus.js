@@ -73,9 +73,9 @@ const Menus = [
             // {value:'赔付统计', view:'payout_stats', id: 31}
         ]
     },
-    /*{
+    {
         value:'财务统计', 
-        id: 5,
+        id: 'FinanceStatistics',
         options:[
             {value:'经理收款', view:'manager_gathering', id: 32},
             // {value:'经理查询', view:'manager_query', id: 33},
@@ -92,7 +92,7 @@ const Menus = [
             {value: '微信、支付宝对账', view:'alipayWechat_checking', id: 42},
         ]
     },
-    {
+    /*{
         value:'店铺管理', 
         options:[
             {value:'门店信息', view:null},

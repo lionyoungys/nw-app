@@ -40,10 +40,10 @@
 .clothes-header>:last-child, .clothes-body>div>:last-child{width: 72px}
 .clothes-header>:nth-child(1), .clothes-body>div>:nth-child(1){width: 92px}
 .clothes-header>:nth-child(2), .clothes-body>div>:nth-child(2){width: 164px}
-.clothes-header>:nth-child(3), .clothes-body>div>:nth-child(3){width: 76px}
+.clothes-header>:nth-child(3), .clothes-body>div>:nth-child(3){width: 72px}
 /* .clothes-header>:nth-child(4), .clothes-body>div>:nth-child(4){width: 76px} */
-.clothes-header>:nth-child(4), .clothes-body>div>:nth-child(4){width: 76px}
-.clothes-header>:nth-child(5), .clothes-body>div>:nth-child(5){width: 76px}
+.clothes-header>:nth-child(4), .clothes-body>div>:nth-child(4){width: 72px}
+.clothes-header>:nth-child(5), .clothes-body>div>:nth-child(5){width: 72px}
 .clothes-header>:nth-child(6), .clothes-body>div>:nth-child(6){width: 74px}
 .clothes-header>:nth-child(7), .clothes-body>div>:nth-child(7){width: 70px}
 .clothes-header>:nth-child(8), .clothes-body>div>:nth-child(8){width: 70px}
@@ -369,8 +369,6 @@
 /* code.js衣物编码界面 */
 .clothes-code{
     margin: 12px;
-    border: 1px solid #8db2e3;
-    font-size: 12px;
     text-align: center;
     line-height: 26px;
 }
@@ -381,13 +379,11 @@
 .clothes-code>:first-child, .clothes-code>:last-child>div{
     display: -webkit-flex;
     display: flex;
-    border-bottom: 1px solid #8db2e3;
-    height: 26px;
+    height: 28px;
 }
-.clothes-code>:first-child{background: #89b0d4;color: #fff}
-.clothes-code>:first-child, .clothes-code>:last-child>:last-child{border: none}
-.clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 188px}
-.clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 192px}
+.clothes-code>:first-child{background: #f5f8fa}
+.clothes-code>:last-child>div>:first-child, .clothes-code>:first-child>:first-child{width: 120px}
+.clothes-code>:last-child>div>:last-child, .clothes-code>:first-child>:last-child{width: 240px}
 /* 线上收衣添加衣物 */
 .add-item-online{margin-top:35px;}
 .add-item-btn{margin-top:30px}
