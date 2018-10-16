@@ -69,7 +69,7 @@ export default class extends Component {
         return (             
             <Window title='前台情况' onClose={this.props.closeView}>   
                 <div className="ope-inc-head for-sta-head">
-                    <a>统计时间：{tool.date('Y-m-d') +'  00：00：00'} 至{tool.date('Y-m-d  H：i：s')}</a>
+                    <a>&ensp;&ensp;统计时间：{tool.date('Y-m-d') +'  00：00：00'} 至{tool.date('Y-m-d  H：i：s')}</a>
                     <a>衣物件数：{this.state.list.length}件</a>
                 </div>
                 <div class="ui-check-res ReportLossQuery">已为您找到：<b>{this.state.count}</b>条记录</div>

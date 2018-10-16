@@ -189,12 +189,8 @@ export default class extends Component {
                     <div>
                        <span>订单来源：</span><Select option={this.state.online}  onChange={value => this.setState({online_name:value=='全部'?'':value})} selected="全部"/>
                     </div>   
-                    <div>
-                       <input type="text" placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />
-                    </div>
-                    <div>                        
-                        <button className="e-btn" onClick = {this.serch}>查询</button>   
-                    </div>              
+                       <input type="text" className='e-input' placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />           
+                        <button className="e-btn" onClick = {this.serch}>查询</button>              
                </div> 
                <div className="orderquery-div">
                   <table>

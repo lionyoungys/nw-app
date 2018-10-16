@@ -9,14 +9,13 @@
 }
 
 .orderquery-title div .ui-select {width:110px}
-.orderquery-title div .ui-select input{width:115px}
 
 .orderquery-title>div{
-    width:204px;
+    width:236px;
     height:27px;
     margin-top:25px;
     float:left;
-    margin-left:34px;   
+    margin-left:-14px;   
 }
 .orderquery-title>div:last-child{width:auto}
 .orderquery-title>div:nth-child(1){
@@ -39,17 +38,18 @@
     margin-top:-3px;
     background:#f9f9f9;
 }
-.orderquery-title>div input{
-    width:198px;
-    height: 20px;
-    border: 1px solid #c2c2c2;
+.orderquery-title> input{
+    margin-top: 25px;
+    margin-left: 10px;
+    /* border: 1px solid #c2c2c2;
     background: #f9f9f9;
     color: #000;
     font-size: 12px;
-    text-indent: 4px;
+    text-indent: 4px; */
 }
-.orderquery-title>div button{
+.orderquery-title>button{
     margin-right:22px;
+    margin-top: 25px;
     float:right;
 }
 
@@ -78,7 +78,7 @@
 }
 .orderquery-div table thead tr th{
     text-align: center;
-    color: #000;
+    color: #616463;
     font-size: 12px;
     height: 25px;
     line-height: 25px;

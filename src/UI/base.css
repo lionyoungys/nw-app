@@ -164,7 +164,6 @@
     background-color: #f6f7fb;
     color: #000;
     /* font-weight: bold; */
-    display:inline-block;
 }
 .ui-table-base tbody tr{
     color: #999;
