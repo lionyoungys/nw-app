@@ -134,6 +134,44 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-color: #3fbfdc;
     background-color: #fff;
 }
+/* 支付选项 标签内需包含一个i表签配合展示icon */
+.e-payment-option{
+    height: 32px;
+    line-height: 32px;
+    width: 86px;
+    display: inline-block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    position: relative;
+    padding-left: 30px;
+    font-weight: bolder;
+    color: #000;
+    cursor: pointer;
+}
+.e-payment-option.checked{
+    border: none;
+    background-image: url(images/e-payment-option-checked.png);
+    background-size: 86px 32px;
+    background-repeat: no-repeat;
+}
+.e-payment-option>i{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    margin-top: -8px;
+    background-image: url(images/icons-payment-option.png);
+    background-repeat: no-repeat;
+}
+.e-payment-option.vip>i{background-position: 0 0;}
+.e-payment-option.ic>i{background-position: -16px 0;}
+.e-payment-option.cash>i{background-position: -32px 0;}
+.e-payment-option.wechat>i{background-position: -48px 0;}
+.e-payment-option.alipay>i{background-position: -64px 0;}
 /* 线包框 */
 .e-fieldset{
     display: inline-block;
@@ -584,13 +622,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .ui-payment-detail{
     height: 76px;
-    width: 510px;
+    width: 100%;
     border: 1px solid #e6ebf5;
     background-color: #f5f8fa;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 15px 14px;
     color: #666;
+    margin-bottom: 14px;
 }
 .ui-payment-detail>div{
     width: 160px;
@@ -598,6 +637,19 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     float: left;
 }
 .ui-payment-detail>div>div:first-child{margin-bottom: 12px}
+.ui-payment-pattern{
+    height: 138px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 6px;
+}
+.ui-payment-pattern>div:first-child{
+    height: 32px;
+    width: 100%;
+}
+.ui-payment-pattern>div:first-child>.e-payment-option{margin-right: 16px}
+.ui-payment-pattern>div:first-child>.e-payment-option:last-child{margin-right: 0}
 .ui-payment-title2{
     height: 40px;
     line-height: 40px;

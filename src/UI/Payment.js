@@ -152,24 +152,14 @@ export default class extends Component {
                             <button type='button' className='e-btn'>使用</button>
                         </div>
                     </div> */}
-                    <div className='ui-payment-title2'>收款方式</div>
-                    <div className='ui-payment-pay'>
-                        <div className='ui-payment-gateway'>
-                            <div className={'e-fieldset' + (999 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='999' onClick={this.handleGateway}>
-                                <img src='img/e-icon-elec.png'/>&nbsp;&nbsp;电子卡
-                            </div>
-                            <div className={'e-fieldset' + (0 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='0' onClick={this.handleGateway}>
-                                <img src='img/e-icon-ic.png'/>&nbsp;&nbsp;IC卡
-                            </div>
-                            <div className={'e-fieldset' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}>
-                                <img src='img/e-icon-cash.png'/>&nbsp;&nbsp;现金
-                            </div>
-                            <div className={'e-fieldset' + (2 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}>
-                                <img src='img/e-icon-wechat.png'/>&nbsp;&nbsp;微信
-                            </div>
-                            <div className={'e-fieldset' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}>
-                                <img src='img/e-icon-ali.png'/>&nbsp;&nbsp;支付宝
-                            </div>
+                    <div className='ui-payment-head'>收款方式</div>
+                    <div className='ui-payment-pattern'>
+                        <div>
+                            <span className={'e-payment-option vip' + (999 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='999' onClick={this.handleGateway}><i></i>电子卡</span>
+                            <span className={'e-payment-option ic' + (0 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='0' onClick={this.handleGateway}><i></i>ic卡</span>
+                            <span className={'e-payment-option cash' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}><i></i>现金</span>
+                            <span className={'e-payment-option wechat' + (2 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}><i></i>微信</span>
+                            <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
                         <div className='ui-payment-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
                             <div style={data.type ? {display:'none'} : null}>
