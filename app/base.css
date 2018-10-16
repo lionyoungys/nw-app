@@ -485,8 +485,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-image: url(images/ui-math.png);
     cursor: pointer;
 }
-.ui-math-sub{left:0px;background-position: 0px 0px}
-.ui-math-add{right:0px;background-position: 15px 0px}
+.ui-math-sub{left:0px;background-position: 15px 0px}
+.ui-math-add{right:0px;background-position: 0px 0px}
 /* tab组件样式 */
 .ui-tab{
     width:100%;
