@@ -121,7 +121,7 @@ export default class extends Component {
                         <span>数据源:</span>&nbsp;&nbsp; <input type='file' onChange={e => this.setState({addr:e.target.value}) }/>
                     </div>
                 </div>
-                <button onClick={this.handleClick} className='e-btn'>开始导入</button>
+                <button onClick={this.handleClick} className='e-btn larger'>开始导入</button>
             </div>
             </Window>
         );

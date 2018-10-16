@@ -209,7 +209,7 @@ export default class extends React.Component {
                             &emsp;<button type='button' className='e-btn' onClick={this.handleChange}>重试</button>
                         </em>
                         &emsp;
-                        <button type='button' className='e-btn' onClick={this.handleClick}>开始导入</button>
+                        <button type='button' className='e-btn larger' onClick={this.handleClick}>开始导入</button>
                     </div>
                     {html}
                 </div>

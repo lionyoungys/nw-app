@@ -148,10 +148,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .e-fieldset>img{vertical-align: middle}
 .e-fieldset.checked{background-image: url(img/e-coil.png)}
 .e-file{
-    width: 150px;
-    font-size: 12px;
-    border: 1px solid #ccc;
+    width: 166px;
+    height: 28px;
+    line-height: 20px;
+    border: 1px solid #d7dee4;
     border-radius: 3px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 /* 下拉选框样式 */
 .e-select{
