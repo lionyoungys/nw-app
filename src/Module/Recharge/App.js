@@ -190,8 +190,8 @@ export default class extends React.Component {
                     <div>
                         <div><label className='e-label'>选择充值类型：</label><Select option={this.state.types} onChange={this.handleChange}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={card.discount}/>%</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
+                        <div><label className='e-label'>&emsp;&emsp;  新折扣：</label><input className='e-input' type='number' value={card.discount}/>%</div>
                     </div>
                    
                 </div>

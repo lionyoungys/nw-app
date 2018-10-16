@@ -1,12 +1,13 @@
 .clothesquery_top{
-    width: 874px;
-    height: 101px;
-    border:1px solid #8db2e3;
+    width: 774px;
+    background: #f5f8fa;
+    height: 154px;
+    border:1px solid #e0e4ea;
     margin: 13px;
 }
 .clothesquery_top_one div .ui-select-define{width:149px;}
-.clothesquery_top_one,.clothesquery_top_two{
-    width:218px;
+.clothesquery_top_one,.clothesquery_top_two,.clothesquery_top_three{
+    width:253px;
     height: 100%;
     float: left;
 }
@@ -14,17 +15,13 @@
 .clothesquery_top_one>div,.clothesquery_top_two>div,.clothesquery_top_three>div{
     margin-top:6px;
 }
-.clothesquery_top_three{
-    width: 438px;
-    height: 100%;
-    float: left;
-}
 .clothesquery_top_three>div{
     float: left;
     margin-right: 2px;
 }
 .clothesquery_top_three  div.clothesquery_top_btn{
-    margin-left:146px;
+    margin-left:67px;
+    margin-top:15px;
 } 
 .clothesquery_top_three div button{
     margin-left: 20px;
@@ -76,12 +73,12 @@
 }
 .ui-table-base.clo-que-tab tr td{
 
-    max-width:115px; 
-    min-width:115px;
+    max-width:82px; 
+    min-width:82px;
 }
 .ui-table-base.clo-que-tab tr td:first-child{
 
-    min-width: 40px; 
+    min-width: 82px; 
 }
 .inputselectborder.clo-date{
     width: 150px;

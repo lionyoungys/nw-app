@@ -241,7 +241,13 @@
     display: block;
     overflow-x: hidden;
 }
-.lattice table tbody tr{width:770px;height:25px;display:block}
+.lattice table tbody tr{
+    width:770px;
+    height:25px;
+    display:block;
+    border-bottom:1px solid #d7dee4;
+    padding-bottom:3px;
+}
 
 .lattice table tbody tr td{
     width:84px;

@@ -40,6 +40,7 @@
 .e-box{
   width:780px;
   height:368px;
+  position: relative;
 }
 .e-box table{
     width:780px;

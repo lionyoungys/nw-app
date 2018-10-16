@@ -70,7 +70,6 @@ export default class extends Component {
     render() {       
         let clothes = this.state.clothes.map((item,index)=>
             <tr key={'item'+index}>
-                <td>{index+1+(this.state.page-1)*this.limit}</td>
                 <td>{item.serialsn==null?item.ordersn:item.serialsn}</td>
                 <td>{item.clothing_number}</td>
                 <td>{item.clothing_name}</td>
@@ -87,37 +86,41 @@ export default class extends Component {
                 <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
                         <div>
-                            <span>&emsp;&emsp;状态：</span><Select  option={['未取走','已取走','已撤单']} selected='未取走' onChange={value => this.setState({status:value})}/>
+                            <span>&nbsp;订单状态：</span><Select  option={['未取走','已取走','已撤单']} selected='未取走' onChange={value => this.setState({status:value})}/>
                         </div> 
                         <div>
-                            <span>&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
+                            <span>&nbsp;&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
                         </div>
                         <div>
-                            <span>衣物名称：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_name:e.target.value})} />
+                        <span>&nbsp;&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
+                           
+                        </div>
+                        <div>
+                        <span>&nbsp;&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
                         </div>
                     </div>
                     <div className='clothesquery_top_two'>
                         <div>
-                            <span>&emsp;流水号：</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
-                        </div> 
-                        <div>
-                            <span>&emsp;&emsp;卡号：</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
+                            <span>开始日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/>
+                           
                         </div>
                         <div>
-                            <span>&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>
+                            <span>&emsp;流水号：</span><input type='text' className='e-input' onChange={e => this.setState({serialsn:e.target.value})}/>
+                        </div> 
+                      
+                        <div>
+                        <span>&emsp;衣挂号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
                         </div>
                     </div>
                     <div className='clothesquery_top_three'>
                         <div>
-                            <span>开始日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/>
                             <span>结束日期：</span><input type='date' className='inputselectborder clo-date' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                         </div> 
-                        <div>
-                            
-                            <span>&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
+                        <div> 
+                            <span>&emsp;&emsp;卡号：</span><input type='text' className='e-input' onChange={e => this.setState({cardNumber:e.target.value})}/>
                         </div>   
                         <div>
-                            <span>&emsp;衣挂号：</span><input type='text' className='e-input' onChange={e => this.setState({grid_num:e.target.value})}/>
+                            <span>衣物名称：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_name:e.target.value})} /> 
                         </div>
                         <div className='clothesquery_top_btn'>
                             <button className='e-btn' onClick={this.clear}>清空</button>
@@ -133,7 +136,6 @@ export default class extends Component {
                 <table className='ui-table-base clo-que-tab' id="clo-que-tab">
                     <thead>
                         <tr>
-                            <td></td>
                             <td>流水号/订单号</td>
                             <td>衣物编码</td>
                             <td>衣物名称</td>
