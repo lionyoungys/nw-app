@@ -155,11 +155,20 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 /* 下拉选框样式 */
 .e-select{
-    height: 22px;
-    font-size: 12px;
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #5a5e66;
+    outline: none;
 }
+.e-select:focus{border: 1px solid #3fc0db}
 /* 日期选框样式 */
 .e-date{
     width: 148px;

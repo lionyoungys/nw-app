@@ -142,21 +142,21 @@ export default class extends Component {
                 {
                     isM1
                     ?
-                    (<button style={this.style} type='button' className='e-btn' onClick={this.M1Read}>测试读卡</button>)
+                    (<button style={this.style} type='button' className='e-btn larger' onClick={this.M1Read}>测试读卡</button>)
                     :
                     (
                         4 == this.state.checked
                         ?
                         (<div style={this.style}>
-                            <button type='button' className='e-btn' onClick={this.printerSetting}>打印机设置</button>
+                            <button type='button' className='e-btn larger' onClick={this.printerSetting}>打印机设置</button>
                             &emsp;
-                            <button type='button' className='e-btn' onClick={this.open}>开钱箱</button>
+                            <button type='button' className='e-btn larger' onClick={this.open}>开钱箱</button>
                         </div>)
                         :
                         (<div style={this.style}>
-                            <button type='button' className='e-btn' onClick={this.printerSetting}>打印机设置</button>
+                            <button type='button' className='e-btn larger' onClick={this.printerSetting}>打印机设置</button>
                             &emsp;
-                            <button type='button' className='e-btn' onClick={this.print}>打印测试页</button>
+                            <button type='button' className='e-btn larger' onClick={this.print}>打印测试页</button>
                         </div>)
                     )
                 }                                                                   
