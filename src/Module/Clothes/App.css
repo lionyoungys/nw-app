@@ -130,8 +130,7 @@
 .clothes-editor-body>i:nth-child(6n){margin-right: 0}
 /* item.js衣物项目样式 */
 .clothes-item-body{
-    height: 350px;
-    border: 1px solid #8db2e3;
+    height: 255px;
     margin: 0 14px;
     background: #eef4fb;
 }
@@ -139,26 +138,23 @@
     display: -webkit-flex;
     display: flex;
     font-weight: bold;
-    color: #fff;
-    background: #89b0d4;
 }
 .clothes-item-header>div, .clothes-items>div>div{
-    border-right: 1px solid #acc6de;
-    min-height: 26px;
-    line-height: 26px;
+    min-height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: #000;
+    background: #f5f8fa;
     text-align: center;
-    font-size: 12px;
 }
-.clothes-item-header>:last-child, .clothes-items>div>:last-child{border-right: none}
-.clothes-item-header>div, .clothes-items>div>div{width: 99.2px}
+.clothes-items>div>div{background: #fff}
+.clothes-item-header>div, .clothes-items>div>div{width: 106px;}
 .clothes-items{
-    max-height: 324px;
-    border: 1px solid #acc6de;
+    max-height: 214px;
     border-top: none;
     overflow: auto;
 }
 .clothes-items>div{display: -webkit-flex;display: flex;cursor: default}
-.clothes-items>div:hover{background: #cce8ff}
 /* brand.js problem.js color.js 界面样式*/
 .clothes-problem-top{
     display: -webkit-flex;
@@ -167,7 +163,7 @@
     margin: 0 14px;
     height: 48px;
 }
-.clothes-problem-top>span{font-size: 14px;color: #15458d;font-weight: bold}
+.clothes-problem-top>span{font-size: 14px;color: #3fc0db;font-weight: bold}
 .clothes-problem-top>.e-input{width: 442px;height: 24px;margin-right: 12px}
 .clothes-problem-body{
     display: -webkit-flex;

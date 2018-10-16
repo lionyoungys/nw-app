@@ -23,7 +23,7 @@ export default class extends Component {
             <i key={obj.id} onClick={this.onChoice}>{obj.forecast}</i>
         );
         return (
-            <Dish title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
+            <Dish title='编辑衣物信息' onClose={this.props.onClose}>
                 <div className='clothes-problem-top'>
                     <span>洗后预估：</span>
                     <input className='e-input' value={this.state.value} onChange={e => this.setState({value:e.target.value})}/>

@@ -23,8 +23,8 @@ export default class extends Component {
             </div>
         );
         return (
-            <Dish title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
-                <div className='clothes-editor-top'>
+            <Dish title='编辑衣物信息' onClose={this.props.onClose}>
+                <div className='clothes-cate-top' style={{marginBottom:'20px'}}>
                     <span>价格</span>
                     <button type='button' className='e-btn' onClick={this.props.onCancel}>取消</button>
                 </div>
