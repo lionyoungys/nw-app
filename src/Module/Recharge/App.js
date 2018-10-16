@@ -190,13 +190,13 @@ export default class extends React.Component {
                     <div>
                         <div><label className='e-label'>选择充值类型：</label><Select option={this.state.types} onChange={this.handleChange}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;充值：</label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={card.discount}/>%</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={card.discount}/>%</div>
                     </div>
                    
                 </div>
                 <div className="recharge-four">
-                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold'}}>应收：&yen;{this.state.amount}</div>
+                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold',textAlign:'center'}}>应收：&yen;{this.state.amount}</div>
                         <button type='button' className='e-btn recharge-btn' onClick={this.handleClick}>收银</button>
                 </div>
                 {

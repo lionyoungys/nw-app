@@ -46,11 +46,19 @@
     text-align: right;
     float: right;
 } */
-.recharge-four{float:right;height: 100%;width: 100%;
-background:#fafafb;}
-.recharge-four .recharge-btn{margin-left: 102px;margin-top: 12px;}
+.recharge-four{
+    float:right;
+    height: 100%;
+    width: 100%;
+    background:#fff;
+}
+.recharge-four .recharge-btn{
+    margin:12px auto;
+    display:block;
+    margin-top: 12px;
+}
 .recharge-third div div{
-    display: inline;
+    display:-webkit-inline-box;
 }
 .recharge-third div div .ui-select-define{
     width:92px;

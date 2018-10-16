@@ -99,8 +99,6 @@
 }
 .LatticeQuery-Bdiv ul li span.span-div{color:#ff0000}
 
-
-
 /* 格架修改  */
 
 .lattice-title{
@@ -171,7 +169,7 @@
 }
 .lattice-div-right span{
     display:inline-block;
-    width:55px;
+    width:auto;
     height:24px;
     border:1px solid #d7dee4;
     color:#afafaf;
@@ -181,16 +179,19 @@
     line-height:24px;
     margin:9px 0 5px 10px;
     cursor: pointer;
+    padding:0 8px;
 }
+
 .lattice-div-right span:hover{
    background:#b8f3ff; 
    color:#fff;
 }
+
 .lattice-div-right span.index{
     color:#f00;
 }
-.lattice-div-right span.index:hover{
-    
+
+.lattice-div-right span.index:hover{  
     color:#f00;
 }
 
