@@ -20,7 +20,7 @@ export default class extends Component {
     render() {
         if ('undefined' === typeof this.props.data || !(this.props.data instanceof Array)) return null;
         let html = this.props.data.map(obj =>
-            <i key={obj.id} onClick={this.onChoice}>{obj.forecast}</i>
+            <i className='e-option' key={obj.id} onClick={this.onChoice}>{obj.forecast}</i>
         );
         return (
             <Dish title='编辑衣物信息' onClose={this.props.onClose}>

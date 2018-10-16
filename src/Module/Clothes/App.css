@@ -170,17 +170,17 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    height: 350px;
-    border: 1px solid #8db2e3;
+    height: 278px;
     margin: 0 14px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 8px;
     overflow: auto;
 }
 .clothes-body>div:nth-child(odd){background: #fff}
 .clothes-body>div:nth-child(even){background: #f0f5f9}
-.clothes-problem-body>i{
+.clothes-problem-body>i{margin: 0 22px 16px 0}
+.clothes-problem-body>i:nth-child(6n){margin-right: 0}
+/* .clothes-problem-body>i{
     font-style: normal;
     font-size: 12px;
     height: 28px;
@@ -193,7 +193,7 @@
     cursor: default;
 }
 .clothes-problem-body>i:nth-child(6n){margin-right: 0}
-.clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold}
+.clothes-problem-body>i:hover{color: #fff;background: #6bb1f8;font-weight: bold} */
 /* price.js工艺加价界面样式 */
 .clothes-price-data{
     margin: 0 14px;
