@@ -98,21 +98,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* 表格区域 */
 
 .ui-table-base.unpaidstatistics_table_Arrearage{
-
     margin-top: 5px;
-    max-height: 320px;
+    max-height: 300px;
     overflow-x: auto;
-    height: 320px;
+    height: 300px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
-
-    max-height: 255px;
-    width: 1035px;
+    max-height: 220px;
+    width: 768px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
     min-width: 83px;
     max-width: 83px;
 }
-.ui-table-base.unpaidstatistics_table_Arrearage tr:last-child{
+/* .ui-table-base.unpaidstatistics_table_Arrearage tr:last-child{
     border-bottom:1px solid #8db2e3;
-}
+} */

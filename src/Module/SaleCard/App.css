@@ -28,13 +28,14 @@
     width: 731px;
     height: 124px;
     margin: 9px auto;
-    border: 1px solid #8db2e3;  
+    border:1px solid #d7dee4;
 }
 .salecard .top_hr{
     color: #d9dde4;
     margin-top: 14px;
     margin-left: 17px;
     margin-right: 17px;
+    border:1px solid #d7dee4;
 }
 .salecard_leftdirection{
    
@@ -44,6 +45,8 @@
 .bottom_hr{
     color: #d9dde4;
     margin-top: 50px;
+    border-bottom:1px solid #d7dde6;
+    width:768px;
 }
 .bottom_text{
     margin-top: 31px;

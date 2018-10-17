@@ -1,8 +1,8 @@
 /* 全局设置 */
 .store_management{
 
-    margin: 13px 14px;
-    height: 557px;
+    margin: 10px 14px;
+    height: 485px;
     border:1px solid #8db2e3;
     background-color: #fff;
 }
@@ -469,7 +469,7 @@
 
 .store_management_content_baseInfo div.store-detail{
     width:546px;
-    height:157px;
+    height:125px;
     line-height:20px;
     margin-top:8px;
 }

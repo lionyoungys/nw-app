@@ -1,7 +1,7 @@
 /* 充值统计页面样式  顶部*/
 .bal-head{
-    width: 874px;
-    margin: 10px 13px 10px;
+    width: 767px;
+    margin: 10px auto;
     border: 1px solid #dbdfe6;
     height: 57px;
     background: #f5f8fa;
@@ -45,17 +45,16 @@
     margin-bottom:12px
 }
 .ui-table-base.bal-sta-tab.bal-tab{
-
-    max-height: 380px;
+    max-height: 361px;
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
-    height: 380px;
+    height: 361px;
 
 }
 .ui-table-base.bal-sta-tab.bal-tab tbody{
-    max-height: 345px;
-    height: 345px;
+    max-height: 320px;
+    height: 320px;
     width: 1048px;
 }
 .ui-table-base.bal-sta-tab.bal-tab tr td{
@@ -75,6 +74,6 @@
     background-position-y: 12px;
 }
 .ui-table-base.bal-sta-tab.bal-tab tr:last-child{
-    border-bottom:1px solid #8db2e3;
+    border-bottom:1px solid #dbdfe6;
 }
 

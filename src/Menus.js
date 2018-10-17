@@ -35,6 +35,24 @@ const Menus = [
         ]
     },
     {
+        value:'客户管理', 
+        key: 'CustomerManagement',
+        options:[
+            {value:'售卡', view:'sale_card', id: 23, className:'sell-card'},
+            {value:'充值', view:'recharge', id: 24, className:'recharge-card'},
+            {value:'会员信息修改', view:'member_info_update', id: 25, className:'member-update'},
+            {value:'挂失、补换卡',view:'loss_reissue_change_card', id: 26, className:'change-card'},
+            //{ value:'退卡', view:'return_card', id: 27},
+            // { value:'挂失查询', view:'report_loss_query'},
+            // { value:'退卡查询', view:'card_queries', id: 28},
+            // {value:'会员消费查询', view:'Member_ship_query'},
+            // { value: '挂失', view:'report_loss_main'},
+            // { value:'解除挂失', view:'Solut_ionto_hang'},
+            // { value: '换卡', view:'exchange_card'}, 
+            { value:'客户信息查询', view:'customer_query', id: 29, className:'customer-query'},            
+        ]
+    },
+    {
         value:'信息查询', 
         key:'InfoQuery',
         options:[
@@ -49,22 +67,6 @@ const Menus = [
             {value:'消费统计', view:'consum_ption_statistics', id:22, className:'consume-statistic'},     
         ]
     },
-    /*{
-        value:'客户管理', 
-        id: 3,
-        options:[
-            { value:'会员信息修改', view:'member_info_update', id: 25},
-            { value:'挂失、补换卡',view:'loss_reissue_change_card', id: 26},
-            { value:'退卡', view:'return_card', id: 27},
-            // { value:'挂失查询', view:'report_loss_query'},
-            // { value:'退卡查询', view:'card_queries', id: 28},
-            // {value:'会员消费查询', view:'Member_ship_query'},
-            // { value: '挂失', view:'report_loss_main'},
-            // { value:'解除挂失', view:'Solut_ionto_hang'},
-            // { value: '换卡', view:'exchange_card'}, 
-            { value:'客户信息查询', view:'customer_query', id: 29},            
-        ]
-    },*/
     {
         value:'信息统计', 
         key: 'InfoStatistics',

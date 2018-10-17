@@ -139,7 +139,7 @@ html, body, #root, #main{width: 100%;height: 100%}
     height: 22px;
     width: 22px;
     margin-top: -11px;
-    background-image: url(images/main-menus-info-query.png);
+    background-image: url(images/main-menus-list-icons.png);
     background-repeat: no-repeat;
 }
 .main-menus-list>span>em{
@@ -178,3 +178,8 @@ html, body, #root, #main{width: 100%;height: 100%}
 .main-menus-member-balance>i{background-position: -132px 0}
 .main-menus-recharge-statistic>i{background-position: -154px 0}
 .main-menus-consume-statistic>i{background-position: -176px 0}
+.main-menus-sell-card>i{background-position: -198px 0}
+.main-menus-recharge-card>i{background-position: -220px 0}
+.main-menus-member-update>i{background-position: -242px 0}
+.main-menus-change-card>i{background-position: -264px 0}
+.main-menus-customer-query>i{background-position: -286px 0}
