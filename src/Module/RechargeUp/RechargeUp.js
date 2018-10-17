@@ -69,11 +69,11 @@ export default class extends Component {
                         </div>
                         
                         <button className="e-btn recharg-btn" onClick={()=>this.query(1)}>查询</button>
-                        <div id="balancestatistics-zengsong">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</div>
+                        <div id="balancestatistics-zengsong"></div>
                         <div id="balancestatistics-leiji">累计充值金额：<b>¥{this.state.total_amount}</b> 元</div>
                                                     
                     </div>
-                    <table className='ui-table-base bal-sta-tab'>
+                    <table className='ui-table-base bal-sta-tab recharge-sta'>
                         <thead>
                             <tr>
                                 <td></td> 

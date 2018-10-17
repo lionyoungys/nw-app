@@ -160,6 +160,9 @@
 .ui-table-base tr td:last-child{
     border-right:none;
 }
+.ui-table-base thead{
+    display: block;
+}
 .ui-table-base thead tr{
     background-color: #f6f7fb;
     color: #000;

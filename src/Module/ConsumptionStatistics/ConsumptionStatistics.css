@@ -18,17 +18,28 @@
     color: red;
 }
 .ui-table-base.bal-sta-tab.consun-tab{
-    max-height: 400px;
+
+    max-height: 335px;
+    margin-top: 5px;
+    max-width: 1580px;
+    overflow-x: auto;
+    height: 335px;
 }
 .ui-table-base.bal-sta-tab.consun-tab tbody{
+    max-height: 284px;
+    height: 284px;
+    width: 1585px;
+}
+.ui-table-base.bal-sta-tab.consun-tab tr td{
 
-    max-height: 360px;
+    max-width: 135px;
+    min-width: 135px;
 }
 .ui-table-base.bal-sta-tab.consun-tab tr td:first-child{
 
-    min-width: 139px;
-    max-width: 139px;
+    max-width: 45px;
+    min-width: 45px;
 }
-.ui-table-base.bal-sta-tab.consun-tab thead tr td:first-child{
-    background: none;
+.ui-table-base.bal-sta-tab.consun-tab tr:last-child{
+    border-bottom:1px solid #8db2e3;
 }

@@ -66,7 +66,7 @@ export default class extends Component {
                         <span>累计会员数：<b>{this.state.user_total}</b></span>
                         <span>累计会员余额：<b>￥{this.state.balance_total}</b>元</span>
                     </div>
-                    <table className='ui-table-base bal-sta-tab'>
+                    <table className='ui-table-base bal-sta-tab bal-tab'>
                         <thead>
                             <tr>
                                 <td>序号</td>

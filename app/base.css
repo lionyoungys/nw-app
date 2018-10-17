@@ -372,7 +372,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #9a9a9a;
 }
 /* 分页组件样式 */
-.ui-page{height: 28px;font-size: 14px;line-height: 28px;min-width: 400px}
+.ui-page{height: 28px;font-size: 14px;line-height: 28px;min-width: 400px;width:785px;margin: 5px auto;}
 .ui-page>*{float: left;}
 .ui-page>span{color: #000;font-size: 14px}
 .ui-page>span:first-of-type{font-size: 16px}

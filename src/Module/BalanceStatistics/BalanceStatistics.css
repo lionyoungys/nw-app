@@ -1,13 +1,13 @@
 /* 充值统计页面样式  顶部*/
 .bal-head{
-    width: 771px;
+    width: 874px;
     margin: 10px 13px 10px;
-    border: 1px solid #d7dde6;
+    border: 1px solid #dbdfe6;
     height: 57px;
     background: #f5f8fa;
 }
 .bal-head span{
-    color:#626564;
+    color:#585858;
     font-size:13px;
     margin-left: 12px;
     margin-right:12px;
@@ -36,31 +36,45 @@
 }
 .balancestatistics_title_left button:hover{background:url(./img/e-btn-hover.png);background-size:100% 100%}
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
-#balancestatistics_title_left{width:51%;margin-right:11px;float:left;margin-left:11px;height:57px;margin-bottom:12px}
-.ui-table-base.bal-sta-tab{
-    max-height: 379px;
+#balancestatistics_title_left{
+    width:440px;
+    margin-right:11px;
+    float:left;
+    margin-left:11px;
+    height:57px;
+    margin-bottom:12px
+}
+.ui-table-base.bal-sta-tab.bal-tab{
+
+    max-height: 380px;
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
-    height: 415px;
-}
-.ui-table-base.bal-sta-tab tr td{
+    height: 380px;
 
-    max-width: 100px;
-    min-width: 100px;
 }
-.ui-table-base.bal-sta-tab tr td:first-child{
+.ui-table-base.bal-sta-tab.bal-tab tbody{
+    max-height: 345px;
+    height: 345px;
+    width: 1048px;
+}
+.ui-table-base.bal-sta-tab.bal-tab tr td{
 
-    max-width: 35px;
-    min-width: 35px;
+    max-width: 138px;
+    min-width: 138px;
 }
-.ui-table-base.bal-sta-tab thead tr td:first-child {
+.ui-table-base.bal-sta-tab.bal-tab tr td:first-child{
+
+    max-width: 40px;
+    min-width: 40px;
+}
+.ui-table-base.bal-sta-tab.bal-tab thead tr td:first-child {
     background: url(./img/revokedata_list_box_span.png) no-repeat;
     background-size: 10px 10px;
     background-position-x: 27px;
     background-position-y: 12px;
 }
-.ui-table-base.bal-sta-tab tr:last-child{
+.ui-table-base.bal-sta-tab.bal-tab tr:last-child{
     border-bottom:1px solid #8db2e3;
 }
 

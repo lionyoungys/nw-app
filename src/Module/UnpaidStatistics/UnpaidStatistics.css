@@ -18,7 +18,6 @@
     height: 100%;
     line-height: 57px;
     font-size: 12px;
-    color: #063781;
     text-indent: 18px;
 }
 .unpaidstatistics_dataright{
@@ -81,7 +80,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     text-indent: 18px;
     font-size: 12px;
-    color: #063781;
     float: left;
 }
 .unpaidstatistics_Statistics span a{
@@ -92,7 +90,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .unp-sta-res-num{
     height: 30px;
-    color: #063781;
     font-size: 12px;
     margin: 0 13px;
     line-height:30px;
@@ -103,13 +100,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .ui-table-base.unpaidstatistics_table_Arrearage{
 
     margin-top: 5px;
-    max-height: 380px;
+    max-height: 320px;
     overflow-x: auto;
-    height: 380px;
+    height: 320px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
 
-    max-height: 340px;
+    max-height: 255px;
+    width: 1035px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
     min-width: 83px;
