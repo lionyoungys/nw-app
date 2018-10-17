@@ -117,7 +117,6 @@ class Container extends Component {
     }
 
     render() {
-        console.log(this.props.menus);
         let html = this.props.menus.options.map(obj => 
             <span
                 key={obj.value} 
