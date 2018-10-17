@@ -103,7 +103,7 @@ class Main extends Component {
                 </div>
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'><div>{tabs}</div></div>
-                <Container menus={Menus[this.state.MenuIndex].options} changeView={this.changeView}>
+                <Container menus={Menus[this.state.MenuIndex]} changeView={this.changeView}>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} leftMenuReload={this.leftMenuReload}/>}
                 </Container>
             </div>
@@ -113,22 +113,23 @@ class Main extends Component {
 class Container extends Component {
     constructor(props) {
         super(props);
+        this.keywords = ['InfoQuery'];
     }
 
     render() {
         console.log(this.props.menus);
-        let html = this.props.menus.map(obj => 
+        let html = this.props.menus.options.map(obj => 
             <span
                 key={obj.value} 
                 data-view={obj.view} 
                 data-event={obj.event} 
                 onClick={this.props.changeView} 
                 className={obj.className ? 'main-menus-' + obj.className : null}
-            >{obj.value}</span>
+            ><i></i>{obj.value}<em></em></span>
         );
         return (
             <div className='main-container'>
-                <div className='main-menus'>{html}</div>
+                <div className={-1 === this.props.menus.key.inArray(this.keywords) ? 'main-menus' : 'main-menus-list'}>{html}</div>
                 {this.props.children}
             </div>
         );

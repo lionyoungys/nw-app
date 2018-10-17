@@ -83,6 +83,8 @@ html, body, #root, #main{width: 100%;height: 100%}
 .main-top>div>span[data-checked='1']{border-bottom: 5px solid #00e7fe;background-color: #34b9d2;}
 .main-container{
     height: 100%;
+    width: 100%;
+    background-color: #ecf2fb;
     position: relative;
     overflow: auto;
     user-select:text;
@@ -90,6 +92,7 @@ html, body, #root, #main{width: 100%;height: 100%}
     -moz-user-select:text;
     -ms-user-select:text;
 }
+/*  栅格菜单样式  */
 .main-menus{
     width: 604px;
     min-height: 288px;
@@ -113,6 +116,41 @@ html, body, #root, #main{width: 100%;height: 100%}
     background-repeat: no-repeat;
 }
 .main-menus>span:nth-child(4n + 0) {margin-right: 0}
+/* 列表菜单样式 */
+.main-menus-list{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 18px;
+}
+.main-menus-list>span{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 26px 0 46px;
+    margin-bottom: 8px;
+    position: relative;
+}
+.main-menus-list>span>i{
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    height: 22px;
+    width: 22px;
+    margin-top: -11px;
+    background-image: url(images/main-menus-info-query.png);
+    background-repeat: no-repeat;
+}
+.main-menus-list>span>em{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    height: 11px;
+    width: 6px;
+    margin-top: -5.5px;
+    background: url(images/main-menus-right.png) no-repeat center center;
+}
 /* 菜单项目样式 */
 .main-menus-default{background-color: #35bfc5;}
 .main-menus-clothes{background-color: #48baf3;background-image: url(images/main-menus-clothes.png);background-position: center 24px;}
@@ -131,3 +169,12 @@ html, body, #root, #main{width: 100%;height: 100%}
 .main-menus-check{background-color: #31b9f0;background-image: url(images/main-menus-check.png);background-position: center 20px;}
 .main-menus-out-of{background-color: #40cbab;background-image: url(images/main-menus-out-of.png);background-position: center 24px;}
 .main-menus-back{background-color: #feb446;background-image: url(images/main-menus-back.png);background-position: center 22px;}
+.main-menus-clothes-query>i{background-position: 0 0}
+.main-menus-shelf-query>i{background-position: -22px 0}
+.main-menus-order-query>i{background-position: -44px 0}
+.main-menus-hand-over>i{background-position: -66px 0}
+.main-menus-front-status>i{background-position: -88px 0}
+.main-menus-no-payment>i{background-position: -110px 0}
+.main-menus-member-balance>i{background-position: -132px 0}
+.main-menus-recharge-statistic>i{background-position: -154px 0}
+.main-menus-consume-statistic>i{background-position: -176px 0}
