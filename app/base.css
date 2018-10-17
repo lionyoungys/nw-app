@@ -172,6 +172,19 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .e-payment-option.cash>i{background-position: -32px 0;}
 .e-payment-option.wechat>i{background-position: -48px 0;}
 .e-payment-option.alipay>i{background-position: -64px 0;}
+/* 三角形状 */
+.e-triangle{
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #fff;
+    border-style: solid;
+    z-index: 1;
+}
+/* 三角形状边框 */
+.e-triangle-b{
+    border-width: 0 10px 10px;
+    border-color: transparent transparent #e6ebf5;
+    border-style: solid;
+}
 /* 线包框 */
 .e-fieldset{
     display: inline-block;
@@ -661,6 +674,18 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     padding: 0 10px;
 }
+.ui-payment-pattern-handle>.e-triangle{
+    position: absolute;
+    top: -8px;
+    left: 0;
+}
+.ui-payment-pattern-handle>.e-triangle-b{
+    position: absolute;
+    top: -10px;
+    left: 0;
+}
+.ui-payment-pattern-handle.vip>.e-triangle{margin-left: 35px}
+.ui-payment-pattern-handle.vip>.e-triangle-b{margin-left: 33px}
 .ui-payment-title2{
     height: 40px;
     line-height: 40px;

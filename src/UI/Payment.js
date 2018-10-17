@@ -162,6 +162,7 @@ export default class extends Component {
                             <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                            <i className='e-triangle'></i><i className='e-triangle-b'></i>
                             <div style={data.type ? {display:'none'} : null}>
                                 <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
                                 <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
