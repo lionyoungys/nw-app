@@ -168,27 +168,30 @@ export default class extends Component {
                                 <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
                                 <button type='button' className='e-btn' onClick={this.query}>查询</button>
                             </div>
-                            <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
-                                <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
-                                <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                            <div className='ui-payment-pattern-handle-vip' style={data.type ? null : {display:'none'}}>
+                                <div><span>卡号：{data.number}</span>卡类型：{data.type}</div>
+                                <div><span>余额：{data.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
-                            <div style={data.type ? {display:'none'} : {textAlign:'center',height:'100%',lineHeight:'54px'}}>
+                            <i className='e-triangle'></i><i className='e-triangle-b'></i>
+                            <div style={data.type ? {display:'none'} : {textAlign:'center'}}>
                                 <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                             </div>
-                            <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
-                                <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
-                                <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                            <div style={data.type ? null : {display:'none'}}>
+                            <div><span>卡号：{data.number}</span>卡类型：{data.type}</div>
+                                <div><span>余额：{data.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
-                            <div className='ui-payment-cash'>
+                            <i className='e-triangle'></i><i className='e-triangle-b'></i>
+                            <div>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                                 &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                            <i className='e-triangle'></i><i className='e-triangle-b'></i>
                             <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
                             <input 
                                 type='text' 
@@ -212,13 +215,13 @@ export default class extends Component {
                         </div> */}
                     </div>
                     <div className='ui-payment-confirm'>
-                        <button type='button' className='e-btn' onClick={this.handleClick}>立即收款</button>
+                        <button type='button' className='e-btn larger' onClick={this.handleClick}>立即收款</button>
                     </div>
                 </div>
                 {
                     this.state.show
                     &&
-                    <Dish title='请输入会员卡密码' width='260' height='100' onClose={() => this.setState({show:false})}>
+                    <Dish title='请输入会员卡密码' width='280' height='100' onClose={() => this.setState({show:false})}>
                         <div style={{textAlign:'center',marginTop:'14px'}}>
                             <input type='password' className='e-input' value={this.state.passwd} onChange={e => this.setState({passwd:e.target.value})}/>
                             &nbsp;&nbsp;
@@ -513,7 +516,7 @@ export class UpdateCard extends Component {
 }
 
 
-class PaymentPattern extends Component {
+/*class PaymentPattern extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -582,12 +585,7 @@ class PaymentPattern extends Component {
                     <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
                     <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                 </div>
-                {/* <div className='ui-payment-amount'>
-                    <div>应收：<span>&yen;{amount}</span></div>
-                    <div>找零：<span>&yen;{change}</span></div>
-                    <div>欠费：<span>&yen;{change > 0 ? 0 : (change * -1)}</span></div>
-                </div> */}
             </div>
         );
     }
-}
+}*/
