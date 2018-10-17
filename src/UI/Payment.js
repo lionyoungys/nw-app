@@ -317,7 +317,7 @@ export class Recharge extends Component {
         ,   authCode = this.state.authCode
         ,   gateway = this.state.gateway;
         return (
-            <Dish title='收银' width='632' height='430' onClose={this.props.onClose}>
+            <Dish title='收银' width='560' height='420' onClose={this.props.onClose}>
                 <div className='ui-payment'>
                     <div className='ui-payment-head'>核对信息</div>
                     <div className='ui-payment-detail'>
