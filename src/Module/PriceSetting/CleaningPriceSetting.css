@@ -11,20 +11,19 @@
     line-height: 39px;
 }
 .cleaning_price_set_btn button{
-
     float: right;
     margin-top: 7px;
     margin-right: 9px;
+    width: 122px;
 }
 
 .cleaning_price_set_left_table_div{
-
     margin-top: 0;
     margin-left: 13px;
     width: 90px;
-    height:448px;
-    max-height: 448px;
-    border:1px solid #8db2e3;
+    height:350px;
+    max-height:350px;
+    border:1px solid #3fc0db;
     overflow: hidden;
     float: left;
     
@@ -37,14 +36,13 @@
     margin-left: 0;
     margin-bottom: 0;
     width: 107px;
-    max-height: 448px;
+    max-height:350px;
     overflow-y: scroll;
     /* 用于隐藏横向滑块 */
     overflow-x:hidden;
-    height:448px;
+    height:350px;
 }
 .cleaning_price_set_left_table:-webkit-scrollbar{
-
     display: none;
 }
 .cleaning_price_set_left_table span{
@@ -63,58 +61,60 @@
     cursor:pointer;
 }
 .cleaning_price_set_left_table span.selected_row{
-
-    background: #5f9dfa;
+    background: #3fc0db;
     color: white;
-    font-weight: bold;
-    
+    font-weight: bold;   
 }
 .change_card_table.right_table{
-    float:right;
-    margin:0 11px;
+    float: right;
+    margin: 0 11px;
     max-height: 448px;
-    max-width: 741px;    
+    max-width: 630px;
     overflow: auto;
-    border:1px solid #8db2e3; 
-    height:448px;
+    border: 1px solid #eceff6;
+    height: 349px;
     overflow-y: hidden;
 }
+
 /* .change_card_table.right_table tbody{
     display: block;
 }
 .change_card_table.right_table thead{
     display: block;
 } */
-.change_card_table.right_table tbody tr:last-child{border-bottom:1px solid #8db2e3}
+.change_card_table.right_table tbody tr:last-child{border-bottom:1px solid #eceff6}
+.right_table tr{display:-webkit-box}
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */
     /* min-width: auto; */
     min-width: 61px;
     height: 25px;
-    border-right: 1px solid #acc6de;
+    /* border-right: 1px solid #acc6de; */
     word-wrap:break-word;
     padding: 0 5px;
+    color: #b5b5b5
 }
 .right_table tr td:first-child{
-
     min-width: 50px;
     padding: 0;
 }
 .right_table tr td:last-child{
    border-right: none;
 }
-.right_table tr:last-child{border-bottom:1px solid #8db2e3} 
+.right_table tr:last-child{border-bottom:1px solid #eceff6} 
 
 .right_table thead{
-    display:block;
+    /* display:block; */
     width:auto;
     height:25px;
+    background:#f6f7fb;
 }
 .right_table tbody{
-    max-height: 410px;
-    height: 410px;
+    max-height:300px;
+    height:300px;
     overflow-y: auto;
     width: auto;
     display: inline-block;
     overflow-x: hidden;
 }
+.right_table thead tr th{color:#636466}

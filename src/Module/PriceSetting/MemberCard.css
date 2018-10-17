@@ -2,60 +2,60 @@
     border-right: none;
 }
 .membercard-tab table thead tr th {
-    width: 140px;
+    width: 128px;
     height: 25px;
-    border-right: 1px solid #acc6de;
+    /* border-right: 1px solid #acc6de; */
     line-height: 25px;
     text-align: center;
-    color: #fff;
+    color: #707070;
     font-size: 12px;
-    min-width: 140px;
+    min-width: 128px;
 }
 .membercard-tab{
-    width:843px;
-    height:auto;
-    max-height:473px;
-    border:1px solid #8db2e3;
+    width:767px;
+    height:auto;    
+    border:1px solid #eceff6;
     clear:both;
-    max-height:485px;
+    max-height:376px;
     overflow: hidden;
 }
 .membercard-tab table thead{
     width:100%;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
+.membercard-tab table{height:332px;border-bottom:1px solid #eceff6}
 .membercard-tab table thead tr{
     width:100%;
     height:25px;
     line-height:25px;
     display: inline-block;
 }
-.membercard-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.membercard-tab table tbody{width:767px;display:block;max-height:300px;overflow-y:auto;overflow-x:hidden}
 .membercard-tab table tbody tr{
     width:100%;
     height:25px;
 }
-.membercard-tab table tbody tr:nth-of-type(odd){background:#fff}
-.membercard-tab table tbody tr:nth-of-type(even){background:#f0f5f9}
+/* .membercard-tab table tbody tr:nth-of-type(odd){background:#fff}
+.membercard-tab table tbody tr:nth-of-type(even){background:#f0f5f9} */
 .membercard-tab table tbody tr td{
-    width: 140px;
+    width: 128px;
     height:25px; 
-    border-right:1px solid #acc6de;
+    /* border-right:1px solid #acc6de; */
     text-align:center;
     font-size:12px;
-    color:#000;
+    color:#a7a7a7;
     line-height:25px;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:140px;
+    min-width:128px;
     
 }
 .membercard-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
 .membercard-tab table tbody tr td b{
     font-weight:inherit;
-    color: #2151ed;
+    color: #3fbfdc;
     margin-left:30px;
     float:left;
 }
@@ -69,15 +69,15 @@
     width:426px;
     height:190px;
     font-size: 13px;
-    border:1px solid #8db2e3;
+    border:1px solid #eceff6;
     margin:15px auto;
-    background:#eef4fb;
+    /* background:#eef4fb; */
  }
  .membercard-div div{width:319px;height:24px;margin-top:10px}
  .membercard-div div span{
      width:91px;
      text-align:right;
-     color:#063781;
+     color:#000;
      font-size:12px;
      line-height:24px;
      display:inline-block;

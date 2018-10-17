@@ -84,12 +84,12 @@
 .change_card_table tr td:first-child{   
 
     min-width: 33px; 
-    border-right: 1px solid #acc6de;
+    /* border-right: 1px solid #acc6de; */
 }
 
 .change_card_table thead tr{
-    background-color: #89b0d4;
-    color: white;
+    
+    color: #7a7a7a;
 }
 /* .change_card_table thead tr td:first-child{
     background: url(./img/e-btn-hover.png); 
@@ -97,18 +97,11 @@
 } */
 
 .change_card_table tbody tr{
-
-    background-color: #f0f5f9;
-    color: black;
-
+   
 }
-.change_card_table tbody tr:nth-child(odd){
 
-    background-color: #fff;
-    color: black;
-}
 .change_card_table tbody #selecttr{
-    background:#b5d4f1 ;
+    background:#c4f2fc ;
 }
 
 .change_card_table tbody tr td:first-child{
@@ -116,6 +109,6 @@
 }
 
 .change_card_table tbody tr td:last-child{
-    color: #1b51f1;
+    color: #3fbfdc;
     cursor:pointer;
 }

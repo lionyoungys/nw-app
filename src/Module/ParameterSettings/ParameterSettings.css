@@ -1,5 +1,5 @@
 /* 品牌样式 */
-.brand{width:845px;height:auto;margin:auto}
+.brand{width:768px;height:auto;margin:auto}
 .brand-btn{
     width:111px;
     height:24px;    
@@ -17,10 +17,10 @@
 }
 .brand-btn:hover{background:url(./img/e-btn-6-hover.png) no-repeat}
 .brand-tab{
-    width:843px;
+    width:768px;
     height:auto;
     max-height:473px;
-    border:1px solid #8db2e3;
+    border:1px solid #d7dee4;
     clear:both;
     max-height:485px;
     overflow: hidden;
@@ -28,7 +28,7 @@
 .brand-tab table thead{
     width:100%;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
 .brand-tab table thead tr{
     width:100%;
@@ -40,36 +40,36 @@
     width:281px;
     height:25px;
     line-height:25px;
-    color:#fff;
-    border-right:1px solid #acc6de;
+    color:#707070;
+    /* border-right:1px solid #acc6de; */
     text-align:center;
     font-size:12px;
 }
-.brand-tab table thead tr th:last-child{border-right:none}
+/* .brand-tab table thead tr th:last-child{border-right:none} */
 
-.brand-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.brand-tab table tbody{width:768px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
 .brand-tab table tbody tr{
     width:100%;
     height:25px;
 }
-.brand-tab table tbody tr:nth-of-type(odd){background:#fff}
+/* .brand-tab table tbody tr:nth-of-type(odd){background:#fff} */
 .brand-tab table tbody tr td{
     width:281px;
     height:25px; 
-    border-right:1px solid #acc6de;
+    /* border-right:1px solid #acc6de; */
     text-align:center;
     font-size:12px;
-    color:#000;
+    color:#a7a7a7;
     line-height:25px;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
     min-width:281px;
 }
-.brand-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
+/* .brand-tab table tbody tr td:last-child{border-right:none;cursor:pointer} */
 .brand-tab table tbody tr td b{
     font-weight:inherit;
-    color: #2151ed;
+    color: #3fbfdc;
     margin-left:73px;
     float:left;
 }
@@ -84,7 +84,7 @@
     width:auto;
     height:32px;
     line-height:49px;
-    color:#063781;
+    color:#3fbfdc;
     font-size:12px;
     margin:0px 0 9px 41px;
 }
@@ -134,7 +134,7 @@
     width:843px;
     height:auto;
     max-height:473px;
-    border:1px solid #8db2e3;
+    border:1px solid #f1f4f9;
     clear:both;
     max-height:485px;
     overflow: hidden;
@@ -142,7 +142,7 @@
 .lattic-tab table thead{
     width:100%;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
 .lattic-tab table thead tr{
     width:100%;
@@ -153,9 +153,10 @@
 .lattic-tab table thead tr th{
     width:141px;
     height:25px;
-    border-right:1px solid #acc6de;
+    /* border-right:1px solid #acc6de; */
     line-height:25px;
-    text-align:center;color:#fff;
+    text-align:center;
+    color:#707070;
     font-size:12px;
     min-width:141px;
 }
@@ -165,14 +166,14 @@
     width:100%;
     height:25px;
 }
-.lattic-tab table tbody tr:nth-of-type(odd){background:#fff}
+
 .lattic-tab table tbody tr td{
     width:141px;
     height:25px; 
-    border-right:1px solid #acc6de;
+    /* border-right:1px solid #acc6de; */
     text-align:center;
     font-size:12px;
-    color:#000;
+    color:#c9c9c9;
     line-height:25px;
     overflow:hidden;
     text-overflow: ellipsis;
@@ -183,7 +184,7 @@
 .lattic-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
 .lattic-tab table tbody tr td b{
     font-weight:inherit;
-    color: #2151ed;
+    color: #3fbfdc;
     margin-left:30px;
     float:left;
 }
@@ -196,7 +197,7 @@
 .addlattice-div{
    width:319px;
    height:167px;
-   border:1px solid #8db2e3;
+   border:1px solid #eceff6;
    margin:13px auto;
    background:#eef4fb;
 }
@@ -204,7 +205,7 @@
 .addlattice-div div span{
     width:120px;
     text-align:right;
-    color:#063781;
+    color:#3fbfdc;
     font-size:12px;
     line-height:24px;
     display:inline-block;
