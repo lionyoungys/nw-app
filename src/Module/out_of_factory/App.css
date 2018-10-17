@@ -11,14 +11,18 @@
    margin:14px 22px 0px;
 }
 .out-left input{
-    width: 220px;
-    margin-right: 5px;
+    border: 1px solid #c2c2c2;
+    background: #f9f9f9;
+    width: 221px;
+    height: 20px;
+    text-indent: 8px;
+    color: #000;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 0;
 }
-.select-fac-div{
 
-    margin-top: 14px;
-    margin-left: 15px;
-}
+
 .out-right{
     float:left;
     margin:14px 22px 0px;

@@ -647,9 +647,20 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-pattern>div:first-child{
     height: 32px;
     width: 100%;
+    margin-bottom: 14px;
 }
 .ui-payment-pattern>div:first-child>.e-payment-option{margin-right: 16px}
 .ui-payment-pattern>div:first-child>.e-payment-option:last-child{margin-right: 0}
+.ui-payment-pattern-handle{
+    width: 100%;
+    height: 90px;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #f5f8fa;
+    border-radius: 4px;
+    padding: 0 10px;
+}
 .ui-payment-title2{
     height: 40px;
     line-height: 40px;

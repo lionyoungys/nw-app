@@ -161,7 +161,7 @@ export default class extends Component {
                             <span className={'e-payment-option wechat' + (2 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}><i></i>微信</span>
                             <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
-                        <div className='ui-payment-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
                             <div style={data.type ? {display:'none'} : null}>
                                 <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
                                 <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
@@ -172,7 +172,7 @@ export default class extends Component {
                                 <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
                             </div>
                         </div>
-                        <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-pattern-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                             <div style={data.type ? {display:'none'} : {textAlign:'center',height:'100%',lineHeight:'54px'}}>
                                 <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                             </div>
@@ -181,13 +181,13 @@ export default class extends Component {
                                 <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
                             </div>
                         </div>
-                        <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
                             <div className='ui-payment-cash'>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                                 &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
                             </div>
                         </div>
-                        <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
                             <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
                             <input 
                                 type='text' 
@@ -507,6 +507,86 @@ export class UpdateCard extends Component {
                     <button type='button' className='e-btn' onClick={this.onConfirm}>立即收款</button>
                 </div>
             </Dish>
+        );
+    }
+}
+
+
+class PaymentPattern extends Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.patterns = [
+            {no:999, name_en:'vip', name_zh:'电子卡'},
+            {no:0, name_en:'ic', name_zh:'IC卡'},
+            {no:0, name_en:'cash', name_zh:'现金'},
+            {no:0, name_en:'wechat', name_zh:'微信'},
+            {no:0, name_en:'alipay', name_zh:'支付宝'}
+        ];
+    }
+
+    handleChange(e) {
+        'function' === typeof this.props.onChange && this.props.onChange(Number(e.target.dataset.no));
+    }
+    render() {
+        let checked = isNaN(this.props.checked) ? 999 : this.props.checked
+        ,   patterns = this.patterns.map((obj) => {
+            return (
+                <span className={'e-payment-option ' + obj.name_en + (obj.no == checked ? ' checked' : '')} style={this.props.zero ? {display:'none'} : null} data-no={obj.no} onClick={this.handleChange}><i></i>电子卡</span>
+            );
+        });
+        return (
+            <div className='ui-payment-pattern'>
+                <div>{patterns}</div>
+                <div className='ui-payment-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                    <div style={data.type ? {display:'none'} : null}>
+                        <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
+                        <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
+                        <button type='button' className='e-btn' onClick={this.query}>查询</button>
+                    </div>
+                    <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
+                        <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
+                        <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                    </div>
+                </div>
+                <div className='ui-payment-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
+                    <div style={data.type ? {display:'none'} : {textAlign:'center',height:'100%',lineHeight:'54px'}}>
+                        <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
+                    </div>
+                    <div style={data.type ? {border:'1px solid #9ec8ff',padding:'0 20px'} : {display:'none'}}>
+                        <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>卡号：</span>{data.number}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>卡类型：</span>{data.type}</span></div>
+                        <div style={{lineHeight:'40px'}}><span style={{display:'inline-block',width:'212px'}}><span style={{color:'#063781',fontWeight:'bold'}}>余额：</span>{data.balance}</span><span><span style={{color:'#063781',fontWeight:'bold'}}>折扣率：</span>{discount}%</span></div>
+                    </div>
+                </div>
+                <div className='ui-payment-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
+                    <div className='ui-payment-cash'>
+                        实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
+                        &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
+                    </div>
+                </div>
+                <div className='ui-payment-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                    <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
+                    <input 
+                        type='text' 
+                        className='e-input' 
+                        value={authCode[0]} 
+                        onChange={this.setAuthCode} 
+                        data-index='0' 
+                        ref={input => {
+                            this.input[0] = input;
+                            !this.state.show && (2 == gateway || 3 == gateway) && authCode[0].length < 4 && tool.is_object(input) && input.focus();
+                        }}
+                    />
+                    <input type='text' className='e-input' value={authCode[1]} onChange={this.setAuthCode} data-index='1' ref={input => this.input[1] = input}/>
+                    <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
+                    <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
+                </div>
+                {/* <div className='ui-payment-amount'>
+                    <div>应收：<span>&yen;{amount}</span></div>
+                    <div>找零：<span>&yen;{change}</span></div>
+                    <div>欠费：<span>&yen;{change > 0 ? 0 : (change * -1)}</span></div>
+                </div> */}
+            </div>
         );
     }
 }

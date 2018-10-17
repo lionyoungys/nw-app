@@ -36,13 +36,25 @@
 }
 .balancestatistics_title_left button:hover{background:url(./img/e-btn-hover.png);background-size:100% 100%}
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
-#balancestatistics_title_left{width:51%;margin-right:11px;float:left;margin-left:11px;height:57px;margin-bottom:12px}
+#balancestatistics_title_left{
+    width:440px;
+    margin-right:11px;
+    float:left;
+    margin-left:11px;
+    height:57px;
+    margin-bottom:12px
+}
 .ui-table-base.bal-sta-tab{
-    max-height: 415px;
+    max-height: 370px;
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
-    height: 415px;
+    height: 370px;
+}
+.ui-table-base.bal-sta-tab tbody{
+    max-height: 334px;
+    height: 334px;
+    width: 1045px;
 }
 .ui-table-base.bal-sta-tab tr td{
 

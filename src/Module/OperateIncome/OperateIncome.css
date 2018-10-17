@@ -1,16 +1,14 @@
 .ope-inc-head{
 
     margin: 10px 13px;
-    border:1px solid #d7dde6;
-    background:#f5f8fa;
+    border:1px solid #8db2e3;
+    background:#eef4fb;
     height: 70px; 
 }
-.ope-inc-head div{
-    display: inline;
-}
-.ope-inc-head div a{
+.ope-inc-head a{
 
     font-size: 13px;
+    color: #15458d;
     float: left;
     height: 15px;
     margin-top: 11px;
@@ -21,7 +19,7 @@
 
     float: right;
     margin-right: 20px;
-    margin-top: -30px;
+    margin-top: 22px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab{
     max-height: 475px;

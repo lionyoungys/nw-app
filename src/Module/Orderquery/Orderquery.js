@@ -175,7 +175,7 @@ export default class extends Component {
           <td>合计:{item.total}元<br/>共:{item.count}件</td>
           <td>订单来源:<j>{item.is_online=='0'?'线下':'线上'}</j><br/>姓名:{item.user_name}<br/>地址:{item.address}</td>
           <td>
-                <i>{item.ostatus}</i>
+                <i>订单状态:{item.ostatus}</i>
                 <b onClick={this.print} data-index={index} data-id={item.id}>补打小票</b>
                 <b onClick = {this.prints} data-id={item.id} data-index={index}>补打条码</b></td>
           </tr>
@@ -189,8 +189,12 @@ export default class extends Component {
                     <div>
                        <span>订单来源：</span><Select option={this.state.online}  onChange={value => this.setState({online_name:value=='全部'?'':value})} selected="全部"/>
                     </div>   
-                       <input type="text" className='e-input' placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />           
-                        <button className="e-btn" onClick = {this.serch}>查询</button>              
+                    <div>
+                       <input type="text" placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />
+                    </div>
+                    <div>                        
+                        <button className="e-btn" onClick = {this.serch}>查询</button>   
+                    </div>              
                </div> 
                <div className="orderquery-div">
                   <table>

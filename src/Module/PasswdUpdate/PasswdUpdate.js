@@ -3,7 +3,7 @@
  * @author wangjun
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import LayerBox from '../../UI/LayerBox';
 import './PasswdUpdate.css';
 
 export default class extends Component {   
@@ -65,28 +65,32 @@ export default class extends Component {
     }
     render() {
         return(
-                <Window title='密码修改'onClose={this.props.closeView}>
+                <LayerBox 
+                    title='密码修改'
+                    onClose={this.props.closeView}
+                    onClick={this.changeSave}
+                    onCancel={this.props.closeView}
+                    hasCancel={true}
+                > {
                     <div className='passwdupdate'>
                         <div className='passwdupdateborder'>
                             <div>
-                                <span>&emsp;&emsp;&emsp;原密码:&nbsp;</span><input type='password' className='e-input' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
+                                <span>&emsp;&emsp;&emsp;原密码:</span><input type='password' className='inputborder' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
                             </div>
                             <div className='passwdupdate_pass'>
-                                <span>&emsp;&emsp;&emsp;新密码:&nbsp;</span><input type='password' className='e-input' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
+                                <span>&emsp;&emsp;&emsp;新密码:</span><input type='password' className='inputborder' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
                             </div>
                             <div >
                                 <label>6位以上，且不能为纯数字</label>
                             </div>
                             <div>
-                                <span>再次输入密码:&nbsp;</span><input type='password' className='e-input' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
+                                <span>再次输入密码:</span><input type='password' className='inputborder' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
                             </div>
-                            <div style={{padding:'20px 0 0 105px'}}>
-                                <button type='button' className='e-btn' onClick={this.changeSave}>确认</button>&emsp;
-                                <button type='button' className='e-btn-b' onClick={this.props.closeView}>取消</button>
-                            </div>
+
                          </div>
                     </div>
-                </Window>
+                    }
+                </LayerBox>
         );
     }
 }

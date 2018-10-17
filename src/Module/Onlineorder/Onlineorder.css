@@ -1,11 +1,5 @@
 
 /* 待接单 */
-
-.ui-tab-blue input.e-input{
-
-    position: absolute;
-    right: 110px;
-}
 .waiting{
     width:768px;
     /* border:1px solid #3fc0db; */

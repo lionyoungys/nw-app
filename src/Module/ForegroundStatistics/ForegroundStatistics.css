@@ -1,15 +1,14 @@
 .ope-inc-head.for-sta-head{
 
     margin-bottom: 0px;
-    line-height: 70px;
 }
 .ui-table-base.for-sta-tab{
-    max-height:340px;
+    max-height:411px;
     overflow-x: auto;
-    height:340px;
+    height:411px;
 }
 .ui-table-base.for-sta-tab tbody{
-    max-height:302px;
+    max-height:375px;
 }
 .ui-table-base.for-sta-tab tbody tr:last-child{
     border-bottom:1px solid #8db2e3;
@@ -17,5 +16,5 @@
 .ui-table-base.for-sta-tab tr td{
 
     min-width: 107px;
-    max-width: 107px; 
+    max-width: 107px;
 }

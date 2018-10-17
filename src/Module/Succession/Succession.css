@@ -63,19 +63,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Succession_dataLeft div input:hover{border:1px solid #4589ee}
 .ui-table-base.succession-tab{
 
-    max-height: 400px;
+    max-height: 475px;
     /* overflow-x: auto; */
-    height:400px;
+    height:475px;
 }
 .ui-table-base.succession-tab tbody{
 
-    max-height: 362px;
+    max-height: 450px;
 }
 .ui-table-base.succession-tab tr td{
-    min-width: 189px;
-    max-width: 189px;
+    min-width: 218px;
+    max-width: 218px;
 }
 .ui-table-base.succession-tab tr:last-child{
-    /* border-bottom:1px solid #8db2e3; */
+    border-bottom:1px solid #8db2e3;
 }
 

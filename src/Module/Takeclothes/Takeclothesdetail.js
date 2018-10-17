@@ -250,7 +250,7 @@ export default class extends Component {
                     <div className="Takeclothes-title">
                        <button className="e-btn Takeclothes-title-btn" onClick={this.M1Read}>读卡</button>
                        <button className="e-btn Takeclothes-title-btn" onClick = {this.takecloth}>查询</button>
-                       <input type="text" className="e-input" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
+                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>
                     </div>  
                     <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                     <div className="Takeclothesdetail-title">

@@ -9,6 +9,9 @@
 .Hangon-div>input{
     margin-right: 10px;
 }
+.e-btn.hangon-btn{
+    margin-left:12px;
+}
 .Hangon-left{
     width:287px;
     height:318px;

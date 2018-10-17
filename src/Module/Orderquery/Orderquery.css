@@ -1,21 +1,22 @@
 
 /* 订单查询顶部 */
 .orderquery-title{
-    width:765px;
+    width:780px;
     height:75px;
     margin:12px auto;
     border:1px solid #d8dce5;
-    background:#f5f8fa;
+    background:#f6f7fb;
 }
 
 .orderquery-title div .ui-select {width:110px}
+.orderquery-title div .ui-select input{width:115px}
 
 .orderquery-title>div{
-    width:236px;
+    width:200px;
     height:27px;
     margin-top:25px;
     float:left;
-    margin-left:-14px;   
+    margin-left:34px;   
 }
 .orderquery-title>div:last-child{width:auto}
 .orderquery-title>div:nth-child(1){
@@ -25,7 +26,7 @@
     margin-left:0;
 }
 .orderquery-title>div span{
-    width:73px;
+    width:84px;
     line-height: 24px;
     color: #000;
     font-size: 12px;
@@ -38,77 +39,69 @@
     margin-top:-3px;
     background:#f9f9f9;
 }
-.orderquery-title> input{
-    margin-top: 25px;
-    margin-left: 10px;
-    /* border: 1px solid #c2c2c2;
+.orderquery-title>div input{
+    width:198px;
+    height: 20px;
+    border: 1px solid #c2c2c2;
     background: #f9f9f9;
     color: #000;
     font-size: 12px;
-    text-indent: 4px; */
+    text-indent: 4px;
 }
-.orderquery-title>button{
+.orderquery-title>div button{
     margin-right:22px;
-    margin-top: 25px;
     float:right;
 }
 
 /* 订单列表的div */
 .orderquery-div{
-    width:872px;
-    height:385px;
-    max-height:385px;
+    width:782px;
+    height:339;
+    max-height:339;
     background:#fff;
     margin:0 auto;
     overflow-x:hidden;
 }
 .orderquery-div table{
-    width:872px;
+    width:782px;
     height:auto;
 }
 .orderquery-div table thead{
-    height:30px;
-    min-width:872px;
-    background:#f5f8fa;
+    height:25px;
+    min-width:782px;
+    background:#f6f7fb;
     display:block;
 }
 .orderquery-div table thead tr{
-    min-width:872px;
+    min-width:782px;
     height:25px;
 }
 .orderquery-div table thead tr th{
     text-align: center;
-    color: #616463;
+    color: #58595b;
     font-size: 12px;
     height: 25px;
     line-height: 25px;
-    border-right: 1px solid #acc6de;
-}
-.orderquery-div table thead tr th:last-child{
-    border-right:none;
 }
 .orderquery-div table thead tr>th:nth-child(1){
     min-width:76px;
     max-width:76px;
 }
 .orderquery-div table thead tr>th:nth-child(2){
-    min-width:125px;
-    max-width:125px;
+    min-width:110px;
+    max-width:110px;
 }
 .orderquery-div table thead tr>th:nth-child(3){
     min-width:73px;
-    max-width:73px;
-   
+    max-width:73px;   
 }
 .orderquery-div table thead tr>th:nth-child(4){
-    min-width:70px;
-    max-width:70px;
-   
+    min-width:58px;
+    max-width:58px;   
 }
 .orderquery-div table thead tr>th:nth-child(5){
-    min-width:84px;
-    max-width:84px;
-   
+    min-width:82px;
+    max-width:82px;  
 }
 .orderquery-div table thead tr>th:nth-child(6){
     min-width:89px;
@@ -116,24 +109,24 @@
    
 }
 .orderquery-div table thead tr>th:nth-child(7){
-    min-width:73px;
-    max-width:73px;
+    min-width:72px;
+    max-width:72px;
    
 }
 .orderquery-div table thead tr>th:nth-child(8){
-    min-width:113px;
-    max-width:113px;
+    min-width:111px;
+    max-width:111px;
     
 }
 .orderquery-div table thead tr>th:nth-child(9){
-    min-width:73px;
-    max-width:73px; 
+    min-width:71px;
+    max-width:71px; 
 }
 /*  */
 .orderquery-div table tbody{
-  width:872px;
-  height:358px;
-  max-height:358px;
+  width:782px;
+  height:300px;
+  max-height:300px;
   overflow-y:auto;
   display:block;
   overflow-x:hidden;
@@ -142,30 +135,30 @@
     width:0px;
 }
 .orderquery-div table tbody tr{
-    width:872px;
+    width:782px;
     height:auto;
     min-width:25px;
-    border-bottom:1px solid #8db2e3;
+    border-bottom:1px solid #f1f4f9;
+    display: -webkit-box;
 }
 .orderquery-div table tbody tr>td{
     text-align: center;
-    color: #000;
+    color: #9a9a9a;
     font-size: 12px;
     height: auto;
     min-height: 25px;
     word-break:break-all;
 }
+.orderquery-div table tbody tr>td j{color:#f00}
 .orderquery-div table tbody tr>td span{
  width:100%;
  min-height:25px;
- border-bottom:1px solid #8db2e3;
  display:block;
  text-align:center;
  word-break:break-all;
  line-height:25px;
  text-align:center;
- color:#000;
- 
+ color:#aaaaaa;
 }
 .orderquery-div table tbody tr>td span:last-child{
     border-bottom:none;
@@ -175,49 +168,44 @@
 }
 
 .orderquery-div table tbody tr>td:nth-child(1){
-    min-width:60px;
-    max-width:60px;
+    min-width:76px;
+    max-width:76px;
 }
 .orderquery-div table tbody tr>td:nth-child(2){
-    min-width:125px;
-    max-width:125px;
+    min-width:110px;
+    max-width:110px;
 }
 .orderquery-div table tbody tr>td:nth-child(3){
-    min-width:84px;
-    max-width:84px;
-   
+    min-width:73px;
+    max-width:73px; 
 }
 .orderquery-div table tbody tr>td:nth-child(4){
-    min-width:35px;
-    max-width:35px;
-   
+    min-width:58px;
+    max-width:58px;
 }
 .orderquery-div table tbody tr>td:nth-child(5){
-    min-width:78px;
-    max-width:78px;
-   
+    min-width:82px;
+    max-width:82px;  
 }
 .orderquery-div table tbody tr>td:nth-child(6){
-    min-width:94px;
-    max-width:94px;
-   
+    min-width:89px;
+    max-width:89px;
 }
 .orderquery-div table tbody tr>td:nth-child(7){
-    min-width:78px;
-    max-width:78px;
-   
+    min-width:72px;
+    max-width:72px;
 }
 .orderquery-div table tbody tr>td:nth-child(8){
-    min-width:120px;
-    max-width:120px;   
+    min-width:111px;
+    max-width:111px;
 }
 .orderquery-div table tbody tr>td:nth-child(9){
-    min-width:94px;
-    max-width:94px; 
+    min-width:71px;
+    max-width:71px; 
 }
 .orderquery-div table tbody tr>td i{
     line-height:25px;
-    color:#000;
+    color:#a1a1a1;
     margin:0 auto;
     width:100%;
     display:block;
@@ -228,7 +216,7 @@
     width:100%;
     display:block;
     line-height:25px;
-    color:#169bd5;
+    color:#9cd7e7;
     font-weight:inherit;
     font-size:12px;
 }

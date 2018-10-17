@@ -9,12 +9,6 @@
     left: 0;
     padding-top: 5px;
 }
-.Takeclothes-title input.e-input{
-
-    float: right;
-    margin-right: 10px;
-    width: 200px;
-}
 .Takeclothes-title .Takeclothes-title-btn{float:right;margin-right:7px;cursor:pointerss}
 .Takeclothes-title .Takeclothes-title-text{
     width:232px;
@@ -193,7 +187,7 @@
     margin-top: 5px;
 }
 .Takeclothesdetail-footer{
-    width:857px;
+    width:872px;
     height:24px;
     margin:8px auto 0px;
 }

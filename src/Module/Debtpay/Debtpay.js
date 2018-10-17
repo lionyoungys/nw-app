@@ -18,7 +18,7 @@ export default class extends Component {
                     <div className="Takeclothes-title">
                        <button className="e-btn Takeclothes-title-btn">读卡</button>
                        <button className="e-btn Takeclothes-title-btn">查询</button>
-                       <input type="text" className="e-input" placeholder='姓名,手机号,订单号,卡号'/>
+                       <input type="text" className="Takeclothes-title-text" placeholder='姓名,手机号,订单号,卡号'/>
                     </div>  
                     <div className="Takeclothes-div-title">已为您找到<b>4535</b>条数据</div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab debtpay-tab">

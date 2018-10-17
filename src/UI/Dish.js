@@ -1,7 +1,7 @@
 /**
  * 盘子组件
  * @author Edwin Young
- * @desc 弹出来盛饭菜使用,用于二级界面  title:标题;onClose:关闭事件;children:内部内容;width:宽;height:高;className:追加自定义class;style:自定义样式;icon:images文件夹下的图片名称,用于修改icon;
+ * @desc 弹出来盛饭菜使用,用于二级界面  title:标题;onClose:关闭事件;children:内部内容;width:宽;height:高;className:追加自定义class;style:自定义样式;
  */
 
 import React from 'react';
@@ -29,10 +29,7 @@ export default class extends React.Component {
         return (
             <div className='e-layer-bg'>
                 <div className={className} style={style}>
-                    <div>
-                        <span style={'string' === typeof this.props.icon ? {backgroundImage:'url(images/' + this.props.icon + ')'} : null}>{this.props.title}</span>
-                        <i onClick={this.props.onClose}></i>
-                    </div>
+                    <div><span>{this.props.title}</span><i onClick={this.props.onClose}></i></div>
                     {this.props.children}
                 </div>
             </div>
