@@ -152,7 +152,7 @@
     line-height: 15px;
     font-size: 12px;
     text-align: center;
-    border-right: 1px solid #e6ecf5;
+    /* border-right: 1px solid #e6ecf5; */
     word-wrap: break-word;
     /* 根据具体情况设置最小宽度 */
     /* min-width: 91px; */
@@ -164,7 +164,6 @@
     background-color: #f6f7fb;
     color: #000;
     /* font-weight: bold; */
-    display:inline-block;
 }
 .ui-table-base tbody tr{
     color: #999;

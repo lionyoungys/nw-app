@@ -66,9 +66,11 @@ export default class extends Component {
         return (
             <Window title='交班' onClose={this.props.closeView}>
                 <div className="ope-inc-head">
+                    <div>
                     <a>统计时间：{this.state.starttime} 至 {this.state.endtime}</a>
-                    <button className='e-btn' onClick={this.successionHandle}>交班</button>
                     <a>操作员：{'aname'.getData()}</a>
+                    </div>
+                    <button className='e-btn' onClick={this.successionHandle}>交班</button>
                 </div>
                 <table className='ui-table-base succession-tab'>
                     <thead>

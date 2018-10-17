@@ -63,10 +63,10 @@
 }
 /* tab的处理 */
 .ui-table-base.clo-que-tab{
-
     max-height:365px; 
     overflow-x: auto;
 }
+.ui-table-base.clo-que-tab thead{display: -webkit-box}
 .ui-table-base.clo-que-tab tbody{
 
     max-height:325px; 
@@ -87,7 +87,4 @@
 
 #clo-que-tab{
    height:365px;
-}
-#clo-que-tab tbody tr:last-child{
-    border-bottom: 1px solid #8db2e3;
 }

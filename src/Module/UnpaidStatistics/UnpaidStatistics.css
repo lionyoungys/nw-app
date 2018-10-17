@@ -6,9 +6,9 @@
 }
 .unpaidstatistics_dataLeft{
     width:60%;
-    border:1px solid #8db2e3;
+    border:1px solid #d7dde6;
     height:57px;
-    background:#eef4fb;
+    background:#f5f8fa;
     float: left;
 }
 
@@ -70,9 +70,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .unpaidstatistics_Statistics{
 
-    border:1px solid #8db2e3;
+    border:1px solid #d7dde6;
     height:33px;
-    background:#eef4fb;
+    background:#f5f8fa;
     margin: 5px 13px 0;
     line-height: 33px;
 }
@@ -112,8 +112,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-height: 340px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 83px;
+    max-width: 83px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tr:last-child{
     border-bottom:1px solid #8db2e3;

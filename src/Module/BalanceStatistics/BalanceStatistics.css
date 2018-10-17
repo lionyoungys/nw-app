@@ -1,13 +1,13 @@
 /* 充值统计页面样式  顶部*/
 .bal-head{
-    width: 874px;
+    width: 771px;
     margin: 10px 13px 10px;
-    border: 1px solid #8db2e3;
+    border: 1px solid #d7dde6;
     height: 57px;
-    background: #eef4fb;
+    background: #f5f8fa;
 }
 .bal-head span{
-    color:#063781;
+    color:#626564;
     font-size:13px;
     margin-left: 12px;
     margin-right:12px;
@@ -36,35 +36,23 @@
 }
 .balancestatistics_title_left button:hover{background:url(./img/e-btn-hover.png);background-size:100% 100%}
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
-#balancestatistics_title_left{
-    width:440px;
-    margin-right:11px;
-    float:left;
-    margin-left:11px;
-    height:57px;
-    margin-bottom:12px
-}
+#balancestatistics_title_left{width:51%;margin-right:11px;float:left;margin-left:11px;height:57px;margin-bottom:12px}
 .ui-table-base.bal-sta-tab{
-    max-height: 370px;
+    max-height: 379px;
     margin-top: 5px;
     max-width: 872px;
     overflow-x: auto;
-    height: 370px;
-}
-.ui-table-base.bal-sta-tab tbody{
-    max-height: 334px;
-    height: 334px;
-    width: 1045px;
+    height: 415px;
 }
 .ui-table-base.bal-sta-tab tr td{
 
-    max-width: 138px;
-    min-width: 138px;
+    max-width: 100px;
+    min-width: 100px;
 }
 .ui-table-base.bal-sta-tab tr td:first-child{
 
-    max-width: 40px;
-    min-width: 40px;
+    max-width: 35px;
+    min-width: 35px;
 }
 .ui-table-base.bal-sta-tab thead tr td:first-child {
     background: url(./img/revokedata_list_box_span.png) no-repeat;

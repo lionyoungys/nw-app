@@ -69,7 +69,7 @@ export default class extends Component {
                     <table className='ui-table-base bal-sta-tab'>
                         <thead>
                             <tr>
-                                <td></td>
+                                <td>序号</td>
                                 <td>卡号</td>
                                 <td>卡类型</td>
                                 <td>折扣率</td>
