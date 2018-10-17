@@ -636,7 +636,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     padding-left: 6px;
     margin-bottom: 14px;
 }
-.ui-payment-detail{
+.ui-payment-detail, .ui-payment-detail2{
     height: 76px;
     width: 100%;
     border: 1px solid #e6ebf5;
@@ -647,7 +647,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #666;
     margin-bottom: 14px;
 }
-.ui-payment-detail>div{
+.ui-payment-detail2{height: 38px;line-height: 38px;padding: 0 14px;}
+.ui-payment-detail>div, .ui-payment-detail2>div{
     width: 160px;
     height: 100%;
     float: left;
@@ -695,7 +696,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-pattern-handle-vip>div>span:first-child{display: inline-block;width: 204px;height: 100%;}
 
 .ui-payment-confirm{margin-top: 14px;text-align: right;}
-
 
 .ui-payment-title2{
     height: 40px;
