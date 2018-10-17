@@ -131,6 +131,7 @@ html, body, #root, #main{width: 100%;height: 100%}
     padding: 0 26px 0 46px;
     margin-bottom: 8px;
     position: relative;
+    cursor: default;
 }
 .main-menus-list>span>i{
     position: absolute;
