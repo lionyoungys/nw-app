@@ -1,6 +1,5 @@
 html{min-width: 800px;min-height: 568px;overflow: hidden}
 html, body, #root, #main{width: 100%;height: 100%}
-/* table{border-collapse: collapse} */
 #main{    /* 主界面样式 */
     position: relative;
     -webkit-box-sizing: border-box;

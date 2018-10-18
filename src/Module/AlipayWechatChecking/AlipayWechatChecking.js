@@ -76,19 +76,19 @@ export default class extends Component {
             <Window title='支付宝、微信对账' onClose={this.props.closeView}>
             <div>
                 <div className="ali-wechat-check-head">
-                    <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<a>{this.state.bankInfo.bank || '********'}</a><b>{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
+                    <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<b>{this.state.bankInfo.bank || '********'}{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
                     <p>余额：¥{this.state.bankInfo.balance || '0'}</p>
                 </div>
+                <div style={{margin:'18px 0 14px 18px'}}>余额明细</div>
                 <div className="ali-wechat-check-title">
-                    <a>余额明细</a>
                     <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>
                     <span>
                         <a><b>*</b>结束时间：</a>
-                        <input type='date' className='ui-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
+                        <input type='date' className='e-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
                     </span>
                     <span>
                         <a><b>*</b>开始时间：</a>
-                        <input type='date' className='ui-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
+                        <input type='date' className='e-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
                     </span>
                     <span>
                         <a><b>*</b>交易通道：</a>
