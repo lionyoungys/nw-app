@@ -36,6 +36,7 @@ export default class extends React.Component {
                 {name:'ExchangeList', api:'exchangelist_v4', total:0, count:0, data:[]},
                 {name:'ExchangeListCancel', api:'exchangelistcancel_v4', total:0, count:0, data:[]},
                 {name:'CardExchange', api:'cardexchange_v4', total:0, count:0, data:[]},
+                {name:'CancelExch', api:'cancelexch', total:0, count:0, data:[]}
             ],
         };
         this.len = this.state.data_tables.length;
