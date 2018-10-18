@@ -1,11 +1,17 @@
 .ui-table-base.lrc-card-tab{
 
     margin-top: 10px;
-    max-height: 430px;
+    max-height: 355px;
+    height: 355px;
+    width: 778px;
+    max-width: 778px;
+    overflow-x: auto;
 }
 .ui-table-base.lrc-card-tab tbody{
 
-    max-height: 405px;
+    max-height: 320px;
+    height: 320px;
+    overflow-y: auto;
 }
 .ui-table-base.lrc-card-tab tr td{
 

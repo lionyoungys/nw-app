@@ -14,7 +14,7 @@
 }
 .memberinfoupdate_bottomborder{  
     width: 607px;
-    height: 194px;
+    height: 265px;
     background-color: #eef4fb;
     border: 1px solid #8db2e3;
     margin: 0 auto;
@@ -30,6 +30,7 @@
     margin-left: 9px;
     outline: none;
     border:1px solid #c4c2c2;  
+    text-indent: 5px;
     text-indent: 5px;
 }
 .memberinfoupdate_leftdirection{
@@ -86,17 +87,17 @@
     border:1px solid #c4c2c2; 
 }
 .memberinfoupdate_button{
-    margin-top: 20px;
-    margin-left: 340px;
-
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
 }
 .memberinfoupdate_button button{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 .inputselectborder{
-     width: 151px;
+    width: 151px;
     height: 21px;
-    margin-left:6px;
+    margin-left:10px;
     background-size:100% 100%;
     outline:none;border:none;
     border:1px solid #c4c2c2;       
@@ -104,7 +105,7 @@
     text-indent:4px;
     cursor: pointer;
     background:#fff url(./img/select.png) no-repeat;background-size:18px 24px;
-    background-position-x:133px;
+    background-position-x:135px;
     background-position-y:0; 
 }
 .inputborder:focus{
@@ -172,7 +173,8 @@
     width:15px;
     top:0;
     position: absolute;
-    left: 216px;
-    height: 22px;
+    left: 226px;
+    height: 20px;
+    top: 3px;
 }
-.memberinfoupdate_customerdirection .ui-select{width:153px;margin-left:9px;background:#fff}
+.memberinfoupdate_customerdirection .ui-select{width:153px;margin-left:9px}

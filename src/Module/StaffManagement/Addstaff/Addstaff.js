@@ -265,11 +265,6 @@ export default class extends Component {
                             <button type="button" class="e-btn-b" onClick={() => this.setState({ show: false })}>取消</button>
                         </div>
                     </Dish>           
-                    // <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={this.operatorAdd}>
-                    //     {
-                            
-                    //     }
-                    // </LayerBox>
                 }
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list">

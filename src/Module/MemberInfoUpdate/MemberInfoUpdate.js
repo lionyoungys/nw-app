@@ -169,11 +169,9 @@ export default class extends Component {
         </span>
         </div>       
         </div>
-        <div>
-            <div className='memberinfoupdate_button'>
-                <button type='button' className='e-btn' onClick={this.props.closeView}>取消</button>
-                <button type='button' className='e-btn' onClick={this.modCardInfo}>保存</button>
-            </div>
+        <div className='memberinfoupdate_button'>
+            <button type='button' className='e-btn' onClick={this.props.closeView}>取消</button>
+            <button type='button' className='e-btn' onClick={this.modCardInfo}>保存</button>
         </div>
         </div>
         </Window>    

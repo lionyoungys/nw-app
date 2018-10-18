@@ -152,7 +152,7 @@ export default class extends React.Component {
                             />
                             </div>
                         <div>
-                        <span>卡号:</span>&nbsp;&nbsp;<input type='text' className='e-input' placeholder='请输入...' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/><label>卡号为空时，仅创建电子卡&nbsp;&nbsp;<span className='imghelp'></span></label>
+                        <span>卡号:</span>&nbsp;&nbsp;<input type='text' className='e-input' placeholder='请输入卡号' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/><label>卡号为空时，仅创建电子卡&nbsp;&nbsp;<span className='imghelp'></span></label>
                         </div>
                     </div>
                     <hr className='top_hr'></hr>

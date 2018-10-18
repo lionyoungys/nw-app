@@ -69,7 +69,7 @@
 .ui-table-base.clo-que-tab thead{display: -webkit-box}
 .ui-table-base.clo-que-tab tbody{
 
-    max-height:325px; 
+    max-height:221px; 
 }
 .ui-table-base.clo-que-tab tr td{
 
@@ -86,5 +86,5 @@
 }
 
 #clo-que-tab{
-   height:365px;
+   height:255px;
 }
