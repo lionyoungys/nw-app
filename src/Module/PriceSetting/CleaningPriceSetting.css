@@ -82,7 +82,7 @@
 .change_card_table.right_table thead{
     display: block;
 } */
-.change_card_table.right_table tbody tr:last-child{border-bottom:1px solid #eceff6}
+/* .change_card_table.right_table tbody tr:last-child{border-bottom:1px solid #eceff6} */
 .right_table tr{display:-webkit-box}
 .right_table tr td{
     /* 将会根据字数大小进行宽度设定 */
@@ -101,7 +101,7 @@
 .right_table tr td:last-child{
    border-right: none;
 }
-.right_table tr:last-child{border-bottom:1px solid #eceff6} 
+/* .right_table tr:last-child{border-bottom:1px solid #eceff6}  */
 
 .right_table thead{
     /* display:block; */

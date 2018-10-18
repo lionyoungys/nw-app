@@ -7,6 +7,11 @@
     border-radius: 8px;
     overflow: hidden;
 }
+.ui-layer-box>:first-child{
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+}
 .ui-layer-box>:nth-child(2){min-height: 192px;background: #f9fcff}
 .ui-layer-box>:last-child{
     height: 40px;

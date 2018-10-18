@@ -37,7 +37,7 @@
     display: inline-block;
 }
 .brand-tab table thead tr th{
-    width:281px;
+    width:250px;
     height:25px;
     line-height:25px;
     color:#707070;
@@ -47,14 +47,16 @@
 }
 /* .brand-tab table thead tr th:last-child{border-right:none} */
 
-.brand-tab table tbody{width:768px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.brand-tab table tbody{width:768px;display:block;max-height:331px;overflow-y:auto;overflow-x:hidden;border-bottom: 1px solid #d7dee4}
 .brand-tab table tbody tr{
     width:100%;
     height:25px;
+    display:-webkit-box;
 }
+
 /* .brand-tab table tbody tr:nth-of-type(odd){background:#fff} */
 .brand-tab table tbody tr td{
-    width:281px;
+    width:250px;
     height:25px; 
     /* border-right:1px solid #acc6de; */
     text-align:center;
@@ -64,7 +66,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:281px;
+    min-width:250px;
 }
 /* .brand-tab table tbody tr td:last-child{border-right:none;cursor:pointer} */
 .brand-tab table tbody tr td b{
@@ -79,7 +81,12 @@
     margin-right:73px;
     float:right;
 }
-.addbrand-div{width:230px;height:80px;background:#f9fcff}
+.addbrand-div{
+    width:230px;
+    height:80px;
+    background:#f6f7fb;
+    border:1px solid #d8dce7;
+}
 .brand-name{
     width:auto;
     height:32px;
@@ -95,7 +102,7 @@
     border:1px solid #c2c2c2;
     margin-left:41px;
 }
-.addbrand-footer{width:230px;height:39px;border-top:1px solid #8899ad}
+.addbrand-footer{width:230px;height:39px;}
 .addbrand-footer button{
     width:71px;
     height:24px;
@@ -113,7 +120,7 @@
 .addbrand-footer button:hover{background:url(./img/e-btn-hover.png)}
 
 /* 格架样式 */
-.lattic{width:845px;height:auto;margin:auto}
+.lattic{width:768px;height:auto;margin:auto}
 .lattic-btn{
     width:111px;
     height:24px;    
@@ -122,16 +129,15 @@
     color:#000;
     font-size:12px;
     float:right;
-    background:url(./img/e-btn-6.png) no-repeat;
+    background:#3fbfdc;
     background-size:111px 24px;
     outline:none;
     border:none;
     margin:8px 0;
     cursor:pointer;
 }
-.lattic-btn:hover{background:url(./img/e-btn-6-hover.png) no-repeat}
 .lattic-tab{
-    width:843px;
+    width:768px;
     height:auto;
     max-height:473px;
     border:1px solid #f1f4f9;
@@ -151,24 +157,24 @@
     display: inline-block;
 }
 .lattic-tab table thead tr th{
-    width:141px;
+    width:128px;
     height:25px;
     /* border-right:1px solid #acc6de; */
     line-height:25px;
     text-align:center;
     color:#707070;
     font-size:12px;
-    min-width:141px;
+    min-width:128px;
 }
 .lattic-tab table thead tr th:last-child{border-right:none}
-.lattic-tab table tbody{width:843px;display:block;max-height:444px;overflow-y:auto;overflow-x:hidden}
+.lattic-tab table tbody{width:768px;display:block;max-height:310px;overflow-y:auto;overflow-x:hidden;border-bottom: 1px solid #d7dee4}
 .lattic-tab table tbody tr{
     width:100%;
     height:25px;
 }
 
 .lattic-tab table tbody tr td{
-    width:141px;
+    width:128px;
     height:25px; 
     /* border-right:1px solid #acc6de; */
     text-align:center;
@@ -178,7 +184,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:141px;
+    min-width:128px;
     
 }
 .lattic-tab table tbody tr td:last-child{border-right:none;cursor:pointer}
@@ -198,7 +204,7 @@
    width:319px;
    height:167px;
    border:1px solid #eceff6;
-   margin:13px auto;
+   margin:84px auto;
    background:#eef4fb;
 }
 .addlattice-div div{width:319px;height:24px;margin-top:12px}

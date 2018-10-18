@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import '../../../UI/bothpages.css' ; //公共样式
 import '../StaffManagement.css';
+import Dish from '../../../UI/Dish';
 import LayerBox from '../../../UI/LayerBox';
 import Select from '../../../UI/Select'; 
 export default class extends Component {   
@@ -243,25 +244,32 @@ export default class extends Component {
                     <div className="addstaff" onClick={this.addstaff}>新增员工</div> 
                     {
                     this.state.show
-                    &&                  
-                    <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={this.operatorAdd}>
-                        {
-                            <div className='addstaffborder'>
-                                <div className='margintop'>
-                                <span >姓名:</span><input  type='text' onChange={e => this.setState({aname:e.target.value})} value={this.state.aname} autoFocus='autoFocus' />
-                                </div>
-                                <div>
-                                <span>手机号:</span><input type='text' onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile}/>
-                                </div>                             
-                                <div >
-                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange}/>
-                                </div>
-                                <div>
-                                <span className='passlimit'>初始密码为123456</span>
-                                </div>
+                    &&       
+                    <Dish title='新增员工' width='360' height='260' onClose={() => this.setState({ show: false })}>
+                        <div className='addstaffborder'>
+                            <div className='margintop'>
+                                <span >姓名:</span><input type='text' onChange={e => this.setState({ aname: e.target.value })} value={this.state.aname} autoFocus='autoFocus' />
                             </div>
-                        }
-                    </LayerBox>
+                            <div>
+                                <span>手机号:</span><input type='text' onChange={e => this.setState({ mobile: e.target.value })} value={this.state.mobile} />
+                            </div>
+                            <div >
+                                <span >权限:</span><Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange} />
+                            </div>
+                            <div>
+                                <span className='passlimit'>初始密码为123456</span>
+                            </div>
+                        </div>
+                        <div className='handle-div'>
+                            <button type="button" class="e-btn" onClick={this.operatorAdd}>确定</button>
+                            <button type="button" class="e-btn-b" onClick={() => this.setState({ show: false })}>取消</button>
+                        </div>
+                    </Dish>           
+                    // <LayerBox title='新增员工' onClose={() => this.setState({show:false})} onClick={this.operatorAdd}>
+                    //     {
+                            
+                    //     }
+                    // </LayerBox>
                 }
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list">

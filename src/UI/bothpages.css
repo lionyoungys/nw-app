@@ -64,7 +64,7 @@
     width:875px;
     height:25px;
     line-height:25px;
-    border-bottom:1px solid #cccccc;
+    border-bottom:1px solid #f1f4f9;
     background:#89b0d4;
 }
 .bothpages_count_title span{
@@ -273,16 +273,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* 导航设置相同样式 */
 .Settings{
-    width:868px;
-    height:555px;
-    border:1px solid #8db2e3;
+    width:780px;
+    height:473px;
+    border:1px solid #d8dce7;
     margin:12px auto 0;
-    background:#f0f5f9
 }
 .Settings-title{
     width:100%;
     height:27px;
-    border-bottom:1px solid #8db2e3;
+    border-bottom:1px solid #d8dce7;
 }
 .Settings-title span{
     display:block;
@@ -293,9 +292,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align:center;
     color:#333;
     font-size:12px;
-    border-top:1px solid #8db2e3;
-    border-left:1px solid #8db2e3;
-    border-right:1px solid #8db2e3;
+    border-top:1px solid #d8dce7;
+    border-left:1px solid #d8dce7;
+    border-right:1px solid #d8dce7;
     border-top-right-radius:3px;
     border-top-left-radius:3px;
     margin:3px 0 0 5px;
@@ -305,8 +304,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: -webkit-gradient(linear, 0% 20%, 20% 100%, from(#eff5fc), to(#d9e5f2));
     cursor:pointer;      
 }
-.Settings-title span.hover{height:24px;z-index:9;color:#15458d;font-weight:bold;background:#f0f5f9}
-.Settings-div{width:868px;height:528px;margin-top:3px}
+.Settings-title span.hover{height:24px;z-index:9;color:#7a7a7a;font-weight:bold;background:#f0f5f9}
+.Settings-div{width:780px;height:382px;margin-top:3px}
 
 #balancestatistics-leiji{margin-right:11px}
 #balancestatistics-zengsong{margin-right:12px;}

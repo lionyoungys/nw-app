@@ -99,5 +99,7 @@
 .store-button{
     margin-left:26px;
     cursor:pointer;
+    display:block;
+    margin:3px auto;
 }
 

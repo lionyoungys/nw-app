@@ -2,8 +2,8 @@
 .store_management{
 
     margin: 10px 14px;
-    height: 485px;
-    border:1px solid #8db2e3;
+    height: 445px;
+    border:1px solid #d8dce7;
     background-color: #fff;
 }
 
@@ -11,7 +11,7 @@
 .store_management_tabbar{
     margin: 0;
     height: 32px;
-    border-bottom: 1px solid #8db2e3;
+    border-bottom: 1px solid #d8dce7;
     background-color: #e1ebf6;
 }
 
@@ -19,7 +19,7 @@
 
     height: 24px;
     border-top: 3px solid #e1ebf6;
-    border-bottom: 1px solid #8db2e3;
+    border-bottom: 1px solid #d8dce7;
 }
 .store_management_tabbar ul li{
 
@@ -29,7 +29,7 @@
     width: 100px;
     height: 23px;
     line-height: 23px;
-    border:1px solid #8db2e3;
+    border:1px solid #d8dce7;
     font-size: 12px;
     color: #15458d;
     border-top-left-radius: 2px;
@@ -472,6 +472,7 @@
     height:125px;
     line-height:20px;
     margin-top:8px;
+    float: left
 }
 .store_management_content_baseInfo div.store-detail span{
     display: block;

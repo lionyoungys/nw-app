@@ -76,6 +76,29 @@
     font-size: 13px;    
     color: red;
 }
+.addstaffborder{
+
+    height: 180px;
+    border-bottom: 1px solid #3fc0db;
+}
+.handle-div{
+
+    width: 360px;
+    height: 43px;
+    line-height: 43px;
+    float: right;
+}
+.handle-div button{
+
+    margin-right: 12px;
+    float: right;
+    margin-top: 8px;
+}
+
+.addstaffborder>div{
+
+    height: 40px;
+}
 .addstaffborder input{
     margin-left: 8px;
     margin-top: 16px;
@@ -95,7 +118,6 @@
 
 } */
 .addstaffborder  span{
-    margin-top: 16px;
     width: 85px;
     height: 14px;
     display: inline-block;
