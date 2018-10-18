@@ -113,7 +113,7 @@ class Main extends Component {
 class Container extends Component {
     constructor(props) {
         super(props);
-        this.keywords = ['InfoQuery', 'CustomerManagement'];
+        this.keywords = ['InfoQuery', 'CustomerManagement', 'FinanceStatistics'];
     }
 
     render() {
