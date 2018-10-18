@@ -9,6 +9,7 @@
     border:1px solid #8db2e3;
     float:left;
     background:#eef4fb;
+    margin-left: 10px;
 }
 .Customerquery-title > div{
     width:260px;
@@ -103,8 +104,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .Customerquery-tab-title b{color:#024ffe}
 .Customerquery-tab table{
     max-width: 780px;
-    height:210px;
-    max-height:210px;
+    height:310px;
     border:1px solid #b5ceef;
     display:block;
     overflow-x: auto;
@@ -141,7 +141,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .Customerquery-tab table tbody{
     min-width:868px;
-    max-height:279px;
+    max-height:270px;
     overflow-y: auto;
     display:inline-block;
     overflow-x: hidden;

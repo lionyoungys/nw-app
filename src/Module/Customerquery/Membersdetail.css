@@ -20,16 +20,17 @@
     margin:auto;
 }
 .Membersdetail-tab-title{
-    width:870px;
+    width:780px;
     height:35px;
     line-height:35px;
     color:#000;
     font-size:12px;
+    margin-left: 15px;
 }
 .Membersdetail-tab-title span{color:#063781}
 
-.Membersdetail-tab table {width:870px;max-height:395px;border:1px solid #acc6de;overflow-x:auto;display:inline-block}
-.Membersdetail-tab table thead{width:auto;height:25px;background:#89b0d4;display:inline-block}
+.Membersdetail-tab table {height: auto;max-width: 780px;margin-left: 10px;border:1px solid #acc6de;overflow-x:auto;overflow-y: hidden;display:block}
+.Membersdetail-tab table thead{width:1428px;height:30px;background:#89b0d4;display:inline-block}
 .Membersdetail-tab table thead tr{width:auto;height:25px}
 .Membersdetail-tab table thead tr th{
     width:106px;
@@ -48,9 +49,9 @@
     background-position-y:11px;
 }
 .Membersdetail-tab table tbody{
-    width:auto;
-    height:auto;
-    max-height:350px;
+    width:1428px;
+    max-height: 305px;
+    height: auto;
     display:inline-block;
     overflow-x:hidden;
     overflow-y:auto;
@@ -75,6 +76,7 @@
 .Membersdetail-tab table tbody tr td:last-child{border-right:none}
 
 #Membersdetail{
-    height:85px;
+    height: 85px;
+    width: 780px;
 }
 #Membersdetail div{margin-left:15px;}
