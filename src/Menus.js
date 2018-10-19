@@ -111,18 +111,18 @@ const Menus = [
         value:'设置', 
         key: 'Setting',
         options:[
-            {value:'门店管理', view:'store_management', id: 43, className:'default'},
-            {value:'员工与权限', view:'staff_management', id: 44, className:'default'},
-            {value:'价格设置', view:'price_setting', id: 45, className:'default'},
-            {value:'参数设置', view:'Parameter_Settings', id: 46, className:'default'},
-            {value:'设备与打印机', view:'equipment_management', id: 47, className:'default'},
+            {value:'门店管理', view:'store_management', id: 43, className:'shop-management'},
+            {value:'员工与权限', view:'staff_management', id: 44, className:'employee'},
+            {value:'价格设置', view:'price_setting', id: 45, className:'price'},
+            {value:'参数设置', view:'Parameter_Settings', id: 46, className:'param'},
+            {value:'设备与打印机', view:'equipment_management', id: 47, className:'printer'},
             //{value:'数据导入2',  view:'data', id: 48},
-            {value:'数据导入',  view:'data2', className:'default'},
-            {value:'金熨斗v4.0数据导入',  view:'data4', className:'default'},
-            {value:'金熨斗v6.0数据导入',  view:'data6', className:'default'},
-            {value:'密码修改', view:'passwd_update', id: 49, className:'default'},
+            {value:'数据导入',  view:'data2', className:'data'},
+            {value:'金熨斗v4.0数据导入',  view:'data4', className:'data4'},
+            //{value:'金熨斗v6.0数据导入',  view:'data6', className:'data4'},
+            {value:'密码修改', view:'passwd_update', id: 49, className:'passwd'},
             // {value:'其他设置', view:'colthes_classify_managment'},
-            {value:'关于速洗达', view:'about_snl', id: 50, className:'default'}
+            {value:'关于速洗达', view:'about_snl', id: 50, className:'about'}
         ]
     }
 ];

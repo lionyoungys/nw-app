@@ -19,7 +19,7 @@
     line-height: 57px;
     font-size: 12px;
     color: #626365;
-    text-indent: 10px;
+    text-indent: 3px;
     float: left;
 }
 
@@ -28,18 +28,18 @@
 }
 
 .change_card_date_left input{
-    width:133px;
+    /* width:133px;
     height:20px;
     background:#fff;
     outline:none;
     border:1px solid #c4c2c2;       
     text-indent:4px;
-    /* 设置选中的边框颜色 */
-    outline-color: #6f9ec2;
+    outline-color: #6f9ec2; 
+    */
 }
 .change_card_date_left input:focus{
     
-    border:1px solid #6f9ec2;       
+    /* border:1px solid #6f9ec2;        */
 }
 
 /* table的设置 */

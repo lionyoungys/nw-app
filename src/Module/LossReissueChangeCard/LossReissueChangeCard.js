@@ -80,9 +80,9 @@ export default class extends Component {
             <div>
                 <div className="change_card_date">
                     <div className="change_card_date_left">
-                        <div>卡号：<input type="text" value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})} onKeyPress={this.onKeyPress}/></div>
-                        <div>姓名：<input type="text" value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})} onKeyPress={this.onKeyPress}/></div>
-                        <div>手机号：<input type="text" value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                        <div>卡号：<input type="text" value={this.state.recharge_number} className='e-input' onChange={e => this.setState({recharge_number:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                        <div>姓名：<input type="text" value={this.state.user_name} className='e-input' onChange={e => this.setState({user_name:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                        <div>手机号：<input type="text" value={this.state.user_mobile} className='e-input' onChange={e => this.setState({user_mobile:e.target.value})} onKeyPress={this.onKeyPress}/></div>
                     </div>
                     <button type='button' className='e-btn ' onClick={this.query}>查询</button>
                 </div>               

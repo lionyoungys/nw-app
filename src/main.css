@@ -189,3 +189,12 @@ html, body, #root, #main{width: 100%;height: 100%}
 .main-menus-business-detail>i{background-position: -374px 0}
 .main-menus-clothes-statistics>i{background-position: -396px 0}
 .main-menus-wechat-alipay>i{background-position: -418px 0}
+.main-menus-shop-management>i{background-position: 0px -22px}
+.main-menus-employee>i{background-position: -22px -22px}
+.main-menus-price>i{background-position: -44px -22px}
+.main-menus-param>i{background-position: -66px -22px}
+.main-menus-printer>i{background-position: -88px -22px}
+.main-menus-data>i{background-position: -110px -22px}
+.main-menus-data4>i{background-position: -132px -22px}
+.main-menus-passwd>i{background-position: -154px -22px}
+.main-menus-about>i{background-position: -176px -22px}
