@@ -6,9 +6,9 @@
 .Customerquery-title{
     width:535px;
     height:95px; 
-    border:1px solid #8db2e3;
+    border:1px solid #e2e6ec;
     float:left;
-    background:#eef4fb;
+    background:#f5f8fa;
     margin-left: 10px;
 }
 .Customerquery-title > div{
@@ -26,13 +26,13 @@
 .Customerquery-title div span{
     width:90px;
     line-height:24px;
-    color:#063781;
+    color:#585858;
     font-size:12px;
     text-align:right;
     float: left;
 }
 .Customerquery-title div input{
-    width:146px;
+    /* width:146px;
     height:20px;
     border:1px solid #c2c2c2;
     background:#f9f9f9;
@@ -40,14 +40,16 @@
     font-size:12px;
     float: left;
     margin-left:3px;
-    text-indent: 4px;
+    text-indent: 4px; */
 }
 .Customerquery-title div .ui-select-define{
     margin-left:3px;
     width: 146px;
     margin-top: -5px;
 }
-.Customerquery-title div input:hover{border:1px solid #8db2e3;}
+.Customerquery-title div input:hover{
+    /* border:1px solid #8db2e3; */
+}
 .Customerquery-title div .select{         
     border-radius:3px;
     text-indent:4px;
@@ -68,7 +70,7 @@
  } */
  .Customerquery-right{width:302px;height:26px;float:right;margin:35px 0;}
  .Customerquery-right button{
-     width:71px;
+     /* width:71px;
      height:24px;
      color:#000;
      font-size:12px;
@@ -78,14 +80,46 @@
      outline:none;
      border:none;
      margin-top:2px;
-     cursor: pointer;
+     cursor: pointer; */
     }
-.Customerquery-right button:hover{background:url(./img/e-btn-hover.png)}
-.Customerquery-query{float:left;margin-left: 19px;}
+.Customerquery-right button:hover{
+    /* background:url(./img/e-btn-hover.png) */
+}
+.Customerquery-query{
+    float:left;
+    margin-left: 19px;
+    padding: 0;
+    margin: 0;
+    width: 62px;
+    height: 28px;
+    text-align: center;
+    background-color: #3fc0db;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 4px;
+    color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: none;
+}
 .Customerquery-over{
 
     float: left;
     margin-left: 20px;
+    padding: 0;
+    width: 62px;
+    height: 28px;
+    text-align: center;
+    background-color: #3fc0db;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 4px;
+    color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: none;
  }
 .Customerquery-tab{
     width:870px;
@@ -101,11 +135,11 @@
     line-height:34px;
     margin-left: 10px;
 }
-.Customerquery-tab-title b{color:#024ffe}
+.Customerquery-tab-title b{color:#ff0000}
 .Customerquery-tab table{
     max-width: 780px;
     height:310px;
-    border:1px solid #b5ceef;
+    /* border:1px solid #b5ceef; */
     display:block;
     overflow-x: auto;
     overflow-y:hidden;
@@ -114,7 +148,7 @@
 .Customerquery-tab table thead{
     min-width:868px;
     height:25px;
-    background:#89b0d4;
+    background:#f5f8fa;
     display:block;
 
 }
@@ -123,10 +157,10 @@
     height:25px;
     line-height:25px;    
     width:91px;
-    color:#fff;
+    color:#585858;
     font-size:12px;
     text-align:center;
-    border-right:1px solid #b5ceef;
+    border-right:1px solid #e9f0f5;
     max-width:91px;
 }
 .Customerquery-tab table thead tr th:last-child{border-right:none}
@@ -163,7 +197,7 @@
     color:#000;
     font-size:12px;
     text-align:center;
-    border-right:1px solid #b5ceef;      
+    /* border-right:1px solid #b5ceef;       */
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;

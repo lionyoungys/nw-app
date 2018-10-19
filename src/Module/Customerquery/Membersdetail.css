@@ -1,8 +1,8 @@
 .Membersdetail{
     width:870px;
     height:39px;
-    border:1px solid #8db2e3;
-    background:#eef4fb;
+    border:1px solid #e2e6ec;
+    background:#f5f8fa;
     margin:13px auto 0;
 }
 .Membersdetail-div{height:48px}
@@ -10,7 +10,7 @@
     width:auto;
     margin-left:47px;
     line-height:39px;
-    color:#063781;
+    color:#585858;
     font-size:12px;
     float: left;
 }
@@ -27,17 +27,17 @@
     font-size:12px;
     margin-left: 15px;
 }
-.Membersdetail-tab-title span{color:#063781}
+.Membersdetail-tab-title span{color:#585858}
 
-.Membersdetail-tab table {height: auto;max-width: 780px;margin-left: 10px;border:1px solid #acc6de;overflow-x:auto;overflow-y: hidden;display:block}
-.Membersdetail-tab table thead{width:1428px;height:30px;background:#89b0d4;display:inline-block}
+.Membersdetail-tab table {height: auto;max-width: 780px;margin-left: 10px;overflow-x:auto;overflow-y: hidden;display:block}
+.Membersdetail-tab table thead{width:1428px;height:30px;background:#f5f8fa;display:inline-block}
 .Membersdetail-tab table thead tr{width:auto;height:25px}
 .Membersdetail-tab table thead tr th{
     width:106px;
     min-width:134px;
-    border-right:1px solid #acc6de;
+    border-right:1px solid #e9f0f5;
     line-height:25px;
-    color:#fff;
+    color:#585858;
     font-size:12px;text-align:center;
 }
 .Membersdetail-tab table thead tr th:first-child{
@@ -62,7 +62,7 @@
 .Membersdetail-tab table tbody tr td{
     width:106px;
     height:25px;
-    border-right:1px solid #acc6de;
+    /* border-right:1px solid #acc6de; */
     text-align:center;
     line-height:25px;
     color:#000;

@@ -88,3 +88,4 @@
 #clo-que-tab{
    height:255px;
 }
+.ui-table-base.clo-que-tab tbody tr#no-data{margin-top: 38px}

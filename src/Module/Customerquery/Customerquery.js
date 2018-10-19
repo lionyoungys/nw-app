@@ -170,9 +170,9 @@ export default class extends Component {
             <Window title='客户信息查询' onClose={this.props.closeView}>
                 <div className="Customerquery">
                    <div className="Customerquery-title" id="Customerquery-title">
-                        <div><span>客户电话：</span><input type="text" value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
-                        <div><span>客户姓名：</span><input type="text" value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
-                        <div><span>卡号：</span><input type="text" value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
+                        <div><span>客户电话：</span><input type="text" className='e-input' value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
+                        <div><span>客户姓名：</span><input type="text" className='e-input' value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
+                        <div><span>卡号：</span><input type="text" className='e-input'  value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
                         <div><span>卡类型：</span><Select option={this.state.types}  onChange={value => this.setState({card_name:value=='全部'?'':value})} selected="全部"/></div>
                    </div>
                    <div className="Customerquery-right">
@@ -181,11 +181,11 @@ export default class extends Component {
                     </div>
                 </div>
                 <div className="Customerquery-tab cust-tab" id="cust-tab">
-                  <div className="Customerquery-tab-title">共记录<b>{this.state.count}</b>条</div>
+                  <div className="Customerquery-tab-title">已为您找到<b>{this.state.count}</b>条数据</div>
                   <table border="0" cellSpacing="0" cellPadding="0">
                       <thead>
                           <tr>
-                              <th></th>                             
+                              <th>序号</th>                             
                               <th>卡号</th>
                               <th>会员姓名 </th>
                               <th>会员手机号 </th>
@@ -224,7 +224,7 @@ export default class extends Component {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>序号</th>
                                         <th>流水号</th>                                       
                                         <th>店员姓名</th>
                                         <th>衣物件数</th>

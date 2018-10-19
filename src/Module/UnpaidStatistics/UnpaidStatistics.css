@@ -107,6 +107,7 @@
     max-height: 220px;
     width: 768px;
 }
+.ui-table-base.unpaidstatistics_table_Arrearage tbody tr#no-data{margin-top:51}
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
     min-width: 83px;
     max-width: 83px;

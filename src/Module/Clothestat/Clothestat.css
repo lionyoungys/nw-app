@@ -1,23 +1,24 @@
 .clothestat-tab table{
-    width:870px;
+    width:780px;
     height:150px;
-    border:1px solid #8db2e3;
+    border:1px solid #e1e4eb;
     max-width:870px;
     overflow-x:auto;
     overflow-y:hidden;
     display:block;
+    margin:0 auto;
 }
 .clothestat-tab table thead{
     width:870px;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
 .clothestat-tab table thead tr{width:870px;height:25px;}
 .clothestat-tab table thead tr th{
     width:130px;
     height:25px;
-    border-right:1px solid #acc6de;
-    color:#fff;
+    border-right:1px solid #eaeff5;
+    color:#636466;
     font-size:12px;
     min-width:130px;
     max-width:130px;
@@ -41,18 +42,13 @@
 }
 .clothestat-tab table tbody tr{width:870px;height:25px;}
 .clothestat-tab table tbody tr:last-child{
-    border-bottom: 1px solid #8db2e3;
+    border-bottom: 1px solid #e1e4eb;
 }
-.clothestat-tab table tbody tr:nth-child(odd){background:#fff;}
-.clothestat-tab tbody tr:nth-child(odd){background:#fff;}
-.clothestat-tab tbody tr:nth-child(even){background:#f0f5f9;}
-
-.Payout-detail table tbody tr:nth-child(even){background:#f0f5f9;}
 .clothestat-tab table tbody tr td{
     width:130px;
     height:25px;
-    border-right:1px solid #acc6de;
-    color:#000;
+    border-right:1px solid #e1e4eb;
+    color:#a7a7a7;
     font-size:12px;
     min-width:130px;
     text-align:center;
@@ -67,23 +63,23 @@
     width:330px;
     height:30px;
     line-height:30px;
-    color:#000;
+    color:#636466;
     font-size:12px;
     font-weight:bold;
     margin-left:13px;
 }
 .clothall-tab{
     width:503px;
-    max-height:240px;
-    height:240px;
-    border:1px solid #acc6de;
+    max-height:155px;
+    height:155px;
+    border:1px solid #e1e4eb;
     display:block;
     margin-left:13px;
 }
 .clothall-tab thead{
     display:inline-block;
     width:503px;
-    background:#89b0d4;
+    background:#f6f7fb;
 }
 .clothall-tab thead tr{
     width:503px;
@@ -94,25 +90,20 @@
     height:25px;
     line-height:25px; 
     font-size:12px; 
-    color:#fff;
+    color:#636466;
 }
 .clothall-tab thead tr th:first-child{
-    border-right:1px solid #acc6de;
+    border-right:1px solid #eaeef7;
 }
 .clothall-tab tbody tr td{
     width:264px;
     height:25px;
     line-height:25px;
     font-size:12px;
-    color:#000;
+    color:#a7a7a7;
     text-align:center;
 }
-.clothall-tab tbody tr td:first-child{
-    border-right:1px solid #acc6de;
-}
-
-.clothall-tab tbody tr:nth-child(odd){background:#fff;}
-.clothall-tab tbody{max-height:214px;overflow-y:auto;display:block}
+.clothall-tab tbody{max-height:120px;overflow-y:auto;display:block}
 
 #clo-que-tab thead tr td:first-child{
     background:url(./img/revokedata_list_box_span.png) no-repeat;
@@ -121,16 +112,16 @@
     background-position-y:12px;
 }
 .clothestat_data{
-    width:872px;
+    width:780px;
     height:59px;
     margin:13px auto 0px;
 }
 .clothestat_dataLeft{
-    width: 77px;
-    margin-left: 15px;
+    width:auto;
     border:1px solid #e9edf1;
     height:57px;
     background:#f5f8fa;
+    float: left;
 }
 .clothestat_dataLeft div{
     width:207px;
@@ -139,8 +130,9 @@
     line-height:20px;
     color:#000;
     font-size:12px;
-    color:#063781;    
     cursor: pointer;
+    float: left;
+    padding-left: 12px;
 }
 .clothestat_dataLeft div input{
     width:133px;
@@ -163,13 +155,11 @@
     background:none;
     height:24px;
     margin-left:10px;
-    background:url(./img/surebtn.png);
+    background:#3fbfdc;
     text-align: center;
     line-height:24px;
-    color:#000;
+    color:#fff;
     font-size:12px;
     outline:none;
     cursor: pointer;
 }
-
-.clothestat_dataright button:hover{background:url(./img/hoverbtn.png)}

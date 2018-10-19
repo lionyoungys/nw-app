@@ -72,20 +72,39 @@
 }
 
 .revokedata_dataright button:hover{background:url(./img/hoverbtn.png)}
-.revokedata_list{width:872px;height:126px;margin:auto}
-.revokedata_list div{width:100%;height:37px;line-height:37px;color:#000;font-size:14px;font-weight:bold}
+.revokedata_list{
+    widows: 780px;
+    height:126px;
+    margin:auto
+}
+.revokedata_list div{
+    width:100%;
+    height:37px;
+    line-height:37px;
+    color:#636564;
+    font-size:14px;
+    font-weight:bold;
+    text-indent: 15px;
+}
 .revokedata_list div b{font-size:12px;margin-left:36px;}
-.revokedata_list div b a{color:#024ffe;}
-.revokedata_list_box{width:100%;height:89px;max-height:94px;border:1px solid #8db2e3;clear: both;background:#fff}
+.revokedata_list div b a{color:#3fbfdc;}
+.revokedata_list_box{
+    width:100%;
+    height:94px;
+    max-height:94px;
+    border:1px solid #edf0f9;
+    clear: both;
+    background:#fff;
+}
 .revokedata_list_box li{height:25px;list-style:none;}
-.revokedata_list_box li:nth-of-type(odd){background:#f0f5f9;color:#000}
+.revokedata_list_box li:nth-of-type(odd){background:#f0f5f9;color:#636564}
 .revokedata_list_box li:nth-of-type(even){background:#fff}
-.revokedata_list_box li:last-child{border-bottom:1px solid #acc6de}
+.revokedata_list_box li:last-child{border-bottom:1px solid #edf0f9}
 .revokedata_list_box li span{
     display:block;
     height:25px;
     width:87px;
-    border-right:1px solid #acc6de;
+    border-right:1px solid #edf0f9;
     line-height:25px;
     font-size:12px;
     text-align:center;   
@@ -104,11 +123,18 @@
     background-position-y:11px;
     display:block;
 }
-.revokedata_last{height:171px;}
-.revokedata_last .revokedata_list_box{height:132px;max-height:132px;overflow:auto;position:relative}
+.revokedata_last{
+    height:194px;
+}
+.revokedata_last .revokedata_list_box{
+    height:132px;
+    max-height:132px;
+    overflow:auto;
+    position:relative;
+}
 .revokedata_last .revokedata_list_box li{width:2144px;}/*横向滚动条设置 */
-#revokedata_list_box_li{background:#89b0d4;color:#fff;}
-#revokedata_list_box_li span{color:#fff;}
+#revokedata_list_box_li{background:#f6f7fb;color:#646665;}
+#revokedata_list_box_li span{color:#646665;}
 
 .revokedata_prompt{
     background:url(./img/revokedata_prompt.png);
