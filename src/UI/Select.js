@@ -20,7 +20,7 @@ export default class extends React.Component {
     render() {
         let K = 'key'
         ,   V = 'value'
-        ,   value = this.props.value || ''
+        ,   value = this.props.value
         ,   options = tool.isArray(this.props.option) ? this.props.option : []
         ,   len = options.length
         ,   arr = []
@@ -29,8 +29,21 @@ export default class extends React.Component {
             if ('string' === typeof this.props.pair[0] || 'number' === typeof this.props.pair[0]) K = this.props.pair[0];
             if ('string' === typeof this.props.pair[1] || 'number' === typeof this.props.pair[1]) V = this.props.pair[1];
         }
+        if ('string' !== typeof value && 'number' !== typeof value) {    //判断value是否传入,未传入时使用第一个为;
+            if ('string' === typeof options[0] || 'number' === typeof options[0]) {
+                value = options[0];
+            } else if (
+                tool.isObject(options[0]) 
+                && 
+                ('string' === typeof options[0][V] || 'number' === typeof options[0][V])
+            ) {
+                value = options[0][V];
+            } else {
+                value = '';
+            }
+        }
         for (var i = 0;i < len;++i) {
-            if ('string' === typeof options[i]) {
+            if ('string' === typeof options[i] || 'number' === typeof options[i]) {
                 if (value === options[i]) continue;
                 tmp = tool.UUID();
                 arr.push(<div key={tmp} data-key={tmp} data-index={i} onClick={this.handleChange}>{options[i]}</div>);
