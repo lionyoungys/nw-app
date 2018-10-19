@@ -482,6 +482,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     height: 28px;
     position: relative;
     font-size: 14px;
+    line-height: 1;
 }
 .ui-select>.e-input{
     width: 100%;
