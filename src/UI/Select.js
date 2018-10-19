@@ -8,13 +8,16 @@ import React from 'react';
 export default class extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {show:true};
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e) {
+        this.setState({show:false});
         if ('function' === typeof this.props.onChange) {
             this.props.onChange({key:e.target.dataset.key, value:e.target.innerText, index:Number(e.target.dataset.index)});
         }
+        setTimeout(() => this.setState({show:true}), 100);
     }
     
     render() {
@@ -61,7 +64,7 @@ export default class extends React.Component {
             >
                 <i></i>
                 <input className='e-input' type='text' disabled placeholder='请选择...' value={value}/>
-                <section>
+                <section style={this.state.show ? null : {display:'none'}}>
                     <div>{arr}</div>
                 </section>
             </div>
