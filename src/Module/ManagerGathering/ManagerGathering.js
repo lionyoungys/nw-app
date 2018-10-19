@@ -99,17 +99,18 @@ export default class extends Component {
                             上次余额：<span>{this.state.lastbalance}</span> &emsp;&emsp;本次收现金：<span>{this.state.amount}</span> &emsp;&emsp;&emsp;&emsp;总现金：<span>{Number(this.state.amount)+Number(this.state.lastbalance)}</span>
                         </div>
                         <div className="manager_gathering_part_row">
-                            本次上缴：<input type="text" value={this.state.gathering} onChange={e=>this.setState({gathering:e.target.value})}/> &emsp;&emsp;&emsp;本次余额：<input type="text" value={this.state.balance} onChange={e=>this.setState({balance:e.target.value})}/> &emsp;现金是否一致：<Select option={['是','否']} onChange={value =>this.setState({fit:value?1:0})}/>
+                            本次上缴：<input type="text" value={this.state.gathering} onChange={e=>this.setState({gathering:e.target.value})}/> &emsp;本次余额：<input type="text" value={this.state.balance} onChange={e=>this.setState({balance:e.target.value})}/> &emsp;现金是否一致：<Select option={['是','否']} onChange={value =>this.setState({fit:value?1:0})}/>
                         </div>
                         <div className="manager_gathering_part_row text_area_row">
                             <a>经营情况说明：</a><textarea value={this.state.remark} onChange={e=>this.setState({remark:e.target.value})}></textarea>
                         </div>
+                        <div className='manager_gathering_part_btn'>
+                            <button type='button' className='e-btn ' onClick={() => this.setState({ show: true })}>查看明细</button>
+                            <button type='button' className='e-btn ' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
+                            <button type='button' className='e-btn ' onClick={this.payment}>交款</button>
+                        </div>
                     </div>
-                    <div className='manager_gathering_part_btn'>
-                        <button type='button' className='e-btn ' onClick={() => this.setState({ show: true })}>查看明细</button>
-                        <button type='button' className='e-btn ' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
-                        <button type='button' className='e-btn ' onClick={this.payment}>交款</button>
-                    </div>
+                    
                 </div>
                 {
                     this.state.show

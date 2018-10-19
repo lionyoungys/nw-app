@@ -54,28 +54,28 @@ export default class extends Component {
         );
         return (
             <Window title='经理收款-查看明细' onClose={this.props.onClick} >
-              <div className="Payout-detail " id="ManagerGathering-detail">
-                           <table>
-                               <thead>
-                                   <tr>                                       
-                                       <th>流水号</th>
-                                       <th>店员姓名</th>
-                                       <th>衣服件数</th>
-                                       <th>金额</th>
-                                       <th>实收金额</th>
-                                       <th>折扣率</th>
-                                       <th>收款类型</th>
-                                       <th>客户电话</th>
-                                       <th>客户姓名</th>
-                                       <th>时间</th>
-                                   </tr>                                  
-                               </thead>
-                               <tbody>
-                                    {result}
-                               </tbody>
-                           </table>
+              <div id="ManagerGathering-detail">
+                    <table className='ui-table-base man-gat-tab'>
+                        <thead>
+                            <tr>                                       
+                                <th>流水号</th>
+                                <th>店员姓名</th>
+                                <th>衣服件数</th>
+                                <th>金额</th>
+                                <th>实收金额</th>
+                                <th>折扣率</th>
+                                <th>收款类型</th>
+                                <th>客户电话</th>
+                                <th>客户姓名</th>
+                                <th>时间</th>
+                            </tr>                                  
+                        </thead>
+                        <tbody>
+                            {result}
+                        </tbody>
+                    </table>
                         <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
-                        </div>
+                </div>
             </Window>
 
         );

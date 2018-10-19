@@ -279,7 +279,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position-y:11px;
 }
 .Payout-detail table tbody{
-    width:auto;
     height:156px;
     max-height:156px;
     overflow-y:auto;  

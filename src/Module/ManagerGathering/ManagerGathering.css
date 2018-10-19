@@ -24,39 +24,39 @@
 
 .ui-table-base.ManagerGathering-tab{
 
-    max-height: 230px;
-    overflow-y: auto;
-    height: 230px;
-
+    height: 170px;
+    border: 1px solid #ddd;
+    max-width: 780px;
 }
 .ui-table-base.ManagerGathering-tab tbody{
 
-    max-height: 205px;
+    width: 770px;
+    max-height: 139px;
+    overflow-x: hidden;
 }
 .ui-table-base.ManagerGathering-tab tr td{
 
-    min-width: 218px;
-    max-width: 218px;
+    min-width: 192px;
+    max-width: 192px;
 }
 .ui-table-base.ManagerGathering-tab tr:last-child{
-    border-bottom:1px solid #8db2e3;
+    border-bottom:none;
 }
 .manager_gathering_bottom{
 
     position: absolute;
-    margin:0 13px;
-    bottom: 20px;
-    height: 150px;
+    margin:20px 14px;
+    height: 220px;
 }
 .manager_gathering_part.three_part{
     height: 100%;
-    width: 720px;
+    width: 768px;
     float: left;
-    border:1px solid #8db2e3;
-    background:#eef4fb; 
+    border:1px solid #ddd;
+    background:#f5f8fa; 
 }
 
-.manager_gathering_part input{
+/* .manager_gathering_part input{
     width: 100px;
     height: 21px;
     background:#fff;
@@ -64,9 +64,8 @@
     border:1px solid #c4c2c2;       
     text-indent:4px;
     margin-left: 24px;
-    /* 设置选中的边框颜色 */
     outline-color: #6f9ec2;
-}
+} */
 .manager_gathering_part input:focus{
     border:1px solid #6f9ec2;       
 }
@@ -90,50 +89,73 @@
 
     margin-top: 15px;
 }
-.manager_gathering_part_row:last-child{
+.manager_gathering_part_row.text_area_row{
 
     height: 62px;
     line-height: 62px;
 }
-.manager_gathering_part_row:last-child a{
+.manager_gathering_part_row.text_area_row a{
 
     float: left;
     font-size: 12px;
     height: 64px;
     line-height: 64px;
 }
-.manager_gathering_part_row textarea{
+.manager_gathering_part_row.text_area_row textarea{
 
     float: left;
-    width: 599px;
-    height: 62px;
+    width: 664px;
+    height: 70px;
     border: 1px solid #c4c2c2;
     box-sizing: border-box;
     padding: 4px;
 }
+.manager_gathering_part_row>input{
+
+    width: 125px;
+    height: 21px;
+    background: #fff;
+    outline: none;
+    border: 1px solid #c4c2c2;
+    text-indent: 4px;
+    margin-left: 24px;
+    outline-color: #6f9ec2;
+
+}
 .manager_gathering_part_btn{
-    float: left;
-    width: 150px;
-    height: 152px;
+    float: right;
+    height: 50px;
 }
 .manager_gathering_part_btn button{
 
-    margin: 11px 47px;
+    margin: 11px 11px;
 }
 
 /* 经理收款明细 */
-#ManagerGathering-detail{margin-top:25px;height:auto;}
-#ManagerGathering-detail table thead tr th:first-child{min-width:100px;background: none}
-#ManagerGathering-detail table thead tr th{min-width:100px}
-#ManagerGathering-detail table tbody tr td{
+#ManagerGathering-detail{margin-top:13px;height:490px;}
+#ManagerGathering-detail .man-gat-tab{
+    height:435px;
+    max-height: 435px;
+    width: 780px;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+}
+#ManagerGathering-detail .man-gat-tab thead{
+    height: 35px;
+}
+#ManagerGathering-detail .man-gat-tab thead tr th{
+    min-width:100px
+}
+#ManagerGathering-detail .man-gat-tab tbody tr td{
     min-width:100px;
 }
-#ManagerGathering-detail table{height:auto}
-#ManagerGathering-detail table tbody{
-    max-height:460px;
-    height:auto;
+
+#ManagerGathering-detail .man-gat-tab tbody{
+    max-height: 383px;
+    height: 383px;
+    width: 1000px;
 }
-#ManagerGathering-detail table tbody::-webkit-scrollbar{
+#ManagerGathering-detail .man-gat-tab tbody::-webkit-scrollbar{
     width: 0;
 }
 textarea{
