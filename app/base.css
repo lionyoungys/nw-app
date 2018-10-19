@@ -505,9 +505,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-select>section{
     display: none;
     position: absolute;
-    left: 0;top: 0;
+    top: 100%;
+    left: 0;
     width: 100%;
-    padding-top: 32px;
+    padding-top: 2px;
     z-index:10;
 }
 .ui-select:hover>section{display: block;}
