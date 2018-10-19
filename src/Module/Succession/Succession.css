@@ -29,7 +29,7 @@
     float: right;
     margin-right: 20px;
 }
-.Succession_dataLeft div input{
+/* .Succession_dataLeft div input{
     width:133px;
     height:20px;
     background:#fff;;
@@ -42,7 +42,7 @@
     background:url(./img/select.png) no-repeat;background-size:18px 24px;
     background-position-x:115px;
     background-position-y:0; 
-}
+} */
 /* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
 /*----------用来移除向下箭头----------*/
 /* input[type="date"]::-webkit-calendar-picker-indicator {
@@ -53,13 +53,13 @@
  /* input[type="date"]::-webkit-clear-button{
     display:none;
  } */
-.Succession_dataLeft div input:hover{
+/* .Succession_dataLeft div input:hover{
     background:url(./img/hoverselect.png) no-repeat;
     background-size:18px 24px;
     background-position-x:115px;
     background-position-y:0; 
 }
-.Succession_dataLeft div input:hover{border:1px solid #4589ee}
+.Succession_dataLeft div input:hover{border:1px solid #4589ee} */
 .ui-table-base.succession-tab{
 
     max-height: 400px;
@@ -74,7 +74,7 @@
     min-width: 189px;
     max-width: 189px;
 }
-.ui-table-base.succession-tab tr:last-child{
-    /* border-bottom:1px solid #8db2e3; */
-}
+/* .ui-table-base.succession-tab tr:last-child{
+     border-bottom:1px solid #8db2e3; 
+} */
 

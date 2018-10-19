@@ -44,6 +44,7 @@
 }
 .memberinfoupdate_leftdirection input{
     display: inline-block; 
+    margin-left: 10px;
 }
 .memberinfoupdate_rightdirection{
     float: right;

@@ -157,7 +157,7 @@ export default class extends Component {
            <span>性别:</span><Select  option = {['男','女']} selected = {this.state.sex} onChange={this.onchange}/>
         </span>
         <span className='memberinfoupdate_leftdirection'>
-           <span>生日:</span><input type='date' className='inputselectborder' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>
+           <span>生日:</span><input type='date' className='e-date' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>
         </span>
         <span className='memberinfoupdate_rightdirection'>
            <span>顾客单位:</span><input type='text' className='inputborder'/><img />

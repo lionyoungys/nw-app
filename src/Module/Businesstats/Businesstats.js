@@ -66,8 +66,8 @@ export default class extends Component {
             <Window title='营业统计' onClose={this.props.closeView}>   
                 <div className="revokedata_data">
                          <div className="revokedata_dataLeft">
-                            <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})}/></div>                           
-                            <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})}/></div>
+                            <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>                           
+                            <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
                          </div>
                          <div className="revokedata_dataright">
                            {arr}

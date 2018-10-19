@@ -22,6 +22,7 @@
     width:668px;
     float:left;
 }
+.managerquery_dataLeft div .e-date{width: 146px;}
 .managerquery_dataLeft .ui-select{width: 147px}
 .managerquery_btn{
     margin-top:13px;

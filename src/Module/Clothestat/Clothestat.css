@@ -122,6 +122,7 @@
     height:57px;
     background:#f5f8fa;
     float: left;
+    padding-right:12px;
 }
 .clothestat_dataLeft div{
     width:207px;
@@ -134,7 +135,7 @@
     float: left;
     padding-left: 12px;
 }
-.clothestat_dataLeft div input{
+/* .clothestat_dataLeft div input{
     width:133px;
     height:20px;
     background:#fff;;
@@ -147,7 +148,7 @@
     background:url(./img/select.png) no-repeat;background-size:18px 24px;
     background-position-x:115px;
     background-position-y:0; 
-}
+} */
 .clothestat_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
 .clothestat_dataright button{
     width:71px;
@@ -163,3 +164,4 @@
     outline:none;
     cursor: pointer;
 }
+.clothestat_dataLeft div .e-date{width: 146px}
