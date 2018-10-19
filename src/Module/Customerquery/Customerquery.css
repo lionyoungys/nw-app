@@ -56,16 +56,16 @@
     background-position-x:129px;
     background-position-y:0; 
 }
-input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
 /*----------用来移除向下箭头----------*/
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
    opacity: 0;
- }
+ } */
  
  /*----------用来移除叉叉按钮----------*/
- input[type="date"]::-webkit-clear-button{
+ /* input[type="date"]::-webkit-clear-button{
     display:none;
- }
+ } */
  .Customerquery-right{width:302px;height:26px;float:right;margin:35px 0;}
  .Customerquery-right button{
      width:71px;

@@ -120,3 +120,56 @@
     background-position-x:26px;
     background-position-y:12px;
 }
+.clothestat_data{
+    width:872px;
+    height:59px;
+    margin:13px auto 0px;
+}
+.clothestat_dataLeft{
+    width: 77px;
+    margin-left: 15px;
+    border:1px solid #e9edf1;
+    height:57px;
+    background:#f5f8fa;
+}
+.clothestat_dataLeft div{
+    width:207px;
+    height:20px;
+    margin-top:18px;
+    line-height:20px;
+    color:#000;
+    font-size:12px;
+    color:#063781;    
+    cursor: pointer;
+}
+.clothestat_dataLeft div input{
+    width:133px;
+    height:20px;
+    background:#fff;;
+    background-size:100% 100%;
+    outline:none;border:none;
+    border:1px solid #c4c2c2;       
+    border-radius:3px;
+    text-indent:4px;
+    cursor: pointer;
+    background:url(./img/select.png) no-repeat;background-size:18px 24px;
+    background-position-x:115px;
+    background-position-y:0; 
+}
+.clothestat_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
+.clothestat_dataright button{
+    width:71px;
+    border:none;
+    background:none;
+    height:24px;
+    margin-left:10px;
+    background:url(./img/surebtn.png);
+    text-align: center;
+    line-height:24px;
+    color:#000;
+    font-size:12px;
+    outline:none;
+    cursor: pointer;
+}
+
+.clothestat_dataright button:hover{background:url(./img/hoverbtn.png)}

@@ -34,16 +34,16 @@
     background-position-x:115px;
     background-position-y:0; 
 }
-input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
 /*----------用来移除向下箭头----------*/
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
    opacity: 0;
- }
+ } */
  
  /*----------用来移除叉叉按钮----------*/
- input[type="date"]::-webkit-clear-button{
+ /* input[type="date"]::-webkit-clear-button{
     display:none;
- }
+ } */
 .revokedata_dataLeft div input:hover{
     background:url(./img/hoverselect.png) no-repeat;
     background-size:18px 24px;
@@ -116,16 +116,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position-x:114px;
     background-position-y:0; 
 }
-input[type=date]::-webkit-inner-spin-button {visibility: hidden; }
+/* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
 /*----------用来移除向下箭头----------*/
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
    opacity: 0;
  }
- 
+  */
  /*----------用来移除叉叉按钮----------*/
- input[type="date"]::-webkit-clear-button{
+ /* input[type="date"]::-webkit-clear-button{
     display:none;
- }
+ } */
  .Payoutstats .Payoutstats-boxdiv .Payoutstats-div .select:hover{
     background:#fff url(./img/hoverselect.png) no-repeat;
     background-size:18px 24px;

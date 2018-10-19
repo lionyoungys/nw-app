@@ -42,20 +42,20 @@
     background-position-x:115px;
     background-position-y:0;  */
 }
-input[type=date]:-webkit-inner-spin-button {
+/* input[type=date]:-webkit-inner-spin-button {
 
     visibility: hidden; 
-}
+} */
 /*----------用来移除向下箭头----------*/
-input[type="date"]::-webkit-calendar-picker-indicator {
+/* input[type="date"]::-webkit-calendar-picker-indicator {
 
     opacity: 0;
- }
+ } */
  /*----------用来移除叉叉按钮----------*/
- input[type="date"]:-webkit-clear-button{
+ /* input[type="date"]:-webkit-clear-button{
 
     display:none;
- }
+ } */
 .unpaidstatistics_dataLeft div input:hover{
     /* background:url(./img/hoverselect.png) no-repeat;
     background-size:18px 24px;

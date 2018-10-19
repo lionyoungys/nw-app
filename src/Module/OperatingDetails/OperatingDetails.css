@@ -11,13 +11,11 @@
 
 #operating-div{
     overflow-x:auto;
-    height: 430px;
+    height:340px;
     background:#fff;
 }
 #operating-div tbody{
     overflow-x:auto;
-    max-height: 390px;
+    max-height:290px;
 }
-#operating-div tbody tr:last-child{
-    border-bottom:1px solid #8db2e3;
-}
+
