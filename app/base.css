@@ -479,11 +479,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-select{
     display: inline-block;
     width: 166px;
-    height: 35px;
+    height: 28px;
     position: relative;
-    /* vertical-align: middle; */
+    vertical-align: middle;
 }
 .ui-select>.e-input{
+    width: 100%;
+    height: 100%;
     padding-right: 24px;
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
@@ -497,10 +499,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: absolute;
     left: 0;top: 0;
     width: 100%;
-    padding-top: 36px;
+    padding-top: 32px;
     z-index:9;
 }
-.ui-select:hover>section>div{
+.ui-select>section>div{
     width: 100%;
     background-color: #fff;
     padding: 4px 0;
@@ -509,9 +511,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     -moz-box-shadow: 1px 1px 1px #d9d9d9;
     box-shadow: 1px 1px 1px #d9d9d9;
     overflow-y: auto;
-    max-height:200px;
+    max-height:140px;
 }
-.ui-select:hover>section>div>div{
+.ui-select>section>div>div{
     height: 28px;
     width: 100%;
     line-height: 28px;
@@ -521,7 +523,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     font-size: 14px;
     cursor: default;
 }
-.ui-select:hover>section>div>div:hover{background-color: #eaf1f7}
+.ui-select>section>div>div:hover{background-color: #eaf1f7}
 /* 数学计算组件样式 */
 .ui-math{
     position: relative;
