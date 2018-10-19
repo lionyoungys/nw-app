@@ -53,32 +53,12 @@
 
 }
 .ali-wechat-check-title span{
-
     height: 42px;
     line-height: 42px;
     margin-right:10px;
-    float: right;
 
 }
-.ali-wechat-check-title button{
-
-    float: right;
-    margin-top: 11px
-
-}
-.ali-wechat-check-title >a{
-
-    color: #15458d;
-    height: 42px;
-    line-height: 42px;
-}
-.ali-wechat-check-title span a{
-
-    font-size: 12px;
-    color:#063781;
-}
-.ali-wechat-check-title span a b{
-
+.ali-wechat-check-title span sup{
     font-size: 12px;
     color: red;
 }

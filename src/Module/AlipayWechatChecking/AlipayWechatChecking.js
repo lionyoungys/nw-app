@@ -81,19 +81,19 @@ export default class extends Component {
                 </div>
                 <div style={{margin:'18px 0 14px 18px'}}>余额明细</div>
                 <div className="ali-wechat-check-title">
-                    <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>
                     <span>
-                        <a><b>*</b>结束时间：</a>
-                        <input type='date' className='e-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
+                        <sup>*</sup>交易通道：
+                        <Select option={this.type} onChange={value=>this.changePayType(value)} />
                     </span>
                     <span>
-                        <a><b>*</b>开始时间：</a>
+                        <sup>*</sup>开始时间：
                         <input type='date' className='e-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
                     </span>
                     <span>
-                        <a><b>*</b>交易通道：</a>
-                        <Select option={this.type} onChange={value=>this.changePayType(value)} />
+                        <sup>*</sup>结束时间：
+                        <input type='date' className='e-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
                     </span>  
+                    <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>
                 </div>
                 <table className='ui-table-base ali-wechat-check-tab'>
                     <thead>
