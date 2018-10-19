@@ -55,7 +55,6 @@ export default class extends Component {
           <td>{item.amount}</td>
           <td>{item.real_amount}</td>
           <td>{item.work_number}</td>
-    }
         </tr>)
         var list = this.state.list.map((item, index) => <tr key={'item'+index}>
             <td>{item.serialsn}</td>

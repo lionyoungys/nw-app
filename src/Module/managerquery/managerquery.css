@@ -19,9 +19,10 @@
     margin-top: -2px;
 }
 .managerquery_dataLeft{
-    width:699px;
+    width:668px;
     float:left;
 }
+.managerquery_dataLeft .ui-select{width: 147px}
 .managerquery_btn{
     margin-top:13px;
     margin-left:18px;
@@ -30,26 +31,25 @@
 }
 /* table部分 */
 .ui-table-base.man-que-tab-two{
-    max-height:224px;
+    max-height:141px;
     margin-top: 15px;
     max-width: 874px;
     overflow-x: auto;
-    height:224px;
+    height:141px;
 }
 .ui-table-base.man-que-tab-two tbody{
-    max-height:180px;
-    height:180px;
+    max-height:99px;
+    height:99px;
 }
 .ui-table-base.man-que-tab-two tr td{
     max-width: 105px;
     min-width: 105px;
 }
-.ui-table-base.man-que-tab-two tr:last-child{
-    border:1px solid #8db2e3;
-}
 /* 修改之后 */
 .ui-table-base.man-que-tab{
     max-height: 210px;
+    margin-top:3px;
+    /* height: 210px; */
 }
 .ui-table-base.man-que-tab tbody{
     max-height: 185px;
@@ -58,6 +58,7 @@
     width:0;
 }
 .ui-table-base.man-que-tab tr td{
-    min-width:218px;
-    max-width:218px;
+    min-width:190px;
+    max-width:190px;
 }
+.ui-table-base.man-que-tab-two tbody{width: auto} 

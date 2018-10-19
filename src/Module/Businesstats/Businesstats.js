@@ -59,7 +59,6 @@ export default class extends Component {
              <td>{item.time}</td>
              <td>{item.recharge_number}</td>
              <td>{item.card_type}</td>
-
         </tr>
      )
        var arr = ['查询'].map((item,index) =><button key={index} data-index={index} onClick={()=>this.arrbutton(1)}>{item}</button>);             

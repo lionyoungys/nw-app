@@ -4,6 +4,8 @@
     border:1px solid #d7dde6;
     background:#f5f8fa;
     height: 70px; 
+    line-height: 70px;
+    text-indent:12px;
 }
 .ope-inc-head div{
     display: inline;
@@ -24,12 +26,12 @@
     margin-top: -30px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab{
-    max-height: 475px;
-    height:467px;
+    max-height: 367px;
+    height: 367px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab tbody{
-    max-height: 450px;
+    max-height: 330px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab tbody tr:last-child{
-    border-bottom:1px solid #8db2e3;
+    border-bottom:1px solid #ddd;
 }
