@@ -482,26 +482,35 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     height: 28px;
     position: relative;
     vertical-align: middle;
+    font-size: 14px;
 }
 .ui-select>.e-input{
     width: 100%;
     height: 100%;
-    padding-right: 24px;
+    padding-right: 20px;
+}
+.ui-select>i{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    right: 6px;
+    height: 12px;
+    width: 12px;
+    margin-top: -6px;
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
-    background-position: 145px center;
 }
 .ui-select>.e-input:disabled{background-color: #fff}
 .ui-select:hover>.e-input{border: 1px solid #3fc0db}
-.ui-select>section{display: none}
-.ui-select:hover>section{
-    display: block;
+.ui-select>section{
+    display: none;
     position: absolute;
     left: 0;top: 0;
     width: 100%;
     padding-top: 32px;
-    z-index:9;
+    z-index:10;
 }
+.ui-select:hover>section{display: block;}
 .ui-select>section>div{
     width: 100%;
     background-color: #fff;
@@ -520,7 +529,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 0 16px;
-    font-size: 14px;
     cursor: default;
 }
 .ui-select>section>div>div:hover{background-color: #eaf1f7}

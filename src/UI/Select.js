@@ -1,7 +1,7 @@
 /**
  * 下拉框组件
  * @author Edwin Young
- * @desc option:选项列表[value,value,value]|[{key:'', value:''},{key:'', value:''}];onChange:回调操作({key:'',value:'',index:''});value:选中的选项;pair:[key, value]通过给定数组对应寻找option中对应的key,value
+ * @desc option:选项列表[value,value,value]|[{key:'', value:''},{key:'', value:''}];onChange:回调操作({key:'',value:'',index:''});value:选中的选项;pair:[key, value]通过给定数组对应寻找option中对应的key,value;style:追加的style;className:追加的css类名
  */
 
 import React from 'react';
@@ -42,7 +42,11 @@ export default class extends React.Component {
             }
         }
         return (
-            <div className='ui-select'>
+            <div
+                className={'ui-select' + ( 'string' === typeof this.props.className ? (' ' + this.props.className) : '' )} 
+                style={this.props.style}
+            >
+                <i></i>
                 <input className='e-input' type='text' disabled placeholder='请选择...' value={value}/>
                 <section>
                     <div>{arr}</div>
