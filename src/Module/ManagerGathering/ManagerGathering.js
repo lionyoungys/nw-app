@@ -17,7 +17,7 @@ export default class extends Component {
             lastbalance:0,//上次余额
             gathering:'',
             balance:'',
-            fit:0,
+            fit:1,
             remark:'',
             dateStartTime:'',
             dateEndTime:'',
@@ -25,11 +25,15 @@ export default class extends Component {
         }        
         this.payment=this.payment.bind(this);
         this.onclose = this.onclose.bind(this);
+        this.query = this.query.bind(this);
     };
     onclose (){
         this.setState({show:false})
     }
     componentDidMount(){
+       this.query();
+    }
+    query() {
         api.post('managerGathering1',{token:'token'.getData()}  , (res, ver, handle) => {
             console.log(res)
             if (ver) {
@@ -45,7 +49,6 @@ export default class extends Component {
             }
         }
       );
-       
     }
     payment(){
         api.post('doManagerGathering',{
@@ -58,7 +61,9 @@ export default class extends Component {
           , (res, ver, handle) => {
                 if (ver) {
                     console.log(res)
-                    this.setState({arr:res.result.info})                                                                                    
+                    tool.ui.success({msg:'操作成功', callback:close => close()});
+                    this.query();
+                    //this.setState({arr:res.result.info})                                                                                    
                 }else{
                     handle();                
                 }
@@ -99,7 +104,7 @@ export default class extends Component {
                             上次余额：<span>{this.state.lastbalance}</span> &emsp;&emsp;本次收现金：<span>{this.state.amount}</span> &emsp;&emsp;&emsp;&emsp;总现金：<span>{Number(this.state.amount)+Number(this.state.lastbalance)}</span>
                         </div>
                         <div className="manager_gathering_part_row">
-                            本次上缴：<input type="text" value={this.state.gathering} onChange={e=>this.setState({gathering:e.target.value})}/> &emsp;本次余额：<input type="text" value={this.state.balance} onChange={e=>this.setState({balance:e.target.value})}/> &emsp;现金是否一致：<Select option={['是','否']} onChange={value =>this.setState({fit:value?1:0})}/>
+                            本次上缴：<input type="text" value={this.state.gathering} onChange={e=>this.setState({gathering:e.target.value})}/> &emsp;本次余额：<input type="text" value={this.state.balance} onChange={e=>this.setState({balance:e.target.value})}/> &emsp;现金是否一致：<Select value={1 == this.state.fit ? '是' : '否'} option={['是','否']} onChange={value =>this.setState({fit:'是' == value.value?1:0})}/>
                         </div>
                         <div className="manager_gathering_part_row text_area_row">
                             <a>经营情况说明：</a><textarea value={this.state.remark} onChange={e=>this.setState({remark:e.target.value})}></textarea>
