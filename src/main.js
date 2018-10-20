@@ -121,10 +121,10 @@ class Container extends Component {
             <span
                 key={obj.value} 
                 data-view={obj.view} 
-                data-event={obj.event} 
-                onClick={this.props.changeView} 
+                data-event={obj.event}  
+                onClick={this.props.changeView}
                 className={obj.className ? 'main-menus-' + obj.className : null}
-            ><i></i>{obj.value}<em></em></span>
+            ><i data-view={obj.view} data-event={obj.event} onClick={this.props.changeView}></i>{obj.value}<em></em></span>
         );
         return (
             <div className='main-container'>
