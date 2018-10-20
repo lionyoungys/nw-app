@@ -2,7 +2,7 @@
 .store_management{
 
     margin: 10px 14px;
-    height: 445px;
+    height: 439px;
     border:1px solid #d8dce7;
     background-color: #fff;
 }
@@ -10,13 +10,11 @@
 /* tab部分 */
 .store_management_tabbar{
     margin: 0;
-    height: 32px;
-    border-bottom: 1px solid #d8dce7;
-    background-color: #e1ebf6;
+    height: 27px;
+    background-color: #f6f7fb;
 }
 
 .store_management_tabbar ul{
-
     height: 24px;
     border-top: 3px solid #e1ebf6;
     border-bottom: 1px solid #d8dce7;
@@ -45,7 +43,7 @@
 /* 内容部分 */
 .store_management_content_all{
 
-    margin: 19px 0 0 11px;
+    margin: 0px 0 0 11px;
     height: 505px;
     /* background-color: purple; */
     overflow-y: auto;
@@ -82,13 +80,13 @@
     height: 34px;
     line-height: 34px;
     font-size: 12px;
-    color: #15458d;
+    color:#a9a9a9;
     /* background: yellow; */
 }
 .store_management_content_baseInfo a{
 
     font-size: 12px;
-    color: black;
+    color: #5f5f5f;
 }
 
 .store_management_content_baseInfo span{
@@ -128,7 +126,7 @@
 .store_management_content_baseInfo button{
     float: left;
     margin-left: 71px;
-    margin-top: 7px
+    margin-top:54px
 }
 
 /* 银联卡 */
@@ -143,7 +141,7 @@
     height: 34px;
     line-height: 34px;
     font-size: 12px;
-    color: #15458d;
+    color: #b4b4b4;
     /* background: yellow; */
 }
 .store_management_content_UnionPaycard button{
@@ -153,12 +151,10 @@
 }
 /* 网店 */
 .store_management_content_onlineStore{
-
     height: 500px;
     /* background-color: rgb(139, 17, 54); */
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_no_open{
-
     margin: 0;
     height: 290px;
     /* background-color: red; */
@@ -170,29 +166,25 @@
     background-image: url(img/storeManagement_netstore_not_open.png) ;
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_no_open p{
-
     font-size: 14px;
     font-weight: bold;
     text-align: center;
     /* color: lightgray; */
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_open{
-
     margin: 0;
     height: 210px;
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_open{
-
     margin: 0;
     height: 210px;
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_open div{
-
     margin:0;
     height: 34px;
     line-height: 34px;
     font-size: 12px;
-    color: #15458d;
+    color: #656565;
     /* background: yellow; */
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_open div input{
@@ -201,12 +193,25 @@
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_open div a{
 
-   color: black;
+   color: #656565;
 }
-.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input{
+
+/* .store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input{
     width: 17px;
     height: 17px;
     vertical-align:middle;
+} */
+.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input[type='radio']{
+   background:#f5f6f1;
+   border:1px solid #d7d9e5;
+   border-radius:100%;
+   width: 14px;
+   height: 14px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input[type='radio']:checked:before{
+    background: url(./images/e-radio-checked.png);
+    background-size:14px 14px;
+    background-repeat: no-repeat;
 }
 
 .store_management_content_onlineStore .store_management_content_onlineStore_open button{

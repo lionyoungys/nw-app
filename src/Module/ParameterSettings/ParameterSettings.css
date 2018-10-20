@@ -5,17 +5,16 @@
     height:24px;    
     text-align:center;
     line-height:24px;
-    color:#000;
+    color:#fff;
     font-size:12px;
     float:right;
-    background:url(./img/e-btn-6.png) no-repeat;
+    background:#3fbfdc;
     background-size:111px 24px;
     outline:none;
     border:none;
     margin:8px 0;
     cursor:pointer;
 }
-.brand-btn:hover{background:url(./img/e-btn-6-hover.png) no-repeat}
 .brand-tab{
     width:768px;
     height:auto;

@@ -280,7 +280,7 @@
     height:23px;
     line-height:23px;
     text-align:center;
-    color:#333;
+    color:#6b6c6e;
     font-size:12px;
     border-top:1px solid #d8dce7;
     border-left:1px solid #d8dce7;
@@ -289,12 +289,15 @@
     border-top-left-radius:3px;
     margin:3px 0 0 5px;
     padding:0 20px;
-    background:-moz-linear-gradient(top,#eff5fc,#d9e5f2);
-    background:-webkit-gradient(linear, 0% 20%,20% 100%,from(#eff5fc), to(#d9e5f2));
-    background: -webkit-gradient(linear, 0% 20%, 20% 100%, from(#eff5fc), to(#d9e5f2));
     cursor:pointer;      
 }
-.Settings-title span.hover{height:24px;z-index:9;color:#7a7a7a;font-weight:bold;background:#f0f5f9}
+.Settings-title span.hover{
+    height:24px;
+    z-index:9;
+    color:#60c5d9;
+    font-weight:bold;
+    background:#fff;
+}
 .Settings-div{width:780px;height:382px;margin-top:3px}
 
 #balancestatistics-leiji{margin-right:11px}

@@ -70,7 +70,7 @@ export default class extends Component {
     render(){
         return  (          
             <div className='store_management_content_onlineStore'>
-                <p className='store_management_content_title'>网店设置：</p>                
+                                
                 <div className='store_management_content_onlineStore_open'>
                     <div>
                         &emsp;接单状态：&emsp;

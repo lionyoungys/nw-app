@@ -93,13 +93,12 @@
      height:24px;
      line-height:24px;
      text-align:center;
-     color:#000;
+     color:#fff;
      font-size:12px;
      outline:none;
      border:none;
-     background:url(./img/e-btn.png);
+     background:#3fbfdc;
      float:right;
      margin:0 12px 0 0;
      cursor:pointer;
  }
- .membercard-footer button:hover{background:url(./img/e-btn-hover.png)}

@@ -65,11 +65,11 @@
     color: red;
 }
 .ui-table-base.ali-wechat-check-tab{
-    max-height: 245px;
+    max-height: 250px;
 }
 .ui-table-base.ali-wechat-check-tab tbody{
 
-    max-height: 210px;
+    max-height: 218px;
 }
 .ui-table-base.ali-wechat-check-tab tbody tr#no-data{margin-top: 33px}
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-1{

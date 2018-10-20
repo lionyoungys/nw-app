@@ -11,7 +11,7 @@ export default class extends Component {
         super(props);   
         this.state={
             list:[],
-            checked:[],                   
+            checkedArr:[],                   
         };
        this.query = this.query.bind(this);
        this.handleChecked = this.handleChecked.bind(this);  
@@ -43,41 +43,42 @@ export default class extends Component {
                 //console.log(filterUnique(arr));
                 var aa = filterUnique(arr)
                 for(var i = 0,len = aa.length;i < len;i++){ 
-                    !RegExp(aa[i],"g").test(this.state.checked.join(",")) && (this.state.checked.push(aa[i])); 
+                    !RegExp(aa[i], "g").test(this.state.checkedArr.join(",")) && (this.state.checkedArr.push(aa[i])); 
                 } 
-                this.setState({checked:this.state.checked})
-                //console.log(this.state.checked)
+                this.setState({ checkedArr: this.state.checkedArr})
+                //console.log(this.state.checkedArr)
             }else{
                 handle();
             }
         });
     }
 
-    handleChecked(value,checked) {
-        //console.log(this.state.checked)
+    handleChecked(e) {
+        console.log(e.target.checked)
+        let checked = e.target.checked;
         if (checked) {
-            //console.log(1)
-            let index = value.inArray(this.state.checked);
+            console.log(1)
+            let index = value.inArray(this.state.checkedArr);
             if (-1 !== index) {
-                this.state.checked.splice(index, 1);
-                this.setState({checked:this.state.checked});
+                this.state.checkedArr.splice(index, 1);
+                this.setState({ checkedArr: this.state.checkedArr});
             }
         } else {
-           // console.log(2)
-            this.state.checked.push(value);
-            this.setState({checked:this.state.checked});
+           console.log(2)
+            this.state.checkedArr.push(value);
+            this.setState({ checkedArr: this.state.checkedArr});
         }
     }
 
     btn_up (){
-        //console.log(JSON.stringify(this.state.checked))
+        console.log(JSON.stringify(this.state.checkedArr))
         api.post('up_module', {
             token:token,
-            moduleid:JSON.stringify(this.state.checked),
+            moduleid: JSON.stringify(this.state.checkedArr),
         }, (res,ver) => {
             //console.log(res)
             if (ver && res) {
-                this.props.leftMenuReload(this.state.checked);
+                this.props.leftMenuReload(this.state.checkedArr);
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.query();
@@ -92,24 +93,22 @@ export default class extends Component {
 
     render(){
        // console.log(this.state.checked)
-        var list = this.state.list.map((item,index) =><div>
-            <div className="shop-div1"></div>
-            <div id="shop-span">
-                <OptionBox
-                    type='checkbox'
-                    checked={-1 !== item.id.inArray(this.state.checked)}
-                    value={item.id}
-                    onClick={this.handleChecked}
-                ></OptionBox><b>{item.name}</b>
-            </div>
-        </div>)
+        var list = this.state.list.map((item, index) => <div checked={-1 !== item.id.inArray(this.state.checkedArr)} onClick={e=>this.handleChecked(e)}>
+            <i></i>
+            <b>{item.name}</b>
+        </div>
+        )
         return(
             <div>
                 <div id="Washmanagement-title">可自定义选择门店模块</div>
                 <div id="shop-div">
                     {list}
+                    <div className='was-man-btn-div'>
+                        <button className="e-btn store-button" onClick={this.btn_up}>确定</button>
+                    </div>
+                       
                 </div>
-                <button className="e-btn store-button" onClick={this.btn_up}>确定</button>                     
+                                  
             </div>
         );
     }

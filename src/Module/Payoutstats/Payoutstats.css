@@ -1,14 +1,14 @@
 .revokedata_data{
-    width:872px;
+    width:780px;
     height:59px;
     margin:13px auto 0px;
 }
 .revokedata_dataLeft{
     width:501px;
-    border:1px solid #8db2e3;
+    border:1px solid #e0e3ea;
     height:57px;
-    background:#eef4fb;
-    float:left
+    background:#f6f7fb;
+    float:left;
 }
 .revokedata_dataLeft div{
     width:207px;
@@ -16,59 +16,14 @@
     margin-top:18px;
     line-height:20px;
     color:#000;
-    font-size:12px;
-    color:#063781;    
+    font-size:12px;  
     cursor: pointer;
 }
-.revokedata_dataLeft div input{
-    width:133px;
-    height:20px;
-    background:#fff;;
-    background-size:100% 100%;
-    outline:none;border:none;
-    border:1px solid #c4c2c2;       
-    border-radius:3px;
-    text-indent:4px;
-    cursor: pointer;
-    background:url(./img/select.png) no-repeat;background-size:18px 24px;
-    background-position-x:115px;
-    background-position-y:0; 
-}
-/* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
-/*----------用来移除向下箭头----------*/
-/* input[type="date"]::-webkit-calendar-picker-indicator {
-   opacity: 0;
- } */
- 
- /*----------用来移除叉叉按钮----------*/
- /* input[type="date"]::-webkit-clear-button{
-    display:none;
- } */
-.revokedata_dataLeft div input:hover{
-    background:url(./img/hoverselect.png) no-repeat;
-    background-size:18px 24px;
-    background-position-x:115px;
-    background-position-y:0; 
-}
-.revokedata_dataLeft div input:hover{border:1px solid #4589ee}
-.revokedata_dataLeft div span{width:18px;height:22px;background:url(./select.png)}
+
 .revokedata_dataLeft div:first-child{margin-left:17px;float:left}
 .revokedata_dataLeft div:last-child{float: right;margin-right:17px}
 .revokedata_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
-.revokedata_dataright button{
-    width:71px;
-    border:none;
-    background:none;
-    height:24px;
-    margin-left:10px;
-    background:url(./img/surebtn.png);
-    text-align: center;
-    line-height:24px;
-    color:#000;
-    font-size:12px;
-    outline:none;
-    cursor: pointer;
-}
+
 
 
 /* 赔付样式 */
@@ -76,7 +31,7 @@
     width:872px;
     height:137px;
     margin: 12px auto;
-    border:1px solid #8db2e3;
+    border:1px solid #ebeef3;
     background:#eef4fb;
 }
 .Payoutstats .Payoutstats-boxdiv{
@@ -95,59 +50,12 @@
     width:72px;
     height:24px;
     line-height:24px;
-    color:#063781;
+    color:#5e5e68;
     font-size:12px;
     text-align:right;
     float: left;
 }
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-div input{
-    float:left;
-    width:132px;
-    height:20px;
-    border:1px solid #c4c2c2;
-    background:#fff;
-    color:#000;
-    font-size:12px;
-    margin-left:4px;
-    text-indent: 5px;
-}
 
-
-/* 下拉日期input */
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-div .select{   
-    background:#fff;;
-    background-size:100% 100%;
-    outline:none; 
-    border:1px solid #c4c2c2;
-    border-radius:3px;
-    text-indent:4px;
-    cursor: pointer;
-    background:#fff url(./img/select.png) no-repeat;background-size:18px 24px;
-    background-position-x:114px;
-    background-position-y:0; 
-}
-/* input[type=date]::-webkit-inner-spin-button {visibility: hidden; } */
-/*----------用来移除向下箭头----------*/
-/* input[type="date"]::-webkit-calendar-picker-indicator {
-   opacity: 0;
- } */
- 
- /*----------用来移除叉叉按钮----------*/
- /* input[type="date"]::-webkit-clear-button{
-    display:none;
- } */
- .Payoutstats .Payoutstats-boxdiv .Payoutstats-div .select:hover{
-    background:#fff url(./img/hoverselect.png) no-repeat;
-    background-size:18px 24px;
-    background-position-x:114px;
-    background-position-y:0; 
-}
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-div input:hover{border:1px solid #4589ee}
-.Payoutstats .Payoutstats-boxdiv .Payoutstats-text{
-    width:435px;
-    height:68px;  
-    margin-top: 64px;
-}
 .Payoutstats .Payoutstats-boxdiv .Payoutstats-text span{
     width:72px;
     height:57px;
@@ -184,18 +92,18 @@
 .Pay-tatol table{
     width:870px;
     height:auto;
-    border:1px solid #8db2e3;
+    border:1px solid #eceff6;
 }
 .Pay-tatol table thead{
     width:870px;
     height:25px;
-    background:#89b0d4;
+    background:#f6f7fb;
     display:block;    
 }
 .Pay-tatol table thead tr{width:870px;height:25px;}
 .Pay-tatol table thead tr th{
     width:88px;
-    border-right:1px solid #acc6de;
+    border-right:1px solid #ebeef3;
     color:#fff;
     font-size:12px;
     min-width:88px;
@@ -225,13 +133,9 @@
     height:25px;
     display:block;
 }
-
-.Pay-tatol table tbody tr:nth-child(odd){background:#fff}
-.Pay-tatol table tbody tr:nth-child(even){background:#f0f5f9}
-
 .Pay-tatol table tbody tr td{
     width:88px;    
-    border-right:1px solid #acc6de;
+    border-right:1px solid #eceff6;
     color:#000;
     font-size:12px;
     min-width:88px;
@@ -252,12 +156,12 @@
     width:870px;
     height:32px;
     line-height:32px;
-    color:#000;
+    color:#5d5d69;
     font-size:12px;
     font-weight: bold;
 }
 .Payout-detail-title b{font-weight:inherit;margin-left:12px;}
-.Payout-detail-title b i{font-style:normal;color:#063781}
+.Payout-detail-title b i{font-style:normal;color:#5d5d69}
 .Payout-detail table{
     width: 780px;
     height: 176px;
@@ -275,7 +179,7 @@
 .Payout-detail table thead tr th{
     width:88px;
     height:25px;
-    border-right:1px solid #acc6de;
+    border-right:1px solid #ebeef3;
     color:#fff;
     font-size:12px;
     min-width:88px;
@@ -302,8 +206,8 @@
 .Payout-detail table tbody tr td{
     width:88px;
     height:25px;
-    border-right:1px solid #acc6de;
-    color:#000;
+    border-right:1px solid #ebeef3;
+    color:#5d5d69;
     font-size:12px;
     min-width:88px;
     text-align:center;
