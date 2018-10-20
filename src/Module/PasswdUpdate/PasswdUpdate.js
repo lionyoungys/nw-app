@@ -3,7 +3,7 @@
  * @author wangjun
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 import './PasswdUpdate.css';
 
 export default class extends Component {   
@@ -65,28 +65,32 @@ export default class extends Component {
     }
     render() {
         return(
-                <Window title='密码修改'onClose={this.props.closeView}>
-                    <div className='passwdupdate'>
-                        <div className='passwdupdateborder'>
-                            <div>
-                                <span>&emsp;&emsp;&emsp;原密码:&nbsp;</span><input type='password' className='e-input' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
-                            </div>
-                            <div className='passwdupdate_pass'>
-                                <span>&emsp;&emsp;&emsp;新密码:&nbsp;</span><input type='password' className='e-input' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
-                            </div>
-                            <div >
-                                <label>6位以上，且不能为纯数字</label>
-                            </div>
-                            <div>
-                                <span>再次输入密码:&nbsp;</span><input type='password' className='e-input' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
-                            </div>
-                            <div style={{padding:'20px 0 0 105px'}}>
-                                <button type='button' className='e-btn' onClick={this.changeSave}>确认</button>&emsp;
-                                <button type='button' className='e-btn-b' onClick={this.props.closeView}>取消</button>
-                            </div>
-                         </div>
+            <Dish title='密码修改'onClose={this.props.closeView} width='328' height='242' icon='icons-passwd.png'>
+                <div style={{padding:'14px 30px 0 0',textAlign:'right'}}>
+                    <div className='e-input-row'>
+                        <label>&emsp;&emsp;&emsp;原密码：
+                            <input placeholder='请输入原始密码' type='password' className='e-input' value={this.state.oldPas} onChange={e => this.setState({ oldPas: e.target.value })}/>
+                        </label>
                     </div>
-                </Window>
+                    <div className='e-input-row'>
+                        <label>
+                            &emsp;&emsp;&emsp;新密码：
+                            <input placeholder='6位以上，且不能为纯数字' type='password' className='e-input' value={this.state.newPasOne} onChange={e => this.setState({ newPasOne: e.target.value })}/>
+                        </label>
+                    </div>
+                    <div className='e-input-row' style={{marginBottom:'22px'}}>
+                        <label>
+                            再次输入密码：
+                            <input placeholder='请再次确认输入密码' type='password' className='e-input' value={this.state.newPasTwo} onChange={e => this.setState({ newPasTwo: e.target.value })}/>
+                        </label>
+                    </div>
+                    <div className='e-text-r'>
+                        <button type='button' className='e-btn-b' onClick={this.props.closeView}>取消</button>
+                        &emsp;
+                        <button type='button' className='e-btn' onClick={this.changeSave}>修改</button>
+                    </div>
+                </div>
+            </Dish>
         );
     }
 }

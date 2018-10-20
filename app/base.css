@@ -15,6 +15,9 @@ body{font-size: 14px}
 .e-f16{font-size: 16px}
 .e-f20{font-size: 20px}
 .e-fb{font-weight: bolder}
+/* 文字方向 */
+.e-text-c{text-align: center}
+.e-text-r{text-align: right}
 /* 文本不可选中 */
 .e-select-disabled{
     user-select:none;
@@ -103,17 +106,18 @@ body{font-size: 14px}
     background-color: #fff;
     border: 1px solid #d7dee4;
     border-radius: 4px;
-    padding: 0 15px;
+    padding: 0 8px;
     font-size: 14px;
     color: #5a5e66;
     outline: none;
 }
 .e-input:focus{border: 1px solid #3fc0db}
 .e-input.e-error:focus{border: 1px solid #f60000}
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 14px}
-input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 14px}
-input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 14px}
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-size: 14px}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 12px}
+input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 12px}
+input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 12px}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-size: 12px}
+.e-input-row{display: block;margin-bottom: 12px;}
 /* 选项 */
 .e-option{
     display: inline-block;
