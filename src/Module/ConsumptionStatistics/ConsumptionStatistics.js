@@ -60,7 +60,7 @@ export default class extends Component {
     }
     render() { 
         var list = this.state.list.map((item, index) => <tr key={'item' + index}>
-            <td>{item.id}</td>
+            <td>{index+1}</td>
             <td>{item.serialsn}</td>
             <td>{item.work_number}</td>
             <td>{item.amount}</td>

@@ -1,6 +1,5 @@
 /* 全局设置 */
 .store_management{
-
     margin: 10px 14px;
     height: 439px;
     border:1px solid #d8dce7;
@@ -10,7 +9,7 @@
 /* tab部分 */
 .store_management_tabbar{
     margin: 0;
-    height: 27px;
+    height: 28px;
     background-color: #f6f7fb;
 }
 
@@ -42,15 +41,13 @@
 
 /* 内容部分 */
 .store_management_content_all{
-
-    margin: 0px 0 0 11px;
-    height: 505px;
+    margin:12px 0 0 11px;
+    height: 355px;
     /* background-color: purple; */
     overflow-y: auto;
     overflow-x: hidden;
 }
 .store_management_content_all div{
-
     margin: 0;
     /* height: 300px; */
 }
@@ -65,7 +62,6 @@
     /* background-color: palegreen; */
 }
 .store_management_content_all .store_management_able_input{
-
     width: 353px;
 }
 /* 基本信息 */
@@ -201,17 +197,42 @@
     height: 17px;
     vertical-align:middle;
 } */
-.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input[type='radio']{
-   background:#f5f6f1;
-   border:1px solid #d7d9e5;
-   border-radius:100%;
-   width: 14px;
-   height: 14px;
+
+.radiobox{
+    position: relative;
+    padding-left: 8px;
 }
-.store_management_content_onlineStore .store_management_content_onlineStore_open div:first-child input[type='radio']:checked:before{
-    background: url(./images/e-radio-checked.png);
-    background-size:14px 14px;
-    background-repeat: no-repeat;
+input[type=radio]{
+    margin-right: 6px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div .radiobox:before{
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 100%;
+    position: absolute;
+    border: 1px solid #ccc;
+    background: white;
+    top: -4px;
+    left: 4px;
+}
+.store_management_content_onlineStore .store_management_content_onlineStore_open div input[type=radio]:checked:before{
+    content: '';
+    display: inline-block;
+    width:16px;
+    height:16px;
+    border-radius: 100%;
+    background:url(./images/e-radio-checked.png) ;  
+    background-size:16px 16px; 
+    border: none;
+    left: 8px;
+    text-align: -3px;
+    top: -4px;
+    left: 4px;
+    z-index:9;
+    position: absolute;
 }
 
 .store_management_content_onlineStore .store_management_content_onlineStore_open button{
@@ -262,12 +283,11 @@
 }
 
 .store_management_content_ass_non_left p{
-
     font-size: 12px;
     color: black;
 }
-.store_management_content_ass_non_left .tore_management_content_ass_non_left_p{
 
+.store_management_content_ass_non_left .tore_management_content_ass_non_left_p{
     margin: 0;
     height: 30px;
     line-height: 30px;
@@ -311,14 +331,12 @@
 
 }
 .store_management_content_associatedShop_head div a{
-
     font-size: 10px;
     font-weight: bold;
-    color: #15458d; 
+    color: #3fc0db; 
     margin-right: 40px;
     float: left;
     margin-top: 5px;
-
 }
 .store_management_content_associatedShop_head div button{
 
@@ -330,7 +348,7 @@
     margin: 0;
     max-height: 415px;
     width: 830px;
-    border: 1px solid #8db2e3;
+    border: 1px solid #d7dee4;
     overflow: hidden;
 }
 .store_management_assShop_table tr td{
@@ -338,7 +356,7 @@
     /* 只设置最小即可设置固定的宽度 */
     height: 25px;
     font-size: 12px;
-    border-right: 1px solid #acc6de;
+    border-right: 1px solid #d7dee4;
     text-align: center;
     word-wrap:break-word;
     padding-left: 2px;
@@ -348,8 +366,8 @@
    border-right: none;
 }
 .store_management_assShop_table thead tr{
-    background-color: #89b0d4;
-    color: white;
+    background-color: #f5f8fa;
+    color: #585858;
 }
 .store_management_assShop_table tbody{
 
@@ -359,36 +377,26 @@
     overflow-y: auto;
 }
 .store_management_assShop_table tbody::-webkit-scrollbar{
-
     width: 0;
 }
 
 .store_management_assShop_table tbody tr{
     background-color: #f0f5f9;
-    color: black;
-
+    color: #585858;
 }
-.store_management_assShop_table tbody tr:nth-child(odd){
 
-    background-color: #fff;
-    color: black;
-}
 .store_management_assShop_table tbody tr td:last-child{
-    color: blue;
+    color: #3fc0db;
     cursor: pointer;
 }
 
 .store_management_assShop_table tr .store_management_assShop_table_id{
-
     min-width: 60px;
     max-width: 60px;
-
 }
 .store_management_assShop_table  tr .store_management_assShop_table_shopName{
-
     min-width: 130px;
     max-width: 130px;
-
 }
 .store_management_assShop_table tr .store_management_assShop_table_shortName{
 
@@ -457,7 +465,7 @@
 
     font-size: 10px;
     font-weight: bold;
-    color: #15458d; 
+    color: #3fc0db; 
     margin-right: 40px;
     float: left;
     margin-top: 18px;

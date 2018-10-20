@@ -73,8 +73,7 @@ export default class extends Component {
                                 
                 <div className='store_management_content_onlineStore_open'>
                     <div>
-                        &emsp;接单状态：&emsp;
-                        <input type="radio" name="take_order" value='10' checked={this.state.tstate==10?true:false} onClick={this.on_start}/> 开始接单&emsp;<input type="radio" name="take_order" onClick={this.on_start} checked={this.state.tstate=='11'?true:false} value='11'/> 停止接单
+                        &emsp;接单状态：&emsp;<label className="radiobox"><input type="radio" name="take_order" value='10' checked={this.state.tstate==10?true:false} onClick={this.on_start}/> 开始接单</label>&emsp;<label className="radiobox"><input type="radio" name="take_order" onClick={this.on_start} checked={this.state.tstate=='11'?true:false} value='11'/> 停止接单</label>
                     </div>
                     <div>&emsp;服务范围：&emsp;<input type='text' className='e-input' value={this.state.Service} onChange={e=>this.setState({Service:e.target.value})}/><a>km</a></div>
                     <div>上门服务费：&emsp;<input type='text' className='e-input' value={this.state.Doorto} onChange={e=>this.setState({Doorto:e.target.value})}/><a>元</a></div>

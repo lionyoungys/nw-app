@@ -18,6 +18,7 @@ export default class extends Component {
             list:[],
             page: 1,
             count: 0,
+            selectVal:'店员'
         };
         this.limit = 10;       
         this.query = this.query.bind(this);   
@@ -75,7 +76,7 @@ export default class extends Component {
             <Window title='营业统计' onClose={this.props.closeView}>
                <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft">
-                                <div>操作员：<Select option={['经理','店员','老板']} selected='店员' readOnly={true} onChange={value => console.log(value)}/></div>                           
+                                <div>操作员：<Select option={['经理','店员','老板']} readOnly={true} onChange={value => this.setState({selectVal:value.value})} value={this.state.selectVal}/></div>                           
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
                             </div>

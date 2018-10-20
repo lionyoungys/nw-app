@@ -66,15 +66,14 @@
 
     float: right;
     font-size: 12px;
-    color: black;
+    color: #fff;
     margin-top: 15px;
     height: 23px;
     width: 110px;
     float: right;
     border:none;
     background:none;
-    background:url(./img/surebtn.png);
-    background-size: 100% 100%;
+    background:#3fbfdc;   
     text-align: center;
     line-height:22px;
     outline:none;

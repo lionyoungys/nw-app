@@ -185,16 +185,12 @@
     height:25px;
     display:inline-block;
 }
-.Customerquery-tab table tbody tr:last-child{
-    border-bottom:1px solid #8db2e3;
-}
-.Customerquery-tab table tbody tr:nth-child(odd){background: #fff;}
-.Customerquery-tab table tbody tr:nth-child(even){background: #f0f5f9;}
+
 .Customerquery-tab table tbody tr td{     
     height:25px;
     line-height:25px;  
     width:91px;
-    color:#000;
+    color:#999;
     font-size:12px;
     text-align:center;
     /* border-right:1px solid #b5ceef;       */

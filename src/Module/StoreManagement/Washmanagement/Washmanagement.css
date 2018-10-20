@@ -9,8 +9,8 @@
 }
 
 #shop-div{
-    width:780px;
-    height:365px;
+    width:auto;
+    height:299px;
 }
 
 #shop-div>div{
@@ -25,7 +25,6 @@
     background: white;
 }
 #shop-div>div[checked=yes]{
-
     border: 1px solid #3abbd5;
     background: #f5fefe;
 }

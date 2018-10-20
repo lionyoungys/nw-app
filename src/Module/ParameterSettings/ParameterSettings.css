@@ -85,6 +85,7 @@
     height:80px;
     background:#f6f7fb;
     border:1px solid #d8dce7;
+    margin: 20px auto;
 }
 .brand-name{
     width:auto;
@@ -101,22 +102,25 @@
     border:1px solid #c2c2c2;
     margin-left:41px;
 }
-.addbrand-footer{width:230px;height:39px;}
+.addbrand-footer{
+    width:230px;
+    height:39px;
+    margin: 0 auto;
+}
 .addbrand-footer button{
     width:71px;
     height:24px;
     line-height:24px;
     text-align:center;
-    color:#000;
+    color:#fff;
     font-size:12px;
     outline:none;
     border:none;
-    background:url(./img/e-btn.png);
+    background:#3fbfdc;
     float:right;
     margin:8px 12px 0 0;
     cursor:pointer;
 }
-.addbrand-footer button:hover{background:url(./img/e-btn-hover.png)}
 
 /* 格架样式 */
 .lattic{width:768px;height:auto;margin:auto}
@@ -125,7 +129,7 @@
     height:24px;    
     text-align:center;
     line-height:24px;
-    color:#000;
+    color:#fff;
     font-size:12px;
     float:right;
     background:#3fbfdc;
@@ -203,10 +207,10 @@
    width:319px;
    height:167px;
    border:1px solid #eceff6;
-   margin:84px auto;
+   margin:40px auto;
    background:#eef4fb;
 }
-.addlattice-div div{width:319px;height:24px;margin-top:12px}
+.addlattice-div div{width:319px;height:24px;margin-top:14px}
 .addlattice-div div span{
     width:120px;
     text-align:right;
@@ -216,19 +220,22 @@
     display:inline-block;
 }
 .addlattice-div div input{width:149px;height:20px;border:1px solid #c2c2c2;text-indent: 4px}
-.addlattice-footer{width:340px;height:39px;}
+.addlattice-footer{
+    width:340px;
+    height:39px;
+    margin:0 auto;
+}
 .addlattice-footer button{
     width:71px;
     height:24px;
     line-height:24px;
     text-align:center;
-    color:#000;
+    color:#fff;
     font-size:12px;
     outline:none;
     border:none;
-    background:url(./img/e-btn.png);
+    background:#3fbfdc;
     float:right;
     margin:0 12px 0 0;
     cursor:pointer;
 }
-.addlattice-footer button:hover{background:url(./img/e-btn-hover.png)}
