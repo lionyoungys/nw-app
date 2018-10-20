@@ -22,7 +22,7 @@ export default class extends React.Component {
             passwd:'', 
             passwd2:'', 
             phone:'', 
-            birthday:'1970-01-01', 
+            birthday:'', 
             sex:'男', 
             addr:'', 
             amount:'',
@@ -30,7 +30,8 @@ export default class extends React.Component {
             discount:100,
             made_price:'',
             show:false,
-            writeData:{}
+            writeData:{},
+            selectVal:''
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -48,7 +49,8 @@ export default class extends React.Component {
                     amount:first.real_price,
                     give:first.give_price,
                     discount:first.discount,
-                    made_price:first.made_price
+                    made_price:first.made_price,
+                    selectVal:first.card_type
                 });
             }else{
                 handle();
@@ -57,9 +59,10 @@ export default class extends React.Component {
     }
 
     handleChange(obj) {
-        let value = obj.value
-        ,   index = value.inObjArray(this.state.cards, 'card_type')
-        ,   card = this.state.cards[index];
+        this.setState({selectVal:obj.value})
+        // let index = value.inObjArray(this.state.cards, 'card_type')
+        let index = obj.index;
+        let card = this.state.cards[index];
         this.setState({index:index,amount:card.real_price, give:card.give_price, discount:card.discount, made_price:card.made_price});
     }
 
@@ -146,9 +149,9 @@ export default class extends React.Component {
                             <div className='top-div'>
                             <span><label>*</label>卡类型:</span>&nbsp;&nbsp;
                             <Select 
-                                value={card.card_type}
                                 option={this.state.types} 
                                 onChange={this.handleChange}
+                                value={this.state.selectVal}
                             />
                             </div>
                         <div>
@@ -175,28 +178,28 @@ export default class extends React.Component {
                      <span className='salecard_leftdirection'>
                     <span>性别:</span>&nbsp;&nbsp;
                     {/* <Select option={['男','女']} onChange={value => this.setState({sex:value})}/> */}
-                    <label><input type='radio' className='e-radio' value='222' name='r'/> 男</label>&emsp;
-                <label><input type='radio' className='e-radio' value='333' name='r'/> 女</label><br/>
+                    <label><input type='radio' className='e-radio' value='222' name='r' onChange={value => this.setState({sex:value})}/> 男</label>&emsp;
+                <label><input type='radio' className='e-radio' value='333' name='r' onChange={value => this.setState({sex:value})}/> 女</label><br/>
                     </span>
                 </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>生日:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>生日:</span>&nbsp;&nbsp;<input type='date'  className='e-date' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>设置密码:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>设置密码:</span>&nbsp;&nbsp;<input type='text'  className='e-input' value={this.state.passwd} onChange={e => this.setState({passwd:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>确认密码:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>确认密码:</span>&nbsp;&nbsp;<input type='text'  className='e-input' value={this.state.passwd2} onChange={e => this.setState({passwd2:e.target.value})}/>
             </span>
             </div>
             <div>
             <span className='salecard_leftdirection'>
-            <span>地址:</span>&nbsp;&nbsp;<input type='text' className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
+            <span>地址:</span>&nbsp;&nbsp;<input type='text'  className='e-input' value={this.state.addr} onChange={e => this.setState({addr:e.target.value})}/>
             </span>
             </div>
             </div>
@@ -204,25 +207,22 @@ export default class extends React.Component {
             <div className='salecard_rightdirection'>
                     <div className='salecard_money'>售卡金额</div>
                     <div>
-                    <span>金额:</span><label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></label>
+                    <span>金额:</span><label><input className='e-input'  type='number' value={this.state.amount}  onChange={e => this.setState({amount:e.target.value})}/></label>
                     </div>
                     <div>
-                    <span>赠送:</span><label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></label>
+                    <span>赠送:</span><label><input className='e-input' type='number' value={this.state.give}  onChange={e => this.setState({give:e.target.value})}/></label>
                     </div>
                     <div>
-                        <span>制卡费:</span><label><input className='e-input' type='number' value={this.state.discount} onChange={e => this.setState({discount:e.target.value})}/>%</label>
+                        <span>制卡费:</span><label><input className='e-input' type='number' value={this.state.discount}  onChange={e => this.setState({discount:e.target.value})}/></label>
                     </div>
                     <div>
-                        <span>折扣率:</span><label><input className='e-input' type='number' value={this.state.made_price} onChange={e => this.setState({made_price:e.target.value})}/></label>
+                        <span>折扣率:</span><label><input className='e-input' type='number' value={this.state.made_price}  onChange={e => this.setState({made_price:e.target.value})}/>%</label>
                     </div>
-                     
-                        <button type='button' className='e-btn' >确认</button>
-                        <button type='button' className='e-btn-b' >取消</button>
                     </div>
                     </div>
                     <hr className='bottom_hr'></hr>
                     <div className='bottom_text'>
-                        <span>充值:</span>&nbsp;<span>赠送:</span>&nbsp;<span>制卡费:</span>&nbsp;<span>折扣率:</span>
+                        <span>充值:{this.state.amount}</span>&nbsp;<span>赠送:{this.state.give}</span>&nbsp;<span>制卡费:{this.state.discount}</span>&nbsp;<span>折扣率:{this.state.made_price}</span>
                         <div>
                         <span >应收合计：<span className='textred'>&yen;{total}</span></span>
                         <button type='button' className='e-btn' onClick={this.handleClick}>收银</button>
