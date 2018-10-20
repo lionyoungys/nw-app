@@ -646,6 +646,44 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     right:40px;
     cursor: pointer;
 }
+/* 360度边框环绕tab */
+.ui-tab-fields{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #e6ebf5;
+    padding-top: 30px;
+    position: relative;
+}
+.ui-tab-fields>nav{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #e6ebf5;
+    background-color: #f5f8fa;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.ui-tab-fields>nav>span{
+    float: left;
+    cursor: default;
+    height: 29px;
+    padding: 0 14px;
+}
+.ui-tab-fields>nav>span.checked{
+    height: 30px;
+    padding: 0 13px;
+    background-color: #fff;
+    border-right: 1px solid #e6ebf5;
+    border-left: 1px solid #e6ebf5;
+    color: #3fbfdc;
+}
+.ui-tab-fields>nav>span:first-child.checked{
+    padding-left: 14px;
+    border-left: none;
+}
 /* 支付组件样式 */
 .ui-payment{
     width: 100%;

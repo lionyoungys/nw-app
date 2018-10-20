@@ -4,9 +4,9 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import Tab from '../../UI/Tab';
+import {TabFields} from '../../UI/Tab';
+import Select from '../../UI/Select';
 
-const style = {height:'10px'};
 export default class extends Component {   
     constructor(props) {
         super(props);  
@@ -42,7 +42,9 @@ export default class extends Component {
         }
         this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
         this.units = ['pt', 'px'];
-        this.style = {position:'absolute', bottom:'20px', right:'20px'};
+        this.style = {marginLeft:'84px'};
+        this.selectStyle = {width:'416px'};
+        this.inputStyle = {width:'296px'};
         this.handleChange = this.handleChange.bind(this);
         this.selectPrinter = this.selectPrinter.bind(this);
         this.selectUnit = this.selectUnit.bind(this);
@@ -70,8 +72,8 @@ export default class extends Component {
     }
 
     //设置打印机方法
-    selectPrinter(e) {
-        let value = e.target.value
+    selectPrinter(obj) {
+        let value = obj.value
         ,   printer = this.state.printers[this.state.checked];
         console.log(value);
         '无' == value ? ''.setData(printer.id) : value.setData(printer.id);
@@ -79,8 +81,8 @@ export default class extends Component {
         this.setState({printers: this.state.printers});
     }
     //设置字体单位方法
-    selectUnit(e) {
-        let value = e.target.value
+    selectUnit(obj) {
+        let value = obj.value
         ,   printer = this.state.printers[this.state.checked];
         value.setData(printer.id + '_unit');
         this.state.printers[this.state.checked].unit = value;
@@ -121,24 +123,23 @@ export default class extends Component {
         ,   printer = this.state.printers[this.state.checked];
         return (
             <Window title='设备管理' onClose={this.props.closeView} width="500" height='240'>
-                <Tab option={this.tabs} checked={this.state.checked} onChange={i => this.setState({checked:i})}/>
-                <div style={{marginLeft:'10px',fontSize:'12px',lineHeight:'2.5'}}>
-                    {isM1 ? '读卡器型号' : '打印机名称'}：
-                    <select className='e-select' onChange={this.selectPrinter} value={printer.name}>
-                        {(isM1 ? this.state.M1data : this.state.data).map((obj, index) => <option key={obj + index}>{obj}</option>)}
-                    </select>
-                    {show && <div>页面&emsp;宽度：<input type='number' className='e-input' value={printer.width} data-name='width' onChange={this.handleChange}/>&nbsp;mm</div>}
+                <TabFields style={{margin:'14px', padding:'55px 0 0 18px', height:'236px'}} option={this.tabs} checked={this.state.checked} onChange={obj => this.setState({checked:obj.index})}>
+                    <div className='e-input-row'>
+                        {isM1 ? '读卡器型号' : '打印机名称'}：
+                        <Select option={isM1 ? this.state.M1data : this.state.data} onChange={this.selectPrinter} value={printer.name} style={this.selectStyle}/>
+                        {/* <select className='e-select' onChange={this.selectPrinter} value={printer.name}>
+                            {(isM1 ? this.state.M1data : this.state.data).map((obj, index) => <option key={obj + index}>{obj}</option>)}
+                        </select> */}
+                    </div>
+                    {show && <div className='e-input-row'>页面&emsp;宽度：<input type='number' className='e-input' style={this.inputStyle} value={printer.width} data-name='width' onChange={this.handleChange}/>&nbsp;mm</div>}
                     {
                         show 
                         && 
-                        <div>
-                            字体&emsp;大小：<input type='number' className='e-input' value={printer.font_size} data-name='font_size' onChange={this.handleChange}/>&nbsp;
-                            <select className='e-select'onChange={this.selectUnit} value={printer.unit}>
-                                {this.units.map(obj => <option key={obj}>{obj}</option>)}
-                            </select>
+                        <div className='e-input-row'>
+                            字体&emsp;大小：<input type='number' className='e-input' style={this.inputStyle} value={printer.font_size} data-name='font_size' onChange={this.handleChange}/>&nbsp;
+                            <Select option={this.units} onChange={this.selectUnit} value={printer.unit} style={{width:'52px'}}/>
                         </div>
                     }                    
-                </div>  
                 {
                     isM1
                     ?
@@ -159,7 +160,8 @@ export default class extends Component {
                             <button type='button' className='e-btn larger' onClick={this.print}>打印测试页</button>
                         </div>)
                     )
-                }                                                                   
+                }   
+                </TabFields>                                                            
             </Window> 
         );            
     };
