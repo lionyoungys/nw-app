@@ -1,9 +1,10 @@
-.aboutsnl-div{
-    width:322px;
-    height:233px;
-    font-weight:bold;
-    text-align:center;
-    line-height:233px;
-    margin:11px auto;
-    color: #3fbfdc;
+.aboutsnl{
+    padding-top: 206px;
+    margin: auto;
+    width: 572px;
+    background-image: url(images/about.png);
+    background-repeat: no-repeat;
+    background-position: center 80px;
+    color: #999;
 }
+.aboutsnl>p{color: #3fbfdc;padding-bottom: 32px;text-align: center;}

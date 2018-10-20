@@ -4,7 +4,6 @@
  */
 import React, {Component} from 'react';
 import Dish from '../../UI/Dish';
-import './PasswdUpdate.css';
 
 export default class extends Component {   
     constructor(props) {
@@ -17,9 +16,7 @@ export default class extends Component {
         this.changeSave = this.changeSave.bind(this)
     }; 
     changeSave() {
-
         if (this.state.oldPas == '' || this.state.newPasOne == '' || this.state.newPasTwo == '') {
-            
             return tool.ui.error({
                 msg: '密码不能为空！', callback: (close, event) => {
                     close();
