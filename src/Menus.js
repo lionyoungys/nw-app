@@ -67,14 +67,14 @@ const Menus = [
             {value:'消费统计', view:'consum_ption_statistics', id:22, className:'consume-statistic'},     
         ]
     },
-    {
+    /*{
         value:'信息统计', 
         key: 'InfoStatistics',
         options:[
             {value:'撤单统计', view:'revoke_data', id: 30, className:'default'},
             // {value:'赔付统计', view:'payout_stats', id: 31}
         ]
-    },
+    },*/
     {
         value:'财务统计', 
         key: 'FinanceStatistics',
