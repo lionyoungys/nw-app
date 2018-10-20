@@ -608,8 +608,10 @@ export default class extends Component {
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-header' style={{top:'0'}}>
-                    <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
-                    <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
+                    <div>
+                        <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
+                        <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
+                    </div>
                 </div>
                 <div className='clothes-container' style={{paddingTop:'40px'}}>
                     <div>

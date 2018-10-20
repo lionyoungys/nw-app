@@ -649,8 +649,10 @@ export default class extends Component {
                     <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>
                 </div>
                 <div className='clothes-header'>
-                    <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
-                    <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
+                    <div>
+                        <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
+                        <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
+                    </div>
                 </div>
                 <div className='clothes-container'>
                     <div>
