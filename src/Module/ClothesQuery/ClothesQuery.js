@@ -86,7 +86,7 @@ export default class extends Component {
                 <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
                         <div>
-                            <span>&nbsp;订单状态：</span><Select  option={['未取走','已取走','已撤单']} selected='未取走' onChange={value => this.setState({status:value})}/>
+                            <span>&nbsp;订单状态：</span><Select  option={['未取走','已取走','已撤单']} value={this.state.status} onChange={value => this.setState({status:value.value})}/>
                         </div> 
                         <div>
                             <span>&nbsp;&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>

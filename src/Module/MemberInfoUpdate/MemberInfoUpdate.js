@@ -37,7 +37,7 @@ export default class extends Component {
         this.M1Read = this.M1Read.bind(this);
     }; 
     onchange(value){
-        this.setState({sex:value});
+        this.setState({sex:value.value});
     }
     query(){
         console.log(this.state.recharge_number)
@@ -154,7 +154,7 @@ export default class extends Component {
         </div>
         <div>
         <span className='memberinfoupdate_customerdirection'>
-           <span>性别:</span><Select  option = {['男','女']} selected = {this.state.sex} onChange={this.onchange}/>
+           <span>性别:</span><Select  option = {['男','女']} value = {this.state.sex} onChange={this.onchange}/>
         </span>
         <span className='memberinfoupdate_leftdirection'>
            <span>生日:</span><input type='date' className='e-date' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>

@@ -21,6 +21,7 @@ export default class extends Component {
             list:[],
             count:0,
             selectType: '',//2,微信。3，支付宝默认全部)
+            pay_type:'全部'
         }
         this.type = ['全部', '支付宝', '微信'];
         this.limit = 15;
@@ -31,7 +32,8 @@ export default class extends Component {
         this.query();
     }
     changePayType(value){
-        var pay_type = value;
+        var pay_type = value.value;
+        this.setState({pay_type:pay_type});
         console.log(pay_type);
         if (pay_type == '全部') {
             this.setState({ selectType:''})
@@ -83,7 +85,7 @@ export default class extends Component {
                 <div className="ali-wechat-check-title">
                     <span>
                         <sup>*</sup>交易通道：
-                        <Select option={this.type} onChange={value=>this.changePayType(value)} />
+                        <Select option={this.type} onChange={value=>this.changePayType(value)} value={this.state.pay_type}/>
                     </span>
                     <span>
                         <sup>*</sup>开始时间：

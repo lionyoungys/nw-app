@@ -17,10 +17,10 @@ export default class extends Component {
             orderquerylist:[],
             count:0,
             page:1,
-            ostatus_name:'', // 状态名称
+            ostatus_name:'全部', // 状态名称
             orderostatus:[],
             online:[],
-            online_name:'',
+            online_name:'全部',
             number:'',
             nodatas:false,           
         }
@@ -184,10 +184,10 @@ export default class extends Component {
             <Window title='订单查询' onClose={this.props.closeView}> 
                <div className="orderquery-title">
                     <div>
-                       <span>订单状态：</span><Select  option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value=='全部'?'':value})} selected="全部"/>
+                       <span>订单状态：</span><Select  option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value.value})} value={this.state.ostatus_name}/>
                     </div>
                     <div>
-                       <span>订单来源：</span><Select option={this.state.online}  onChange={value => this.setState({online_name:value=='全部'?'':value})} selected="全部"/>
+                       <span>订单来源：</span><Select option={this.state.online}  onChange={value => this.setState({online_name:value.value})} value={this.state.online_name}/>
                     </div>   
                        <input type="text" className='e-input' placeholder="订单号,姓名,手机号,卡号" value={this.state.number} onChange={e => this.setState({number:e.target.value})} ref={input => this.input = input} />           
                         <button className="e-btn" onClick = {this.serch}>查询</button>              
