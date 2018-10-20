@@ -112,9 +112,18 @@ html, body, #root, #main{width: 100%;height: 100%}
     border-radius: 8px;
     margin: 0 46px 46px 0;
     cursor: default;
-    background-repeat: no-repeat;
+    position: relative;
 }
 .main-menus>span:nth-child(4n + 0) {margin-right: 0}
+.main-menus>span>i{
+    display: inline-block;
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    height: 53px;
+    background-image: url(images/main-menus-icons.png);
+    background-repeat: no-repeat;
+}
 /* 列表菜单样式 */
 .main-menus-list{
     height: 100%;
@@ -153,22 +162,39 @@ html, body, #root, #main{width: 100%;height: 100%}
 }
 /* 菜单项目样式 */
 .main-menus-default{background-color: #35bfc5;}
-.main-menus-clothes{background-color: #48baf3;background-image: url(images/main-menus-clothes.png);background-position: center 24px;}
-.main-menus-online{background-color: #f17878;background-image: url(images/main-menus-online.png);background-position: center 24px;}
-.main-menus-puton{background-color: #feb446;background-image: url(images/main-menus-puton.png);background-position: center 24px;}
-.main-menus-take{background-color: #32b8f0;background-image: url(images/main-menus-take.png);background-position: center 20px;}
-.main-menus-goods{background-color: #40cbab;background-image: url(images/main-menus-goods.png);background-position: center 24px;}
-.main-menus-card{background-color: #31b9f0;background-image: url(images/main-menus-card.png);background-position: center 30px;}
-.main-menus-recharge{background-color: #23cb76;background-image: url(images/main-menus-recharge.png);background-position: center 24px;}
-.main-menus-cancel{background-color: #32bdb3;background-image: url(images/main-menus-cancel.png);background-position: center 24px;}
-.main-menus-to-clean{background-color: #48baf3;background-image: url(images/main-menus-to-clean.png);background-position: center 30px;}
-.main-menus-into{background-color: #f17878;background-image: url(images/main-menus-into.png);background-position: center 22px;}
-.main-menus-cleaning{background-color: #3ec2d2;background-image: url(images/main-menus-cleaning.png);background-position: center 22px;}
-.main-menus-dry{background-color: #32b8f0;background-image: url(images/main-menus-dry.png);background-position: center 22px;}
-.main-menus-iron{background-color: #40cbab;background-image: url(images/main-menus-iron.png);background-position: center 28px;}
-.main-menus-check{background-color: #31b9f0;background-image: url(images/main-menus-check.png);background-position: center 20px;}
-.main-menus-out-of{background-color: #40cbab;background-image: url(images/main-menus-out-of.png);background-position: center 24px;}
-.main-menus-back{background-color: #feb446;background-image: url(images/main-menus-back.png);background-position: center 22px;}
+.main-menus-clothes{background-color: #48baf3;}
+.main-menus-clothes>i{background-position: 0 0;width: 52px;margin-left: -26px}
+.main-menus-online{background-color: #f17878;}
+.main-menus-online>i{background-position: -52px 0;width: 43px;margin-left: -21.5px}
+.main-menus-puton{background-color: #feb446;}
+.main-menus-puton>i{background-position: -97px 0;width: 52px;margin-left: -26px}
+.main-menus-take{background-color: #32b8f0;}
+.main-menus-take>i{background-position: -150px 0;width: 46px;margin-left: -23px}
+.main-menus-goods{background-color: #40cbab;}
+.main-menus-goods>i{background-position: -197px 0;width: 47px;margin-left: -23.5px}
+.main-menus-card{background-color: #31b9f0;}
+.main-menus-card>i{background-position: -245px 0;width: 51px;margin-left: -25.5px}
+.main-menus-recharge{background-color: #23cb76;}
+.main-menus-recharge>i{background-position: -297px 0;width: 40px;margin-left: -20px}
+.main-menus-cancel{background-color: #32bdb3;}
+.main-menus-cancel>i{background-position: -338px 0;width: 42px;margin-left: -21px}
+.main-menus-to-clean{background-color: #48baf3;}
+.main-menus-to-clean>i{background-position: -381px 0;width: 50px;margin-left: -25px}
+.main-menus-into{background-color: #f17878;}
+.main-menus-into>i{background-position: -434px 0;width: 47px;margin-left: -23.5px}
+.main-menus-cleaning{background-color: #3ec2d2;}
+.main-menus-cleaning>i{background-position: -481px 0;width: 38px;margin-left: -19px}
+.main-menus-dry{background-color: #32b8f0;}
+.main-menus-dry>i{background-position: -520px 0;width: 38px;margin-left: -19px}
+.main-menus-iron{background-color: #40cbab;}
+.main-menus-iron>i{background-position: -559px 0;width: 48px;margin-left: -24px}
+.main-menus-check{background-color: #31b9f0;}
+.main-menus-check>i{background-position: -608px 0;width: 44px;margin-left: -22px}
+.main-menus-out-of{background-color: #40cbab;}
+.main-menus-out-of>i{background-position: -652px 0;width: 46px;margin-left: -23px}
+.main-menus-back{background-color: #feb446;}
+.main-menus-back>i{background-position: -700px 0;width: 44px;margin-left: -22px}
+
 .main-menus-clothes-query>i{background-position: 0 0}
 .main-menus-shelf-query>i{background-position: -22px 0}
 .main-menus-order-query>i{background-position: -44px 0}
