@@ -427,6 +427,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     padding: 10px 0;
     background-color: #fff;
+    box-shadow: 4px 4px 4px #ebeff6;
 }
 .ui-page>div:hover>.ui-page-fetch>div>i:first-of-type{
     position: absolute;
@@ -511,8 +512,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     top: 100%;
     left: 0;
     width: 100%;
-    padding-top: 2px;
+    padding-top: 4px;
     z-index:10;
+    box-shadow: 4px 4px 4px #ebeff6;
 }
 .ui-select:hover>section{display: block;}
 .ui-select>section>div{
