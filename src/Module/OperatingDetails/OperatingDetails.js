@@ -14,7 +14,7 @@ export default class extends Component {
         super(props); 
         this.state = {
             startdate:tool.date('Y-m-01'),enddate:tool.date('Y-m-d'),
-            pay_type:'',
+            pay_type:'全部',
             list:[],
             page: 1,
             count: 0,
@@ -78,7 +78,7 @@ export default class extends Component {
                             '微信其他','微信退卡','微信退款','未付款','未付款补交','现金','现金补交','现金充值','现金发卡','现金其他',
                             '现金退卡','现金退款','赠券','赠券补交','赠券充值','赠券发卡','赠券其他','赠券退卡','支付宝','支付宝补交',
                             '支付宝充值','支付宝发卡','支付宝其他','支付宝退卡','支付宝退款','现金销售商品','微信销售商品','支付宝销售商品','刷卡销售商品'
-                            ]} onChange={value => this.setState({pay_type:value})}/></div>                           
+                            ]} onChange={value => this.setState({pay_type:value.value})} value={this.state.pay_type}/></div>                           
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
                             </div>

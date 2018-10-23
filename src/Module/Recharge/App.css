@@ -11,6 +11,9 @@
     height: 55px;
     line-height: 55px;
     margin-top: 23px;
+    width: 95%;
+    margin-left: 20px;
+    margin-right: 20px;
     background:#f4f7f7;
 }
 .recharge-first>:first-child{float: left;height: 100%;}
@@ -20,10 +23,14 @@
     height: 173px;
     border-top: 0;
     overflow: auto;
+    width: 95%;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .recharge-second>div{
     line-height: 28px;
     display: -webkit-flex;
+    margin-left: 80px;
     display: flex;
 }
 .recharge-second>div>:nth-child(2){width: 244px;font-size: 12px}
@@ -33,12 +40,18 @@
     border:0px;
     padding-top: 35px;
     font-size: 12px;
+    width: 95%;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .recharge-third>:first-child{
     height: 100%;
     float: left;
 }
-.recharge-third>:first-child>div{line-height: 28px}
+.recharge-third>:first-child>div{
+    line-height: 28px;
+    margin-top: 10px;
+}
 /* .recharge-third>:last-child>div button{
     height: 100%;
     width: 277.5px;
@@ -47,14 +60,17 @@
     float: right;
 } */
 .recharge-four{
-    float:right;
-    height: 100%;
-    width: 100%;
     background:#fff;
 }
-.recharge-four .recharge-btn{
+.recharge-four div{
+    float:right;
+    display: inline-flex;
+    margin-right: 30px;
+}
+.recharge-four div .recharge-btn{
     margin:12px auto;
     display:block;
+    text-align: center;
     margin-top: 12px;
 }
 .recharge-third div div{

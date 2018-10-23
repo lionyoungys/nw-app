@@ -84,6 +84,7 @@ export default class extends Component {
                 this.setState({
                     typeLists: res.result.list,
                     typeList: res.result.list.typeArray('name'),
+                    goods_type:res.result.list[0].name
                 })
             } else {
                 handle();
@@ -91,8 +92,8 @@ export default class extends Component {
         }); 
     }
     onchange(value){
-        this.setState({typeindex:value.inObjArray(this.state.typeLists, 'name')});
-        console.log(value.inObjArray(this.state.typeLists, 'name'));
+        this.setState({typeindex:value.index,goods_type:value.value});
+        // console.log(value.inObjArray(this.state.typeLists, 'name'));
     } 
     addYES(){
         if(''==this.state.name)
@@ -258,26 +259,26 @@ export default class extends Component {
                     <Window title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={this.onchange}/></div>
+                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={this.onchange} value={this.state.goods_type}/></div>
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span><b>*</b>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>名称：</span><input  type="text" className='e-input' onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span><b>*</b>库存：</span><input  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>库存：</span><input  type="number" className='e-input' onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input  type="number" className='e-input' onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
+                                <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number"  className='e-input' onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
                             </div>
                             <div className="addnewprice-money">
-                                <input type='checkbox' className='e-checkbox' value={this.state.discount} onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
+                                <input type='checkbox' className='e-checkbox' value={this.state.discount} className='e-input' onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
                             </div>
               
                         </div>

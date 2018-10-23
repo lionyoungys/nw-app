@@ -216,10 +216,10 @@ export default class extends Component {
                         &&
                         <Window title='新增格架' onClose={() => this.setState({show:false})} width="340" height='264'>
                             <div className="addlattice-div">
-                                 <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/></div>
-                                 <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} /></div>
-                                 <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})}  /></div>
-                                 <div><span>衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0"/></div>
+                                 <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}  className='e-input'/></div>
+                                 <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} className='e-input'/></div>
+                                 <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} className='e-input' /></div>
+                                 <div><span>衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" className='e-input'/></div>
                             </div>
                             <div className="addlattice-footer">
                                <button onClick = {this.addlatticeYES}>新 增</button>

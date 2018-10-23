@@ -153,7 +153,7 @@ export default class extends React.Component {
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
-            <Window title='充值' onClose={this.props.closeView} width='632' height='430'>
+            <Window title='充值' onClose={this.props.closeView} >
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
@@ -198,8 +198,11 @@ export default class extends React.Component {
                    
                 </div>
                 <div className="recharge-four">
-                        <div style={{ color: '#ff0000', marginTop: '24px', fontSize: '14px', fontWeight: 'bold',textAlign:'center'}}>应收：&yen;{this.state.amount}</div>
+                        <div>
+                       
+                        <div style={{ color: '#ff0000', marginTop: '19px',marginRight:'10px', fontSize: '14px', fontWeight: 'bold',textAlign:'center'}}>应收：&yen;{this.state.amount}</div>
                         <button type='button' className='e-btn recharge-btn' onClick={this.handleClick}>收银</button>
+                        </div>
                 </div>
                 {
                     this.state.show 

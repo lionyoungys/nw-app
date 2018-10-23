@@ -100,7 +100,7 @@ export default class extends React.Component {
         obj.balance = this.state.amount.add(obj.give_price);
         api.post('saleCard', obj, (res, ver, handle) => {
             if (ver) {
-                //console.log(res);
+                console.log(res);
                 let param = {
                     sn:res.result.sn,
                     addr:res.result.addr,
@@ -222,7 +222,7 @@ export default class extends React.Component {
                     </div>
                     <hr className='bottom_hr'></hr>
                     <div className='bottom_text'>
-                        <span>充值:{this.state.amount}</span>&nbsp;<span>赠送:{this.state.give}</span>&nbsp;<span>制卡费:{this.state.made_price}</span>&nbsp;<span>折扣率:{this.state.discount}%</span>
+                        <span>充值:{this.state.amount}</span>&nbsp;&nbsp;<span>赠送:{this.state.give}</span>&nbsp;&nbsp;<span>制卡费:{this.state.made_price}</span>&nbsp;&nbsp;<span>折扣率:{this.state.discount}%</span>
                         <div>
                         <span >应收合计：<span className='textred'>&yen;{total}</span></span>
                         <button type='button' className='e-btn' onClick={this.handleClick}>收银</button>

@@ -24,7 +24,7 @@
     line-height: 35px;
     background: white;
 }
-#shop-div>div[checked=yes]{
+#shop-div>div.onclick{
     border: 1px solid #3abbd5;
     background: #f5fefe;
 }
