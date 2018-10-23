@@ -178,7 +178,7 @@ export default class extends Component {
                             <div style={data.type ? {display:'none'} : {textAlign:'center'}}>
                                 <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                             </div>
-                            <div style={data.type ? null : {display:'none'}}>
+                            <div className='ui-payment-pattern-handle-vip' style={data.type ? null : {display:'none'}}>
                             <div><span>卡号：{data.number}</span>卡类型：{data.type}</div>
                                 <div><span>余额：{data.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
@@ -191,7 +191,6 @@ export default class extends Component {
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
-                            
                             <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
                             <input 
                                 type='text' 
