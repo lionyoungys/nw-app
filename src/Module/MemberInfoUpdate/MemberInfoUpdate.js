@@ -141,7 +141,7 @@ export default class extends Component {
            <span>手机号:</span><input type='text' className='e-input' value={this.state.user_mobile} onChange={e => this.setState({user_mobile:e.target.value})}/>
            </span>
            <span className='memberinfoupdate_rightdirection'>
-           <span>密码1次:</span><input type='password' className='e-input' value={this.state.passwd1} onChange={e=>this.setState({passwd1:e.target.value})}/>
+           <span>密码1次:</span>&nbsp;&nbsp;<input type='password' className='e-input' value={this.state.passwd1} onChange={e=>this.setState({passwd1:e.target.value})}/>
            </span>
         </div>
         <div>
@@ -149,7 +149,7 @@ export default class extends Component {
            <span>姓名:</span><input type='text' className='e-input' value={this.state.user_name} onChange={e => this.setState({user_name:e.target.value})}/>
         </span>
         <span className='memberinfoupdate_rightdirection'>
-           <span>密码2次:</span><input type='password' className='e-input'  value={this.state.passwd2} onChange={e=>this.setState({passwd2:e.target.value})}/>
+           <span>密码2次:</span>&nbsp;&nbsp;<input type='password' className='e-input'  value={this.state.passwd2} onChange={e=>this.setState({passwd2:e.target.value})}/>
            </span>
         </div>
         <div>
@@ -160,12 +160,12 @@ export default class extends Component {
            <span>生日:</span><input type='date' className='e-date' value={this.state.birthday} onChange={e => this.setState({birthday:e.target.value})}/>
         </span>
         <span className='memberinfoupdate_rightdirection'>
-           <span>顾客单位:</span><input type='text' className='e-input'/><img />
+           <span>顾客单位:</span>&nbsp;&nbsp;<input type='text' className='e-input'/><img />
         </span>
         </div>
         <div>
         <span className='memberinfoupdate_longdirection'>
-           <span>地址:</span><input type='text' className='inputlongborder' value={this.state.address} onChange={e => this.setState({address:e.target.value})}/>
+           <span>地址:</span>&nbsp;&nbsp;<input type='text' className='inputlongborder' value={this.state.address} onChange={e => this.setState({address:e.target.value})}/>
         </span>
         </div>       
         </div>

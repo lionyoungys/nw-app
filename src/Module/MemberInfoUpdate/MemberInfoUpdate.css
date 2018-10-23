@@ -53,11 +53,18 @@
     position:relative;
 }
 .inputlongborder{
-    width: 508px;
-    height: 21px;
-    margin-left: 9px;
+    width: 485px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: 14px;
+    color: #5a5e66;
     outline: none;
-    border:1px solid #c4c2c2;  
 }
 .memberinfoupdate_longdirection{
     float: left;
@@ -110,17 +117,14 @@
 }
 .inputborder:focus{
  
-    width: 151px;
-    height: 21px;
-    margin-left:6px;
-    border: 1px solid #6f9ec2;
+   
  }
   .inputlongborder:focus{
-    width: 508px;
-    height: 21px;
-    margin-left: 9px;
+    width: 485px;
+    height: 28px;
+    line-height: 28px;
     outline: none;
-    border: 1px solid #6f9ec2;
+    border: 1px solid #3fc0db
   }
   .inputthreeborder:focus{
     width: 90px;
