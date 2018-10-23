@@ -213,16 +213,16 @@ export default class extends React.Component {
                     <span>赠送:</span><label><input className='e-input' type='number' value={this.state.give}  onChange={e => this.setState({give:e.target.value})}/></label>
                     </div>
                     <div>
-                        <span>制卡费:</span><label><input className='e-input' type='number' value={this.state.discount}  onChange={e => this.setState({discount:e.target.value})}/></label>
+                        <span>制卡费:</span><label><input className='e-input' type='number' value={this.state.made_price}  onChange={e => this.setState({made_price:e.target.value})}/></label>
                     </div>
                     <div>
-                        <span>折扣率:</span><label><input className='e-input' type='number' value={this.state.made_price}  onChange={e => this.setState({made_price:e.target.value})}/>%</label>
+                        <span>折扣率:</span><label><input className='e-input' type='number' value={this.state.discount}  onChange={e => this.setState({discount:e.target.value})}/>%</label>
                     </div>
                     </div>
                     </div>
                     <hr className='bottom_hr'></hr>
                     <div className='bottom_text'>
-                        <span>充值:{this.state.amount}</span>&nbsp;<span>赠送:{this.state.give}</span>&nbsp;<span>制卡费:{this.state.discount}</span>&nbsp;<span>折扣率:{this.state.made_price}</span>
+                        <span>充值:{this.state.amount}</span>&nbsp;<span>赠送:{this.state.give}</span>&nbsp;<span>制卡费:{this.state.made_price}</span>&nbsp;<span>折扣率:{this.state.discount}%</span>
                         <div>
                         <span >应收合计：<span className='textred'>&yen;{total}</span></span>
                         <button type='button' className='e-btn' onClick={this.handleClick}>收银</button>
