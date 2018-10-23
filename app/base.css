@@ -121,8 +121,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 /* 选项 */
 .e-option{
     display: inline-block;
-    height: 28px;
-    line-height: 28px;
+    height: 29px;
+    line-height: 29px;
     width: 86px;
     text-align: center;
     font-size: 14px;
@@ -133,6 +133,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-color: #f5f8fa;
     cursor: default;
     font-style: normal;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 .e-option:hover{
     color: #3fbfdc;
@@ -291,7 +293,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     height: 36px;
     line-height: 36px;
     font-size: 16px;
-    font-weight: bolder;
+    color: #585858;
     text-align: center;
     background-color: #fff;
 }
@@ -356,7 +358,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     line-height: 16px;
     float: left;
     font-weight: bolder;
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     margin: 11px 0 0 20px;
     padding-left: 18px;

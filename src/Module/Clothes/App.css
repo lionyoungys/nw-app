@@ -386,7 +386,7 @@
     display: flex;
     display: -webkit-flex;
     justify-content: space-between;
-    margin: 0 20px 46px;
+    margin: 0 24px 45px;
 }
 .clothes-cate-top>span{
     height: 100%;
@@ -400,7 +400,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
     height: 226px;
-    margin: 0 20px;
+    margin: 0 24px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
