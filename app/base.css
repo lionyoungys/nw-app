@@ -32,7 +32,6 @@ body{font-size: 14px;font-family:"Microsoft YaHei"}
     width: 12px;
     background-image: url(images/icons.png);
     background-position: 0 0px;
-    vertical-align: text-bottom;
 }
 .e-icon-user{background-position: 0 13px}
 .e-icon-windows{background-position: 12px 0}

@@ -153,7 +153,7 @@ export default class extends React.Component {
                         <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
                     </div>
                 </div> */}
-                <div style={{height:'20px'}}></div>
+                <div style={{height:'22px'}}></div>
                 <div className='clothes-user-main'>
                     <div><div>用户ID</div><div>姓名</div><div>手机</div><div>卡号</div><div>余额</div><div>消费金额</div><div>地址</div></div>
                     <div className='clothes-user-main-body'>{html}</div>
