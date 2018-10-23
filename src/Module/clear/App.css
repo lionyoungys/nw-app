@@ -195,16 +195,17 @@
     border: none;
     background: url(./images/gaiban-n.png);
     background-repeat: no-repeat;
-    background-size: 11px 11px;
-    width: 109px;
-    text-indent: 13px;
+    background-size: 14px 14px;
+    width: 110px;
+    text-indent: 14px;
     display: block;
     color:#999;
     cursor: pointer;
+    line-height: 16px;
 }
 .clean .e-box .e-table tbody td span.e-checkbox.checked{
     background: url(./images/gaiban-y.png);
-    background-size: 11px 11px;
+    background-size: 14px 14px;
     background-repeat:no-repeat;
     background-position:left center;
 }
@@ -228,19 +229,20 @@
 .clean .e-box .in-factory tbody tr td span.e-radio{
     border: none;
     background: url(./images/gaiban-n.png);
-    background-size: 11px 11px;
+    background-size: 14px 14px;
     background-repeat: no-repeat;
-    width: 109px;
-    text-indent: 13px;
+    width: 110px;
+    text-indent: 14px;
     display: block;
     color:#999;
     border-radius:0;
     cursor: pointer;
+    line-height: 16px;
 }
 .clean .e-box .in-factory tbody tr td span.e-radio.checked{
     border:none;
     background: url(./images/gaiban-y.png);
-    background-size: 11px 11px;
+    background-size: 14px 14px;
     background-repeat:no-repeat;  
     background-position:left center;
 }

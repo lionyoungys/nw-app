@@ -21,12 +21,14 @@
     width:343px;
     height:35px;
     line-height:38px;
-    color:#000;
+    color:#5a5e66;
     font-size:14px;
+    font-weight:bold;
 }
 .Itsprocessing-count-title span{
-    color:#000;
-    font-size:12px;
+    color:#5a5e66;
+    font-size:14px;
+    font-weight:bold;
 }
 .Itsprocessing-count-title span b{
     color:#f00;
@@ -64,7 +66,7 @@
     width: 41px;
     height: 200px;
     float: left;
-    margin-left: 17px;
+    margin-left: 20px;
     margin-top: 57px;
 }
 .Itsprocessing-count-transfer span{
@@ -138,8 +140,8 @@
     overflow-y:auto;    
 }
 .ui-table-base.sing-tab tr td{
-   min-width:83px;
-   max-width:83px;
+   min-width:86px;
+   max-width:86px;
 }
 .Itsprocessing-footer-div{
     width:768px;

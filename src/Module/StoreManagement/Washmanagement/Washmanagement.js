@@ -67,8 +67,7 @@ export default class extends Component {
             }
         } else {
            console.log(2)
-            this.state.checkedArr.push(value);
-            
+            this.state.checkedArr.push(value);            
             this.setState({ checkedArr: this.state.checkedArr});
         }
     }

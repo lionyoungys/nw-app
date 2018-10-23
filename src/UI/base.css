@@ -153,14 +153,15 @@
 .ui-table-base tr td,.ui-table-base tr th{
     padding: 0;
     width: auto;
-    height: 30px;
-    line-height: 15px;
+    height: 40px;
+    line-height: 40px;
     font-size: 12px;
     text-align: center;
     /* border-right: 1px solid #e6ecf5; */
     word-wrap: break-word;
     /* 根据具体情况设置最小宽度 */
     /* min-width: 91px; */
+    color: #5a5e66;
 }
 .ui-table-base tr td:last-child{
     border-right:none;
@@ -172,6 +173,7 @@
     background-color: #f6f7fb;
     color: #000;
     /* font-weight: bold; */
+    border-bottom:1px solid #e6e7ec;
 }
 .ui-table-base tbody tr{
     color: #999;

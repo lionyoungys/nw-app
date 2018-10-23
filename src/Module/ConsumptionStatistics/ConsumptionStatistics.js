@@ -75,8 +75,7 @@ export default class extends Component {
         </tr>
         )       
         return ( 
-               <Window title='消费统计' onClose={this.props.closeView}>  
-                                        
+               <Window title='消费统计' onClose={this.props.closeView}>                                          
                 <div className="bothpages_list">
                     <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
                         <div>开始日期：<input type="date" className='e-date' value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>

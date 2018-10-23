@@ -81,18 +81,18 @@ export default class extends Component {
                     <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<b>{this.state.bankInfo.bank || '********'}{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
                     <p>余额：¥{this.state.bankInfo.balance || '0'}</p>
                 </div>
-                <div style={{margin:'18px 0 14px 18px'}}>余额明细</div>
+                <div style={{margin:'18px 0 14px 18px',color:'5a5e66'}}>余额明细</div>
                 <div className="ali-wechat-check-title">
                     <span>
-                        <sup>*</sup>交易通道：
+                        交易通道：
                         <Select option={this.type} onChange={value=>this.changePayType(value)} value={this.state.pay_type}/>
                     </span>
                     <span>
-                        <sup>*</sup>开始时间：
+                        开始时间：
                         <input type='date' className='e-date' value={this.state.startDate} onChange={e => this.setState({ startDate: e.target.value })} />
                     </span>
                     <span>
-                        <sup>*</sup>结束时间：
+                        结束时间：
                         <input type='date' className='e-date' value={this.state.endDate} onChange={e => this.setState({ endDate: e.target.value })} />
                     </span>  
                     <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>

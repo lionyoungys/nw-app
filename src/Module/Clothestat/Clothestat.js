@@ -155,7 +155,9 @@ export default class extends Component {
                                </tbody>
                            </table>                       
                       </div>
-                      <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>
+                      <div className="clothstate-foot">
+                          <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>
+                      </div>
              </Window> 
         );
     }

@@ -14,6 +14,7 @@
     max-height:360px; 
     overflow-y:hidden;
     overflow-x: hidden;
+    
 }
 .waiting-list{
     width:768px;
@@ -23,18 +24,18 @@
 }
 .waiting-list thead{
     /* width:768px; */
-    height:25px;
+    height:40px;
     background:#f6f7fb;
     display:block;
 }
 .waiting-list thead tr{
     /* width:768px; */
-    height:25px;
+    height:40px;
    /* background:#89b0d4; */
 }
 .waiting-list thead tr>th{
-    line-height:25px;
-    color:#000;
+    line-height:40px;
+    color:#4d4d4d;
     font-size:12px;
     text-align:center;
     /* border-right:1px solid #e7ebf6; */
@@ -287,6 +288,8 @@
     font-size: 12px;
     text-decoration:none;
 }
+.waiting-list>tbody tr td s:nth-child(1){color:#999}
+.waiting-list>tbody tr td s:nth-child(2){color:#3fc0db}
 .waiting-list tbody tr td s:hover{
     text-decoration:underline;
 }

@@ -1,13 +1,11 @@
 /* 取衣 */
-.Takeclothes-title{
-    width:100%;
-    height:35px;
-    margin:0px auto;
-    vertical-align: middle;
-    /* position: absolute; */
-    top: 0;
-    left: 0;
-    padding-top: 5px;
+.Takeclothes-title{  
+    height: 35px; /* margin: 0 auto; */
+    vertical-align: middle;   
+    padding-top: 10px;
+    width: 400px;
+    right: 0px;
+    float: right;
 }
 .Takeclothes-title input.e-input{
 
@@ -31,17 +29,19 @@
 }
 
 .Takeclothes-div-title{
-    width:780px;
-    height:23px;
-    line-height:23px;
-    color:#000;
-    font-size:12px;
-    font-weight:bold;
-    margin:0 auto;  
-    top: 35px;
+    height: 23px;
+    line-height: 23px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 auto;
+    top: 46px;
     left: 0;
     text-indent: 5px;
-    border-bottom: 1px solid #eee
+    /* border-bottom: 1px solid #eee; */
+    /* margin: 0 auto; */
+    float: left;
+    padding-top: 15px;
 }
 .Takeclothes-div-title b{
     color:red;
@@ -50,6 +50,7 @@
     height: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    border-top: 1px solid #f0f0f0;
 }
 .Takeclothes-tab-div>div{
     padding: 5px;
@@ -77,19 +78,19 @@
 }
 .Takeclothes-tab table thead{
     min-width:846px;
-    height:25px;
+    height:40px;
     background:#f6f7fb;
     display:block;
 }
-.Takeclothes-tab table thead tr{width:auto;height:25px}
+.Takeclothes-tab table thead tr{width:auto;height:40px}
 .Takeclothes-tab table thead tr th{
     width:auto;
     text-align:center;
     /* padding:0 49px; */
     color:#848587;
     font-size:12px;
-    height:25px;
-    line-height:25px;
+    height:40px;
+    line-height:40px;
     /* border-right:1px solid #acc6de; */
     min-width:109px;
     max-width: 109px;
@@ -137,7 +138,7 @@
     line-height:25px;
 
 }
-
+.Takeclothes-tab table tbody tr td:first-child{color: #3fbfdc}
 /* 取衣详情 */
 .Takeclothesdetail-title{
     width:872px;
@@ -146,7 +147,7 @@
 }
 .Takeclothesdetail-title-left{
     float: left;
-    width:400px;
+    width:380px;
     height:47px;
 }
 .Takeclothesdetail-title-left div{
