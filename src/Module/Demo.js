@@ -10,6 +10,7 @@ import Empty from '../UI/Empty';
 import Page from '../UI/Page';
 import Select from '../UI/Select';
 import MathUI from '../UI/MathUI';
+import Triangle from '../UI/Triangle';
 
 export default class extends React.Component {
     constructor(props) {
@@ -45,6 +46,7 @@ export default class extends React.Component {
     render() {
         return (
             <Window title='偷窥厨房的窗口' onClose={this.props.closeView} padding={true}>
+                <Triangle/>
                 <button type='button' className='e-btn' onClick={this.handleClickForSuccess}>成功弹窗</button>&nbsp;
                 <button type='button' className='e-btn' onClick={this.handleCLickForWarn}>警告弹窗</button>&nbsp;
                 <button type='button' className='e-btn' disabled>样式禁用</button>&nbsp;

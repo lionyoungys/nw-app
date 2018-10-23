@@ -841,6 +841,32 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-cash{height:100%;line-height:54px;font-size:14px;font-weight:bold}
 .ui-payment-wechat>input{width: 72px;margin-right: 10px}
 .ui-payment-wechat>input:last-of-type{margin-right: 0}
+/* 三角形状 */
+/* 三角形状边框 */
+.ui-triangle{
+    display: inline-block;
+    position: absolute;
+    height: 9px;
+    width: 18px;
+}
+.ui-triangle>i:first-child{
+    border-width: 0 9px 9px;
+    border-color: transparent transparent #e6ebf5;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ui-triangle>i:last-child{
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #fff;
+    border-style: solid;
+    z-index: 1;
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+}
+
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{
