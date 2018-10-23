@@ -150,7 +150,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border: 1px solid #e6ebf5;
     border-radius: 4px;
     position: relative;
-    padding-left: 30px;
+    padding-left: 32px;
     font-weight: bolder;
     color: #000;
     cursor: pointer;
@@ -166,16 +166,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 16px;
     height: 16px;
     position: absolute;
-    left: 8px;
+    left: 10px;
     top: 50%;
     margin-top: -8px;
     background-image: url(images/icons-payment-option.png);
     background-repeat: no-repeat;
 }
 .e-payment-option.vip>i{background-position: 0 0;}
-.e-payment-option.ic>i{background-position: -16px 0;}
-.e-payment-option.cash>i{background-position: -32px 0;}
-.e-payment-option.wechat>i{background-position: -48px 0;}
+.e-payment-option.ic, .e-payment-option.cash, .e-payment-option.wechat{padding-left: 38px}
+.e-payment-option.ic>i{background-position: -16px 0;left: 16px;}
+.e-payment-option.cash>i{background-position: -32px 0;left: 16px;}
+.e-payment-option.wechat>i{background-position: -48px 0;left: 16px;}
 .e-payment-option.alipay>i{background-position: -64px 0;}
 /* 三角形状 */
 .e-triangle{
@@ -187,7 +188,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 /* 三角形状边框 */
 .e-triangle-b{
     border-width: 0 10px 10px;
-    border-color: transparent transparent #e6ebf5;
+    border-color: transparent transparent #d8dce5;
     border-style: solid;
 }
 /* 线包框 */
@@ -697,23 +698,29 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     margin-bottom: 14px;
 }
 .ui-payment-detail, .ui-payment-detail2{
-    height: 76px;
+    height: 74px;
     width: 100%;
     border: 1px solid #e6ebf5;
     background-color: #f5f8fa;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 15px 14px;
+    padding: 14px 0;
     color: #666;
     margin-bottom: 14px;
 }
 .ui-payment-detail2{height: 38px;line-height: 38px;padding: 0 14px;}
 .ui-payment-detail>div, .ui-payment-detail2>div{
-    width: 160px;
-    height: 100%;
+    height: 39px;
     float: left;
+    border-right: 1px solid #d8dce5;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
-.ui-payment-detail>div>div:first-child{margin-bottom: 12px}
+.ui-payment-detail>div:nth-child(1){width: 169px;padding-left: 14px}
+.ui-payment-detail>div:nth-child(2){width: 159px;padding-left: 18px}
+.ui-payment-detail>div:nth-child(3){width: 179px;padding-left: 28px}
+.ui-payment-detail>div:last-child, .ui-payment-detail2>div:last-child{border-right: none}
+.ui-payment-detail>div>div:first-child{margin-bottom: 15px}
 .ui-payment-pattern{
     height: 138px;
     width: 100%;
@@ -724,7 +731,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-pattern>div:first-child{
     height: 32px;
     width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 }
 .ui-payment-pattern>div:first-child>.e-payment-option{margin-right: 16px}
 .ui-payment-pattern>div:first-child>.e-payment-option:last-child{margin-right: 0}
@@ -734,7 +741,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: relative;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    border: 1px solid #f5f8fa;
+    border: 1px solid #d8dce5;
     border-radius: 4px;
     padding: 17px 10px;
 }
@@ -850,7 +857,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .ui-triangle>i:first-child{
     border-width: 0 9px 9px;
-    border-color: transparent transparent #e6ebf5;
+    border-color: transparent transparent #d8dce5;
     border-style: solid;
     position: absolute;
     top: 0;
