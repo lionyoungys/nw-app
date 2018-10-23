@@ -11,7 +11,7 @@ export default class extends Component {
         super(props);   
         this.state={
             list:[],
-            checkedArr:[],                   
+            checkedArr:[]    
         };
        this.query = this.query.bind(this);
        this.handleChecked = this.handleChecked.bind(this);  
@@ -26,7 +26,7 @@ export default class extends Component {
        // tool.ui.loading(handle => done = handle);
         api.post('shop_module', {token:token}, (res,ver) => {
             if (ver && res) {
-               // console.log(res)    
+                console.log(res)    
                 this.setState({
                     list:res.pmodule,                  
                 });  
@@ -54,9 +54,10 @@ export default class extends Component {
     }
 
     handleChecked(e) {
-        console.log(e.target.checked)
-        let checked = e.target.checked;
-        if (checked) {
+        console.log(e.target.dataset.checked)
+        let checked = e.target.dataset.checked
+        ,   value = e.target.dataset.id;
+        if (checked =='1') {
             console.log(1)
             let index = value.inArray(this.state.checkedArr);
             if (-1 !== index) {
@@ -66,6 +67,7 @@ export default class extends Component {
         } else {
            console.log(2)
             this.state.checkedArr.push(value);
+            
             this.setState({ checkedArr: this.state.checkedArr});
         }
     }
@@ -93,11 +95,17 @@ export default class extends Component {
 
     render(){
        // console.log(this.state.checked)
-        var list = this.state.list.map((item, index) => <div checked={-1 !== item.id.inArray(this.state.checkedArr)} onClick={e=>this.handleChecked(e)}>
-            <i></i>
-            <b>{item.name}</b>
-        </div>
-        )
+        let tmp
+        var list = this.state.list.map((item, index) => {
+
+            tmp = -1 !== item.id.inArray(this.state.checkedArr)?'1':'0';
+            return (
+                <div data-checked={tmp} data-id={item.id} onClick={this.handleChecked}>
+                    <i data-checked={tmp} data-id={item.id} onClick={this.handleChecked}></i>
+                    <b data-checked={tmp} data-id={item.id} onClick={this.handleChecked}>{item.name}</b>
+                </div>
+            );
+        })
         return(
             <div>
                 <div id="Washmanagement-title">可自定义选择门店模块</div>
