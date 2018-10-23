@@ -643,7 +643,7 @@ export default class extends Component {
                             onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
                         />
                     </div>
-                    地址：<input type='text' className='e-input' style={{width:'500px',marginRight:'52px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                    &nbsp;地址：<input type='text' className='e-input' style={{width:'500px',marginRight:'52px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
                     <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
                     &emsp;
                     <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>

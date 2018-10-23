@@ -89,7 +89,7 @@ class Main extends Component {
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
         let tabs = Menus.map((obj, index) => 
-            <span key={obj.key} data-index={index} data-checked={this.state.MenuIndex == index ? '1' : ''} onClick={this.handleClick}>{obj.value}</span>
+            <span key={obj.key} data-index={index} data-checked={this.state.MenuIndex == index ? 'on' : ''} onClick={this.handleClick}>{obj.value}</span>
         );
         return (
             <div id='main'>

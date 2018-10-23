@@ -1,4 +1,17 @@
-.clothes-user{padding: 28px 20px;position: absolute;top: 0;left: 0;z-index: 1;}
+.clothes-user{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin: 15px;
+    padding: 9px;
+    border: 1px solid #d8dce5;
+    background-color: #f5f7fa;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 88px;
+    width: 767px;
+}
 .clothes-user sup{color: red}
 .clothes-user>div{padding-bottom: 12px}
 .clothes-container{
@@ -37,7 +50,7 @@
     cursor: default;
 }
 .clothes-body>div{
-    min-height: 44px;
+    min-height: 40px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border-bottom: 1px solid #eaf1f6;
@@ -47,6 +60,7 @@
     text-align: center;
     word-break: break-all;
     cursor: default;
+    color: #999;
 }
 .clothes-header>div>div{height: 22px;line-height: 22px;box-sizing: border-box;-webkit-box-sizing: border-box;border-right: 1px solid #e6ecf5;}
 .clothes-header>div>div:last-child{border-right: none}
@@ -85,12 +99,11 @@
 }
 .clothes-footer-left{
     width: 580px;
-    font-size: 14px;
     color: #646766;
     font-weight: bold;
 }
-.clothes-footer-left>:first-child{margin-top: 20px;display: -webkit-flex;display: flex}
-.clothes-footer-left>:last-child{margin-top: 12px;display: -webkit-flex;display: flex}
+.clothes-footer-left>:first-child{margin-top: 24px;display: -webkit-flex;display: flex}
+.clothes-footer-left>:last-child{margin-top: 10px;display: -webkit-flex;display: flex;line-height: 28px}
 .clothes-footer-left>:first-child>:first-child,
 .clothes-footer-left>:last-child>:first-child{width: 164px}
 .clothes-footer-left>:first-child>:nth-child(2),
@@ -101,7 +114,7 @@
     display: -webkit-flex;
     display: flex;
 }
-.clothes-footer-right>:first-child{line-height: 44px}
+.clothes-footer-right>:first-child{line-height: 42px}
 .clothes-footer-right>:last-child{line-height: 28px;text-align: right}
 
 /* category.js编辑衣物顶部样式 */
@@ -155,7 +168,6 @@
 .clothes-item-header>div, .clothes-items>div>div{
     min-height: 36px;
     line-height: 36px;
-    font-size: 14px;
     color: #000;
     background: #f5f8fa;
     text-align: center;
@@ -393,6 +405,7 @@
     border-bottom: 2px solid #3fc0db;
     color: #3fc0db;
     line-height: 54px;
+    font-size: 14px;
 }
 .clothes-cate-body{
     display: -webkit-flex;
