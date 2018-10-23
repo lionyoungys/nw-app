@@ -745,18 +745,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     padding: 17px 10px;
 }
-.ui-payment-pattern-handle>.e-triangle{position: absolute;top: -8px;left: 0;}
-.ui-payment-pattern-handle>.e-triangle-b{position: absolute;top: -10px;left: 0;}
-.ui-payment-pattern-handle.vip>.e-triangle{margin-left: 35px}
-.ui-payment-pattern-handle.vip>.e-triangle-b{margin-left: 33px}
-.ui-payment-pattern-handle.ic>.e-triangle{margin-left: 137px}
-.ui-payment-pattern-handle.ic>.e-triangle-b{margin-left: 135px}
-.ui-payment-pattern-handle.cash>.e-triangle{margin-left: 239px}
-.ui-payment-pattern-handle.cash>.e-triangle-b{margin-left: 237px}
-.ui-payment-pattern-handle.wechat>.e-triangle{margin-left: 341px}
-.ui-payment-pattern-handle.wechat>.e-triangle-b{margin-left: 339px}
-.ui-payment-pattern-handle.alipay>.e-triangle{margin-left: 443px}
-.ui-payment-pattern-handle.alipay>.e-triangle-b{margin-left: 441px}
+.ui-payment-triangle{top: -9px;left: 0;}
+.ui-payment-triangle.vip{margin-left: 33px}
+.ui-payment-triangle.ic{margin-left: 135px}
+.ui-payment-triangle.cash{margin-left: 237px}
+.ui-payment-triangle.wechat{margin-left: 339px}
+.ui-payment-triangle.alipay{margin-left: 441px}
 .ui-payment-pattern-handle-vip{width: 100%;height: 100%;}
 .ui-payment-pattern-handle-vip>div{height: 24px;line-height: 24px;width: 100%}
 .ui-payment-pattern-handle-vip>div:first-child{border-bottom: 1px dashed #e6ebf5}

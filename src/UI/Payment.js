@@ -6,7 +6,7 @@
 
 import React, {Component} from 'react';
 import Dish from './Dish';
-import Select from './Select';
+import Triangle from './Triangle';
 
 const style = {marginBottom:'8px', fontSize:'12px'};
 /**
@@ -142,16 +142,6 @@ export default class extends Component {
                             <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{data.balance}</span></div>
                         </div>
                     </div>
-                    {/* <div className='ui-payment-title2'>活动优惠</div>
-                    <div className='ui-payment-reduce'>
-                        <div><span>优惠：</span><Select option={this.state.option}/></div>
-                        <div>
-                            <span>使用代金券：</span>
-                            <input type='text' className='e-input' value={this.state.coupon} onChange={e => this.setState({coupon:e.target.value})}/>
-                            &nbsp;&nbsp;
-                            <button type='button' className='e-btn'>使用</button>
-                        </div>
-                    </div> */}
                     <div className='ui-payment-head'>收款方式</div>
                     <div className='ui-payment-pattern'>
                         <div>
@@ -162,7 +152,7 @@ export default class extends Component {
                             <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} style={this.state.zero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
-                            
+                            <Triangle className='ui-payment-triangle vip'/>
                             <div style={data.type ? {display:'none'} : null}>
                                 <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
                                 <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
@@ -174,7 +164,7 @@ export default class extends Component {
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
-                            
+                            <Triangle className='ui-payment-triangle ic'/>
                             <div style={data.type ? {display:'none'} : {textAlign:'center'}}>
                                 <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                             </div>
@@ -184,13 +174,14 @@ export default class extends Component {
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
-                            
+                            <Triangle className='ui-payment-triangle cash'/>
                             <div>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                                 &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                            <Triangle className={'ui-payment-triangle ' + (2 == gateway ? 'wechat' : 'alipay')}/>
                             <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
                             <input 
                                 type='text' 
