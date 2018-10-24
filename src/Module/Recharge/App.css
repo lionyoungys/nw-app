@@ -76,7 +76,7 @@
     margin-top: 22px;
 }
 .recharge-third div div{
-    display:-webkit-inline-box;
+    display: inline-block;;
 }
 .recharge-third div div .ui-select-define{
     width:92px;
