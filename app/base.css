@@ -383,10 +383,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #9a9a9a;
 }
 /* 分页组件样式 */
-.ui-page{height: 28px;font-size: 13px;line-height: 28px;min-width: 400px;width:785px;margin: 5px 10px;}
+.ui-page{height: 28px;line-height: 28px;min-width: 400px;width:785px;margin: 5px 10px;}
 .ui-page>*{float: left;}
-.ui-page>span{color: #000;font-size: 13px}
-.ui-page>span:first-of-type{font-size: 13px}
 .ui-page>i{
     font-style: normal;
     display: inline-block;
@@ -401,7 +399,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .ui-page>.ui-page-current{font-weight: bolder}
 .ui-page>div{width: 80px;height: 28px;display: inline-block;position: relative;overflow: visible;margin: 0 8px;}
-.ui-page-fetch{display: none;}
 .ui-page>div>button{
     width: 100%;
     height: 100%;
@@ -415,53 +412,35 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     padding: 0;
     margin: 0;
-    font-size: 13px;
 }
 .ui-page>div:hover>button{border: 1px solid #3fbfdc}
-.ui-page>div:hover>.ui-page-fetch{
-    display: block;
+.ui-page-fetch{
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     padding-top: 42px;
 }
-.ui-page>div:hover>.ui-page-fetch>div{
+.ui-page>div:hover>.ui-page-fetch{display: block;}
+.ui-page-fetch>div{
     position: relative;
     border: 1px solid #e6ebf5;
     border-radius: 4px;
-    padding: 10px 0;
+    padding: 6px 0;
     background-color: #fff;
     box-shadow: 4px 4px 4px #ebeff6;
 }
-.ui-page>div:hover>.ui-page-fetch>div>i:first-of-type{
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    margin-left: -9px;
-    border-width: 0 9px 9px;
-    border-color: transparent transparent #e6ebf5;
-    border-style: solid;
-}
-.ui-page>div:hover>.ui-page-fetch>div>i:last-of-type{
-    position: absolute;
-    top: -7px;
-    left: 50%;
-    margin-left: -8px;
-    border-width: 0 8px 8px;
-    border-color: transparent transparent #fff;
-    border-style: solid;
-}
-.ui-page>div:hover>.ui-page-fetch>div>div{
+.ui-page-triangle{top: -9px;left: 50%;margin-left: -9px}
+.ui-page-fetch>div>div{
     color: #000;
     height: 30px;
     line-height: 30px;
-    font-size: 14px;
     text-align: center;
     cursor: default;
 }
-.ui-page>div:hover>.ui-page-fetch>div>div[data-checked=true]{color: #3fbfdc}
-.ui-page>div:hover>.ui-page-fetch>div>div:hover{background-color: #ebeff7}
+.ui-page-fetch>div>div[data-checked=true]{color: #3fbfdc}
+.ui-page-fetch>div>div:hover{background-color: #ebeff7}
 .ui-page>input{
     height: 28px;
     width: 50px;
@@ -851,7 +830,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-wechat>input:last-of-type{margin-right: 0}
 /* 三角形状 */
 /* 三角形状边框 */
-.ui-triangle{
+.ui-triangle, .ui-triangle-down{
     display: inline-block;
     position: absolute;
     height: 9px;
@@ -872,6 +851,23 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     z-index: 1;
     position: absolute;
     bottom: 0px;
+    left: 1px;
+}
+.ui-triangle-down>i:first-child{
+    border-width: 9px 9px 0;
+    border-color: #d8dce5 transparent transparent;
+    border-style: solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.ui-triangle-down>i:last-child{
+    border-width: 8px 8px 0;
+    border-color: #fff transparent transparent;
+    border-style: solid;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
     left: 1px;
 }
 

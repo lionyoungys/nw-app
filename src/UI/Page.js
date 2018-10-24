@@ -5,6 +5,8 @@
  */
 
 import React from 'react';
+import Triangle from './Triangle';
+
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -87,7 +89,7 @@ export default class extends React.Component {
                     <button type='button'>{fetch}条/页</button>
                     <section className='ui-page-fetch'>
                         <div>
-                            <i></i><i></i>
+                            <Triangle className='ui-page-triangle'/>
                             <div data-fetch='20' data-checked={20 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>20条/页</div>
                             <div data-fetch='40' data-checked={40 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>40条/页</div>
                             <div data-fetch='60' data-checked={60 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>60条/页</div>
