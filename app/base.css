@@ -33,9 +33,9 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     background-image: url(images/icons.png);
     background-position: 0 0px;
 }
-.e-icon-user{background-position: 0 13px}
-.e-icon-windows{background-position: 12px 0}
-.e-icon-close{background-position: 12px 12px}
+.e-icon-user{background-position: 0 -13px}
+.e-icon-windows{background-position: -14px 0}
+.e-icon-close{background-position: -13px -12px}
 .e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
 .e-btn{
