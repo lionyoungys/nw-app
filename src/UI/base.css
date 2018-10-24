@@ -154,7 +154,7 @@
     padding: 0;
     width: auto;
     height: 40px;
-    line-height: 40px;
+    /* line-height: 40px; */
     font-size: 12px;
     text-align: center;
     /* border-right: 1px solid #e6ecf5; */
@@ -162,9 +162,19 @@
     /* 根据具体情况设置最小宽度 */
     /* min-width: 91px; */
     color: #5a5e66;
+    
+
 }
+.ui-table-base tr th{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+.ui-table-base tr th:last-child{background: none;}
 .ui-table-base tr td:last-child{
     border-right:none;
+    background: none;
 }
 .ui-table-base thead{
     display: block;

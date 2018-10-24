@@ -128,6 +128,13 @@
 }
 
 /*  */
+.ui-table-base.sing-tab thead tr td{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+.ui-table-base.sing-tab thead tr td:last-child{background: none}
 .ui-table-base.sing-tab{
     width: 100%;
     max-height: 224px;

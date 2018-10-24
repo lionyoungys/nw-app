@@ -51,6 +51,7 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border-top: 1px solid #f0f0f0;
+    clear: both;
 }
 .Takeclothes-tab-div>div{
     padding: 5px;
@@ -95,6 +96,10 @@
     min-width:109px;
     max-width: 109px;
     word-break: break-word;
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: 100%;
 }
 /* .Takeclothes-tab table thead tr th:last-child{border-right:none;} */
 .Takeclothes-tab table thead tr th:first-child{
@@ -107,7 +112,7 @@
     background-position-y:11px; */
     padding:0px;
 }
-.Takeclothes-tab table thead tr th:last-child{border-right:none}
+.Takeclothes-tab table thead tr th:last-child{border-right:none;background: none}
 .Takeclothes-tab table tbody{
     width:auto;
     max-height:400px;

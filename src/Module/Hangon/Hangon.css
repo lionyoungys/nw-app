@@ -125,3 +125,10 @@
 .ui-table-base.hangon-sear-res-tab{
     border:none;
 }
+.hangon-sear-res-tab thead tr td{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+.hangon-sear-res-tab thead tr td:last-child{background: none;}

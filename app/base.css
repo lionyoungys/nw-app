@@ -62,7 +62,6 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     height: 28px;
     text-align: center;
     background-color: #fff;
-    font-size: 14px;
     font-weight: 500;
     border-radius: 4px;
     color: #4d4d4d;
@@ -105,7 +104,6 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     border: 1px solid #d7dee4;
     border-radius: 4px;
     padding: 0 8px;
-    font-size: 14px;
     color: #5a5e66;
     outline: none;
 }
@@ -190,21 +188,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-color: transparent transparent #d8dce5;
     border-style: solid;
 }
-/* 线包框 */
-.e-fieldset{
-    display: inline-block;
-    width: 107px;
-    height: 41px;
-    line-height: 41px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    background-image: url(img/e-fieldset.png);
-    background-size: 107px 41px;
-    cursor: default;
-}
-.e-fieldset>img{vertical-align: middle}
-.e-fieldset.checked{background-image: url(img/e-coil.png)}
 .e-file{
     width: 166px;
     height: 28px;
@@ -214,6 +197,24 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+/* 行处理 */
+.e-th{
+    display: -webkit-flex;
+    display: flex;
+    min-height: 36px;
+    color: #000;
+    background: #f5f8fa;
+    text-align: center;
+    align-items: center;
+}
+.e-th>*{
+    height: 20px;
+    border-right: 1px solid #e6ecf5;
+    line-height: 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.e-th>:last-child{border-right: none;}
 /* 下拉选框样式 */
 .e-select{
     width: 166px;
@@ -593,7 +594,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 
 /* 线上tab组件 */
 .ui-tab-blue{  
-    width:800px;
+    width:768px;
     height:37px;
     max-height:37px;
     margin:20px auto;

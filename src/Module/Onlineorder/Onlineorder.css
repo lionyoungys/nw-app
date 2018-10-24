@@ -38,11 +38,15 @@
     color:#4d4d4d;
     font-size:12px;
     text-align:center;
-    /* border-right:1px solid #e7ebf6; */
+    background: url(./images/thead-border.png) ;
+    background-size:2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
+.waiting-list thead tr>th:last-child{background: none}
 .waiting-list thead tr>th:nth-child(1){
-    min-width:110px;
-    max-width:110px;
+    min-width:128px;
+    max-width:128px;
 }
 .waiting-list thead tr>th:nth-child(2){
     min-width:115px;
@@ -104,8 +108,8 @@
     border-right:none;
 }
 .waiting-list tbody tr>td:nth-child(1){
-    min-width:110px;
-    max-width:110px;
+    min-width:128px;
+    max-width:128px;
 }
 .waiting-list tbody tr>td:nth-child(2){
     min-width:115px;

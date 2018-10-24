@@ -164,14 +164,18 @@
     display: flex;
     font-weight: bold;
     background: #f5f8fa;
-}
-.clothes-item-header>div, .clothes-items>div>div{
     min-height: 36px;
-    line-height: 36px;
-    color: #000;
-    background: #f5f8fa;
     text-align: center;
+    align-items: center;
 }
+.clothes-item-header>div{
+    height: 20px;
+    line-height: 20px;
+    border-right: 1px solid #e6ecf5;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.clothes-item-header>div:last-child{border-right: none}
 .clothes-items>div>div{background: #fff}
 .clothes-item-header>div, .clothes-items>div>div{width: 106px;}
 .clothes-items{
@@ -179,7 +183,18 @@
     border-top: none;
     overflow: auto;
 }
-.clothes-items>div{display: -webkit-flex;display: flex;cursor: default}
+.clothes-items>div{
+    display: -webkit-flex;
+    display: flex;
+    min-height: 16px;
+    padding: 10px 0;
+    font-size: 12px;
+    text-align: center;
+    word-break: break-all;
+    color: #a7a7a7;
+    border-bottom: 1px solid #e6ecf5;
+    cursor: default;
+}
 /* brand.js problem.js color.js 界面样式*/
 .clothes-problem-top{
     display: -webkit-flex;
@@ -360,6 +375,7 @@
     text-align: center;
     word-break: break-all;
     color: #a7a7a7;
+    border-bottom: 1px solid #e6ecf5;
 }
 .clothes-user-main>:first-child>div,
 .clothes-user-main-body>div>div{width: 80px}
@@ -399,6 +415,7 @@
     display: -webkit-flex;
     justify-content: space-between;
     margin: 0 24px 45px;
+    border-bottom: 1px solid #e6ecf5;
 }
 .clothes-cate-top>span{
     height: 100%;

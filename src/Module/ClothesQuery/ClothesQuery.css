@@ -73,12 +73,11 @@
 }
 .ui-table-base.clo-que-tab tr td{
 
-    max-width:82px; 
+    max-width:113px; 
     min-width:82px;
 }
 .ui-table-base.clo-que-tab tr td:first-child{
-
-    min-width: 82px; 
+    min-width: 113px; 
 }
 .inputselectborder.clo-date{
     width: 150px;
