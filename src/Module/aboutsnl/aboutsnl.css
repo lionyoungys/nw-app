@@ -6,5 +6,7 @@
     background-repeat: no-repeat;
     background-position: center 80px;
     color: #999;
+    font-size: 14px;
+    line-height: 24px;
 }
 .aboutsnl>p{color: #3fbfdc;padding-bottom: 32px;text-align: center;}

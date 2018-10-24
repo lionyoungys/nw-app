@@ -45,7 +45,6 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     height: 28px;
     text-align: center;
     background-color: #3fc0db;
-    font-size: 14px;
     font-weight: 500;
     border-radius: 4px;
     color: #fff;
@@ -489,7 +488,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 166px;
     height: 28px;
     position: relative;
-    font-size: 14px;
     line-height: 1;
 }
 .ui-select>.e-input{
