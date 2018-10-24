@@ -95,7 +95,7 @@ class Main extends Component {
             <div id='main'>
                 {/* 界面顶部标题栏 */}
                 <div className='main-title'>
-                    &nbsp;<i className='e-icon-logo'></i> {this.shopName}
+                    &emsp;<i className='e-icon-logo'></i> {this.shopName}
                     <div>
                         <i className="e-icon-user"></i> {this.employeeName}&emsp;<i className="e-icon-windows"></i> 版本:{nw.App.manifest.version}
                         <span onClick={() => EventApi.win.minimize()}><i className="fas fa-minus"></i></span>
