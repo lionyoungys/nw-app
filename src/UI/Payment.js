@@ -464,11 +464,13 @@ export class UpdateCard extends Component {
                             <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
+                            <Triangle className='ui-payment-triangle vip'/>
                             <div className='ui-payment-cash'>
                                 实收金额：<input type='input' ref={input => {1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>
+                            <Triangle className={'ui-payment-triangle ' + (2 == gateway ? 'ic' : 'cash')}/>
                             <div style={style}>请扫描或输入{2 == gateway ? '微信' : '支付宝'}付款码</div>
                             <input 
                                 type='text' 

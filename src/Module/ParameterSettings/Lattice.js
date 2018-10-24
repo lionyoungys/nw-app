@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import LayerBox from '../../UI/LayerBox';
 import Page from '../../UI/Page'
+import Dish from '../../UI/Dish';
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -214,7 +215,7 @@ export default class extends Component {
                     {
                         this.state.show
                         &&
-                        <Window title='新增格架' onClose={() => this.setState({show:false})} width="340" height='264'>
+                        <Dish title='新增格架' onClose={() => this.setState({show:false})} width='328' height='242'>
                             <div className="addlattice-div">
                                  <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}  className='e-input'/></div>
                                  <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} className='e-input'/></div>
@@ -224,22 +225,22 @@ export default class extends Component {
                             <div className="addlattice-footer">
                                <button onClick = {this.addlatticeYES}>新 增</button>
                             </div>
-                        </Window>
+                        </Dish>
                     }
                      {
             this.state.show1
             &&
-            <Window title='编辑格架' onClose={() => this.setState({show1:false})} width="340" height='264'>
+            <Dish title='编辑格架' onClose={() => this.setState({show1:false})} width='328' height='242'>
                 <div className="addlattice-div">
-                     <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
-                     <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled /></div>
-                     <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled /></div>
-                     <div><span>衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" /></div>
+                     <div><span>格架名称：</span><input type='text' className='e-input' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
+                     <div><span>首数：</span><input type='number' className='e-input' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled /></div>
+                     <div><span>尾数：</span><input type='number' className='e-input' value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled /></div>
+                     <div><span>衣挂号最大挂衣数：</span><input type='number' className='e-input' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" /></div>
                 </div>
                 <div className="addlattice-footer">
                    <button onClick = {this.updatelatticeYES}>保 存</button>
                 </div>
-            </Window>
+            </Dish>
         }
                 </div>
                 

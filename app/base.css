@@ -107,6 +107,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     color: #5a5e66;
     outline: none;
 }
+.e-input[disabled], .e-input[disabled]:focus{background-color: #ccc}
 .e-input:focus{border: 1px solid #3fc0db}
 .e-input.e-error:focus{border: 1px solid #f60000}
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 12px}
@@ -708,18 +709,25 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #666;
     margin-bottom: 14px;
 }
-.ui-payment-detail2{height: 38px;line-height: 38px;padding: 0 14px;}
-.ui-payment-detail>div, .ui-payment-detail2>div{
+.ui-payment-detail2{height: 38px;padding: 9px 0;}
+.ui-payment-detail>div{
     height: 39px;
     float: left;
     border-right: 1px solid #d8dce5;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-.ui-payment-detail>div:nth-child(1){width: 169px;padding-left: 14px}
-.ui-payment-detail>div:nth-child(2){width: 159px;padding-left: 18px}
-.ui-payment-detail>div:nth-child(3){width: 179px;padding-left: 28px}
-.ui-payment-detail>div:last-child, .ui-payment-detail2>div:last-child{border-right: none}
+.ui-payment-detail2>div{
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    border-right: 1px solid #d8dce5;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.ui-payment-detail>div:nth-child(1), .ui-payment-detail2>div:nth-child(1){width: 169px;padding-left: 14px}
+.ui-payment-detail>div:nth-child(2), .ui-payment-detail2>div:nth-child(2){width: 159px;padding-left: 18px}
+.ui-payment-detail>div:nth-child(3), .ui-payment-detail2>div:nth-child(3){width: 179px;padding-left: 28px;border-right: none;}
 .ui-payment-detail>div>div:first-child{margin-bottom: 15px}
 .ui-payment-pattern{
     height: 138px;
