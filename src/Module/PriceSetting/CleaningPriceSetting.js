@@ -8,6 +8,7 @@ import Select from '../../UI/Select';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
+import Dish from '../../UI/Dish';
 import ColthesClassifyManagment from '../CommodityManagementDic/ColthesClassifyManagment';
 
 export default class extends Component {
@@ -335,6 +336,7 @@ export default class extends Component {
                     <td>{item.has_discount==1?'是':'否'}</td>
                     <td>{item.cate_name}</td>
                     <td>{item.item_cycle}</td>
+                    <td>{item.item_cycle}</td>
                     <td>{item.grid}</td>
                 </tr>
             );  
@@ -369,6 +371,7 @@ export default class extends Component {
                             <td>允许折扣</td>
                             <td>衣物类别</td>
                             <td>洗护周期</td>
+                            <td>助记码</td>
                             <td>格架</td>
                         </tr>
                     </thead>
@@ -379,7 +382,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Window title='新增洗护价格' onClose={() => this.setState({show:false})} width="648" height="477">
+                    <Dish title='新增洗护价格' onClose={() => this.setState({show:false})} width="690" height="524">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange}  value={this.state.cate_name}/></div>
@@ -388,6 +391,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value.value})} selected="无"  value={this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value.value})} selected="无" value={this.state.materialsname}/></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -398,6 +402,7 @@ export default class extends Component {
                                 <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({gridname:value.value})} value={this.state.gridname}/>
                                 </div>                         
                             </div>
+                            
                         </div>
                         <div className="addnewprice-two">
                             <div><span><i>*</i> 线下价格：</span><input className='e-input addnewprice-input' type="text" value={this.state.item_off_price} onChange={e=>this.setState({item_off_price:e.target.value,item_online_price:e.target.value})}/>元</div>
@@ -416,12 +421,12 @@ export default class extends Component {
                             <button className="e-btn" onClick={this.addYES}>确定</button>
                             <button className="e-btn" onClick={()=>this.setState({show:false})}>取消</button>
                         </div>
-                    </Window>
+                    </Dish>
                 }
                  {
                     this.state.show1
                     &&
-                    <Window title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="648" height="477">
+                    <Dish title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="690" height="524">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} /></div>
@@ -460,7 +465,7 @@ export default class extends Component {
                             <button className="e-btn" onClick={this.deleteYES}>删除</button>
                             <button className="e-btn" onClick={() => this.setState({ show1: false })}>取消</button>
                         </div>
-                    </Window>
+                    </Dish>
                 }
                     {
                         this.state.selectImg && <PhotoGallery onClose={this.onClose} item_name={this.state.item_name} callback={(id,url) => this.setState({image_id:id,image_url:url})}/>

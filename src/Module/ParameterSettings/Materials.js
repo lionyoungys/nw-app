@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page'
+import Dish from '../../UI/Dish';
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -151,7 +152,7 @@ export default class extends Component {
                     {
                         this.state.show
                         &&
-                        <Window title='新增材料' onClose={() => this.setState({show:false})} width="230" height='160'>
+                        <Dish title='新增材料' onClose={() => this.setState({show:false})} width="389" height='194'>
                             <div className="addbrand-div">
                                 <div className="brand-name">材料名称</div>
                                 <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
@@ -159,12 +160,12 @@ export default class extends Component {
                             <div className="addbrand-footer">
                                <button onClick = {this.addColorYES}>新 增</button>
                             </div>
-                        </Window>
+                        </Dish>
                     }
                      {
                         this.state.show1
                         &&
-                        <Window title='修改材料' onClose={() => this.setState({show1:false})} width="230" height='160'>
+                        <Dish title='修改材料' onClose={() => this.setState({show1:false})} width="389" height='194'>
                             <div className="addbrand-div">
                                 <div className="brand-name">材料名称</div>
                                 <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
@@ -172,7 +173,7 @@ export default class extends Component {
                             <div className="addbrand-footer">
                                <button onClick = {this.updateColorYES}>保 存</button>
                             </div>
-                        </Window>
+                        </Dish>
                     }
                 </div>
                 

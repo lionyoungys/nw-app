@@ -82,10 +82,14 @@
     font-size: 12px;
     height: 25px;
     line-height: 25px;
+    background: url(./images/thead-border.png) ;
+    background-size:2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
-/* .orderquery-div table thead tr th:last-child{
-    border-right:none;
-} */
+.orderquery-div table thead tr th:last-child{
+    background: none;
+}
 .orderquery-div table thead tr>th:nth-child(1){
     min-width:76px;
     max-width:76px;

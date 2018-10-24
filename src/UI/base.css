@@ -169,7 +169,7 @@
     background: url(./images/thead-border.png);
     background-size: 2px 24px;
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: right center;
 }
 .ui-table-base tr th:last-child{background: none;}
 .ui-table-base tr td:last-child{

@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import './ColthesClassifyManagment.css';
 import Window from '../../UI/Window';
+import Dish from '../../UI/Dish';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -108,7 +109,7 @@ export default class extends Component {
     );
         return (
 
-            <Window title='衣物类别管理' onClose={this.props.onClose} width='632' height='411'>
+            <Dish title='衣物类别管理' onClose={this.props.onClose} width='466' height='373'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 
@@ -130,7 +131,7 @@ export default class extends Component {
                     <div className='commodity_classify_management_right_btn'>
                         <button onClick={()=>this.setState({addshow:true,name:''})}>+添加分类</button>
                     </div>
-                    {this.state.show && <Window title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
+                    {this.state.show && <Dish title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
                         <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>
                             <p>分类名称:</p>
                             <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
@@ -138,9 +139,9 @@ export default class extends Component {
                             <button className='e-btn' onClick={this.deleteYES}>删除</button>
                             <button className='e-btn' onClick={this.modYES}>保存</button>
                         </div>
-                </Window>
+                </Dish>
                 }
-                {this.state.addshow&&<Window title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>
+                {this.state.addshow&&<Dish title='新增分类' onClose={()=>this.setState({addshow:false})} width='290' height='300'>
                     <div className='commodity_classify_management_right_bottom'>
                         <p>分类名称:</p>
                         <input className='e-input' value={this.state.name} onChange={e=>this.setState({name:e.target.value})}></input>
@@ -148,10 +149,10 @@ export default class extends Component {
                         <button className='e-btn' onClick={this.addYES}>保存</button>
 
                     </div>
-                    </Window>
+                    </Dish>
                  }
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

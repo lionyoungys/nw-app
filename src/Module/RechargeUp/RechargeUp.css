@@ -1,26 +1,26 @@
 .ui-table-base.bal-sta-tab.recharge-sta{
 
-    max-height: 370px;
+    max-height: 341px;
     margin-top: 5px;
     max-width: 780px;
     overflow-x: auto;
-    height: 370px;
+    height: 341px;
 }
 .ui-table-base.bal-sta-tab.recharge-sta tbody{
-    max-height: 330px;
-    height: 330px;
-    width: 908px;
+    max-height: 290px;
+    height: 290px;
+    width: 766px;
 }
 .ui-table-base.bal-sta-tab.recharge-sta tr td{
-
-    max-width: 138px;
-    min-width: 138px;
+    max-width: 121px;
+    min-width: 121px;
 }
-.ui-table-base.bal-sta-tab.recharge-sta tr td:first-child{
 
+.ui-table-base.bal-sta-tab.recharge-sta tr td:first-child{
     max-width: 40px;
     min-width: 40px;
 }
+
 .ui-table-base.bal-sta-tab.recharge-sta thead tr td:first-child {
     background: url(./img/revokedata_list_box_span.png) no-repeat;
     background-size: 10px 10px;

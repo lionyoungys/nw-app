@@ -69,15 +69,13 @@
     width:426px;
     height:190px;
     font-size: 13px;
-    border:1px solid #eceff6;
-    margin:15px auto;
+    margin:27px auto;
     /* background:#eef4fb; */
  }
- .membercard-div div{width:319px;height:24px;margin-top:10px}
+ .membercard-div div{width:319px;height:24px;margin-top:15px}
  .membercard-div div span{
-     width:91px;
+     width:130px;
      text-align:right;
-     color:#000;
      font-size:12px;
      line-height:24px;
      display:inline-block;
@@ -86,8 +84,20 @@
    color: red;
    font-weight: normal
 }
- .membercard-div div input{width:149px;height:20px;border:1px solid #c2c2c2;background-color:#fff;box-sizing: border-box;padding: 0 5px}
- .membercard-footer{width:440px;height:39px;}
+ .membercard-div div input{
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    color: #5a5e66;
+    outline: none;
+    }
+ .membercard-footer{width:323px;height:39px;}
  .membercard-footer button{
      width:71px;
      height:24px;

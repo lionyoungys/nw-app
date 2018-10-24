@@ -99,7 +99,7 @@
     background: url(./images/thead-border.png);
     background-size: 2px 24px;
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: right center;
 }
 /* .Takeclothes-tab table thead tr th:last-child{border-right:none;} */
 .Takeclothes-tab table thead tr th:first-child{

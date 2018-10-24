@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import './MemberCard.css'
 import Window from '../../UI/Window';
+import Dish from '../../UI/Dish'
 import Page from '../../UI/Page'
 export default class extends Component {
     constructor(props) {
@@ -183,7 +184,7 @@ export default class extends Component {
             {
                         this.state.show
                         &&
-                        <Window title='增加卡类型' onClose={() => this.setState({show:false})} width="452" height='294'>
+                        <Dish title='增加卡类型' onClose={() => this.setState({show:false})} width="404" height='343'>
                             <div className="membercard-div">
                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' className='e-input' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})} maxLength="6"/></div>
                             <div><span><i>*</i>&nbsp;充值金额：</span><input type='number' className='e-input' value={this.state.real_price} onChange={e => this.setState({ real_price:e.target.value})}/>&nbsp;元</div>
@@ -194,12 +195,12 @@ export default class extends Component {
                             <div className="membercard-footer">
                                 <button onClick = {this.addMemberCardYes}>保 存</button>
                             </div>
-                        </Window>
+                        </Dish>
             }
                 {
                         this.state.show1
                         &&
-                        <Window title='编辑卡类型' onClose={() => this.setState({show1:false})} width="452" height='294'>
+                        <Dish title='编辑卡类型' onClose={() => this.setState({show1:false})} width="404" height='343'>
                             <div className="membercard-div">
                                 <div><span><i>*</i>&nbsp;卡类型：</span><input type='text' className='e-input' value={this.state.card_type} onChange={e => this.setState({card_type:e.target.value})} maxLength="6"/></div>
                             <div><span><i>*</i>&nbsp;充值金额：</span><input type='number' className='e-input' value={this.state.real_price} onChange={e => this.setState({ real_price:e.target.value})}/>&nbsp;元</div>
@@ -210,7 +211,7 @@ export default class extends Component {
                             <div className="membercard-footer">
                                 <button onClick = {this.updateMemberCardYes}>保 存</button>
                             </div>
-                        </Window>
+                        </Dish>
             }
 
             </div>

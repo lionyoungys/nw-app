@@ -81,52 +81,59 @@
     float:right;
 }
 .addbrand-div{
-    width:230px;
-    height:80px;
-    background:#f6f7fb;
-    border:1px solid #d8dce7;
+    width: 330px;
+    height: 80px;
     margin: 20px auto;
+    display: inline-flex;
 }
 .brand-name{
-    width:auto;
-    height:32px;
-    line-height:49px;
-    color:#3fbfdc;
-    font-size:12px;
-    margin:0px 0 9px 41px;
+    width: auto;
+    height: 32px;
+    line-height: 49px;
+    font-size: 12px;
+    margin: 0 0px 30px 71px;
 }
 .brand-text{
-    width:150px;
-    height:19px;
-    background:#f9f9f9;
-    border:1px solid #c2c2c2;
-    margin-left:41px;
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    color: #5a5e66;
+    outline: none;
+    margin-top: 11px;
+    margin-left: 18px
 }
 .addbrand-footer{
     width:230px;
     height:39px;
-    margin: 0 auto;
+    margin: -32px auto;
 }
 .addbrand-footer button{
-    width:71px;
-    height:24px;
-    line-height:24px;
-    text-align:center;
-    color:#fff;
-    font-size:12px;
-    outline:none;
-    border:none;
-    background:#3fbfdc;
-    float:right;
-    margin:8px 12px 0 0;
-    cursor:pointer;
+    padding: 0;
+    margin: 0;
+    width: 62px;
+    height: 28px;
+    text-align: center;
+    background-color: #3fc0db;
+    font-weight: 500;
+    border-radius: 4px;
+    margin-left: 163px;
+    color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: none;
 }
+.addbrand-footer button:active{background-color: #00b0d8}
 
 /* 格架样式 */
 .lattic{width:768px;height:auto;margin:auto}
-.lattic-btn{
-    width:111px;
-    height:24px;    
+.lattic-btn{  
     text-align:center;
     line-height:24px;
     color:#fff;

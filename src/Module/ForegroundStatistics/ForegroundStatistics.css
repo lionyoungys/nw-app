@@ -19,3 +19,10 @@
     min-width: 107px;
     max-width: 107px;
 }
+.ui-table-base.for-sta-tab thead tr td{
+    background: url(./images/thead-border.png) ;
+    background-size:2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base.for-sta-tab thead tr td:last-child{background: none}

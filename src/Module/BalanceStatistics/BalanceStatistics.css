@@ -76,4 +76,24 @@
 .ui-table-base.bal-sta-tab.bal-tab tr:last-child{
     border-bottom:1px solid #dbdfe6;
 }
-
+.ui-table-base.bal-sta-tab.bal-tab thead tr td{
+    background: url(./images/00000000000000000);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base.bal-sta-tab.bal-tab thead tr td:last-child{background:none}
+#cust-tab table thead th{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position:right center;
+}
+#cust-tab table thead th:last-child{background:none}
+.lattice table thead tr th{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.lattice table thead tr th:last-child{background:none}
