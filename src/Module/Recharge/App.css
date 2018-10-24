@@ -20,9 +20,10 @@
 .recharge-first>:last-child{float: right;height: 100%}
 
 .recharge-second{
-    height: 173px;
+    height: 242px;
     border-top: 0;
     overflow: auto;
+    padding-top: 25px;
     width: 95%;
     margin-left: 20px;
     margin-right: 20px;
@@ -36,9 +37,9 @@
 .recharge-second>div>:nth-child(2){width: 244px;font-size: 12px}
 
 .recharge-third{
-    height: 140px;
+    height: 100px;
     border:0px;
-    padding-top: 35px;
+    padding-top: 6px;
     font-size: 12px;
     width: 95%;
     margin-left: 20px;
@@ -60,7 +61,8 @@
     float: right;
 } */
 .recharge-four{
-    background:#fff;
+    background:#fbfbfc;
+    border-top: 1px solid #eaecf1;
 }
 .recharge-four div{
     float:right;
@@ -71,7 +73,7 @@
     margin:12px auto;
     display:block;
     text-align: center;
-    margin-top: 12px;
+    margin-top: 22px;
 }
 .recharge-third div div{
     display:-webkit-inline-box;

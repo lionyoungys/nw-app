@@ -44,15 +44,18 @@
     line-height: 35px;
 }
 .bottom_hr{
-    border: none;
     margin-top: 100px;
-    width:768px;
-    height: 1px;
+    width:762px;
+    margin-left: 19px;
     background: #eaecf1;
-    border: none;
+    height: 1px;
+}
+.bottom_div{
+    height: 85px;
+    background: #fbfbfc;
 }
 .bottom_text{
-    margin-top: 31px;
+    padding-top: 31px;
     margin-left: 64px;
 }
 .bottom_text div{
