@@ -158,9 +158,9 @@
             }
             if (!result) {
                 setTimeout(() => {
-                    tool.ui.error({msg:'写卡失败',button:'重试',callback:(close, event) => {
+                    tool.ui.error({msg:'写卡失败',button:['重试'],callback:(close, event) => {
                         close();
-                        if ('click' == event) {
+                        if ('重试' == event) {
                             this.M1Write(obj);
                         } else {
                             'function' === typeof obj.fail && obj.fail();

@@ -75,6 +75,7 @@ export default class extends Component {
             <td>{item.type==1?'可用':(item.type==2?'挂失':'冻结')}</td>
         </tr>
         );
+        if (userinfo.length > 0) userinfo.push(<tr><td colSpan='7'></td></tr>);
         return (
             <Window title='挂失、补换卡' onClose={this.props.closeView}>
             <div>
