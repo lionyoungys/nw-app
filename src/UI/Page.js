@@ -10,11 +10,12 @@ import Triangle from './Triangle';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value:''}
+        this.state = {value:'',down:false}
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleChangeFetch = this.handleChangeFetch.bind(this);
+        this.handleMouseHover = this.handleMouseHover.bind(this);
         this.defaultShow = 4;
     }
 
@@ -38,6 +39,16 @@ export default class extends React.Component {
     }
     handleChangeFetch(e) {
         'function' === typeof this.props.onUpdateFetch && this.props.onUpdateFetch(Number(e.target.dataset.fetch));
+    }
+    handleMouseHover(e) {
+        e.persist();
+        if ('SECTION' === e.target.tagName) {
+            if ((document.documentElement.clientHeight - e.target.getClientXY().y) < 174) {
+                !this.state.down && this.setState({down:true});
+            } else {
+                this.state.down && this.setState({down:false});
+            }
+        }
     }
     render() {
         let current = isNaN(this.props.current) ? 1 : Number(this.props.current)
@@ -87,9 +98,9 @@ export default class extends React.Component {
                 <span>共{total}条</span>
                 <div>
                     <button type='button'>{fetch}条/页</button>
-                    <section className='ui-page-fetch'>
+                    <section className={'ui-page-fetch' + (this.state.down ? ' ui-page-fetch-down' : '')} onMouseOver={this.handleMouseHover}>
                         <div>
-                            <Triangle className='ui-page-triangle'/>
+                            <Triangle className='ui-page-triangle' down={this.state.down}/>
                             <div data-fetch='20' data-checked={20 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>20条/页</div>
                             <div data-fetch='40' data-checked={40 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>40条/页</div>
                             <div data-fetch='60' data-checked={60 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>60条/页</div>

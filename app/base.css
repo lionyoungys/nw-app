@@ -422,8 +422,15 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 100%;
     padding-top: 42px;
 }
+.ui-page-fetch.ui-page-fetch-down{
+    top: auto;
+    bottom: 0;
+    padding-top: 0;
+    padding-bottom: 42px;
+}
 .ui-page>div:hover>.ui-page-fetch{display: block;}
 .ui-page-fetch>div{
+    min-width: 100%;
     position: relative;
     border: 1px solid #e6ebf5;
     border-radius: 4px;
@@ -431,7 +438,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-color: #fff;
     box-shadow: 4px 4px 4px #ebeff6;
 }
+.ui-page-fetch.ui-page-fetch-down>div{
+    position: absolute;
+    bottom: 42px;
+    left: 0;
+}
 .ui-page-triangle{top: -9px;left: 50%;margin-left: -9px}
+.ui-page-fetch.ui-page-fetch-down .ui-page-triangle{top:auto;bottom: -9px;}
 .ui-page-fetch>div>div{
     color: #000;
     height: 30px;

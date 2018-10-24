@@ -528,4 +528,21 @@
         }
         return count;
     }
+
+    Node.prototype.getClientXY = function () {
+        let tmp = this
+        ,   obj = {x:0, y:0};
+        while(true) {
+            obj.x += tmp.offsetLeft;
+            obj.y += tmp.offsetTop;
+            if (null === tmp.offsetParent) {
+                break;
+            } else if ('BODY' === tmp.offsetParent.tagName) {
+                break;
+            } else {
+                tmp = tmp.offsetParent;
+            }
+        }
+        return obj;
+    }
 })();
