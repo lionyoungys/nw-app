@@ -66,9 +66,8 @@
 }
 /* 基本信息 */
 .store_management_content_baseInfo{
-
-    height: 300px;
-    /* background-color: palegreen; */
+    height: 350px;
+    overflow: hidden;
 }
 .store_management_content_baseInfo div{
 
@@ -147,7 +146,7 @@
 }
 /* 网店 */
 .store_management_content_onlineStore{
-    height: 500px;
+    height: 230px;
     /* background-color: rgb(139, 17, 54); */
 }
 .store_management_content_onlineStore .store_management_content_onlineStore_no_open{
