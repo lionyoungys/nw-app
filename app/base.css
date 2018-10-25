@@ -640,7 +640,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     right:40px;
     cursor: pointer;
 }
-/* 360度边框环绕tab */
+/* 360度无死角边框环绕tab */
 .ui-tab-fields{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;

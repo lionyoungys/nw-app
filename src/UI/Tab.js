@@ -49,7 +49,7 @@ export class BlueTab extends Component {
 }
 
 /**
- * 360度边框环绕tab
+ * 360度无死角边框环绕tab
  */
 export class TabFields extends Component {
     constructor(props) {
@@ -64,7 +64,7 @@ export class TabFields extends Component {
 
     render() {
         return (
-            <div className='ui-tab-fields' style={this.props.style}>
+            <div className={'ui-tab-fields' + ('string' === typeof this.props.className ? (' ' + this.props.className) : '')} style={this.props.style}>
                 <nav>
                     {(this.props.option || []).map(
                         (obj, i) => <span key={tool.UUID()} data-i={i} className={this.props.checked == i ? 'checked' : null} onClick={this.handleClick}>{obj}</span>

@@ -192,7 +192,7 @@ export default class extends Component {
         return ( 
                 <div>
                     <div className="lattic">
-                       <button className="lattic-btn" onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}>新 增 格 架</button>
+                       <button className="brand-btn" onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}>新 增 格 架</button>
                        <div className="lattic-tab">
                           <table border='0' cellPadding="0" cellSpacing="0">
                               <thead>

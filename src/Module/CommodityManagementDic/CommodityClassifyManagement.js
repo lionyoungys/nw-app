@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './CommodityClassifyManagement.css';
 import Window from '../../UI/Window';
-import Dish from '../../UI/Window'
+import Dish from '../../UI/Dish'
 import CleaningClassifyManagementEdit from '../CommodityManagementDic/CleaningClassifyManagementEdit'
 
 export default class extends Component {
