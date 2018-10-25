@@ -382,7 +382,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Dish title='新增洗护价格' onClose={() => this.setState({show:false})} width="690" height="524">
+                    <Dish title='新增洗护价格' onClose={() => this.setState({show:false})} width="690" height="495">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange}  value={this.state.cate_name}/></div>

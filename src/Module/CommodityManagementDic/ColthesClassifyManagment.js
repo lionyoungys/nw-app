@@ -129,7 +129,7 @@ export default class extends Component {
                 {/* 右侧板块 */}
                 <div className="commodity_classify_management_right">
                     <div className='commodity_classify_management_right_btn'>
-                        <button onClick={()=>this.setState({addshow:true,name:''})}>+添加分类</button>
+                        <button onClick={()=>this.setState({addshow:true,name:''})} className='e-btn'>添加分类</button>
                     </div>
                     {this.state.show && <Dish title='编辑分类' onClose={()=>this.setState({show:false})} width='290' height='300'>
                         <div className='commodity_classify_management_right_bottom cleaning_classify_management_edit_btn'>

@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../../UI/Window';
+import Dish from '../../../UI/Dish'
 import './PhotoGallery.css';
 export default class extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class extends Component {
         this.handleclick=this.handleclick.bind(this);
     };
     componentDidMount() {
-        this.search();
+        // this.search();
     } 
     search(){
         if(''==this.state.item_name)
@@ -55,7 +56,7 @@ export default class extends Component {
         className={this.state.index==index?'photo-gal-img-selected':null}></img>
         );
         return (
-            <Window title='图片库' onClose={this.props.onClose} width="603" height="475">
+            <Dish title='图片库' onClose={this.props.onClose} width="535" height="346">
                     <div className='photo-gal'>
                         <div className="photo-gal-head">
                             图片名称：
@@ -67,7 +68,7 @@ export default class extends Component {
                             {list}
                         </div>
                     </div>
-                </Window>
+                </Dish>
 
         );
     }
