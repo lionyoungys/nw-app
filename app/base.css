@@ -26,7 +26,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     -ms-user-select:none;
 }
 /* icon */
-.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-payment, .e-icon-download{
+.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-close14, .e-icon-payment, .e-icon-download{
     display: inline-block;
     height: 12px;
     width: 12px;
@@ -36,6 +36,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-icon-user{background-position: 0 -13px}
 .e-icon-windows{background-position: -14px 0}
 .e-icon-close{background-position: -13px -12px}
+.e-icon-close14{width: 14px;height: 14px;background-position: -26px -13px}
 .e-icon-download{width: 14px;height: 13px;background-position: -26px 0}
 .e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
@@ -1003,4 +1004,34 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     z-index:1000000;
     border-radius: 8px;
     overflow: hidden;
+}
+.t-ui-fail{
+    width: 345px;
+    height: 159px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -79.5px 0 0 -172.5px;
+    background-color: #fff;
+    z-index: 100000;
+}
+.t-ui-fail-title{
+    display: block;
+    margin-top: 52px;
+    text-align: center;
+    font-size: 18px;
+}
+.t-ui-fail-title>i{
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    background-image: url(images/t-ui-layer-icons.png);
+    background-repeat: no-repeat;
+    background-position: -40px -40px;
+    margin-right: 6px;
+}
+.t-ui-fail-content{
+    margin-top: 22px;
+    text-align: center;
+    color: #989898;
 }

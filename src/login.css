@@ -27,6 +27,11 @@ html, body, #root, .login{width: 100%;height: 100%}
     margin-left: -98.5px;
     z-index: 1;
 }
+.login>i{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
 .login>section{
     width: 309px;
     height: 322px;

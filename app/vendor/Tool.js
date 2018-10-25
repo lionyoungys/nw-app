@@ -315,6 +315,18 @@
     t.ui.error = function error(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.warn = function warn(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
     t.ui.success = function success(object) {this.LayerFactory((arguments.callee.toString().replace(/function\s?/mi,"").split("("))[0], object)}
+    t.ui.fail = function (object) {
+        var body = document.body
+        ,   layer = this.c('div', 't-ui-fail')
+        ,   title = this.c('div', 't-ui-fail-title')
+        ,   icon = this.c('i');
+        title.appendChild(icon);
+        title.innerText = object.title;
+        layer.appendChild(title);
+        layer.appendChild(this.c('div', 't-ui-fail-content', object.msg));
+        body.appendChild(layer);
+        setTimeout(function() {body.removeChild(layer)}, 3000);
+    }
     /**
      * 加载框
      * @param {function} callback 回调函数，回传参数为加载结束方法
