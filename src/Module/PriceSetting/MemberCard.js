@@ -52,8 +52,8 @@ export default class extends Component {
         let index=e.target.dataset.write;
         this.setState({index:index,id:this.state.cardtypes[index].id});
         console.log(this.state.id);
-        tool.ui.error({title:'提示',msg:'确定删除？',button:'确定',callback:(close, event) => {
-            if(event=='click'){
+        tool.ui.error({title:'提示',msg:'确定删除？',button:['确定'],callback:(close, event) => {
+            if(event=='确定'){
                 api.post('delCardType', {
                     token:'token'.getData(),
                     id:this.state.id

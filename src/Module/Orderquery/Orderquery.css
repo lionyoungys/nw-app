@@ -2,18 +2,18 @@
 /* 订单查询顶部 */
 .orderquery-title{
     width:765px;
-    height:75px;
+    height:63px;
     margin:12px auto;
     border:1px solid #d8dce5;
     background:#f5f8fa;
 }
 
-.orderquery-title div .ui-select {width:110px}
+.orderquery-title div .ui-select {width:159px}
 
 .orderquery-title>div{
     width:236px;
     height:27px;
-    margin-top:25px;
+    margin-top:18px;
     float:left;
     margin-left:-14px;   
 }
@@ -39,7 +39,7 @@
     background:#f9f9f9;
 }
 .orderquery-title> input{
-    margin-top: 25px;
+    margin-top: 18px;
     margin-left: 10px;
     /* border: 1px solid #c2c2c2;
     background: #f9f9f9;
@@ -49,15 +49,15 @@
 }
 .orderquery-title>button{
     margin-right:22px;
-    margin-top: 25px;
+    margin-top: 18px;
     float:right;
 }
 
 /* 订单列表的div */
 .orderquery-div{
     width:767px;
-    height:335px;
-    max-height:335px;
+    height:340px;
+    max-height:340px;
     background:#fff;
     margin:0 auto;
     overflow-x:hidden;
@@ -67,21 +67,21 @@
     height:auto;
 }
 .orderquery-div table thead{
-    height:30px;
+    height:40px;
     min-width:767px;
     background:#f5f8fa;
     display:block;
 }
 .orderquery-div table thead tr{
     min-width:767px;
-    height:25px;
+    height:40px;
 }
 .orderquery-div table thead tr th{
     text-align: center;
     color: #616463;
     font-size: 12px;
-    height: 25px;
-    line-height: 25px;
+    height: 40px;
+    line-height: 40px;
     background: url(./images/thead-border.png) ;
     background-size:2px 24px;
     background-repeat: no-repeat;
@@ -95,8 +95,8 @@
     max-width:76px;
 }
 .orderquery-div table thead tr>th:nth-child(2){
-    min-width:82px;
-    max-width:82px;
+    min-width:112px;
+    max-width:112px;
 }
 .orderquery-div table thead tr>th:nth-child(3){
     min-width:60px;
@@ -163,7 +163,7 @@
  display:block;
  text-align:center;
  word-break:break-all;
- line-height:25px;
+ /* line-height:25px; */
  text-align:center;
  color:#a9a9a9;
  
@@ -181,8 +181,8 @@
     max-width:76px;
 }
 .orderquery-div table tbody tr>td:nth-child(2){
-    min-width:82px;
-    max-width:82px;
+    min-width:112px;
+    max-width:112px;
 }
 .orderquery-div table tbody tr>td:nth-child(3){
     min-width:60px;

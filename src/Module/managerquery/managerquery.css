@@ -37,6 +37,8 @@
     max-width: 874px;
     overflow-x: auto;
     height:141px;
+    border:1px solid #e6e7ec;
+    border-bottom: none;
 }
 .ui-table-base.man-que-tab-two tbody{
     max-height:99px;
@@ -51,6 +53,8 @@
     max-height: 210px;
     margin-top:3px;
     /* height: 210px; */
+    border:1px solid #e6e7ec;
+    border-bottom: none;
 }
 .ui-table-base.man-que-tab tbody{
     max-height: 185px;
@@ -59,7 +63,7 @@
     width:0;
 }
 .ui-table-base.man-que-tab tr td{
-    min-width:190px;
-    max-width:190px;
+    min-width:192px;
+    max-width:192px;
 }
 .ui-table-base.man-que-tab-two tbody{width: auto} 

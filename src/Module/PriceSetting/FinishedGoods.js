@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import Dish from '../../UI/Dish'
 import '../CleaningPriceSetting/addnewprice.css';
 import '../ChangeCard/ChangeCard.css'
 import CommodityClassifyManagement from '../CommodityManagementDic/CommodityClassifyManagement'
@@ -136,8 +137,8 @@ export default class extends Component {
     delete(e){
         let write = e.target.dataset.write;
         this.setState({id:this.state.itemLists[this.state.index].goods[write].id});
-        tool.ui.error({title:'提示',msg:'确定删除商品？',button:'确定',callback:(close, event) => {
-                if(event=='click'){
+        tool.ui.error({title:'提示',msg:'确定删除商品？',button:['确定'],callback:(close, event) => {
+                if(event=='确定'){
                 api.post('delGoods', {token:'token'.getData(),
                 id:this.state.id
             }, (res, ver,handle) => {         
@@ -256,7 +257,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Window title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="312">
+                    <Dish title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={this.onchange} value={this.state.goods_type}/></div>
@@ -283,12 +284,12 @@ export default class extends Component {
               
                         </div>
                         <button className="e-btn addnewprice-e-btn" onClick={this.addYES}>保存</button>
-                    </Window>
+                    </Dish>
                 }
                    {
                     this.state.show2
                     &&
-                    <Window title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
+                    <Dish title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.goods_type} onchange={this.onchange}/></div>
@@ -315,7 +316,7 @@ export default class extends Component {
               
                         </div>
                         <button className="e-btn addnewprice-e-btn" onClick={this.modYES}>保存</button>
-                    </Window>
+                    </Dish>
                 }
                  {
                      this.state.show1&&<CommodityClassifyManagement onclose={this.onclose} onrefresh={this.query}/>

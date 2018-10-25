@@ -102,17 +102,17 @@
 /* 格架修改  */
 
 .lattice-title{
-    width:872px;
+    width:798px;
     height:37px;
     margin:0 auto;
-    text-align:center;
+    text-align:right;
 }
 .lattice-title span{
    width:auto;
    display:inline-block;
    height: 37px;
    line-height:37px;
-   margin-right:52px;
+   margin-right:12px;
    color:#000;
    font-size:14px;
 }
@@ -172,7 +172,7 @@
     width:auto;
     height:24px;
     border:1px solid #d7dee4;
-    color:#afafaf;
+    color:#5a5e66;
     background:#fff;
     font-size:14px;
     text-align:center;
@@ -183,21 +183,21 @@
 }
 
 .lattice-div-right span:hover{
-   background:#b8f3ff; 
+   background:#3abbd5; 
    color:#fff;
 }
 
 .lattice-div-right span.index{
-    color:#f00;
+    color:#dfe3ea;
 }
 
 .lattice-div-right span.index:hover{  
-    color:#f00;
+    background:#3abbd5;;
 }
 
 #latticeselect{background:#3abbd5;color:#fff;}
 .lattice-div-right span.index#latticeselect{
- color:#f00;
+ color:#fff;
 }
 .lattice table{
     width: 770px;
@@ -211,14 +211,14 @@
 }
 .lattice table thead{
     width: 770px;
-    height: 25px;
+    height: 40px;
     display: block;
     background:#f6f7fb; 
 }
-.lattice table thead tr{ width: 770px;height:25px;}
+.lattice table thead tr{ width: 770px;height:40px;}
 .lattice table thead tr th{
     width: 84px;
-    height: 25px;
+    height: 40px;
     /* border-right: 1px solid #acc6de; */
     color: #58585a;
     font-size: 12px;
@@ -245,7 +245,7 @@
     width:770px;
     height:25px;
     display:block;
-    border-bottom:1px solid #d7dee4;
+    border-bottom:1px solid #ebf0f6;
     padding-bottom:3px;
 }
 

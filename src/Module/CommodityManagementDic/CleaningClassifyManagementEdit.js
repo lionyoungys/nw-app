@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import './CleaningClassifyManagementEdit.css';
 import Window from '../../UI/Window';
+import Dish from '../../UI/Dish'
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -62,7 +63,7 @@ export default class extends Component {
         );
         return (
 
-            <Window title='商品分类管理' onClose={this.props.onclose} width='632' height='411'>
+            <Dish title='商品分类管理' onClose={this.props.onclose} width='632' height='411'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 
@@ -94,7 +95,7 @@ export default class extends Component {
 
                     </div>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

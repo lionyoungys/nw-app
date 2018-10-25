@@ -4,16 +4,18 @@
     height: 154px;
     border:1px solid #e0e4ea;
     margin: 13px;
+    padding-top: 2px;
 }
 .clothesquery_top_one div .ui-select-define{width:149px;}
 .clothesquery_top_one,.clothesquery_top_two,.clothesquery_top_three{
     width:253px;
     height: 100%;
     float: left;
+    margin-left: 5px;
 }
 
 .clothesquery_top_one>div,.clothesquery_top_two>div,.clothesquery_top_three>div{
-    margin-top:6px;
+    margin-top:8px;
 }
 .clothesquery_top_three>div{
     float: left;
@@ -21,7 +23,7 @@
 }
 .clothesquery_top_three  div.clothesquery_top_btn{
     margin-left:67px;
-    margin-top:15px;
+    margin-top:8px;
 } 
 .clothesquery_top_three div button{
     margin-left: 20px;
@@ -31,21 +33,18 @@
     margin-left: 5px;
 }
 
-.clothesquery_text label{
-    font-size: 13px;
-    color: #024ffe;
-    font-weight: bold
-}
 .clothesquery_text>label{
     font-size: 14px;
-    color: #024ffe;
+    color: #f00;
     font-weight: bold
 
 }
 .clothesquery_text{
     margin-left: 14px;
     font-size: 14px;
-    font-weight: bold
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #5a5e66;
 }
 .clothesquery_bottom{
     width: 872px;
@@ -67,9 +66,16 @@
     overflow-x: auto;
 }
 .ui-table-base.clo-que-tab thead{display: -webkit-box}
+.ui-table-base.clo-que-tab thead tr td{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base.clo-que-tab thead tr td:last-child{background: none}
 .ui-table-base.clo-que-tab tbody{
 
-    max-height:221px; 
+    max-height:185px; 
 }
 .ui-table-base.clo-que-tab tr td{
 
@@ -85,6 +91,11 @@
 }
 
 #clo-que-tab{
-   height:255px;
+   height:238px;
 }
-.ui-table-base.clo-que-tab tbody tr#no-data{margin-top: 38px}
+.ui-table-base.clo-que-tab tbody tr#no-data{margin-top:24px}
+
+.clothesquery_top_two div .e-date{width:166px }
+.clothesquery_top_three div .e-date{width:166px }
+.clothesquery_top_btn .e-btn{background: #fff;color: #000;border:1px solid #e0e4ea}
+.clothesquery_top_btn .e-btn:hover{background:#3fc0db;color: #fff}

@@ -106,10 +106,10 @@
 .clothall-tab tbody{max-height:120px;overflow-y:auto;display:block}
 
 #clo-que-tab thead tr td:first-child{
-    background:url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size:10px 10px;
-    background-position-x:26px;
-    background-position-y:12px;
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
 .clothestat_data{
     width:780px;

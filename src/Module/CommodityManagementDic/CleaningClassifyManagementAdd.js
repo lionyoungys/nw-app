@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-
+import Dish from '../../UI/Dish'
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ export default class extends Component {
     render() {
         return (
 
-            <Window title='洗护分类管理' onClose={this.props.closeView} width='632' height='411'>
+            <Dish title='洗护分类管理' onClose={this.props.closeView} width='632' height='411'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 
@@ -72,7 +72,7 @@ export default class extends Component {
 
                     </div>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }

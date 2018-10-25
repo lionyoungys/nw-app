@@ -62,19 +62,29 @@
 .Succession_dataLeft div input:hover{border:1px solid #4589ee} */
 .ui-table-base.succession-tab{
 
-    max-height: 400px;
+    max-height: 360px;
     /* overflow-x: auto; */
-    height:400px;
+    height:360px;
 }
 .ui-table-base.succession-tab tbody{
 
-    max-height: 362px;
+    max-height: 330px;
 }
 .ui-table-base.succession-tab tr td{
-    min-width: 189px;
-    max-width: 189px;
+    min-width: 195px;
+    max-width: 195px;
 }
 /* .ui-table-base.succession-tab tr:last-child{
      border-bottom:1px solid #8db2e3; 
 } */
 
+.ui-table-base thead tr td{
+    background: url(./images/thead-border.png);
+    background-size: 2px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base thead tr td:last-child{background: none}
+.succession-tab tbody tr{
+    border-bottom:1px solid #ebf0f6
+}

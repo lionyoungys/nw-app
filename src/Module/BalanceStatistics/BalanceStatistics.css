@@ -5,13 +5,14 @@
     border: 1px solid #dbdfe6;
     height: 57px;
     background: #f5f8fa;
+    line-height: 57px;
 }
 .bal-head span{
     color:#585858;
     font-size:13px;
     margin-left: 12px;
     margin-right:12px;
-    margin-top: 17px;
+    /* margin-top: 17px; */
     float: left;
 }
 .bal-head span b{color:#ff0000;font-size:14px;margin-left:3px}
@@ -53,17 +54,15 @@
 
 }
 .ui-table-base.bal-sta-tab.bal-tab tbody{
-    max-height: 320px;
-    height: 320px;
-    width: 1048px;
+    max-height: 305px;
+    height: 305px;
+    width: 1007px;
 }
 .ui-table-base.bal-sta-tab.bal-tab tr td{
-
     max-width: 138px;
     min-width: 138px;
 }
 .ui-table-base.bal-sta-tab.bal-tab tr td:first-child{
-
     max-width: 40px;
     min-width: 40px;
 }

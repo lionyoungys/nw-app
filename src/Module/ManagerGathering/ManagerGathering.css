@@ -4,7 +4,7 @@
     margin: 0 13px;
 }
 .man-head a:first-child{
-    font-size: 12px;
+    font-size: 14px;
     color: #5a5e66;
     float: left;
     height: 40px;
@@ -30,7 +30,7 @@
 .ui-table-base.ManagerGathering-tab tbody{
 
     width: 770px;
-    max-height: 139px;
+    max-height: 130px;
     overflow-x: hidden;
 }
 .ui-table-base.ManagerGathering-tab tr td{
@@ -78,7 +78,7 @@
 }
 .manager_gathering_part_row{
     /* background-color: red; */
-    margin:9px 10px 0;
+    margin:9px 22px 0;
     height: 23px;
     line-height: 23px;
     font-size: 12px;
@@ -103,7 +103,7 @@
 .manager_gathering_part_row.text_area_row textarea{
 
     float: left;
-    width: 664px;
+    width: 618sspx;
     margin-top: 6px;
     height: 70px;
     border: 1px solid #c4c2c2;
@@ -125,11 +125,12 @@
 .manager_gathering_part_btn{
     float: right;
     height: 50px;
+    margin-top: 8px;
 }
 .manager_gathering_part_btn button{
     margin: 11px 11px;
     background: #fff;
-    color:#b7b8ba;
+    color:#000;
     border:1px solid #ddd;
     font-size: 12px;
 }
@@ -168,3 +169,4 @@
 textarea{
     resize: none;  
 }
+.ui-table-base.ManagerGathering-tab tr:hover{background: #fbfcfd}

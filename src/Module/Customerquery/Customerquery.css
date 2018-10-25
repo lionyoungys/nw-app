@@ -147,15 +147,15 @@
 }
 .Customerquery-tab table thead{
     min-width:868px;
-    height:25px;
+    height:40px;
     background:#f5f8fa;
     display:block;
 
 }
-.Customerquery-tab table thead tr{min-width:868px;height:25px;}
+.Customerquery-tab table thead tr{min-width:868px;height:40px;}
 .Customerquery-tab table thead tr th{   
-    height:25px;
-    line-height:25px;    
+    height:40px;
+    line-height:40px;    
     width:91px;
     color:#585858;
     font-size:12px;
@@ -182,13 +182,13 @@
 }
 .Customerquery-tab table tbody tr{
     min-width:868px;
-    height:25px;
+    height:40px;
     display:inline-block;
 }
 
 .Customerquery-tab table tbody tr td{     
-    height:25px;
-    line-height:25px;  
+    height:40px;
+    line-height:40px;  
     width:91px;
     color:#999;
     font-size:12px;
