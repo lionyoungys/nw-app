@@ -1,256 +1,50 @@
-*{margin: 0;padding: 0}
-html{min-width: 600px;min-height: 450px}
-body{font-family: 微软雅黑,serif;font-size: 14px}
-html, body, #root, #login{width: 100%;height: 100%}
-button{
-    border: none;
-    outline: none;
-    height: 34px;
-    line-height: 34px;
-    width: 244px;
-    text-align: center;
-    color: #fff;
-    background: #3596e3;
-    font-size: 16px;
-    border-radius: 5px;
+body{font-family: "Microsoft YaHei",serif;min-width: 800px;min-height: 568px}
+html, body, #root, .login{width: 100%;height: 100%}
+.login{
+    position: relative;
+    background-image: url(images/login-bg.png);
+    background-repeat: no-repeat;
 }
-label{font-size: 16px}
-#login{position: relative}
-/* 通用样式 */
-.login-input{
-    width: 200px;
-    height: 30px;
-    line-height: 30px;
-    text-indent: 5px;
-    border: 1px solid #aec7db;
-    outline-color: #1698fc;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+.login-words{
+    width: 197px;
+    height: 21px;
+    background-image: url(images/login-words.png);
+    position: absolute;
+    top: 152px;
+    left: 50%;
+    margin-left: -98.5px;
+    z-index: 1;
 }
 .login-edition{
-    position: absolute;
-    top: 40px;left: 0;
-    width: 100%;
     color: #fff;
-    text-align: center;
-    font-weight: bold;
-}
-.login-edition>:first-child{font-size: 30px;margin-bottom: 9px}
-.login-edition>:nth-child(2){font-size: 24px}
-/* 界面顶部可拖动区域 */
-.login-drag{
-    width: 100%;
-    height: 30px;
-    -webkit-app-region: drag;    /*窗口可移动*/
-    position: absolute;
-    top: 0;left: 0;
-}
-/* 界面顶部关闭按钮 */
-.login-drag>i{
-    -webkit-app-region: no-drag;
-    float: right;
-    width: 30px;
-    height: 30px;
-    cursor: default;
-    background: url(img/login-close.png);
-}
-.login-drag>i:hover{background: url(img/login-close-hover.png)}
-/* 检查更新窗口样式 */
-.login-launch{background:url(img/login-launch.png);height: 100%}
-.login-launch-v{text-align: center;color: #fff;padding-top: 250px}
-.login-launch-check{
-    height: 82px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;left: 0;
-    background: #fff;
-}
-.login-launch-check>div{
-    width: 537px;
-    padding-top: 50px;
-    margin: 0 auto;
-    background: url(img/login-launch-check.gif) no-repeat center 19px;
-    font-size: 16px;
-}
-/* 下载更新窗口样式 */
-.login-download{background: url(img/login-download.png);height: 100%}
-.login-download>div:first-child{
-    height: 55px;
-    line-height: 55px;
-    margin-left: 12px;
+    line-height: 1;
     font-size: 18px;
-    font-weight: bold;
-    color: #173959;
-}
-.login-log{
-    height: 312px;
-    margin: 0 4px;
-    padding-left: 12px;
-    overflow: auto;
-}
-.login-update{
-    width: 100%;
-    height: 82px;
-    background: #fff;
+    text-align: center;
+    width: 197px;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 184px;
+    left: 50%;
+    margin-left: -98.5px;
+    z-index: 1;
 }
-.login-progress-bar{
-    width: 554px;
-    height: 21px;
-    margin: 19px auto 11px;
-    background: #d4d9de;
-    border-radius: 10px;
-    box-shadow: -1px -1px #b8bcc1;
+.login>section{
+    width: 309px;
+    height: 322px;
+    background-image: url(images/login-head-bg.png);
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 17px;
+    position: absolute;
+    top: 132px;
+    left: 50%;
+    margin-left: -154.5px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 104px 20px 20px;
 }
-.login-progress-bar>div{
-    background: url(img/login-progress.png) left center;
-    height: 19px;
-    border-top: 1px solid #3c92d3;
-    border-bottom: 1px solid #3c92d3;
-    border-radius: 10px;
-}
-.login-progress{
-    width: 554px;
-    margin: 0 auto;
-    font-size: 16px;
-}
-.login-progress>span{float: right}
-.login-complete{
-    margin: 26px 27px 0 20px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 18px;
-    font-weight: bold;
-}
-.login-complete>button{
-    float: right;
-    height: 30px;
-    line-height: 30px;
-    width: auto;
-    padding: 0 18px;
-    font-size: 14px;
-    font-weight: normal;
-}
-/* 登陆界面窗口 */
-.login, .passwd{background: url(img/login.png);height: 100%}
-.login-box{padding: 163px 0 0 168px}
-.login-passwd-handle{padding:12px 0 19px 2px;cursor: pointer}
-.login-passwd-handle>span{line-height: 18px}
-.login-passwd-handle>span:first-child{
-    padding-left: 26px;
-    background: url(img/login-checkbox.png) no-repeat left center;
-    margin-right: 117px;
-}
-.login-passwd-handle>span.checked:first-child{background: url(img/login-checkbox-checked.png) no-repeat left center}
-.login-box>.login-row{margin-bottom: 14px}
-/* 找回密码界面 */
-.passwd-box{padding-top: 149px}
-.passwd-box label{
-    display: inline-block;
-    width: 242px;
-    text-align: right;
-}
-.sms{
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    color: #31648d;
-    margin-left: 12px;
-    cursor: pointer;
-}
-.back-to-login{cursor: pointer;margin-left: 362px}
-.back-to-login:hover{color: #31648d}
-/* 修改初始密码样式 */
-.update-passwd-row:first-of-type{padding-top: 30px}
-.update-passwd-row>label{
-    display: inline-block;
-    width: 106px;
-    text-align: right;
+.login>section>.ui-input{margin-bottom: 10px}
+.login .e-btn-c{
+    width: 154px;
+    height: 32px;
     font-size: 14px;
 }
-.update-passwd-row>input{
-    width: 170px;
-    height: 24px;
-}
-
-/* 弹框样式 */
-.t-ui-layer{
-    position: fixed;
-    top: 0;left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999999;
-    background: rgba(0, 0, 0, .6);
-}
-.t-ui-layer-box{
-    min-width: 226px;
-    min-height: 154px;
-    background: #fff;
-    border: 1px solid #8899ad;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.t-ui-layer-box>:first-child{
-    height: 36px;
-    line-height: 36px;
-    padding-left: 16px;
-    background: url(img/t-ui-layer-title.png) left center;
-    font-size: 14px;
-    color: #15458d;
-    overflow: hidden;
-}
-.t-ui-layer-box>:first-child>i{
-    float: right;
-    width: 15px;
-    height: 15px;
-    margin: 10px 12px 0 0;
-    background: url(img/t-ui-layer-close.png);
-    cursor: default;
-}
-.t-ui-layer-box>:first-child>i:hover{background: url(img/t-ui-layer-close-hover.png)}
-.t-ui-layer-box>:nth-child(2){min-height: 77px;background: #f9fcff}
-.t-ui-layer-box>:nth-child(2)>:first-child{
-    height: 77px;
-    line-height: 77px;
-    text-align: center;
-    font-size: 12px;
-    color: #15428b;
-    padding: 0 36px;
-}
-.t-ui-layer-box>:nth-child(2)>:nth-child(2){
-    padding: 0 36px 18px;
-    font-size: 12px;
-}
-.t-ui-layer-box>:nth-child(2)>:first-child>img{vertical-align: middle;margin-right: 12px}
-.t-ui-layer-box>:last-child{
-    height: 40px;
-    border-top: 1px solid #8899ad;
-    background: #dae6f5;
-    padding-right: 12px;
-    line-height: 36px;
-    text-align: right;
-}
-.e-btn{
-    width: 71px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    font-size: 12px;
-    color: #000;
-    outline: none;
-    border: none;
-    background: url(img/e-btn.png);
-}
-.e-btn:hover{background: url(img/e-btn-hover.png)}
-/* 弹出层遮罩样式 */
-.e-layer-bg{
-    background: rgba(0,0,0,.6);
-    position: fixed;
-    top: 0;left: 0;
-    z-index: 100000;
-    width: 100%;
-    height:100%;
-}
-

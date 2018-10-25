@@ -39,7 +39,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-icon-download{width: 14px;height: 13px;background-position: -26px 0}
 .e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
-.e-btn{
+.e-btn, .e-btn-c{
     padding: 0;
     margin: 0;
     width: 62px;
@@ -54,8 +54,9 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     outline: none;
     border: none;
 }
-.e-btn:active{background-color: #00b0d8}
-.e-btn[disabled], .e-btn[disabled]:active{background-color: #ccc}
+.e-btn-c{border-radius: 17px;}
+.e-btn:active, .e-btn-c:active{background-color: #00b0d8}
+.e-btn[disabled], .e-btn[disabled]:active, .e-btn-c[disabled], .e-btn-c[disabled]:active{background-color: #ccc}
 .e-btn-b{
     padding: 0;
     margin: 0;
@@ -884,7 +885,39 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     top: 0px;
     left: 1px;
 }
-
+.ui-input{
+    display: inline-block;
+    width: 264px;
+    height: 32px;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    padding: 4.5px 0 4.5px 35px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+.ui-input>i{
+    position: absolute;
+    display: inline-block;
+    background-image: url(images/ui-input-icons.png);
+    left: 10px;
+    top: 50%;
+}
+.ui-input>input{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 0 10px;
+    outline: none;
+    border: none;
+    border-left: 1px solid #d8dce5;
+}
+.ui-input-shop{width: 15px;height: 14px;margin-top: -7px;background-position: 0 0}
+.ui-input-phone{width: 14px;height: 18px;margin-top: -9px;background-position: -15px 0}
+.ui-input-lock{width: 13px;height: 17px;margin-top: -8.5px;background-position: 0 -14px}
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{

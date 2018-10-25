@@ -9,8 +9,8 @@
   "window": {
     "icon": "img/icon.png",
     "resizable": false,
-    "min_width": 600,
-    "min_height": 450,
+    "min_width": 800,
+    "min_height": 568,
     "frame": false,
     "show": false,
     "new_instance": true
