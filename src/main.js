@@ -37,7 +37,8 @@ class Main extends Component {
         this.employeeName = 'aname'.getData();
         this.handleClick = this.handleClick.bind(this);
         this.changeView = this.changeView.bind(this);    //界面跳转方法  
-        this.leftMenuReload = this.leftMenuReload.bind(this);    //左侧菜单重新加载      
+        this.leftMenuReload = this.leftMenuReload.bind(this);    //左侧菜单重新加载
+        this.openWeb = this.openWeb.bind(this);   
     }
     
     componentDidMount() {
@@ -51,7 +52,13 @@ class Main extends Component {
             }
         });
         EventApi.win.on('maximize', () => this.setState({max:true}));
-        EventApi.win.on('minimize', () => this.setState({min:true}));      
+        EventApi.win.on('minimize', () => this.setState({min:true}));
+        EventApi.win.on('new-win-policy', function(frame, url, policy) {
+            if (-1 !== url.indexOf('http')) {
+                policy.ignore();    // 不打开窗口
+                nw.Shell.openExternal(url);    //在系统默认浏览器打开
+            }
+        });     
     }   
 
     componentDidCatch(error) {
@@ -86,6 +93,10 @@ class Main extends Component {
 
     leftMenuReload(modules) {this.MainLeftMenu.reload(modules)}
 
+    openWeb(e) {
+        open(('string' === typeof e ? e : e.target.dataset.url), {});
+    }
+
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
         let tabs = Menus.map((obj, index) => 
@@ -97,7 +108,11 @@ class Main extends Component {
                 <div className='main-title'>
                     &emsp;<i className='e-icon-logo'></i> {this.shopName}
                     <div>
-                        <i className="e-icon-user"></i> {this.employeeName}&emsp;<i className="e-icon-windows"></i> 版本:{nw.App.manifest.version}
+                        <i className='e-icon-user'></i> {this.employeeName}
+                        &emsp;
+                        <i className='e-icon-windows'></i> 版本:{nw.App.manifest.version}
+                        &emsp;
+                        <i className='e-icon-download' onClick={this.openWeb} data-url={api.software_list}></i>
                         <span onClick={() => EventApi.win.minimize()}><i className="fas fa-minus"></i></span>
                         <span onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}><i className="far fa-window-maximize"></i></span>
                         <span onClick={() => EventApi.quit()}><i className="fas fa-times"></i></span>
