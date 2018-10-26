@@ -65,7 +65,8 @@ class Main extends Component {
                 policy.ignore();    // 不打开窗口
                 nw.Shell.openExternal(url);    //在系统默认浏览器打开
             }
-        });     
+        });
+        this.menuReload();     
     }   
 
     componentDidCatch(error) {
@@ -100,6 +101,7 @@ class Main extends Component {
 
     menuReload(modules) {
         if (!tool.isArray(modules)) modules = this.modules;
+        console.log(modules);
         if ('object' === typeof modules && modules instanceof Array) {
             let menu = tool.clone(Menus)
             ,   len = menu[1].options.length
@@ -126,7 +128,8 @@ class Main extends Component {
                     --len;
                 }
             }
-            this.setState({Menus:menu});
+            console.log(menu);
+            this.setState({menus:menu});
         }
     }
     openWeb(e) {
@@ -156,7 +159,7 @@ class Main extends Component {
                 </div>
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'><div>{tabs}</div></div>
-                <Container menus={Menus[this.state.MenuIndex]} changeView={this.changeView}>
+                <Container menus={this.state.menus[this.state.MenuIndex]} changeView={this.changeView}>
                     {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} menuReload={this.menuReload}/>}
                 </Container>
             </div>
@@ -170,6 +173,7 @@ class Container extends Component {
     }
 
     render() {
+        console.log('ddd', this.props.menus);
         let html = this.props.menus.options.map(obj => 
             <span
                 key={obj.value} 

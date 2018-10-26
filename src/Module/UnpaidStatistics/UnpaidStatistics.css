@@ -22,6 +22,7 @@
 }
 .unpaidstatistics_dataLeft div button{
     float: right;
+    margin-right: 20px;
     margin-top:16px;
 }
 .unpaidstatistics_dataright{

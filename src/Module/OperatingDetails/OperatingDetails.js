@@ -81,8 +81,11 @@ export default class extends Component {
                             ]} onChange={value => this.setState({pay_type:value.value})} value={this.state.pay_type}/></div>                           
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
+                                <div> 
+                                    <button className="e-btn managerquery_btn" onClick={() => this.query(1)}>查询</button> 
+                                </div>
                             </div>
-                        <button className="e-btn managerquery_btn" onClick={() => this.query(1)}>查询</button> 
+                       
                 </div>  
                 <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab" id="operating-div">

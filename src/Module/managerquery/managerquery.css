@@ -19,14 +19,14 @@
     margin-top: -2px;
 }
 .managerquery_dataLeft{
-    width:668px;
+    width:748px;
     float:left;
 }
 .managerquery_dataLeft div .e-date{width: 146px;}
 .managerquery_dataLeft .ui-select{width: 147px}
 .managerquery_btn{
-    margin-top:13px;
-    margin-left:18px;
+    /* margin-top:13px; */
+    /* margin-left:18px; */
     float:left;
     cursor:pointer;
 }
