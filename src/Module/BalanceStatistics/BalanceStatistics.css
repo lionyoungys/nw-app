@@ -38,7 +38,7 @@
 .balancestatistics_title_left button:hover{background:url(./img/e-btn-hover.png);background-size:100% 100%}
 .balancestatistics_title_right{float:right;width:228px;height:23px;margin:15px 5px 0 0}
 #balancestatistics_title_left{
-    width:493px;
+    width:775px;
     margin-right:11px;
     float:left;
     margin-left:11px;
@@ -70,10 +70,10 @@
     border-bottom:1px solid #dbdfe6;
 }
 .ui-table-base.bal-sta-tab.bal-tab thead tr td{
-    background: url(./images/00000000000000000);
-    background-size: 2px 24px;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position:right center;
 }
 .ui-table-base.bal-sta-tab.bal-tab thead tr td:last-child{background:none}
 #cust-tab table thead th{

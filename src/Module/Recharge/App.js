@@ -157,9 +157,10 @@ export default class extends React.Component {
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号：</label>
-                        <input id='card_id' className='e-input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
-                        <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
-                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
+                        <input id='card_id' className='recharge_input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;&nbsp;
+                       
+                        <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>&nbsp;&nbsp;
+                        <button type='button' className='e-btn-b' data-query='1' onClick={this.M1Read}>查询</button>
                     </div>
                     <div><label className='e-label'>卡ID：</label>{this.state.cid || '0'}</div>
                 </div>

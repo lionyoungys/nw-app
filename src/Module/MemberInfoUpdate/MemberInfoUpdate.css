@@ -14,7 +14,7 @@
 }
 .memberinfoupdate_bottomborder{  
     width: 758px;
-    height: 265px;
+    height: 235px;
     border: 1px solid #e9edf1;
     margin: 0 auto;
     margin-top: 13px;
@@ -39,7 +39,7 @@
     margin-top: 14px;
 }
 .memberinfoupdate_leftdirection span{
-    width: 68px;
+    width: 39px;
     text-align: right;
     display: inline-block; 
 }
@@ -49,12 +49,12 @@
 }
 .memberinfoupdate_rightdirection{
     float: right;
-    margin-right: 150px;
+    margin-right: 101px;
     margin-top: 14px;
     position:relative;
 }
 .inputlongborder{
-    width: 485px;
+    width: 559px;
     height: 28px;
     line-height: 28px;
     box-sizing: border-box;
@@ -73,7 +73,7 @@
 
 }
 .memberinfoupdate_longdirection span{
-    width: 120px;
+    width: 91px;
     text-align: right;
     display: inline-block; 
 }
@@ -84,7 +84,7 @@
     margin-top: 14px;
 }
 .memberinfoupdate_customerdirection span{
-    width: 68px;
+    width: 40px;
     text-align: right;
     display: inline-block; 
 }

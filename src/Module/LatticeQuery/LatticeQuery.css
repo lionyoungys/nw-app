@@ -102,7 +102,7 @@
 /* 格架修改  */
 
 .lattice-title{
-    width:798px;
+    width:754px;
     height:37px;
     margin:0 auto;
     text-align:right;
@@ -113,7 +113,7 @@
    height: 37px;
    line-height:37px;
    margin-right:12px;
-   color:#000;
+   color:#7b7b7b;
    font-size:14px;
 }
 .lattice-title span a{color: #f00}
@@ -143,8 +143,8 @@
     width:70px;
     height:30px;
     line-height:30px;
-    background:url(./img/cleaning_price_set.png) no-repeat;
-    background-size:77px 2px;
+    background:url(./images/cleaning_price_set.png) no-repeat;
+    background-size:55px 2px;
     background-position:bottom center;
     color:#000;
     font-size:14px;
@@ -169,18 +169,19 @@
     width:5px;
 }
 .lattice-div-right span{
-    display:inline-block;
-    width:auto;
-    height:24px;
-    border:1px solid #d7dee4;
-    color:#5a5e66;
-    background:#fff;
-    font-size:14px;
-    text-align:center;
-    line-height:24px;
-    margin:9px 0 5px 10px;
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    border: 1px solid #d7dee4;
+    /* color: #5a5e66; */
+    background: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    margin: 9px 0 5px 16px;
     cursor: pointer;
-    padding:0 8px;
+    padding: 0 8px;
+    border-radius: 4px;
 }
 
 .lattice-div-right span:hover{
@@ -244,7 +245,7 @@
 }
 .lattice table tbody tr{
     width:770px;
-    height:25px;
+    height:40px;
     display:block;
     border-bottom:1px solid #ebf0f6;
     padding-bottom:3px;
@@ -252,7 +253,7 @@
 
 .lattice table tbody tr td{
     width:84px;
-    height:auto;
+    height:40px;
     color:#a7a7a7;
     font-size:12px;
     text-align:center;

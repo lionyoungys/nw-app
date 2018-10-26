@@ -223,7 +223,7 @@ export default class extends React.Component {
                     <div className='bottom_hr'></div>
                     <div className='bottom_div'>
                     <div className='bottom_text'>
-                        <span>充值:{this.state.amount}</span>&nbsp;&nbsp;<span>赠送:{this.state.give}</span>&nbsp;&nbsp;<span>制卡费:{this.state.made_price}</span>&nbsp;&nbsp;<span>折扣率:{this.state.discount}%</span>
+                        <span>充值:{this.state.amount}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>赠送:{this.state.give}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>制卡费:{this.state.made_price}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>折扣率:{this.state.discount}%</span>
                         <div>
                         <span >应收合计：<span className='textred'>&yen;{total}</span></span>
                         <button type='button' className='salecard_e-btn' onClick={this.handleClick}>收银</button>

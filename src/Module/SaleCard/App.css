@@ -45,8 +45,7 @@
 }
 .bottom_hr{
     margin-top: 106px;
-    width:762px;
-    margin-left: 19px;
+    width:100%;
     background: #eaecf1;
     height: 1px;
 }
@@ -60,6 +59,7 @@
 }
 .bottom_text div{
     float: right;
+    margin-top: -8px;
     margin-right: 39px;
     text-align: center;
     background: #fbfbfc

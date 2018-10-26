@@ -31,14 +31,21 @@ class Main extends Component {
             isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
             param:null,   //视图路由携带参数
-            MenuIndex:0,    //当前选中的菜单id 
+            MenuIndex:0,    //当前选中的菜单id
+            menus:Menus,
         }
         this.shopName = 'mname'.getData();
         this.employeeName = 'aname'.getData();
+        try {
+            this.modules = JSON.parse('module'.getData());
+        } catch (e) {
+            this.modules = [];
+        }
         this.handleClick = this.handleClick.bind(this);
         this.changeView = this.changeView.bind(this);    //界面跳转方法  
-        this.leftMenuReload = this.leftMenuReload.bind(this);    //左侧菜单重新加载
-        this.openWeb = this.openWeb.bind(this);   
+        this.menuReload = this.menuReload.bind(this);    //菜单重新加载
+        this.openWeb = this.openWeb.bind(this);
+
     }
     
     componentDidMount() {
@@ -91,8 +98,37 @@ class Main extends Component {
         }
     }
 
-    leftMenuReload(modules) {this.MainLeftMenu.reload(modules)}
-
+    menuReload(modules) {
+        if (!tool.isArray(modules)) modules = this.modules;
+        if ('object' === typeof modules && modules instanceof Array) {
+            let menu = tool.clone(Menus)
+            ,   len = menu[1].options.length
+            ,   modulesLen = modules.length
+            ,   hasModule = false
+            ,   tmp;
+            for (var i = 0;i < len;++i) {
+                if (!isNaN(menu[1].options[i].id)) {
+                    for (var j = 0;j < modulesLen;++j) {
+                        tmp = isNaN(modules[j]) ? modules[j].id : modules[j];
+                        if (menu[1].options[i].id == tmp) {
+                            hasModule = true;
+                            break;
+                        }
+                    }
+                } else {
+                    hasModule = true;
+                }
+                if (hasModule) {
+                    hasModule = false;
+                } else {
+                    menu[1].options.splice(i, 1);
+                    --i;
+                    --len;
+                }
+            }
+            this.setState({Menus:menu});
+        }
+    }
     openWeb(e) {
         open(('string' === typeof e ? e : e.target.dataset.url), {});
     }
@@ -121,7 +157,7 @@ class Main extends Component {
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'><div>{tabs}</div></div>
                 <Container menus={Menus[this.state.MenuIndex]} changeView={this.changeView}>
-                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} leftMenuReload={this.leftMenuReload}/>}
+                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} menuReload={this.menuReload}/>}
                 </Container>
             </div>
         );

@@ -248,8 +248,8 @@
     margin-left: 13px;
     color: #000;
     font-size: 13px; 
-    height:30px;
-    line-height:30px;  
+    height:40px;
+    line-height:40px;  
 }
 .ui-check-res b{
     color:red;
@@ -268,19 +268,20 @@ table tbody tr:nth-child(odd):hover{
     display: block;
     background: url(./images/ui-empty.jpg) no-repeat;
     background-size: 108px 106px;
-    height: auto;
-    padding-top: 96px;
+    padding-top: 100px;
     text-align: center;
     color: #333;
     font-size: 12px;
     line-height: 22px;
-    margin-left:297px;
-    margin-top:105px;
-    margin-bottom: 40px;
+    margin-left: 297px;
+    margin-top: 105px;
+    margin-bottom: 15px;
     background-position-x: 27px;
-    min-width:150px;
-    max-width:150px;
-    border-bottom:none;
+    min-width: 150px;
+    max-width: 150px;
+    border-bottom: none;
+    background-position: centr;
+    background-position-x: center;
 }
 
 #no-data:hover{
@@ -291,7 +292,7 @@ table tbody tr:nth-child(odd):hover{
     max-height: 20px;
     max-width: 150px;
     min-width: 150px;
-    text-align: center; 
+    text-align: center;
 }
 
 table{background:#fff}
@@ -354,8 +355,26 @@ table tbody tr td{
 }
 .ui-img-upload-window>div>img{width: 100%;height: 100%;}
 
-.ui-table-base thead tr td,th{color: #5a5e66}
-
+.ui-table-base thead tr td{
+    color: #5a5e66;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base thead tr th{
+    color: #5a5e66;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.ui-table-base thead tr td:last-child{
+    background: none;
+}
+.ui-table-base thead tr th:last-child{
+    background: none;
+}
 .clean-top .left .btn-both{background: #3fc0db;color: #fff}
 
 

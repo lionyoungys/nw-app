@@ -27,7 +27,7 @@ export default class extends Component {
                             <button className="e-btn loss-query">查询</button>
                          </div>                         
                 </div>
-                <div className="ui-check-res ReportLossQuery">已为您找到：<b>2345</b>条记录</div> 
+                <div className="ui-check-res ReportLossQuery">已为您找到<b>2345</b>条记录</div> 
                 <div className=" ReportLossQuery-tab">
                    <table>
                        <thead>

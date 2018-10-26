@@ -80,8 +80,11 @@ export default class extends Component {
                     <div className="unpaidstatistics_dataLeft" id="balancestatistics_title_left">
                         <div>开始日期：<input type="date" className='e-date' value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>
                         <div>结束日期：<input type="date" className='e-date' value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
+                        <div>
+                            <button className="e-btn recharg-btn" onClick={()=>this.query(1)}>查询</button>
+                        </div>
                     </div>
-                    <button className="e-btn recharg-btn" onClick={()=>this.query(1)}>查询</button>
+                  
                     
                 </div>
                 <div className='con-sta-total'>

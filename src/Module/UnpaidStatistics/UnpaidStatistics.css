@@ -5,7 +5,7 @@
 
 }
 .unpaidstatistics_dataLeft{
-    width:60%;
+    width:100%;
     border:1px solid #d7dde6;
     height:57px;
     background:#f5f8fa;
@@ -14,11 +14,15 @@
 
 .unpaidstatistics_dataLeft div{
     float: left;
-    width:50%;
+    width:33%;
     height: 100%;
     line-height: 57px;
     font-size: 12px;
     text-indent: 18px;
+}
+.unpaidstatistics_dataLeft div button{
+    float: right;
+    margin-top:16px;
 }
 .unpaidstatistics_dataright{
 
@@ -89,16 +93,16 @@
     font-weight: bold;
 }
 .unp-sta-res-num{
-    height: 30px;
-    font-size: 12px;
+    height: 40px;
+    font-size: 13px;
     margin: 0 13px;
-    line-height:30px;
-    font-weight:bold;
+    line-height:40px;
+    /* font-weight:bold; */
 }
+.unp-sta-res-num a{color: #f00}
 /* 表格区域 */
 
 .ui-table-base.unpaidstatistics_table_Arrearage{
-    margin-top: 5px;
     max-height: 290px;
     overflow-x: auto;
     height: 290px;

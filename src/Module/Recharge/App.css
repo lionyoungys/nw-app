@@ -7,6 +7,20 @@
     padding: 0 25px;
     font-size: 12px;
 }
+.recharge_input{
+    width: 200px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    color: #5a5e66;
+    outline: none;
+}
+.recharge_input:focus{border: 1px solid #3fc0db}
 .recharge-first{
     height: 55px;
     line-height: 55px;
@@ -61,6 +75,7 @@
     float: right;
 } */
 .recharge-four{
+    height: 80px;
     background:#fbfbfc;
     border-top: 1px solid #eaecf1;
 }

@@ -81,17 +81,18 @@ export default class extends Component {
                     <div className="unpaidstatistics_dataLeft">
                         <div>开始日期：<input type="date" className='e-date' value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} /></div>
                         <div>结束日期：<input type="date" className='e-date' value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} /></div>
-                    </div>
-                    <div className="unpaidstatistics_dataright">
+                        <div className="unpaidstatistics_dataright">
                         <button type='button' className='e-btn ' onClick={() => this.query(1)}>查询</button>
                     </div>
+                    </div>
+                  
                 </div>
                 <div className="unpaidstatistics_Statistics">
                     <span>  总衣物：<a>{this.state.itemCount ||0}件</a></span>
                     <span>  可折金额：<a>{this.state.discount_amount || 0}元</a></span>
                     <span>  不可折金额：<a>{this.state.amount ||0}元</a></span>
                 </div>
-                <p className = 'unp-sta-res-num'>已为您找到{this.state.count}条数据</p>               
+                <p className = 'unp-sta-res-num'>已为您找到<a>{this.state.count}</a>条数据</p>               
                 <table className='ui-table-base unpaidstatistics_table_Arrearage'>
                     <thead>
                         <tr>

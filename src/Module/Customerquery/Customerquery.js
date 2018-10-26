@@ -174,11 +174,13 @@ export default class extends Component {
                         <div><span>客户姓名：</span><input type="text" className='e-input' value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
                         <div><span>卡号：</span><input type="text" className='e-input'  value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/></div>
                         <div><span>卡类型：</span><Select option={this.state.types}  value={this.state.card_name} onChange={value => this.setState({card_name:value.value})}/></div>
+                        <div className="Customerquery-right">
+                            <button className="Customerquery-query" onClick={this.M1Read} >读卡</button>
+                            <button className="Customerquery-over" onClick={()=>this.query(1)}>查询</button>
+                        </div>  
+                  
                    </div>
-                   <div className="Customerquery-right">
-                      <button className="Customerquery-query" onClick={()=>this.query(1)}>查询</button>
-                      <button className="Customerquery-over" onClick={this.M1Read} >读卡</button>
-                    </div>
+                  
                 </div>
                 <div className="Customerquery-tab cust-tab" id="cust-tab">
                   <div className="Customerquery-tab-title">已为您找到<b>{this.state.count}</b>条数据</div>

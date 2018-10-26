@@ -28,6 +28,7 @@
 .clothesquery_top_three div button{
     margin-left: 20px;
 }
+.clothesquery_top_three div button:last-child{background: #3fc0db;color: #fff;margin-left: 8px}
 .clothesquery_top div span{
     font-size: 12px;
     margin-left: 5px;

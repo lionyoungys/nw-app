@@ -138,7 +138,10 @@
     background: #3abad5;
     color:#fff
 }
-
+.manager_gathering_part_btn button:last-child{
+    background: #3abad5;
+    color:#fff;
+}
 /* 经理收款明细 */
 #ManagerGathering-detail{margin-top:13px;height:490px;}
 #ManagerGathering-detail .man-gat-tab{

@@ -18,7 +18,7 @@ export default class extends Component {
         super(props);
         this.state={index:0};
         this.tab=['基本信息','结算账号','网店','优惠活动','洗护管理'];
-        this.views=[<StoreInfo/>,<StoreBankCard/>,<StoreOnline/>,<StoreSpecialOffers/>,<Washmanagement leftMenuReload={this.props.leftMenuReload}/>];
+        this.views=[<StoreInfo/>,<StoreBankCard/>,<StoreOnline/>,<StoreSpecialOffers/>,<Washmanagement menuReload={this.props.menuReload}/>];
         this.handleClick=this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     };

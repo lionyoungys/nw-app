@@ -80,7 +80,7 @@ export default class extends Component {
         }, (res,ver) => {
             //console.log(res)
             if (ver && res) {
-                this.props.leftMenuReload(this.state.checkedArr);
+                this.props.menuReload(this.state.checkedArr);
                 tool.ui.success({callback:(close, event) => {
                     close();
                     this.query();
