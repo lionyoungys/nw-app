@@ -1,9 +1,7 @@
 
 import React, {Component} from 'react';
 import './Washmanagement.css'
-import OptionBox from '../../../Elem/OptionBox';
-//import { BADQUERY } from 'dns';
-//import { connect } from 'tls';
+import Option from '../../../UI/Option';
 
 const token = 'token'.getData();
 export default class extends Component {   
@@ -13,9 +11,10 @@ export default class extends Component {
             list:[],
             checkedArr:[]    
         };
+        this.map = {'111':'car', '112':'into', '100':'washer', '102':'dry', '104':'iron', '106':'check', '114':'out', '115':'audit'};
        this.query = this.query.bind(this);
        this.handleChecked = this.handleChecked.bind(this);  
-       this.btn_up = this.btn_up.bind(this);      
+       this.btn_up = this.btn_up.bind(this);     
     }
     componentDidMount() {       
         this.query()
@@ -53,18 +52,14 @@ export default class extends Component {
         });
     }
 
-    handleChecked(e) {
-        console.log(e.target.dataset.checked)
-        let checked = e.target.dataset.checked
-        ,   value = e.target.dataset.id;
-        if (checked =='1') {
-            let index = value.inArray(this.state.checkedArr);
-            if (-1 !== index) {
-                this.state.checkedArr.splice(index, 1);
-                this.setState({ checkedArr: this.state.checkedArr});
-            }
+    handleChecked(obj) {
+        let index = obj.param.inArray(this.state.checkedArr);
+        console.log(obj, this.state.checkedArr);
+        if (-1 === index) {
+            this.state.checkedArr.push(obj.param);            
+            this.setState({ checkedArr: this.state.checkedArr});
         } else {
-            this.state.checkedArr.push(value);            
+            this.state.checkedArr.splice(index, 1);
             this.setState({ checkedArr: this.state.checkedArr});
         }
     }
@@ -91,27 +86,16 @@ export default class extends Component {
     }
 
     render(){
-       // console.log(this.state.checked)
-        let tmp
-        var list = this.state.list.map((item, index) => {
-
-            tmp = -1 !== item.id.inArray(this.state.checkedArr)?'1':'0';
-            return (
-                <div data-checked={tmp} data-id={item.id} onClick={this.handleChecked} className={tmp=='1'?'onclick':null}>
-                    <i data-checked={tmp} data-id={item.id} onClick={this.handleChecked}></i>
-                    <b data-checked={tmp} data-id={item.id} onClick={this.handleChecked}>{item.name}</b>
-                </div>
-            );
-        })
+        var list = this.state.list.map((item, index) => 
+            <Option icon={this.map[item.id]} value={item.name} checked={-1 !== item.id.inArray(this.state.checkedArr)} onClick={this.handleChecked} param={item.id}/>
+        )
         return(
             <div>
                 <div id="Washmanagement-title">可自定义选择门店模块</div>
                 <div id="shop-div">
                     {list}
-                    <div className='was-man-btn-div'>
-                        <button className="e-btn store-button" onClick={this.btn_up}>确定</button>
-                    </div>
-                       
+                    <div style={{paddingBottom:'20px'}}><button className="e-btn store-button" onClick={this.btn_up}>确定</button></div>
+                    
                 </div>
                                   
             </div>

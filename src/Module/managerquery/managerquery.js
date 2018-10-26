@@ -79,8 +79,11 @@ export default class extends Component {
                                 <div>操作员：<Select option={['经理','店员','老板']} readOnly={true} onChange={value => this.setState({selectVal:value.value})} value={this.state.selectVal}/></div>                           
                                 <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
+                                <div>
+                                    <button className="e-btn managerquery_btn" onClick={() => this.query(this.state.page)}>查询</button> 
+                                </div>    
                             </div>
-                            <button className="e-btn managerquery_btn" onClick={() => this.query(this.state.page)}>查询</button> 
+                          
                 </div>                                    
                 <table className='ui-table-base man-que-tab'>
                     <thead>

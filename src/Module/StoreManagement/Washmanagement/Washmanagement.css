@@ -3,17 +3,12 @@
     width:700px;
     height:47px;
     line-height:47px;
-    color:#15458d;
     font-size:12px;
     font-weight: 700;
 }
 
-#shop-div{
-    width:auto;
-    height:299px;
-}
-
-#shop-div>div{
+#shop-div>span{margin: 0 24px 14px 0;}
+/* #shop-div>div{
     width: 115px;
     height: 35px;
     border: 1px solid #eee;
@@ -23,61 +18,7 @@
     border-radius: 4px;
     line-height: 35px;
     background: white;
-}
-#shop-div>div.onclick{
-    border: 1px solid #3abbd5;
-    background: #f5fefe;
-}
-
-#shop-div>div:last-child{
-
-    width: 100%;
-    height: 35px;
-    float: left;
-    border: none;
-}
-
-#shop-div>div i{
-
-    width:27px;
-    height:30px;
-    margin-top: 6px;
-    margin-left: 10px;
-    float: left;
-}
-#shop-div>div:nth-child(1) i{
-
-    background: url(./images/set-xhfu-sx-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(2) i{
-
-    background: url(./images/set-xhfu-rc-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(3) i{
-
-    background: url(./images/set-xhfu-qx-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(4) i{
-
-    background: url(./images/set-xhfu-hg-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(5) i{
-
-    background: url(./images/set-xhfu-yt-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(6) i{
-
-    background: url(./images/set-xhfu-zj-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(7) i{
-
-    background: url(./images/set-xhfu-cc-nor.png) no-repeat;
-}
-#shop-div>div:nth-child(8) i{
-
-    background: url(./images/set-xhfu-flsh-nor.png) no-repeat;
-}
-
+} */
 #shop-div>div b{
 
     float: left;

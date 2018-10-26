@@ -75,8 +75,9 @@
     max-height: 330px;
 }
 .ui-table-base.ManagerGathering-tab.ope-inc-tab tbody tr:last-child{
-    border-bottom:1px solid #ddd;
+    border-bottom:1px solid #ebf0f6;
+    box-sizing: border-box;
 }
-.ui-table-base.ManagerGathering-tab tbody tr{border-bottom:1px solid #ebf0f6}
+.ui-table-base.ManagerGathering-tab tbody tr{border-bottom:1px solid #ebf0f6;box-sizing: border-box}
 
 .manager_gathering_part_row span:last-child{color:#f00}

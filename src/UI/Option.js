@@ -12,7 +12,7 @@ export default class extends Component {
     }
 
     handleClick(e) {
-        'function' === typeof this.props.onClick && this.props.onClick(e.target.innerText);
+        'function' === typeof this.props.onClick && this.props.onClick({value:e.target.innerText, param:this.props.param, checked:this.props.checked});
     }
 
     render() {
@@ -26,7 +26,7 @@ export default class extends Component {
                     ('string' === typeof this.props.className ? (' ' + this.props.className) : '')
                 }
                 style={this.props.style}
-                checked={this.props.checked ? 'checked' : ''}
+                data-checked={this.props.checked ? 'checked' : ''}
             ><span onClick={this.handleClick}></span><i></i>{this.props.value}</span>
         );
     }

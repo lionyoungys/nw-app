@@ -45,10 +45,10 @@
 }
 .bothpages_list div{
     width:auto;
-    height:46px;
+    height:40px;
     font-size:12px;
     float:right;
-    line-height:46px;
+    line-height:40px;
 }
 .bothpages_list div b{color:#ff0000;font-size:14px;margin-left:10px}
 .bothpages_list div:nth-child(1){margin-right:0px}

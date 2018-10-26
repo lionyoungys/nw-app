@@ -97,10 +97,11 @@ export default class extends Component {
                          <div className="clothestat_dataLeft">
                             <div>开始日期：<input type="date" className='e-date' value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>                           
                             <div>结束日期：<input type="date" className='e-date' value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
+                            <div className="clothestat_dataright">
+                               {arr}
+                           </div> 
                          </div>
-                         <div className="clothestat_dataright">
-                           {arr}
-                         </div>
+                        
                       </div>
                        <div className="clothall" >类别合计</div>
                         <table className="clothall-tab clothestat-tab">

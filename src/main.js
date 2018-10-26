@@ -101,7 +101,6 @@ class Main extends Component {
 
     menuReload(modules) {
         if (!tool.isArray(modules)) modules = this.modules;
-        console.log(modules);
         if ('object' === typeof modules && modules instanceof Array) {
             let menu = tool.clone(Menus)
             ,   len = menu[1].options.length
@@ -128,7 +127,6 @@ class Main extends Component {
                     --len;
                 }
             }
-            console.log(menu);
             this.setState({menus:menu});
         }
     }
@@ -173,7 +171,6 @@ class Container extends Component {
     }
 
     render() {
-        console.log('ddd', this.props.menus);
         let html = this.props.menus.options.map(obj => 
             <span
                 key={obj.value} 

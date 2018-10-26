@@ -70,8 +70,8 @@ export default class extends Component {
         return (             
             <Window title='经营明细' onClose={this.props.closeView}>
             <div>
-                 <div className="Succession_data">
-                            <div className="Succession_dataLeft managerquery_dataLeft">
+                <div className="Succession_data">
+                            <div className="Succession_dataLeft managerquery_dataLeft oper-detail">
                                 <div>收款类型：<Select  option={['全部','免费','免费补交','免费充值','免费发卡',
                             '免费退卡','收券退款','手持机刷卡','手持机刷卡补交','刷集团卡','刷集团卡补交',
                             '刷集团卡其他','刷卡','刷卡补交','刷卡其他','刷卡退款','微信','微信补交','微信充值','微信发卡',

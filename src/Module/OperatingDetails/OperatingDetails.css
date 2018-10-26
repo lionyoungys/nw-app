@@ -21,3 +21,6 @@
 }
 #operating-div tbody tr td{color: #999}
 .Takeclothes-div-title.operating-detail{height: 40px;line-height: 40px;padding-top: 0;margin-top: 0}
+.Succession_dataLeft.managerquery_dataLeft.oper-detail{width:769px }
+.Succession_dataLeft.managerquery_dataLeft.oper-detail>div{margin-left:18px}
+.Succession_dataLeft.managerquery_dataLeft.oper-detail>div button.managerquery_btn{margin-top: 0}

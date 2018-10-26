@@ -61,7 +61,7 @@
     height:37px;
     line-height:37px;
     color:#4d4d4d;
-    font-size:12px;
+    font-size:14px;
     font-weight:bold;
     /* margin-left:13px; */
     margin: 0 auto;
@@ -119,14 +119,16 @@
     width:780px;
     height:59px;
     margin:13px auto 0px;
+    border:1px solid #e9edf1;
+    background:#f5f8fa;
 }
 .clothestat_dataLeft{
     width:auto;
-    border:1px solid #e9edf1;
+    
     height:57px;
-    background:#f5f8fa;
+    
     float: left;
-    padding-right:12px;
+    padding-right:246px;
 }
 .clothestat_dataLeft div{
     width:207px;
@@ -153,7 +155,7 @@
     background-position-x:115px;
     background-position-y:0; 
 } */
-.clothestat_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
+.clothestat_dataright{float:left;height:24px;margin:17px 0 0 6px;}
 .clothestat_dataright button{
     padding: 0;
     margin: 0;
