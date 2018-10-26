@@ -119,6 +119,7 @@
     margin-left: 10px;
     padding: 4px 5px;
     box-sizing: border-box;
+    border-radius: 3px;
 }
 
 .Itsprocessing-footer-left{
@@ -130,7 +131,7 @@
 /*  */
 .ui-table-base.sing-tab thead tr td{
     background: url(./images/thead-border.png);
-    background-size: 2px 24px;
+    background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -211,11 +212,12 @@
     background:#fff;
     border:1px solid #d8dce5;
     color:#000;
+    margin-top: -18px;
 }
-
 .Itsprocessing-footer-div b.sure-save{
     background:#3ebddd;
     color:#fff;
+    margin-top: -18px;
 }
 .Itsprocessing-footer-div span.Itsprocessing-footer-span{
     width:94px;

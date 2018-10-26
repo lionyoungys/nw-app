@@ -90,8 +90,8 @@ export default class extends Component {
     deleteColor(e){
         let index=e.target.dataset.index;
         this.setState({index:index,colorid:this.state.colorlist[index].id});
-        tool.ui.error({title:'提示',msg:'将删除材料,材料上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
-            if(event=='click'){
+        tool.ui.error({title:'提示',msg:'将删除材料,材料上的衣物信息可能丢失',button:['确定'],callback:(close, event) => {
+            if(event=='确定'){
             api.post('delMaterials', {token:'token'.getData(),
             id:this.state.colorid
         }, (res, ver) => {

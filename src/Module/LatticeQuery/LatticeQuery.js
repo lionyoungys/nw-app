@@ -107,7 +107,7 @@ export default class extends Component {
                      <span>首数：{this.state.selectLatDic.start_number}</span>
                      <span>尾数：{this.state.selectLatDic.end_number}</span>
                      <span>每衣挂号最大挂衣数：{this.state.selectLatDic.max_number}</span>
-                     <span>使用率：{this.state.selectLatDic.use_total}/{this.state.selectLatDic.total}</span>
+                     <span>使用率：<a>{this.state.selectLatDic.use_total}/{this.state.selectLatDic.total}</a></span>
                 </div> 
                 <div className="lattice-div">
                     <div className="lattice-div-left">

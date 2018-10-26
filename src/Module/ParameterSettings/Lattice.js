@@ -35,9 +35,9 @@ export default class extends Component {
     error2(e) {
         var write = e.target.dataset.write
         this.setState({id:this.state.grid[write].id})
-        tool.ui.error({title:'提示',msg:'将删除格架,格架上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
+        tool.ui.error({title:'提示',msg:'将删除格架,格架上的衣物信息可能丢失',button:['确定'],callback:(close, event) => {
             console.log(event)
-            if(event=='click'){
+            if(event=='确定'){
             api.post('delGrid', {token:'token'.getData(),
             id:this.state.id
         }, (res, ver) => {

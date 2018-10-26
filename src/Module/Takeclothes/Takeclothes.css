@@ -1,11 +1,12 @@
 /* 取衣 */
 .Takeclothes-title{  
-    height: 35px; /* margin: 0 auto; */
+    height: 45px; /* margin: 0 auto; */
     vertical-align: middle;   
-    padding-top: 10px;
+    padding-top: 20px;
     width: 400px;
     right: 0px;
     float: right;
+    margin-right: 22px;
 }
 .Takeclothes-title input.e-input{
 
@@ -37,11 +38,11 @@
     margin: 0 auto;
     top: 46px;
     left: 0;
-    text-indent: 5px;
+    text-indent:22px;
     /* border-bottom: 1px solid #eee; */
     /* margin: 0 auto; */
     float: left;
-    padding-top: 15px;
+    padding-top: 22px;
 }
 .Takeclothes-div-title b{
     color:red;
@@ -54,7 +55,7 @@
     clear: both;
 }
 .Takeclothes-tab-div>div{
-    padding: 5px;
+    /* padding: 5px; */
     /* width: 100%; */
     height: 100%;
     overflow: auto;
@@ -64,7 +65,7 @@
 }
 /* table */
 .Takeclothes-tab{
-    width:770px;
+    width:748px;
     height:auto;
     max-height:340px;    
     margin:auto;
@@ -93,11 +94,11 @@
     height:40px;
     line-height:40px;
     /* border-right:1px solid #acc6de; */
-    min-width:109px;
-    max-width: 109px;
+    min-width:105px;
+    max-width: 105px;
     word-break: break-word;
     background: url(./images/thead-border.png);
-    background-size: 2px 24px;
+    background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -120,19 +121,19 @@
     display:inline-block;
    
 }
-.Takeclothes-tab table tbody tr{width:auto;height:25px;}
-.Takeclothes-tab table tbody tr:last-child{border-bottom: 1px solid #e1e4eb}
+.Takeclothes-tab table tbody tr{border-bottom: 1px solid #e1e4eb}
 .Takeclothes-tab table tbody tr td{
     width:auto;
     text-align:center;
     /* padding:0 49px; */
     color:#a7a7a7;
     font-size:12px;
-    height:25px;
-    line-height:25px;
-    min-width:109px;
+    /* height:25px; */
+    /* line-height:25px; */
+    min-width:105px;
     cursor: pointer;
-    max-width: 109px;
+    max-width: 105px;
+    height: 40px;
 }
 .Takeclothes-tab table tbody tr td:first-child{
     width: auto;
@@ -146,19 +147,20 @@
 .Takeclothes-tab table tbody tr td:first-child{color: #3fbfdc}
 /* 取衣详情 */
 .Takeclothesdetail-title{
-    width:872px;
-    height:47px;
+    width:780px;
+    height:38px;
     margin:0 auto;
 }
 .Takeclothesdetail-title-left{
     float: left;
-    width:380px;
-    height:47px;
+    width:370px;
+    height:38px;
+    text-indent:14px;
 }
 .Takeclothesdetail-title-left div{
     width:auto;
-    height:47px;
-    line-height:47px;
+    height:38px;
+    line-height:38px;
     color:#000;
     font-size:12px;
     float:left;
@@ -173,13 +175,13 @@
 
 .Takeclothesdetail-title-right{
     float:left;
-    height:47px;
+    height:38px;
 }
 .Takeclothesdetail-title-right div{
     width:auto;
     margin-right:21px;
-    height:47px;
-    line-height:47px;
+    height:38px;
+    line-height:38px;
     color:#000;
     font-size:12px;
     float:right;
@@ -193,6 +195,7 @@
 .Takeclothesdetail-tab table tbody{
     overflow-x:hidden;
 }
+.Takeclothesdetail-tab table tbody tr td:last-child{color: #3fbfdc}
 .Takeclothesdetail-tab table tbody tr td input{
     width:15px;
     height:15px;
@@ -228,7 +231,7 @@
 }
 .Takeclothesdetail-footer-right .Takeclothesdetail-footer-right-btn{
     float:right;
-    margin-right:8px;
+    margin-right:15px;
     cursor:pointer;
 }
 .take-over{
@@ -237,9 +240,9 @@
     text-align:center;
     color:#fff;
     font-size:12px;
-    line-height:24px;
+    /* line-height:24px; */
     float:right;
-    margin-right:8px;
+    margin-right:15px;
     cursor: pointer;
     background:#3fbfdc;
     outline:none;
@@ -251,9 +254,9 @@
     text-align:center;
     color:#fff;
     font-size:12px;
-    line-height:24px;
+    /* line-height:24px; */
     float:right;
-    margin-right:8px;
+    margin-right:15px;
     cursor: pointer;
     background:#c2c2c2;   
     outline:none;
@@ -276,7 +279,6 @@
 }
 
 /* 欠款补交样式 */
-.debtpay-tab table tbody tr td:last-child{color:#024ffe}
 
 
 .Takeclothesdetail-tab table tbody tr td:nth-child(2) input{

@@ -1,5 +1,5 @@
 /* 品牌样式 */
-.brand{width:768px;height:auto;margin:auto}
+.brand{width:740px;height:auto;margin:auto}
 .brand-btn{
     width:111px;
     height:30px;    
@@ -7,10 +7,12 @@
     line-height:30px;
     font-size:12px;
     float:right;
+    margin-right: 16px;
     background-size:111px 24px;
     outline:none;
     border:none;
-    margin:8px 0;
+    margin-top:8px;
+    margin-bottom: 8px;
     cursor:pointer;
     text-align: center;
     background-color: #3fc0db;
@@ -23,7 +25,7 @@
     border: none;
 }
 .brand-tab{
-    width:768px;
+    width:730px;
     height:auto;
     max-height:473px;
     border:1px solid #d7dee4;
@@ -154,8 +156,9 @@
     cursor:pointer;
 }
 .lattic-tab{
-    width:768px;
+    width:738px;
     height:auto;
+    margin-left: 12px;
     max-height:473px;
     border:1px solid #f1f4f9;
     clear:both;
@@ -174,14 +177,14 @@
     display: inline-block;
 }
 .lattic-tab table thead tr th{
-    width:128px;
+    width:123px;
     height:25px;
     /* border-right:1px solid #acc6de; */
     line-height:25px;
     text-align:center;
     color:#707070;
     font-size:12px;
-    min-width:128px;
+    min-width:123px;
 }
 .lattic-tab table thead tr th:last-child{border-right:none}
 .lattic-tab table tbody{width:768px;display:block;max-height:310px;overflow-y:auto;overflow-x:hidden;border-bottom: 1px solid #d7dee4}
@@ -191,7 +194,7 @@
 }
 
 .lattic-tab table tbody tr td{
-    width:128px;
+    width:123px;
     height:25px; 
     /* border-right:1px solid #acc6de; */
     text-align:center;
@@ -201,7 +204,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
-    min-width:128px;
+    min-width:123px;
     
 }
 .lattic-tab table tbody tr td:last-child{border-right:none;cursor:pointer}

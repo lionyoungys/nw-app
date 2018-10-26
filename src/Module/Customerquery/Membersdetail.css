@@ -30,41 +30,47 @@
 .Membersdetail-tab-title span{color:#585858}
 
 .Membersdetail-tab table {height: auto;max-width: 780px;margin-left: 10px;overflow-x:auto;overflow-y: hidden;display:block}
-.Membersdetail-tab table thead{width:1428px;height:30px;background:#f5f8fa;display:inline-block}
-.Membersdetail-tab table thead tr{width:auto;height:25px}
+.Membersdetail-tab table thead{
+    width:1428px;
+    height:40px;
+    background:#f5f8fa;
+    display:inline-block;
+}
+.Membersdetail-tab table thead tr{
+    width:auto;
+    height:40px;
+}
 .Membersdetail-tab table thead tr th{
     width:106px;
-    min-width:134px;
-    border-right:1px solid #e9f0f5;
-    line-height:25px;
+    min-width:134px;   
+    line-height:40px;
     color:#585858;
     font-size:12px;text-align:center;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position:right center;
 }
+.Membersdetail-tab table thead tr th:last-child{background: none}
 .Membersdetail-tab table thead tr th:first-child{
     width:31px;
     max-width:31px;
-    background:url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size:10px 10px;
-    background-position-x:17px;
-    background-position-y:11px;
 }
 .Membersdetail-tab table tbody{
-    width:1428px;
-    max-height: 305px;
+    width:1410px;
+    max-height: 268px;
     height: auto;
     display:inline-block;
     overflow-x:hidden;
     overflow-y:auto;
 }
-.Membersdetail-tab table tbody tr{width:auto;height:25px;display: inline-block}
-.Membersdetail-tab table tbody tr:nth-child(odd) {background:#fff}
-.Membersdetail-tab table tbody tr:nth-child(even) {background:#f0f5f9}
+.Membersdetail-tab table tbody tr{width:auto;height:40px;display: inline-block}
 .Membersdetail-tab table tbody tr td{
     width:106px;
-    height:25px;
+    height:40px;
     /* border-right:1px solid #acc6de; */
     text-align:center;
-    line-height:25px;
+    line-height:40px;
     color:#000;
     font-size:12px;   
     min-width:134px; 

@@ -58,8 +58,7 @@
 .ali-wechat-check-title span{
     height: 42px;
     line-height: 42px;
-    margin-right:10px;
-
+    margin-right:25px;
 }
 .ali-wechat-check-title span sup{
     font-size: 12px;
@@ -69,9 +68,9 @@
     max-height: 250px;
 }
 .ui-table-base.ali-wechat-check-tab tbody{
-
-    max-height: 218px;
+    max-height: 210px;
 }
+.ui-table-base.ali-wechat-check-tab tbody tr{border-bottom: 1px solid #e6ebf5;box-sizing: border-box}
 .ui-table-base.ali-wechat-check-tab tbody tr#no-data{margin-top: 33px}
 .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-1{
 
@@ -110,6 +109,9 @@
 }
 .ali-wechat-check-tab tbody{
     width:874px;
-}
 
+}
+.ali-wechat-check-tab tbody::-webkit-scrollbar{
+    width:0px;
+}
 

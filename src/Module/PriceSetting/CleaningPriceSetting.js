@@ -137,14 +137,15 @@ export default class extends Component {
             }else{
                 handle();
             }
+            console.log(aaaaaaa);
             this.state.grid.push('任意格架')
             this.setState({
             // cate_id:this.state.cate_types[0].id,
             // cate_name:this.state.cate_type[0],
-            disposetype:'',
-            gradename:'',
+            // disposetype:this.state.dispose_type[0].name,
+            // gradename:this.state.grade[0].grade,
             gridname:'X',
-            materialsname:'',
+            // materialsname:this.state.materials[0].name,
             })
         });   
     }
@@ -163,9 +164,9 @@ export default class extends Component {
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
             min_transfer:'0',//可调下线
-            disposetype:'',
-            gradename:'',
-            materialsname:''        
+            disposetype:this.state.dispose_types[0].name,
+            gradename:this.state.grids[0].grade,
+            materialsname:this.state.materialss[0].name       
         })
     }
     handleClick(e){
@@ -391,7 +392,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value.value})} selected="无"  value={this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value.value})} selected="无" value={this.state.materialsname}/></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
-                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/></div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -426,14 +427,14 @@ export default class extends Component {
                  {
                     this.state.show1
                     &&
-                    <Dish title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="690" height="524">
+                    <Dish title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="690" height="495">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
-                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} /></div>
+                                <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} value={this.state.cate_name}/></div>
                                 <div><span><i>*</i>衣物名称：</span><input className='e-input addnewprice-input-long' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
-                                <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype} onChange={value => this.setState({disposetype:value})} /></div>
-                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value})} /></div>
-                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname} onChange={value => this.setState({materialsname:value})} /></div>
+                                <div><span>处理类别：</span><Select option={this.state.dispose_type}  selected={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype} onChange={value => this.setState({disposetype:value.value})} value={this.state.disposetype==null||this.state.disposetype==''?'无':this.state.disposetype}/></div>
+                                <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value.value})} value={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename}/></div>
+                                <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname} onChange={value => this.setState({materialsname:value.value})} value={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname}/></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
                             </div>
                             <div className="addnewprice-one-right">
@@ -442,7 +443,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i>格架：</span><Select option={this.state.grid} selected={this.state.gridname}  onChange={value=>this.setState({ gridname:value})}/>
+                                <span><i>*</i>格架：</span><Select option={this.state.grid} selected={this.state.gridname}  onChange={value=>this.setState({ gridname:value})} value={this.state.gridname}/>
                                 </div>
                           
                             </div>

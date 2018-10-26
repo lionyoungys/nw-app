@@ -76,7 +76,7 @@ export default class extends Component {
                     <table className='ui-table-base bal-sta-tab recharge-sta'>
                         <thead>
                             <tr>
-                                <td></td> 
+                                <td>ID</td> 
                                 <td>卡号</td>
                                 <td>卡类型</td>
                                 <td>充值金额</td>

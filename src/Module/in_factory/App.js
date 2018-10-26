@@ -128,7 +128,7 @@ export default class extends React.Component {
                             &emsp;&emsp;
                             已选择<span className='e-orange'>&nbsp;{this.state.checked.length}&nbsp;</span>件
                             &emsp;&nbsp;
-                            <button className='e-btn confirm' onClick={this.handleClick}>打包退回</button>
+                            <button className='e-btn confirm btn-both' onClick={this.handleClick}>打包退回</button>
                         </div>
                     </div> 
                 </div>                                           

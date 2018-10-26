@@ -39,7 +39,7 @@
     font-size:12px;
     text-align:center;
     background: url(./images/thead-border.png) ;
-    background-size:2px 24px;
+    background-size:1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -75,9 +75,9 @@
 }
 .waiting-list tbody{
     /* width:776px; */
-    height:315px;
+    height:300px;
     /* min-width:776px; */
-    max-height:315px;    
+    max-height:300px;    
     display:block;
     /* overflow-x:hidden; */
     overflow-y:auto;
@@ -93,7 +93,7 @@
     min-height:25px;
     display:inline-block;
 }
-
+.waiting-list tbody tr:hover{background: #fbfcfd}
 .waiting-list tbody tr td{
     height:auto;
     min-height:25px;

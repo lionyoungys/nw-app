@@ -116,6 +116,7 @@
    color:#000;
    font-size:14px;
 }
+.lattice-title span a{color: #f00}
 .lattice-div{
     width:872px;
     margin:0 auto;

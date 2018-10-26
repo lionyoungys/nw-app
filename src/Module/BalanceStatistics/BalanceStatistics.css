@@ -51,7 +51,6 @@
     max-width: 872px;
     overflow-x: auto;
     height: 361px;
-
 }
 .ui-table-base.bal-sta-tab.bal-tab tbody{
     max-height: 305px;
@@ -66,12 +65,7 @@
     max-width: 40px;
     min-width: 40px;
 }
-.ui-table-base.bal-sta-tab.bal-tab thead tr td:first-child {
-    background: url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size: 10px 10px;
-    background-position-x: 27px;
-    background-position-y: 12px;
-}
+
 .ui-table-base.bal-sta-tab.bal-tab tr:last-child{
     border-bottom:1px solid #dbdfe6;
 }
@@ -84,14 +78,14 @@
 .ui-table-base.bal-sta-tab.bal-tab thead tr td:last-child{background:none}
 #cust-tab table thead th{
     background: url(./images/thead-border.png);
-    background-size: 2px 24px;
+    background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position:right center;
 }
 #cust-tab table thead th:last-child{background:none}
 .lattice table thead tr th{
     background: url(./images/thead-border.png);
-    background-size: 2px 24px;
+    background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
 }

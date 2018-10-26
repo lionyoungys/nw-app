@@ -20,10 +20,3 @@
     max-width: 40px;
     min-width: 40px;
 }
-
-.ui-table-base.bal-sta-tab.recharge-sta thead tr td:first-child {
-    background: url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size: 10px 10px;
-    background-position-x: 27px;
-    background-position-y: 12px;
-}

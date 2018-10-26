@@ -146,7 +146,7 @@ export default class extends Component {
             <Window title='撤单处理' onClose={this.props.closeView} width="902" height="626"> 
             <div>
                 <div className="Deliverywarning-title Itsprocessing-title">
-                  <input type="text" className='e-input its-pro-input' onChange = {e=>this.setState({orderNum:e.target.value})}/> 
+                  <input type="text" className='e-input its-pro-input' onChange = {e=>this.setState({orderNum:e.target.value})} placeholder="订单号/流水号"/> 
                    <button className="e-btn" onClick={this.searchOrder}>查询</button>                  
                 </div>  
                 <div className="Itsprocessing-count">

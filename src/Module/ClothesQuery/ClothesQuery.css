@@ -68,7 +68,7 @@
 .ui-table-base.clo-que-tab thead{display: -webkit-box}
 .ui-table-base.clo-que-tab thead tr td{
     background: url(./images/thead-border.png);
-    background-size: 2px 24px;
+    background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
 }

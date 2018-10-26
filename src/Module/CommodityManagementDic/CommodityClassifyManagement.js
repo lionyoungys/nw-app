@@ -114,7 +114,7 @@ export default class extends Component {
     );
         return (
 
-            <Dish title='商品分类管理' onClose={this.props.onclose} width='632' height='411'>
+            <Dish title='商品分类管理' onClose={this.props.onclose} width='467' height='374'>
                 {/* 左侧table */}
                 <div className="commodity_classify_management_left">
 

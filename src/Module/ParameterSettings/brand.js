@@ -92,8 +92,8 @@ export default class extends Component {
     deleteBrand(e){
         let index=e.target.dataset.index;
         this.setState({index:index,brandid:this.state.brandlist[index].id});
-        tool.ui.error({title:'提示',msg:'将删除品牌,品牌上的衣物信息可能丢失',button:'确定',callback:(close, event) => {
-            if(event=='click'){
+        tool.ui.error({title:'提示',msg:'将删除品牌,品牌上的衣物信息可能丢失',button:['确定'],callback:(close, event) => {
+            if(event=='确定'){
             api.post('delBrand', {token:'token'.getData(),
             id:this.state.brandid
         }, (res, ver) => {

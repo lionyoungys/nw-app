@@ -150,7 +150,6 @@
     height:40px;
     background:#f5f8fa;
     display:block;
-
 }
 .Customerquery-tab table thead tr{min-width:868px;height:40px;}
 .Customerquery-tab table thead tr th{   
@@ -160,7 +159,7 @@
     color:#585858;
     font-size:12px;
     text-align:center;
-    border-right:1px solid #e9f0f5;
+    /* border-right:1px solid #e9f0f5; */
     max-width:91px;
 }
 .Customerquery-tab table thead tr th:last-child{border-right:none}
@@ -175,7 +174,7 @@
 }
 .Customerquery-tab table tbody{
     min-width:868px;
-    max-height:270px;
+    max-height:255px;
     overflow-y: auto;
     display:inline-block;
     overflow-x: hidden;
@@ -200,6 +199,7 @@
     max-width:91px;
     cursor:pointer;
 }
+
 .Customerquery-tab table tbody tr td:last-child{border-right:none;}
 .Customerquery-tab table tbody tr td:first-child{width:31px;min-width: 31px;}
 

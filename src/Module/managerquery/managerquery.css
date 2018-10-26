@@ -41,8 +41,8 @@
     border-bottom: none;
 }
 .ui-table-base.man-que-tab-two tbody{
-    max-height:99px;
-    height:99px;
+    max-height:85px;
+    height:85px;
 }
 .ui-table-base.man-que-tab-two tr td{
     max-width: 105px;
@@ -51,10 +51,11 @@
 /* 修改之后 */
 .ui-table-base.man-que-tab{
     max-height: 210px;
-    margin-top:3px;
+    margin-top:13px;
     /* height: 210px; */
     border:1px solid #e6e7ec;
     border-bottom: none;
+    height: 210px;
 }
 .ui-table-base.man-que-tab tbody{
     max-height: 185px;
@@ -67,3 +68,6 @@
     max-width:192px;
 }
 .ui-table-base.man-que-tab-two tbody{width: auto} 
+.man-que-tab,.man-que-tab-two tbody tr{border-bottom: 1px solid #e6e7ec;box-sizing: border-box}
+
+.ui-table-base thead th{color: #4d4d4d}
