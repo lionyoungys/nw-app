@@ -919,6 +919,22 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-input-shop{width: 15px;height: 14px;margin-top: -7px;background-position: 0 0}
 .ui-input-phone{width: 14px;height: 18px;margin-top: -9px;background-position: -15px 0}
 .ui-input-lock{width: 13px;height: 17px;margin-top: -8.5px;background-position: 0 -14px}
+/* 选项框组件 */
+.ui-option{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 112px;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    position: relative;
+    padding-left: 46px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+}
+.ui-option[checked=checked] {border-color: #3abbd5}
+.ui-option>i{position: absolute;top: 50%;}
 /* 工具类ui样式部分 */
 /* 加载框样式 */
 .t-ui-loading{
