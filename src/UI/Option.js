@@ -27,8 +27,7 @@ export default class extends Component {
                 }
                 style={this.props.style}
                 checked={this.props.checked ? 'checked' : ''}
-                onClick={this.handleClick}
-            ><i></i>{this.props.value}</span>
+            ><span onClick={this.handleClick}></span><i></i>{this.props.value}</span>
         );
     }
 }

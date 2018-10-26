@@ -58,22 +58,19 @@ export default class extends Component {
         let checked = e.target.dataset.checked
         ,   value = e.target.dataset.id;
         if (checked =='1') {
-            console.log(1)
-
             let index = value.inArray(this.state.checkedArr);
             if (-1 !== index) {
                 this.state.checkedArr.splice(index, 1);
                 this.setState({ checkedArr: this.state.checkedArr});
             }
         } else {
-           console.log(2)
             this.state.checkedArr.push(value);            
             this.setState({ checkedArr: this.state.checkedArr});
         }
     }
 
     btn_up (){
-        console.log(JSON.stringify(this.state.checkedArr))
+        // console.log(JSON.stringify(this.state.checkedArr))
         api.post('up_module', {
             token:token,
             moduleid: JSON.stringify(this.state.checkedArr),
@@ -100,7 +97,7 @@ export default class extends Component {
 
             tmp = -1 !== item.id.inArray(this.state.checkedArr)?'1':'0';
             return (
-                <div data-checked={tmp} data-id={item.id} onClick={this.handleChecked} className={tmp=='0'?'onclick':null}>
+                <div data-checked={tmp} data-id={item.id} onClick={this.handleChecked} className={tmp=='1'?'onclick':null}>
                     <i data-checked={tmp} data-id={item.id} onClick={this.handleChecked}></i>
                     <b data-checked={tmp} data-id={item.id} onClick={this.handleChecked}>{item.name}</b>
                 </div>
