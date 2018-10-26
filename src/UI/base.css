@@ -266,7 +266,7 @@ table tbody tr:nth-child(odd):hover{
 } 
 #no-data{
     display: block;
-    background: url(./img/ui-empty.png) no-repeat;
+    background: url(./images/ui-empty.jpg) no-repeat;
     background-size: 108px 106px;
     height: auto;
     padding-top: 96px;

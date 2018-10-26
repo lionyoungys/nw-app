@@ -176,7 +176,6 @@
     -webkit-box-sizing: border-box;
 }
 .clothes-item-header>div:last-child{border-right: none}
-.clothes-items>div>div{background: #fff}
 .clothes-item-header>div, .clothes-items>div>div{width: 106px;}
 .clothes-items{
     max-height: 214px;
@@ -195,6 +194,7 @@
     border-bottom: 1px solid #e6ecf5;
     cursor: default;
 }
+.clothes-items>div:hover{background-color: #fbfcfd}
 /* brand.js problem.js color.js 界面样式*/
 .clothes-problem-top{
     display: -webkit-flex;
@@ -377,6 +377,7 @@
     color: #a7a7a7;
     border-bottom: 1px solid #e6ecf5;
 }
+.clothes-user-main-body>div:hover{background-color: #fbfcfd}
 .clothes-user-main>:first-child>div,
 .clothes-user-main-body>div>div{width: 80px}
 .clothes-user-main>:first-child>div:nth-child(3),
