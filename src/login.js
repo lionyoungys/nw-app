@@ -56,7 +56,7 @@ class Main extends Component {
                     nw.Window.open('main.html', nw.App.manifest.mainWindow);
                     win.close();
                 } else {
-
+                    tool.ui.fail({title:'登陆失败', msg:res.msg});
                 }
             }
         );

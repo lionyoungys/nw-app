@@ -319,9 +319,11 @@
         var body = document.body
         ,   layer = this.c('div', 't-ui-fail')
         ,   title = this.c('div', 't-ui-fail-title')
-        ,   icon = this.c('i');
+        ,   icon = this.c('i')
+        ,   span = this.c('span');
         title.appendChild(icon);
-        title.innerText = object.title;
+        title.appendChild(span);
+        span.innerText = object.title;
         layer.appendChild(title);
         layer.appendChild(this.c('div', 't-ui-fail-content', object.msg));
         body.appendChild(layer);

@@ -1027,8 +1027,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 22px;
     background-image: url(images/t-ui-layer-icons.png);
     background-repeat: no-repeat;
-    background-position: -40px -40px;
+    background-position: -41px -41px;
     margin-right: 6px;
+    vertical-align: text-bottom;
 }
 .t-ui-fail-content{
     margin-top: 22px;
