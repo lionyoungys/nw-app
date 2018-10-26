@@ -59,7 +59,7 @@ export class TabFields extends Component {
 
     handleClick(e) {
         let node = e.target;
-        'function' === typeof this.props.onChange && this.props.onChange({value:node.innerText, index:node.dataset.i});
+        'function' === typeof this.props.onChange && this.props.onChange({value:node.innerText, index:Number(node.dataset.i)});
     }
 
     render() {

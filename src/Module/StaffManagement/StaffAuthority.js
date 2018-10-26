@@ -3,10 +3,10 @@
  * @author wang jun & ranchong 
  */
 import React, {Component} from 'react';
-import '../../../UI/bothpages.css'  //公共样式
-import '../StaffManagement.css';
-import Window from '../../../UI/Window';
-import {topMenu} from '../../../Menus.js';
+import '../../UI/bothpages.css'  //公共样式
+import './StaffManagement.css';
+import Window from '../../UI/Window';
+import Menu from '../../Menus.js';
 export default class extends Component {   
     constructor(props) {
         super(props);   
@@ -125,7 +125,7 @@ export default class extends Component {
     
     render() {
         //菜单列表     
-        let menuList = topMenu.map((obj, index) =>
+        let menuList = Menu.map((obj, index) =>
             <div className='addGroup-content-cell' key={'obj' + index}>
                 <div className='addGroup-content-cell-content'>
                     <ul>

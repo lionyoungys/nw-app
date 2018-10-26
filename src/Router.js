@@ -91,7 +91,6 @@ export default {
     data2:Data2,
     data6:Data6,
     data4:Data4,
-
     revoke_data:RevokeData,//撤单统计
     operating_details:OperatingDetails,//营业明细
     member_info_update:MemberInfoUpdate,//会员信息修改
@@ -102,11 +101,9 @@ export default {
     balance_statistics:BalanceStatistics,  //余额统计
     member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
     foreground_statistics:ForegroundStatistics, //前台统计
-    staff_management:StaffManagement,  //员工管理
     member_card_consume:MemberCardConsume,//会员卡消费
     unpaid_statistics: UnpaidStatistics,//未付款统计
     recharge:Recharge,    //充值
-    staff_management:StaffManagement,  //员工管理
     operate_income:OperateIncome, //营业日报
     exchange_card: ChangeCard, //换卡
     report_loss_main: ReportLossMain,//挂失主页面

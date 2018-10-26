@@ -5,34 +5,23 @@
 import React, {Component} from 'react';
 import './StaffManagement.css';
 import Window from '../../UI/Window';
-import Addstaff from './Addstaff/Addstaff';
-import StaffAuthority from './StaffAuthority/StaffAuthority';
+import {TabFields} from '../../UI/Tab';
+import Addstaff from './Addstaff';
+import StaffAuthority from './StaffAuthority';
 export default class extends Component {   
     constructor(props) {
-        super(props);   
-        this.state={show:false,hover:true};
-        this.switchpermission=this.switchpermission.bind(this);
-        this.switchstaff=this.switchstaff.bind(this);      
-    }; 
-    switchpermission(){
-        this.setState({show:true,hover:false})
-    }
-    switchstaff(){
-        this.setState({show:false,hover:true});
-        
-    }
+        super(props);
+        this.state={index:0};
+        this.handleChange = this.handleChange.bind(this);
+    };
+    handleChange(obj) {this.setState({index:obj.index})}
     render() {      
         return ( 
-
-               <Window title='员工管理' onClose={this.props.closeView}>   
-                   <div className="Settings-title">
-                      <span className={this.state.hover?'hover':null} onClick={this.switchstaff}>员工</span>
-                      <span className={this.state.hover?null:'hover'} onClick={this.switchpermission}>权限</span>
-                   </div> 
-                    {
-                        this.state.show?<StaffAuthority/>:<Addstaff/>
-                    }
-               </Window> 
+            <Window title='员工管理' onClose={this.props.closeView} padding={true}>
+                <TabFields option={['员工', '权限']} checked={this.state.index} onChange={this.handleChange} style={{padding:'42px 12px 12px'}}>
+                    {this.state.index ? <StaffAuthority/> : <Addstaff/>}
+                </TabFields> 
+            </Window> 
         );            
     };
 }
