@@ -17,7 +17,7 @@ export default class extends Component {
                         <p>请将商户ID告诉分店，由分店申请加入</p>
                         <p>门店ID：1229</p>
                         <p>门店名称：诗奈尔大望路店</p>
-                        <button className='e-btn'>申请列表</button>
+                        <button className='e_btn_store'>申请列表</button>
                     </div>
                 </div>
                 <div className='store_management_content_ass_non_left'>
@@ -27,7 +27,7 @@ export default class extends Component {
                         <h2>&emsp;</h2>
                         <p>请输入您要加入的总店ID</p>
                         <input className='e-input store_management_content_ass_non_right_input'></input>
-                        <button className='e-btn'>申请加入</button>
+                        <button className='e_btn_store'>申请加入</button>
                     </div>
                 </div>
 

@@ -43,7 +43,7 @@ export default class extends Component {
             <div>&emsp;开户行：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.bank} onChange={e => this.setState({bank:e.target.value})}/></div>
             <div>&emsp;&emsp;姓名：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.manager} onChange={e => this.setState({manager:e.target.value})}/></div>
             <div>银行卡号：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.account} onChange={e => this.setState({account:e.target.value})}/></div>
-            <button className='e-btn' onClick={this.bankcardsave}>保存</button>
+            <button className='e_btn_store' onClick={this.bankcardsave}>保存</button>
            </div> 
         );
     }

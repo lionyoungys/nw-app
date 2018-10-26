@@ -79,7 +79,7 @@ export default class extends Component {
                     <div>上门服务费：&emsp;<input type='text' className='e-input' value={this.state.Doorto} onChange={e=>this.setState({Doorto:e.target.value})}/><a>元</a></div>
                     <div>&emsp;满减件数：&emsp;<input type='text' className='e-input' value={this.state.Doortonumber} onChange={e=>this.setState({Doortonumber:e.target.value})}/><a>件</a></div>
                     <div>&emsp;满减金额：&emsp;<input type='text' className='e-input' value={this.state.Doortomoney} onChange={e=>this.setState({Doortomoney:e.target.value})}/><a>元</a></div>
-                    <button className='e-btn' onClick={this.onlinesave}>保存</button>
+                    <button className='e_btn_store' onClick={this.onlinesave}>保存</button>
                 </div>
             </div>
         );

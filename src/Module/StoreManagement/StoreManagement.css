@@ -66,7 +66,7 @@
 }
 /* 基本信息 */
 .store_management_content_baseInfo{
-    height: 350px;
+    height: 400px;
     overflow: hidden;
 }
 .store_management_content_baseInfo div{
@@ -85,14 +85,15 @@
 }
 
 .store_management_content_baseInfo span{
-
+    border-radius: 4px;
     display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    border: 1px solid #c2c2c2;
-    background: #efefef;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #d8dce5;
+    background: #f4f4f4;
     vertical-align:middle;
-    text-indent: 10px
+    text-indent: 10px;
+    color: #c3c7cd;
 }
 .store_management_content_baseInfo div span.store_management_disable_span{
 
@@ -114,14 +115,14 @@
     position: absolute;
     top: 0;right: 0;
     z-index: 1;
-    background-color:#cfd0d1;
+    /* background-color:#cfd0d1; */
     border-left:1px solid #c2c2c2;
 }
 
 .store_management_content_baseInfo button{
     float: left;
     margin-left: 71px;
-    margin-top:54px
+    margin-top:17px
 }
 
 /* 银联卡 */
@@ -472,10 +473,10 @@ input[type=radio]{
 }
 
 .store_management_content_baseInfo div.store-detail{
-    width:546px;
+    width:100%;
     height:125px;
     line-height:20px;
-    margin-top:8px;
+    margin-top:5px;
     float: left
 }
 .store_management_content_baseInfo div.store-detail span{
