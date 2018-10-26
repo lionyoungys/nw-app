@@ -65,6 +65,7 @@ class Main extends Component {
     render() {
         return (
             <div className='login'>
+                <div className='login-move-area'></div>
                 <i className='e-icon-close14' onClick={() => win.close()}></i>
                 <span className='login-words'></span>
                 <span className='login-edition'>商家版</span>
