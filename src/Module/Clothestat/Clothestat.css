@@ -2,53 +2,50 @@
     width:780px;
     height:150px;
     border:1px solid #e1e4eb;
-    max-width:870px;
+    max-width:780px;
     overflow-x:auto;
     overflow-y:hidden;
     display:block;
     margin:0 auto;
 }
 .clothestat-tab table thead{
-    width:870px;
-    height:25px;
+    width:780px;
+    height:40px;
     background:#f6f7fb;
 }
-.clothestat-tab table thead tr{width:870px;height:25px;}
+.clothestat-tab table thead tr{width:780px;height:40px;}
 .clothestat-tab table thead tr th{
     width:130px;
-    height:25px;
-    border-right:1px solid #eaeff5;
-    color:#636466;
+    height:40px;
+    /* border-right:1px solid #eaeff5; */
+    color:#4d4d4d;
     font-size:12px;
     min-width:130px;
     max-width:130px;
     text-align:center;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
+.clothestat-tab table thead tr th:last-child{background: none}
 .clothestat-tab table thead tr th:first-child{
     width:31px;
     min-width:31px;
-    background:url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size:10px 10px;
-    background-position-x:17px;
-    background-position-y:11px;
 }
 .clothestat-tab table tbody{
     width:auto;
-    height:112px;
-    max-height:112px;
+    height:95px;
+    max-height:95px;
     overflow-y:auto;  
     display:inline-block;
     overflow-x:hidden;
 }
-.clothestat-tab table tbody tr{width:870px;height:25px;}
-.clothestat-tab table tbody tr:last-child{
-    border-bottom: 1px solid #e1e4eb;
-}
+.clothestat-tab table tbody tr{height:40px;border-bottom: 1px solid #e1e4eb; }
 .clothestat-tab table tbody tr td{
     width:130px;
-    height:25px;
-    border-right:1px solid #e1e4eb;
-    color:#a7a7a7;
+    height:40px;
+    color:#999;
     font-size:12px;
     min-width:130px;
     text-align:center;
@@ -60,50 +57,57 @@
 }
 
 .clothall{
-    width:330px;
-    height:30px;
-    line-height:30px;
-    color:#636466;
+    width:776px;
+    height:37px;
+    line-height:37px;
+    color:#4d4d4d;
     font-size:12px;
     font-weight:bold;
-    margin-left:13px;
+    /* margin-left:13px; */
+    margin: 0 auto;
 }
 .clothall-tab{
-    width:503px;
+    width:776px;
     max-height:155px;
     height:155px;
     border:1px solid #e1e4eb;
     display:block;
-    margin-left:13px;
+    margin:0 auto;
 }
 .clothall-tab thead{
     display:inline-block;
-    width:503px;
+    width:776px;
     background:#f6f7fb;
+    height: 40px;
 }
 .clothall-tab thead tr{
-    width:503px;
-    height:25px;   
+    width:776px;
+    height:40px;   
 }
 .clothall-tab thead tr th{
-    width:242px;
-    height:25px;
-    line-height:25px; 
+    width:388px;
+    height:40px;
+    line-height:40px; 
     font-size:12px; 
-    color:#636466;
+    color:#4d4d4d;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
-.clothall-tab thead tr th:first-child{
-    border-right:1px solid #eaeef7;
-}
+.clothall-tab thead tr th:last-child{background: none;}
+
 .clothall-tab tbody tr td{
-    width:264px;
-    height:25px;
-    line-height:25px;
+    width:388px;
+    height:40px;
+    line-height:40px;
     font-size:12px;
-    color:#a7a7a7;
+    color:#999;
     text-align:center;
 }
-.clothall-tab tbody{max-height:120px;overflow-y:auto;display:block}
+.clothall-tab tbody tr{border-bottom: 1px solid #edf0f9;box-sizing: border-box}
+.clothall-tab tbody tr:last-child{border-bottom: none}
+.clothall-tab tbody{max-height:114px;overflow-y:auto;display:block}
 
 #clo-que-tab thead tr td:first-child{
     background: url(./images/thead-border.png);
@@ -151,19 +155,20 @@
 } */
 .clothestat_dataright{float:left;width:255px;height:24px;margin:17px 0 0 6px;}
 .clothestat_dataright button{
-    width:71px;
-    border:none;
-    background:none;
-    height:24px;
-    margin-left:10px;
-    background:#3fbfdc;
+    padding: 0;
+    margin: 0;
+    width: 62px;
+    height: 28px;
     text-align: center;
-    line-height:24px;
-    color:#fff;
-    font-size:12px;
-    outline:none;
-    cursor: pointer;
+    background-color: #3fc0db;
+    font-weight: 500;
+    border-radius: 4px;
+    color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: none;
 }
 .clothestat_dataLeft div .e-date{width: 146px}
 
-.clothstate-foot{margin-top: 37px}
+.clothstate-foot{margin-top:44px}

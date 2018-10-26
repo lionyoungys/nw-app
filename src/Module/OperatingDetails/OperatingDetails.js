@@ -87,12 +87,12 @@ export default class extends Component {
                             </div>
                        
                 </div>  
-                <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
+                <div className="Takeclothes-div-title operating-detail">已为您找到<b>{this.state.count}</b>条数据</div>
                     <div className="Takeclothes-tab Takeclothesdetail-tab" id="operating-div">
                         <table cellPadding="0" cellSpacing="0" border="0">
                            <thead>
                                <tr>
-                                   <th></th>
+                                   <th>ID</th>
                                    <th>流水号</th>
                                    <th>店员姓名</th>
                                    <th>衣物件数</th>

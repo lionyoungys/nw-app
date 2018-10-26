@@ -13,9 +13,11 @@
     overflow-x:auto;
     height:340px;
     background:#fff;
+    width:770px;
 }
 #operating-div tbody{
     overflow-x:auto;
     max-height:290px;
 }
-
+#operating-div tbody tr td{color: #999}
+.Takeclothes-div-title.operating-detail{height: 40px;line-height: 40px;padding-top: 0;margin-top: 0}

@@ -19,3 +19,4 @@
     min-width: 97px;
     max-width: 97px;
 }
+.ui-table-base.balance-det-tab tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}

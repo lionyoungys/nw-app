@@ -24,6 +24,8 @@
     min-width: 107px;
     
 }
+
+.ui-table-base.bus-sta-tab tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}
 /* #busin-data{
     height:300px;
     max-height:300px;

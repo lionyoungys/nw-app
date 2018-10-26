@@ -90,3 +90,4 @@
     background-position: right center;
 }
 .lattice table thead tr th:last-child{background:none}
+.ui-table-base.bal-sta-tab.bal-tab tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}

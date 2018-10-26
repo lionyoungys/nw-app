@@ -133,7 +133,7 @@
     font-size:12px;
     width:200px;
     height:34px;
-    line-height:55px;
+    line-height:35px;
     margin-left: 10px;
 }
 .Customerquery-tab-title b{color:#ff0000}
@@ -145,7 +145,6 @@
     overflow-x: auto;
     overflow-y:hidden;
     margin-left: 9px;
-    margin-top: 10px;
 }
 .Customerquery-tab table thead{
     min-width:868px;
@@ -185,6 +184,8 @@
     min-width:868px;
     height:40px;
     display:inline-block;
+    border-bottom: 1px solid #edf0f9;
+    box-sizing: border-box;
 }
 
 .Customerquery-tab table tbody tr td{     

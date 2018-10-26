@@ -150,6 +150,7 @@
     overflow: hidden;
     margin: 0 auto;
 }
+
 .ui-table-base tr td,.ui-table-base tr th{
     padding: 0;
     width: auto;
@@ -268,7 +269,7 @@ table tbody tr:nth-child(odd):hover{
     display: block;
     background: url(./images/ui-empty.jpg) no-repeat;
     background-size: 108px 106px;
-    padding-top: 100px;
+    padding-top: 112px;
     text-align: center;
     color: #333;
     font-size: 12px;
@@ -293,6 +294,7 @@ table tbody tr:nth-child(odd):hover{
     max-width: 150px;
     min-width: 150px;
     text-align: center;
+    color: #999;
 }
 
 table{background:#fff}
@@ -361,6 +363,7 @@ table tbody tr td{
     background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
+    color: #4d4d4d;
 }
 .ui-table-base thead tr th{
     color: #5a5e66;
@@ -368,6 +371,7 @@ table tbody tr td{
     background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
+    color: #4d4d4d;
 }
 .ui-table-base thead tr td:last-child{
     background: none;
@@ -376,5 +380,7 @@ table tbody tr td{
     background: none;
 }
 .clean-top .left .btn-both{background: #3fc0db;color: #fff}
+
+.ui-table-base tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}
 
 

@@ -121,7 +121,7 @@ export default class extends Component {
                         <table className="clothestat-tab">
                                <thead>
                                    <tr>
-                                       <th></th>
+                                       <th>ID</th>
                                        <th>店员姓名</th>
                                        <th>客户电话</th>
                                        <th>流水号</th>                                      
