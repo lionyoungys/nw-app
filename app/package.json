@@ -7,7 +7,7 @@
   "author": "Edwin Young",
   "license": "MIT",
   "window": {
-    "icon": "img/icon.png",
+    "icon": "images/icon.png",
     "resizable": false,
     "min_width": 800,
     "min_height": 568,
@@ -16,7 +16,7 @@
     "new_instance": true
   },
   "mainWindow": {
-    "icon": "img/icon.png",
+    "icon": "images/icon.png",
     "min_width": 800,
     "min_height": 568,
     "frame": false,

@@ -965,7 +965,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: fixed;
     top: 50%;left: 50%;
     z-index: 999999;
-    background: url(img/t-ui-loading.gif) no-repeat;
+    background: url(images/t-ui-loading.gif) no-repeat;
     margin: -120px 0 0 -62px;
 }
 /* 弹框样式 */

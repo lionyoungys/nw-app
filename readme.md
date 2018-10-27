@@ -13,7 +13,6 @@ app/login.html           -->    登录界面
 app/main.html            -->    系统主界面
 app/base.css             -->    通用样式
 app/font                 -->    字体文件夹
-app/img                  -->    图片文件夹(废弃)
 app/images               -->    图片文件夹
 app/media                -->    媒体文件夹
 app/vendor               -->    外部引入插件或工具包文件夹
