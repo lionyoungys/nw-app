@@ -57,7 +57,8 @@ export default class extends React.Component {
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
                 <input type='date' className='e-date'/><br/>
                 <input type='text' className='e-input' placeholder='输入内容' value={this.state.total} onChange={e => this.setState({total:e.target.value})}/>&emsp;
-                <input type='text' className='e-input e-error' placeholder='输入内容'/><br/>
+                <input type='text' className='e-input e-error' placeholder='输入内容'/>&emsp;
+                <input type='text' className='e-input e-error' placeholder='输入内容' disabled/><br/>
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} value={this.state.selectVal} onChange={obj => {console.log(obj);this.setState({selectVal:obj.value})}}/>
                 &emsp;
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} disabled={true} value={this.state.selectVal} onChange={obj => {console.log(obj);this.setState({selectVal:obj.value})}}/>
