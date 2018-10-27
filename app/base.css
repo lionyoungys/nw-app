@@ -118,6 +118,17 @@ input:-moz-placeholder, textarea:-moz-placeholder {color:#aaa;font-size: 12px}
 input::-moz-placeholder, textarea::-moz-placeholder {color:#aaa;font-size: 12px}
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-size: 12px}
 .e-input-row{display: block;margin-bottom: 12px;}
+.e-textarea{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 4px;
+    word-break: break-all;
+    resize: none;
+}
+.e-textarea:focus{border-color: #3fc0db}
 /* 选项 */
 .e-option{
     display: inline-block;
