@@ -61,7 +61,7 @@ import Deliverywarning from './Module/Deliverywarning/Deliverywarning'; //交期
 import Itsprocessing from './Module/Itsprocessing/Itsprocessing'; //撤单处理
 import Pay from './Module/Pay/Pay'; //赔付
 import Aboutsnl from './Module/aboutsnl/aboutsnl'; // 关于速洗达
-import Orderquery from './Module/Orderquery/Orderquery'; // 订单查询
+import Orderquery from './Module/Orderquery/Orderquery';    // 订单查询
 import OpenCashBox from './Module/OpenCashBox';    //开钱箱界面
 import Data6 from './Module/Data/App6';    //金熨斗数据导入6.0版本
 import Data4 from './Module/Data/App4';    //金熨斗数据导入4.0版本
