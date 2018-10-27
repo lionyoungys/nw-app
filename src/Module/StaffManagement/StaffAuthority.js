@@ -148,7 +148,6 @@ export default class extends Component {
         //权限列表
         var authlist=this.state.authlist.map((item,index) =>
             <tr key={'item'+index}>
-                <td>{index+1}</td>
                 <td>{item.auth_name}</td>
                 <td>{item.authName}</td>                                   
                 <td><i onClick={() => this.setState({ show1: true, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
@@ -160,7 +159,6 @@ export default class extends Component {
                     <table className="ui-table-base staff-tab">
                         <thead>
                             <tr>
-                                <td></td>
                                 <td>组名称</td>
                                 <td>权限</td>
                                 <td>操作</td>

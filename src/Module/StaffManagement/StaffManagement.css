@@ -50,31 +50,27 @@
     overflow-y: auto;
 }
 .ui-table-base.staff-tab tbody tr td:first-child,.ui-table-base.staff-tab thead tr td:first-child{
-    min-width: 31px;
-    max-width: 31px;
+    min-width: 98px;
+    max-width: 98px;
 }
 .ui-table-base.staff-tab tbody tr td:nth-child(2),.ui-table-base.staff-tab thead tr td:nth-child(2){
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 525px;
+    max-width: 525px;
 }
 .ui-table-base.staff-tab tbody tr td:nth-child(3),.ui-table-base.staff-tab thead tr td:nth-child(3){
-    min-width: 611px;
-    max-width: 611px;
-}
-.ui-table-base.staff-tab tbody tr td:nth-child(4),.ui-table-base.staff-tab thead tr td:nth-child(4){
-    min-width: 149px;
-    max-width: 149px;
+    min-width: 121px;
+    max-width: 121px;
 }
 .ui-table-base.staff-tab tbody tr td i:first-child{
-    font-size: 13px; 
-    color: black;   
+    font-size: 12px; 
+    color: #3fc0db;   
     margin-right: 20px;
     font-style:normal;
 }
 .ui-table-base.staff-tab tbody tr td i:last-child{
     font-style:normal;
-    font-size: 13px;    
-    color: red;
+    font-size: 12px;    
+    color: #3fc0db;
 }
 .addstaffborder{
 
