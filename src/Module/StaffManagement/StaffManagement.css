@@ -22,19 +22,26 @@
     height:24px;
     line-height:24px;
     text-align: center;
-    background: url(./img/e-btn.png);
+    border-radius: 4px;
+    color: #fff;
+    background: #3fc0db;
     float:right;
     margin:18px 20px 12px 0;
     cursor: pointer;
 }
-.addstaff:hover{background:url(./img/hoverbtn.png)}
+.addstaff:hover{
+    
+}
 .StaffAuthority {
+    border-radius: 4px;
     font-size:12px;
     width:71px;
     height:24px;
     line-height:24px;
+    color: #fff;
+    font-weight: 400;
     text-align: center;
-    background: url(./img/e-btn.png);
+    background: #3fc0db;
     float:right;
     margin:18px 20px 12px 0;
     cursor: pointer;

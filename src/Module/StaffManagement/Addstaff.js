@@ -230,7 +230,6 @@ export default class extends Component {
       
         let operatorlist= this.state.operatorlist.map((item,index) => 
         <tr key= {'item'+index}>
-            <td>{index+1}</td>
             <td>{item.aname}</td>
             <td>{item.account}</td>
             <td>{item.auth_name}</td>
@@ -246,10 +245,10 @@ export default class extends Component {
                     <Dish title='新增员工' width='360' height='260' onClose={() => this.setState({ show: false })}>
                         <div className='addstaffborder'>
                             <div className='margintop'>
-                                <span >姓名:</span><input type='text' onChange={e => this.setState({ aname: e.target.value })} value={this.state.aname} autoFocus='autoFocus' />
+                                <span >姓名:</span><input type='text' className='e-input' onChange={e => this.setState({ aname: e.target.value })} value={this.state.aname} autoFocus='autoFocus' />
                             </div>
                             <div>
-                                <span>手机号:</span><input type='text' onChange={e => this.setState({ mobile: e.target.value })} value={this.state.mobile} />
+                                <span>手机号:</span><input type='text' className='e-input' onChange={e => this.setState({ mobile: e.target.value })} value={this.state.mobile} />
                             </div>
                             <div >
                                 <span >权限:</span><Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange} />
@@ -266,13 +265,13 @@ export default class extends Component {
                 }
                     <div className="bothpages_count">                           
                         <div className="bothpages_count_title Addstaff_count_list">
-                            <span></span>
+                            <span>序号</span>
                             <span>姓名</span>
                             <span>手机号</span>
                             <span>权限</span>
                             <span>操作</span>
                         </div>                                        
-                        <table className="bothpages_count_list " cellPadding="0" cellSpacing="0" border="0">  
+                        <table className="bothpages_count_list" cellPadding="0" cellSpacing="0" border="0">  
                             <tbody>                            
                                {operatorlist}
                             </tbody>
@@ -285,10 +284,10 @@ export default class extends Component {
                         {
                             <div className='updatestaffborder'>
                                 <div className='margintop'>
-                                    <span >姓名:</span><input  type='text' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})} autoFocus='autoFocus'/>
+                                    <span >姓名:</span><input  type='text' className='e-input' value = {this.state.aname} onChange={e => this.setState({aname:e.target.value})} autoFocus='autoFocus'/>
                                 </div>
                                 <div className='mobilephone'>
-                                    <span>手机号:</span><input type='text'  ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
+                                    <span>手机号:</span><input type='text' className='e-input' ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
                                 </div>
                               {/* <div>
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>

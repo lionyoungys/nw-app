@@ -54,14 +54,14 @@
 .bothpages_list div:nth-child(1){margin-right:0px}
 .bothpages_list div:nth-child(2){margin-right:0px}
 .bothpages_count{
-    width:875px;
+    width:741px;
     border:1px solid #8db2e3;
     margin:auto;
     height:auto;
     clear: both;
 }
 .bothpages_count_title{
-    width:875px;
+    width:741px;
     height:25px;
     line-height:25px;
     border-bottom:1px solid #f1f4f9;
@@ -69,7 +69,7 @@
 }
 .bothpages_count_title span{
     display:block;
-    width:209px;
+    width:205px;
     height:25px;
     text-align:center;
     color:#fff;
@@ -83,7 +83,7 @@
 .bothpages_count_title span:last-child{border-right:none}
 /* tab标题样式 */
 .bothpages_count_title span:nth-child(1){
-    width:31px;
+    width:125px;
     background:url(./img/revokedata_list_box_span.png) no-repeat;
     background-size:10px 10px;
     background-position-x:17px;
