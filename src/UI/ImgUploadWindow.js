@@ -4,7 +4,7 @@
  * @desc onClose:窗口关闭事件;onDelete(图片地址, 图片索引):删除事件;onUpload({path:文件路径, stream:可读的文件流对象}):文件上传事件;imgs:包含图片url的一维数组
  */
 import React from 'react';
-import Window from './Window';
+import Dish from './Dish';
 const fs = window.require('fs');
 
 export default class extends React.Component{
@@ -27,10 +27,10 @@ export default class extends React.Component{
 
     render() {
         return (
-            <Window title='图片上传' onClose={this.props.onClose} width='350' height='350'>
+            <Dish title='图片上传' onClose={this.props.onClose} width='348' height='350'>
                 <div className='ui-img-upload-window'>
                     {(this.props.imgs || []).map((obj, index) =>
-                        <div key={obj + '_' + index}>
+                        <div key={tool.UUID()}>
                             <i onClick={this.onDelete} data-index={index} data-url={obj}></i>
                             <img src={obj}/>
                         </div>
@@ -39,7 +39,7 @@ export default class extends React.Component{
                         <input type='file' onChange={this.onUpload} accept='.jpg,.jpeg,.png,.bmp'/>
                     </div>
                 </div>
-            </Window>
+            </Dish>
         );
     }
 }
