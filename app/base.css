@@ -110,7 +110,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     color: #5a5e66;
     outline: none;
 }
-.e-input[disabled], .e-input[disabled]:focus{background-color: #ccc}
+.e-input[disabled], .e-input[disabled]:focus{background-color: #f4f4f4}
 .e-input:focus{border: 1px solid #3fc0db}
 .e-input.e-error:focus{border: 1px solid #f60000}
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 12px}
@@ -503,8 +503,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
 }
-.ui-select>.e-input:disabled{background-color: #fff}
-.ui-select:hover>.e-input{border: 1px solid #3fc0db}
+.ui-select>.e-input, .ui-select>.e-input:disabled{background-color: #fff}
+.ui-select[data-disabled=disabled]>.e-input, .ui-select[data-disabled=disabled]>.e-input:disabled{background-color: #f4f4f4;}
+.ui-select:hover>.e-input{border-color: #3fc0db}
+.ui-select[data-disabled=disabled]:hover>.e-input{border-color: #d7dee4}
+/* #d7dee4 */
 .ui-select>section{
     display: none;
     position: absolute;
@@ -516,6 +519,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-shadow: 4px 4px 4px #ebeff6;
 }
 .ui-select:hover>section{display: block;}
+.ui-select[data-disabled=disabled]:hover>section{display: none}
 .ui-select>section>div{
     width: 100%;
     background-color: #fff;

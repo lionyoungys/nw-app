@@ -59,7 +59,8 @@ export default class extends React.Component {
         }
         return (
             <div
-                className={'ui-select' + ( 'string' === typeof this.props.className ? (' ' + this.props.className) : '' )} 
+                className={'ui-select' + ( 'string' === typeof this.props.className ? (' ' + this.props.className) : '' )}
+                data-disabled={this.props.disabled ? 'disabled' : ''}
                 style={this.props.style}
             >
                 <i></i>
