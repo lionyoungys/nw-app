@@ -40,6 +40,22 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-icon-download{width: 14px;height: 13px;background-position: -26px 0}
 .e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
+.e_btn_store{
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    height: 28px;
+    text-align: center;
+    background-color: #3fc0db;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    color: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    border: none;
+}
 .e-btn, .e-btn-c{
     padding: 0;
     margin: 0;
@@ -110,7 +126,8 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     color: #5a5e66;
     outline: none;
 }
-.e-input[disabled], .e-input[disabled]:focus{background-color: #f4f4f4}
+
+.e-input[disabled], .e-input[disabled]:focus{background-color: #ccc}
 .e-input:focus{border: 1px solid #3fc0db}
 .e-input.e-error:focus{border: 1px solid #f60000}
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #aaa;font-size: 12px}

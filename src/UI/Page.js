@@ -43,7 +43,7 @@ export default class extends React.Component {
     handleMouseHover(e) {
         e.persist();
         if ('SECTION' === e.target.tagName) {
-            if ((document.documentElement.clientHeight - e.target.getClientXY().y) < 174) {
+            if ((document.documentElement.clientHeight - e.target.getClientXY().y) < 176) {
                 !this.state.down && this.setState({down:true});
             } else {
                 this.state.down && this.setState({down:false});

@@ -24,7 +24,8 @@ export default class extends Component {
             index:0,
             write:'',
             mobile:'',
-            password:''
+            password:'',
+            selectvalue:''
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
         this.ask2 = this.ask2.bind(this);
@@ -115,7 +116,7 @@ export default class extends Component {
         }});
     }
     onchange(obj){
-        this.setState({index:obj.value.inObjArray(this.state.auth, 'auth_name')});
+        this.setState({selectvalue:obj.value,index:obj.value.inObjArray(this.state.auth, 'auth_name')});
     }
     //员工列表显示
     addstaff(){
@@ -133,7 +134,7 @@ export default class extends Component {
         }, (res, ver) => {
                 if (ver && res) {
                     console.log(res)
-                    this.setState({auth_name:res.result.typeArray('auth_name'),auth:res.result});
+                    this.setState({auth_name:res.result.typeArray('auth_name'),auth:res.result,selectvalue:res.result.auth_name});
                 }
             }
         );
@@ -252,7 +253,7 @@ export default class extends Component {
                                 <span>手机号:</span>&nbsp;&nbsp;<input type='text' className='e-input' onChange={e => this.setState({ mobile: e.target.value })} value={this.state.mobile} />
                             </div>
                             <div >
-                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth_name[0]} onChange={this.onchange} />
+                                <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name}  onChange={this.onchange} value={this.state.selectvalue}/>
                             </div>
                             <div>
                                 <span className='passlimit'>初始密码为123456</span>
@@ -281,7 +282,7 @@ export default class extends Component {
                     {
                     this.state.show1
                     &&                   
-                    <LayerBox title='编辑员工' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
+                    <Dish title='编辑员工'  width='360' height='276' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
                         {
                             <div className='updatestaffborder'>
                                 <div className='margintop'>
@@ -294,11 +295,11 @@ export default class extends Component {
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
                               </div> */}
                             <div>
-                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange}/>
+                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange} value={this.state.auth}/>
                         </div>
                     </div>
                      }
-                    </LayerBox>
+                    </Dish>
                 }                
                 </div>
         );            
