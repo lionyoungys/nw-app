@@ -8,8 +8,9 @@ import React from 'react';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show:true};
+        this.state = {show:true,up:false};
         this.handleChange = this.handleChange.bind(this);
+        this.handleMouseHover = this.handleMouseHover.bind(this);
     }
 
     handleChange(e) {
@@ -18,6 +19,15 @@ export default class extends React.Component {
             this.props.onChange({key:e.target.dataset.key, value:e.target.innerText, index:Number(e.target.dataset.index)});
         }
         setTimeout(() => this.setState({show:true}), 100);
+    }
+
+    handleMouseHover(e) {
+        e.persist();
+        if ((document.documentElement.clientHeight - e.target.getClientXY().y) < 184) {
+            !this.state.up && this.setState({up:true});
+        } else {
+            this.state.up && this.setState({up:false});
+        }
     }
     
     render() {
@@ -59,12 +69,12 @@ export default class extends React.Component {
         }
         return (
             <div
-                className={'ui-select' + ( 'string' === typeof this.props.className ? (' ' + this.props.className) : '' )}
+                className={'ui-select' + (this.state.up ? ' ui-select-up' : '') + ( 'string' === typeof this.props.className ? (' ' + this.props.className) : '' )}
                 data-disabled={this.props.disabled ? 'disabled' : ''}
                 style={this.props.style}
             >
                 <i></i>
-                <input className='e-input' type='text' disabled placeholder='请选择...' value={value}/>
+                <input className='e-input' type='text' disabled placeholder='请选择...' value={value} onMouseOver={this.handleMouseHover}/>
                 <section style={this.state.show ? null : {display:'none'}}>
                     <div>{arr}</div>
                 </section>
