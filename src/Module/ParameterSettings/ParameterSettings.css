@@ -1,5 +1,8 @@
 /* 品牌样式 */
-.brand{width:740px;height:auto;margin:auto}
+.brand{
+    width:733px;height:auto;margin:auto;
+    margin-bottom: 10px;
+}
 .brand-btn{
     width:111px;
     height:30px;    
@@ -7,7 +10,6 @@
     line-height:30px;
     font-size:12px;
     float:right;
-    margin-right: 16px;
     background-size:111px 24px;
     outline:none;
     border:none;
@@ -85,7 +87,7 @@
 }
 .brand-tab table tbody tr td i{
     font-style:normal;
-    color:#f00;
+    color:#3fbfdc;
     margin-right:73px;
     float:right;
 }
@@ -216,7 +218,7 @@
 }
 .lattic-tab table tbody tr td i{
     font-style:normal;
-    color:#f00;
+    color: #3fbfdc;
     margin-right:30px;
     float:right;
 }

@@ -330,55 +330,57 @@ export default class extends Component {
             </tr> 
         );         
         return (       
-            <Window title='商品销售' onClose={this.onClose}>
-               <div className="commoditysales-div">                 
-                  <div className="commoditysales-div-right">                     
-                      <div className="commoditysales-right-tab">
-                         <table>
-                             <thead>
-                                 <tr>
-                                     <th>商品条码</th>
-                                     <th>商品名称</th>
-                                     <th>允许折扣</th>
-                                     <th>单价</th>
-                                     <th>数量</th>
-                                     <th>操作</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                {searchList}
-                             </tbody>
-                         </table>
-                      </div>
-                  </div>
-               </div> 
-               <div className="commoditysales-footerdiv">
-                   <div className="commoditysales-div-left">
-                      <div className="commoditysales-left-title">商品分类</div>
-                      <div className="commoditysales-left-count">
-                         {tabs}
-                      </div>
-                    </div>
-                    <div className="commoditysales-footerdiv-left">
-                        <div className="commoditysales-right-top">
-                            <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
-                            <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
+            <Window title='商品销售' onClose={this.onClose}>                
+                <div className="commoditysales-div"> 
+                    <div className="commoditysales-div-left">
+                        <div className="commoditysales-left-title">商品分类</div>
+                        <div className="commoditysales-left-count">
+                             {tabs}
                         </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>商品条码</th>
-                                    <th>商品名称</th>
-                                    <th>允许折扣</th>
-                                    <th>库存</th>
-                                    <th>单价</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {itemList}
-                            </tbody>
-                        </table>
-                    </div>  
+                    </div>
+                    <div className="sale-right">
+                            <div className="commoditysales-right-top">
+                                <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
+                                <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
+                            </div>
+                            <div className="commoditysales-div-right">                     
+                                <div className="commoditysales-right-tab">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>商品条码</th>
+                                                <th>商品名称</th>
+                                                <th>允许折扣</th>
+                                                <th>单价</th>
+                                                <th>数量</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {searchList}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div className="commoditysales-footerdiv-left">                       
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>商品条码</th>
+                                            <th>商品名称</th>
+                                            <th>允许折扣</th>
+                                            <th>库存</th>
+                                            <th>单价</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {itemList}
+                                    </tbody>
+                                </table>
+                            </div>  
+                    </div> 
+               </div>
+               <div className="commoditysales-footerdiv">
                     <div className="commoditysales-footerdiv-right">
                         <div className="commoditysales-footerdiv-rightboth">总金额: ￥{this.state.total}</div>
                         <div className="commoditysales-footerdiv-rightboth">折扣率: {this.state.discount}</div>

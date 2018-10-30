@@ -35,7 +35,7 @@ export default class extends Component {
         return (
             <div>
                   <Window title='价格设置' onClose={this.props.closeView} padding={true}>
-                  <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'30px 0 0 20px'}}>
+                  <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'30px 0 0 0px'}}>
                     {this.views[this.state.index]}
                 </TabFields>
                 {/* <div className='store_management'>

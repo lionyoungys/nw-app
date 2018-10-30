@@ -92,6 +92,8 @@
     height:auto;
     min-height:25px;
     display:inline-block;
+    border-bottom: 1px solid #edf0f9;
+    box-sizing: border-box;
 }
 .waiting-list tbody tr:hover{background: #fbfcfd}
 .waiting-list tbody tr td{

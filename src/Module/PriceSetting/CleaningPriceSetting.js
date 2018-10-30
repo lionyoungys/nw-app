@@ -383,7 +383,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Dish title='新增洗护价格' onClose={() => this.setState({show:false})} width="690" height="495">
+                    <Dish title='新增洗护价格' onClose={() => this.setState({show:false})} width="690" height="475">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i> 衣物类别：</span><Select option={this.state.cate_type} onChange={this.onchange}  value={this.state.cate_name}/></div>
@@ -420,14 +420,14 @@ export default class extends Component {
                         
                         <div className="addnewprice-btn">
                             <button className="e-btn" onClick={this.addYES}>确定</button>
-                            <button className="e-btn" onClick={()=>this.setState({show:false})}>取消</button>
+                            <button className="e-btn-b" onClick={()=>this.setState({show:false})}>取消</button>
                         </div>
                     </Dish>
                 }
                  {
                     this.state.show1
                     &&
-                    <Dish title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="690" height="495">
+                    <Dish title='编辑洗护价格' onClose={() => this.setState({show1:false})} width="690" height="475">
                         <div className="addnewprice-one">
                             <div className="addnewprice-one-left">
                                 <div><span><i>*</i>衣物类别：</span><Select option={this.state.cate_type} selected={this.state.cate_name} onChange={this.onchange} value={this.state.cate_name}/></div>
@@ -464,7 +464,7 @@ export default class extends Component {
                         <div className="addnewprice-btn">
                             <button className="e-btn" onClick={this.modYES}>确定</button>
                             <button className="e-btn" onClick={this.deleteYES}>删除</button>
-                            <button className="e-btn" onClick={() => this.setState({ show1: false })}>取消</button>
+                            <button className="e-btn-b" onClick={() => this.setState({ show1: false })}>取消</button>
                         </div>
                     </Dish>
                 }

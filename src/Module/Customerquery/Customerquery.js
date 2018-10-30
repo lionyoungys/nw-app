@@ -1,6 +1,6 @@
 /**
  * 客户信息查询页面
- * @author  fanyerong&wangjun
+ * @author  wangjun
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
@@ -45,7 +45,6 @@ export default class extends Component {
                     this.setState({card_name:res.result.cardsType[0].card_type ,types: res.result.cardsType.typeArray('card_type')});
                     this.state.types.push('全部')
                     this.query();
-
                 }
             }else{
                 handle();

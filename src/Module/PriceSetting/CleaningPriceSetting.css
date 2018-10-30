@@ -1,12 +1,13 @@
 .cleaning_price_all{
 
     margin: 0;
+    margin-left: 10px;
     height: 521px;
 }
 .cleaning_price_set_btn{
 
     /* background-color: red; */
-    margin: 2px 13px;
+    margin: 2px 2px;
     height: 39px;
     line-height: 39px;
 }

@@ -66,6 +66,8 @@
 }
 .ui-table-base.ali-wechat-check-tab{
     max-height: 250px;
+    border:1px solid #e6ebf5;
+    box-sizing: border-box;
 }
 .ui-table-base.ali-wechat-check-tab tbody{
     max-height: 210px;

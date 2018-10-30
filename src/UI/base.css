@@ -317,15 +317,16 @@ table tbody tr td{
 }
 
 .ui-table-base thead tr td{
-    color: #5a5e66;
+    
     background: url(./images/thead-border.png);
     background-size: 1px 24px;
     background-repeat: no-repeat;
     background-position: right center;
     color: #4d4d4d;
+    font-weight: bold;
 }
 .ui-table-base thead tr th{
-    color: #5a5e66;
+    font-weight: bold;
     background: url(./images/thead-border.png);
     background-size: 1px 24px;
     background-repeat: no-repeat;

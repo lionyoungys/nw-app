@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './StoreInfo.css'
+import Select from '../../../UI/Select';
 export default class extends Component {   
     constructor(props) {
         super(props);   
@@ -68,12 +69,13 @@ export default class extends Component {
                 <div>门店名称：&emsp;<span className='store_management_disable_span'>{this.state.mname}</span></div>
                 <div>
                     所在区域：&emsp;
-                    <span className='store_management_select_span'>
-                        <i></i>{this.state.province}
-                    </span>
-                    <span className='store_management_select_span'>
-                        <i></i>{this.state.city}
-                    </span>
+                    <Select option={[this.state.province]} disabled={true}>
+                        {this.state.province}
+                    </Select>
+                    &nbsp;&nbsp;
+                    <Select option={[this.state.city]} disabled={true}>
+                       {this.state.city}
+                    </Select>
                 </div>
                 <div>详细地址：&emsp;<span className='store_management_disable_span'>{this.state.maddress}</span></div>
                 <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.phone_number} onChange={e => this.setState({phone_number:e.target.value})}/></div>

@@ -11,7 +11,7 @@
     font-size: 13px;
     color: #4d4d4d;
     text-align: center;
-    
+    float: left;
     line-height: 40px;
 }
 .con-sta-total div b{
@@ -30,7 +30,6 @@
     width: 1530px;
 }
 .ui-table-base.bal-sta-tab.consun-tab tr td{
-
     max-width: 135px;
     min-width: 135px;
 }

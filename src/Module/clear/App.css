@@ -63,7 +63,7 @@
     height:40px;
 }
 .e-box table thead tr th{
-    color:#9c9c9e;
+    color:#4d4d4d;
     font-size:12px;
     text-align:center;
     box-sizing:border-box;
@@ -88,7 +88,7 @@
     border-bottom:1px solid #edf0f9;
 }
 .clean .e-table>tbody>tr.disabled{
-    color: #808080;
+    color: #f4f4f4;
 }
 .e-box table tbody tr td{
     color:#999999;
