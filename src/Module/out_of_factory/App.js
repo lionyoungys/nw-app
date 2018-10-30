@@ -36,6 +36,7 @@ export default class extends React.Component {
     // 查询 - 搜索
     componentDidMount() {this.query()}
     query(rid) {
+        console.log(rid)
         //teamId = tool.isSet(teamId) ? teamId : this.state.teamId;
         let done;
         tool.ui.loading(handle => done = handle);
@@ -83,6 +84,7 @@ export default class extends React.Component {
     }
    // 点击选择要入的工厂
     select_factory (){
+        
         api.post('factory_id', {           
             token:'token'.getData(),
         }, (res, ver) => {
@@ -100,10 +102,14 @@ export default class extends React.Component {
         });
     }
     //选择要出厂的商家
-    change_select (value){
-        console.log(value)
-        this.setState({sel_id:value});
-        this.query(value)
+    change_select (obj){
+        console.log(obj.key)
+
+        this.setState({
+            sel_name:obj.value,
+            sel_id:obj.key
+        });
+        this.query(obj.key)
     }
 
     handleClick() {    //出厂
@@ -144,7 +150,7 @@ export default class extends React.Component {
         <Window title='出厂' onClose={this.props.closeView}>            
                 <div className="out-title">                  
                     <div className='select-fac-div' onClick = {this.select_factory}>
-                      选择门店：<Select  option={this.state.select_shop}  onChange={(value) => this.change_select(value)} selected="请选择门店"/>
+                      选择门店：<Select  option={this.state.select_shop}  onChange={(obj) => this.change_select(obj)} selected="请选择门店" value={this.state.sel_name}/>
                     </div>
                 </div>
                 <div className="clean laundry">

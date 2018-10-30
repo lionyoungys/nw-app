@@ -157,22 +157,26 @@ margintop{
     margin-left: 10px;
     text-align: left
 }
-.updatestaffborder div{
+.updatestaffborder>div{
     margin-top: 16px;
 }
-.updatestaffborder input[disabled]{
+.updatestaffborder .ui-select{
+
+    margin-left: 8px;
+}
+.updatestaffborder>div>input[disabled]{
     margin-left: 8px;
     outline: none;
     border:1px solid #c4c2c2;  
     background-color: #ebebeb;
 }
-.updatestaffborder input{
+.updatestaffborder>div>input{
     text-indent: 4px;
     margin-left: 8px;
     outline: none;
     border:1px solid #c4c2c2;  
 }
-.updatestaffborder  span{
+.updatestaffborder>div>span{
     margin-top: 6px;
     width: 85px;
     height: 14px;

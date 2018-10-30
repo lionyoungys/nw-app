@@ -35,12 +35,6 @@ export default class extends Component {
         }, () => done());  
     }
     sure(add) {
-
-        console.log(this.state.authname);
-        console.log(typeof (this.state.authSelectList));
-        if ('' == this.state.authname) return tool.ui.error({ msg: '组名称不能为空！', callback: close => close() });
-        if ( this.state.authSelectList.length ==0) return tool.ui.error({ msg: '权限不能为空！', callback: close => close() });
-        console.log(this.state.authSelectList);
         let pragram = {};
         if (add) {//添加
             pragram = {
@@ -83,9 +77,9 @@ export default class extends Component {
         var id = e.target.dataset.id;
         var index = e.target.dataset.index;
         var authlists = this.state.authlist;
-        tool.ui.ask({title:'删除权限',info:'提示:删除后组名将被永久删除！<br/>', callback:(close, event) => {
+        tool.ui.warn({title:'删除权限',msg:'提示:删除后组名将被永久删除！<br/>', callback:(close, event) => {
               //删除员工
-            if (event == 'click' ) {
+            if (event == 'click' || '确定' ) {
                 api.post('authDel', {
                     token: 'token'.getData(),
                     id: id,
@@ -153,24 +147,22 @@ export default class extends Component {
             </tr>
         );
         return ( 
-                <div>
-                    <div className="StaffAuthority" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</div>   
-                    <table className="ui-table-base staff-tab">
-                        <thead>
-                            <tr>
-                                <td>组名称</td>
-                                <td>权限</td>
-                                <td>操作</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {authlist}
-                        </tbody>
-                    </table> 
-                {
-                    this.state.show && <CreateGroup status={this.state.show} onClose={() => this.setState({show:0})}/>}      
-                </div>   
-                             
+            <div>
+                <div className="StaffAuthority" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</div>   
+                <table className="ui-table-base staff-tab">
+                    <thead>
+                        <tr>
+                            <td>组名称</td>
+                            <td>权限</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {authlist}
+                    </tbody>
+                </table> 
+                {this.state.show && <CreateGroup status={this.state.show} onClose={() => this.setState({show:0})}/>}      
+            </div>        
         );
                 
     };

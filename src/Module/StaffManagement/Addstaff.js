@@ -227,11 +227,11 @@ export default class extends Component {
 
        var index = e.target.dataset.index;
        var operatorlist = this.state.operatorlist;
-       tool.ui.ask({
+       tool.ui.warn({
            title: '重置密码', msg: '提示:该操作不可逆转。重置密码后密码将被修改为123456。', callback: (close, event) => {
                //点击按钮或关闭符号时关闭弹窗
                console.log(event)
-               if (event == 'close') {
+               if (event == 'close' || '取消') {
                    close();
                } else {
                    api.post('resetPasswd', {
@@ -326,11 +326,14 @@ export default class extends Component {
                                 <div className='mobilephone'>
                                     <span>手机号:</span><input type='text' className='e-input' ref={input => this.input = input}  onChange={e => this.setState({mobile:e.target.value})} value={this.state.mobile} disabled/><span className='updatemobile' onClick={this.updatemobile}>修改手机号</span>
                                 </div>
+                                <div>
+                                    <span >权限:</span><Select option={this.state.auth_name} onChange={this.onchange} value={this.state.updateselectvalue} />
+                                </div>
                               {/* <div>
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
                               </div> */}
                             {/* <div> */}
-                               <span >权限:</span><Select option={this.state.auth_name}  onChange={this.onchange} value={this.state.updateselectvalue}/>
+                               
                         {/* </div> */}
                         <div className='handle-div'>
                             <button type="button" class="e-btn" onClick={this.modOperatorSuccess}>确定</button>

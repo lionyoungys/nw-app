@@ -91,7 +91,7 @@ const Menus = [
             // {value:'会员分类统计', view:'vip_stats', id: 40},
             // {value:'会员消费统计', view:'member_consumption_statistics'},
             {value:'衣物统计', view:'clothe_stat', id: 41, className:'clothes-statistics'},
-            {value: '微信、支付宝对账', view:'alipayWechat_checking', id: 42, className:'wechat-alipay'},
+            {value: '微信支付宝对账', view:'alipayWechat_checking', id: 42, className:'wechat-alipay'},
         ]
     },
     /*{

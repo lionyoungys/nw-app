@@ -30,7 +30,8 @@ export default class extends React.Component {
             selected_shop:[],
             selected_id:'',
             select_shop:'',
-            sel_id:''
+            sel_id:'',
+            sel_name:''
         };
 
         this.onSearch = this.onSearch.bind(this); //搜索
@@ -141,6 +142,7 @@ export default class extends React.Component {
     }
     //入厂
     handleCleaned() {  
+        console.log(this.state.sel_id)
         if(this.state.sel_id=='') {
             return  tool.ui.error({title:'提示',msg:'请选择入厂商家',button:'确定',callback:(close, event) => {
                 close();
@@ -274,7 +276,7 @@ export default class extends React.Component {
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>添加</button>
                 </div> 
                 <div className='right1 out-right' onClick = {this.select_factory}>
-                    选择工厂：<Select  option={this.state.select_shop}  onChange={value => this.setState({sel_id:value})} selected="请选择厂家"/>
+                    选择工厂：<Select  option={this.state.select_shop}  onChange={obj => this.setState({sel_id:obj.key,sel_name:obj.value})} selected="请选择厂家" value={this.state.sel_name}/>
                 </div>
             </div>
             <div className='clean laundry'>                   
