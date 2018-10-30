@@ -295,19 +295,19 @@ export default class extends Component {
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.goods_type} onchange={this.onchange}/></div>
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>名称：</span><input  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
+                                <div className="addnewprice-div-nor"><span>名称：</span><input className='e-input'  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>库存：</span><input  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                                <div className="addnewprice-div-nor"><span>库存：</span><input className='e-input'  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>价格：</span><input  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                                <div className="addnewprice-div-nor"><span>价格：</span><input className='e-input'  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
+                                <div className="addnewprice-div-nor"><span>商品条码：</span><input className='e-input'  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
                             </div>
                             <div className="addnewprice-money">
