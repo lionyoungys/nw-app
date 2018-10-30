@@ -94,7 +94,7 @@ export default class extends Component {
                 <div id="Washmanagement-title">可自定义选择门店模块</div>
                 <div id="shop-div">
                     {list}
-                    <div style={{paddingBottom:'20px'}}><button className="e-btn store-button" onClick={this.btn_up}>确定</button></div>
+                    <div style={{paddingBottom:'20px'}}><button className="e_btn_store" onClick={this.btn_up}>确定</button></div>
                     
                 </div>
                                   

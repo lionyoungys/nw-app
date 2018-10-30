@@ -30,7 +30,7 @@
     width:730px;
     height:auto;
     max-height:473px;
-    border:1px solid #d7dee4;
+    /* border:1px solid #d7dee4; */
     clear:both;
     max-height:485px;
     overflow: hidden;
@@ -157,11 +157,15 @@
     margin:8px 0;
     cursor:pointer;
 }
+.div_brand_btn{
+    margin-right: 16px;
+}
 .lattic-tab{
     width:738px;
     height:auto;
     margin-left: 12px;
     max-height:473px;
+    margin-bottom: 10px;
     border:1px solid #f1f4f9;
     clear:both;
     max-height:485px;

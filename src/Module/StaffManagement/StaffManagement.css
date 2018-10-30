@@ -29,9 +29,7 @@
     margin:0px 20px 12px 0;
     cursor: pointer;
 }
-.addstaff:hover{
-    
-}
+
 .StaffAuthority {
     border-radius: 4px;
     font-size:12px;
@@ -50,8 +48,11 @@
 /* 增加组 */
 /* 增加组表格样式 */
 .ui-table-base.staff-tab{
-    max-height: 450px;
+    max-height:369px;
+    width: 740px;
+    height: 369px;
 }
+.ui-table-base.staff-tab tbody tr{padding:11px 0}
 .ui-table-base.staff-tab tbody{
     max-height: 425px;
     overflow-y: auto;

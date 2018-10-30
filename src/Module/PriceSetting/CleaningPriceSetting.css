@@ -21,7 +21,7 @@
 .cleaning_price_set_left_table_div{
     margin-top: 0;
     margin-left: 0px;
-    width: 90px;
+    width: 100px;
     height:350px;
     max-height:350px;
     border:1px solid #3fc0db;
@@ -36,7 +36,7 @@
     margin-top: 0;
     margin-left: 0;
     margin-bottom: 0;
-    width: 107px;
+    width: 117px;
     max-height:350px;
     overflow-y: scroll;
     /* 用于隐藏横向滑块 */

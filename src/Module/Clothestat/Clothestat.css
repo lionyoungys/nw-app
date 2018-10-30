@@ -123,10 +123,8 @@
     background:#f5f8fa;
 }
 .clothestat_dataLeft{
-    width:auto;
-    
-    height:57px;
-    
+    width:780px;   
+    height:57px;   
     float: left;
     padding-right:246px;
 }

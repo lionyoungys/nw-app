@@ -230,6 +230,7 @@ export default class extends Component {
       
         let operatorlist= this.state.operatorlist.map((item,index) => 
         <tr key= {'item'+index}>
+            <td>{index+1}</td>
             <td>{item.aname}</td>
             <td>{item.account}</td>
             <td>{item.auth_name}</td>

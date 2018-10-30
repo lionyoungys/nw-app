@@ -77,57 +77,50 @@
     white-space:nowrap;     
     text-overflow:ellipsis;
     /* border-right:1px solid #acc6de; */
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
-.bothpages_count_title span:last-child{border-right:none}
+.bothpages_count_title span:last-child{background: none}
 /* tab标题样式 */
 .bothpages_count_title span:nth-child(1){
     width:125px;
-    background:url(./img/revokedata_list_box_span.png) no-repeat;
-    background-size:10px 10px;
-    background-position-x:17px;
-    background-position-y:11px;
+    background: url(./images/thead-border.png);
+    background-size: 1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
 }
 /* tab内容样式 table的样式 */
 .bothpages_count_list{
     width:100%;
     height:auto;
-    max-height:429px;
+    max-height:289px;
     display:block;
     overflow-y:auto;
     background:#fff;
     overflow-x:hidden;
 }
 .bothpages_count_list tbody{min-width:875px;height:auto;display:block;overflow-x:hidden;}
-.bothpages_count_list tr{height:25px;width:100%;display:block}
-.bothpages_count_list tr:nth-of-type(even){
-    background:#f0f5f9;
-}
+.bothpages_count_list tr{height:40px;width:100%;display:block}
+
 .bothpages_count_list tr td{
-    color:#000;
-    font-size:12px;
-   
-    width:210px;
+    color:#999;
+    font-size:12px;   
+    width:153px;
     text-align:center;
-    height:25px;
-    line-height:25px;
+    height:40px;
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
-    border-right:1px solid #acc6de;
-    box-sizing:border-box;
 }
-.bothpages_count_list tr td:last-child{border-right:none}
+
 .bothpages_count_list tr td:nth-child(1){
-    width:31px;
-    height:25px;
-    color:#999999;
-    font-size:12px;
-    border-right:1px solid #acc6de;
-    box-sizing:border-box;
+    width: 125px;
 }
 .bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;}
-.bothpages_count_list tr td i:first-child{color:#063ff7;margin-left:40px;float:left}
-.bothpages_count_list tr td i:last-child{color:#ff0000;margin-right:27px;float:right}
+.bothpages_count_list tr td i:first-child{color:#60c5d9;float:left}
+.bothpages_count_list tr td i:last-child{color:#ff0000;float:right}
 
 
 /* 第二种分块样式 如同撤单统计页面样式 */
@@ -139,9 +132,7 @@
     height:20px;
     margin-top:18px;
     line-height:20px;
-    color:#000;
-    font-size:12px;
-    color:#063781;    
+    font-size:12px;  
     cursor: pointer;
 }
 .tableye_dataLeft div input{

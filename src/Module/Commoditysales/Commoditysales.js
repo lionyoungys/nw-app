@@ -341,7 +341,7 @@ export default class extends Component {
                     <div className="sale-right">
                             <div className="commoditysales-right-top">
                                 <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
-                                <input type="text" className="commoditysales-right-text" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
+                                <input type="text" className="commoditysales-right-text e-input" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
                             </div>
                             <div className="commoditysales-div-right">                     
                                 <div className="commoditysales-right-tab">
