@@ -1082,11 +1082,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .t-ui-layer-icon.warn{background-image: url(images/t-ui-layer-icons.png);background-position: -40px 0;}
 .t-ui-layer-icon.error{background-image: url(images/t-ui-layer-icons.png);background-position: 0 -40px;}
 .t-ui-layer-content{
-    height: 30px;
+    height: 45px;
     width: 100%;
     text-align: center;
     font-size: 14px;
     color: #656565;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 .t-ui-layer-btn-area{
     height: 35px;

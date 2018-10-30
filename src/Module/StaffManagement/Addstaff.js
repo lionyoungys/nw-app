@@ -25,7 +25,9 @@ export default class extends Component {
             write:'',
             mobile:'',
             password:'',
-            selectvalue:''
+            selectvalue:'',
+            selectedid:'',
+            updateselectvalue:''
         }   
         this.operatorAdd = this.operatorAdd.bind(this); 
         this.ask2 = this.ask2.bind(this);
@@ -76,7 +78,7 @@ export default class extends Component {
             write:write,
             aname:this.state.operatorlist[write].aname,
             mobile:this.state.operatorlist[write].account,
-            auth:this.state.operatorlist[write].auth_name
+            updateselectvalue:this.state.operatorlist[write].auth_name
         });  
         this.staffauthlist();
        
@@ -85,38 +87,72 @@ export default class extends Component {
 
         var index = e.target.dataset.index;
         var operatorlist=this.state.operatorlist;
-        tool.ui.ask({title:'删除员工',info:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
-              //点击按钮或关闭符号时关闭弹窗
-              //删除员工
-              console.log(event)
-              if(event=='close'){
-                  close();
-              }else{
-              api.post('delOperator', {
-                token:'token'.getData(),
-                id:this.state.operatorlist[index].id,
+        tool.ui.warn({
+            title: '删除员工', msg: '提示:删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback: (close, event) => {
+
+            //点击按钮或关闭符号时关闭弹窗
+            //删除员工
+            console.log(event)
+            if (event == '取消' || 'close') {
+
+                close();
+            } else {
+                api.post('delOperator', {
+                    token: 'token'.getData(),
+                    id: this.state.operatorlist[index].id,
                 }, (res, ver) => {
-                        if (ver && res) {
-                            console.log(res);
-                            close();
-                            operatorlist.splice(index,1)  
-                            this.setState({operatorlist:operatorlist})   
-                            this.componentDidMount();                     
-                        }else{
-                            console.log(res.msg);
-                            tool.ui.error({msg:res.msg,callback:(close) => {
+                    if (ver && res) {
+                        console.log(res);
+                        close();
+                        operatorlist.splice(index, 1)
+                        this.setState({ operatorlist: operatorlist })
+                        this.componentDidMount();
+                    } else {
+                        console.log(res.msg);
+                        tool.ui.error({
+                            msg: res.msg, callback: (close) => {
                                 close();
-                            }});
-                            
-                        }
+                            }
+                        });
+
                     }
-               );
+                }
+                );
             }
-               
+
         }});
+        // tool.ui.ask({title:'删除员工',msg:'提示:该操作不可逆转。删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback:(close, event) => {
+        //       //点击按钮或关闭符号时关闭弹窗
+        //       //删除员工
+        //       console.log(event)
+        //       if(event=='close'){
+        //           close();
+        //       }else{
+        //       api.post('delOperator', {
+        //         token:'token'.getData(),
+        //         id:this.state.operatorlist[index].id,
+        //         }, (res, ver) => {
+        //                 if (ver && res) {
+        //                     console.log(res);
+        //                     close();
+        //                     operatorlist.splice(index,1)  
+        //                     this.setState({operatorlist:operatorlist})   
+        //                     this.componentDidMount();                     
+        //                 }else{
+        //                     console.log(res.msg);
+        //                     tool.ui.error({msg:res.msg,callback:(close) => {
+        //                         close();
+        //                     }});
+                            
+        //                 }
+        //             }
+        //        );
+        //     }
+               
+        // }});
     }
     onchange(obj){
-        this.setState({selectvalue:obj.value,index:obj.value.inObjArray(this.state.auth, 'auth_name')});
+        this.setState({selectvalue:obj.value,index:obj.index,updateselectvalue:obj.value});
     }
     //员工列表显示
     addstaff(){
@@ -144,7 +180,6 @@ export default class extends Component {
        return tool.ui.error({msg:'请输入姓名',callback:(close) => {close(); }});
        if(''==this.state.mobile)
        return tool.ui.error({msg:'请输入手机号',callback:(close) => {close(); }});
-        console.log(this.state.account)
         api.post('modOperator', {
             token:'token'.getData(),
             id:this.state.operatorlist[this.state.write].id,
@@ -282,7 +317,7 @@ export default class extends Component {
                     {
                     this.state.show1
                     &&                   
-                    <Dish title='编辑员工'  width='360' height='276' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
+                    <Dish title='编辑员工'  width='360' height='230' onClose={() => this.setState({show1:false})} onClick={this.modOperatorSuccess} >
                         {
                             <div className='updatestaffborder'>
                                 <div className='margintop'>
@@ -294,10 +329,14 @@ export default class extends Component {
                               {/* <div>
                               <span>密码:</span><input type='text'  ref={input2 => this.input2 = input2} onChange={e => this.setState({password:e.target.value})} value={this.state.password} disabled/><span className='updatemobile' onClick={this.updatepassword}>修改密码</span>
                               </div> */}
-                            <div>
-                               <span >权限:</span>&nbsp;&nbsp;<Select option={this.state.auth_name} selected={this.state.auth} onChange={this.onchange} value={this.state.auth}/>
+                            {/* <div> */}
+                               <span >权限:</span><Select option={this.state.auth_name}  onChange={this.onchange} value={this.state.updateselectvalue}/>
+                        {/* </div> */}
+                        <div className='handle-div'>
+                            <button type="button" class="e-btn" onClick={this.modOperatorSuccess}>确定</button>
                         </div>
                     </div>
+                     
                      }
                     </Dish>
                 }                

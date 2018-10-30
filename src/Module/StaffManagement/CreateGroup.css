@@ -1,0 +1,38 @@
+.create-group-head{
+    height: 61px;
+    line-height: 61px;
+    border-bottom: 1px solid #e9ecf0;
+    margin-bottom: 16px;
+    padding-right: 20px;
+    text-align: right;
+}
+.create-group-head>span, 
+.create-group-head>input, 
+.create-group-head>button{
+    float: right;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 16px;
+}
+.create-group-head>input{margin-right: 10px}
+.create-group-body{padding: 0 14px;overflow: hidden;min-height: 304px}
+.create-group-body>div{
+    float: left;
+    width: 115px;
+    min-height: 302px;
+    margin-right: 12px;
+    border: 1px solid #e9ecf0;
+    background-color: #f9fafa;
+}
+.create-group-body>div:last-child{margin-right: 0}
+.create-group-body>div>div{
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 14px;
+    background-color: #3fbfdc;
+    color: #fff;
+}
+.create-group-body>section>div{
+    margin: 15px 0 0 14px;
+}

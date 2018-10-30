@@ -5,14 +5,13 @@
 import React, {Component} from 'react';
 import '../../UI/bothpages.css'  //公共样式
 import './StaffManagement.css';
-import Window from '../../UI/Window';
 import Menu from '../../Menus.js';
+import CreateGroup from './CreateGroup';
 export default class extends Component {   
     constructor(props) {
         super(props);   
         this.state = {
-            show:false,
-            show1:false,
+            show:0,
             authlist: [],
             authSelectList: [],//选中的权限
             authname:'',//组名称
@@ -54,7 +53,7 @@ export default class extends Component {
                 if (ver && res) {
                     console.log(res)
                     this.componentDidMount();
-                    this.setState({ show: false });
+                    this.setState({ show: 0 });
                     handle({msg:'添加成功！'});
                 } else{
                     handle();
@@ -72,7 +71,7 @@ export default class extends Component {
                 if (ver && res) {
                     console.log(res)
                     this.componentDidMount();
-                    this.setState({show1:false});
+                    this.setState({show:0});
                     handle({ msg: '修改成功！' });
                 } else{
                     handle();
@@ -150,12 +149,12 @@ export default class extends Component {
             <tr key={'item'+index}>
                 <td>{item.auth_name}</td>
                 <td>{item.authName}</td>                                   
-                <td><i onClick={() => this.setState({ show1: true, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
+                <td><i onClick={() => this.setState({ show: 2, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
             </tr>
         );
         return ( 
                 <div>
-                    <div className="StaffAuthority" onClick={() => this.setState({show:true,authSelectList:[],authname:''})}>新增组</div>   
+                    <div className="StaffAuthority" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</div>   
                     <table className="ui-table-base staff-tab">
                         <thead>
                             <tr>
@@ -169,32 +168,7 @@ export default class extends Component {
                         </tbody>
                     </table> 
                 {
-                    this.state.show1 &&
-                    <Window title='编辑组' onClose={() => this.setState({ show1: false })}>
-                        <div id="addGroup-srarch">
-                            <span>组名称：</span>
-                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} />
-                            <button type='button' className='e-btn sureBtn' onClick={() => this.sure(false)}>确认</button>
-                        </div>
-                        <div id='addGroup-content'>
-                            {menuList}
-                        </div>
-                    </Window>
-                }     
-                {
-                    this.state.show
-                    &&
-                    <Window title='新增组' onClose={() => this.setState({ show: false })}>
-                        <div id="addGroup-srarch">
-                            <span>组名称：</span>
-                            <input type='text' value={this.state.authname} onChange={e => this.setState({ authname: e.target.value })} autoFocus='autoFocus'/>
-                            <button type='button' className='e-btn sureBtn' onClick={() => this.sure(true)}>确认</button>
-                        </div>
-                        <div id='addGroup-content'>
-                            {menuList}
-                        </div>
-                    </Window>
-                }              
+                    this.state.show && <CreateGroup status={this.state.show} onClose={() => this.setState({show:0})}/>}      
                 </div>   
                              
         );

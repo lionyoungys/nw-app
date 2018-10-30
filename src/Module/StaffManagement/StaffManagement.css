@@ -157,9 +157,11 @@ margintop{
     margin-left: 10px;
     text-align: left
 }
+.updatestaffborder div{
+    margin-top: 16px;
+}
 .updatestaffborder input[disabled]{
     margin-left: 8px;
-    margin-top: 16px;
     outline: none;
     border:1px solid #c4c2c2;  
     background-color: #ebebeb;
@@ -167,7 +169,6 @@ margintop{
 .updatestaffborder input{
     text-indent: 4px;
     margin-left: 8px;
-    margin-top: 16px;
     outline: none;
     border:1px solid #c4c2c2;  
 }

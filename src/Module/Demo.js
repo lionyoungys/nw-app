@@ -29,7 +29,14 @@ export default class extends React.Component {
         tool.ui.error({callback:close => close()});
     }
     handleCLickForWarn() {
-        tool.ui.warn({callback:close => close()});
+        tool.ui.warn({
+            title: '删除员工', msg: '提示:删除员工后，该账号将被强<br/>制下线并永久封停，但该员工的操作历史仍将保留。<br/>', callback: (close, event) => {
+                if (event == '取消' || 'close') {
+                    close(); 
+                }else{
+                    close(); 
+                }
+     }});
     }
     handleEat() {
         tool.ui.error({title:'品尝失败', msg:'我姐竟然不给吃！', button:['吃另一盘'],callback:(close, value) => {
