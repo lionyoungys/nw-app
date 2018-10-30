@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Dish from '../../UI/Dish'
 import Select from '../../UI/Select';
 import './Hangon.css'
 
@@ -16,11 +17,17 @@ export default class extends Component {
             clothnums:'',//衣挂号
             clothnum:'',//衣挂号名称
             clothindex:-1,//衣挂号索引
+            gridnam:'',//格架名字
+            clothnu:'',//衣挂号名字
         }
         this.handleClick = this.handleClick.bind(this);
         this.putOn = this.putOn.bind(this);     
     };
     componentDidMount(){
+        this.setState({
+            gridnam:this.props.data.grid_num.split('-')[0],
+            clothnu:this.props.data.grid_num.split('-')[1]
+        });
         api.post('grid', {
             token:'token'.getData(),
             limit:200,
@@ -28,7 +35,11 @@ export default class extends Component {
     }, (res, ver) => {
             if (ver && res) {
                // console.log(res)
-                this.setState({grid:res.result.grid,gridname:res.result.grid.typeArray('name')});
+                this.setState({
+                    grid:res.result.grid,
+                    gridname:res.result.grid.typeArray('name'),
+                   
+                });
                 let len = res.result.grid.length;
                 for (let i = 0;i < len;++i) {
                     if (this.props.data.grid_num.indexOf(res.result.grid[i].name + '-') == 0) {
@@ -41,7 +52,8 @@ export default class extends Component {
                                 console.log(res)
                                 this.setState({
                                     clothnums:res.result.list,
-                                    clothnum:res.result.list.typeArray('number')
+                                    clothnum:res.result.list.typeArray('number'),
+                                   
                                 })
                             }else{
                                 console.log(res)
@@ -61,9 +73,10 @@ export default class extends Component {
       
     }
     handleClick(value){
+        this.setState({gridnam:value.value});
         api.post('putNumber', {
             token:'token'.getData(),
-            id:this.state.grid[value.inObjArray(this.state.grid, 'name')].id,  
+            id:this.state.grid[value.index].id,  
             limit:200000
         }, (res, ver) => {
             if (ver && res) {
@@ -86,6 +99,7 @@ export default class extends Component {
             id:this.props.data.id,   
             put_id:-1==this.state.clothindex?"":this.state.clothnums[this.state.clothindex].id
         }
+        console.log(puton);
         api.post('putyes',
             puton, (res, ver) => {
                 if (ver) {
@@ -130,7 +144,7 @@ export default class extends Component {
             this.props.data.deal_time,
             this.props.data.status.getItemStatusName()].map((item,index) =><span key={'item'+index} >{item}</span>);
         return (
-            <Window title='上挂详情' onClose={this.props.onClose} width='567' height='382'>
+            <Dish title='上挂详情' onClose={this.props.onClose} width='617' height='391'>
                 <div className="Hangon-left">
                    <div className="Hangon-left-title">
                       {arr}
@@ -141,15 +155,15 @@ export default class extends Component {
                 </div>
                 <div className="Hangon-right">
                    <div className="Hangon-right-select">
-                      <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick} selected={this.props.data.grid_num.split('-')[0]}/>
+                      <span>格架: </span><Select option={this.state.gridname}  onChange={this.handleClick}  value={this.state.gridnam}/>
                    </div>
                    <div className="Hangon-right-select">
-                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.inObjArray(this.state.clothnums, 'number')})} selected={this.props.data.grid_num.split('-')[1]} ref={input => this.input = input}/>
+                      <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.index,clothnu:value.value})} value={this.state.clothnu} ref={input => this.input = input}/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
                    <button className="e-btn Hangon-right-btn" onClick={this.putOn}>取消</button>
                 </div>
-            </Window>          
+            </Dish>          
         );
     }
 }

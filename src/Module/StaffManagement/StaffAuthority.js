@@ -34,13 +34,13 @@ export default class extends Component {
             }
         }, () => done());  
     }
-    sure(add) {
+    sure(obj) {
         let pragram = {};
-        if (add) {//添加
+        if (1 === this.state.show) {//添加
             pragram = {
                 token: 'token'.getData(), 
-                auth_name: this.state.authname, 
-                auth: '['+this.state.authSelectList.join(',')+']',
+                auth_name: obj.value, 
+                auth: '['+obj.checked.join(',')+']',
             }
             console.log(pragram);
             api.post('authAdd', pragram, (res, ver, handle) => {
@@ -53,12 +53,12 @@ export default class extends Component {
                     handle();
                 }
             });  
-        }else{//编辑
+        }else if (2 === this.state.show){//编辑
             pragram = {
                 token: 'token'.getData(),
                 id: this.state.modID,
-                auth_name: this.state.authname,
-                auth: '[' + this.state.authSelectList.join(',') + ']',
+                auth_name: obj.value,
+                auth: '[' + obj.checked.join(',') + ']',
             }
             console.log(pragram);
             api.post('authMod', pragram, (res, ver, handle) => {
@@ -161,7 +161,7 @@ export default class extends Component {
                         {authlist}
                     </tbody>
                 </table> 
-                {this.state.show && <CreateGroup status={this.state.show} onClose={() => this.setState({show:0})}/>}      
+                {this.state.show && <CreateGroup status={this.state.show} checked={this.state.authSelectList} callback={this.sure} onClose={() => this.setState({show:0})}/>}      
             </div>        
         );
                 

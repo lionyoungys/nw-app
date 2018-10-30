@@ -10,7 +10,7 @@ import './CreateGroup.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value:'', checked:[]};
+        this.state = {value:'', checked:(tool.isArray(this.props.checked) ? this.props.checked : [])};
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -19,7 +19,7 @@ export default class extends React.Component {
 
     handleChange(e) {this.setState({value:e.target.value});}
     handleClick() {
-        if ('' !== this.state.value) {
+        if ('' === this.state.value) {
             return tool.ui.error({msg: '组名称不能为空！', callback: close => close()});
         }
         if (this.state.checked.length < 1) {

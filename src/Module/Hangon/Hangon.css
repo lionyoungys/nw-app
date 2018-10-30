@@ -14,7 +14,7 @@
     height:318px;
     float:left;
     border:1px solid #d8dce7;
-    margin:77px 0 0 65px;
+    margin:17px 0 0 35px;
     background:#f6f7fb;
 }
 .Hangon-left-title{
@@ -70,8 +70,8 @@
 .Hangon-right{
     height:318px;
     width:242px;
-    float:right;
-    margin:77px 65px 0 0;
+    float: left;
+    margin: -320px 11px 0 347px;
     background:#f6f7fb;
     border:1px solid #d8dce7
 }
