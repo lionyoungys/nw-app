@@ -98,7 +98,7 @@ export default class extends React.Component {
                 <span>共{total}条</span>
                 <div>
                     <button type='button'>{fetch}条/页</button>
-                    <section className={'ui-page-fetch' + (this.state.down ? ' ui-page-fetch-down' : '')} onMouseOver={this.handleMouseHover}>
+                    {/* <section className={'ui-page-fetch' + (this.state.down ? ' ui-page-fetch-down' : '')} onMouseOver={this.handleMouseHover}>
                         <div>
                             <Triangle className='ui-page-triangle' down={this.state.down}/>
                             <div data-fetch='20' data-checked={20 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>20条/页</div>
@@ -106,13 +106,9 @@ export default class extends React.Component {
                             <div data-fetch='60' data-checked={60 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>60条/页</div>
                             <div data-fetch='80' data-checked={80 == fetch ? 'true' : ''} onClick={this.handleChangeFetch}>80条/页</div>
                         </div>
-                    </section>
+                    </section> */}
                 </div>
                 {pages}
-                {/* <i className='ui-page-previous' onClick={this.handleClick} data-val={1 == current ? 1 : (current - 1)}></i>
-                <i className='ui-page-current'>1</i>
-                <i>2</i>
-                <i className='ui-page-next' onClick={this.handleClick} data-val={last == current ? last : (current + 1)}></i> */}
                 <span>跳至</span>
                 <input type='text' value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
                 <span>页</span>
