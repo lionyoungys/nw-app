@@ -10,7 +10,10 @@ import './CreateGroup.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value:'', checked:(tool.isArray(this.props.checked) ? this.props.checked : [])};
+        this.state = {
+            value:('string' === typeof this.props.value ? this.props.value : ''), 
+            checked:(tool.isArray(this.props.checked) ? this.props.checked : [])
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleChecked = this.handleChecked.bind(this);

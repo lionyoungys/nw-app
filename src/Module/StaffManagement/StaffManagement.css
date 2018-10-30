@@ -44,7 +44,6 @@
     margin:0px 20px 12px 0;
     cursor: pointer;
 }
-.StaffAuthority:hover{background:url(./img/hoverbtn.png)}
 /* 增加组 */
 /* 增加组表格样式 */
 .ui-table-base.staff-tab{

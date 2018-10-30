@@ -42,7 +42,6 @@ export default class extends Component {
                 auth_name: obj.value, 
                 auth: '['+obj.checked.join(',')+']',
             }
-            console.log(pragram);
             api.post('authAdd', pragram, (res, ver, handle) => {
                 if (ver && res) {
                     console.log(res)
@@ -161,7 +160,17 @@ export default class extends Component {
                         {authlist}
                     </tbody>
                 </table> 
-                {this.state.show && <CreateGroup status={this.state.show} checked={this.state.authSelectList} callback={this.sure} onClose={() => this.setState({show:0})}/>}      
+                {
+                    0 != this.state.show 
+                    && 
+                    <CreateGroup 
+                        status={this.state.show} 
+                        checked={this.state.authSelectList} 
+                        value={this.state.authname} 
+                        callback={this.sure} 
+                        onClose={() => this.setState({show:0})}
+                    />
+                }      
             </div>        
         );
                 

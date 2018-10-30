@@ -544,7 +544,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 100%;
     padding-top: 4px;
     z-index:10;
-    box-shadow: 4px 4px 4px #ebeff6;
 }
 .ui-select:hover>section{display: block;}
 .ui-select[data-disabled=disabled]:hover>section{display: none}
