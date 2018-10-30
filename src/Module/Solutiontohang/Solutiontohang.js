@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 import './Solutiontohang.css'
 import Window from '../../UI/Window';
-import {Table} from '../../UI/Table';
 
 export default class extends Component {
     constructor(props) {

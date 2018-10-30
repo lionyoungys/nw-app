@@ -4,7 +4,6 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
-import {Table} from '../../UI/Table';
 import './ReportLossMain.css';
 
 export default class extends Component {
