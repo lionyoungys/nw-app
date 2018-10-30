@@ -6,7 +6,6 @@ import React, {Component} from 'react';
 import '../../UI/bothpages.css' ; //公共样式
 import './StaffManagement.css';
 import Dish from '../../UI/Dish';
-import LayerBox from '../../UI/LayerBox';
 import Select from '../../UI/Select'; 
 export default class extends Component {   
     constructor(props) {

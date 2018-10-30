@@ -4,7 +4,6 @@
  */
 import React, {Component} from 'react';
 import Page from '../../UI/Page';
-import LayerBox from '../../UI/LayerBox';
 import Nodata from '../../UI/nodata'
 
 export default class extends Component {   

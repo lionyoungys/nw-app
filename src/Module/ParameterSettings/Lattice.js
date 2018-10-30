@@ -4,7 +4,6 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import LayerBox from '../../UI/LayerBox';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
 export default class extends Component {   
