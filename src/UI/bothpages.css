@@ -118,9 +118,9 @@
 .bothpages_count_list tr td:nth-child(1){
     width: 125px;
 }
-.bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;}
-.bothpages_count_list tr td i:first-child{color:#60c5d9;float:left}
-.bothpages_count_list tr td i:last-child{color:#ff0000;float:right}
+.bothpages_count_list tr td i{font-size:12px;font-style:normal;cursor: pointer;color:#60c5d9;}
+.bothpages_count_list tr td i:first-child{color:#60c5d9;float:left;margin-left: 21px}
+.bothpages_count_list tr td i:last-child{color:#60c5d9;float:right}
 
 
 /* 第二种分块样式 如同撤单统计页面样式 */

@@ -30,7 +30,7 @@
 .addGroup-content-cell{
     background-color: #abd0ff;
     box-sizing: border-box;
-    height: 484px;
+    height: 425px;
     width: 118px;
     border: 1px solid #666666;
     display: inline-block;
@@ -39,10 +39,15 @@
 .addGroup-content-cell-content{
 
     background-color: white;
-    height: 477px;
+    height: 417px;
     margin: 1px 5px 5px;
     overflow-y: auto;
 
+}
+.addGroup-content-cell-content ul{
+
+    -webkit-padding-start: 0px;
+    margin-top: 0px;
 }
 .addGroup-content-cell-content ul li{
     
@@ -77,7 +82,7 @@
 }
 #addGroup-content .addGroup-content-cell-content-normal{
 
-    height: 28px;
+    height: auto;
     color: black;
     font-size: 12px;
 }
