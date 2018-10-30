@@ -114,8 +114,8 @@ export default class extends Component {
                
         }});
     }
-    onchange(value){
-        this.setState({index:value.inObjArray(this.state.auth, 'auth_name')});
+    onchange(obj){
+        this.setState({index:obj.value.inObjArray(this.state.auth, 'auth_name')});
     }
     //员工列表显示
     addstaff(){
