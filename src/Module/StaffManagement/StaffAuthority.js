@@ -78,7 +78,8 @@ export default class extends Component {
         var authlists = this.state.authlist;
         tool.ui.warn({title:'删除权限',msg:'提示:删除后组名将被永久删除！<br/>', callback:(close, event) => {
               //删除员工
-            if (event == 'click' || '确定' ) {
+            console.log(event); 
+            if (event == '确定' ) {
                 api.post('authDel', {
                     token: 'token'.getData(),
                     id: id,

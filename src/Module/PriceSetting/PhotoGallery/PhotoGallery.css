@@ -26,11 +26,11 @@
 .photo-gal-img{
 
     margin-left: 21px;
-    margin-top: 0;
+    margin-top: 6px;
     margin-right: 0px;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 331px;
+    max-height: 220px;
 }
 .photo-gal-img img{
     width: 97px;

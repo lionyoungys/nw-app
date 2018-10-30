@@ -165,7 +165,7 @@ export default class extends Component {
             transfer: 1,//价格可调
             min_transfer:'0',//可调下线
             disposetype:this.state.dispose_types[0].name,
-            gradename:this.state.grids[0].grade,
+            gradename:this.state.grade[0].grade,
             materialsname:this.state.materialss[0].name       
         })
     }

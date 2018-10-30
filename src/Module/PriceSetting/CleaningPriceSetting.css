@@ -2,7 +2,7 @@
 
     margin: 0;
     margin-left: 10px;
-    height: 521px;
+    height: 430px;
 }
 .cleaning_price_set_btn{
 
@@ -22,8 +22,8 @@
     margin-top: 0;
     margin-left: 0px;
     width: 100px;
-    height:350px;
-    max-height:350px;
+    height:380px;
+    max-height:380px;
     border:1px solid #3fc0db;
     overflow: hidden;
     float: left;
@@ -37,11 +37,11 @@
     margin-left: 0;
     margin-bottom: 0;
     width: 117px;
-    max-height:350px;
+    max-height:380px;
     overflow-y: scroll;
     /* 用于隐藏横向滑块 */
     overflow-x:hidden;
-    height:350px;
+    height:380px;
 }
 .cleaning_price_set_left_table:-webkit-scrollbar{
     display: none;
@@ -69,11 +69,10 @@
 .change_card_table.right_table{
     float: right;
     margin: 0 11px;
-    max-height: 448px;
     max-width: 630px;
     overflow: auto;
     border: 1px solid #eceff6;
-    height: 349px;
+    height: 380px;
     overflow-y: hidden;
 }
 
@@ -111,8 +110,8 @@
     background:#f6f7fb;
 }
 .right_table tbody{
-    max-height:300px;
-    height:300px;
+    max-height:335px;
+    height:335px;
     overflow-y: auto;
     width: auto;
     display: inline-block;

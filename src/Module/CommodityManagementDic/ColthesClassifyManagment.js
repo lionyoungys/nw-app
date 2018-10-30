@@ -77,7 +77,7 @@ export default class extends Component {
         tool.ui.warn({
             title: '提示', msg: '确定要删除？',button: ['是（Y）', '否（N）'], callback: (close, event) => {
                 console.log(event);
-                if (0==event) {//是
+                if ('是（Y）'==event) {//是
                     api.post('delServeType', {
                         token: 'token'.getData(),
                         id: this.state.id

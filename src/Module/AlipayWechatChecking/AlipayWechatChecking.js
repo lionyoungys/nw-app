@@ -21,10 +21,10 @@ export default class extends Component {
             list:[],
             count:0,
             selectType: '',//2,微信。3，支付宝默认全部)
-            pay_type:'全部'
+            pay_type:'全部',
+            limit : 15,
         }
         this.type = ['全部', '支付宝', '微信'];
-        this.limit = 15;
         this.query = this.query.bind(this);
         this.changePayType = this.changePayType.bind(this);
     }
@@ -48,7 +48,7 @@ export default class extends Component {
         let pramas = {
             token: 'token'.getData(),
             page: this.state.page,
-            limit: this.limit,
+            limit: this.state.limit,
             pay_way: this.state.selectType,
             start_time: this.state.startDate,
             end_time: this.state.endDate,
@@ -113,7 +113,7 @@ export default class extends Component {
                         {this.state.nodatas && <Nodata />}
                     </tbody>
                 </table>
-                <Pages current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                    <Pages current={this.state.page} total={this.state.count} fetch={this.state.limit}  callback={page => this.query(page)}/>
             </div>
             </Window>
         );

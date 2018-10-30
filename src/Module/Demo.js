@@ -85,10 +85,10 @@ export default class extends React.Component {
                     </Dish>
                 }
                 <Page 
-                    total={this.state.total} 
-                    current={this.state.current} 
-                    fetch={this.state.fetch} 
-                    onUpdateFetch={value => this.setState({fetch:value})} 
+                    total={this.state.total}
+                    current={this.state.current}
+                    fetch={this.state.fetch}
+                    onUpdateFetch={value => this.setState({fetch:value})}
                     callback={value => this.setState({current:value})}
                 />
                 <Empty>暂无数据</Empty>
