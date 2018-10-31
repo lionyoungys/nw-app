@@ -36,7 +36,12 @@ export default class extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.callback = this.callback.bind(this);
+        this.onchange = this.onchange.bind(this);
     }; 
+    onchange(e){
+        this.setState({sex:e.target.value});
+        this.input.removeAttribute('checked');
+    }
     componentDidMount() {
         api.post('cardType', {token:token,limit:200}, (res,ver,handle) => {
             if (ver && res) {
@@ -98,6 +103,7 @@ export default class extends React.Component {
         obj.give_price = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
         obj.made_price = (isNaN(this.state.made_price) || this.state.made_price < 0 ? 0 : this.state.made_price);
         obj.balance = this.state.amount.add(obj.give_price);
+        console.log(obj);
         api.post('saleCard', obj, (res, ver, handle) => {
             if (ver) {
                 console.log(res);
@@ -177,9 +183,8 @@ export default class extends React.Component {
                 <div>
                      <span className='salecard_leftdirection'>
                     <span>性别:</span>&nbsp;&nbsp;
-                    {/* <Select option={['男','女']} onChange={value => this.setState({sex:value})}/> */}
-                    <label><input type='radio' className='e-radio' value='222' name='r' onChange={value => this.setState({sex:value})}/> 男</label>&emsp;
-                <label><input type='radio' className='e-radio' value='333' name='r' onChange={value => this.setState({sex:value})}/> 女</label><br/>
+                    <label><input type='radio' className='e-radio' value='男' checked={'男' == this.state.sex} onChange={e => this.setState({sex:e.target.value})}/> 男</label>&emsp;
+                <label><input type='radio' className='e-radio'  value='女' checked={'女' == this.state.sex} onChange={e => this.setState({sex:e.target.value})} /> 女</label><br/>
                     </span>
                 </div>
             <div>

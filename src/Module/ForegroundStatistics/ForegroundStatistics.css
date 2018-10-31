@@ -10,6 +10,7 @@
 }
 .ui-table-base.for-sta-tab tbody{
     max-height:300px;
+    width: auto;
 }
 .ui-table-base.for-sta-tab tbody tr:last-child{
     border-bottom:1px solid #d7dde6;

@@ -45,7 +45,6 @@ export default class extends React.Component {
         //新增
          this.uploadShow = this.uploadShow.bind(this);
          this.lightboxShow = this.lightboxShow.bind(this);
-         this.select_factory = this.select_factory.bind(this); //入厂列表
          this.onKeyPress = this.onKeyPress.bind(this);
     }
     onKeyPress(e){
@@ -54,6 +53,20 @@ export default class extends React.Component {
     componentDidMount() {
         this.input.focus();
         this.query();
+        api.post('factory_id', {           
+            token:'token'.getData(),
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res);
+                let len = res.result.length
+                ,   tmp_arr = [];
+                for (var i = 0;i < len;++i) {
+                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
+                }
+                this.setState({select_shop:tmp_arr});
+                //this.setState({select_shop:res.result.typeArray('mname'), })           
+            }
+        });
     }
     query() {
         let done;
@@ -73,23 +86,7 @@ export default class extends React.Component {
         },()=>done());
     }
     
-    // 点击选择要入的工厂
-    select_factory (){
-        api.post('factory_id', {           
-            token:'token'.getData(),
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res);
-                let len = res.result.length
-                ,   tmp_arr = [];
-                for (var i = 0;i < len;++i) {
-                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
-                }
-                this.setState({select_shop:tmp_arr});
-                //this.setState({select_shop:res.result.typeArray('mname'), })           
-            }
-        });
-    }
+    
     onSearch (){         
 
                 let index = this.state.value.inObjArray(this.state.data, 'clothing_number');
@@ -275,7 +272,7 @@ export default class extends React.Component {
                     <input type="text" className='e-input'  value={this.state.value} onChange={e => this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>添加</button>
                 </div> 
-                <div className='right1 out-right' onClick = {this.select_factory}>
+                <div className='right1 out-right'>
                     选择工厂：<Select  option={this.state.select_shop}  onChange={obj => this.setState({sel_id:obj.key,sel_name:obj.value})} selected="请选择厂家" value={this.state.sel_name}/>
                 </div>
             </div>

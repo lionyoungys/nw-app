@@ -59,7 +59,7 @@
     height: 210px;
 }
 .ui-table-base.man-que-tab tbody{
-    max-height: 185px;
+    max-height: 165px;
 }
 .ui-table-base.man-que-tab tbody::-webkit-scrollbar{
     width:0;

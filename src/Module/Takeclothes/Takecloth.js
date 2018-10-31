@@ -382,7 +382,7 @@ export default class extends Component {
                     </div>
                 </div>                       
             </div>
-                    <div style={{ height: '5px', width: '850px', background: '#cce8ff', margin: '8px auto 0px'}}></div>
+                    <div style={{ height: '0px', width: '850px', background: '#cce8ff', margin: '20px auto 0px'}}></div>
             </div>
             
             );

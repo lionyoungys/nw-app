@@ -41,8 +41,8 @@
     height:40px;
 }
 .Membersdetail-tab table thead tr th{
-    width:106px;
-    min-width:134px;   
+    width:137px;
+    min-width:137px;   
     line-height:40px;
     color:#585858;
     font-size:12px;text-align:center;
@@ -57,23 +57,24 @@
     max-width:31px;
 }
 .Membersdetail-tab table tbody{
-    width:1410px;
+    width:1428px;
     max-height: 268px;
     height: auto;
     display:inline-block;
     overflow-x:hidden;
     overflow-y:auto;
 }
+.Membersdetail-tab table tbody::-webkit-scrollbar{width: 0px}
 .Membersdetail-tab table tbody tr{width:auto;height:40px;display: inline-block}
 .Membersdetail-tab table tbody tr td{
-    width:106px;
+    width:137px;
     height:40px;
     /* border-right:1px solid #acc6de; */
     text-align:center;
     line-height:40px;
     color:#000;
     font-size:12px;   
-    min-width:134px; 
+    min-width:137px; 
 }
 .Membersdetail-tab table tbody tr td:first-child{
     width:31px;

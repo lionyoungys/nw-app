@@ -29,12 +29,28 @@ export default class extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.onChecked = this.onChecked.bind(this);
         this.query = this.query.bind(this);
-        this.select_factory = this.select_factory.bind(this); //入厂列表
         this.change_select = this.change_select.bind(this) ; // 选择要出厂的店铺商家
     }
 
     // 查询 - 搜索
-    componentDidMount() {this.query()}
+    componentDidMount() {
+        this.query();
+        api.post('factory_id', {           
+            token:'token'.getData(),
+        }, (res, ver) => {
+            if (ver && res) {
+                console.log(res);
+                let len = res.result.length
+                ,   tmp_arr = [];
+                for (var i = 0;i < len;++i) {
+                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
+                }
+                console.log(tmp_arr)
+                this.setState({select_shop:tmp_arr});
+                //this.setState({select_shop:res.result.typeArray('mname'), })           
+            }
+        });
+    }
     query(rid) {
         console.log(rid)
         //teamId = tool.isSet(teamId) ? teamId : this.state.teamId;
@@ -81,25 +97,6 @@ export default class extends React.Component {
             this.state.checked.push(value);
             this.setState({checked:this.state.checked});
         }
-    }
-   // 点击选择要入的工厂
-    select_factory (){
-        
-        api.post('factory_id', {           
-            token:'token'.getData(),
-        }, (res, ver) => {
-            if (ver && res) {
-                console.log(res);
-                let len = res.result.length
-                ,   tmp_arr = [];
-                for (var i = 0;i < len;++i) {
-                    tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
-                }
-                console.log(tmp_arr)
-                this.setState({select_shop:tmp_arr});
-                //this.setState({select_shop:res.result.typeArray('mname'), })           
-            }
-        });
     }
     //选择要出厂的商家
     change_select (obj){
