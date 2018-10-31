@@ -20,7 +20,7 @@ export default class extends Component {
             cid: card.id || '',    //卡编号id
             user_mobile: card.user_mobile || '',    //电话
             user_name: card.user_name || '',    //姓名
-            sex: card.sex || '',    //性别
+            sex: card.sex || '男',    //性别
             birthday: card.birthday || '',    //生日
             address: card.address || '',    //地址
             integrals: card.integral,    //积分

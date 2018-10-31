@@ -676,7 +676,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 }
 .ui-tab-blue button.e-btn{
     position:absolute;
-    right:40px;
+    right:15px;
     cursor: pointer;
 }
 /* 360度无死角边框环绕tab */
