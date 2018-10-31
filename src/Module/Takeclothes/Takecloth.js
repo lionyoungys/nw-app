@@ -93,33 +93,46 @@ export default class extends Component {
     onKeyPress(e){
         13 == (e.keyCode || e.which) && this.takecloth();
     }
-    takeClothes(){
+    takeClothes(e){
+        var index = e.target.dataset.index;
         // if(this.state.checked[this.state.current].length==0)
         // return tool.ui.error({msg:'请选择你要取的衣服',callback:close => close()});
-        let takeclothes= { 
-            token:'token'.getData(),
-            ids:JSON.stringify(this.state.checked[this.state.takeclothindex])
-        }
-        console.log(takeclothes)
-        api.post('takeItem',
-          takeclothes
-        , (res, ver) => {
-                if (ver && res) {
-                    tool.ui.success({callback:(close) => {
-                        this.takecloth();
-                        close();
-                        this.setState({show2:false,checked:[]})
-                    }}
-                   ); 
-                                                                                                          
-                }else{
-                    tool.ui.error({msg:res.msg,callback:(close) => {
-                        close();
-                    }}); 
-                                    
+        tool.ui.warn({
+            title: '取衣', msg: '该客户确定要取走衣物？', callback: (close, event) => {
+                console.log(event);
+                if (event == '确定') {
+                    this.setState({ takeclothindex: index });
+                    console.log('网络申请');
+                    let takeclothes = {
+                        token: 'token'.getData(),
+                        ids: JSON.stringify(this.state.checked[this.state.takeclothindex])
+                    }
+                    console.log(takeclothes)
+                    api.post('takeItem',
+                        takeclothes
+                        , (res, ver) => {
+
+                            if (ver && res) {
+                                tool.ui.success({
+                                    callback: (close) => {
+                                        this.takecloth();
+                                        close();
+                                        this.setState({checked: [] })
+                                    }
+                                });
+                            } else {
+                                tool.ui.error({
+                                    msg: res.msg, callback: (close) => {
+                                        close();
+                                    }
+                                });
+                            }
+                        }
+                    );
                 }
+                close();
             }
-        );
+        })
     }
     handleclick(e){
         console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
@@ -354,7 +367,7 @@ export default class extends Component {
                                 if (4 != item1.status) ++tmpCheckedCount;
                                 return (
                                     <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
-                                        <td><input type="checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item.pay_state == 1 ? true : false) && (item1.status == 4 ? false : true)) == true ? 'inline' : 'none' }} /><span>{index2 + 1}</span></td>
+                                        <td><input type="checkbox" class="e-checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item.pay_state == 1 ? true : false) && (item1.status == 4 ? false : true)) == true ? 'inline' : 'none' }} /><span>{index2 + 1}</span></td>
                                         <td>{item1.clothing_number}</td>
                                         <td>{item1.clothing_name}</td>
                                         <td>{item1.clothing_color}</td>
@@ -370,11 +383,11 @@ export default class extends Component {
             </div>
             <div className="Takeclothesdetail-footer">
                 <div className="Takeclothesdetail-footer-left" style={{display:item.pay_state==1?'block':'none'}}>
-                <input type="checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
+                <input type="checkbox" class="e-checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
-                    <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
-                    <button className="take-over" onClick={() => this.setState({show2:true,takeclothindex:index})} style={{display:((item.pay_state==1?true:false)&&(tempChecked.length!=0?true:false))==true?'block':'none'}}>取衣</button>
-                    <button className="take-no" style={{display:((item.pay_state==1?true:false)&&(tempChecked.length==0?true:false))==true?'block':'none'}}>取衣</button>
+                            <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
+                            <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length != 0 ? true : false)) == true ? 'block' : 'none' }}>取衣</button>
+                            <button className="take-no" style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length == 0 ? true : false)) == true ? 'block' : 'none' } }>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                     <div style={{display:item.pay_state!=1?'block':'none'}}>
                         {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
@@ -420,23 +433,6 @@ export default class extends Component {
                         }}
                         callback={this.paymentCallback}
                     />
-                }
-                {
-                    this.state.show2
-                    &&
-                    <LayerBox
-                        title='取衣'
-                        onClose={() => this.setState({show2:false})}
-                        onClick={this.takeClothes}
-                        onCancel={() => this.setState({show2:false})}
-                        hasCancel={true} width='278' height='200'>
-                        {
-                            <div className="takeclothes-people">
-                                该客户确定要取走衣物
-                            </div>
-                        }
-                    
-                    </LayerBox>
                 }
                   {this.state.nodatas&&<Nodata />}
                 </Window> 
