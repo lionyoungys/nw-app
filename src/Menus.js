@@ -126,59 +126,9 @@ const Menus = [
         ]
     }
 ];
-//顶部导航栏配置    value:导航名称;class:样式名称;view:展示的视图组件名称
-const nav = [
-    {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
-    {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
-    {value:'充值',class:'main-recharge',view:'recharge', id: 24},
-    {value:'营业日报',class:'main-income',view:'operate_income', id: 17},
-    {value:'退出',class:'main-quit',view:null, event:'quit'},
-];
-//左侧菜单配置    value:菜单名称;options:子选单列表;options>value:子选单名称;options>view:子选单视图;
-const leftMenu = [
-    {
-        value:'前台业务', 
-        options:[
-            {value:'线上订单', class:'main-clothes', view:'onlineorder', state:'count'},    //state:使用组件的state的键读取状态值
-            {value:'收衣',class:'main-clothes',view:'clothes', id: 7},
-            {value:'取衣',class:'main-take',view:'take_clothes', id: 9},
-            // {value:'上挂',class:'main-put-on',view:'hangon', id: 8},
-            // {value:'商品销售',class:'main-sell-goods',view:'commodity_sales', id: 10},
-            {value:'售卡',class:'main-sale-card',view:'sale_card', id: 23},
-            {value:'充值',class:'main-recharge',view:'recharge', id: 24},
-        ]
-    },
-    {
-        value:'洗护管理', 
-        options:[           
-            {value:'送洗',class:'main-laundry',view:'laundry', id: 111},
-            {value:'清洗',class:'main-clearn',view:'clear', id: 100},
-            {value:'烘干',class:'main-hot',view:'dry', id: 102},
-            {value:'熨烫',class:'main-ironing',view:'ironing', id: 104},
-            {value:'质检',class:'main-quality',view:'check', id: 106},
-            {value:'入厂',class:'main-factory',view:'Infactory', id: 112},
-            {value:'出厂',class:'main-outfactory',view:'outoffactory', id: 114},
-            {value:'上挂',class:'main-put-on',view:'hangon'},
-        ]
-    },
-    {
-        value:'信息查询', 
-        options:[
-            {value:'衣物查询',class:'main-clothes-search',view:'clothes_query', id: 15},
-            {value:'客户信息查询',class:'main-member-search',view:'customer_query', id: 29},
-            {value:'营业日报',class:'main-income-today',view:'operate_income', id: 17}
-        ]
-    },
-    {
-        value:'其他', 
-        options:[
-            {value:'开钱箱',class:'main-open-case',view:'open_cash_box'}
-        ]
-    },
-];
 
-    //权限管理处理
-    
+
+//权限管理处理
 var auth = 'auth'.getData()
 ,   is_root = 'is_root'.getData();
 if (1 != is_root) {
@@ -188,8 +138,6 @@ if (1 != is_root) {
         authArr = [];
     }
     var topMenuLen = Menus.length
-    ,   navLen = nav.length
-    ,   leftMenuLen = leftMenu.length
     ,   i
     ,   tempLen
     ,   j;
@@ -209,23 +157,5 @@ if (1 != is_root) {
             }
         }
     }
-    for (i = 0;i < navLen;++i) {
-        if ('undefined' !== typeof nav[i].id && -1 === nav[i].id.inArray(authArr)) {
-            nav.splice(i, 1);
-            --i;
-            --navLen;
-        }
-    }
-    for (i = 0;i < leftMenuLen;++i) {
-        tempLen = leftMenu[i].options.length;
-        for (j = 0;j < tempLen;++j) {
-            if ('undefined' !== typeof leftMenu[i].options[j].id && -1 === leftMenu[i].options[j].id.inArray(authArr)) {
-                leftMenu[i].options[j].splice(j, 1);
-                --j;
-                --tempLen;
-            }
-        }
-    }
 }
 export default Menus;
-//export {Menus, nav, leftMenu};

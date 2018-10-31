@@ -301,6 +301,7 @@ export default class extends Component {
                 <span key={'item'+index} data-index={index} 
                     className={this.state.index==index?'commoditysales-left-hover':null}
                     onClick={this.handleClick}
+                    title={item.name}
                 >{item.name}</span>
         );  
         let itemList;
@@ -382,10 +383,12 @@ export default class extends Component {
                </div>
                <div className="commoditysales-footerdiv">
                     <div className="commoditysales-footerdiv-right">
-                        <div className="commoditysales-footerdiv-rightboth">总金额: ￥{this.state.total}</div>
-                        <div className="commoditysales-footerdiv-rightboth">折扣率: {this.state.discount}</div>
-                        <div className="commoditysales-footerdiv-rightboth">总件数: {parseInt(this.state.amount)}</div>
-                        <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥{this.state.disTotal}</div>                    
+                        <div className="title-money">
+                           <div className="commoditysales-footerdiv-rightboth commoditysales-footerdiv-rightred">折后价: ￥{this.state.disTotal}</div>
+                           <div className="commoditysales-footerdiv-rightboth">折扣率: {this.state.discount}</div>
+                           <div className="commoditysales-footerdiv-rightboth">总件数: {parseInt(this.state.amount)}</div>
+                           <div className="commoditysales-footerdiv-rightboth">总金额: ￥{this.state.total}</div>                 
+                        </div>
                         <div className="commoditysales-footerdiv-rightboth-btndiv">
                             <button type='button' className='e-btn middle high' onClick={this.payment}>收款</button>
                             <button type='button' className='e-btn' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>

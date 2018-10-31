@@ -30,6 +30,7 @@
     border:1px solid #d8dce7;
     height:345px;
 }
+.commoditysales-left-count::-webkit-scrollbar{width: 0px}
 .commoditysales-left-count span{
     display:block;
     width:93px;height:35px;line-height:35px;   
@@ -39,6 +40,7 @@
     background-size:77px 2px;
     background-position:bottom center;
     cursor: pointer;
+    overflow: hidden;
 }
 .commoditysales-left-count span.commoditysales-left-hover{
     background:#3abad5;
@@ -98,12 +100,12 @@
 }
 
 .commoditysales-button button{ cursor: pointer;}
-.commoditysales-footerdiv-right div.commoditysales-footerdiv-rightred{color:#f00}
+.commoditysales-footerdiv-right div.commoditysales-footerdiv-rightred{color:#f00;width: auto;}
 
 
 /* 修改样式 */
 .commoditysales-div{width: 770px;height: 403px}
-.sale-right{width: 662px;height:451px;float:right;}
+.sale-right{width: 662px;height:400px;float:right;}
 .commoditysales-div-right{width: 662px;height: 168px;border:1px solid #d8dce5;box-sizing: border-box}
 .commoditysales-div-right .commoditysales-right-tab {width: 662px;height: 168px;max-height: 168px}
 .commoditysales-div-right .commoditysales-right-tab table{
@@ -127,7 +129,6 @@
 .commoditysales-div-right .commoditysales-right-tab table thead tr th:last-child{background: none;}
 .commoditysales-div-right .commoditysales-right-tab table tbody{
     width: 660px;height: 121px;
-    border-bottom: 1px solid #ebeff8;box-sizing: border-box;
     max-height: 121px;
     overflow-y: auto;
     display:inline-block;
@@ -163,26 +164,28 @@
 .commoditysales-footerdiv-left table tbody tr td{width:132px;height: 40px;color: #999;border-right: none;text-align: center}
 
 .commoditysales-footerdiv{
-    width: 400px;
+    width: 100%;
     height: 82px;
     background: none;
     border-top: 1px solid #eee;
     margin: 5px auto 0;
-    padding-left: 404px;
+}
+.title-money{
+    width: 739px;
+    height: 38px;
+    clear: both;
+    float: right;
+    margin-right: 64px;
 }
 .commoditysales-footerdiv-right .commoditysales-footerdiv-rightboth{
-    height: 27px;
-    text-align: center;
+    height: 38px;
     color: #4d4d4d;
-    font-size: 12px;
+    font-size: 12px;   
+    width: auto;    
+    margin-left: 20px;
     font-weight: 700;
-    float: left;
-    width: 97px;
-    margin-top: -26px;
-    text-align: center;
-    margin-left: -8px;
-    font-weight: bold;
-    line-height: 0px;
+    line-height: 36px;
+    float: right;
 }
 .commoditysales-footerdiv-rightboth-btndiv{
     width: 600px;
@@ -190,7 +193,7 @@
     float: right;
     text-align: right;
     padding-right: 51px;
-    margin-top: -5px;
+    margin-top: 0px;
 }
 .commoditysales-footerdiv-rightboth-btndiv button{
     margin:3px 8px;
@@ -205,4 +208,4 @@
     background: #3abad5;color: #fff;
     border: none;
 }
-.commoditysales-footerdiv-right{width: 100%;height: 100%}
+.commoditysales-footerdiv-right{width: 100%;height: 100%;text-align: right;}

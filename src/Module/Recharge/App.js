@@ -36,6 +36,7 @@ export default class extends React.Component {
             amount:'',
             give:'',
             selectVal:'',
+            discountt:''//新折扣
         
         }
         this.M1Read = this.M1Read.bind(this);
@@ -49,7 +50,7 @@ export default class extends React.Component {
                 console.log(res)
                 let cards = res.result.cardsType
                 ,   first = cards.length > 0 ? cards[0] : {real_price:0,made_price:0,give_price:0,discount:100};
-                this.setState({  selectVal:first.cardsType,cards: cards, types: cards.typeArray('card_type'), amount:first.real_price, give:first.give_price,discount:first.discount});
+                this.setState({  selectVal:first.cardsType,cards: cards, types: cards.typeArray('card_type'), amount:first.real_price, give:first.give_price,discountt:first.discount});
             }else{
                 handle();
             }
@@ -60,7 +61,7 @@ export default class extends React.Component {
         let value = obj.value
         ,   index = obj.index
         ,   card = this.state.cards[index];
-        this.setState({selectVal:value,index:index,amount:card.real_price, give:card.give_price,discount:card.discount});
+        this.setState({selectVal:value,index:index,amount:card.real_price, give:card.give_price,discountt:card.discount});
     }
 
     handleClick() {
@@ -195,7 +196,7 @@ export default class extends React.Component {
                         <div><label className='e-label'>选择充值类型：</label><Select option={this.state.types} onChange={this.handleChange} value={this.state.selectVal}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;充值：</label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={this.state.discount} onChange={e=>this.setState({discount:e.target.value})}/>%</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={this.state.discountt} onChange={e=>this.setState({discountt:e.target.value})}/>%</div>
                     </div>
                    
                 </div>
@@ -212,7 +213,7 @@ export default class extends React.Component {
                     <Recharge
                         data={{
                             type:this.state.card_name,
-                            discount:this.state.discount,
+                            discount:this.state.discountt,
                             recharge:this.state.amount,
                             balance:this.state.balance,
                             give:this.state.give,
