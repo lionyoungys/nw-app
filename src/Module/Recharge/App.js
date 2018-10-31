@@ -35,7 +35,8 @@ export default class extends React.Component {
             time: card.time || '',    //售卡日期
             amount:'',
             give:'',
-            selectVal:''
+            selectVal:'',
+        
         }
         this.M1Read = this.M1Read.bind(this);
         this.callback = this.callback.bind(this);
@@ -48,7 +49,7 @@ export default class extends React.Component {
                 console.log(res)
                 let cards = res.result.cardsType
                 ,   first = cards.length > 0 ? cards[0] : {real_price:0,made_price:0,give_price:0,discount:100};
-                this.setState({  selectVal:first.cardsType,cards: cards, types: cards.typeArray('card_type'), amount:first.real_price, give:first.give_price});
+                this.setState({  selectVal:first.cardsType,cards: cards, types: cards.typeArray('card_type'), amount:first.real_price, give:first.give_price,discount:first.discount});
             }else{
                 handle();
             }
@@ -59,7 +60,7 @@ export default class extends React.Component {
         let value = obj.value
         ,   index = obj.index
         ,   card = this.state.cards[index];
-        this.setState({selectVal:value,index:index,amount:card.real_price, give:card.give_price});
+        this.setState({selectVal:value,index:index,amount:card.real_price, give:card.give_price,discount:card.discount});
     }
 
     handleClick() {
@@ -194,7 +195,7 @@ export default class extends React.Component {
                         <div><label className='e-label'>选择充值类型：</label><Select option={this.state.types} onChange={this.handleChange} value={this.state.selectVal}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;充值：</label><input className='e-input'  type='number' value={this.state.amount} onChange={e => this.setState({amount:e.target.value})}/></div>
                         <div><label className='e-label'>&emsp;&emsp;&emsp;&emsp;赠送：</label><input className='e-input' type='number' value={this.state.give} onChange={e => this.setState({give:e.target.value})}/></div>
-                        <div><label className='e-label'>&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={card.discount}/>%</div>
+                        <div><label className='e-label'>&emsp;&emsp;&emsp;新折扣：</label><input className='e-input' type='number' value={this.state.discount} onChange={e=>this.setState({discount:e.target.value})}/>%</div>
                     </div>
                    
                 </div>
