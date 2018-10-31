@@ -6,7 +6,6 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import { WSAEINVALIDPROCTABLE } from 'constants';
 import './Itsprocessing.css';
 
 export default class extends Component {   
@@ -197,10 +196,10 @@ export default class extends Component {
                   </div>                 
                 </div> 
                 <div className="Itsprocessing-footer-div">
-                   <span>退款金额：</span><input type="number" onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
+                   <span>退款金额：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
                 </div>
                 <div className="Itsprocessing-footer-div">
-                   <span>卡退款：</span><input type="number" onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
+                   <span>卡退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
                 </div>
             </div>
             </Window> 

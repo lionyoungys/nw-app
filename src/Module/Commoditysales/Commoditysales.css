@@ -108,6 +108,7 @@
 .commoditysales-div-right .commoditysales-right-tab {width: 662px;height: 168px;max-height: 168px}
 .commoditysales-div-right .commoditysales-right-tab table{
     width: 660px;height: 166px;max-height: 166px;
+    display:block;
 }
 .commoditysales-div-right .commoditysales-right-tab table thead{width: 660px;height: 40px;background: #f6f7fb}
 .commoditysales-div-right .commoditysales-right-tab table thead tr{width: 660px;height: 40px}
@@ -129,6 +130,7 @@
     border-bottom: 1px solid #ebeff8;box-sizing: border-box;
     max-height: 121px;
     overflow-y: auto;
+    display:inline-block;
 }
 .commoditysales-div-right .commoditysales-right-tab table tbody::-webkit-scrollbar{width:0px;}
 .commoditysales-div-right .commoditysales-right-tab table tbody tr{

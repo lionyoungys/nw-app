@@ -53,7 +53,7 @@
 }
 .ui-table-base.staff-tab tbody tr{padding:11px 0}
 .ui-table-base.staff-tab tbody{
-    max-height: 425px;
+    max-height: 330px;
     overflow-y: auto;
 }
 .ui-table-base.staff-tab tbody tr td:first-child,.ui-table-base.staff-tab thead tr td:first-child{

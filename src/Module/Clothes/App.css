@@ -299,7 +299,7 @@
 .clothes-deduct-top{
     height: 74px;
     margin: 10px 12px 9px;
-    border: 1px solid #8db2e3;
+    border: 1px solid #3fbfdc;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 13px 0 0 13px;
@@ -309,11 +309,10 @@
 .clothes-deduct-body{
     height: 272px;
     margin: 0 12px;
-    border: 1px solid #8db2e3;
+    border: 1px solid #3fbfdc;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-size: 12px;
-    color: #15458d;
     padding-top: 14px;
 }
 .clothes-deduct-body>div{

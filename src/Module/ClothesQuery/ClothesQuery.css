@@ -54,7 +54,6 @@
     margin:9px auto;
 }
 
-
 .OperatingDetails_list .clothesquery_bottom_list_box{
     height:372px;max-height:372px
 }
@@ -75,11 +74,9 @@
 }
 .ui-table-base.clo-que-tab thead tr td:last-child{background: none}
 .ui-table-base.clo-que-tab tbody{
-
-    max-height:185px; 
+    max-height:192px; 
 }
 .ui-table-base.clo-que-tab tr td{
-
     max-width:113px; 
     min-width:82px;
 }
@@ -90,7 +87,6 @@
     width: 150px;
     margin-left: 0px;
 }
-
 #clo-que-tab{
    height:238px;
 }
