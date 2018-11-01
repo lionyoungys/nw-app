@@ -204,8 +204,6 @@
 
 
 /* 洗护管理修改样式 */
-.clean .e-box .e-table tbody tr{display: -webkit-box}
-.clean .e-box .in-factory tbody tr{display: -webkit-box}
 .clean .e-box .e-table tbody td span.e-checkbox{
     border: none;
     background: url(./images/gaiban-n.png);
