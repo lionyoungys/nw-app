@@ -100,7 +100,7 @@ const topMenu = [
             {value:'价格设置', view:'price_setting', id: 45},
             {value:'参数设置', view:'Parameter_Settings', id: 46},
             {value:'设备与打印机', view:'equipment_management', id: 47},
-            //{value:'数据导入2',  view:'data', id: 48},
+            {value:'数据导入2',  view:'data', id: 48},
             {value:'数据导入',  view:'data2'},
             {value:'金熨斗v4.0数据导入',  view:'data4'},
             {value:'金熨斗v6.0数据导入',  view:'data6'},
