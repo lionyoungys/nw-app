@@ -92,7 +92,6 @@
     /* border-right: 1px solid #acc6de; */
     word-wrap:break-word;
     padding: 0 5px;
-    color: #b5b5b5
 }
 .right_table tr td:first-child{
     min-width: 50px;
@@ -110,11 +109,12 @@
     background:#f6f7fb;
 }
 .right_table tbody{
-    max-height:335px;
-    height:335px;
+    max-height:320px;
+    height:320px;
     overflow-y: auto;
     width: auto;
     display: inline-block;
     overflow-x: hidden;
 }
-.right_table thead tr th{color:#636466}
+.right_table thead tr th,td{color:#4d4d4d}
+.right_table tbody tr td{color:#999}

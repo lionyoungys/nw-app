@@ -1,8 +1,6 @@
 .unpaidstatistics_data{
-
     margin: 13px 13px 0;
     height: 59px;
-
 }
 .unpaidstatistics_dataLeft{
     width:100%;
@@ -11,7 +9,6 @@
     background:#f5f8fa;
     float: left;
 }
-
 .unpaidstatistics_dataLeft div{
     float: left;
     width:33%;
@@ -26,54 +23,15 @@
     margin-top:16px;
 }
 .unpaidstatistics_dataright{
-
     height: 57px;
     width: 35%;
     float: left;
     line-height: 57px;
 }
-.unpaidstatistics_dataLeft div input{
-    /* width:133px;
-    height:20px;
-    background:#fff;
-    background-size:100% 100%;
-    outline:none;
-    border:1px solid #c4c2c2;       
-    border-radius:3px;
-    text-indent:4px;
-    cursor: pointer;
-    background:url(./img/select.png) no-repeat;
-    background-size:18px 24px;
-    background-position-x:115px;
-    background-position-y:0;  */
-}
-/* input[type=date]:-webkit-inner-spin-button {
-
-    visibility: hidden; 
-} */
-/*----------用来移除向下箭头----------*/
-/* input[type="date"]::-webkit-calendar-picker-indicator {
-
-    opacity: 0;
- } */
- /*----------用来移除叉叉按钮----------*/
- /* input[type="date"]:-webkit-clear-button{
-
-    display:none;
- } */
-.unpaidstatistics_dataLeft div input:hover{
-    /* background:url(./img/hoverselect.png) no-repeat;
-    background-size:18px 24px;
-    background-position-x:115px;
-    background-position-y:0;  */
-}
-
 .unpaidstatistics_dataright button{
-
     margin-left:30px;
 }
 .unpaidstatistics_Statistics{
-
     border:1px solid #d7dde6;
     height:33px;
     background:#f5f8fa;
@@ -88,7 +46,6 @@
     float: left;
 }
 .unpaidstatistics_Statistics span a{
-
     color: #ff0000;
     font-size: 14px;
     font-weight: bold;
@@ -101,13 +58,13 @@
     /* font-weight:bold; */
 }
 .unp-sta-res-num a{color: #f00}
-/* 表格区域 */
 
+/* 表格区域 */
 .ui-table-base.unpaidstatistics_table_Arrearage{
     max-height: 290px;
     overflow-x: auto;
     height: 290px;
-    margin-left: 23px;
+    margin-left: 17px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
     max-height: 235px;
@@ -119,6 +76,3 @@
     min-width:85px;
     max-width:85px;
 }
-/* .ui-table-base.unpaidstatistics_table_Arrearage tr:last-child{
-    border-bottom:1px solid #8db2e3;
-} */

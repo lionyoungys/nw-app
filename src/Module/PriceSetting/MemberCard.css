@@ -16,7 +16,7 @@
     height:auto;    
     border:1px solid #eceff6;
     clear:both;
-    max-height:376px;
+    max-height:321px;
     overflow: hidden;
 }
 .membercard-tab table thead{
@@ -24,14 +24,14 @@
     height:25px;
     background:#f6f7fb;
 }
-.membercard-tab table{height:332px;border-bottom:1px solid #eceff6}
+.membercard-tab table{height:283px;border-bottom:1px solid #eceff6}
 .membercard-tab table thead tr{
     width:100%;
     height:40px;
     line-height:40px;
     display: inline-block;
 }
-.membercard-tab table tbody{width:767px;display:block;max-height:300px;overflow-y:auto;overflow-x:hidden}
+.membercard-tab table tbody{width:767px;display:block;max-height:240px;overflow-y:auto;overflow-x:hidden}
 .membercard-tab table tbody tr{
     width:100%;
     height:40px;
