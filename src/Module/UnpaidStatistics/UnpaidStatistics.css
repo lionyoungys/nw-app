@@ -107,6 +107,7 @@
     max-height: 290px;
     overflow-x: auto;
     height: 290px;
+    margin-left: 23px;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
     max-height: 235px;

@@ -92,7 +92,7 @@ export default class extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                       {list}
+                        {list}
                         {this.state.nodatas&&<Nodata />}
                     </tbody>
                 </table>   
