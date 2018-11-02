@@ -5,6 +5,7 @@
 
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 import MathUI from '../../UI/MathUI';
 import Category from './Category';
 import Item from './Item';
@@ -594,29 +595,29 @@ export default class extends Component {
             dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount = no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
             return (
-                <div key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
-                    <div onClick={this.showCode}>{obj.clothing_number}</div>
-                    <div onClick={this.showItem}>{obj.clothing_name}</div>
-                    <div onClick={this.showColor}>{obj.clothing_color}</div>
-                    {/* <div onClick={this.showProblem}>{obj.remark}</div> */}
-                    <div onClick={this.showBrand}>{obj.sign}</div>
-                    <div onClick={this.showForcast}>{obj.forecast}</div>
-                    <div onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft).toFixed(2)}</div>
-                    <div onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</div>
-                    <div><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></div>
-                    <div>
+                <tr key={'data' + index} data-index={index} style={obj.parent ? {display:'none'} : null}>
+                    <td onClick={this.showCode}>{obj.clothing_number}</td>
+                    <td onClick={this.showItem}>{obj.clothing_name}</td>
+                    <td onClick={this.showColor}>{obj.clothing_color}</td>
+                    {/* <td onClick={this.showProblem}>{obj.remark}</td> */}
+                    <td onClick={this.showBrand}>{obj.sign}</td>
+                    <td onClick={this.showForcast}>{obj.forecast}</td>
+                    <td onClick={this.showPrice}>{obj.addition_price.add(obj.addition_no_price, total_craft).toFixed(2)}</td>
+                    <td onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</td>
+                    <td><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></td>
+                    <td>
                         <span onClick={this.copy}>复制</span>
                         &emsp;
                         <span onClick={this.del}>删除</span>
-                    </div>
-                </div>
+                    </td>
+                </tr>
             );
         });
         return (
-            <Window title='收衣' onClose={this.onClose}>
-                <div className='clothes-user'>
-                    <div>
-                        <sup>*</sup>手机：
+            <Window title='收衣' onClose={this.onClose} padding={true}>
+                <div className='e-block' style={{marginBottom:'16px'}}>
+                    <div style={{marginBottom:'12px'}}>
+                        <sup className='e-red'>*</sup>手机：
                         <input 
                             type='text' 
                             className='e-input' 
@@ -625,7 +626,7 @@ export default class extends Component {
                             value={this.state.phone} 
                             onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
                         />
-                        <sup>*</sup>姓名：
+                        <sup className='e-red'>*</sup>姓名：
                         <input 
                             type='text' 
                             className='e-input' 
@@ -648,18 +649,15 @@ export default class extends Component {
                     &emsp;
                     <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>
                 </div>
-                <div className='clothes-header'>
-                    <div>
-                        <div>衣物编码</div><div>衣物名称</div><div>颜色</div>{/*<div>瑕疵</div>*/}<div>品牌</div>
-                        <div>洗后预估</div><div>工艺加价</div><div>单价</div><div>数量</div><div>操作</div>
-                    </div>
-                </div>
-                <div className='clothes-container'>
-                    <div>
-                        <div className='clothes-body'>{html}</div>
-                        <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
-                    </div>
-                </div>
+                <Table style={{maxHeight:'328px'}}>
+                    <thead><tr>
+                        <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'116px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
+                        {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
+                        <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'83px'}}>数量</th><th style={{minWidth:'100px'}}>操作</th>
+                    </tr></thead>
+                    <tbody>{html}</tbody>
+                </Table>
+                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
                         <div>

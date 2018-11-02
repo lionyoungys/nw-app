@@ -9,31 +9,32 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {top:0, lineHeight:0, children:[]};
-        this.handleWindowResize = this.handleWindowResize.bind(this);
+        this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
+        this.node = null;
     }
 
     componentDidMount() {
-        this.handleWindowResize();
-        window.addEventListener('resize', this.handleWindowResize);
+        window.addEventListener('resize', this.handleResize);
     }
     componentWillUnmount() {
-        window.removeEventListener('resize', this.handleWindowResize);
+        window.removeEventListener('resize', this.handleResize);
     }
 
-    handleWindowResize() {
+    handleResize() {
         let nodes = this.refs.table.childNodes
-        ,   len = nodes.length
-        ,   node;
+        ,   len = nodes.length;
         if (len > 0) {
-            for (let i = 0;i < len;++i) {
-                if ('THEAD' === nodes[i].tagName || 'TBODY' === nodes[i].tagName) {
-                    node = nodes[i].childNodes[0];
-                    break;
+            if (null === this.node) {
+                for (let i = 0;i < len;++i) {
+                    if ('THEAD' === nodes[i].tagName || 'TBODY' === nodes[i].tagName) {
+                        this.node = nodes[i].childNodes[0];
+                        break;
+                    }
                 }
             }
-            if ('object' === typeof node && 'TR' === node.tagName) {
-                let tds = node.childNodes
+            if (null !== this.node && 'TR' === this.node.tagName) {
+                let tds = this.node.childNodes
                 ,   tdLen = tds.length
                 ,   children = [];
                 for (let i = 0;i < tdLen;++i) {
@@ -43,14 +44,18 @@ export default class extends Component {
                         style:{width:(tds[i].scrollWidth + 'px'), height:(tds[i].scrollHeight + 'px')}
                     });
                 }
-                this.setState({lineHeight:(node.offsetHeight + 'px'), children:children});
+                this.setState({lineHeight:(this.node.offsetHeight + 'px'), children:children});
             }
         }
     }
 
     handleScroll(e) {
         e.persist();
-        this.setState({top:(e.target.scrollTop + 'px')});
+        let top = e.target.scrollTop;
+        if (top > 0) {
+            this.handleResize();
+        }
+        this.setState({top:e.target.scrollTop});
     }
 
     render() {
@@ -69,7 +74,7 @@ export default class extends Component {
         }
         return (
             <div className={className} style={this.props.style} onScroll={this.handleScroll}>
-                <section style={{lineHeight:this.state.lineHeight, top:this.state.top}}>{html}</section>
+                <section style={{lineHeight:this.state.lineHeight, top:(this.state.top + 'px'), display:(0 === this.state.top ? 'none' : null)}}>{html}</section>
                 <table className={this.props.tableClassName} style={this.props.tableStyle} ref='table'>
                     {this.props.children}
                 </table>

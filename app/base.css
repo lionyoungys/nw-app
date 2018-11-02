@@ -1046,6 +1046,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100000;
     background-color: #fff;
 }
 .ui-table>section>div{
@@ -1076,6 +1077,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #f4f4f4;
     border-bottom: 1px solid #edf0f9;
     background-color: #fff;
+    text-align: center;
 }
 .ui-table-default tbody>tr:last-child{border-bottom: none}
 .ui-table-default tbody>tr:hover{background-color: #fafdfd}
