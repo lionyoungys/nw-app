@@ -75,6 +75,7 @@ import dry from './Module/dry/App'; // 烘干
 import ironing from './Module/ironing/App'; // 熨烫
 import check from './Module/check/App'; // 质检
 import out_of_factory from './Module/out_of_factory/App'; // 出厂
+import TableDemo from './Module/TableDemo';
 
 
 
@@ -97,6 +98,7 @@ export default {
     add_group: AddGroup,//新增组(ranchong)
     recharge_up:RechargeUp,   //充值统计
     demo:Demo,
+    table_demo:TableDemo,
     staff_management:StaffManagement, //员工管理
     balance_statistics:BalanceStatistics,  //余额统计
     member_consumption_statistics:MemberConsumptionStatistics, //会员消费统计
