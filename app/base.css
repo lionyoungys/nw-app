@@ -18,6 +18,13 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 /* 文字方向 */
 .e-text-c{text-align: center}
 .e-text-r{text-align: right}
+/* 基础容器 */
+.e-block{
+    display: block;
+    border: 1px solid #d8dce5;
+    background-color: #f5f7fa;
+    padding: 12px 14px
+}
 /* 文本不可选中 */
 .e-select-disabled{
     user-select:none;
