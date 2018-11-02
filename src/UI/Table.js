@@ -1,7 +1,7 @@
 /**
  * table组件
  * @author Edwin Young
- * @desc table    className:追加css类名;style:追加style样式;tableClassName:组件内部table追加css类名;tableStyle:组件内部table追加style样式;
+ * @desc table    className:追加css类名;style:追加style样式;tableClassName:组件内部table追加css类名;tableStyle:组件内部table追加style样式;theme:table主题样式,默认default,为none时无任何主题;
  */
 
 import React, {Component} from 'react';
