@@ -163,11 +163,12 @@
 /* 查询结果样式 */
 /* <div class="ui-check-res">已为您找到<b>15248</b>条数据</div> */
 .ui-check-res{
-    margin-left: 13px;
     color: #000;
     font-size: 13px; 
     height:40px;
     line-height:40px;  
+    width: 97%;
+    margin: auto;
 }
 .ui-check-res b{
     color:red;

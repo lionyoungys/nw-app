@@ -53,26 +53,50 @@
 .unp-sta-res-num{
     height: 40px;
     font-size: 13px;
-    margin: 0 13px;
     line-height:40px;
-    /* font-weight:bold; */
+    width: 97%;
+    margin: auto;
 }
 .unp-sta-res-num a{color: #f00}
 
 /* 表格区域 */
 .ui-table-base.unpaidstatistics_table_Arrearage{
-    max-height: 290px;
-    overflow-x: auto;
-    height: 290px;
-    margin-left: 17px;
+    overflow: auto;
+    height: 60%;
+    display: block;
+    width: 97%;
+    max-height: 60%;
 }
+.ui-table-base.unpaidstatistics_table_Arrearage thead{
+    display: inline-table;
+    width: 100%;
+}
+.ui-table-base.unpaidstatistics_table_Arrearage thead tr{
+    background-color: #f6f7fb;
+    color: #000;
+    border-bottom: 1px solid #e6e7ec;
+    width: 100%;
+    height: 40px;
+}
+.ui-table-base.unpaidstatistics_table_Arrearage thead tr td{
+    width: 10%;
+}
+
+
+
 .ui-table-base.unpaidstatistics_table_Arrearage tbody{
-    max-height: 235px;
-    width: 768px;
+    max-height: 85%;
+    width: 100%;
+    height: 85%;
+    display: -webkit-box;
 }
 .ui-table-base.unpaidstatistics_table_Arrearage tbody::-webkit-scrollbar{width: 0px}
-.ui-table-base.unpaidstatistics_table_Arrearage tbody tr#no-data{margin-top:51px}
+.ui-table-base.unpaidstatistics_table_Arrearage tbody tr#no-data{margin-top:51px;display: inline-block}
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
-    min-width:85px;
-    max-width:85px;
+   width: 10%;
+}
+.ui-table-base.unpaidstatistics_table_Arrearage tr{border-bottom: 1px solid #f1f4f9;
+box-sizing: border-box;
+display: inline-table;
+width: 100%;
 }
