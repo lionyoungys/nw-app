@@ -44,7 +44,7 @@ export default class extends Component {
                         style:{width:(tds[i].scrollWidth + 'px'), height:(tds[i].scrollHeight + 'px')}
                     });
                 }
-                this.setState({lineHeight:(this.node.offsetHeight + 'px'), children:children});
+                this.setState({lineHeight:(this.node.offsetHeight - 1 + 'px'), children:children});
             }
         }
     }
@@ -52,7 +52,8 @@ export default class extends Component {
     handleScroll(e) {
         e.persist();
         let top = e.target.scrollTop;
-        if (top > 0) {
+        if (top > 0 && 0 === this.state.top) {
+            console.log(top);
             this.handleResize();
         }
         this.setState({top:e.target.scrollTop});

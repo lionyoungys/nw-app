@@ -649,11 +649,11 @@ export default class extends Component {
                     &emsp;
                     <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>
                 </div>
-                <Table style={{maxHeight:'328px'}}>
+                <Table style={{maxHeight:'228px'}}>
                     <thead><tr>
-                        <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'116px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
+                        <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'106px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
                         {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
-                        <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'83px'}}>数量</th><th style={{minWidth:'100px'}}>操作</th>
+                        <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'80px'}}>数量</th><th style={{minWidth:'80px'}}>操作</th>
                     </tr></thead>
                     <tbody>{html}</tbody>
                 </Table>
