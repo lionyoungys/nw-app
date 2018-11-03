@@ -1063,6 +1063,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-table-default>section, .ui-table-default thead>tr{
     background-color: #f6f7fb;
     height: 40px;
+    color: #4d4d4d;
 }
 .ui-table-default>section>div, 
 .ui-table-default thead>tr>th{
@@ -1077,9 +1078,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #f4f4f4;
     border-bottom: 1px solid #edf0f9;
     background-color: #fff;
+    color: #999;
     text-align: center;
 }
-.ui-table-default tbody>tr:last-child{border-bottom: none}
 .ui-table-default tbody>tr:hover{background-color: #fafdfd}
 /* 工具类ui样式部分 */
 /* 加载框样式 */
