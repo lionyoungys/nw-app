@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 import Mmanagergatheringdetail from './Mmanagergatheringdetail';
 import './ManagerGathering.css';
 import Select from '../../UI/Select';
@@ -84,20 +85,22 @@ export default class extends Component {
                     <a>收款情况</a>   
                      <a>统计时间：{this.state.dateStartTime} 至{this.state.dateEndTime}</a>                     
                 </div>
-                {/* 表格部分 欠费衣物信息*/}               
-                <table className='ui-table-base ManagerGathering-tab'>
-                    <thead>
-                        <tr>
-                            <td>收银类型</td>
-                            <td>金额</td>
-                            <td>实收金额</td>
-                            <td>衣物数量</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       {arr} 
-                    </tbody>
-                </table>
+                {/* 表格部分 欠费衣物信息*/}   
+                <div className='ManagerGathering-tab'>            
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>收银类型</th>
+                                <th>金额</th>
+                                <th>实收金额</th>
+                                <th>衣物数量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {arr} 
+                        </tbody>
+                    </Table>
+                </div>
                 <div className="manager_gathering_bottom">
                     <div className="manager_gathering_part three_part">
                         <div className="manager_gathering_part_row">

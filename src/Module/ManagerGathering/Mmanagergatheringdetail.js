@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import './ManagerGathering.css';
 import Page from '../../UI/Page';
+import Table from '../../UI/Table';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +56,7 @@ export default class extends Component {
         return (
             <Window title='经理收款-查看明细' onClose={this.props.onClick} >
               <div id="ManagerGathering-detail">
-                    <table className='ui-table-base man-gat-tab'>
+                    <Table>
                         <thead>
                             <tr>                                       
                                 <th>流水号</th>
@@ -73,8 +74,8 @@ export default class extends Component {
                         <tbody>
                             {result}
                         </tbody>
-                    </table>
-                        <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                    </Table>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
                 </div>
             </Window>
 

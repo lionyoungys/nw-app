@@ -238,48 +238,69 @@ export default class extends Component {
                 <div className='customer-query-page'><Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/></div>                 
             </Window>  
             {
-                    this.state.show
-                    &&
-                    <Window title='客户信息详情'  onClose={()=>this.setState({show:false})}>
-                        <div className="Membersdetail " id="Membersdetail">
-                            <div>卡号：<span>{this.state.list[this.state.index].recharge_number}</span></div>
-                            <div>姓名：<span>{this.state.list[this.state.index].user_name}</span></div>
-                            <div>手机号：<span>{this.state.list[this.state.index].user_mobile}</span></div>
-                            <div>发卡店：<span>{this.state.list[this.state.index].mname}</span></div>
-                            <div>卡类型：<span>{this.state.list[this.state.index].card_name}</span></div>
-                            <div>折扣率：<span>{this.state.list[this.state.index].discount}%</span></div>
-                            <div>余额：<span>{this.state.list[this.state.index].balance}</span></div>
-                            <div>发卡时间：<span>{this.state.list[this.state.index].time}</span></div>
-                            <div>性别：<span>{this.state.list[this.state.index].sex}</span></div> 
-                            <div>生日：<span>{this.state.list[this.state.index].birthday}</span></div>   
-                            <div>地址：<span>{this.state.list[this.state.index].address}</span></div>                
-                        </div> 
-                        <div className="Membersdetail-tab cust-tab">
-                            <div className="Membersdetail-tab-title">已为您找到<span>{this.state.countdetail}</span>条记录</div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>流水号</th>                                       
-                                        <th>店员姓名</th>
-                                        <th>衣物件数</th>
-                                        <th>金额</th>
-                                        <th>实收金额</th>
-                                        <th>折扣率 </th>
-                                        <th>收银类型</th>
-                                        <th>时间</th>
-                                        <th>卡号</th>
-                                        <th>卡类型</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   {listdetail} 
-                                   {this.state.alldata && <Nodata />}                      
-                                </tbody>
-                            </table>
-                        </div>                              
+                this.state.show
+                &&
+                <Window title='客户信息详情'  onClose={()=>this.setState({show:false})}>
+                    <div className="customer-query-detail-top">
+                        <div className='e-block'>
+                            <div>
+                                卡号：{this.state.list[this.state.index].recharge_number}
+                                &emsp;
+                                姓名：{this.state.list[this.state.index].user_name}
+                                &emsp;
+                                手机号：{this.state.list[this.state.index].user_mobile}
+                                &emsp;
+                                发卡店：{this.state.list[this.state.index].mname}
+                                &emsp;
+                                卡类型：{this.state.list[this.state.index].card_name}
+                                &emsp;
+                                折扣率：{this.state.list[this.state.index].discount}%
+                            </div>
+                            <div>
+                                余额：{this.state.list[this.state.index].balance}
+                                &emsp;
+                                发卡时间：{this.state.list[this.state.index].time}
+                                &emsp;
+                                性别：{this.state.list[this.state.index].sex}
+                                &emsp;
+                                生日：{this.state.list[this.state.index].birthday}
+                                &emsp;
+                                地址：{this.state.list[this.state.index].address}
+                            </div>
+                        </div>
+                        <div>已为您找到<span className='e-red'>{this.state.countdetail}</span>条记录</div>
+                    </div>
+                    <div className='customer-query-detail-table'>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>流水号</th>                                       
+                                    <th>店员姓名</th>
+                                    <th>衣物件数</th>
+                                    <th>金额</th>
+                                    <th>实收金额</th>
+                                    <th>折扣率 </th>
+                                    <th>收银类型</th>
+                                    <th>时间</th>
+                                    <th>卡号</th>
+                                    <th>卡类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listdetail} 
+                                {this.state.alldata && <Nodata />}                      
+                            </tbody>
+                        </Table>
+                    </div>
+                    <div className="Membersdetail-tab cust-tab">
+                        <div className="Membersdetail-tab-title">已为您找到<span>{this.state.countdetail}</span>条记录</div>
+                        <table>
+                            
+                        </table>
+                    </div>                              
                 </Window>
-                 }       
+            }       
         </div>    
         );
     }

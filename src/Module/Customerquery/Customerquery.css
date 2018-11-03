@@ -1,4 +1,4 @@
-.customer-query-top{
+.customer-query-top, .customer-query-detail-top{
     position: absolute;
     top: 16px;
     left: 0;
@@ -30,6 +30,15 @@
     left: 16px;
     bottom: 16px;
 }
+.customer-query-detail-top>.e-block,
+.customer-query-detail-top>.e-block>:first-child{margin-bottom: 16px}
+.customer-query-detail-table{
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 129px 16px 0;
+}
+.customer-query-detail-table>.ui-table{max-height: 100%;}
 .Customerquery{
     width:870px;
     height:97px;
