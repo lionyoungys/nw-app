@@ -53,7 +53,6 @@ export default class extends Component {
         e.persist();
         let top = e.target.scrollTop;
         if (top > 0 && 0 === this.state.top) {
-            console.log(top);
             this.handleResize();
         }
         this.setState({top:e.target.scrollTop});
