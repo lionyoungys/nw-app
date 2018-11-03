@@ -102,10 +102,9 @@
 /* 格架修改  */
 
 .lattice-title{
-    width:754px;
+    width:97%;
     height:37px;
     margin:0 auto;
-    text-align:right;
 }
 .lattice-title span{
    width:auto;
@@ -118,13 +117,13 @@
 }
 .lattice-title span a{color: #f00}
 .lattice-div{
-    width:872px;
+    width:97%;
     margin:0 auto;
     margin-bottom:10px;
+    height: 295px;
 }
 
 .lattice-div-left{
-    margin-left: 16px;
     width:70px;
     height:295px;
     max-height:295px;
@@ -156,14 +155,15 @@
 }
 
 .lattice-div-right{
-    width:683px;
     height:295px;
     border:1px solid #d7dee4;
-    margin-left: 100px;
+    margin-left:10px;
     max-height:295px;
     overflow-y: auto;
     overflow-x:hidden;
     background:#f5f8fa;
+    float: left;
+    width: 89%;
 }
 .lattice-div-right::-webkit-scrollbar {
     width:5px;
@@ -201,25 +201,27 @@
 .lattice-div-right span.index#latticeselect{
  color:#fff;
 }
+.lattice{width: 97%;height: 60%;margin: auto;}
 .lattice table{
-    width: 770px;
-    height: 136px;
-    max-width: 770px;
+    width:100%;
     overflow-x: auto;
-    margin-left: 16px;
     overflow-y: hidden;
     display: block;
     overflow-x: hidden;
+    clear: both;
+    margin: 0 auto;
+    display:block;
+    height: 100%;
 }
 .lattice table thead{
-    width: 770px;
+    width:100%;
     height: 40px;
-    display: block;
+    display: inline-table;
     background:#f6f7fb; 
 }
-.lattice table thead tr{ width: 770px;height:40px;}
+.lattice table thead tr{ width: 100%;height:40px;}
 .lattice table thead tr th{
-    width: 84px;
+    width: 10%;
     height: 40px;
     /* border-right: 1px solid #acc6de; */
     color: #58585a;
@@ -227,35 +229,33 @@
     text-align: center;
     max-width: 87px;
     display: inline-grid;
-    width: 84px;
 }
 .Plattice table tbody{
-    height: 90px;
-    max-height: 90px;
     overflow-y: auto;
-    display: block;
+    display:block;
     overflow-x: hidden;
 }
-.lattice table tbody{
-    height: 90px;
-    max-height: 90px;
+.lattice table tbody{  
     overflow-y: auto;
     display: block;
     overflow-x: hidden;
+    display: -webkit-box;
+    width: 100%;
+    height: 65%;
 }
 .lattice table tbody tr{
-    width:770px;
+    width:100%;
     height:40px;
-    display:block;
     border-bottom:1px solid #ebf0f6;
     padding-bottom:3px;
+    display: inline-table;
 }
 
 .lattice table tbody tr td{
-    width:84px;
+    width:10%;
     height:40px;
     color:#a7a7a7;
     font-size:12px;
     text-align:center;
-    max-width:84px;
+    max-width:10%;
 }

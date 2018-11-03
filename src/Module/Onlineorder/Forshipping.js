@@ -115,7 +115,7 @@ export default class extends Component {
         </tr>
         )
         return ( 
-        <div className="online-div">
+        <div className="online-div" >
             <div className="waiting" id="forshipping1">
               <table className="waiting-list" id="forshipping">
                 <thead>

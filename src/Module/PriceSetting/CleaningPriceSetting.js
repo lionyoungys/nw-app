@@ -338,7 +338,6 @@ export default class extends Component {
                     <td>{item.has_discount==1?'是':'否'}</td>
                     <td>{item.cate_name}</td>
                     <td>{item.item_cycle}</td>
-                    <td>{item.item_cycle}</td>
                     <td>{item.grid}</td>
                 </tr>
             );  
@@ -358,8 +357,13 @@ export default class extends Component {
                 {/* 表格部分 欠费衣物信息*/}
                 <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
                     <thead>
-                        <tr><th>id</th><th>衣物名称</th><th>处理类别</th><th>材料</th><th>档次</th><th>线下价格</th><th>线上价格</th><th>在线接单</th><th>价格可调</th>
-                        <th>允许折扣</th><th>衣物类别</th><th>洗护周期</th><th>助记码</th><th>格架</th></tr>
+                        <tr><th style={{minWidth:'80px'}}>id</th><th style={{minWidth:'80px'}}>衣物名称</th><th style={{minWidth:'80px'}}>处理类别</th><th style={{minWidth:'80px'}}>材料</th><th style={{minWidth:'80px'}}>档次</th><th
+                        style={{minWidth:'80px'}}>线下价格</th><th style={{minWidth:'80px'}}>线上价格</th><th style={{minWidth:'80px'}}>在线接单</th><th
+                        style={{minWidth:'80px'}}>价格可调</th>
+                        <th style={{minWidth:'80px'}}>允许折扣</th><th
+                        style={{minWidth:'80px'}}>衣物类别</th><th style={{minWidth:'80px'
+                    }}>洗护周期</th><th
+                        style={{minWidth:'80px'}}>助记码</th><th style={{minWidth:'80px'}}>格架</th></tr>
                     </thead>
                     <tbody>
                         {itemList}

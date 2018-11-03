@@ -12,11 +12,7 @@
 }
 .ope-inc-head a{
     font-size: 13px;
-    /* float: left; */
     height: 30px;
-    /* margin-top: 11px; */
-    width: 568px;
-    /* margin-left: 10px; */
     line-height: 30px;
     display: block;
     color: #4d4d4d;
@@ -26,12 +22,8 @@
 }
 .ope-inc-head div a{
     font-size: 13px;
-    /* float: left; */
-    height: 30px;
-    /* margin-top: 11px; */
-    width: 568px;
-    /* margin-left: 10px; */
-    line-height: 30px;
+    height: 60px;
+    line-height: 60px;
     display: block;
     color: #4d4d4d;
     text-indent: 22px;
