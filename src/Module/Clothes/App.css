@@ -1,19 +1,62 @@
-.clothes-user{
+.clothes-top{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
-    margin: 15px;
-    padding: 9px;
-    border: 1px solid #d8dce5;
-    background-color: #f5f7fa;
+    width: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    height: 88px;
-    width: 767px;
+    padding: 16px 16px 0;
 }
-.clothes-user sup{color: red}
-.clothes-user>div{padding-bottom: 12px}
+.clothes-table{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 123px 16px 150px;
+}
+.clothes-table>.ui-table{height: 100%}
+.clothes-btn{
+    position: absolute;
+    left: 16px;
+    bottom: 112px;
+}
+.clothes-footer{
+    position: absolute;
+    left: 0px;
+    bottom: 16px;
+    height: 88px;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.clothes-footer>div{
+    display: -webkit-flex;
+    display: flex;
+    border: 1px solid #e6ebf5;
+    background: #f5f8fa;
+    padding: 0 14px;
+}
+.clothes-footer-left{
+    width: 580px;
+    color: #646766;
+    font-weight: bold;
+}
+.clothes-footer-left>:first-child{margin-top: 24px;display: -webkit-flex;display: flex}
+.clothes-footer-left>:last-child{margin-top: 10px;display: -webkit-flex;display: flex;line-height: 28px}
+.clothes-footer-left>:first-child>:first-child,
+.clothes-footer-left>:last-child>:first-child{width: 164px}
+.clothes-footer-left>:first-child>:nth-child(2),
+.clothes-footer-left>:last-child>:nth-child(2){width: 150px}
+.clothes-footer-right{
+    width: 154px;
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+}
+.clothes-footer-right>:first-child{line-height: 42px}
+.clothes-footer-right>:last-child{line-height: 28px;text-align: right}
+
 .clothes-container{
     height: 100%;
     width: 100%;
@@ -82,41 +125,6 @@
     color: #a8a8a8;
     overflow: auto;
 }
-.clothes-footer{
-    display: -webkit-flex;
-    display: flex;
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    height: 88px;
-    width: 767px;
-    border: 1px solid #e6ebf5;
-    background: #f5f8fa;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    padding: 0 14px;
-    z-index: 1;
-}
-.clothes-footer-left{
-    width: 580px;
-    color: #646766;
-    font-weight: bold;
-}
-.clothes-footer-left>:first-child{margin-top: 24px;display: -webkit-flex;display: flex}
-.clothes-footer-left>:last-child{margin-top: 10px;display: -webkit-flex;display: flex;line-height: 28px}
-.clothes-footer-left>:first-child>:first-child,
-.clothes-footer-left>:last-child>:first-child{width: 164px}
-.clothes-footer-left>:first-child>:nth-child(2),
-.clothes-footer-left>:last-child>:nth-child(2){width: 150px}
-.clothes-footer-right{
-    width: 154px;
-    text-align: center;
-    display: -webkit-flex;
-    display: flex;
-}
-.clothes-footer-right>:first-child{line-height: 42px}
-.clothes-footer-right>:last-child{line-height: 28px;text-align: right}
-
 /* category.js编辑衣物顶部样式 */
 .clothes-editor-top{
     display: -webkit-flex;

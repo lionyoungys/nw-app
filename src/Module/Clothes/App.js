@@ -614,73 +614,79 @@ export default class extends Component {
             );
         });
         return (
-            <Window title='收衣' onClose={this.onClose} padding={true}>
-                <div className='e-block' style={{marginBottom:'16px'}}>
-                    <div style={{marginBottom:'12px'}}>
-                        <sup className='e-red'>*</sup>手机：
-                        <input 
-                            type='text' 
-                            className='e-input' 
-                            ref={input => this.phoneInput = input}
-                            style={{marginRight:'72px'}}
-                            value={this.state.phone} 
-                            onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                        />
-                        <sup className='e-red'>*</sup>姓名：
-                        <input 
-                            type='text' 
-                            className='e-input' 
-                            ref={input => this.nameInput = input}
-                            style={{marginRight:'40px'}}
-                            value={this.state.name} 
-                            onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                        />
-                        卡号：
-                        <input 
-                            type='text' 
-                            className='e-input' 
-                            ref={input => this.numberInput = input}
-                            value={this.state.number} 
-                            onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
-                        />
+            <Window title='收衣' onClose={this.onClose}>
+                <div className='clothes-top'>
+                    <div className='e-block'>
+                        <div style={{marginBottom:'12px'}}>
+                            <sup className='e-red'>*</sup>手机：
+                            <input 
+                                type='text' 
+                                className='e-input' 
+                                ref={input => this.phoneInput = input}
+                                style={{marginRight:'72px'}}
+                                value={this.state.phone} 
+                                onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                            />
+                            <sup className='e-red'>*</sup>姓名：
+                            <input 
+                                type='text' 
+                                className='e-input' 
+                                ref={input => this.nameInput = input}
+                                style={{marginRight:'40px'}}
+                                value={this.state.name} 
+                                onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                            />
+                            卡号：
+                            <input 
+                                type='text' 
+                                className='e-input' 
+                                ref={input => this.numberInput = input}
+                                value={this.state.number} 
+                                onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                            />
+                        </div>
+                        &nbsp;地址：<input type='text' className='e-input' style={{width:'500px',marginRight:'52px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
+                        <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
+                        &emsp;
+                        <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>
                     </div>
-                    &nbsp;地址：<input type='text' className='e-input' style={{width:'500px',marginRight:'52px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>
-                    <button type='button' className='e-btn' onClick={this.tempUser}>查询</button>
-                    &emsp;
-                    <button type='button' className='e-btn-b' onClick={this.M1read}>读卡</button>
                 </div>
-                <Table style={{maxHeight:'228px'}}>
-                    <thead><tr>
-                        <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'106px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
-                        {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
-                        <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'80px'}}>数量</th><th style={{minWidth:'80px'}}>操作</th>
-                    </tr></thead>
-                    <tbody>{html}</tbody>
-                </Table>
-                <div style={{padding:'10px 20px'}}><button type='button' className='e-btn larger' onClick={() => this.setState({show:1})}>添加衣物</button></div>
+                <div className='clothes-table'>
+                    <Table>
+                        <thead><tr>
+                            <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'106px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
+                            {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
+                            <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'80px'}}>数量</th><th style={{minWidth:'80px'}}>操作</th>
+                        </tr></thead>
+                        <tbody>{html}</tbody>
+                    </Table>
+                </div>
+                <button type='button' className='e-btn larger clothes-btn' onClick={() => this.setState({show:1})}>添加衣物</button>
                 <div className='clothes-footer'>
-                    <div className='clothes-footer-left'>
-                        <div>
-                            <div>总件数：{this.state.data.length}件</div>
-                            <div>总金额：&yen;{total.toFixed(2)}</div>
-                            <div style={{color:'red',minWidth:'120px'}}>折后价：&yen;{amount.toFixed(2)}</div>
-                            <div>已消费总额：&yen;{this.state.consume}</div>
+                    <div>
+                        <div className='clothes-footer-left'>
+                            <div>
+                                <div>总件数：{this.state.data.length}件</div>
+                                <div>总金额：&yen;{total.toFixed(2)}</div>
+                                <div style={{color:'red',minWidth:'120px'}}>折后价：&yen;{amount.toFixed(2)}</div>
+                                <div>已消费总额：&yen;{this.state.consume}</div>
+                            </div>
+                            <div>
+                                <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
+                                <div>折扣率：{discount}%</div>
+                                <div>取衣时间：<input type="date" min={this.date} className='e-date' value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
+                            </div>
                         </div>
-                        <div>
-                            <div>卡余额：&yen;{this.state.balance || '0.00'}</div>
-                            <div>折扣率：{discount}%</div>
-                            <div>取衣时间：<input type="date" min={this.date} className='e-date' value={this.state.time} onChange={e => this.setState({time:e.target.value})}/></div>
-                        </div>
-                    </div>
-                    <div className='clothes-footer-right'>
-                        <div>
-                            <button type='button' className='e-btn larger' onClick={this.cost}>收银</button>
-                            <button type='button' className='e-btn larger' data-take='take' onClick={this.takeCost}>取衣付款</button>
-                        </div>
-                        <div>
-                            <button type='button' className='e-btn-b mini' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
-                            <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:17})}>充值</button>
-                            <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:13})}>卡扣款</button>
+                        <div className='clothes-footer-right'>
+                            <div>
+                                <button type='button' className='e-btn larger' onClick={this.cost}>收银</button>
+                                <button type='button' className='e-btn larger' data-take='take' onClick={this.takeCost}>取衣付款</button>
+                            </div>
+                            <div>
+                                <button type='button' className='e-btn-b mini' onClick={this.props.changeView} data-event='open_case'>开钱箱</button>
+                                <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:17})}>充值</button>
+                                <button type='button' className='e-btn-b mini' onClick={() => this.setState({show:13})}>卡扣款</button>
+                            </div>
                         </div>
                     </div>
                 </div>
