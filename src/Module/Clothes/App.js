@@ -606,9 +606,9 @@ export default class extends Component {
                     <td onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</td>
                     <td><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></td>
                     <td>
-                        <span onClick={this.copy}>复制</span>
+                        <span className='e-blue' onClick={this.copy}>复制</span>
                         &emsp;
-                        <span onClick={this.del}>删除</span>
+                        <span className='e-red' onClick={this.del}>删除</span>
                     </td>
                 </tr>
             );
