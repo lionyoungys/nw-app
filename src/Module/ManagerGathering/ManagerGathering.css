@@ -137,10 +137,10 @@ textarea{
 #ManagerGathering-detail>.ui-table{
     height: 100%
 }
-#ManagerGathering-detail>.ui-table  thead tr th{
+/* #ManagerGathering-detail>.ui-table  thead tr th{
 
     min-width: 100px;
-}
+} */
 #ManagerGathering-detail tr:hover{
     background: #fbfcfd
 }

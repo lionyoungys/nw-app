@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import Table from '../../UI/Table';
 import './Managerquery.css'
 import Page from '../../UI/Page';
 
@@ -84,42 +85,48 @@ export default class extends Component {
                                 </div>    
                             </div>
                           
-                </div>                                    
-                <table className='ui-table-base man-que-tab'>
-                    <thead>
-                        <tr>
-                            <td>收银类型</td>
-                            <td>金额</td>
-                            <td>实收金额</td>
-                            <td>衣物数量</td>                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {arr}
-                    </tbody>
-                </table>
-                <table className='ui-table-base man-que-tab-two'>
-                    <thead>
-                        <tr>
-                            <td>流水号</td>
-                            <td>店员姓名</td>
-                            <td>衣物件数</td>
-                            <td>金额</td>
-                            <td>实收金额</td>
-                            <td>折扣率</td>
-                            <td>收款类型</td>
-                            <td>客户电话</td>
-                            <td>客户姓名</td>
-                            <td>时间</td>
-                            <td>卡号</td>
-                            <td>卡类型</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {list}
-                    </tbody>
-                </table> 
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />                         
+                </div>   
+                <div className='man-que-tab'> 
+                    <div className='man-que-tab-one'>                                
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>收银类型</th>
+                                    <th>金额</th>
+                                    <th>实收金额</th>
+                                    <th>衣物数量</th>                            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {arr}
+                            </tbody>
+                        </Table>
+                    </div>
+                    <div className='man-que-tab-two'>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>流水号</th>
+                                    <th>店员姓名</th>
+                                    <th>衣物件数</th>
+                                    <th>金额</th>
+                                    <th>实收金额</th>
+                                    <th>折扣率</th>
+                                    <th>收款类型</th>
+                                    <th>客户电话</th>
+                                    <th>客户姓名</th>
+                                    <th>时间</th>
+                                    <th>卡号</th>
+                                    <th>卡类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {list}
+                            </tbody>
+                        </Table> 
+                    </div>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+            </div>                         
             </Window>
         );
     }
