@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 import Page from '../../UI/Page';
 import './Customerquery.css';
 import './Membersdetail.css';
@@ -161,13 +162,28 @@ export default class extends Component {
             <td>{item.time}</td>
             <td>{item.recharge_number}</td>
             <td>{item.card_type}</td>
-
         </tr>
         );
         return (       
         <div>
             <Window title='客户信息查询' onClose={this.props.closeView}>
-                <div className="Customerquery">
+                <div className='customer-query-top'>
+                    <div className='e-block'>
+                        <div>
+                            <label>客户电话：</label><input type="text" className='e-input' value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/>
+                            <label>客户姓名：</label><input type="text" className='e-input' value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/>
+                            <label>卡号：</label><input type="text" className='e-input'  value={this.state.recharge_number} onChange={e=>this.setState({recharge_number:e.target.value})}/>
+                        </div>
+                        <div>
+                            <label>卡类型：</label><Select option={this.state.types}  value={this.state.card_name} onChange={value => this.setState({card_name:value.value})}/>
+                            <button className="Customerquery-over" onClick={()=>this.query(1)}>查询</button>
+                            &emsp;&emsp;
+                            <button className="Customerquery-query" onClick={this.M1Read} >读卡</button>  
+                        </div>
+                    </div>
+                    <div>已为您找到<b className='e-red'>{this.state.count}</b>条数据</div>
+                </div>
+                {/* <div className="Customerquery">
                    <div className="Customerquery-title" id="Customerquery-title">
                         <div><span>客户电话：</span><input type="text" className='e-input' value={this.state.user_mobile} onChange={e=>this.setState({user_mobile:e.target.value})}/></div>
                         <div><span>客户姓名：</span><input type="text" className='e-input' value={this.state.user_name} onChange={e=>this.setState({user_name:e.target.value})}/></div>
@@ -177,11 +193,10 @@ export default class extends Component {
                             <button className="Customerquery-query" onClick={this.M1Read} >读卡</button>
                             <button className="Customerquery-over" onClick={()=>this.query(1)}>查询</button>
                         </div>  
-                  
                    </div>
                   
-                </div>
-                <div className="Customerquery-tab cust-tab" id="cust-tab">
+                </div> */}
+                {/* <div className="Customerquery-tab cust-tab" id="cust-tab">
                   <div className="Customerquery-tab-title">已为您找到<b>{this.state.count}</b>条数据</div>
                   <table border="0" cellSpacing="0" cellPadding="0">
                       <thead>
@@ -200,8 +215,27 @@ export default class extends Component {
                          {this.state.nodatas && <Nodata />}
                       </tbody>
                   </table>
+                </div> */}
+                <div className='customer-query-table'>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th style={{minWidth:'31px'}}>序号</th>                             
+                                <th>卡号</th>
+                                <th>会员姓名 </th>
+                                <th>会员手机号 </th>
+                                <th style={{minWidth:'80px'}}>卡类型</th>
+                                <th style={{minWidth:'90px'}}>余额 </th> 
+                                <th style={{minWidth:'90px'}}>发卡时间 </th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {list}
+                            {this.state.nodatas && <Nodata />}
+                        </tbody>
+                    </Table>
                 </div>
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />                 
+                <div className='customer-query-page'><Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/></div>                 
             </Window>  
             {
                     this.state.show

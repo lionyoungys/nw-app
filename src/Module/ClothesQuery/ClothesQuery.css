@@ -1,5 +1,5 @@
 .clothesquery_top{
-    width: 774px;
+    width: 97%;
     background: #f5f8fa;
     height: 154px;
     border:1px solid #e0e4ea;
@@ -73,26 +73,34 @@
     background-position: right center;
 }
 .ui-table-base.clo-que-tab thead tr td:last-child{background: none}
-.ui-table-base.clo-que-tab tbody{
-    max-height:181px; 
-}
-.ui-table-base.clo-que-tab tr td{
-    max-width:113px; 
-    min-width:82px;
-}
-.ui-table-base.clo-que-tab tr td:first-child{
-    min-width: 113px; 
-}
 .inputselectborder.clo-date{
-    width: 150px;
     margin-left: 0px;
 }
 #clo-que-tab{
    height:238px;
+   position: relative;
 }
-.ui-table-base.clo-que-tab tbody tr#no-data{margin-top:24px}
-
+.ui-table-base.clo-que-tab tbody tr#no-data{top:20%;display: block}
 .clothesquery_top_two div .e-date{width:166px }
 .clothesquery_top_three div .e-date{width:166px }
 .clothesquery_top_btn .e-btn{background: #fff;color: #000;border:1px solid #e0e4ea}
 .clothesquery_top_btn .e-btn:hover{background:#3fc0db;color: #fff}
+
+
+
+/* 响应式布局样式 */
+#clo-que-tab{width: 97%;height: 49%;display: block;max-height: 49%}
+#clo-que-tab thead{display: inline-table;width: 100%;height: 40px}
+#clo-que-tab thead tr{width: 100%;height:40px }
+#clo-que-tab thead tr td{width: 10%;text-align: center}
+#clo-que-tab tbody{
+    width: 100%;
+    height: 85%;
+    position: relative;
+    overflow-y: auto;
+    display: -webkit-box;
+    max-height: 85%;
+}
+#clo-que-tab tbody tr{width: 100%;height: 40px;display: inline-table}
+#clo-que-tab tbody tr td{width: 10%}
+#clo-que-tab tbody::-webkit-scrollbar{width: 0px}

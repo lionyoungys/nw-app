@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import Dish from '../../UI/Dish'
+import Table from '../../UI/Table';
 import '../CleaningPriceSetting/addnewprice.css';
 import '../ChangeCard/ChangeCard.css'
 import CommodityClassifyManagement from '../CommodityManagementDic/CommodityClassifyManagement'
@@ -220,7 +221,7 @@ export default class extends Component {
                         <td>{item.has_discount=='1'?'是':'否'}</td>
                         <td>{item.stock}</td>
                         <td>{item.price}</td>
-                        <td> <b onClick={this.mod} data-write={index}>编辑</b>&nbsp;<i onClick={this.delete} data-write={index}>删除</i></td>
+                        <td> <span onClick={this.mod} data-write={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.delete} data-write={index} className='e-blue'>删除</span></td>
                     </tr>
             );
         }
@@ -238,8 +239,15 @@ export default class extends Component {
                 </div>
 
                 {/* 表格部分 欠费衣物信息*/}
-
-                 <table className='change_card_table right_table' id="right_table">
+                <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
+                    <thead>
+                        <tr><th>商品条码</th><th>商品名称</th><th>允许折扣</th><th>库存</th><th>单价</th><th>操作</th></tr>
+                    </thead>
+                    <tbody>
+                        {itemList}
+                    </tbody>
+                </Table>    
+                 {/* <table className='change_card_table right_table' id="right_table">
                     <thead>
                         <tr>
                             <td>商品条码</td>
@@ -253,7 +261,7 @@ export default class extends Component {
                     <tbody>
                         {itemList}
                     </tbody>
-                </table> 
+                </table>  */}
                 {
                     this.state.show
                     &&

@@ -154,7 +154,7 @@ export default class extends Component {
                 </div>
                 <Table style={{height:'200px'}}>
                     <thead>
-                        <tr><th>组名称</th><th>权限</th><th>操作</th></tr>
+                        <tr><th style={{minWidth:'100px'}}>组名称</th><th>权限</th><th style={{minWidth:'100px'}}>操作</th></tr>
                     </thead>
                     <tbody>       
                     {authlist}

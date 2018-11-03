@@ -1,3 +1,35 @@
+.customer-query-top{
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.customer-query-top>.e-block{margin-bottom: 16px;}
+.customer-query-top label{
+    display: inline-block;
+    width: 82px;
+    text-align: right;
+}
+.customer-query-top>.e-block>div{height: 28px;width:744px;line-height: 28px;}
+.customer-query-top>.e-block>div:first-child{margin-bottom: 16px;}
+.customer-query-top>.e-block>div>label, .customer-query-top>.e-block>div>input, .customer-query-top>.e-block>div>div{float: left;}
+.customer-query-top>.e-block>div>button{float: right}
+.customer-query-table{
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 155px 16px 60px
+}
+.customer-query-table>.ui-table{height: 100%}
+.customer-query-table>.ui-table th{min-width: 130px;}
+.customer-query-page{
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+}
 .Customerquery{
     width:870px;
     height:97px;

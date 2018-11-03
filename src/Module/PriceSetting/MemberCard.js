@@ -7,6 +7,7 @@ import './MemberCard.css'
 import Window from '../../UI/Window';
 import Dish from '../../UI/Dish'
 import Page from '../../UI/Page'
+import Table from '../../UI/Table'
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -154,14 +155,24 @@ export default class extends Component {
         <td>{item.give_price}</td>
         <td>{item.made_price}</td>
         <td>{item.discount}%</td>
-        <td>  <b onClick={this.mod} data-write={index}>编辑</b><i  onClick={this.delete} data-write={index}>删除</i></td>
+        <td>  <span onClick={this.mod} data-write={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>删除</span></td>
 </tr>
     );
         return( 
         <div>
-            <div className="brand">
-                    <button className="brand-btn" onClick={e => this.setState({ show: true, card_type: '', real_price:'',give_price:'',made_price:'',discount:''})}>增加卡类型</button>
-               <div className="membercard-tab">
+            <div className='membercard' >
+                <div className="staff">
+                    <button className="e-btn larger" onClick={e => this.setState({ show: true, card_type: '', real_price:'',give_price:'',made_price:'',discount:''})}>增加卡类型</button>
+                </div>
+                    <Table style={{height:'300px'}}>
+                    <thead>
+                        <tr><th>卡类型</th><th>充值金额</th><th>赠送金额</th><th>制卡费</th><th>折扣率</th><th>操作</th></tr>
+                    </thead>
+                    <tbody>
+                        {cardtypes}
+                    </tbody>
+                    </Table>    
+               {/* <div className="membercard-tab">
                   <table border='0' cellPadding="0" cellSpacing="0">
                       <thead>
                           <tr>
@@ -176,9 +187,9 @@ export default class extends Component {
                       <tbody>
                           {cardtypes}
                       </tbody>
-                  </table>
+                  </table> */}
                   <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-               </div>
+               {/* </div> */}
               
             </div>
             {

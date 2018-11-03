@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
+import Table from '../../UI/Table';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
 import './CleaningPriceSetting.css';
 import './addnewprice.css';
@@ -355,8 +356,16 @@ export default class extends Component {
                 </div>
 
                 {/* 表格部分 欠费衣物信息*/}
-
-                <table className='change_card_table right_table'>
+                <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
+                    <thead>
+                        <tr><th>id</th><th>衣物名称</th><th>处理类别</th><th>材料</th><th>档次</th><th>线下价格</th><th>线上价格</th><th>在线接单</th><th>价格可调</th>
+                        <th>允许折扣</th><th>衣物类别</th><th>洗护周期</th><th>助记码</th><th>格架</th></tr>
+                    </thead>
+                    <tbody>
+                        {itemList}
+                    </tbody>
+                    </Table>    
+                {/* <table className='change_card_table right_table'>
                     <thead>
                         <tr>
                             <td>id</td>
@@ -379,7 +388,7 @@ export default class extends Component {
                     <tbody>
                         {itemList}
                     </tbody>
-                </table> 
+                </table>  */}
                 {
                     this.state.show
                     &&
