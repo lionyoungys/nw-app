@@ -191,15 +191,16 @@ table tbody tr:nth-child(odd):hover{
     color: #333;
     font-size: 12px;
     line-height: 22px;
-    margin-left: 297px;
-    margin-top: 105px;
-    margin-bottom: 15px;
     background-position-x: 27px;
     min-width: 150px;
     max-width: 150px;
     border-bottom: none;
     background-position: centr;
     background-position-x: center;
+    margin: auto;
+    position: absolute;
+    top: 33%;
+    left: 45%;
 }
 
 #no-data:hover{

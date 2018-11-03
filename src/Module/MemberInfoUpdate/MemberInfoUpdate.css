@@ -16,8 +16,7 @@
     width: 758px;
     height: 235px;
     border: 1px solid #e9edf1;
-    margin: 0 auto;
-    margin-top: 13px;
+    margin: 12px 20px 0;
 }
 .memberinfoupdate_text{
     width: 120px;
@@ -97,8 +96,7 @@
 }
 .memberinfoupdate_button{
     width: 691px;
-    margin: 20px auto;
-    text-align: right;
+    margin: 20px 20px 0 600px;
 }
 .memberinfoupdate_button button{
     margin-left: 20px;

@@ -66,7 +66,7 @@ export default class extends Component {
             return (val + this.state.count_arr[(index)]);
         });   
         return(
-            <div>
+            <div >
                 <Window title='线上订单处理' onClose={this.props.closeView}>
                     <BlueTab tabs={tabs} checked={this.state.checked} onChange={(i) => this.onChange(i)}>                        
                         <input type="text" className="e-input" placeholder="订单号,姓名,手机号" ref={input =>this.input = input} value={this.state.number} onChange={e => this.setState({number:e.target.value})}/><button className="e-btn" onClick={this.headclick}>查询</button>                       

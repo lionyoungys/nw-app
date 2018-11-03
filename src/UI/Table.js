@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {top:0, lineHeight:0, children:[]};
+        this.state = {top:0, lineHeight:0, width:0, children:[]};
         this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.node = null;
@@ -44,7 +44,7 @@ export default class extends Component {
                         style:{width:(tds[i].scrollWidth + 'px'), height:(tds[i].scrollHeight + 'px')}
                     });
                 }
-                this.setState({lineHeight:(this.node.offsetHeight - 1 + 'px'), children:children});
+                this.setState({lineHeight:(this.node.offsetHeight - 1 + 'px'), width:(this.node.scrollWidth + 'px'), children:children});
             }
         }
     }
@@ -74,7 +74,14 @@ export default class extends Component {
         }
         return (
             <div className={className} style={this.props.style} onScroll={this.handleScroll}>
-                <section style={{lineHeight:this.state.lineHeight, top:(this.state.top + 'px'), display:(0 === this.state.top ? 'none' : null)}}>{html}</section>
+                <section
+                    style={{
+                        lineHeight:this.state.lineHeight, 
+                        width:this.state.width, 
+                        top:(this.state.top + 'px'),
+                        display:(0 === this.state.top ? 'none' : null)
+                    }}
+                >{html}</section>
                 <table className={this.props.tableClassName} style={this.props.tableStyle} ref='table'>
                     {this.props.children}
                 </table>

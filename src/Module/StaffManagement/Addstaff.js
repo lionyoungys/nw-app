@@ -7,6 +7,7 @@ import '../../UI/bothpages.css' ; //公共样式
 import './StaffManagement.css';
 import Dish from '../../UI/Dish';
 import Select from '../../UI/Select'; 
+import Table from '../../UI/Table'
 export default class extends Component {   
     constructor(props) {
         super(props);     
@@ -269,12 +270,14 @@ export default class extends Component {
             <td>{item.aname}</td>
             <td>{item.account}</td>
             <td>{item.auth_name}</td>
-            <td ><i onClick={this.modOperator} data-index={index}>编辑</i><i onClick={this.ask2} data-index={index}>删除</i><i onClick={this.resetPas} data-index={index}>重置密码</i></td>
+            <td ><span onClick={this.modOperator} data-index={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.ask2} data-index={index} className='e-blue'>删除</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.resetPas} data-index={index} className='e-blue'>重置密码</span></td>
         </tr>
         );
         return ( 
-                <div>
-                    <div className="addstaff" onClick={this.addstaff}>新增员工</div> 
+                <div >
+                    <div className="staff">
+                    <button type='button' className="e-btn" onClick={this.addstaff}>新增员工</button> 
+                    </div>
                     {
                     this.state.show
                     &&       
@@ -299,8 +302,16 @@ export default class extends Component {
                         </div>
                     </Dish>           
                 }
-                    <div className="bothpages_count">                           
-                        <div className="bothpages_count_title Addstaff_count_list">
+                    <div >  
+                    <Table style={{height:'200px'}}>
+                    <thead>
+                        <tr><th>序号</th><th>姓名</th><th>手机号</th><th>权限</th><th>操作</th></tr>
+                    </thead>
+                    <tbody>       
+                    {operatorlist}
+                    </tbody>
+                   </Table>                    
+                        {/* <div className="bothpages_count_title Addstaff_count_list">
                             <span>序号</span>
                             <span>姓名</span>
                             <span>手机号</span>
@@ -311,7 +322,7 @@ export default class extends Component {
                             <tbody>                            
                                {operatorlist}
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>                    
                     {
                     this.state.show1

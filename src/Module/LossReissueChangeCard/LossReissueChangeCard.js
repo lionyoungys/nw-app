@@ -4,6 +4,7 @@
  */
 import React, { Component } from 'react';
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 import Nodata from '../../UI/nodata';
 import './LossReissueChangeCard.css';
 import LossReport from './LossReport';//挂失
@@ -78,17 +79,35 @@ export default class extends Component {
         if (userinfo.length > 0) userinfo.push(<tr><td colSpan='7'></td></tr>);
         return (
             <Window title='挂失、补换卡' onClose={this.props.closeView}>
-            <div>
-                <div className="change_card_date">
-                    <div className="change_card_date_left">
-                        <div>&nbsp;&nbsp;卡号：<input type="text" value={this.state.recharge_number} className='e-input' onChange={e => this.setState({recharge_number:e.target.value})} onKeyPress={this.onKeyPress}/></div>
-                        <div>姓名：<input type="text" value={this.state.user_name} className='e-input' onChange={e => this.setState({user_name:e.target.value})} onKeyPress={this.onKeyPress}/></div>
-                        <div>手机号：<input type="text" value={this.state.user_mobile} className='e-input' onChange={e => this.setState({user_mobile:e.target.value})} onKeyPress={this.onKeyPress}/></div>
+                <div className='change-card-top'>
+                    <div className='e-block'>
+                        卡号：<input type="text" value={this.state.recharge_number} className='e-input' onChange={e => this.setState({recharge_number:e.target.value})} onKeyPress={this.onKeyPress}/>
+                        &emsp;&emsp;
+                        手机号：<input type="text" value={this.state.user_mobile} className='e-input' onChange={e => this.setState({user_mobile:e.target.value})} onKeyPress={this.onKeyPress}/>
+                        &emsp;&emsp;
                         <button type='button' className='e-btn ' onClick={this.query}>查询</button>
                     </div>
-                   
-                </div>               
-                <table className='ui-table-base lrc-card-tab' >
+                </div>
+                <div className='change-card-table'>
+                    <Table>
+                        <thead>
+                            <tr> 
+                                <th>发卡店</th>
+                                <th>卡号</th>
+                                <th>姓名</th>
+                                <th>手机号</th>
+                                <th>卡类型</th>
+                                <th>金额</th>
+                                <th>挂失状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {userinfo}
+                            {this.state.nodatas && <Nodata />}
+                        </tbody>
+                    </Table>
+                </div>   
+                {/* <table className='ui-table-base lrc-card-tab' >
                     <thead>
                         <tr> 
                             <td>发卡店</td>
@@ -104,14 +123,13 @@ export default class extends Component {
                       {userinfo}
                       {this.state.nodatas && <Nodata />}
                     </tbody>
-                </table>
-                <div className='bothpages-btn-part'>
+                </table> */}
+                {/* <div className='bothpages-btn-part'>
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'LossReport' })}>挂失</button>
-                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'RemoveLossCard' })}>解除挂失</button>
+                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'RemoveLossCard' })}>解除挂失</button> */}
                     {/* <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ChangeCard' })}>换卡</button> */}
-                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
-                </div>
-            </div>
+                    {/* <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
+                </div> */}
             {
                 V && 
                 <V 

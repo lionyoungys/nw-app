@@ -7,6 +7,7 @@ import '../../UI/bothpages.css'  //公共样式
 import './StaffManagement.css';
 import Menu from '../../Menus.js';
 import CreateGroup from './CreateGroup';
+import Table from '../../UI/Table'
 export default class extends Component {   
     constructor(props) {
         super(props);   
@@ -143,13 +144,23 @@ export default class extends Component {
             <tr key={'item'+index}>
                 <td>{item.auth_name}</td>
                 <td>{item.authName}</td>                                   
-                <td><i onClick={() => this.setState({ show: 2, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</i><i onClick={this.ask2} data-id={item.id} data-index = {index}>删除</i></td>
+                <td><span className='e-blue' onClick={() => this.setState({ show: 2, authSelectList: item.auth,authname:item.auth_name,modID:item.id})} >编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.ask2} data-id={item.id} data-index = {index}  className='e-blue'>删除</span></td>
             </tr>
         );
         return ( 
             <div>
-                <div className="StaffAuthority" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</div>   
-                <table className="ui-table-base staff-tab">
+                <div className="staff">
+                    <button className="e-btn" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</button>   
+                </div>
+                <Table style={{height:'200px'}}>
+                    <thead>
+                        <tr><th>组名称</th><th>权限</th><th>操作</th></tr>
+                    </thead>
+                    <tbody>       
+                    {authlist}
+                    </tbody>
+                </Table>    
+                {/* <table className="ui-table-base staff-tab">
                     <thead>
                         <tr>
                             <td>组名称</td>
@@ -160,7 +171,7 @@ export default class extends Component {
                     <tbody>
                         {authlist}
                     </tbody>
-                </table> 
+                </table>  */}
                 {
                     0 != this.state.show 
                     && 

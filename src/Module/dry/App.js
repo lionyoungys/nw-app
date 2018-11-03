@@ -246,15 +246,15 @@ export default class extends React.Component {
                     </table>
                 </div>
                 {
-                        this.state.uploadShow 
-                        && 
-                        <ImgUploadWindow 
-                            onClose={() => this.setState({uploadShow:false})} 
-                            onDelete={this.onDelete}
-                            onUpload={this.onUpload}
-                            imgs={this.state.data[this.state.index].img}
-                        />
-                    }
+                    this.state.uploadShow 
+                    && 
+                    <ImgUploadWindow 
+                        onClose={() => this.setState({uploadShow:false})} 
+                        onDelete={this.onDelete}
+                        onUpload={this.onUpload}
+                        imgs={this.state.data[this.state.index].img}
+                    />
+                }
                     <ImageLightbox
                         show={this.state.lightboxShow}
                         images={

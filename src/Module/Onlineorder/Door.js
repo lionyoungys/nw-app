@@ -168,7 +168,7 @@ export default class extends Component {
         </tr>
         )    
         return (
-        <div> 
+        <div className="online-div"> 
             <div className="waiting">
                 <table className="waiting-list">
                     <thead>
