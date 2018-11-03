@@ -11,11 +11,28 @@
     height: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 76px 16px 30px;
+    padding: 76px 16px 60px;
     overflow-x: auto;
 }
+.change-card-table>.ui-table{height: 100%}
 .change-card-table>.ui-table thead>tr>th{min-width: 122px;}
 .change-card-table>.ui-table thead>tr>th:first-child{min-width: 140px;}
+.change-card-footer{
+    position: absolute;
+    right: 30px;
+    bottom: 16px;
+}
+.ui-table #selecttr{
+    background-color: #3fbfdc;
+}
+
+
+
+
+
+
+
+
 .ui-table-base.lrc-card-tab{
 
     margin-top: 10px;
@@ -46,7 +63,4 @@
 .bothpages-place{
 
     display: none;
-}
-.ui-table-base #selecttr{
-    background: #3fbfdc;
 }

@@ -76,7 +76,6 @@ export default class extends Component {
             <td>{item.type==1?'可用':(item.type==2?'挂失':'冻结')}</td>
         </tr>
         );
-        if (userinfo.length > 0) userinfo.push(<tr><td colSpan='7'></td></tr>);
         return (
             <Window title='挂失、补换卡' onClose={this.props.closeView}>
                 <div className='change-card-top'>
@@ -106,51 +105,37 @@ export default class extends Component {
                             {this.state.nodatas && <Nodata />}
                         </tbody>
                     </Table>
-                </div>   
-                {/* <table className='ui-table-base lrc-card-tab' >
-                    <thead>
-                        <tr> 
-                            <td>发卡店</td>
-                            <td>卡号</td>
-                            <td>姓名</td>
-                            <td>手机号</td>
-                            <td>卡类型</td>
-                            <td>金额</td>
-                            <td>挂失状态</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {userinfo}
-                      {this.state.nodatas && <Nodata />}
-                    </tbody>
-                </table> */}
-                {/* <div className='bothpages-btn-part'>
+                </div>
+                <div className='change-card-footer'>
                     <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'LossReport' })}>挂失</button>
-                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'RemoveLossCard' })}>解除挂失</button> */}
+                    &emsp;&emsp;
+                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'RemoveLossCard' })}>解除挂失</button>
+                    &emsp;&emsp;
                     {/* <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ChangeCard' })}>换卡</button> */}
-                    {/* <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
-                </div> */}
-            {
-                V && 
-                <V 
-                    data={{
-                        cardNumber:user.card_number,
-                        discount:user.discount,
-                        user_name:user.user_name,
-                        balance:user.balance,
-                        user_mobile:user.user_mobile,
-                        card_name:user.card_name,
-                        recharge_number:user.recharge_number,
-                        id:user.id,
-                        card_id:user.card_id,
-                        mname:user.mname,
-                        mid:user.mid,
-                        made_price:user.made_price
-                    }} 
-                    refresh={this.query}
-                    onClose={() => this.setState({ clickNum: null})}
-                />
-            }
+                    <button type='button' className='e-btn' onClick={() => this.hasUser() && this.setState({clickNum: 'ReissueCard' })}>补卡</button>
+                </div>
+                
+                {
+                    V && 
+                    <V 
+                        data={{
+                            cardNumber:user.card_number,
+                            discount:user.discount,
+                            user_name:user.user_name,
+                            balance:user.balance,
+                            user_mobile:user.user_mobile,
+                            card_name:user.card_name,
+                            recharge_number:user.recharge_number,
+                            id:user.id,
+                            card_id:user.card_id,
+                            mname:user.mname,
+                            mid:user.mid,
+                            made_price:user.made_price
+                        }} 
+                        refresh={this.query}
+                        onClose={() => this.setState({ clickNum: null})}
+                    />
+                }
             </Window>
         );
     }

@@ -39,8 +39,6 @@
     overflow: auto;
     padding-top: 25px;
     width: 95%;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 .recharge-second>div{
     line-height: 28px;
@@ -56,8 +54,6 @@
     padding-top: 6px;
     font-size: 12px;
     width: 95%;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 .recharge-third>:first-child{
     height: 100%;
