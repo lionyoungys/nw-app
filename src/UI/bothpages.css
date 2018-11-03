@@ -39,16 +39,16 @@
 } */
 /* 页面tab上方 样式*/
 .bothpages_list{
-    width:100%;
-    height:59px;
-    margin-top:15px;
+    width: 97%;
+    height: 59px;
+    margin-top: 15px;
+    margin: 15px auto 0;
 }
 .bothpages_list div{
     width:auto;
-    height:40px;
+    height:48px;
     font-size:12px;
-    float:right;
-    line-height:40px;
+    line-height:48px;
 }
 .bothpages_list div b{color:#ff0000;font-size:14px;margin-left:10px}
 .bothpages_list div:nth-child(1){margin-right:0px}

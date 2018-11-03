@@ -29,7 +29,8 @@ export default class extends Component {
             stock:'',
             price:'',
             goods_type:'',//类别
-            goods_number:''//商品编码
+            goods_number:'',//商品编码
+            upgoods_type:''//修改类别
         }
         this.limit = 1000;
         this.handleClick=this.handleClick.bind(this);
@@ -94,7 +95,7 @@ export default class extends Component {
         }); 
     }
     onchange(value){
-        this.setState({typeindex:value.index,goods_type:value.value});
+        this.setState({typeindex:value.index,upgoods_type:value.value,goods_type:value.value});
         // console.log(value.inObjArray(this.state.typeLists, 'name'));
     } 
     addYES(){
@@ -158,12 +159,13 @@ export default class extends Component {
 
     mod(e){
 
-        if (this.state.typeLists.length == 0 || this.state.typeList.length == 0) this.getGoodTypeList();
+        if (this.state.typeLists.length == 0 || this.state.typeList.length == 0) 
+        this.getGoodTypeList();
         let write = e.target.dataset.write;
         this.setState({
             show2:true,
             goodindex:write,
-            goods_type:this.state.itemLists[this.state.index].goods[write].goods_type,
+            upgoods_type:this.state.itemLists[this.state.index].goods[write].goods_type,
             name:this.state.itemLists[this.state.index].goods[write].name,
             stock:this.state.itemLists[this.state.index].goods[write].stock,
             price:this.state.itemLists[this.state.index].goods[write].price,
@@ -268,7 +270,7 @@ export default class extends Component {
                     <Dish title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.typeList[0]} onChange={this.onchange} value={this.state.goods_type}/></div>
+                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList}  onChange={this.onchange} value={this.state.goods_type}/></div>
                             </div>
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-nor"><span><b>*</b>名称：</span><input  type="text" className='e-input' onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
@@ -300,7 +302,7 @@ export default class extends Component {
                     <Dish title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList} selected={this.state.goods_type} onchange={this.onchange}/></div>
+                                <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList}  onChange={this.onchange} value={this.state.upgoods_type}/></div>
                             </div>
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-nor"><span>名称：</span><input className='e-input'  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>

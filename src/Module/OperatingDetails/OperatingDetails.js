@@ -8,6 +8,7 @@ import Select from '../../UI/Select';
 import Nodata from '../../UI/nodata';
 import './OperatingDetails.css';
 import Page from '../../UI/Page';
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -69,7 +70,7 @@ export default class extends Component {
         )      
         return (             
             <Window title='经营明细' onClose={this.props.closeView}>
-            <div>
+            
                 <div className="Succession_data">
                             <div className="Succession_dataLeft managerquery_dataLeft oper-detail">
                                 <div>收款类型：<Select  option={['全部','免费','免费补交','免费充值','免费发卡',
@@ -88,35 +89,33 @@ export default class extends Component {
                        
                 </div>  
                 <div className="Takeclothes-div-title operating-detail">已为您找到<b>{this.state.count}</b>条数据</div>
-                    <div className="Takeclothes-tab Takeclothesdetail-tab" id="operating-div">
-                        <table cellPadding="0" cellSpacing="0" border="0">
-                           <thead>
-                               <tr>
-                                   <th>ID</th>
-                                   <th>流水号</th>
-                                   <th>店员姓名</th>
-                                   <th>衣物件数</th>
-                                   <th>金额</th>
-                                   <th>实收金额</th>
-                                   <th>折扣率</th>
-                                   <th>收款类型</th>
-                                   <th>客户电话</th>
-                                   <th>客户姓名</th>
-                                   <th>时间</th>
-                                   <th>卡号</th>
-                                   <th>卡类型</th>
-                               </tr>
-                           </thead>
-                           <tbody> 
-                               {list} 
-                               {this.state.nodatas&&<Nodata />}                            
-                           </tbody>
-                        </table> 
-                    </div> 
-            </div>   
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />                      
-            </Window>  
-            
+                <div className='ope-det-tab'>
+                    <Table >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>流水号</th>
+                                <th>店员姓名</th>
+                                <th>衣物件数</th>
+                                <th>金额</th>
+                                <th>实收金额</th>
+                                <th>折扣率</th>
+                                <th>收款类型</th>
+                                <th>客户电话</th>
+                                <th>客户姓名</th>
+                                <th>时间</th>
+                                <th>卡号</th>
+                                <th>卡类型</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            {list} 
+                            {this.state.nodatas&&<Nodata />}                            
+                        </tbody>
+                    </Table>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                </div>                  
+            </Window>     
         );
     }
 }

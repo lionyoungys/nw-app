@@ -1,6 +1,6 @@
 .ope-inc-head{
 
-    margin: 10px 13px;
+    margin: 10px 16px;
     border:1px solid #d7dde6;
     background:#f5f8fa;
     height: 60px; 
@@ -59,17 +59,15 @@
     margin-top: 16px;
     margin-left: 98px;
 }
-.ui-table-base.ManagerGathering-tab.ope-inc-tab{
-    max-height: 367px;
-    height: 367px;
-}
-.ui-table-base.ManagerGathering-tab.ope-inc-tab tbody{
-    max-height: 330px;
-}
-.ui-table-base.ManagerGathering-tab.ope-inc-tab tbody tr:last-child{
-    border-bottom:1px solid #ebf0f6;
-    box-sizing: border-box;
-}
-.ui-table-base.ManagerGathering-tab tbody tr{border-bottom:1px solid #ebf0f6;box-sizing: border-box}
+.ope-inc-tab{
 
-.manager_gathering_part_row span:last-child{color:#f00}
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 90px;
+}
+.ope-inc-tab>.ui-table{
+    height: 100%
+}

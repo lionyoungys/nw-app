@@ -20,7 +20,22 @@
     max-height:290px;
 }
 #operating-div tbody tr td{color: #999}
-.Takeclothes-div-title.operating-detail{height: 40px;line-height: 40px;padding-top: 0;margin-top: 0}
-.Succession_dataLeft.managerquery_dataLeft.oper-detail{width:769px }
-.Succession_dataLeft.managerquery_dataLeft.oper-detail>div{margin-left:18px}
+.Takeclothes-div-title.operating-detail{height: 40px;line-height: 40px;padding-top: 2px;}
+.Succession_dataLeft.managerquery_dataLeft.oper-detail{width: 100%}
+.Succession_dataLeft.managerquery_dataLeft.oper-detail>div{margin-left:12px}
 .Succession_dataLeft.managerquery_dataLeft.oper-detail>div button.managerquery_btn{margin-top: 0}
+.ope-det-tab{
+
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 155px;
+}
+.ope-det-tab>.ui-table{
+    height: 100%;
+}
+.ope-det-tab>.ui-table thead tr th{
+    min-width: 100px;
+}

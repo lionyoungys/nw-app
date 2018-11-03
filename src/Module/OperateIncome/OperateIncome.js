@@ -6,6 +6,8 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import '../RevokeData/RevokeData.css';
 import './OperateIncome.css';
+import Table from '../../UI/Table';
+
 
 export default class extends Component {   
     constructor(props) {
@@ -47,19 +49,21 @@ export default class extends Component {
                     <a>操作员：{'aname'.getData()}</a>
                 </div>
                 {/* 表格部分 欠费衣物信息*/}
-                <table className='ui-table-base ManagerGathering-tab ope-inc-tab'>
-                    <thead>
-                        <tr>
-                            <td>收银类型</td>
-                            <td>金额</td>
-                            <td>实收金额</td> 
-                            <td>衣物数量</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {arr}
-                    </tbody>
-                </table>
+                <div className='ope-inc-tab'>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>收银类型</th>
+                                <th>金额</th>
+                                <th>实收金额</th> 
+                                <th>衣物数量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {arr}
+                        </tbody>
+                    </Table>
+                </div>
             </Window>  
         </div>
         )
