@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
 import './Clothestat.css';
-
+import Table from '../../UI/Table';
 export default class extends Component {   
     constructor(props) {
         super(props);
@@ -93,8 +93,8 @@ export default class extends Component {
         )
        return (             
             <Window title='衣物统计' onClose={this.props.closeView}>   
-                      <div className="clothestat_data">
-                         <div className="clothestat_dataLeft">
+               <div className="Succession_data">
+                   <div className="Succession_dataLeft managerquery_dataLeft">
                             <div>开始日期：<input type="date" className='e-date' value={this.state.startdate} onChange={e=>this.setState({startdate:e.target.value})}/></div>                           
                             <div>结束日期：<input type="date" className='e-date' value={this.state.enddate} onChange={e=>this.setState({enddate:e.target.value})}/></div>
                             <div className="clothestat_dataright">
@@ -103,8 +103,10 @@ export default class extends Component {
                          </div>
                         
                       </div>
-                       <div className="clothall" >类别合计</div>
-                        <table className="clothall-tab clothestat-tab">
+               <div className='man-que-tab clo-tab'>
+                   <div className='man-que-tab-one clo-sta-tab-one'> 
+                       <div class="Takeclothes-div-title operating-detail clo-title">类别合计</div>
+                        <Table>
                           <thead>
                               <tr>
                                   <th>衣物类别</th>
@@ -114,51 +116,48 @@ export default class extends Component {
                           <tbody>
                               {list}
                           </tbody>
-                        </table>  
-                      
-                      
-                      <div className="revokedata_list revokedata_last clothestat-tab clothestat-tab">
-                        <div>衣物明细<b>共有 <a>{this.state.allcount}</a> 条</b><span className="revokedata_prompt"></span></div>
-                        <table className="clothestat-tab">
-                               <thead>
-                                   <tr>
-                                       <th>ID</th>
-                                       <th>店员姓名</th>
-                                       <th>客户电话</th>
-                                       <th>流水号</th>                                      
-                                       <th>衣物编码</th>
-                                       <th>衣物名称</th>
-                                       <th>衣物颜色</th>
-                                       <th>衣物网格</th>
-                                       <th>衣物类别</th>
-                                       <th>价格</th>
-                                       <th>品牌</th>
-                                       <th>折后价</th>                                      
-                                       <th>状态</th>                                       
-                                       <th>时间</th>
-                                       <th>交活定期</th>
-                                       <th>交活日期</th>
-                                       <th>衣挂号</th>                                      
-                                       <th>工艺加价</th>
-                                       <th>附加费</th>
-                                       <th>洗后预估</th>
-                                       <th>衣物件数</th>
-                                       <th>客户姓名</th>
-                                       <th>卡号</th>
-                                       <th>卡类型</th>                                                                             
-                                       <th>住址</th>
-                                      
-                                       <th>折扣率</th>
-                                   </tr>                                  
-                               </thead>
-                               <tbody> 
-                                 {indexlist}                                    
-                               </tbody>
-                           </table>                       
-                      </div>
-                      <div className="clothstate-foot">
-                          <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>
-                      </div>
+                       </Table>  
+                    </div>
+                   <div className='man-que-tab-two clo-sta-tab-two'>
+                       <div class="Takeclothes-div-title operating-detail clo-title">衣物明细 共有<b>{this.state.allcount}</b>条</div>
+                       <Table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>店员姓名</th>
+                                    <th>客户电话</th>
+                                    <th>流水号</th>                                      
+                                    <th>衣物编码</th>
+                                    <th>衣物名称</th>
+                                    <th>衣物颜色</th>
+                                    <th>衣物网格</th>
+                                    <th>衣物类别</th>
+                                    <th>价格</th>
+                                    <th>品牌</th>
+                                    <th>折后价</th>                                      
+                                    <th>状态</th>                                       
+                                    <th>时间</th>
+                                    <th>交活定期</th>
+                                    <th>交活日期</th>
+                                    <th>衣挂号</th>                                      
+                                    <th>工艺加价</th>
+                                    <th>附加费</th>
+                                    <th>洗后预估</th>
+                                    <th>衣物件数</th>
+                                    <th>客户姓名</th>
+                                    <th>卡号</th>
+                                    <th>卡类型</th>                                                                             
+                                    <th>住址</th>
+                                    <th>折扣率</th>
+                                </tr>                                  
+                            </thead>
+                            <tbody> 
+                                {indexlist}                                    
+                            </tbody>
+                       </Table>                       
+                    </div>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                </div>
              </Window> 
         );
     }

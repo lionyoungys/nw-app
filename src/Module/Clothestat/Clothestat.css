@@ -1,159 +1,4 @@
-.clothestat-tab table{
-    width:780px;
-    height:150px;
-    border:1px solid #e1e4eb;
-    max-width:780px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    display:block;
-    margin:0 auto;
-}
-.clothestat-tab table thead{
-    width:780px;
-    height:40px;
-    background:#f6f7fb;
-}
-.clothestat-tab table thead tr{width:780px;height:40px;}
-.clothestat-tab table thead tr th{
-    width:130px;
-    height:40px;
-    /* border-right:1px solid #eaeff5; */
-    color:#4d4d4d;
-    font-size:12px;
-    min-width:130px;
-    max-width:130px;
-    text-align:center;
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.clothestat-tab table thead tr th:last-child{background: none}
-.clothestat-tab table thead tr th:first-child{
-    width:31px;
-    min-width:31px;
-}
-.clothestat-tab table tbody{
-    width:auto;
-    height:95px;
-    max-height:95px;
-    overflow-y:auto;  
-    display:inline-block;
-    overflow-x:hidden;
-}
-.clothestat-tab table tbody tr{height:40px;border-bottom: 1px solid #e1e4eb; }
-.clothestat-tab table tbody tr td{
-    width:130px;
-    height:40px;
-    color:#999;
-    font-size:12px;
-    min-width:130px;
-    text-align:center;
-    max-width:130px;
-}
-.clothestat-tab table tbody tr td:first-child{
-    width:31px;
-    min-width:31px;
-}
 
-.clothall{
-    width:776px;
-    height:37px;
-    line-height:37px;
-    color:#4d4d4d;
-    font-size:14px;
-    font-weight:bold;
-    /* margin-left:13px; */
-    margin: 0 auto;
-}
-.clothall-tab{
-    width:776px;
-    max-height:155px;
-    height:155px;
-    border:1px solid #e1e4eb;
-    display:block;
-    margin:0 auto;
-}
-.clothall-tab thead{
-    display:inline-block;
-    width:776px;
-    background:#f6f7fb;
-    height: 40px;
-}
-.clothall-tab thead tr{
-    width:776px;
-    height:40px;   
-}
-.clothall-tab thead tr th{
-    width:388px;
-    height:40px;
-    line-height:40px; 
-    font-size:12px; 
-    color:#4d4d4d;
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.clothall-tab thead tr th:last-child{background: none;}
-
-.clothall-tab tbody tr td{
-    width:388px;
-    height:40px;
-    line-height:40px;
-    font-size:12px;
-    color:#999;
-    text-align:center;
-}
-.clothall-tab tbody tr{border-bottom: 1px solid #edf0f9;box-sizing: border-box}
-.clothall-tab tbody tr:last-child{border-bottom: none}
-.clothall-tab tbody{max-height:114px;overflow-y:auto;display:block}
-
-#clo-que-tab thead tr td:first-child{
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.clothestat_data{
-    width:780px;
-    height:59px;
-    margin:13px auto 0px;
-    border:1px solid #e9edf1;
-    background:#f5f8fa;
-}
-.clothestat_dataLeft{
-    width:780px;   
-    height:57px;   
-    float: left;
-    padding-right:246px;
-}
-.clothestat_dataLeft div{
-    width:207px;
-    height:20px;
-    margin-top:18px;
-    line-height:20px;
-    color:#000;
-    font-size:12px;
-    cursor: pointer;
-    float: left;
-    padding-left: 12px;
-}
-/* .clothestat_dataLeft div input{
-    width:133px;
-    height:20px;
-    background:#fff;;
-    background-size:100% 100%;
-    outline:none;border:none;
-    border:1px solid #c4c2c2;       
-    border-radius:3px;
-    text-indent:4px;
-    cursor: pointer;
-    background:url(./img/select.png) no-repeat;background-size:18px 24px;
-    background-position-x:115px;
-    background-position-y:0; 
-} */
-.clothestat_dataright{float:left;height:24px;margin:17px 0 0 6px;}
 .clothestat_dataright button{
     padding: 0;
     margin: 0;
@@ -169,6 +14,18 @@
     outline: none;
     border: none;
 }
-.clothestat_dataLeft div .e-date{width: 146px}
+.Takeclothes-div-title.operating-detail.clo-title{
 
-.clothstate-foot{margin-top:44px}
+    text-indent: 0px;
+    padding-top: 0px;
+}
+.man-que-tab.clo-tab{
+
+    padding: 0px 16px 115px;
+}
+.man-que-tab.clo-tab .man-que-tab-one.clo-sta-tab-one,.man-que-tab.clo-tab .man-que-tab-two.clo-sta-tab-two{
+
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-bottom: 40px;
+}

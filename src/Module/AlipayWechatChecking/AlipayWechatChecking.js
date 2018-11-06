@@ -8,6 +8,7 @@ import Pages from '../../UI/Page';
 import Select from '../../UI/Select';
 import './AlipayWechatChecking.css';
 import Nodata from '../../UI/nodata';
+import Table from '../../UI/Table';
 
 export default class extends Component {
     constructor(props) {
@@ -76,7 +77,6 @@ export default class extends Component {
         );
         return (
             <Window title='支付宝、微信对账' onClose={this.props.closeView}>
-            <div>
                 <div className="ali-wechat-check-head">
                     <p>温馨提示：微信、支付宝收款结算周期为T+7，平台将通过银行打款结算至<b>{this.state.bankInfo.bank || '********'}{this.state.bankInfo.account || '********'}</b>账户，每个账期内余额借款最低1000元起，不满1000元将累计至下一个账期结算。</p>
                     <p>余额：¥{this.state.bankInfo.balance || '0'}</p>
@@ -97,24 +97,25 @@ export default class extends Component {
                     </span>  
                     <button type='button' className='e-btn' onClick={() => this.query(1)}>查询</button>
                 </div>
-                <table className='ui-table-base ali-wechat-check-tab'>
-                    <thead>
-                        <tr>
-                            <td className='ali-wechat-check-tab-1'>交易单号</td>
-                            <td className='ali-wechat-check-tab-2'>交易类型</td>
-                            <td className='ali-wechat-check-tab-3'>交易用途</td>
-                            <td className='ali-wechat-check-tab-4'>交易金额</td>
-                            <td className='ali-wechat-check-tab-6'>余额</td>
-                            <td className='ali-wechat-check-tab-7'>交易时间</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {list}
-                        {this.state.nodatas && <Nodata />}
-                    </tbody>
-                </table>
-                    <Pages current={this.state.page} total={this.state.count} fetch={this.state.limit}  callback={page => this.query(page)}/>
-            </div>
+                <div className='ali-wechat-check-tab'>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th className='ali-wechat-check-tab-1'>交易单号</th>
+                                <th className='ali-wechat-check-tab-2'>交易类型</th>
+                                <th className='ali-wechat-check-tab-3'>交易用途</th>
+                                <th className='ali-wechat-check-tab-4'>交易金额</th>
+                                <th className='ali-wechat-check-tab-6'>余额</th>
+                                <th className='ali-wechat-check-tab-7'>交易时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {list}
+                            {this.state.nodatas && <Nodata />}
+                        </tbody>
+                </Table>
+                <Pages current={this.state.page} total={this.state.count} fetch={this.state.limit}  callback={page => this.query(page)}/>
+                </div>
             </Window>
         );
     }

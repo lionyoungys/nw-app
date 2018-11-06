@@ -84,7 +84,6 @@ export default class extends Component {
                                     <button className="e-btn managerquery_btn" onClick={() => this.query(this.state.page)}>查询</button> 
                                 </div>    
                             </div>
-                          
                 </div>   
                 <div className='man-que-tab'> 
                     <div className='man-que-tab-one'>                                

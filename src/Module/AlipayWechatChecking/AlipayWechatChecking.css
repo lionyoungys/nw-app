@@ -12,7 +12,7 @@
     margin: 6px 0 0;
     height: 48px;
     line-height: 22px;
-    width: 644px;
+    width: 664px;
     padding: 0 14px 0 46px;
     border-right:1px solid #e6ebf5;
     box-sizing: border-box;
@@ -39,8 +39,9 @@
     line-height: 58px;
     color:red;
     margin: 0;
-    width: 120px;
+    width: auto;
     text-align: center;
+    margin-left: 10px
 }
 .ali-wechat-check-title{
     margin:0 14px;
@@ -64,56 +65,17 @@
     font-size: 12px;
     color: red;
 }
-.ui-table-base.ali-wechat-check-tab{
-    max-height: 250px;
-    border:1px solid #e6ebf5;
+.ali-wechat-check-tab{
+
+    position: relative;
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 235px;
 }
-.ui-table-base.ali-wechat-check-tab tbody{
-    max-height: 210px;
-}
-.ui-table-base.ali-wechat-check-tab tbody tr{border-bottom: 1px solid #e6ebf5;box-sizing: border-box}
-.ui-table-base.ali-wechat-check-tab tbody tr#no-data{margin-top: 33px}
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-1{
+.ali-wechat-check-tab>.ui-table{
 
-    min-width: 180px;
-    max-width: 180px;
-}
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-2{
-
-    min-width: 82px;
-    max-width: 82px;
-}
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-3{
-
-    min-width: 222px;
-    max-width: 222px;
-}
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-4{
-
-    min-width: 82px;
-    max-width: 82px;
-}
-/* .ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-5{
-
-    min-width: 82px;
-    max-width: 82px;
-} */
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-6{
-
-    min-width: 103px;
-    max-width: 103px;
-}
-.ui-table-base.ali-wechat-check-tab .ali-wechat-check-tab-7{
-
-    min-width: 99px;
-    max-width: 99px;
-}
-.ali-wechat-check-tab tbody{
-    width:874px;
-
-}
-.ali-wechat-check-tab tbody::-webkit-scrollbar{
-    width:0px;
+    height: 100%;
 }
 
