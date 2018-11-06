@@ -28,9 +28,13 @@
 .ui-table-base.succession-tab{
     max-height: 85%;
     height: 85%;
-    display: table;
-    width: 97%;
+    display: block;
+    /* width: 97%; */
     margin: auto;
+    width: 100%;
+    /* margin: 0px 16px; */
+    box-sizing: border-box;
+    padding: 0 16px;
 }
 .ui-table-base.succession-tab thead{
     display: inline-table;
@@ -41,10 +45,10 @@
 .ui-table-base.succession-tab thead tr td{width: 10%}
 .ui-table-base.succession-tab tbody{
     max-height: 75%;
-    display:-webkit-box;
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
+    display: block;
 }
 .ui-table-base.succession-tab tbody tr{display: inline-table;height: 40px;width: 100%;}
 .ui-table-base.succession-tab tbody tr td{width: 10%}

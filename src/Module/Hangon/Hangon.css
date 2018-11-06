@@ -111,30 +111,13 @@
     margin-right: 0px;
 }
 
-
-.ui-table-base.hangon-sear-res-tab tbody{
-    max-height:360px;
-}
-
 /* 修改样式 */
-.ui-table-base.hangon-sear-res-tab{
-    border:none;
+.hangon-sear-res-tab{
+
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 70px;
 }
-.hangon-sear-res-tab thead tr td{
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.hangon-sear-res-tab thead tr td:last-child{background: none;}
-
-
-
-/* 响应式 */
-.ui-table-base.hangon-sear-res-tab{max-height: 360px;width:97%;display: block;}
-.ui-table-base.hangon-sear-res-tab thead{display: inline-table;height: 40%;width: 100%}
-.ui-table-base.hangon-sear-res-tab thead tr{width: 100%;height: 40px}
-.ui-table-base.hangon-sear-res-tab thead tr td{width: 10%}
-.ui-table-base.hangon-sear-res-tab tbody{display: -webkit-box;width: 100%;}
-.ui-table-base.hangon-sear-res-tab tbody tr{display: inline-table;width: 100%;height: 40px}
-.ui-table-base.hangon-sear-res-tab tbody tr td{width: 6%;}

@@ -1,11 +1,11 @@
 /* 充值统计页面样式  顶部*/
 .bal-head{
-    width: 97%;
-    margin: 10px auto;
+    margin: 10px 16px;
     border: 1px solid #dbdfe6;
     height: 57px;
     background: #f5f8fa;
     line-height: 57px;
+    box-sizing: border-box;
 }
 .bal-head span{
     color:#585858;
@@ -44,25 +44,23 @@
 }
 .ui-table-base.bal-sta-tab.bal-tab{
     overflow-x: auto;
-    height: 75%;
-    max-height: 75%;
-    width: 97%;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
     margin: 5px auto 0;
-    display:block;
+    display: block;
+    padding: 0px 16px 121px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
+.ui-table-base.bal-sta-tab.bal-tab .ui-table{height: 100%}
 .ui-table-base.bal-sta-tab.bal-tab thead{
     display: inline-table;
     width: 100%;
 }
 .ui-table-base.bal-sta-tab.bal-tab thead tr{width: 100%} 
 
-
-.ui-table-base.bal-sta-tab.bal-tab tbody{
-    max-height: 90%;
-    height: 90%;
-    width: auto;
-    display: inline-block;
-}
 .ui-table-base.bal-sta-tab.bal-tab tbody tr{
     border-bottom: 1px solid #f1f4f9;
     box-sizing: border-box;

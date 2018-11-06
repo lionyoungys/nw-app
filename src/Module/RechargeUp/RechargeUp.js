@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
 import Nodata from '../../UI/nodata';
+import Table from '../../UI/Table';
 import './RechargeUp.css'
 
 export default class extends Component {   
@@ -76,24 +77,26 @@ export default class extends Component {
                         <div id="balancestatistics-leiji">累计充值金额：<b>¥{this.state.total_amount}</b> 元</div>
                                                     
                     </div>
-                    <table className='ui-table-base bal-sta-tab recharge-sta'>
-                        <thead>
-                            <tr>
-                                <td>ID</td> 
-                                <td>卡号</td>
-                                <td>卡类型</td>
-                                <td>充值金额</td>
-                                <td>姓名</td>
-                                <td>手机号</td>
-                                <td>交易时间</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {list}
-                            {this.state.nodatas&&<Nodata />}
-                        </tbody>  
-                    </table>  
-                    <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>    
+                    <div className='ui-table-base bal-sta-tab recharge-sta'>
+                        <Table >
+                            <thead>
+                                <tr>
+                                    <td>ID</td> 
+                                    <td>卡号</td>
+                                    <td>卡类型</td>
+                                    <td>充值金额</td>
+                                    <td>姓名</td>
+                                    <td>手机号</td>
+                                    <td>交易时间</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {list}
+                                {this.state.nodatas&&<Nodata />}
+                            </tbody>  
+                        </Table>  
+                        <Page current={this.state.page} total={this.state.count} fetch = {this.limit} callback={page=> this.query(page)}/>    
+                    </div>
                 </Window> 
         );            
     };

@@ -39,9 +39,7 @@
 } */
 /* 页面tab上方 样式*/
 .bothpages_list{
-    width: 97%;
-    margin-top: 15px;
-    margin: 15px auto 0;
+    margin: 15px 16px 0px;
 }
 .bothpages_list div{
     width:auto;

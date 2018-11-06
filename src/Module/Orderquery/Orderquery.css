@@ -1,15 +1,13 @@
 
 /* 订单查询顶部 */
 .orderquery-title{
-    width:97%;
-    height:63px;
-    margin:12px auto;
-    border:1px solid #d8dce5;
-    background:#f5f8fa;
+    height: 63px;
+    margin: 12px 16px;
+    border: 1px solid #d8dce5;
+    background: #f5f8fa;
+    box-sizing: border-box;
 }
-
 .orderquery-title div .ui-select {width:159px}
-
 .orderquery-title>div{
     width:236px;
     height:27px;
@@ -55,14 +53,22 @@
 
 /* 订单列表的div */
 .orderquery-div{
-    width: 97%;
-    height: 73%;
-    max-height: 73%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
     background: #fff;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     overflow-x: hidden;
-    display: block;
+    /* display: block; */
+    padding: 0px 16px 128px;
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: hidden;
 }
+.orderquery-div .ui-table{
+    height: 100%;
+}
+.orderquery-div .ui-table::-webkit-scrollbar{width: 0px}
 .orderquery-div table{
     width: 100%;
     height: auto;
@@ -135,8 +141,8 @@
 /*  */
 .orderquery-div table tbody{
     width: 100%;
-    height: 85%;
-    max-height: 85%;
+    /* height: 85%; */
+    /* max-height: 85%; */
     overflow-y: auto;
     display: block;
     overflow-x: hidden;

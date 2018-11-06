@@ -7,6 +7,8 @@ import './UnpaidStatistics.css';
 import Window from '../../UI/Window';
 import Nodata from '../../UI/nodata';
 import Page from "../../UI/Page";
+import Table from '../../UI/Table';
+
 
 export default class extends Component {
     constructor(props) {
@@ -93,26 +95,28 @@ export default class extends Component {
                     <span>  不可折金额：<a>{this.state.amount ||0}元</a></span>
                 </div>
                 <p className = 'unp-sta-res-num'>已为您找到<a>{this.state.count}</a>条数据</p>               
-                <table className='ui-table-base unpaidstatistics_table_Arrearage'>
-                    <thead>
-                        <tr>
-                            <td>店员姓名</td>
-                            <td>流水号</td>
-                            <td>衣物件数</td>
-                            <td>可折额</td>
-                            <td>折扣率</td>
-                            <td>不可折额</td>
-                            <td>客户姓名</td>
-                            <td>客户电话</td>
-                            <td>日期</td>
-                        </tr>
-                    </thead>
-                    <tbody>                                                                           
-                            {list} 
-                            {this.state.nodatas&&<Nodata />}                                                  
-                    </tbody>
-                </table>    
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />            
+                <div className='ui-table-base unpaidstatistics_table_Arrearage'>
+                    <Table >
+                        <thead>
+                            <tr>
+                                <td>店员姓名</td>
+                                <td>流水号</td>
+                                <td>衣物件数</td>
+                                <td>可折额</td>
+                                <td>折扣率</td>
+                                <td>不可折额</td>
+                                <td>客户姓名</td>
+                                <td>客户电话</td>
+                                <td>日期</td>
+                            </tr>
+                        </thead>
+                        <tbody>                                                                           
+                                {list} 
+                                {this.state.nodatas&&<Nodata />}                                                  
+                        </tbody>
+                    </Table>    
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />    
+                </div>        
             </Window>
         );
     }

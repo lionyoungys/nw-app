@@ -7,6 +7,7 @@ import Page from '../../UI/Page'
 import Nodata from '../../UI/nodata'
 import OptionBox from '../../Elem/OptionBox'; 
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 
 
 export default class extends Component {   
@@ -33,7 +34,7 @@ export default class extends Component {
         ];   
 
         this.props.onRef(this);
-        this.limit = 10;  
+        this.limit = 15;  
         this.query = this.query.bind(this);  
         this.take_waiting = this.take_waiting.bind(this); // 接单
         this.no_waiting = this.no_waiting.bind(this); // 取消预约   
@@ -140,7 +141,7 @@ export default class extends Component {
         var waiting = this.waiting.map((item,index) =><th key={'item'+index}>{item}</th>);      
         var waitinglist = this.state.waitinglist.map((item,index) =><tr key={'item'+index}>
             <td>{item.ordersn}</td>
-            <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
+            <td>{item.otime};订单来源:<i>{item.is_online==0? '线下' : '线上' }</i></td>
             <td>{
                 item.work.map((item,index)=>
                 <span>{item.clothing_name}</span>
@@ -164,7 +165,7 @@ export default class extends Component {
         return ( 
         <div className="online-div">    
             <div className="waiting">
-                <table className="waiting-list">
+                <Table className="waiting-list">
                     <thead>
                     <tr>
                         {waiting}
@@ -174,9 +175,10 @@ export default class extends Component {
                         {this.state.nodatas&&<Nodata />}                             
                         {waitinglist}
                     </tbody>
-                </table>
+                </Table>
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
             </div>
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+            
             {                
                 this.state.show
                 &&               

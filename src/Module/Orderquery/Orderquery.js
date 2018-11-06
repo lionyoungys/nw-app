@@ -7,6 +7,7 @@ import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import Page from '../../UI/Page';
 import Nodata from '../../UI/nodata';
+import Table from '../../UI/Table';
 import './Orderquery.css';
 
 export default class extends Component {
@@ -193,7 +194,7 @@ export default class extends Component {
                         <button className="e-btn" onClick = {this.serch}>查询</button>              
                </div> 
                <div className="orderquery-div">
-                  <table>
+                  <Table>
                       <thead>
                             <tr> 
                                {thead}
@@ -203,9 +204,9 @@ export default class extends Component {
                           {this.state.nodatas&&<Nodata />}
                           {orderquerylist}
                       </tbody>
-                  </table>
-               </div> 
-               <Page   current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>                                                      
+                  </Table>
+                  <Page   current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+               </div>                                                                     
             </Window>
         );
     }

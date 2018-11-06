@@ -8,6 +8,7 @@ import '../../UI/bothpages.css';
 import './BalanceStatistics.css';
 import Page from '../../UI/Page';
 import Nodata from '../../UI/nodata';
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -66,25 +67,27 @@ export default class extends Component {
                         <span>累计会员数：<b>{this.state.user_total}</b></span>
                         <span>累计会员余额：<b>￥{this.state.balance_total}</b>元</span>
                     </div>
-                    <table className='ui-table-base bal-sta-tab bal-tab'>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>卡号</td>
-                                <td>卡类型</td>
-                                <td>折扣率</td>
-                                <td>姓名</td>
-                                <td>手机号</td>
-                                <td>余额</td>
-                                <td>办卡时间</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {list}
-                            {this.state.nodatas&&<Nodata />}
-                        </tbody>  
-                    </table>
+                    <div className='ui-table-base bal-sta-tab bal-tab'>
+                        <Table >
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>卡号</td>
+                                    <td>卡类型</td>
+                                    <td>折扣率</td>
+                                    <td>姓名</td>
+                                    <td>手机号</td>
+                                    <td>余额</td>
+                                    <td>办卡时间</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {list}
+                                {this.state.nodatas&&<Nodata />}
+                            </tbody>  
+                        </Table>
                     <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>   
+                </div>
                </Window> 
             </div>
         );            

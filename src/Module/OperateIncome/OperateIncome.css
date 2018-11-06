@@ -1,11 +1,10 @@
 .ope-inc-head{
-
     margin: 10px 16px;
     border:1px solid #d7dde6;
     background:#f5f8fa;
     height: 60px; 
-    /* line-height: 70px; */
     text-indent:12px;
+    box-sizing: border-box;
 }
 .ope-inc-head div{
     display: inline;

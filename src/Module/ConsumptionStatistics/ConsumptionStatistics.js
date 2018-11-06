@@ -7,6 +7,7 @@ import './ConsumptionStatistics.css'
 import Window from '../../UI/Window';
 import Page from '../../UI/Page';
 import Nodata from '../../UI/nodata';
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -92,29 +93,31 @@ export default class extends Component {
                     <div>合计应收金额：<b>¥{this.state.amount_total}元</b></div>
                     <div>合计实收金额：<b>¥{this.state.real_amount}元</b></div>
                 </div>
-                <table className='ui-table-base bal-sta-tab consun-tab'>
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>流水号/订单号</td>
-                            <td>数量</td>
-                            <td>应收金额</td>
-                            <td>实收金额</td>
-                            <td>折扣率</td>
-                            <td>收银类型</td>
-                            <td>姓名</td>
-                            <td>手机号</td>                               
-                            <td>交易时间</td>
-                            <td>上缴</td> 
-                            <td>交班</td> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {list}
-                        {this.state.nodatas&&<Nodata />}
-                    </tbody>  
-                </table>                          
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />   
+                <div className='ui-table-base bal-sta-tab consun-tab'>
+                    <Table >
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>流水号/订单号</td>
+                                <td>数量</td>
+                                <td>应收金额</td>
+                                <td>实收金额</td>
+                                <td>折扣率</td>
+                                <td>收银类型</td>
+                                <td>姓名</td>
+                                <td>手机号</td>                               
+                                <td>交易时间</td>
+                                <td>上缴</td> 
+                                <td>交班</td> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {list}
+                            {this.state.nodatas&&<Nodata />}
+                        </tbody>  
+                    </Table>                          
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />   
+                </div>
                 </Window> 
         );            
     };

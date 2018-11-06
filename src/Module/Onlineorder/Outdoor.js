@@ -7,6 +7,7 @@ import Page from '../../UI/Page'
 import App from '../Clothes/add_item'
 import Nodata from '../../UI/nodata'
 import Window from '../../UI/Window';
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -34,7 +35,7 @@ export default class extends Component {
             {key:3,value:'距离太远'}
         ];   
         this.props.onRef(this);
-        this.limit = 10;  
+        this.limit = 15;  
         this.query = this.query.bind(this);   
         this.outdoor_no = this.outdoor_no.bind(this); 
         this.take_clothes = this.take_clothes.bind(this);  
@@ -133,7 +134,7 @@ export default class extends Component {
         var outdoor = this.outdoor.map((item,index) =><th key={'item'+index}>{item}</th>);       
         var outdoorlist = this.state.outdoorlist.map((item,index) =><tr key={'item'+index} >
             <td>{item.ordersn}</td>
-            <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
+            <td>{item.otime};订单来源:<i>{item.is_online==0? '线下' : '线上' }</i></td>
             <td>{item.work.map((item,index)=> <span>{item.clothing_name}</span>)}</td>
             <td>{item.work.map((item,index) =><span>{item.work_number}</span>)}</td>
             <td>共{item.count}件,约<i>￥{item.total}</i></td>
@@ -147,7 +148,7 @@ export default class extends Component {
         return (
         <div className="online-div"> 
             <div className="waiting">
-                <table className="waiting-list">
+                <Table>
                     <thead>
                     <tr>
                         {outdoor}
@@ -157,7 +158,8 @@ export default class extends Component {
                         {this.state.nodatas&&<Nodata />}                             
                         {outdoorlist}
                     </tbody>
-                </table>
+                </Table>
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
             </div>
             {
                 this.state.app
@@ -172,7 +174,7 @@ export default class extends Component {
                         this.setState({app:false});
                     }}/>
             }
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>  
+              
             {                
                 this.state.show
                 &&               

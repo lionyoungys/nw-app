@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Page from '../../UI/Page'
 import Nodata from '../../UI/nodata'
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -17,7 +18,7 @@ export default class extends Component {
             count:0,
         };  
         this.props.onRef(this);
-        this.limit = 10;  
+        this.limit = 15;  
         this.query = this.query.bind(this);             
     };         
     // 显示订单完成列表  
@@ -65,7 +66,7 @@ export default class extends Component {
         var overorder = this.overorder.map((item,index) =><th key={'item'+index}>{item}</th>);       
         var overorderlist = this.state.overorderlist.map((item,index) =><tr key={'item'+index}>
             <td>{item.ordersn}</td>
-            <td>{item.otime};订单来源:{item.is_online==0? '线下' : '线上' }</td>
+            <td>{item.otime};订单来源:<i>{item.is_online==0? '线下' : '线上' }</i></td>
             <td>{
                item.work.map((item,index)=>
                 <span>{item.clothing_name}</span>
@@ -88,7 +89,7 @@ export default class extends Component {
         return ( 
         <div className="online-div">
             <div className="waiting">
-                <table className="waiting-list">
+                <Table >
                     <thead>
                     <tr>
                         {overorder}
@@ -98,9 +99,10 @@ export default class extends Component {
                         {this.state.nodatas&&<Nodata />}                               
                         {overorderlist}
                     </tbody>
-                </table>
+                    </Table>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
             </div>
-            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+           
         </div>         
         )           
     };

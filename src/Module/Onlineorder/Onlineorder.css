@@ -6,128 +6,22 @@
     right:87px;
 }
 .waiting{
-    width:97%;
-    margin:0 auto;
-    background:#fff;
-    max-height:75%; 
-    overflow-y:hidden;
-    overflow-x: hidden;
-    height: 75%;
+    height: 100%;
+    width: 100%;
     position: relative;
-    display:block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0px 40px;
 }
-.waiting-list{
-    width:100%;
-    max-height:100%;
-    background:#fff;
-    height:100%;
-    display: block;
+.waiting>.ui-table{
+    height: 100%;
 }
-.waiting-list thead{
-    width: 100%;
-    height:40px;
-    background:#f6f7fb;
-    display: inline-table;
+.waiting>.ui-table thead tr th{
+    min-width: 140px;
 }
-.waiting-list thead tr{
-    width: 100%;
-    height:40px;
-}
-.waiting-list thead tr>th{
-    line-height:40px;
-    color:#4d4d4d;
-    font-size:12px;
-    text-align:center;
-    background: url(./images/thead-border.png) ;
-    background-size:1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-    width: 10%;
-}
-.waiting-list thead tr>th:last-child{background: none}
-/* .waiting-list thead tr>th:nth-child(1){
-    min-width:128px;
-    max-width:128px;
-}
-.waiting-list thead tr>th:nth-child(2){
-    min-width:115px;
-    max-width:115px;
-}
-.waiting-list thead tr>th:nth-child(3){
-    min-width:107px;
-    max-width:107px;
-}
-.waiting-list thead tr>th:nth-child(4){
-    min-width:79px;
-    max-width:79px;
-}
-.waiting-list thead tr>th:nth-child(5){
-    min-width:101px;
-    max-width:101px;
-}
-.waiting-list thead tr>th:nth-child(6){
-    min-width:145px;
-    max-width:145px;
-}
-.waiting-list thead tr>th:nth-child(7){
-    border-right:none;
-} */
-.waiting-list tbody{
-    height:85%;
-    max-height:85%;    
-    display: -webkit-box;
-    overflow-y:auto;
-}
-.waiting-list tbody::-webkit-scrollbar{
-    width:0px;
-}
-.waiting-list tbody tr{
-    height: 40px;
-    width: 100%;
-    border-bottom: 1px solid #edf0f9;
-    display: inline-table;
-}
-.waiting-list tbody tr:hover{background: #fbfcfd}
-.waiting-list tbody tr td{
-    height:auto;
-    color:#999;
-    font-size:12px;
-    text-align:center;
-    word-break: break-all;
-    width: 10%;
-}
-.waiting-list tbody tr>td:last-child{
-    border-right:none;
-}
-/* .waiting-list tbody tr td{
-    min-width:128px;
-    max-width:128px;
-}
-.waiting-list tbody tr>td:nth-child(2){
-    min-width:115px;
-    max-width:115px;
-}
-.waiting-list tbody tr>td:nth-child(3){
-    min-width:107px;
-    max-width:107px;
-}
-.waiting-list tbody tr>td:nth-child(4){
-    min-width:79px;
-    max-width: 79px;
-}
-.waiting-list tbody tr>td:nth-child(5){
-    min-width:101px;
-    max-width:101px;
-}
-.waiting-list tbody tr>td:nth-child(6){
-    min-width:145px;
-    max-width:145px;
-}
-.waiting-list tbody tr>td:nth-child(7){
-    min-width:95px;
-    max-width:95px;
-} */
-.waiting-list tbody tr>td span{
+.waiting>.ui-table.waiting-list thead tr>th:last-child{background: none}
+
+.waiting>.ui-table.waiting-list tbody tr>td span{
     width:100%;
     display:inline-block;
     text-align:center;    
@@ -138,14 +32,14 @@
     white-space: nowrap;
 }
 
-.waiting-list tbody tr>td span:last-child{
+.waiting>.ui-table.waiting-list tbody tr>td span:last-child{
     border-bottom:none;
 }
-.waiting-list tbody tr td i{
+.waiting>.ui-table tbody tr td i{
     color:#ff1b20;
     font-style:normal;
 }
-.waiting .waiting-list tbody>tr td b{
+.waiting>.ui-table tbody>tr td b{
     display:inline-block;
     width:36px;
     height:16px;
@@ -154,43 +48,23 @@
     text-align:center;
     font-size:12px;
     color:#3fc0db;
+    margin: 5px 0px;
 }
-.waiting .waiting-list tbody>tr td b:hover{
+.waiting>.ui-table tbody>tr td b:hover{
+    
     color:#fff;
     background:#3fc0db;
 }
-.waiting-list tbody tr td button:first-child{
+.waiting>.ui-table tbody tr td button:first-child{
     margin:3px auto;
 }
-.waiting-list tbody tr td button:last-child{
+.waiting>.ui-table tbody tr td button:last-child{
     margin:3px auto;
 }
-.waiting-list tbody tr>td button{
+.waiting>.ui-table tbody tr>td button{
     cursor: pointer;
 }
-
-/* .waiting .waiting-list tbody>tr:hover{
-    background:none;
-} */
-
-/* 订单配送样式 */
-#forshipping1{
-    overflow-x:auto;
-}
-.waiting #forshipping thead tr>th:nth-child(1){
-   width: 10%;
-}
-
-.waiting #forshipping tbody tr>td span{
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-}
-.waiting #forshipping tbody tr>td span{
-    display:block;
-}
-
-.waiting-list>tbody tr td s{
+.waiting>.ui-table tbody tr td s{
     width: 100%;
     display: block;
     line-height: 25px;
@@ -199,11 +73,32 @@
     font-size: 12px;
     text-decoration:none;
 }
-.waiting-list>tbody tr td s:nth-child(1){color:#999}
-.waiting-list>tbody tr td s:nth-child(2){color:#3fc0db}
-.waiting-list tbody tr td s:hover{
+.waiting>.ui-table tbody tr td s:nth-child(1){color:#999}
+.waiting>.ui-table tbody tr td s:nth-child(2){color:#3fc0db}
+.waiting>.ui-table tbody tr td s:hover{
     text-decoration:underline;
 }
+/* 订单配送样式 */
+.waiting>.ui-table.forshipping thead tr th{
+    min-width: 140px;
+    color:#4d4d4d;
+    font-size:12px;
+    text-align:center;
+    background: url(./images/thead-border.png) ;
+    background-size:1px 24px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.waiting>.ui-table.forshipping tbody tr>td span{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.waiting>.ui-table.forshipping tbody tr>td span{
+    display:block;
+}
+
 .why-list div{
     background:url(./img/checkbox.png) no-repeat;
     background-size:14px 14px;
@@ -231,4 +126,8 @@
 .sure-btn{
     margin-left:233px;
 }
-.online-div{height: 100%;}
+.online-div{
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 16px 80px;
+}

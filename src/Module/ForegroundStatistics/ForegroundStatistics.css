@@ -3,13 +3,17 @@
     line-height: 70px;
 }
 .ui-table-base.for-sta-tab{
-    max-height: 85%;
     overflow-x: auto;
-    height: 85%;
-    width: 97%;
-    margin: auto;
-    display: block;
+    width: 100%;
+    /* margin: auto; */
+    /* display: block; */
+    padding: 0px 16px 152px;
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: 100%;
 }
+.ui-table-base.for-sta-tab .ui-table{height: 100%}
 .ui-table-base.for-sta-tab thead {
     display: inline-table;
     width: auto;
@@ -25,7 +29,6 @@
 .ui-table-base.for-sta-tab tbody{
     width: auto;
     height: 75%;
-    display: -webkit-box;
 }
 .ui-table-base.for-sta-tab tbody tr{width: auto;display: inline-table}
 .ui-table-base.for-sta-tab tbody tr td{width: 1%}
@@ -44,3 +47,5 @@
     background-position: right center;
 }
 .ui-table-base.for-sta-tab thead tr td:last-child{background: none}
+
+.ui-check-res.ReportLossQuery{width: 100%;text-align: left;clear: both;text-indent: 16px}

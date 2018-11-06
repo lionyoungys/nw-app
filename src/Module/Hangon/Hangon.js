@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Hangondetail from './Hangondetail';
 import './Hangon.css'
+import Table from '../../UI/Table';
 
 export default class extends Component {
     constructor(props) {
@@ -77,22 +78,23 @@ export default class extends Component {
                     <input type="text" className='e-input' placeholder='请输入衣物编码' value={this.state.clothing_number} onChange={e=>this.setState({clothing_number:e.target.value.trim()})} autoFocus='autoFocus'/>
                     <button type='button' className='e-btn' onClick={this.query}>查询</button>             
                 </div>
-                <table className='ui-table-base hangon-sear-res-tab'>
+                <div className='hangon-sear-res-tab'>
+                <Table>
                     <thead>
                         <tr>
-                            <td>衣物编码</td>
-                            <td>衣物名称</td>
-                            <td>颜色</td>
-                            <td>品牌</td>
-                            <td>衣挂号</td>
-                            <td>客户姓名</td>
-                            <td>客户电话</td>
+                            <th>衣物编码</th>
+                            <th>衣物名称</th>
+                            <th>颜色</th>
+                            <th>品牌</th>
+                            <th>衣挂号</th>
+                            <th>客户姓名</th>
+                            <th>客户电话</th>
                         </tr>
                     </thead>
                     <tbody>
                         {result}
                     </tbody>
-                </table>
+                </Table>
                 {
                     this.state.show
                     &&
@@ -113,6 +115,7 @@ export default class extends Component {
                         }}/> 
                         // <HangonSearchRes onClose={this.onclose} />) 
                 }
+                </div>
             </Window>         
         );
     }

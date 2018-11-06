@@ -7,6 +7,7 @@ import Window from '../../UI/Window';
 import Nodata from '../../UI/nodata';
 import './ForegroundStatistics.css';
 import Page from '../../UI/Page';
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -73,29 +74,31 @@ export default class extends Component {
                     <a>衣物件数：{this.state.list.length}件</a>
                 </div>
                 <div class="ui-check-res ReportLossQuery">已为您找到<b>{this.state.count}</b>条记录</div>
-                <table className='ui-table-base for-sta-tab'>
-                    <thead>
-                        <tr>
-                            <td>流水号</td>
-                            <td>店员姓名</td>
-                            <td>衣物件数</td>
-                            <td>金额</td>
-                            <td>实收金额</td>
-                            <td>折扣率</td>
-                            <td>收款类型</td>
-                            <td>客户电话</td>
-                            <td>客户姓名</td>
-                            <td>时间</td>
-                            <td>卡号</td>
-                            <td>卡类型</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {list}
-                      {this.state.nodatas&&<Nodata />}
-                    </tbody>
-                </table>
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                <div className='ui-table-base for-sta-tab'> 
+                    <Table >
+                        <thead>
+                            <tr>
+                                <td>流水号</td>
+                                <td>店员姓名</td>
+                                <td>衣物件数</td>
+                                <td>金额</td>
+                                <td>实收金额</td>
+                                <td>折扣率</td>
+                                <td>收款类型</td>
+                                <td>客户电话</td>
+                                <td>客户姓名</td>
+                                <td>时间</td>
+                                <td>卡号</td>
+                                <td>卡类型</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {list}
+                        {this.state.nodatas&&<Nodata />}
+                        </tbody>                    
+                    </Table>
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                </div>                
              </Window> 
         );
     }

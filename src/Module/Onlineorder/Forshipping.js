@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Page from '../../UI/Page';
 import Nodata from '../../UI/nodata'
+import Table from '../../UI/Table';
 
 export default class extends Component {   
     constructor(props) {
@@ -18,7 +19,7 @@ export default class extends Component {
             id:'',
         }; 
         this.props.onRef(this);
-        this.limit = 10;  
+        this.limit = 15;  
         this.query = this.query.bind(this); 
         this.take_forshipping = this.take_forshipping.bind(this);            
     };         
@@ -111,13 +112,13 @@ export default class extends Component {
           <td>{item.work.map((item,index) =><span>{item.addition_remark}</span>)}</td>
           <td>{item.work.map((item,index) =><span>{item.grid_num}</span>)}</td>
           <td index={index}>客户姓名：{item.user_name}<br/> 客户电话：{item.user_mobile}<br/> 地址：{item.address}</td>
-          <td><span>订单状态:</span>{item.ostatus}<b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
+          <td><span>订单状态:</span><span>{item.ostatus}</span><b data-id={item.id} onClick={this.take_forshipping}>配送</b></td> 
         </tr>
         )
         return ( 
         <div className="online-div" >
-            <div className="waiting" id="forshipping1">
-              <table className="waiting-list" id="forshipping">
+            <div className="waiting">
+                <Table className='forshipping'>
                 <thead>
                    <tr>
                        {forshipping}
@@ -127,9 +128,10 @@ export default class extends Component {
                     {this.state.nodatas&&<Nodata />} 
                     {forshippinglist}                       
                 </tbody>
-            </table>
+            </Table>
+            <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
         </div> 
-        <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+        
        </div>
         )           
     };

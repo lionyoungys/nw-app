@@ -112,14 +112,6 @@
 .ui-table-base tbody tr:last-child{
     border-bottom:1px solid #ebf0f6;
 }
-.ui-table-base tbody{
-    display:inline-block;
-    /* 可以自定义 （减去一行高度）*/
-    max-height: 375px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width:768px;
-}
 /* .ui-table-base tbody::-webkit-scrollbar{
     width: 0;
 } */
@@ -264,3 +256,4 @@ table tbody tr td{
 .ui-table-base tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}
 
 
+.ui-table::-webkit-scrollbar{width: 0px}
