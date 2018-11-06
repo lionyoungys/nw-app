@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
+import Table from '../../UI/Table'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -182,19 +183,34 @@ export default class extends Component {
                 <td>{item.end_number}</td>
                 <td>{item.max_number}</td>
                 <td>  
-                    <b onClick={this.modlattice} data-write={index}>编辑</b>
-                    <i  onClick={this.error2} data-write={index}>删除</i>
+                    <span className='e-blue' onClick={this.modlattice} data-write={index}>编辑</span>
+                    <span className='e-blue' onClick={this.error2} data-write={index}>删除</span>
                 </td>             
         </tr>        
     );
   
         return ( 
                 <div>
-                    <div className="lattic">
-                    <div className='div_brand_btn'>
+                    <div >
+                    <div className='brand_div' >
                        <button className="brand-btn" onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}>新 增 格 架</button>
                     </div>  
-                       <div className="lattic-tab">
+                    <Table style={{height:'294px',marginLeft:'10px',marginRight:'10px'}}>
+                            <thead>
+                            <tr>
+                                      <th>ID</th>
+                                      <th>格架名称</th>
+                                      <th>首数</th>
+                                      <th>尾数</th>
+                                      <th>衣挂号最大挂衣数</th>                                   
+                                      <th>操作</th>
+                                  </tr>
+                            </thead>
+                            <tbody> 
+                                {grid}                         
+                              </tbody>
+                    </Table>    
+                       {/* <div className="lattic-tab">
                           <table border='0' cellPadding="0" cellSpacing="0">
                               <thead>
                                   <tr>
@@ -209,9 +225,9 @@ export default class extends Component {
                               <tbody>
                                   {grid}
                               </tbody>
-                          </table>
+                          </table> */}
                           <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-                       </div>
+                       {/* </div> */}
                     </div>
                     {
                         this.state.show

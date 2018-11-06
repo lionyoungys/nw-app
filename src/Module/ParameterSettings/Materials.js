@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
+import Table from '../../UI/Table'
 export default class extends Component {   
     constructor(props) {
         super(props); 
@@ -122,18 +123,28 @@ export default class extends Component {
         <tr key={'item'+index}>
             <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{this.state.colorlist[index].name}</td>
-            <td><b onClick={e => this.setState({show1:true,
+            <td><span className='e-blue' onClick={e => this.setState({show1:true,
                 colorname:this.state.colorlist[index].name,
                 colorid:this.state.colorlist[index].id
-                })}>修改</b><i onClick={this.deleteColor} data-index={index}>删除</i></td>
+                })}>修改</span><span className='e-blue' onClick={this.deleteColor} data-index={index}>删除</span></td>
          </tr>
 
     );
         return ( 
                 <div>
-                    <div className="brand">
+                    <div >
+                        <div className='brand_div'>
                        <button className="brand-btn" onClick={e => this.setState({show:true,colorname:''})}>新 增 材 料</button>
-                       <div className="brand-tab">
+                       </div>
+                       <Table style={{height:'294px',marginLeft:'10px',marginRight:'10px'}}>
+                            <thead>
+                                 <tr><th>ID</th><th>材料名称</th><th>操作</th></tr>
+                            </thead>
+                            <tbody> 
+                                  {colorlist}                         
+                              </tbody>
+                    </Table>    
+                       {/* <div className="brand-tab">
                           <table>
                               <thead>
                                   <tr>
@@ -145,9 +156,9 @@ export default class extends Component {
                               <tbody> 
                                   {colorlist}                         
                               </tbody>
-                          </table>
+                          </table> */}
                           <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-                       </div>
+                       {/* </div> */}
                     </div>
                     {
                         this.state.show

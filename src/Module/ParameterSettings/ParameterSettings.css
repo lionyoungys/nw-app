@@ -3,13 +3,16 @@
     width:733px;height:auto;margin:auto;
     margin-bottom: 10px;
 }
+.brand_div{
+        text-align: right;
+        margin-right:10px;
+}
 .brand-btn{
     width:111px;
     height:30px;    
     text-align:center;
     line-height:30px;
     font-size:12px;
-    float:right;
     background-size:111px 24px;
     outline:none;
     border:none;
