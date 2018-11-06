@@ -97,6 +97,7 @@
 }
 .ui-table-base thead{
     display: block;
+    width: 100%;
 }
 .ui-table-base thead tr{
     background-color: #f6f7fb;

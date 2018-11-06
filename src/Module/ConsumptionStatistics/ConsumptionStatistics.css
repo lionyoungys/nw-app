@@ -19,25 +19,29 @@
     color: red;
 }
 .ui-table-base.bal-sta-tab.consun-tab{
-    max-height: 335px;
-    max-width: 1580px;
+    width: 97%;
+    height: 65%;
+    max-height: 65%;
     overflow-x: auto;
-    height: 335px;
+    display: block;
+    margin: 0 auto;
 }
+.ui-table-base.bal-sta-tab.consun-tab thead{width: 100%}
 .ui-table-base.bal-sta-tab.consun-tab tbody{
-    max-height: 284px;
-    height: 284px;
-    width: 1530px;
+    max-height: 88%;
+    height: 88%;
+    display: inline-block;
+    overflow-x: hidden;
+    width: auto;
+    max-width: auto;
+    min-width: auto;
 }
 .ui-table-base.bal-sta-tab.consun-tab tr td{
-    max-width: 135px;
-    min-width: 135px;
+    min-width: 166px;
+}
+.ui-table-base.bal-sta-tab.consun-tab tr#no-data{
+    top: 40%;
 }
 .ui-table-base.bal-sta-tab.consun-tab tr td:first-child{
-
-    max-width: 45px;
     min-width: 45px;
 }
-/* .ui-table-base.bal-sta-tab.consun-tab tr:last-child{
-    border-bottom:1px solid #8db2e3;
-} */
