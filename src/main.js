@@ -26,9 +26,6 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            max:false, 
-            min:false,
-            isMaxMin:false,    //是否为最大化的情况下最小化
             view:null,    //视图路由名称
             param:null,   //视图路由携带参数
             MenuIndex:0,    //当前选中的菜单id
@@ -42,6 +39,7 @@ class Main extends Component {
             this.modules = [];
         }
         this.handleClick = this.handleClick.bind(this);
+        this.handleWindow = this.handleWindow.bind(this);
         this.changeView = this.changeView.bind(this);    //界面跳转方法  
         this.menuReload = this.menuReload.bind(this);    //菜单重新加载
         this.openWeb = this.openWeb.bind(this);
@@ -49,17 +47,6 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        EventApi.win.on('restore', () => {
-            if (this.state.min && this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下最小化
-                this.setState({isMaxMin:true});
-            } else if (this.state.min && this.state.max && this.state.isMaxMin) {    //最小化还原为最大化
-                this.setState({min:false,isMaxMin:false});
-            } else if (this.state.max && !this.state.isMaxMin) {    //窗口最大化的情况下非最小化
-                this.setState({max:false});
-            }
-        });
-        EventApi.win.on('maximize', () => this.setState({max:true}));
-        EventApi.win.on('minimize', () => this.setState({min:true}));
         EventApi.win.on('new-win-policy', function(frame, url, policy) {
             if (-1 !== url.indexOf('http')) {
                 policy.ignore();    // 不打开窗口
@@ -76,6 +63,15 @@ class Main extends Component {
     }
 
     handleClick(e) {this.setState({MenuIndex:e.target.dataset.index});}
+
+    handleWindow() {
+        var wh = tool.getWH();
+        if (wh.width >= screen.availWidth && wh.height >= screen.availHeight) {
+            EventApi.win.restore();
+        } else {
+            EventApi.win.maximize();
+        }
+    }
 
     //路由跳转方法
     changeView(e) {
@@ -151,7 +147,7 @@ class Main extends Component {
                         &emsp;
                         <i className='e-icon-download' onClick={this.openWeb} data-url={api.software_list}></i>
                         <span onClick={() => EventApi.win.minimize()}><i className="fas fa-minus"></i></span>
-                        <span onClick={() => this.state.max ? EventApi.win.restore() : EventApi.win.maximize()}><i className="far fa-window-maximize"></i></span>
+                        <span onClick={this.handleWindow}><i className="far fa-window-maximize"></i></span>
                         <span onClick={() => EventApi.quit()}><i className="fas fa-times"></i></span>
                     </div>
                 </div>

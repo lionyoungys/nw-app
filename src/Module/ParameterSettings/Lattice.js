@@ -184,6 +184,7 @@ export default class extends Component {
                 <td>{item.max_number}</td>
                 <td>  
                     <span className='e-blue' onClick={this.modlattice} data-write={index}>编辑</span>
+                    &nbsp;&nbsp;
                     <span className='e-blue' onClick={this.error2} data-write={index}>删除</span>
                 </td>             
         </tr>        

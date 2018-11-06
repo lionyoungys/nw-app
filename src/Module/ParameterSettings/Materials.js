@@ -126,7 +126,7 @@ export default class extends Component {
             <td><span className='e-blue' onClick={e => this.setState({show1:true,
                 colorname:this.state.colorlist[index].name,
                 colorid:this.state.colorlist[index].id
-                })}>修改</span><span className='e-blue' onClick={this.deleteColor} data-index={index}>删除</span></td>
+                })}>修改</span>&nbsp;&nbsp;<span className='e-blue' onClick={this.deleteColor} data-index={index}>删除</span></td>
          </tr>
 
     );

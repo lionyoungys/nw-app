@@ -123,10 +123,10 @@ export default class extends Component {
         <tr key={'item'+index}>
             <td>{index+1+(this.state.page-1)*this.limit}</td>
             <td>{this.state.colorlist[index].grade}</td>
-            <td><b className='e-blue' onClick={e => this.setState({show1:true,
+            <td><span className='e-blue' onClick={e => this.setState({show1:true,
                 colorname:this.state.colorlist[index].grade,
                 colorid:this.state.colorlist[index].id
-                })}>修改</b>&nbsp;&nbsp;<i className='e-blue' onClick={this.deleteColor} data-index={index}>删除</i></td>
+                })}>修改</span>&nbsp;&nbsp;<span className='e-blue' onClick={this.deleteColor} data-index={index}>删除</span></td>
          </tr>
 
     );
@@ -157,7 +157,7 @@ export default class extends Component {
                                   {colorlist}                         
                               </tbody>
                           </table> */}
-                          <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                          <Page  current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                        {/* </div> */}
                     </div>
                     {
