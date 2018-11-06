@@ -8,6 +8,7 @@ import Select from '../../UI/Select';
 import './ClothesQuery.css';
 import Page from '../../UI/Page'
 import Nodata from '../../UI/nodata'
+import Table from '../../UI/Table';
 
 export default class extends Component {
     constructor(props) {
@@ -133,26 +134,28 @@ export default class extends Component {
                     已为您找到
                     <label>{this.state.count}</label>条数据
                 </div>
-                <table className='ui-table-base clo-que-tab' id="clo-que-tab">
-                    <thead>
-                        <tr>
-                            <td>流水号/订单号</td>
-                            <td>衣物编码</td>
-                            <td>衣物名称</td>
-                            <td>颜色</td>
-                            <td>衣挂号</td>
-                            <td>状态</td>
-                            <td>姓名</td>
-                            <td>手机</td>
-                            <td>卡号</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {clothes}
-                        {this.state.nodatas&&<Nodata />}
-                    </tbody>
-                </table>  
-                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                <div className='clo-que-tab'>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>流水号/订单号</th>
+                                <th>衣物编码</th>
+                                <th>衣物名称</th>
+                                <th>颜色</th>
+                                <th>衣挂号</th>
+                                <th>状态</th>
+                                <th>姓名</th>
+                                <th>手机</th>
+                                <th>卡号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {clothes}
+                            {this.state.nodatas&&<Nodata />}
+                        </tbody>
+                    </Table>  
+                    <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)} />
+                </div>
             </Window>
         )
     }

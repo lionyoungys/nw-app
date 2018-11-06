@@ -1,14 +1,14 @@
 .clothesquery_top{
-    width: 97%;
+    width: auto;
     background: #f5f8fa;
     height: 154px;
-    border:1px solid #e0e4ea;
-    margin: 13px;
+    border: 1px solid #e0e4ea;
+    margin: 12px 16px;
     padding-top: 2px;
 }
 .clothesquery_top_one div .ui-select-define{width:149px;}
 .clothesquery_top_one,.clothesquery_top_two,.clothesquery_top_three{
-    width:253px;
+    width:250px;
     height: 100%;
     float: left;
     margin-left: 5px;
@@ -41,7 +41,7 @@
 
 }
 .clothesquery_text{
-    margin-left: 14px;
+    margin-left: 16px;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 12px;
@@ -60,47 +60,22 @@
 .find_reset{
     position: relative;
 }
-/* tab的处理 */
-.ui-table-base.clo-que-tab{
-    max-height:365px; 
-    overflow-x: auto;
-}
-.ui-table-base.clo-que-tab thead{display: -webkit-box}
-.ui-table-base.clo-que-tab thead tr td{
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.ui-table-base.clo-que-tab thead tr td:last-child{background: none}
-.inputselectborder.clo-date{
-    margin-left: 0px;
-}
-#clo-que-tab{
-   height:238px;
-   position: relative;
-}
-.ui-table-base.clo-que-tab tbody tr#no-data{top:20%;display: block}
+
 .clothesquery_top_two div .e-date{width:166px }
 .clothesquery_top_three div .e-date{width:166px }
 .clothesquery_top_btn .e-btn{background: #fff;color: #000;border:1px solid #e0e4ea}
 .clothesquery_top_btn .e-btn:hover{background:#3fc0db;color: #fff}
 
+.clo-que-tab{
 
-
-/* 响应式布局样式 */
-#clo-que-tab{width: 97%;height: 49%;display: block;max-height: 49%}
-#clo-que-tab thead{display: inline-table;width: 100%;height: 40px}
-#clo-que-tab thead tr{width: 100%;height:40px }
-#clo-que-tab thead tr td{width: 10%;text-align: center}
-#clo-que-tab tbody{
-    width: 100%;
-    height: 85%;
     position: relative;
-    overflow-y: auto;
-    display: -webkit-box;
-    max-height: 85%;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 255px;
 }
-#clo-que-tab tbody tr{width: 100%;height: 40px;display: inline-table}
-#clo-que-tab tbody tr td{width: 10%}
-#clo-que-tab tbody::-webkit-scrollbar{width: 0px}
+.clo-que-tab>.ui-table{
+
+    height: 100%;
+}

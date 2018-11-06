@@ -208,6 +208,13 @@
         }
         return sum;
     }
+
+    t.getWH = function() {
+        return {
+            width:(window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth),
+            height:(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight)
+        };
+    }
     /**
      * 判断对象是否相等
      * @param {object} object 初始化对象
