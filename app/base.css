@@ -421,7 +421,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #9a9a9a;
 }
 /* 分页组件样式 */
-.ui-page{height: 28px;line-height: 28px;min-width: 400px;width:750px;margin: 5px 0px;}
+.ui-page{height: 28px;line-height: 28px;min-width: 400px;width:750px;}
 .ui-page>*{float: left;}
 .ui-page>i{
     font-style: normal;

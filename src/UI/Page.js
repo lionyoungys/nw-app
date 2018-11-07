@@ -94,7 +94,7 @@ export default class extends React.Component {
             ></i>
         );
         return (
-            <div className="ui-page">
+            <div className={'ui-page' + ('string' === typeof this.props.className ? (' ' + this.props.className) : '')} style={this.props.style}>
                 <span>共{total}条</span>
                 <div>
                     <button type='button'>{fetch}条/页</button>

@@ -4,7 +4,6 @@
  */
 import React, { Component } from 'react';
 import './MemberCard.css'
-import Window from '../../UI/Window';
 import Dish from '../../UI/Dish'
 import Page from '../../UI/Page'
 import Table from '../../UI/Table'
@@ -155,8 +154,8 @@ export default class extends Component {
         <td>{item.give_price}</td>
         <td>{item.made_price}</td>
         <td>{item.discount}%</td>
-        <td>  <span onClick={this.mod} data-write={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>删除</span></td>
-</tr>
+        <td><span onClick={this.mod} data-write={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>删除</span></td>
+        </tr>
     );
         return( 
         <div>
@@ -174,24 +173,7 @@ export default class extends Component {
                     </tbody>
                     </Table>   
                 </div>     
-               {/* <div className="membercard-tab">
-                  <table border='0' cellPadding="0" cellSpacing="0">
-                      <thead>
-                          <tr>
-                              <th>卡类型</th>
-                              <th>充值金额</th>
-                              <th>赠送金额</th>
-                              <th>制卡费</th>
-                              <th>折扣率</th>
-                              <th>操作</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {cardtypes}
-                      </tbody>
-                  </table> */}
-                  <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-               {/* </div> */}
+                <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
               
             </div>
             {
