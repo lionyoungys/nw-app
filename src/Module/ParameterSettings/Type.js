@@ -162,7 +162,7 @@ export default class extends Component {
                     </div>
                     {
                         this.state.show
-                        &&
+                        && 
                         <Dish title='处理类别颜色' onClose={() => this.setState({show:false})} width="389" height='194'>
                             <div className="addbrand-div">
                                 <div className="brand-name">处理类别名称</div>

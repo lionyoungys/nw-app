@@ -148,18 +148,20 @@ export default class extends Component {
             </tr>
         );
         return ( 
-            <div>
+            <div style={{height:'100%'}}>
                 <div className="staff">
                     <button className="e-btn" onClick={() => this.setState({show:1,authSelectList:[],authname:''})}>新增组</button>   
                 </div>
-                <Table style={{height:'200px'}}>
+                <div className='table-div'>
+                <Table style={{height:'100%'}}>
                     <thead>
                         <tr><th style={{minWidth:'100px'}}>组名称</th><th>权限</th><th style={{minWidth:'100px'}}>操作</th></tr>
                     </thead>
                     <tbody>       
                     {authlist}
                     </tbody>
-                </Table>    
+                </Table>   
+                </div> 
                 {/* <table className="ui-table-base staff-tab">
                     <thead>
                         <tr>

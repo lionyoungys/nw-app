@@ -241,6 +241,7 @@ export default class extends Component {
                 </div>
 
                 {/* 表格部分 欠费衣物信息*/}
+                <div className='table-div-div'>
                 <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
                     <thead>
                         <tr><th>商品条码</th><th>商品名称</th><th>允许折扣</th><th>库存</th><th>单价</th><th>操作</th></tr>
@@ -249,6 +250,7 @@ export default class extends Component {
                         {itemList}
                     </tbody>
                 </Table>    
+                </div>
                  {/* <table className='change_card_table right_table' id="right_table">
                     <thead>
                         <tr>

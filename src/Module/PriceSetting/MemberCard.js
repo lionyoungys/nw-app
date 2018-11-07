@@ -164,7 +164,8 @@ export default class extends Component {
                 <div className="staff">
                     <button className="e-btn larger" onClick={e => this.setState({ show: true, card_type: '', real_price:'',give_price:'',made_price:'',discount:''})}>增加卡类型</button>
                 </div>
-                    <Table style={{height:'300px'}}>
+                <div className='table-div'>
+                    <Table style={{height:'auto'}}>
                     <thead>
                         <tr><th>卡类型</th><th>充值金额</th><th>赠送金额</th><th>制卡费</th><th>折扣率</th><th>操作</th></tr>
                     </thead>
@@ -172,6 +173,7 @@ export default class extends Component {
                         {cardtypes}
                     </tbody>
                     </Table>    
+                </div>    
                {/* <div className="membercard-tab">
                   <table border='0' cellPadding="0" cellSpacing="0">
                       <thead>

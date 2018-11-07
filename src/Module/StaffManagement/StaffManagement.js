@@ -18,7 +18,7 @@ export default class extends Component {
     render() {      
         return ( 
             <Window title='员工管理' onClose={this.props.closeView} padding={true}>
-                <TabFields option={['员工', '权限']} checked={this.state.index} onChange={this.handleChange} style={{padding:'42px 12px 12px'}}>
+                <TabFields option={['员工', '权限']} checked={this.state.index} onChange={this.handleChange} style={{padding:'42px 12px 12px',height:'100%'}}>
                     {this.state.index ? <StaffAuthority/> : <Addstaff/>}
                 </TabFields> 
             </Window> 

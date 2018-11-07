@@ -9,6 +9,7 @@ import Pay from '../../UI/Payment';
 import Deduct from '../Clothes/Deduct';
 import Recharge from '../Recharge/App';
 import './Commoditysales.css';
+import Table from '../../UI/Table';
 
 const token = 'token'.getData();
 export default class extends Component {
@@ -344,27 +345,25 @@ export default class extends Component {
                                 <button className="e-btn commoditysales-right-btn" onClick={this.searchBySN}>查询</button>
                                 <input type="text" className="commoditysales-right-text e-input" autoFocus='autoFocus' ref={input => this.input = input} placeholder="请输入/扫描商品条码" value={this.state.searchNum} onFocus={this.changeEnterAble} onKeyPress={this.judgeEnterPress} onChange={e => this.setState({ searchNum: e.target.value })} />
                             </div>
-                            <div className="commoditysales-div-right">                     
-                                <div className="commoditysales-right-tab">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>商品条码</th>
-                                                <th>商品名称</th>
-                                                <th>允许折扣</th>
-                                                <th>单价</th>
-                                                <th>数量</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {searchList}
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div className="commoditysales-div-top-tab">                     
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>商品条码</th>
+                                            <th>商品名称</th>
+                                            <th>允许折扣</th>
+                                            <th>单价</th>
+                                            <th>数量</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {searchList}
+                                    </tbody>
+                                </Table>
                             </div>
-                            <div className="commoditysales-footerdiv-left">                       
-                                <table>
+                            <div className="commoditysales-div-bottom-tab">                       
+                                <Table>
                                     <thead>
                                         <tr>
                                             <th>商品条码</th>
@@ -377,7 +376,7 @@ export default class extends Component {
                                     <tbody>
                                         {itemList}
                                     </tbody>
-                                </table>
+                                </Table>
                             </div>  
                     </div> 
                </div>

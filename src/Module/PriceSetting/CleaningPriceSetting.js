@@ -355,6 +355,7 @@ export default class extends Component {
                 </div>
 
                 {/* 表格部分 欠费衣物信息*/}
+                <div className='table-div-div'>
                 <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
                     <thead>
                         <tr><th style={{minWidth:'80px'}}>id</th><th style={{minWidth:'80px'}}>衣物名称</th><th style={{minWidth:'80px'}}>处理类别</th><th style={{minWidth:'80px'}}>材料</th><th style={{minWidth:'80px'}}>档次</th><th
@@ -369,6 +370,7 @@ export default class extends Component {
                         {itemList}
                     </tbody>
                     </Table>    
+                </div>    
                 {/* <table className='change_card_table right_table'>
                     <thead>
                         <tr>

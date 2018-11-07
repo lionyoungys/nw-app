@@ -274,7 +274,7 @@ export default class extends Component {
         </tr>
         );
         return ( 
-                <div >
+                <div style={{height:'100%'}}>
                     <div className="staff">
                     <button type='button' className="e-btn" onClick={this.addstaff}>新增员工</button> 
                     </div>
@@ -302,8 +302,8 @@ export default class extends Component {
                         </div>
                     </Dish>           
                 }
-                    <div >  
-                    <Table style={{height:'200px'}}>
+                    <div className='table-div'>  
+                    <Table style={{height:'100%'}}>
                     <thead>
                         <tr><th>序号</th><th>姓名</th><th>手机号</th><th>权限</th><th>操作</th></tr>
                     </thead>
