@@ -254,6 +254,3 @@ table tbody tr td{
 .clean-top .left .btn-both{background: #3fc0db;color: #fff}
 
 .ui-table-base tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}
-
-
-.ui-table::-webkit-scrollbar{width: 0px}

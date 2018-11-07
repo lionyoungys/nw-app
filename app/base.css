@@ -1059,8 +1059,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 100%;
     border-collapse: collapse;
     word-break: break-all;
-    overflow-x: auto;
-    display: -webkit-box;
     height: 100%;
 }
 /* table样式主题 default*/
