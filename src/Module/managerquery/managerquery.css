@@ -50,9 +50,10 @@
     padding-bottom: 10px;
 }
 .man-que-tab-two{
-
     height: 65%;
     width: 100%;
+    overflow-x: auto;
+    display: -webkit-box;
 }
 .man-que-tab-one>.ui-table{
     height: 100%

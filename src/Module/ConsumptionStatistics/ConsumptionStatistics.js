@@ -93,22 +93,22 @@ export default class extends Component {
                     <div>合计应收金额：<b>¥{this.state.amount_total}元</b></div>
                     <div>合计实收金额：<b>¥{this.state.real_amount}元</b></div>
                 </div>
-                <div className='ui-table-base bal-sta-tab consun-tab'>
+                <div className='bal-sta-tab consun-tab'>
                     <Table >
                         <thead>
                             <tr>
-                                <td>ID</td>
-                                <td>流水号/订单号</td>
-                                <td>数量</td>
-                                <td>应收金额</td>
-                                <td>实收金额</td>
-                                <td>折扣率</td>
-                                <td>收银类型</td>
-                                <td>姓名</td>
-                                <td>手机号</td>                               
-                                <td>交易时间</td>
-                                <td>上缴</td> 
-                                <td>交班</td> 
+                                <th>ID</th>
+                                <th>流水号/订单号</th>
+                                <th>数量</th>
+                                <th>应收金额</th>
+                                <th>实收金额</th>
+                                <th>折扣率</th>
+                                <th>收银类型</th>
+                                <th>姓名</th>
+                                <th>手机号</th>                               
+                                <th>交易时间</th>
+                                <th>上缴</th> 
+                                <th>交班</th> 
                             </tr>
                         </thead>
                         <tbody>

@@ -1053,6 +1053,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     float: left;
     text-align: center;
     font-weight: bold;
+    height: 100%;
 }
 .ui-table>table{
     width: 100%;

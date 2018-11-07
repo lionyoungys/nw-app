@@ -51,8 +51,6 @@
     clear: both;
 }
 .Takeclothes-tab-div>div{
-    /* padding: 5px; */
-    /* width: 100%; */
     height: 100%;
     overflow: auto;
     box-sizing: border-box;
@@ -61,7 +59,6 @@
 }
 /* table */
 .Takeclothes-tab{
-       /* width: 100%; */
        height: auto;
        max-height: 340px;
        margin: auto;
@@ -82,18 +79,17 @@
     display: block;
 }
 .Takeclothes-tab table thead tr{   
-     width: 100%;
+    width: 100%;
     height: 40px;
-    display: inline-table;}
+    display: inline-table;
+}
 .Takeclothes-tab table thead tr th{
     width:auto;
     text-align:center;
-    /* padding:0 49px; */
     color:#4d4d4d;
     font-size:12px;
     height:40px;
     line-height:40px;
-    /* border-right:1px solid #acc6de; */
     min-width:105px;
     word-break: break-word;
     background: url(./images/thead-border.png);

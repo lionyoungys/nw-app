@@ -77,17 +77,17 @@ export default class extends Component {
                         <div id="balancestatistics-leiji">累计充值金额：<b>¥{this.state.total_amount}</b> 元</div>
                                                     
                     </div>
-                    <div className='ui-table-base bal-sta-tab recharge-sta'>
+                    <div className='recharge-up-tab'>
                         <Table >
                             <thead>
                                 <tr>
-                                    <td>ID</td> 
-                                    <td>卡号</td>
-                                    <td>卡类型</td>
-                                    <td>充值金额</td>
-                                    <td>姓名</td>
-                                    <td>手机号</td>
-                                    <td>交易时间</td>
+                                    <th>ID</th> 
+                                    <th>卡号</th>
+                                    <th>卡类型</th>
+                                    <th>充值金额</th>
+                                    <th>姓名</th>
+                                    <th>手机号</th>
+                                    <th>交易时间</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -67,18 +67,18 @@ export default class extends Component {
                         <span>累计会员数：<b>{this.state.user_total}</b></span>
                         <span>累计会员余额：<b>￥{this.state.balance_total}</b>元</span>
                     </div>
-                    <div className='ui-table-base bal-sta-tab bal-tab'>
+                    <div className='bal-sta-tab'>
                         <Table >
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>卡号</td>
-                                    <td>卡类型</td>
-                                    <td>折扣率</td>
-                                    <td>姓名</td>
-                                    <td>手机号</td>
-                                    <td>余额</td>
-                                    <td>办卡时间</td>
+                                    <th>ID</th>
+                                    <th>卡号</th>
+                                    <th>卡类型</th>
+                                    <th>折扣率</th>
+                                    <th>姓名</th>
+                                    <th>手机号</th>
+                                    <th>余额</th>
+                                    <th>办卡时间</th>
                                 </tr>
                             </thead>
                             <tbody>

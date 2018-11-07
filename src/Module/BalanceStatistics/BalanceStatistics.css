@@ -42,48 +42,20 @@
     float: left;
     height: 57px;
 }
-.ui-table-base.bal-sta-tab.bal-tab{
-    overflow-x: auto;
+.bal-sta-tab{
+
     height: 100%;
-    max-height: 100%;
     width: 100%;
-    margin: 5px auto 0;
-    display: block;
-    padding: 0px 16px 121px;
-    box-sizing: border-box;
     position: relative;
-    overflow: hidden;
-}
-.ui-table-base.bal-sta-tab.bal-tab .ui-table{height: 100%}
-.ui-table-base.bal-sta-tab.bal-tab thead{
-    display: inline-table;
-    width: 100%;
-}
-.ui-table-base.bal-sta-tab.bal-tab thead tr{width: 100%} 
-
-.ui-table-base.bal-sta-tab.bal-tab tbody tr{
-    border-bottom: 1px solid #f1f4f9;
     box-sizing: border-box;
-    display: inline-table;
-    width: 100%;
+    -webkit-box-sizing: border-box;
+    padding: 0px 16px 115px;
+    overflow-y: hidden;
 }
-.ui-table-base.bal-sta-tab.bal-tab tr td{
-    min-width: 138px;
-}
-.ui-table-base.bal-sta-tab.bal-tab tr td:first-child{
-    min-width: 40px;
+.bal-sta-tab>.ui-table{
+    height: 100%;
 }
 
-.ui-table-base.bal-sta-tab.bal-tab tr:last-child{
-    border-bottom:1px solid #dbdfe6;
-}
-.ui-table-base.bal-sta-tab.bal-tab thead tr td{
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position:right center;
-}
-.ui-table-base.bal-sta-tab.bal-tab thead tr td:last-child{background:none}
 #cust-tab table thead th{
     background: url(./images/thead-border.png);
     background-size: 1px 24px;

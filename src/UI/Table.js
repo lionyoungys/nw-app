@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.state = {top:0, lineHeight:0, width:0, children:[]};
+        this.state = {top:0, width:0, height:0, children:[]};
         this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.node = null;
@@ -41,10 +41,11 @@ export default class extends Component {
                     children.push({
                         key: ('td_' + i), 
                         html: tds[i].innerHTML, 
-                        style:{width:(tds[i].scrollWidth + 'px'), height:(tds[i].scrollHeight + 'px')}
+                        style:{width:(tds[i].scrollWidth + 'px')}
                     });
                 }
-                this.setState({lineHeight:(this.node.offsetHeight - 1 + 'px'), width:(this.node.scrollWidth + 'px'), children:children});
+                console.log(this.node, this.node.offsetHeight);
+                this.setState({height:this.node.offsetHeight, width:(this.node.scrollWidth + 'px'), children:children});
             }
         }
     }
@@ -76,7 +77,8 @@ export default class extends Component {
             <div className={className} style={this.props.style} onScroll={this.handleScroll}>
                 <section
                     style={{
-                        lineHeight:this.state.lineHeight, 
+                        height:(this.state.height + 'px'),
+                        lineHeight:(this.state.height - 1 + 'px'), 
                         width:this.state.width, 
                         top:(this.state.top + 'px'),
                         display:(0 === this.state.top ? 'none' : null)
