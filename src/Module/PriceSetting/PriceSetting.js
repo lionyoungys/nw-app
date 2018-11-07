@@ -22,7 +22,7 @@ export default class extends Component {
     render() {
         return (
             <Window title='价格设置' onClose={this.props.closeView} padding={true}>
-                <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'30px 0 0 0px'}}>
+                <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'30px 10px 10px', height:'100%'}}>
                     {this.views[this.state.index]}
                 </TabFields>
             </Window>
