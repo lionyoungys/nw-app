@@ -16,7 +16,7 @@
 .clean-top>.left{
     padding-top:7px;
     line-height: 27px;
-    width:757px;
+    width:100%;
     float: left;
 }
 .right1{
@@ -26,7 +26,6 @@
     margin-top:18px;
 }
 .right1.topdiv{
-
     width:97%;
     margin: 0 auto;
     height: 28px;

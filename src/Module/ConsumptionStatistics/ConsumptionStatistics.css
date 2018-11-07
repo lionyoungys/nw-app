@@ -28,6 +28,7 @@
     padding: 0px 16px 153px;
     box-sizing: border-box;
     position: relative;
+    overflow-y: hidden;
 }
 .bal-sta-tab.consun-tab>.ui-table{
     height: 100%;

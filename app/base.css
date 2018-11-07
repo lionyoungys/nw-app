@@ -1201,3 +1201,4 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     text-align: center;
     color: #989898;
 }
+table tbody tr td{color: #999}
