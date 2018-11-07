@@ -1058,7 +1058,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     width: 100%;
     border-collapse: collapse;
     word-break: break-all;
-    height: 100%;
 }
 /* table样式主题 default*/
 .ui-table-default>section, .ui-table-default thead>tr{
