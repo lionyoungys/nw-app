@@ -50,7 +50,6 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 0px 16px 115px;
-    overflow-y: hidden;
 }
 .bal-sta-tab>.ui-table{
     height: 100%;
