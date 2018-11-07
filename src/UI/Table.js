@@ -44,7 +44,6 @@ export default class extends Component {
                         style:{width:(tds[i].scrollWidth + 'px')}
                     });
                 }
-                console.log(this.node, this.node.offsetHeight);
                 this.setState({height:this.node.offsetHeight, width:(this.node.scrollWidth + 'px'), children:children});
             }
         }
