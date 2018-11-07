@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import './Itsprocessing.css';
-
+import Table from '../../UI/Table';
 export default class extends Component {   
     constructor(props) {
         super(props);
@@ -143,7 +143,7 @@ export default class extends Component {
         )
        return (             
             <Window title='撤单处理' onClose={this.props.closeView} width="902" height="626"> 
-            <div>
+            <div className='its-all-div'>
                 <div className="Deliverywarning-title Itsprocessing-title">
                   <input type="text" className='e-input its-pro-input' onChange = {e=>this.setState({orderNum:e.target.value})} placeholder="订单号/流水号"/> 
                    <button className="e-btn" onClick={this.searchOrder}>查询</button>                  
@@ -152,19 +152,19 @@ export default class extends Component {
                    <div className="Itsprocessing-count-left">
                        <div className="Itsprocessing-count-title">收进衣物<span>共<b>{this.state.comeinCloth.length}</b>件</span></div>
                        <div className="Itsprocessing-count-take ">
-                            <table className='ui-table-base sing-tab'>
+                            <Table>
                                 <thead>
                                     <tr>
-                                        <td>衣物编码</td>
-                                        <td>衣物名称</td>
-                                        <td>颜色</td>
-                                        <td>价格</td>
+                                           <th>衣物编码</th>
+                                           <th>衣物名称</th>
+                                           <th>颜色</th>
+                                           <th>价格</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {list_left}
                                 </tbody>  
-                            </table>                      
+                            </Table>                      
                        </div>                      
                     </div>
                     <div className="Itsprocessing-count-transfer">
@@ -174,33 +174,33 @@ export default class extends Component {
                     <div className="Itsprocessing-count-left  Itsprocessing-count-right">
                        <div className="Itsprocessing-count-title">待退衣物<span>共<b>{this.state.returnCloth.length}</b>件</span></div>
                        <div className="Itsprocessing-count-take">
-                            <table className='ui-table-base sing-tab'>
+                               <Table>
                                 <thead>
                                     <tr>
-                                        <td>衣物编码</td>
-                                        <td>衣物名称</td>
-                                        <td>颜色</td>
-                                        <td>价格</td>
+                                           <th>衣物编码</th>
+                                           <th>衣物名称</th>
+                                           <th>颜色</th>
+                                           <th>价格</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                    {list_right}
                                 </tbody>  
-                            </table>                             
+                               </Table>                             
                        </div>                       
                     </div>
                 </div> 
                 <div className="Itsprocessing-footer">
-                  <div className="Itsprocessing-footer-left">                     
-                      <span>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
-                  </div>                 
+                    <div className="Itsprocessing-footer-left">                     
+                        <span>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
+                    </div>                 
+                    <div className="Itsprocessing-footer-div">
+                        <span>退款金额：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
+                    </div>
+                    <div className="Itsprocessing-footer-div">
+                        <span>卡退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
+                    </div>
                 </div> 
-                <div className="Itsprocessing-footer-div">
-                   <span>退款金额：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
-                </div>
-                <div className="Itsprocessing-footer-div">
-                   <span>卡退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
-                </div>
             </div>
             </Window> 
         );

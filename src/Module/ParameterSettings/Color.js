@@ -159,7 +159,9 @@ export default class extends Component {
                                   {colorlist}                         
                               </tbody>
                           </table> */}
+                           <div style={{marginLeft:'10px'}}>
                           <Page  current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                          </div>
                        {/* </div> */}
                     </div>
                     {

@@ -1,21 +1,36 @@
 /* 撤单处理 */
+.its-all-div{
+
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    padding: 0px 16px 250px;
+}
 .Itsprocessing-title button{margin-left:5px;}
-.Itsprocessing-title {width:768px;margin-bottom:0}
+.Itsprocessing-title {
+    width:100%;
+    margin: 0 auto 10px;
+}
 .Itsprocessing-title .e-input.its-pro-input{
-    width: 150px;
+    width: 180px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
 .Itsprocessing-count{
-    width: 768px;
-    height: 265px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
 }
 .Itsprocessing-count-left{
-    width: 343px;
-    height: 265px;
+    width: 45%;
+    height: 100%;
     float: left;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-bottom: 35px;
 }
 .Itsprocessing-count-title {
     width:343px;
@@ -34,47 +49,35 @@
     color:#f00;
 }
 .Itsprocessing-count-take{
-    width: 343px;
-    height: 225px;
+    width: 100%;
+    height: 100%;
     border: 1px solid #e6e7ec;
     background: #eef4fb;
 }
-.Itsprocessing-count-take div{
-    height:22px;
-    line-height:22px;  
-    padding-left:18px;
-    border:1px solid #e6e7ec;
-    margin:6px 10px;
-}
+.Itsprocessing-count-take>.ui-table{
 
-.Itsprocessing-count-take div.itsproce-click{
-    background:#89b0d4;
-    height:22px;
-    line-height:22px; 
-    padding-left:18px;
-    border:1px solid #e6e7ec;
-    margin:6px 10px;
-}
-
-.Itsprocessing-count-take div span{
-    margin-right:4px;
-    color:#000;
-    font-size:12px;
+    height: 100%;
 }
 
 .Itsprocessing-count-transfer{
-    width: 41px;
-    height: 200px;
+    width: 10%;
+    height: 100%;
     float: left;
-    margin-left: 20px;
-    margin-top: 57px;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding-top: 35px;
 }
 .Itsprocessing-count-transfer span{
-    display:block;
-    width:41px;
-    height:35px;
-    margin:34px auto 0;
+    margin: 0 auto;
     cursor: pointer;
+    position: relative;
+    top: 41%;
+    transform: translateY(-50%);
+    margin-bottom: 15px;
+    width: 41px;
+    height: 35px;
+    display: block;
 }
 .Itsprocessing-count-transfer span a{
     display:block;
@@ -92,10 +95,8 @@
 
 .Itsprocessing-count-right{float:right;}
 .Itsprocessing-footer{
-    width: 785px;
-    height: 80px;
-    margin: 0 auto;
-    clear: both;
+    height: 180px;
+    margin-top: 10px;
 }
 .Itsprocessing-footer span{
     float: left;
@@ -123,37 +124,13 @@
 }
 
 .Itsprocessing-footer-left{
-    float: left;
-    width: 768px;
+    width: 100%;
     height: 80px;
 }
 
-/*  */
-.ui-table-base.sing-tab thead tr td{
-    background: url(./images/thead-border.png);
-    background-size: 1px 24px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-.ui-table-base.sing-tab thead tr td:last-child{background: none}
-.ui-table-base.sing-tab{
-    width: 100%;
-    max-height: 224px;
-    border: none;
-    margin: 0;
-    height: 298px;
-}
-.ui-table-base.sing-tab tbody{
-    max-height:180px;
-    overflow-y:auto;    
-}
-.ui-table-base.sing-tab tr td{
-   min-width:86px;
-   max-width:86px;
-}
 .Itsprocessing-footer-div{
-    width:768px;
-    height:25px;
+    width:100%;
+    height:30px;
     margin:10px auto;  
 }
 .Itsprocessing-footer-div span{

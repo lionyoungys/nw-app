@@ -225,7 +225,7 @@ export default class extends React.Component {
             </div> 
             <div className='clean'>
                 <div className='e-box'>
-                    <table className='e-table border'>
+                    <table className='e-table border check'>
                         <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>上传图片</th></tr></thead>
                         <tbody>{html}</tbody>
                     </table>

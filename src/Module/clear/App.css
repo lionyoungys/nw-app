@@ -260,3 +260,8 @@
     background-position:left center;
 }
 .e-box .e-table thead th,td{color: #4d4d4d}
+
+.clean .e-box table.e-table.border.check tbody{
+   display: inline-block;
+}
+.right1.topdiv{float: left;}

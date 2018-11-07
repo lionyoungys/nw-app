@@ -161,7 +161,9 @@ export default class extends Component {
                                   {brandlist}                         
                               </tbody>
                           </table> */}
+                           <div style={{marginLeft:'10px'}}>
                           <Page  current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                          </div>
                        {/* </div> */}
                     {
                         this.state.show
