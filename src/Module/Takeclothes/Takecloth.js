@@ -194,7 +194,7 @@ export default class extends Component {
                 console.log(res);
                 loadingEnd();
                 if (ver) {
-                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
+                    //this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
                     tool.ui.success({callback:close => {
                         close();
                         this.setState({current:null, payCard:{}});
