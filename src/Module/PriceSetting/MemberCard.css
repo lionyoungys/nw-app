@@ -2,13 +2,14 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 1;
 }
 .price-setting-page-area{
     position: absolute;
     left: 10px;
     bottom: 0;
 }
-.price-setting-table-area, .price-setting-table-area-top{
+.price-setting-table-area{
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -16,8 +17,55 @@
     padding: 48px 0 38px;
     overflow-x: auto;
 }
-.price-setting-table-area-top{padding-bottom: 0;}
 .price-setting-table-area .ui-table{height: 100%}
+
+.price-setting-box{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 48px 0 0 118px;
+    position: relative;
+}
+.price-setting-box>:first-child{
+    height: 100%;
+    width: 102px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 48px;
+}
+.price-setting-box>:first-child>section{
+    border: 1px solid #3fc0db;
+    height: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow-y: auto;
+}
+.price-setting-box>:first-child>section::-webkit-scrollbar{width: 0}
+.price-setting-box>:first-child>section>div{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: url(images/cleaning_price_set.png) no-repeat;
+    background-size: 77px 2px;
+    background-position: center bottom;
+    overflow: hidden;
+    cursor: pointer;
+}
+.price-setting-box>:first-child>section>div[data-checked=checked]{
+    background: #3fc0db;
+    color: #fff;
+    font-weight: 700;
+}
+.price-setting-box>:last-child{
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+}
+.price-setting-box>:last-child .ui-table{height: 100%;}
 
 .membercard-tab table thead tr th:last-child {
     border-right: none;

@@ -309,12 +309,12 @@ export default class extends Component {
     }
     render() {
         let itemLists = this.state.itemLists.map((item,index)=>
-            <span 
+            <div 
                 key={'item'+index} 
                 data-index={index} 
-                className={this.state.index==index?'selected_row':null}
+                data-checked={this.state.index == index ? 'checked' : null}
                 onClick={this.handleClick}
-            >{item.name}</span>
+            >{item.name}</div>
         );
         let itemList;
         if(
@@ -343,58 +343,31 @@ export default class extends Component {
             );  
         }
         return (
-            <div className='cleaning_price_all'>
-                <div className="cleaning_price_set_btn">
-                    <button className='e-btn middle' onClick={this.clothestypemanage}>衣物类别管理</button>
-                    <button className='e-btn middle' onClick={this.addcheanprice}>+新增洗护价格</button>
+            <div className='e-container'>
+                <div className='price-setting-btn-area'>
+                    <button className='e-btn larger' onClick={this.clothestypemanage}>衣物类别管理</button>
+                    &emsp;
+                    <button className='e-btn larger' onClick={this.addcheanprice}>+新增洗护价格</button>
                 </div >
-                <div className='cleaning_price_set_left_table_div'>
-                    <div className='cleaning_price_set_left_table'>
-                        {itemLists}
-                    </div> 
+                <div className='price-setting-box'>
+                    <div><section>{itemLists}</section></div>
+                    <div>
+                        <Table>
+                            <thead>
+                                <tr><th style={{minWidth:'80px'}}>id</th><th style={{minWidth:'80px'}}>衣物名称</th><th style={{minWidth:'80px'}}>处理类别</th><th style={{minWidth:'80px'}}>材料</th><th style={{minWidth:'80px'}}>档次</th><th
+                                style={{minWidth:'80px'}}>线下价格</th><th style={{minWidth:'80px'}}>线上价格</th><th style={{minWidth:'80px'}}>在线接单</th><th
+                                style={{minWidth:'80px'}}>价格可调</th>
+                                <th style={{minWidth:'80px'}}>允许折扣</th><th
+                                style={{minWidth:'80px'}}>衣物类别</th><th style={{minWidth:'80px'
+                            }}>洗护周期</th><th
+                                style={{minWidth:'80px'}}>助记码</th><th style={{minWidth:'80px'}}>格架</th></tr>
+                            </thead>
+                            <tbody>
+                                {itemList}
+                            </tbody>
+                        </Table>    
+                    </div>  
                 </div>
-
-                {/* 表格部分 欠费衣物信息*/}
-                <div className='table-div-div'>
-                <Table style={{height:'294px',marginLeft:'117px',marginRight:'10px'}}>
-                    <thead>
-                        <tr><th style={{minWidth:'80px'}}>id</th><th style={{minWidth:'80px'}}>衣物名称</th><th style={{minWidth:'80px'}}>处理类别</th><th style={{minWidth:'80px'}}>材料</th><th style={{minWidth:'80px'}}>档次</th><th
-                        style={{minWidth:'80px'}}>线下价格</th><th style={{minWidth:'80px'}}>线上价格</th><th style={{minWidth:'80px'}}>在线接单</th><th
-                        style={{minWidth:'80px'}}>价格可调</th>
-                        <th style={{minWidth:'80px'}}>允许折扣</th><th
-                        style={{minWidth:'80px'}}>衣物类别</th><th style={{minWidth:'80px'
-                    }}>洗护周期</th><th
-                        style={{minWidth:'80px'}}>助记码</th><th style={{minWidth:'80px'}}>格架</th></tr>
-                    </thead>
-                    <tbody>
-                        {itemList}
-                    </tbody>
-                    </Table>    
-                </div>    
-                {/* <table className='change_card_table right_table'>
-                    <thead>
-                        <tr>
-                            <td>id</td>
-                            <td>衣物名称</td>
-                            <td>处理类别</td>
-                            <td>材料</td>
-                            <td>档次</td>
-                            <td>线下价格</td>
-                            <td>线上价格</td>
-                            <td>折扣率</td>
-                            <td>在线接单</td>
-                            <td>价格可调</td>
-                            <td>允许折扣</td>
-                            <td>衣物类别</td>
-                            <td>洗护周期</td>
-                            <td>助记码</td>
-                            <td>格架</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {itemList}
-                    </tbody>
-                </table>  */}
                 {
                     this.state.show
                     &&
