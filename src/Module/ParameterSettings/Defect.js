@@ -3,7 +3,6 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
 import Table from '../../UI/Table'
@@ -126,73 +125,56 @@ export default class extends Component {
     }
     render() {      
         let brandlist = this.state.brandlist.map((item,index) => 
-        <tr key={'item'+index}>
-            <td>{index+1+(this.state.page-1)*this.limit}</td>
-            <td>{this.state.brandlist[index].name}</td>
-            <td><span className='e-blue' onClick={e => this.setState({show1:true,
-                brandname:this.state.brandlist[index].name,
-                brandid:this.state.brandlist[index].id,                              
-                })}>修改</span>&nbsp;&nbsp;<span className='e-blue' onClick={this.deleteBrand} data-index={index}>删除</span></td>
-         </tr>
-    );
+            <tr key={'item'+index}>
+                <td>{index+1+(this.state.page-1)*this.limit}</td>
+                <td>{this.state.brandlist[index].name}</td>
+                <td><span className='e-blue' onClick={e => this.setState({show1:true,
+                    brandname:this.state.brandlist[index].name,
+                    brandid:this.state.brandlist[index].id,                              
+                    })}>修改</span>&nbsp;&nbsp;<span className='e-blue' onClick={this.deleteBrand} data-index={index}>删除</span></td>
+            </tr>
+        );
         return ( 
-                <div>
-                        <div className='brand_div'>
-                       <button className="brand-btn" onClick={e => this.setState({show:true,brandname:''})}>新 增 瑕 疵</button>
-                        </div>
-                        <Table style={{height:'294px',marginLeft:'10px',marginRight:'10px'}}>
-                            <thead>
-                                 <tr><th>ID</th><th>瑕疵名称</th><th>操作</th></tr>
-                            </thead>
-                            <tbody> 
-                                  {brandlist}                         
-                              </tbody>
-                    </Table>    
-                       {/* <div className="brand-tab">
-                          <table>
-                              <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>瑕疵名称</th>
-                                      <th>操作</th>
-                                  </tr>
-                              </thead>
-                              <tbody> 
-                                  {brandlist}                         
-                              </tbody>
-                          </table> */}
-                           <div style={{marginLeft:'10px'}}>
-                          <Page  current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-                          </div>
-                       {/* </div> */}
-                    {
-                        this.state.show
-                        &&
-                        <Dish title='新增瑕疵' onClose={() => this.setState({show:false})} width="389" height='194'>
-                            <div className="addbrand-div">
-                                <div className="brand-name">瑕疵名称</div>
-                                <input  type="text" className="brand-text" value={this.state.brandname} onChange={e => this.setState({brandname:e.target.value})}/>
-                            </div>
-                            <div className="addbrand-footer">
-                               <button onClick = {this.addbrandYES}>新 增</button>
-                            </div>
-                        </Dish>
-                    }
-                     {
-                        this.state.show1
-                        &&
-                        <Dish title='修改瑕疵' onClose={() => this.setState({show1:false})} width="389" height='194'>
-                            <div className="addbrand-div">
-                                <div className="brand-name">瑕疵名称</div>
-                                <input  type="text" className="brand-text" value={this.state.brandname} onChange={e => this.setState({brandname:e.target.value})}/>
-                            </div>
-                            <div className="addbrand-footer">
-                               <button onClick = {this.updatebrandYES}>保 存</button>
-                            </div>
-                        </Dish>
-                    }
+            <div className='e-container'>
+                <button className="e-btn larger price-setting-btn-area" onClick={e => this.setState({show:true,brandname:''})}>新 增 瑕 疵</button>
+                <div className='price-setting-table-area'>
+                    <Table>
+                        <thead>
+                            <tr><th>ID</th><th>瑕疵名称</th><th>操作</th></tr>
+                        </thead>
+                        <tbody> 
+                            {brandlist}                         
+                        </tbody>
+                    </Table>  
                 </div>
-                
+                <Page className='price-setting-page-area' current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                {
+                    this.state.show
+                    &&
+                    <Dish title='新增瑕疵' onClose={() => this.setState({show:false})} width="389" height='194'>
+                        <div className="addbrand-div">
+                            <div className="brand-name">瑕疵名称</div>
+                            <input  type="text" className="brand-text" value={this.state.brandname} onChange={e => this.setState({brandname:e.target.value})}/>
+                        </div>
+                        <div className="addbrand-footer">
+                            <button onClick = {this.addbrandYES}>新 增</button>
+                        </div>
+                    </Dish>
+                }
+                {
+                    this.state.show1
+                    &&
+                    <Dish title='修改瑕疵' onClose={() => this.setState({show1:false})} width="389" height='194'>
+                        <div className="addbrand-div">
+                            <div className="brand-name">瑕疵名称</div>
+                            <input  type="text" className="brand-text" value={this.state.brandname} onChange={e => this.setState({brandname:e.target.value})}/>
+                        </div>
+                        <div className="addbrand-footer">
+                            <button onClick = {this.updatebrandYES}>保 存</button>
+                        </div>
+                    </Dish>
+                }
+            </div> 
         );            
     };
 }

@@ -3,7 +3,6 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
 import Table from '../../UI/Table'
@@ -133,65 +132,46 @@ export default class extends Component {
 
     );
         return ( 
-                <div>
-                    <div >
-                       <div className='brand_div'>
-                       <button className="brand-btn" onClick={e => this.setState({show:true,colorname:''})}>新 增 颜 色</button>
-                       </div>
-                       <Table style={{height:'294px',marginLeft:'10px',marginRight:'10px'}}>
-                            <thead>
-                                 <tr><th>ID</th><th>颜色名称</th><th>操作</th></tr>
-                            </thead>
-                            <tbody> 
-                                  {colorlist}                         
-                              </tbody>
+            <div className='e-container'>
+                <button className="e-btn larger price-setting-btn-area" onClick={e => this.setState({show:true,colorname:''})}>新 增 颜 色</button>
+                <div className='price-setting-table-area'>
+                    <Table>
+                        <thead>
+                            <tr><th>ID</th><th>颜色名称</th><th>操作</th></tr>
+                        </thead>
+                        <tbody> 
+                            {colorlist}                         
+                        </tbody>
                     </Table>    
-                       {/* <div className="brand-tab">
-                          <table>
-                              <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>颜色名称</th>
-                                      <th>操作</th>
-                                  </tr>
-                              </thead>
-                              <tbody> 
-                                  {colorlist}                         
-                              </tbody>
-                          </table> */}
-                           <div style={{marginLeft:'10px'}}>
-                          <Page  current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-                          </div>
-                       {/* </div> */}
-                    </div>
-                    {
-                        this.state.show
-                        &&
-                        <Dish title='新增颜色' onClose={() => this.setState({show:false})} width="389" height='194'>
-                            <div className="addbrand-div">
-                                <div className="brand-name">颜色名称</div>
-                                <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
-                            </div>
-                            <div className="addbrand-footer">
-                               <button onClick = {this.addColorYES}>新 增</button>
-                            </div>
-                        </Dish>
-                    }
-                     {
-                        this.state.show1
-                        &&
-                        <Dish title='修改颜色' onClose={() => this.setState({show1:false})} width="389" height='194'>
-                            <div className="addbrand-div">
-                                <div className="brand-name">颜色名称</div>
-                                <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
-                            </div>
-                            <div className="addbrand-footer">
-                               <button onClick = {this.updateColorYES}>保 存</button>
-                            </div>
-                        </Dish>
-                    }
                 </div>
-                
+                <Page className='price-setting-page-area' current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                {
+                    this.state.show
+                    &&
+                    <Dish title='新增颜色' onClose={() => this.setState({show:false})} width="389" height='194'>
+                        <div className="addbrand-div">
+                            <div className="brand-name">颜色名称</div>
+                            <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
+                        </div>
+                        <div className="addbrand-footer">
+                            <button onClick = {this.addColorYES}>新 增</button>
+                        </div>
+                    </Dish>
+                }
+                {
+                    this.state.show1
+                    &&
+                    <Dish title='修改颜色' onClose={() => this.setState({show1:false})} width="389" height='194'>
+                        <div className="addbrand-div">
+                            <div className="brand-name">颜色名称</div>
+                            <input  type="text" className="brand-text" value={this.state.colorname} onChange={e => this.setState({colorname:e.target.value})}/>
+                        </div>
+                        <div className="addbrand-footer">
+                            <button onClick = {this.updateColorYES}>保 存</button>
+                        </div>
+                    </Dish>
+                }
+            </div> 
         );            
     };
 }

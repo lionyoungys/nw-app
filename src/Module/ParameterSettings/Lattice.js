@@ -3,7 +3,6 @@
  * @author fanyerong
  */
 import React, {Component} from 'react';
-import Window from '../../UI/Window';
 import Page from '../../UI/Page'
 import Dish from '../../UI/Dish';
 import Table from '../../UI/Table'
@@ -191,79 +190,60 @@ export default class extends Component {
     );
   
         return ( 
-                <div>
-                    <div >
-                    <div className='brand_div' >
-                       <button className="brand-btn" onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}>新 增 格 架</button>
-                    </div>  
-                    <Table style={{height:'294px',marginLeft:'10px',marginRight:'10px'}}>
-                            <thead>
+            <div className='e-container'>
+                <button 
+                    className="e-btn larger price-setting-btn-area" 
+                    onClick={e => this.setState({show:true,name:'',start_number:'',end_number:'',max_number:''})}
+                >新 增 格 架</button>
+                <div className='price-setting-table-area'>
+                    <Table>
+                        <thead>
                             <tr>
-                                      <th>ID</th>
-                                      <th>格架名称</th>
-                                      <th>首数</th>
-                                      <th>尾数</th>
-                                      <th>衣挂号最大挂衣数</th>                                   
-                                      <th>操作</th>
-                                  </tr>
-                            </thead>
-                            <tbody> 
-                                {grid}                         
-                              </tbody>
+                                <th>ID</th>
+                                <th>格架名称</th>
+                                <th>首数</th>
+                                <th>尾数</th>
+                                <th>衣挂号最大挂衣数</th>                                   
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            {grid}                         
+                        </tbody>
                     </Table>    
-                       {/* <div className="lattic-tab">
-                          <table border='0' cellPadding="0" cellSpacing="0">
-                              <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>格架名称</th>
-                                      <th>首数</th>
-                                      <th>尾数</th>
-                                      <th>衣挂号最大挂衣数</th>                                   
-                                      <th>操作</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  {grid}
-                              </tbody>
-                          </table> */}
-                           <div style={{marginLeft:'10px'}}>
-                          <Page current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
-                          </div>
-                       {/* </div> */}
-                    </div>
-                    {
-                        this.state.show
-                        &&
-                        <Dish title='新增格架' onClose={() => this.setState({show:false})} width='328' height='242'>
-                            <div className="addlattice-div">
-                                 <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}  className='e-input'/></div>
-                                 <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} className='e-input'/></div>
-                                 <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} className='e-input' /></div>
-                                 <div><span>衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" className='e-input'/></div>
-                            </div>
-                            <div className="addlattice-footer">
-                               <button onClick = {this.addlatticeYES}>新 增</button>
-                            </div>
-                        </Dish>
-                    }
-                     {
-            this.state.show1
-            &&
-            <Dish title='编辑格架' onClose={() => this.setState({show1:false})} width='328' height='242'>
-                <div className="addlattice-div">
-                     <div><span>格架名称：</span><input type='text' className='e-input' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
-                     <div><span>首数：</span><input type='number' className='e-input' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled /></div>
-                     <div><span>尾数：</span><input type='number' className='e-input' value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled /></div>
-                     <div><span>衣挂号最大挂衣数：</span><input type='number' className='e-input' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" /></div>
                 </div>
-                <div className="addlattice-footer">
-                   <button onClick = {this.updatelatticeYES}>保 存</button>
-                </div>
-            </Dish>
-        }
-                </div>
-                
+                <Page className='price-setting-page-area' current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
+                {
+                    this.state.show
+                    &&
+                    <Dish title='新增格架' onClose={() => this.setState({show:false})} width='328' height='242'>
+                        <div className="addlattice-div">
+                                <div><span>格架名称：</span><input type='text' value={this.state.name} onChange={e => this.setState({name:e.target.value})}  className='e-input'/></div>
+                                <div><span>首数：</span><input type='number' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} className='e-input'/></div>
+                                <div><span>尾数：</span><input type='number'  value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} className='e-input' /></div>
+                                <div><span>衣挂号最大挂衣数：</span><input type='number' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" className='e-input'/></div>
+                        </div>
+                        <div className="addlattice-footer">
+                            <button onClick = {this.addlatticeYES}>新 增</button>
+                        </div>
+                    </Dish>
+                }
+                {
+                    this.state.show1
+                    &&
+                    <Dish title='编辑格架' onClose={() => this.setState({show1:false})} width='328' height='242'>
+                        <div className="addlattice-div">
+                            <div><span>格架名称：</span><input type='text' className='e-input' value={this.state.name} onChange={e => this.setState({name:e.target.value})} disabled/></div>
+                            <div><span>首数：</span><input type='number' className='e-input' value={this.state.start_number} onChange={e => this.setState({start_number:e.target.value})} disabled /></div>
+                            <div><span>尾数：</span><input type='number' className='e-input' value={this.state.end_number} onChange={e => this.setState({end_number:e.target.value})} disabled /></div>
+                            <div><span>衣挂号最大挂衣数：</span><input type='number' className='e-input' value={this.state.max_number} onChange={e => this.setState({max_number:e.target.value})} min="0" /></div>
+                        </div>
+                        <div className="addlattice-footer">
+                        <button onClick = {this.updatelatticeYES}>保 存</button>
+                        </div>
+                    </Dish>
+                }
+            </div>   
         );            
     };
 }
