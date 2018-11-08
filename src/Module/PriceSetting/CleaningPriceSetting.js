@@ -3,7 +3,6 @@
  * @author  ranchong
  */
 import React, { Component } from 'react';
-import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import Table from '../../UI/Table';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
@@ -46,6 +45,7 @@ export default class extends Component {
             min_discount:'0',//折扣下限
             min_transfer:'0',//可调下限
             gradename:'',//档次
+            help_num:'',//助记码
             materialsname:'',//材料名称
             goodindex:0,
             item_cycle: '',//洗护周期
@@ -191,6 +191,7 @@ export default class extends Component {
             grade:this.state.gradename||'',
             materials:this.state.materialsname||'',
             grid:this.state.gridname=='任意格架'?'X':this.state.gridname||'',
+            help_num:this.state.help_num,
             // state: this.state.online,//是否在线
             transfer:this.state.transfer,
             has_discount:this.state.has_discount,
@@ -226,6 +227,7 @@ export default class extends Component {
             item_off_price:this.state.item_off_price,
             grade:this.state.gradename,
             materials:this.state.materialsname,
+            help_num:this.state.help_num,
             grid:this.state.gridname=='任意格架'?'X':this.state.gridname,
             // state: this.state.online,//是否在线
             transfer:this.state.transfer,
@@ -380,7 +382,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value.value})} selected="无"  value={this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value.value})} selected="无" value={this.state.materialsname}/></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
-                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/></div>
+                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -424,6 +426,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value.value})} value={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname} onChange={value => this.setState({materialsname:value.value})} value={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname}/></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
+                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>

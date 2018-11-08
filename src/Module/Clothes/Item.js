@@ -26,6 +26,8 @@ export default class extends Component {
                 '' == this.state.value 
                 || 
                 -1 !== obj.item_name.indexOf(this.state.value)
+                ||
+                -1 !== obj.help_num.indexOf(this.state.value)
             ) {
                 return (
                     <div key={obj.id} data-index={index} onClick={this.handleClick}>
