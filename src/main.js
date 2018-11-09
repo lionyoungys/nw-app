@@ -141,6 +141,7 @@ class Main extends Component {
                 <div className='main-title'>
                     &emsp;<i className='e-icon-logo'></i> {this.shopName}
                     <div>
+                        <section onClick={this.changeView} data-view='open_cash_box'><i className='e-icon-box'></i>&nbsp;&nbsp;开钱箱</section>
                         <i className='e-icon-user'></i> {this.employeeName}
                         &emsp;
                         <i className='e-icon-windows'></i> 版本:{nw.App.manifest.version}

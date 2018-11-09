@@ -47,7 +47,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     -ms-user-select:none;
 }
 /* icon */
-.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-close14, .e-icon-payment, .e-icon-download{
+.e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-close14, .e-icon-payment, .e-icon-download, .e-icon-box{
     display: inline-block;
     height: 12px;
     width: 12px;
@@ -59,6 +59,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-icon-close{background-position: -13px -12px}
 .e-icon-close14{width: 14px;height: 14px;background-position: -26px -13px}
 .e-icon-download{width: 14px;height: 13px;background-position: -26px 0}
+.e-icon-box{width: 14px;height: 11px;background-position: -42px 0}
 .e-icon-payment{background-image: url(images/icons-payment.png);background-size: 12px}
 /* 按钮样式 */
 .e_btn_store{

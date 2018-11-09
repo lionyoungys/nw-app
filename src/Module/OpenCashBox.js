@@ -4,13 +4,12 @@
  */
 
 import React, {Component} from 'react';
-import Window from '../UI/Window';
+import Dish from '../UI/Dish';
 
 export default class extends Component {   
     constructor(props) {
         super(props);
         this.state = {passwd:''};
-        this.style = {margin:'10px', height:'44px', lineHeight:'44px', border:'1px solid #8eb3e3', textAlign:'center'};
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     };
@@ -29,13 +28,11 @@ export default class extends Component {
     handleChange(e) {this.setState({passwd:e.target.value})}
     render() {
         return (
-            <Window title='开钱箱' onClose={this.props.closeView} width='320' height='100'>
-                <div style={this.style}>
-                    <input type='password' value={this.state.passwd} placeholder='请输入密码' className='e-input' onChange={this.handleChange}/>
-                    &emsp;
-                    <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
-                </div>
-            </Window>
+            <Dish title='开钱箱' onClose={this.props.closeView} width='320' height='100' style={{lineHeight:'64px', textAlign:'center'}}>
+                <input type='password' value={this.state.passwd} placeholder='请输入密码' className='e-input' onChange={this.handleChange}/>
+                &emsp;
+                <button type='button' className='e-btn' onClick={this.handleClick}>确定</button>
+            </Dish>
         );
     }
 }
