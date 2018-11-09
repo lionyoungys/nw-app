@@ -161,7 +161,7 @@ export default class extends Component {
                       <span>衣挂号: </span><Select option={this.state.clothnum}  onChange={(value)=>this.setState({clothindex:value.index,clothnu:value.value})} value={this.state.clothnu} ref={input => this.input = input}/>
                    </div>
                    <button className="e-btn Hangon-right-btn" onClick={this.putOn}>上挂</button>
-                   <button className="e-btn Hangon-right-btn" onClick={this.putOn}>取消</button>
+                   <button className="e-btn Hangon-right-btn" onClick={this.props.onClose}>取消</button>
                 </div>
             </Dish>          
         );

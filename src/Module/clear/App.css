@@ -226,6 +226,7 @@
     background: url(./images/gaiban-n.png);
     background-size: 14px 14px;
     background-repeat: no-repeat;
+    background-position: left center;
     text-indent: 18px;
     display: inline-block;
     border: none;
@@ -244,6 +245,7 @@
     background: url(./images/gaiban-n.png);
     background-size: 14px 14px;
     background-repeat: no-repeat;
+    background-position: left center;
     width: 128px;
     text-indent: 14px;
     display: block;
@@ -260,7 +262,6 @@
     background-position:left center;
 }
 .e-box .e-table thead th,td{color: #4d4d4d}
-
 .clean .e-box table.e-table.border.check tbody{
    display: inline-block;
 }
