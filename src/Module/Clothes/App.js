@@ -37,9 +37,7 @@ export default class extends Component {
             card:{},    //卡数据
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
-            id:this.props.id, //从线上收衣带来的用户id
-            phone:this.props.phone, // 从线上订单带来的用户电话号
-            name:this.props.name, // 从线上订单带来的用户名字
+
         };
         this.date = tool.date('Y-m-d');
         this.counter = 1;    //编码累加计数属性
@@ -74,6 +72,7 @@ export default class extends Component {
         this.copy = this.copy.bind(this);    //项目复制
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
         this.print = this.print.bind(this);
+        this.handlePrinter = this.handlePrinter.bind(this);
         this.paymentClose = this.paymentClose.bind(this);
         this.delOrder = this.delOrder.bind(this);
         this.takeCost = this.takeCost.bind(this);
@@ -154,9 +153,9 @@ export default class extends Component {
     }
     add(index) {
         let item = this.state.item[this.state.categoryIndex][index]
-        ,   time = this.state.time
-        ,   day = tool.timestamp(item.item_cycle);
+        ,   time = this.state.time;
         if (this.state.update) {
+            let day = tool.timestamp(item.item_cycle);
             this.state.data[this.state.currentIndex].clothing_id = item.id
             this.state.data[this.state.currentIndex].clothing_name = item.item_name;
             this.state.data[this.state.currentIndex].clothing_type = item.cate_name;
@@ -192,7 +191,7 @@ export default class extends Component {
                 clothing_type: item.cate_name,
                 raw_price: item.item_off_price,
                 remark: item.item_flaw || '',
-                deal_time: day,
+                deal_time: tool.timestamp(item.item_cycle),
                 grid_num: '',
                 addition_remark:'',
                 addition_price: 0,
@@ -209,7 +208,7 @@ export default class extends Component {
             };
             ++this.counter;
             this.state.data.push(data);
-            let itemTime = tool.date('Y-m-d', day);
+            let itemTime = tool.date('Y-m-d', data.deal_time);
             if ('' == time || time < itemTime) time = itemTime;
         }
         // this.setState({show:3, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false, time:time});
@@ -377,7 +376,6 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
-        var limit = false;
         let param = {
             sn:this.state.sn,
             items:JSON.stringify(this.state.data),
@@ -401,20 +399,25 @@ export default class extends Component {
             gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         };
-        EventApi.print('order', param, 'printer'.getData(), () => {
-                tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
-                    if (limit) return;
-                    limit = true;
-                    EventApi.print('order2', param, 'printer'.getData());
-                    close();
-                }});
-            }
-        );
+        this.handlePrinter(param);
         let printer = 'clean_tag_printer'.getData();
         if (printer) {
             let code_arr = this.state.code_arr
             ,   len = code_arr.length;
             for (let i = 0;i < len;++i) {
+                console.log({
+                    logo_name:'mname'.getData(), // 衣物店的名称
+                    sn:code_arr[i].clothing_number,  //衣物编码
+                    name:code_arr[i].clothing_name,
+                    color:code_arr[i].clothing_color,
+                    service:'',
+                    reark:code_arr[i].remark,
+                    forecast:code_arr[i].forecast,
+                    number:code_arr[i].grid_num, // 衣挂号
+                    time:code_arr[i].deal_time, // 取衣时间
+                    user_name:this.state.name,
+                    tell:this.state.phone,
+                });
                 EventApi.print('code2', {
                     logo_name:'mname'.getData(), // 衣物店的名称
                     sn:code_arr[i].clothing_number,  //衣物编码
@@ -437,10 +440,25 @@ export default class extends Component {
             }
         }
     }
-    takeCost() {       
-        //console.log(this.state.phone--this.state.name);    
-        if (undefined == this.state.phone || '' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
-        if (undefined == this.state.name || ''==this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+    handlePrinter(param) {
+        var limit = false;
+        EventApi.print('order', param, 'printer'.getData(), () => {
+            tool.ui.success({msg:'本页已打印完成，请撕纸', button:['再次打印', '确认'], callback:(close, event) => {
+                if (limit) return;
+                console.log(event);
+                limit = true;
+                EventApi.print('order2', param, 'printer'.getData());
+                if (0 == event) {
+                    this.handlePrinter(param);
+                }
+                close();
+            }});
+        }
+    );
+    }
+    takeCost() {
+        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         tool.ui.warn({msg:'您确定客户取衣付款吗？', button:['是（Y）', '否（N）'],callback:(close, event) => {
             0 == event && this.cost(true);
@@ -448,7 +466,7 @@ export default class extends Component {
         }});
     }
     cost(isTake) {
-        /**"user_name": "姓名",
+    /*"user_name": "姓名",
 	"user_mobile": "手机号",
 	"clothing_number": "衣物编码",
 	"clothing_id": "衣物id",
@@ -469,9 +487,9 @@ export default class extends Component {
     "sign":衣物品牌
     "card_type":卡类型
     "address":住址 */
-    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型     
-        if (undefined == this.state.phone || ''== this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
-        if (undefined == this.state.name || '' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型
+        if ('' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
+        if ('' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         let len = this.state.data.length;
         if (len < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
         let data = tool.clone(this.state.data)
@@ -652,7 +670,6 @@ export default class extends Component {
                     <div>洗后预估</div><div>工艺加价</div><div><b>*</b>单价</div><div><b>*</b>数量</div><div>操作</div>
                 </div>
                 <div className='clothes-body'>{html}</div>
-                
                 <div style={{padding:'10px 20px'}}><button type='button' className='e-btn' onClick={() => this.setState({show:1})}>添加衣物</button></div>
                 <div className='clothes-footer'>
                     <div className='clothes-footer-left'>
