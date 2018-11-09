@@ -35,12 +35,14 @@
     t.date = function (format, timestamp) {
         var date = isNaN(timestamp) ? new Date() : new Date( timestamp * 1000 );
         if ('string' === typeof format) {
-            var month = date.getMonth() + 1,
-                day = date.getDate(),
-                hour = date.getHours(),
-                minute = date.getMinutes(),
-                second = date.getSeconds();
-            return format.replace('Y', date.getFullYear() )
+            var year = date.getFullYear()
+            ,   month = date.getMonth() + 1
+            ,   day = date.getDate()
+            ,   hour = date.getHours()
+            ,   minute = date.getMinutes()
+            ,   second = date.getSeconds();
+            return format.replace('Y', year)
+                         .replace('y', year.toString().substr(-2))
                          .replace('m', ( 10 > month ? '0' + month : month ) )
                          .replace('d', ( 10 > day ? '0' + day : day ) )
                          .replace('H', ( 10 > hour ? '0' + hour : hour ))
@@ -49,6 +51,16 @@
                 
         }
         return date;
+    }
+    /**
+     * 根据当前日期生成拼接0~46655随机值的36进制数的字符串
+     * @return {string} 随机字符串
+     */
+    t.code = function () {
+        var min = 0
+        ,   max = 46655
+        ,   random = parseInt(Math.random() * ( max-min + 1 ) + min).toString(36).toUpperCase();
+        return (tool.date('ymd') + random);
     }
     /**
      * 数组或对象转url参数字符串
