@@ -75,6 +75,7 @@ export default class extends Component {
         this.copy = this.copy.bind(this);    //项目复制
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
         this.print = this.print.bind(this);
+        this.handlePrinter = this.handlePrinter.bind(this);
         this.paymentClose = this.paymentClose.bind(this);
         this.delOrder = this.delOrder.bind(this);
         this.takeCost = this.takeCost.bind(this);
@@ -378,7 +379,6 @@ export default class extends Component {
         } else {
             gateway = '未付款';
         }
-        var limit = false;
         let param = {
             sn:this.state.sn,
             items:JSON.stringify(this.state.data),
@@ -402,15 +402,7 @@ export default class extends Component {
             gateway:gateway,
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         };
-        EventApi.print('order', param, 'printer'.getData(), () => {
-                tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
-                    if (limit) return;
-                    limit = true;
-                    EventApi.print('order2', param, 'printer'.getData());
-                    close();
-                }});
-            }
-        );
+        this.handlePrinter(param);
         let printer = 'clean_tag_printer'.getData();
         if (printer) {
             let code_arr = this.state.code_arr
@@ -437,6 +429,20 @@ export default class extends Component {
                 // }, printer);
             }
         }
+    }
+    handlePrinter(param) {
+        var limit = false;
+        EventApi.print('order', param, 'printer'.getData(), () => {
+            tool.ui.success({msg:'本页已打印完成，请撕纸',button:['再次打印', '确认'], callback:(close, event) => {
+                if (limit) return;
+                limit = true;
+                EventApi.print('order2', param, 'printer'.getData());
+                if ('再次打印' === event) {
+                    this.handlePrinter(param);
+                }
+                close();
+            }});
+        });
     }
     takeCost() {       
         //console.log(this.state.phone--this.state.name);    
