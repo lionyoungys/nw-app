@@ -194,7 +194,7 @@ table tbody tr:nth-child(odd):hover{
     margin: auto;
     position: absolute;
     top: 33%;
-    left: 45%;
+    left: 40%;
 }
 
 #no-data:hover{
@@ -254,3 +254,5 @@ table tbody tr td{
 .clean-top .left .btn-both{background: #3fc0db;color: #fff}
 
 .ui-table-base tbody tr{border-bottom:1px solid #f1f4f9;box-sizing: border-box}
+
+.ManagerGathering-tab .ui-table.ui-table-default>section{z-index:1}

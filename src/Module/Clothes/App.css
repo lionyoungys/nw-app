@@ -42,7 +42,7 @@
     color: #646766;
     font-weight: bold;
 }
-.clothes-footer-left>:first-child{margin-top: 24px;display: -webkit-flex;display: flex}
+.clothes-footer-left>:first-child{margin-top: 19px;display: -webkit-flex;display: flex}
 .clothes-footer-left>:last-child{margin-top: 10px;display: -webkit-flex;display: flex;line-height: 28px}
 .clothes-footer-left>:first-child>:first-child,
 .clothes-footer-left>:last-child>:first-child{width: 164px}

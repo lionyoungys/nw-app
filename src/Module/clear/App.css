@@ -246,13 +246,11 @@
     background-size: 14px 14px;
     background-repeat: no-repeat;
     background-position: left center;
-    width: 128px;
     text-indent: 14px;
     display: block;
     color:#999;
     border-radius:0;
-    cursor: pointer;
-    line-height: 16px;
+    cursor: pointer; 
 }
 .clean .e-box .in-factory tbody tr td span.e-radio.checked{
     border:none;

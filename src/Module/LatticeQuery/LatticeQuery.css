@@ -258,4 +258,6 @@
     font-size:12px;
     text-align:center;
     max-width:10%;
+    min-width: 10%;
 }
+.lattice table tbody::-webkit-scrollbar{width: 0px}

@@ -27,6 +27,7 @@ class Main extends Component {
     }
     handleLogin() {
         console.log(333);
+        console.log({mid:this.state.shop_id,mobile:this.state.phone,passwd:this.state.passwd, version:nw.App.manifest.version}, )
         api.post(
             'login', 
             {mid:this.state.shop_id,mobile:this.state.phone,passwd:this.state.passwd, version:nw.App.manifest.version}, 

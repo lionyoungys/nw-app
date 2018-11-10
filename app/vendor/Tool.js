@@ -53,14 +53,18 @@
         return date;
     }
     /**
-     * 根据当前日期生成拼接0~46655随机值的36进制数的字符串
+     * 根据当前日期生成拼接当前时间的64进制数的字符串
      * @return {string} 随机字符串
      */
     t.code = function () {
-        var min = 0
-        ,   max = 46655
-        ,   random = parseInt(Math.random() * ( max-min + 1 ) + min).toString(36).toUpperCase();
-        return (tool.date('ymd') + random);
+        var date = new Date()
+        ,   year = date.getFullYear().toString().substr(-2)
+        ,   month = date.getMonth() + 1
+        ,   day = date.getDate()
+        ,   hour = date.getHours() * 10000
+        ,   minute = date.getMinutes() * 100
+        ,   second = date.getSeconds();
+        return ( year + (( 10 > month ? '0' + month : month )) + ( 10 > day ? '0' + day : day ) + (hour + minute + second).dec2base64() );
     }
     /**
      * 数组或对象转url参数字符串
