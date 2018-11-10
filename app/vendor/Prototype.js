@@ -4,6 +4,45 @@
  */
 
 (function() {
+    /**
+     * 10进制值转64进制值,原+/使用._代替
+     * @return {string} 转换后的64进制的字符串
+     */
+    Number.prototype.dec2base64 = function() {
+        if (0 > this) {
+            return '';
+        }
+        dec = Number(this);
+        var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._'.split('')
+        ,   radix = chars.length
+        ,   arr = []
+        ,   mod;
+        do {
+            mod = dec % radix;
+            dec = (dec - mod) / radix;
+            arr.unshift(chars[mod]);
+        } while (dec);
+        return arr.join('');
+    }
+    /**
+     * 64进制值转10进制值,原+/使用._代替
+     * @return {number} 转换后的10进制的数值
+     */
+    String.prototype.base64to10 = function() {
+        var str = this.replace(/(^\s*)|(\s*$)/g,'');
+        if ('' === str) {
+            return 0;
+        }
+        var chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ._'
+        ,   radix = chars.length
+        ,   len = str.length
+        ,   i = 0
+        ,   dec = 0;
+        while (i < len) {
+            dec += Math.pow(radix, i++) * chars.indexOf(str.charAt(len - i) || 0);
+        }
+        return dec;
+    }
     var mime = {bmp:'image/bmp',gif:'image/gif',png:'image/png',jpeg:'image/jpeg',jpg:'image/jpeg',jpe:'image/jpeg',txt:'text/plain'};
     //去除字符串中的空字符；
     String.prototype.trim = function () {

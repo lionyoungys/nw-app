@@ -28,6 +28,7 @@ const token = 'token'.getData()
 export default class extends Component {
     constructor(props) {
         super(props);
+        this.DATACODE = tool.code();
         this.counter = 1;    //编码累加计数属性
         let order = this.props.items
         ,   items = this.props.items.work || []
@@ -38,7 +39,7 @@ export default class extends Component {
             for (var i = 0;i < len;++i) {
                 tmpNumber = items[i].clothing_number;
                 if (null == tmpNumber || '' == tmpNumber) {
-                    tmpNumber = this.counter.timeCode();
+                    tmpNumber = (this.DATACODE + this.counter);
                     ++this.counter;
                 }
                 arr.push({
@@ -188,7 +189,7 @@ export default class extends Component {
                 }
             );
         } else {
-            let timeCode = this.counter.timeCode()
+            let timeCode = (this.DATACODE + this.counter)
             ,   data = {
                 DATATAG:timeCode,
                 clothing_number: timeCode, 
@@ -236,7 +237,7 @@ export default class extends Component {
                 {clothing_id:'', clothing_name:value.name, raw_price:value.price, deal_time:day, has_discount:has_discount}
             );
         } else {
-            let timeCode = this.counter.timeCode()
+            let timeCode = (this.DATACODE + this.counter)
             ,   data = {
                 DATATAG:timeCode,
                 clothing_number: timeCode, 
@@ -268,7 +269,7 @@ export default class extends Component {
     showItem(e) {this.setState({show:1,currentIndex:e.target.parentNode.dataset.index,update:true})}
     clone(param) {
         let data = tool.clone(this.state.data[param]);
-        data.clothing_number = this.counter.timeCode();
+        data.clothing_number = (this.DATACODE + this.counter);
         data.parent = this.state.data[param].DATATAG;
         data.addition_remark = data.addition_price = data.addition_discount = '';
         ++this.counter;
@@ -288,7 +289,7 @@ export default class extends Component {
     }
     copy(e) {
         let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index])
-        ,   timeCode = this.counter.timeCode();
+        ,   timeCode = (this.DATACODE + this.counter);
         item.DATATAG = timeCode;
         item.clothing_number = timeCode;
         item.parent = null;
