@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
 import Payment from '../../UI/Payment';
+import CardList from '../Clothes/CardList';
 import './Takeclothes.css';
 import Nodata from '../../UI/nodata'
 const token = 'token'.getData();
@@ -16,6 +17,7 @@ export default class extends Component {
             title:'none',
             show2:false,            
             count:'',
+            cardList:[],
             list:[],
             nopay:{},
             checked:[],
@@ -189,7 +191,11 @@ export default class extends Component {
             obj.number = value;
         }
         obj.callback = (res) => {
-            this.setState({payCard:res});
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({payCard:res});
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -433,7 +439,10 @@ export default class extends Component {
                         callback={this.paymentCallback}
                     />
                 }
-                  {this.state.nodatas&&<Nodata />}
+                {this.state.nodatas&&<Nodata />}
+                {
+                    this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>
+                }
                 </Window> 
         )
     }

@@ -39,6 +39,18 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-container-x{overflow-x: auto}
 .e-container-y{overflow-y: auto}
 .e-container-auto{overflow: auto}
+.e-row{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #999;
+    border-bottom: 1px dashed #edf0f9;
+    padding: 0 16px;
+    cursor: default;
+}
+/* 鼠标悬停样式 */
+.e-hover-bule:hover{background-color: #3fbfdc;}
+.e-hover-dark:hover{background-color: #5a5e66}
 /* 文本不可选中 */
 .e-select-disabled{
     user-select:none;

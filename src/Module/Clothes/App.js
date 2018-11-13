@@ -5,6 +5,7 @@
 
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import CardList from './CardList';
 import Table from '../../UI/Table';
 import MathUI from '../../UI/MathUI';
 import Category from './Category';
@@ -33,7 +34,8 @@ export default class extends Component {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',consume:0,    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
-            show:0, categoryIndex:0,currentIndex:0,    
+            show:0, categoryIndex:0,currentIndex:0,
+            cardList:[],
             data:[],    //本地存储数据
             card:{},    //卡数据
             payCard:{},
@@ -151,7 +153,11 @@ export default class extends Component {
             obj.number = value;
         }
         obj.callback = (res) => {
-            this.setState({payCard:res});
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({payCard:res});
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -800,6 +806,9 @@ export default class extends Component {
                     17 === this.state.show
                     &&
                     <Recharge closeView={this.handleClose} card={this.state.card}/>
+                }
+                {
+                    this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>
                 }
             </Window>
         );
