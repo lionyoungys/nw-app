@@ -215,7 +215,7 @@
                 this.line(3).openCashbox().print(callback);
             });
         },
-        CardPageFactory(printer_name, param, reserve, callback) {
+        CardPageFactory: function(printer_name, param, reserve, callback) {
             new PrintUtil(printer_name, function(err, msg) {
                 if (err) return alert(msg);
                 this.align('c')
