@@ -11,8 +11,10 @@ export default class extends Component {
             mstatus:'',
             maddress:'',
             info:'',
+            get_type:'3',
         }  
         this.storesave = this.storesave.bind(this);
+        this.on_start = this.on_start.bind(this);
     }
     componentDidMount() {
         api.post('merchantInfo', {token:'token'.getData()}, (res, ver) => {
@@ -25,7 +27,8 @@ export default class extends Component {
                     province:res.result.province,
                     city:res.result.city,
                     mstatus:res.result.mstatus,
-                    maddress:res.result.maddress
+                    maddress:res.result.maddress,
+                    get_type:res.result.money_type,
                 });
         
          }
@@ -39,11 +42,19 @@ export default class extends Component {
             }
         );
     }
+    on_start (e){
+        if(e.target.value != this.state.get_type){
+           var u = e.target.value;
+           console.log(u)
+           this.setState({get_type:u})
+        } 
+    }
     storesave(){
         api.post('modInfo', {
             token:'token'.getData(),
             phone_number:this.state.phone_number,
-            mdesc:this.state.info
+            mdesc:this.state.info,
+            money_type:this.state.get_type,
         },(res, ver) => {
             if (ver && res) {
                 console.log(res)
@@ -78,6 +89,11 @@ export default class extends Component {
                 <div>详细地址：&emsp;<span className='store_management_disable_span'>{this.state.maddress}</span></div>
                 <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.phone_number} onChange={e => this.setState({phone_number:e.target.value})}/></div>
                 <div className="store-detail"><span>店铺说明：</span>&emsp;<textarea className="e-input in-fo" value={this.state.info} onChange={e=>{this.setState({info:e.target.value})}}></textarea></div>
+                <div>收银设置：&emsp;
+                    <label className="radiobox"><input type="radio" name="take_order" value='0' checked={this.state.get_type==0?true:false} onClick={this.on_start}/> 取零抹整</label>&emsp;
+                    <label className="radiobox"><input type="radio" name="take_order" value='1' checked={this.state.get_type==1?true:false} onClick={this.on_start}  /> 四舍五入</label>
+                    <label className="radiobox"><input type="radio" name="take_order" value='2' checked={this.state.get_type==2?true:false} onClick={this.on_start}/> 不折算</label>
+                </div>
                 <button className='e-btn'  onClick={this.storesave}>保存</button>
         </div> 
         );

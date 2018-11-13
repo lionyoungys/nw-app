@@ -464,12 +464,12 @@
 
 .e-input.in-fo{
    width:460px;
-   height:123px;
+   height:78px;
 }
 
 .store_management_content_baseInfo div.store-detail{
     width:546px;
-    height:157px;
+    height:106px;
     line-height:20px;
     margin-top:8px;
 }
@@ -482,4 +482,43 @@
     float: left;
 }
 
+
+/* 收银设置 */
+.radiobox{
+    position: relative;
+    padding-left: 8px;
+}
+.radiobox{
+    position: relative;
+    padding-left: 8px;
+}
+.store_management_content_baseInfo.store_management_content_selected div .radiobox:before{
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 100%;
+    position: absolute;
+    border: 1px solid #ccc;
+    background: white;
+    top: 0px;
+    left: 6px;
+}
+.store_management_content_baseInfo.store_management_content_selected div input[type=radio]:checked:before{
+    content: '';
+    display: inline-block;
+    width:16px;
+    height:16px;
+    border-radius: 100%;
+    background:url(./img/checkbox-checked.png) ;  
+    background-size:16px 16px; 
+    border: none;
+    left: 8px;
+    text-align: -3px;
+    top: 0px;
+    left: 6px;
+    z-index:9;
+    position: absolute;
+}
 
