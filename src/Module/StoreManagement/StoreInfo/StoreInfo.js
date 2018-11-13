@@ -94,7 +94,7 @@ export default class extends Component {
                     <label className="radiobox"><input type="radio" name="take_order" value='0' checked={this.state.get_type==0?true:false} onClick={this.on_start}/> 取零抹整</label>&emsp;
                     <label className="radiobox"><input type="radio" name="take_order" value='1' checked={this.state.get_type==1?true:false} onClick={this.on_start}  /> 四舍五入</label>
                     <label className="radiobox"><input type="radio" name="take_order" value='2' checked={this.state.get_type==2?true:false} onClick={this.on_start}/> 不折算</label>
-                    </div>
+                </div>
                 <div>
                     <button className='e_btn_store'  onClick={this.storesave}>保存</button>
                 </div>

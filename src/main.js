@@ -20,7 +20,7 @@ win.on('close', function() {
     this.close(true);    //关闭新窗口也关闭主窗口
 });
 win.on('closed', function() {win = null});    //新窗口关闭后释放'win'对象
-win.showDevTools();
+//win.showDevTools();
 
 class Main extends Component {
     constructor(props) {
