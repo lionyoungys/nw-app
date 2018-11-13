@@ -20,6 +20,7 @@ import Payment from '../../UI/Payment';
 import User from './User';
 import Code from './Code';
 import Recharge from '../Recharge/App';
+import CardList from './CardList';
 import './App.css';
 
 const token = 'token'.getData()
@@ -31,6 +32,7 @@ export default class extends Component {
         this.state = {
             oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',consume:0,    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
+            cardList:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,    
             data:[],    //本地存储数据
@@ -148,7 +150,11 @@ export default class extends Component {
             obj.number = value;
         }
         obj.callback = (res) => {
-            this.setState({payCard:res});
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({payCard:res});
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -802,6 +808,7 @@ export default class extends Component {
                     &&
                     <Recharge closeView={this.handleClose} card={this.state.card}/>
                 }
+                {this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>}
             </Window>
         );
     }
