@@ -212,7 +212,7 @@
                         .dashed()
                         .text(param.ad);
                 }
-                this.line(3).openCashbox().print(callback);
+                this.line(3).print(callback);
             });
         },
         CardPageFactory: function(printer_name, param, reserve, callback) {
@@ -233,7 +233,7 @@
                     .text('付款方式:' + param.gateway)
                     .dashed().text('本店地址:' + param.addr)
                     .text('查询电话:' + param.mphone)
-                    .line(3).openCashbox().print(callback);
+                    .line(3).print(callback);
             });
         }
     };
