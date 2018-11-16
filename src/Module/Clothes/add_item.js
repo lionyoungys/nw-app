@@ -78,7 +78,8 @@ export default class extends Component {
             data:arr,    //本地存储数据
             card:{},    //卡数据
             payCard:{},
-            update:false,    //用于判断衣物为添加还是修改            
+            update:false,    //用于判断衣物为添加还是修改
+            calculate:2,    //计算方式            
         };
         this.date = tool.date('Y-m-d');
         this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
@@ -111,6 +112,7 @@ export default class extends Component {
         this.paymentCallback = this.paymentCallback.bind(this);    //订单支付回调
         this.print = this.print.bind(this);
         this.paymentClose = this.paymentClose.bind(this);
+        this.calculate = this.calculate.bind(this);
     }
 
     componentDidMount() {
@@ -150,6 +152,23 @@ export default class extends Component {
                 this.setState({price:res.result.list});
             } else {handle()}
         });
+        api.post('calculate', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+            if (ver) {
+                this.setState({calculate:res.result.money_type});
+            } else {handle()}
+        });
+    }
+    //价格计算方式
+    calculate(value) {
+        if (0 == this.state.calculate) {
+            return Math.floor(value);
+        } else if (1 == this.state.calculate) {
+            return Math.round(value * 10) / 10;
+        } else if (2 == this.state.calculate) {
+            return value;
+        } else {
+            return value;
+        }
     }
     PAYM1read(value) {
         let obj = {};
@@ -370,6 +389,8 @@ export default class extends Component {
             dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount = no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
+        total = this.calculate(total);
+        amount = this.calculate(amount);
         let gateway = object.gateway
         ,   balance = this.state.balance;
         if ('undefined' !== typeof gateway) {
@@ -607,6 +628,8 @@ export default class extends Component {
                 </tr>
             );
         });
+        total = this.calculate(total);
+        amount = this.calculate(amount);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-table' style={{paddingTop:'16px'}}>
