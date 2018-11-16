@@ -334,12 +334,12 @@ export default class extends Component {
                     <td>{item.grade}</td>
                     <td>{item.item_off_price}</td>
                     <td>{item.item_online_price}</td>
-                    <td>{item.item_discount}%</td>
-                    <td>{item.state==1?'在使用':'不在使用'}</td>
+                    <td>{item.state==1?'在使用':'不在使用'}</td>                                     
                     <td>{item.transfer==1?'是':'否'}</td>
                     <td>{item.has_discount==1?'是':'否'}</td>
                     <td>{item.cate_name}</td>
                     <td>{item.item_cycle}</td>
+                    <td>{item.help_num}</td>
                     <td>{item.grid}</td>
                 </tr>
             );  
@@ -356,13 +356,22 @@ export default class extends Component {
                     <div>
                         <Table>
                             <thead>
-                                <tr><th style={{minWidth:'80px'}}>id</th><th style={{minWidth:'80px'}}>衣物名称</th><th style={{minWidth:'80px'}}>处理类别</th><th style={{minWidth:'80px'}}>材料</th><th style={{minWidth:'80px'}}>档次</th><th
-                                style={{minWidth:'80px'}}>线下价格</th><th style={{minWidth:'80px'}}>线上价格</th><th style={{minWidth:'80px'}}>在线接单</th><th
-                                style={{minWidth:'80px'}}>价格可调</th>
-                                <th style={{minWidth:'80px'}}>允许折扣</th><th
-                                style={{minWidth:'80px'}}>衣物类别</th><th style={{minWidth:'80px'
-                            }}>洗护周期</th><th
-                                style={{minWidth:'80px'}}>助记码</th><th style={{minWidth:'80px'}}>格架</th></tr>
+                                <tr>
+                                    <th style={{minWidth:'80px'}}>id</th>
+                                    <th style={{minWidth:'80px'}}>衣物名称</th>
+                                    <th style={{minWidth:'80px'}}>处理类别</th>
+                                    <th style={{minWidth:'80px'}}>材料</th>
+                                    <th style={{minWidth:'80px'}}>档次</th>
+                                    <th style={{minWidth:'80px'}}>线下价格</th>
+                                    <th style={{minWidth:'80px'}}>线上价格</th>
+                                    <th style={{minWidth:'80px'}}>在线接单</th>
+                                    <th style={{minWidth:'80px'}}>价格可调</th>
+                                   <th style={{minWidth:'80px'}}>允许折扣</th>
+                                   <th style={{minWidth:'80px'}}>衣物类别</th>
+                                   <th style={{minWidth:'80px'}}>洗护周期</th>
+                                   <th style={{minWidth:'80px'}}>助记码</th>
+                                   <th style={{minWidth:'80px'}}>格架</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {itemList}
