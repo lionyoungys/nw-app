@@ -9,18 +9,21 @@ import Dish from '../UI/Dish';
 import Empty from '../UI/Empty';
 import Page from '../UI/Page';
 import Select from '../UI/Select';
+import MultiSelect from '../UI/MultiSelect';
 import MathUI from '../UI/MathUI';
 import Triangle from '../UI/Triangle';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', number:0, total:100, current:1, fetch:20}
+        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
         this.handleEat = this.handleEat.bind(this);
         this.handleEat2 = this.handleEat2.bind(this);
+        this.handleChoose = this.handleChoose.bind(this);
+        this.option = ['全选', '麻辣香锅', '水煮鱼', '西芹淮山炒百合', '三文鱼刺身', '金枪鱼寿司', '抹茶千层', '巧克力蛋糕', '舒芙蕾', '小熊曲奇', '波仔鲜芦笋', '干锅土豆片', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
     }
     handleClickForSuccess() {
         tool.ui.success({callback:close => close()})
@@ -50,7 +53,26 @@ export default class extends React.Component {
             close();
         }});
     }
+    handleChoose(e) {
+        let value = e.target.innerText;
+        if (e.target.dataset.checked == 'checked') {
+            if ('全选' === value) {
+                return this.setState({values:[]});
+            } else {
+                let index = value.inArray(this.state.values);
+                this.state.values.splice(index, 1);
+            }
+        } else {
+            if ('全选' === value) {
+                return this.setState({values:this.option});
+            } else {
+                this.state.values.push(value);
+            }
+        }
+        this.setState({values:this.state.values});
+    }
     render() {
+        let arr = ['全选', '麻辣香锅', '水煮鱼', '西芹淮山炒百合', '三文鱼刺身', '金枪鱼寿司', '抹茶千层', '巧克力蛋糕', '舒芙蕾', '小熊曲奇', '波仔鲜芦笋', '干锅土豆片', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
         return (
             <Window title='偷窥厨房的窗口' onClose={this.props.closeView} padding={true}>
                 <Triangle/>
@@ -70,6 +92,9 @@ export default class extends React.Component {
                 &emsp;
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} disabled={true} value={this.state.selectVal} onChange={obj => {console.log(obj);this.setState({selectVal:obj.value})}}/>
                 &emsp;
+                <MultiSelect value={this.state.values.toString()}>
+                    {this.option.map(value => <span key={tool.UUID()} data-checked={-1 === value.inArray(this.state.values) ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
+                </MultiSelect>
                 <MathUI onAdd={() => this.setState({number:this.state.number+1})} onSub={() => this.setState({number:this.state.number-1})}>{this.state.number}</MathUI><br/>
                 <textarea className='e-textarea' rows='10' cols='50'></textarea>
                 <br/>

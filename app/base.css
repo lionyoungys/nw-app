@@ -58,6 +58,10 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     -moz-user-select:none;
     -ms-user-select:none;
 }
+/* 清除浮动 */
+.clearfix{zoom:1}
+.clearfix:before, 
+.clearfix:after{visibility:hidden;display:block;content: " ";clear:both;height:0;}     
 /* icon */
 .e-icon-logo, .e-icon-user, .e-icon-windows, .e-icon-close, .e-icon-close14, .e-icon-payment, .e-icon-download, .e-icon-box{
     display: inline-block;
@@ -542,20 +546,21 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-page-next{background-image: url(images/ui-page-next.png);}
 .ui-page-previous.disabled{background-image: url(images/ui-page-previous-d.png);}
 .ui-page-next.disabled{background-image: url(images/ui-page-next-d.png);}
-/* 下拉框组件 */
-.ui-select{
+/* 下拉框组件、多选下拉框组件 */
+.ui-select, .ui-multi-select{
     display: inline-block;
     width: 166px;
     height: 28px;
     position: relative;
     line-height: 1;
 }
-.ui-select>.e-input{
+.ui-select>.e-input, .ui-multi-select>.e-input{
     width: 100%;
     height: 100%;
     padding-right: 20px;
+    background-color: #fff;
 }
-.ui-select>i{
+.ui-select>i, .ui-multi-select>i{
     position: absolute;
     display: inline-block;
     top: 50%;
@@ -566,12 +571,15 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     background-image: url(images/ui-select-down.png);
     background-repeat: no-repeat;
 }
-.ui-select>.e-input, .ui-select>.e-input:disabled{background-color: #fff}
-.ui-select[data-disabled=disabled]>.e-input, .ui-select[data-disabled=disabled]>.e-input:disabled{background-color: #f4f4f4;}
-.ui-select:hover>.e-input{border-color: #3fc0db}
-.ui-select[data-disabled=disabled]:hover>.e-input{border-color: #d7dee4}
-/* #d7dee4 */
-.ui-select>section{
+.ui-select>.e-input:disabled, .ui-multi-select>.e-input:disabled{background-color: #fff}
+.ui-select[data-disabled=disabled]>.e-input, 
+.ui-select[data-disabled=disabled]>.e-input:disabled,
+.ui-multi-select[data-disabled=disabled]>.e-input, 
+.ui-multi-select[data-disabled=disabled]>.e-input:disabled{background-color: #f4f4f4;}
+.ui-select:hover>.e-input, .ui-multi-select:hover>.e-input{border-color: #3fc0db}
+.ui-select[data-disabled=disabled]:hover>.e-input, 
+.ui-multi-select[data-disabled=disabled]:hover>.e-input{border-color: #d7dee4}
+.ui-select>section, .ui-multi-select>section{
     display: none;
     position: absolute;
     top: 100%;
@@ -580,15 +588,16 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     padding-top: 4px;
     z-index:10;
 }
-.ui-select.ui-select-up>section{
+.ui-select.ui-select-up>section, .ui-multi-select.ui-select-up>section{
     top: auto;
     bottom: 100%;
     padding-top: 0;
     padding-bottom: 4px;
 }
-.ui-select:hover>section{display: block;}
-.ui-select[data-disabled=disabled]:hover>section{display: none}
-.ui-select>section>div{
+.ui-select:hover>section, .ui-multi-select:hover>section{display: block;}
+.ui-select[data-disabled=disabled]:hover>section, 
+.ui-multi-select[data-disabled=disabled]:hover>section{display: none}
+.ui-select>section>div, .ui-multi-select>section>div{
     width: 100%;
     background-color: #fff;
     padding: 4px 0;
@@ -609,6 +618,22 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     cursor: default;
 }
 .ui-select>section>div>div:hover{background-color: #eaf1f7}
+.ui-multi-select>section>div{padding: 2px}
+.ui-multi-select>section>div>span{
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    margin: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.ui-multi-select>section>div>span[data-checked=checked]{
+    background-color: #3fbfdc;
+    color: #fff;
+}
+
 /* 数学计算组件样式 */
 .ui-math{
     position: relative;
