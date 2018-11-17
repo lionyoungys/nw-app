@@ -626,12 +626,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     border-radius: 4px;
     margin: 2px;
     cursor: pointer;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 .ui-multi-select>section>div>span[data-checked=checked]{
     background-color: #3fbfdc;
     color: #fff;
+    border-color: #3fbfdc;
 }
 
 /* 数学计算组件样式 */

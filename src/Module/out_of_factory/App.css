@@ -29,18 +29,23 @@
 }
 
 .out-factory tbody tr td .e-radio{
-    display: inline-block;
-    min-height: 17px;
-    line-height: 17px;
-    padding-left: 22px;
-    background-image: url(img/checkbox.png);
-    background-repeat: no-repeat;
-    background-position: 0;
-    cursor: pointer;
-    min-width: 15px;
     width: auto;
+    border: none;
+    background: url(./images/gaiban-n.png);
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    text-indent: 14px;
+    display: block;
+    color:#999;
+    border-radius:0;
+    cursor: pointer; 
 }
 .out-factory tbody tr td .e-radio.checked{
-    background-image: url(img/checkbox-checked.png);
+    border:none;
+    background: url(./images/gaiban-y.png);
+    background-size: 14px 14px;
+    background-repeat:no-repeat;  
+    background-position:left center;
 }
 

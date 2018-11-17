@@ -23,7 +23,7 @@ export default class extends React.Component {
         this.handleEat = this.handleEat.bind(this);
         this.handleEat2 = this.handleEat2.bind(this);
         this.handleChoose = this.handleChoose.bind(this);
-        this.option = ['全选', '麻辣香锅', '水煮鱼', '西芹淮山炒百合', '三文鱼刺身', '金枪鱼寿司', '抹茶千层', '巧克力蛋糕', '舒芙蕾', '小熊曲奇', '波仔鲜芦笋', '干锅土豆片', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
+        this.option = ['全选', '麻辣香锅', '水煮鱼', '三文鱼刺身', '金枪鱼寿司', '波仔鲜芦笋', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
     }
     handleClickForSuccess() {
         tool.ui.success({callback:close => close()})
@@ -72,7 +72,6 @@ export default class extends React.Component {
         this.setState({values:this.state.values});
     }
     render() {
-        let arr = ['全选', '麻辣香锅', '水煮鱼', '西芹淮山炒百合', '三文鱼刺身', '金枪鱼寿司', '抹茶千层', '巧克力蛋糕', '舒芙蕾', '小熊曲奇', '波仔鲜芦笋', '干锅土豆片', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
         return (
             <Window title='偷窥厨房的窗口' onClose={this.props.closeView} padding={true}>
                 <Triangle/>
