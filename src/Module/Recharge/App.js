@@ -75,7 +75,7 @@ export default class extends React.Component {
         let give = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
         api.post(
             'recharge', 
-            {token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give,discount:this.state.discount}, 
+            {token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give,discount:card.discount}, 
             (res, ver, handle) => {
                 loadingEnd();
                 if (ver) {
@@ -88,7 +88,7 @@ export default class extends React.Component {
                         name:this.state.user_name,
                         number:this.state.recharge_number,
                         balance:this.state.balance,
-                        discount:(this.state.discount / 10),
+                        discount:(card.discount / 10),
                         give:give,
                         recharge:this.state.amount,
                         gateway:(1 == obj.gateway ? '现金' : (2 == obj.gateway ? '微信' : '支付宝'))
@@ -204,7 +204,7 @@ export default class extends React.Component {
                     <Recharge
                         data={{
                             type:this.state.card_name,
-                            discount:this.state.discount,
+                            discount:card.discount,
                             recharge:this.state.amount,
                             balance:this.state.balance,
                             give:this.state.give,
