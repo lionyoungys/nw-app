@@ -79,7 +79,7 @@ export default class extends React.Component {
         let give = (isNaN(this.state.give) || this.state.give < 0 ? 0 : this.state.give);
         api.post(
             'recharge', 
-            {token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give}, 
+            {token:token,cid:this.state.cid,number:this.state.recharge_number,gateway:obj.gateway,authcode:obj.authcode || '',recharge_id:card.id,price:this.state.amount,give_price:give,discount:this.state.discount}, 
             (res, ver, handle) => {
                 loadingEnd();
                 if (ver) {
