@@ -13,7 +13,7 @@
             return '';
         }
         dec = Number(this);
-        var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._'.split('')
+        var chars = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ'.split('')
         ,   radix = chars.length
         ,   arr = []
         ,   mod;
@@ -33,7 +33,7 @@
         if ('' === str) {
             return 0;
         }
-        var chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ._'
+        var chars = '0123456789abcdefghigkmnopqrstuvwxyzABCDEFGHGKLMNOPQRSTUVWXYZ'
         ,   radix = chars.length
         ,   len = str.length
         ,   i = 0
