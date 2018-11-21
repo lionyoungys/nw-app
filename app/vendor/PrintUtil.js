@@ -126,16 +126,31 @@
             }
             return this;
         },
+        repeat:function(value, number) {
+            var text = '';
+            for (var i = 0;i < number;++i) {
+                text += value;
+            }
+            return text;
+        },
+        space_cn: function(number) {    //全角空格占位
+            return this.repeat('　', number);
+        },
+        padding: function(value, number) {
+            value = ('string' === typeof value ? value : '');
+            var diff = number - value.length
+            ,   text = '';
+            if (diff > 0) {
+                text = this.space_cn(diff);
+            }
+            return (value + text);
+        },
         /**
          * 打印虚线
          * @return {object}    当前对象
          */
         dashed: function() {
-            var text = '-';
-            for (var i = 1;i < 32;++i) {
-                text += '-'
-            }
-            this.queue.concat(iconv.encode(text, 'GBK'));
+            this.queue.concat(iconv.encode(this.repeat('-', 32), 'GBK'));
             this.writeCmd('NEW_LINE');
             return this;
         },

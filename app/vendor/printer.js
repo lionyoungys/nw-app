@@ -235,6 +235,118 @@
                     .text('查询电话:' + param.mphone)
                     .line(3).print(callback);
             });
+        },
+        zhengzhang:function(printer_name, param, callback) {
+            var rows = 10;
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                var items, put_codes;
+                try {
+                    items = JSON.parse(param.items);
+                } catch (e) {
+                    items = [];
+                }
+                try {
+                    put_codes = JSON.parse(param.put_codes);
+                } catch (e) {
+                    put_codes = [];
+                }
+                var len = items.length
+                ,   pLen = put_codes.length
+                ,   count = Math.ceil(len / rows)
+                ,   tmp;
+                for (var i = 0;i < count;++i) {
+                    this.line(5)
+                        .text(this.space_cn(7) + 'mname'.getData())
+                        .text( this.space_cn(10) + this.padding(param.name, 5) + this.space_cn(5) + param.phone + this.space_cn(5) + (param.number || '') + this.space_cn(5) + (param.balance || '') )
+                        .text( this.space_cn(10) + this.padding(param.uaddr, 15) + this.space_cn(5) + this.now().split(' ')[0] + this.space_cn(4) + (param.time || '').split(' ')[0] )
+                        .line(3);
+                    for (var j = 0;j < rows;++j) {
+                        tmp = j + i * rows;
+                        if (items[tmp]) {
+                            this.text(
+                                this.space_cn(8) + this.padding(items[tmp].clothing_color, 4) + this.space_cn(4) + 
+                                this.padding(items[tmp].clothing_name, 8) + this.padding(items[tmp].sign, 4) + 
+                                this.padding('1', 4) + this.padding(items[tmp].raw_price, 4) + this.space_cn(1) + 
+                                this.padding(items[tmp].raw_price, 4) + this.space_cn(1) + this.padding(items[tmp].remark, 8)
+                            ); 
+                        } else {
+                            this.line();
+                        }
+                    }
+                    var gateway = param.gateway || '';
+                    this.text(this.space_cn(9) + this.padding(param.total, 5) + this.space_cn(10) + (param.pay_amount || ''))
+                        .text(this.space_cn(9) + this.padding((param.discount + '%'), 5) + this.space_cn(-1 === gateway.indexOf('现金') ? 22 : 8) + (param.pay_amount || '') )
+                        .line(3)
+                        .text(this.space_cn(22) + this.padding(param.mphone, 10) + this.space_cn(6) + 'aname'.getData())
+                        .line(2)
+                        .print(callback);
+                }
+                return;
+
+                this.align('c')
+                    .text('mname'.getData())
+                    .align('l')
+                    .text('订单号:' + param.sn)
+                    .align('c')
+                    .barcode(param.sn, (param.sn.length > 14 ? null : {width:3}))
+                    .line()
+                    .align('l')
+                    .text('打印时间:' + this.now())
+                    .text('衣物编码   名称   颜色   衣挂号');
+                if (param.items) {
+                    var len = items.length
+                    ,   pLen = put_codes.length
+                    ,   json, tempLen, tempCode, p, j;
+                    for (var i = 0;i < len;++i) {
+                        for (p = 0;p < pLen;++p) {
+                            if (items[i].clothing_number == put_codes[p].clothing_number && !put_codes[p].used) {
+                                tempCode = put_codes[p].grid_num;
+                                put_codes[p].used = true;
+                                break;
+                            }
+                        }
+                        this.dashed()
+                            .text(items[i].clothing_number + ' ' + items[i].clothing_name + ' ' + items[i].clothing_color + ' ' + ('undefined' === typeof items[i].grid_num || '' == items[i].grid_num? tempCode : items[i].grid_num));
+                        '' != items[i].sign && this.text('品牌:' + items[i].sign);
+                        '' != items[i].remark && this.text('瑕疵:' + items[i].remark);
+                        '' != items[i].forecast && this.text('洗后预估:' + items[i].forecast);
+                        this.text('单价:￥' + items[i].raw_price + ' '+ (1 == items[i].has_discount ? '打折' : '不打折'));
+                        try {
+                            json = JSON.parse(items[i].json);
+                        } catch (e2) {
+                            json = [];
+                        }
+                        if ('object' === typeof json) {
+                            tempLen = json.length;
+                            for (j = 0;j < tempLen;++j) {
+                                this.text(json[j].name +':￥'+ json[j].value +' '+ (json[j].discount ? '打折' : '不打折'));
+                            }
+                        }
+                    }
+                    this.text('总金额:￥' + param.total + ' 总件数:' + len);
+                }
+                this.text('付款方式:' + (param.gateway ? param.gateway : '未付款'))
+                    .text('折扣率:' + param.discount + '%');
+                param.reduce && this.text('优惠:￥' + param.reduce + ' ' + param.reduce_cause);
+                param.coupon && this.text('现金券:￥' + param.coupon + ' ' + param.coupon_name);
+                param.pay_amount && this.text('折后价:￥' + param.real_amount + '实收:￥' + param.pay_amount);
+                param.change && this.text('找零:￥' + param.change);
+                param.debt && this.text('欠款:￥' + param.debt);
+                param.number && this.text('卡号:' + param.number);
+                param.balance && this.text('余额:￥' + param.balance);
+                this.dashed()
+                    .text('客户姓名:' + param.name)
+                    .text('客户地址:' + param.uaddr)
+                    .text('客户电话:' + param.phone);
+                param.time && this.text('取衣时间:' + param.time);
+                this.dashed().text('操作员:' + 'aname'.getData());
+                this.text('店铺地址:' + param.addr)
+                    .text('服务热线:' + param.mphone)
+                    .dashed()
+                    .text(param.ad);
+                this.line(3).print(callback);
+            });
         }
     };
 })(window);
