@@ -44,7 +44,7 @@ class Main extends Component {
     render() {
         return (
             <div id='login' className='launch'>
-                <div className='login-drag'><i onClick={() => win.close()}></i></div>
+                <div className='login-drag'><i onClick={() => nw.App.quit()}></i></div>
                 {[
                     <Launch/>,
                     <Download version={this.state.version} log={this.state.log} zip={this.state.zip}/>,
