@@ -4,7 +4,7 @@
     float:right;
     margin-top:35px;
 }
-.refundbutton button:nth-child(1) {float: left;margin-top:35px}
+.refundbutton button:nth-child(1) {float: left;margin-top:35px;}
 .refundbutton button:nth-child(2) {float:right;margin-top:35;margin-right:4px; }
 .refundinput>div{margin-top:4px;}
 .refundinput{float: left;}
@@ -17,4 +17,8 @@
 
 /* 更改后的退卡界面样式 */
 .return-div>div{ line-height: 33px}
-#recharge-third-div{width:217.5px;}
+#recharge-third-div{width:227.5px;}
+#return_four{background: #fff;border-top: none;float: right;margin-top: 3px;}
+#return_recharge-third{margin-top:35px}
+#return_recharge-third-div{width: 405.5px}
+#return_recharge-third-div>div{width: 155px;}

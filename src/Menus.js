@@ -40,10 +40,10 @@ const Menus = [
         key: 'CustomerManagement',
         options:[
             {value:'售卡', view:'sale_card', id: 23, className:'sell-card'},
+            {value:'退卡', view:'return_card', id: 27,className:'sell-card'},
             {value:'充值', view:'recharge', id: 24, className:'recharge-card'},
             {value:'会员信息修改', view:'member_info_update', id: 25, className:'member-update'},
-            {value:'挂失、补换卡',view:'loss_reissue_change_card', id: 26, className:'change-card'},
-            //{ value:'退卡', view:'return_card', id: 27},
+            {value:'挂失、补换卡',view:'loss_reissue_change_card', id: 26, className:'change-card'},            
             // { value:'挂失查询', view:'report_loss_query'},
             // { value:'退卡查询', view:'card_queries', id: 28},
             // {value:'会员消费查询', view:'Member_ship_query'},

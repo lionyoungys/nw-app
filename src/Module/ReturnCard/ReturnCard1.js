@@ -146,13 +146,13 @@ export default class extends React.Component {
                         <label className='e-label'>&emsp;&emsp;地址：</label><div>{this.state.address}</div>
                     </div>                   
                 </div>
-                <div className='recharge recharge-third'>
-                    <div id="recharge-third-div">                       
+                <div className='recharge recharge-third' id="return_recharge-third">
+                    <div id="recharge-third-div" id="return_recharge-third-div">                       
                         <div><label className='e-label'>&emsp;&emsp;&emsp;赠送：</label>&yen;{this.state.give_price}</div>
                         <div><label className='e-label'>&emsp;&emsp;新折扣：</label>{this.state.discount}%</div>
                         <div><label className='e-label' style={{color: '#ff0000', fontSize: '14px', fontWeight: 'bold',}}>&emsp;&emsp;&emsp;余额：&yen;{this.state.balance}</label></div>
                     </div> 
-                    <div className="recharge-four" >
+                    <div className="recharge-four"  id="return_four">
                         <span style={{color:'#063781', fontSize: '14px', fontWeight: 'bold',marginTop:'10px',display:'block'}} >退款金额：</span>
                         <input type="number" className="e-input" style={{marginTop:'10px'}} value={this.state.returnmoney} onChange={e=>this.setState({returnmoney:e.target.value})}/>&emsp;元
                         <button type='button' className='e-btn recharge-btn' style={{marginLeft:'10px'}} onClick = {this.returncard}>退卡</button>
