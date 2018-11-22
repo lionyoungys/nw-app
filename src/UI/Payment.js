@@ -154,7 +154,7 @@ export default class extends Component {
                         <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
                             <Triangle className='ui-payment-triangle vip'/>
                             <div style={data.type ? {display:'none'} : null}>
-                                <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
+                                <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示卡号或手机号</div>
                                 <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
                                 <button type='button' className='e-btn' onClick={this.query}>查询</button>
                             </div>

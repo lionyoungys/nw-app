@@ -149,7 +149,7 @@
 .commoditysales-footerdiv-left table tbody{width: 660px;height: 122px;max-height: 122px;overflow-y: auto}
 .commoditysales-footerdiv-left table tbody::-webkit-scrollbar{width: 0px;}
 .commoditysales-footerdiv-left table tbody tr{width: 660px;height:40px;border-bottom: 1px solid #ebeff8;box-sizing: border-box;}
-.commoditysales-footerdiv-left table tbody tr td{width:132px;height: 40px;color: #999;border-right: none;text-align: center}
+.commoditysales-footerdiv-left table tbody tr td{width:132px;height: 40px;color: #333;border-right: none;text-align: center}
 
 .title-money{
     width: 100%;

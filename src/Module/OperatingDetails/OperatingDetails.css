@@ -19,7 +19,7 @@
     overflow-x:auto;
     max-height:290px;
 }
-#operating-div tbody tr td{color: #999}
+#operating-div tbody tr td{color: #333}
 .Takeclothes-div-title.operating-detail{height: 40px;line-height: 40px;padding-top: 2px;}
 .Succession_dataLeft.managerquery_dataLeft.oper-detail{width: 100%}
 .Succession_dataLeft.managerquery_dataLeft.oper-detail>div{margin-left:12px}

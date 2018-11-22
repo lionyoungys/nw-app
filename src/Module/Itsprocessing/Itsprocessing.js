@@ -32,7 +32,7 @@ export default class extends Component {
     searchOrder() {
 
         if ("" == this.state.orderNum) return tool.ui.error({
-            title: '提示', msg: '订单号/流水号不能为空！', button: '确定', callback: (close, event) => {
+            title: '提示', msg: '订单号/流水号不能为空！', button: ['确定'], callback: (close, event) => {
                 close();
             }
         });
@@ -43,7 +43,7 @@ export default class extends Component {
                 let ress = res.result.list;
                 if (ress.length == 0) {
                     tool.ui.error({
-                        title: '提示', msg: '该订单没有可撤单衣物！', button: '确定', callback: (close, event) => {
+                        title: '提示', msg: '该订单没有可撤单衣物！', button: ['确定'], callback: (close, event) => {
                             close();
                         }
                     });
@@ -58,14 +58,14 @@ export default class extends Component {
     //点击确认
     doCompensate() {
 
-        if (this.state.returnCloth.length == 0) return tool.ui.error({title: '提示', msg: '待退衣物不能为空！', button: '确定', callback: (close, event) => { close(); }});
+        if (this.state.returnCloth.length == 0) return tool.ui.error({title: '提示', msg: '待退衣物不能为空！', button: ['确定'], callback: (close, event) => { close(); }});
         // if (this.state.orderNum !== this.state.orderNum_save) return tool.ui.error({ title: '提示', msg: '订单号/流水号已改变，请重新获取数据！', button: '确定', callback: (close, event) => { close(); } });
-        if (this.state.orderNum.length == 0) return tool.ui.error({ title: '提示', msg: '订单号/流水号不能为空！', button: '确定', callback: (close, event) => { close(); } });
-        if (!this.state.cardPay && this.state.returnCard.length > 0 ) return tool.ui.error({ title: '提示', msg: '订单非卡支付，只能现金退款！', button: '确定', callback: (close, event) => { close(); } });
-        if (!this.state.cardPay && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: '确定', callback: (close, event) => { close(); } });
-        if (!this.state.cardPay && this.state.returnCash * 1 > (this.state.maxReturn * 1)) return tool.ui.error({ title: '提示', msg: '现金退款金额不能大于最大退款金额！', button: '确定', callback: (close, event) => { close(); } });
-        if (this.state.cardPay && this.state.returnCash.length == 0 && this.state.returnCard.length == 0 ) return tool.ui.error({ title: '提示', msg: '请填写至少一种退款金额！', button: '确定', callback: (close, event) => { close(); } });
-        if (this.state.cardPay && (this.state.returnCash *1+ this.state.returnCard*1) >(this.state.maxReturn *1)) return tool.ui.error({ title: '提示', msg: '现金与退卡金额不能大于最大金额！', button: '确定', callback: (close, event) => { close(); } });
+        if (this.state.orderNum.length == 0) return tool.ui.error({ title: '提示', msg: '订单号/流水号不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (!this.state.cardPay && this.state.returnCard.length > 0 ) return tool.ui.error({ title: '提示', msg: '订单非卡支付，只能现金退款！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (!this.state.cardPay && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (!this.state.cardPay && this.state.returnCash * 1 > (this.state.maxReturn * 1)) return tool.ui.error({ title: '提示', msg: '现金退款金额不能大于最大退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (this.state.cardPay && this.state.returnCash.length == 0 && this.state.returnCard.length == 0 ) return tool.ui.error({ title: '提示', msg: '请填写至少一种退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (this.state.cardPay && (this.state.returnCash *1+ this.state.returnCard*1) >(this.state.maxReturn *1)) return tool.ui.error({ title: '提示', msg: '现金与退卡金额不能大于最大金额！', button: ['确定'], callback: (close, event) => { close(); } });
         let params = {
             token: 'token'.getData(), 
             ids: '[' + this.state.returnCloth.typeArray('id').join(',')+']',

@@ -91,7 +91,7 @@ export default class extends Component {
                 <div>服务热线：&emsp;<input type='text' className='e-input store_management_able_input' value={this.state.phone_number} onChange={e => this.setState({phone_number:e.target.value})}/></div>
                 <div className="store-detail"><span>店铺说明：</span>&emsp;<textarea className="e-input in-fo" value={this.state.info} onChange={e=>{this.setState({info:e.target.value})}}></textarea></div>
                 <div>收银设置：&emsp;
-                    <label className="radiobox"><input type="radio" name="take_order" value='0' checked={this.state.get_type==0?true:false} onClick={this.on_start}/> 取零抹整</label>&emsp;
+                    <label className="radiobox"><input type="radio" name="take_order" value='0' checked={this.state.get_type==0?true:false} onClick={this.on_start}/> 取整抹零</label>&emsp;
                     <label className="radiobox"><input type="radio" name="take_order" value='1' checked={this.state.get_type==1?true:false} onClick={this.on_start}  /> 四舍五入</label>
                     <label className="radiobox"><input type="radio" name="take_order" value='2' checked={this.state.get_type==2?true:false} onClick={this.on_start}/> 不折算</label>
                 </div>

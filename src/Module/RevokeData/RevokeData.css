@@ -69,7 +69,7 @@
     overflow: hidden; 
     text-overflow:ellipsis;
     white-space:nowrap;
-    color:#999;
+    color:#333;
 }
 .revokedata_list_box li span:nth-child(1){width:31px;}
 #revokedata_list_box_li span:nth-child(1){
@@ -90,8 +90,8 @@
     position: relative;
 }
 .revokedata_last .revokedata_list_box li{width:2144px;}/*横向滚动条设置 */
-#revokedata_list_box_li{background:#f6f7fb;color:#999;}
-#revokedata_list_box_li span{color:#999;}
+#revokedata_list_box_li{background:#f6f7fb;color:#333;}
+#revokedata_list_box_li span{color:#333;}
 
 .revokedata_prompt{
     background:url(./img/revokedata_prompt.png);

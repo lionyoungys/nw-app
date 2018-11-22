@@ -83,7 +83,7 @@ export default class extends React.Component {
                         this.input.focus();
                     }
                 } else {
-                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:['确定'],callback:(close, event) => {
                         close();  
                         this.input.focus();                  
                     }});
@@ -136,7 +136,7 @@ export default class extends React.Component {
                 }});                
             }else {
                 console.log(res)
-                tool.ui.error({title:'错误提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'错误提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});
             }

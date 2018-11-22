@@ -91,7 +91,7 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                 } else {                    
-                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
+                    tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:['确定'],callback:(close, event) => {
                         close();
                         this.setState({value:''});
                         this.input.focus()
@@ -150,7 +150,7 @@ export default class extends React.Component {
                     this.query();
                 }}); 
             }else{
-                tool.ui.error({title:'错误提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'错误提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});
             }

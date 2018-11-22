@@ -190,7 +190,7 @@
 }
 
 .lattice-div-right span.index{
-    color:#dfe3ea;
+    color:#999;
 }
 
 .lattice-div-right span.index:hover{  
@@ -254,7 +254,7 @@
 .lattice table tbody tr td{
     width:10%;
     height:40px;
-    color:#a7a7a7;
+    color:#333;
     font-size:12px;
     text-align:center;
     max-width:10%;

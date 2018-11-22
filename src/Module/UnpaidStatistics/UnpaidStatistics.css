@@ -98,7 +98,7 @@
     display: -webkit-box;
     overflow: hidden;
 }
-.ui-table-base.unpaidstatistics_table_Arrearage tbody tr#no-data{margin-top:51px;display: inline-block}
+.ui-table-base.unpaidstatistics_table_Arrearage tbody tr#no-data{display: inline-block}
 .ui-table-base.unpaidstatistics_table_Arrearage tr td{
    width: 10%;
 }

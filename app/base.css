@@ -6,7 +6,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
 .e-blue{color: #3fbfdc}
 .e-red{color: #f60000}
 .e-black{color: #4d4d4d}
-.e-grey{color: #999}
+.e-grey{color: #333}
 .e-white{color: #e6ebf5}
 .e-dark{color: #5a5e66}
 .e-light{color: #aaa}
@@ -43,7 +43,7 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     display: block;
     height: 40px;
     line-height: 40px;
-    color: #999;
+    color: #333;
     border-bottom: 1px dashed #edf0f9;
     padding: 0 16px;
     cursor: default;
@@ -1130,7 +1130,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #f4f4f4;
     border-bottom: 1px solid #edf0f9;
     background-color: #fff;
-    color: #999;
+    color: #333;
     text-align: center;
 }
 .ui-table-default tbody>tr:hover{background-color: #fafdfd}
@@ -1253,4 +1253,4 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     text-align: center;
     color: #989898;
 }
-table tbody tr td{color: #999}
+table tbody tr td{color: #333}

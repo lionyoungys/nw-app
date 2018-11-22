@@ -151,14 +151,13 @@ export default class extends React.Component {
         }
         EventApi.M1Read(obj);
     }
-
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
             <Window title='充值' onClose={this.props.closeView} >
                 <div className='recharge recharge-first'>
                     <div>
-                        <label htmlFor='card_id' className='e-label'>卡号：</label>
+                        <label htmlFor='card_id' className='e-label'>卡号/手机号：</label>
                         <input id='card_id' className='recharge_input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;&nbsp;
                        
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>&nbsp;&nbsp;

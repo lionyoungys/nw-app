@@ -98,7 +98,7 @@ export default class extends React.Component {
                         this.setState({checked:this.state.checked});
                     }
                     } else {                     
-                        tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:'确定',callback:(close, event) => {
+                        tool.ui.error({title:'提示',msg:'此衣物编码不存在或已操作过此步骤，请核对编码是否正确',button:['确定'],callback:(close, event) => {
                             close();
                             this.setState({value:''});
                         }});  
@@ -141,7 +141,7 @@ export default class extends React.Component {
     handleCleaned() {  
         console.log(this.state.sel_id)
         if(this.state.sel_id=='') {
-            return  tool.ui.error({title:'提示',msg:'请选择入厂商家',button:'确定',callback:(close, event) => {
+            return  tool.ui.error({title:'提示',msg:'请选择入厂商家',button:['确定'],callback:(close, event) => {
                 close();
             }});              
         }
@@ -163,7 +163,7 @@ export default class extends React.Component {
                     this.query();
                 }});                                                      
             }else{
-                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});
             }
@@ -228,7 +228,7 @@ export default class extends React.Component {
                 this.query();
                }});                                
             }else{
-                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});
             }

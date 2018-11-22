@@ -3,13 +3,12 @@
  * @author fanyerong
  * 
  */
-
 import React from 'react';
 import Window from '../../UI/Window';
+import CardList from '../Clothes/CardList';
 import './ReturnCard.css';
 const token = 'token'.getData();
 const shopname = 'mname'.getData();
-
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -39,13 +38,12 @@ export default class extends React.Component {
            // cardnumber:card.recharge_number
            shop:card.shop,
            card_number:card.card_number,
+           cardList:[],
         }  ; 
         this.M1Read = this.M1Read.bind(this);  
         this.returncard = this.returncard.bind(this);                        
     }  
-
     componentDidMount() {this.input.focus();}
-
     M1Read(e) {
         let obj = {};
         if (e.target.dataset.query) {
@@ -53,25 +51,29 @@ export default class extends React.Component {
             obj.number = this.state.recharge_number;
         }
         console.log(obj)
-        obj.callback = (res) => {
-            this.setState({
-                cid:res.id,
-                user_mobile:res.user_mobile,
-                user_name:res.user_name,
-                sex:res.sex,
-                birthday:res.birthday,
-                balance:res.balance,
-                integrals:res.integral,
-                card_name:res.card_name,
-                discount:res.discount,
-                time:res.time,
-                recharge_number:res.recharge_number,
-                address:res.address,
-                mname:res.mname,  
-                give_price:res.give_price,  
-                shop:shopname ,
-                card_number:res.recharge_number,        
-            });
+        obj.callback = (res) => { 
+            if(res.cardList.length<1){
+                this.setState({
+                    cid:res.id,
+                    user_mobile:res.user_mobile,
+                    user_name:res.user_name,
+                    sex:res.sex,
+                    birthday:res.birthday,
+                    balance:res.balance,
+                    integrals:res.integral,
+                    card_name:res.card_name,
+                    discount:res.discount,
+                    time:res.time,
+                    recharge_number:res.recharge_number,
+                    address:res.address,
+                    mname:res.mname,  
+                    give_price:res.give_price,  
+                    shop:shopname ,
+                    card_number:res.recharge_number,        
+                });
+            }else{
+                this.setState({cardList:res.cardList})
+            }                                              
         }
         EventApi.M1Read(obj);
     }
@@ -98,7 +100,7 @@ export default class extends React.Component {
                         integrals:'',
                         birthday:'',
                         address:'',
-                        give_price:'',
+                        give_price:"",
                         discount:'0.00',
                         balance:'',
                         returnmoney:'',
@@ -117,7 +119,7 @@ export default class extends React.Component {
             <Window title='退卡' onClose={this.props.closeView} width='632' height='430'>
                 <div className='recharge recharge-first'>
                     <div>
-                        <label htmlFor='card_id' className='e-label'>卡号：</label>
+                        <label htmlFor='card_id' className='e-label'>卡号/手机号：</label>
                         <input id='card_id' className='e-input' type='text' value={this.state.recharge_number} onChange={e => this.setState({recharge_number:e.target.value})} ref={input=>this.input=input}/>&nbsp;
                         <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
@@ -157,7 +159,29 @@ export default class extends React.Component {
                         <input type="number" className="e-input" style={{marginTop:'10px'}} value={this.state.returnmoney} onChange={e=>this.setState({returnmoney:e.target.value})}/>&emsp;元
                         <button type='button' className='e-btn recharge-btn' style={{marginLeft:'10px'}} onClick = {this.returncard}>退卡</button>
                     </div>                        
-                </div>                        
+                </div> 
+                {
+                    this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({
+                        payCard:obj,
+                        cardList:[],
+                        cid:obj.id,
+                        user_mobile:obj.user_mobile,
+                        user_name:obj.user_name,
+                        sex:obj.sex,
+                        birthday:obj.birthday,
+                        balance:obj.balance,
+                        integrals:obj.integral,
+                        card_name:obj.card_name,
+                        discount:obj.discount,
+                        time:obj.time,
+                        recharge_number:obj.recharge_number,
+                        address:obj.address,
+                        mname:obj.mname,  
+                        give_price:obj.give_price,  
+                        shop:obj.shopname ,
+                        card_number:obj.recharge_number,
+                    })}/>
+                }                       
             </Window>
         );
     }

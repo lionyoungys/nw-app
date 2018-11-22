@@ -112,7 +112,7 @@ export default class extends React.Component {
     handleClick() {    //出厂
         //console.log(this.state.sel_id);
         if(this.state.sel_id=='') {
-            return  tool.ui.error({title:'提示',msg:'请选择出厂商家',button:'确定',callback:(close, event) => {
+            return  tool.ui.error({title:'提示',msg:'请选择出厂商家',button:['确定'],callback:(close, event) => {
                 close();
             }});              
         }
@@ -135,7 +135,7 @@ export default class extends React.Component {
                 }});  
                // console.log(typeof(this.state.data)) ;               
             }else{
-                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});   
             }

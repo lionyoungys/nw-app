@@ -154,7 +154,7 @@
 }
 .orderquery-div table tbody tr>td{
     text-align: center;
-    color: #a9a9a9;
+    color: #333;
     font-size: 12px;
     height: auto;
     min-height: 25px;
@@ -168,7 +168,7 @@
  word-break:break-all;
  /* line-height:25px; */
  text-align:center;
- color:#a9a9a9;
+ color:#333;
  
 }
 .orderquery-div table tbody tr>td j{color:#f00}
@@ -218,7 +218,7 @@
 }
 .orderquery-div table tbody tr>td i{
     line-height:25px;
-    color:#a8a8a8;
+    color:#333;
     margin:0 auto;
     width:100%;
     display:block;
