@@ -315,11 +315,7 @@ export default class extends Component {
         this.setState({data:this.state.data});
     }
     setCode(data){
-        let len = data.length;
-        for (let i = 0;i < len;++i) {
-            this.state.data[data[i].index].clothing_number = data[i].number;
-        }
-        this.setState({data:this.state.data,show:0});
+        this.setState({data:data,show:0});
     }
     showCode(e){this.setState({show:16,currentIndex:e.target.parentNode.dataset.index})}
     setBrand(value) {
