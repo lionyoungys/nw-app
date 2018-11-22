@@ -386,7 +386,6 @@ export default class extends Component {
             dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
             no_dis_amount = no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
         });
-        amount = this.calculate(amount);
         total = this.calculate(total);
         let gateway = object.gateway
         ,   balance = this.state.payCard.balance || this.state.balance;
@@ -644,7 +643,6 @@ export default class extends Component {
                 </tr>
             );
         });
-        total = this.calculate(total);
         amount = this.calculate(amount);
         return (
             <Window title='收衣' onClose={this.onClose}>
