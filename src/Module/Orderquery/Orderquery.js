@@ -64,7 +64,9 @@ export default class extends Component {
                         nodatas:false,                    
                     }) 
                     this.state.orderostatus.push('全部');
-                    this.state.online.push('全部');                                                    
+                    this.state.online.push('全部'); 
+                    console.log(this.state.orderostatus,this.state.online)   
+                    this.setState({orderostatus:this.state.orderostatus,online:this.state.online})                                                
                 }else{
                     this.setState({
                         orderquerylist:res.result.list,
@@ -184,7 +186,7 @@ export default class extends Component {
         return (
             <Window title='订单查询' onClose={this.props.closeView}> 
                <div className="orderquery-title">
-                    <div>
+                    <div className="orderquery_top_div">
                        <span>订单状态：</span><Select  option={this.state.orderostatus}  onChange={value => this.setState({ostatus_name:value.value})} value={this.state.ostatus_name}/>
                     </div>
                     <div>

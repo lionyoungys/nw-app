@@ -50,7 +50,7 @@ export default class extends Component {
             goodindex:0,
             item_cycle: '',//洗护周期
             item_online_price:'',//线上价格
-            gridname:'',//格架名称
+            gridname:'X',//格架名称
             image_id:'',//图片id
             image_url:'',//图片url
             server_id:'',//服务id
@@ -116,7 +116,9 @@ export default class extends Component {
             token:'token'.getData()
         }, (res, ver, handle) => {
             if (ver && res) {
-                console.log(res)
+                console.log(res);
+                var tmp = res.result.grid.typeArray('name');
+                tmp.unshift('任意格架');
                 this.setState({
                     cate_name:res.result.cate_type[0].name,
                     disposetype:res.result.dispose_type[0].name,
@@ -131,23 +133,22 @@ export default class extends Component {
                     grades:res.result.grade,
                     materials:res.result.materials.typeArray('name'),
                     materialss:res.result.materials,
-                    grid:res.result.grid.typeArray('name'),
+                    grid:tmp,
                     grids:res.result.grid,
                     requestHave:true,
                 })
             }else{
                 handle();
             }
-            console.log(aaaaaaa);
-            this.state.grid.push('任意格架')
-            this.setState({
-            // cate_id:this.state.cate_types[0].id,
-            // cate_name:this.state.cate_type[0],
-            // disposetype:this.state.dispose_type[0].name,
-            // gradename:this.state.grade[0].grade,
-            gridname:'X',
-            // materialsname:this.state.materials[0].name,
-            })
+            //this.state.grid.unshift('任意格架')
+            // this.setState({
+            // // cate_id:this.state.cate_types[0].id,
+            // // cate_name:this.state.cate_type[0],
+            // // disposetype:this.state.dispose_type[0].name,
+            // // gradename:this.state.grade[0].grade,
+            // gridname:'X',
+            // // materialsname:this.state.materials[0].name,
+            // })
         });   
     }
     addcheanprice(){
@@ -167,6 +168,7 @@ export default class extends Component {
             min_transfer:'0',//可调下线
             disposetype:this.state.dispose_types[0].name,
             gradename:this.state.grade[0].grade,
+            gridname:'X',
             materialsname:this.state.materialss[0].name       
         })
     }
@@ -279,6 +281,7 @@ export default class extends Component {
         console.log(good.grade)
         console.log(good.materials)       
         console.log(good.cate_name);
+        console.log(good);
         this.setState({           
                 goodindex: good_index,
                 show1:true,
@@ -310,6 +313,7 @@ export default class extends Component {
         })
     }
     render() {
+        console.log(this.state.gridname);
         let itemLists = this.state.itemLists.map((item,index)=>
             <div 
                 key={'item'+index} 
@@ -399,7 +403,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({gridname:value.value})} value={this.state.gridname}/>
+                                <span><i>*</i> 格架：</span><Select option={this.state.grid} selected='任意格架' onChange={value=>this.setState({gridname:value.value})} value={this.state.gridname==null||this.state.gridname=='X'?'任意格架':this.state.gridname}/>
                                 </div>                         
                             </div>
                             
@@ -443,7 +447,7 @@ export default class extends Component {
                             </div>
                             <div className="addnewprice-one-bootom" id="addnewprice-one-bootom">
                                 <div>
-                                <span><i>*</i>格架：</span><Select option={this.state.grid} selected={this.state.gridname}  onChange={value=>this.setState({ gridname:value})} value={this.state.gridname}/>
+                                <span><i>*</i>格架：</span><Select option={this.state.grid} selected={this.state.gridname}  onChange={value=>this.setState({ gridname:value.value})} value={(this.state.gridname==null || this.state.gridname=='X')?'任意格架':this.state.gridname}/>
                                 </div>
                           
                             </div>
