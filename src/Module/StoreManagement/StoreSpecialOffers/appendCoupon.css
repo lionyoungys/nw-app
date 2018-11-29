@@ -1,0 +1,78 @@
+.app_cou_content{
+    margin: 10px;
+    height: 380px;;
+}
+.app_cou_content span{
+
+    width: 70px;
+    text-align: right;
+    margin-right: 15px;
+    display: inline-block;
+
+}
+.app_cou_content b{
+
+    color: red;
+}
+.app_cou_left,.app_cou_right{
+
+    float: left;
+    width: 50%;
+    height: auto;
+}
+.app_cou_right .e-date{
+
+    width: 166px;
+}
+.app_cou_right div:last-child .e-input{
+
+    margin: 0 3px;
+}
+.app_cou_left>div,.app_cou_right>div,app_cou_content>div{
+
+    margin-top: 12px;
+}
+.app_cou_offer_user{
+
+    width: 100%;
+    margin-top: 20px;
+    float: left;
+}
+.app_cou_offer_user label{
+
+    display: inline-block;
+    margin-right: 5px;
+    height: 20px;
+    margin-top: 2px;
+}
+.app_cou_offer_user .e-input{
+
+    width: 215px;
+    margin-top: -6px;
+}
+.app_cou_offer_user div:first-child,.app_cou_use_role div:first-child{
+    
+    float: left;
+    width: 70px;
+    text-align: right;
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+.app_cou_use_role{
+
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.app_cou_use_role textarea{
+
+    float: left;
+    width: 540px;
+    height: 70px;
+}
+.app_cou_btn button{
+
+    float: right;
+    margin-right: 20px;
+}

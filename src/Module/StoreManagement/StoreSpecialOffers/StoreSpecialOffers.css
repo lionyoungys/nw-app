@@ -2,7 +2,6 @@
     width: auto;
     background: #f5f8fa;
     height: 90px;
-    text-align:right;
     border: 1px solid #e0e4ea;
 }
 .storespecialofferstop_one,.storespecialofferstop_two{
@@ -11,13 +10,30 @@
     float: left;
     margin-left: 5px;
 }
+.storespecialofferstop_one>div,.storespecialofferstop_two>div,.storespecialofferstop_three>div{
+    margin-top:9px;
+}
 .storespecialofferstop_three{
-    margin-left: 5px;
+    text-align:right;
+    height: 100%;
+    float: left;
+    margin-left: 15px;
 }
 .storespecialofferstop_inputwidth{
     width: 153px;
-    float: left;
+    
+   
 }
 .storespecialofferstop_datewidth{
-    width: 102px;
+    width: 105px;
 }
+.storespecialoffersbottom{
+    margin-top: 10px;
+}
+/* ????????? */
+.record_tab{width: 100%;height: 100%;}
+.record_tab table {width: 100%;height: 100%}
+.record_tab table thead{height: 39rpx;background: #f5f7fa;}
+.record_tab table thead tr{height: 39rpx;}
+.record_tab table thead th{color:#636464;font-size:12px;line-height: 39px;}
+.record_tab table thead th:last-child{background: none}
