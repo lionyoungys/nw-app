@@ -40,7 +40,7 @@ export default class extends Component {
         return (
             <div>
                 <Window title='门店管理' onClose={this.props.closeView} padding={true}>
-                <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'50px 0 0 20px'}}>
+                <TabFields option={this.tab} checked={this.state.index} onChange={this.handleChange} style={{padding:'46px 13px 0'}}>
                     {this.views[this.state.index]}
                 </TabFields>
                 {/* <div className='store_management'>

@@ -1,0 +1,23 @@
+.storespecialofferstopbg{
+    width: auto;
+    background: #f5f8fa;
+    height: 90px;
+    text-align:right;
+    border: 1px solid #e0e4ea;
+}
+.storespecialofferstop_one,.storespecialofferstop_two{
+    width:213px;
+    height: 100%;
+    float: left;
+    margin-left: 5px;
+}
+.storespecialofferstop_three{
+    margin-left: 5px;
+}
+.storespecialofferstop_inputwidth{
+    width: 153px;
+    float: left;
+}
+.storespecialofferstop_datewidth{
+    width: 102px;
+}
