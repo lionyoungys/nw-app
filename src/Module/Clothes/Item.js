@@ -45,7 +45,9 @@ export default class extends Component {
             <Dish title='编辑衣物信息' onClose={this.props.onClose} height='435'>
                 <div className='clothes-cate-top' style={{marginBottom:'20px'}}>
                     <span>价格</span>
-                    <input type='text' placeholder='助记码/名称' className='e-input' value={this.state.value} onChange={this.handleChange}/>
+                    <div>
+                        <input type='text' placeholder='助记码/名称' className='e-input' value={this.state.value} onChange={this.handleChange}/>&nbsp;&nbsp;<button type='button' className='e-btn-b' onClick={this.props.onCancel}>返回</button>
+                    </div>
                 </div>
                 <div className='clothes-item-body'>
                     <div className='clothes-item-header'>
@@ -53,7 +55,6 @@ export default class extends Component {
                     </div>
                     <div className='clothes-items'>{html}</div>
                 </div>
-                <div style={{textAlign:'right',margin:'20px 15px 0 0'}}><button type='button' className='e-btn-b' onClick={this.props.onCancel}>返回</button></div>
             </Dish>
         );
     }

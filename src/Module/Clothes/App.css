@@ -95,7 +95,7 @@
 .clothes-editor-body>i:nth-child(6n){margin-right: 0}
 /* item.js衣物项目样式 */
 .clothes-item-body{
-    height: 255px;
+    height: 312px;
     margin: 0 14px;
 }
 .clothes-item-header{
@@ -117,7 +117,7 @@
 .clothes-item-header>div:last-child{border-right: none}
 .clothes-item-header>div, .clothes-items>div>div{width: 106px;}
 .clothes-items{
-    max-height: 214px;
+    max-height: 274px;
     border-top: none;
     overflow: auto;
 }
