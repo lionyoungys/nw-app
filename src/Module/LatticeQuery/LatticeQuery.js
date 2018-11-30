@@ -93,7 +93,7 @@ export default class extends Component {
               <td>{item.clothing_name}</td>
               <td>{item.clothing_color}</td>
               <td>{item.grid_num}</td>
-              <td >{item.status==3?'未取走':item.status==4?'已取走':'已撤单'}</td>
+              <td >{item.status.getItemStatusName()}</td>
               <td>{item.user_name}</td>
               <td>{item.user_mobile}</td>
               <td>{item.card_number}</td>

@@ -3,7 +3,6 @@
  * @author  fanyerong
  */
 import React, { Component } from 'react';
-import Window from '../../UI/Window';
 import Dish from '../../UI/Dish'
 import Select from '../../UI/Select';
 import './Hangon.css'
