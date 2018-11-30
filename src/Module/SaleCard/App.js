@@ -31,7 +31,8 @@ export default class extends React.Component {
             made_price:'',
             show:false,
             writeData:{},
-            selectVal:''
+            selectVal:'',
+            type:'射频卡'
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -78,7 +79,7 @@ export default class extends React.Component {
         if (this.state.passwd != this.state.passwd2) return tool.ui.error({msg:'2次密码不正确！',callback:close => close()});
         if (isNaN(this.state.amount) || this.state.amount < 0) return tool.ui.error({msg:'充值金额不正确！',callback:close => close()});
         if (isNaN(this.state.discount) || this.state.discount < 0) return tool.ui.error({msg:'折扣率不正确！',callback:close => close()});
-        if ('' != this.state.number) {
+        if ('' != this.state.number && '射频卡' == this.state.type) {
             EventApi.M1Write({sn:this.state.number, success:() => this.setState({show:true})});
         } else {
             this.setState({show:true});
@@ -158,6 +159,12 @@ export default class extends React.Component {
                                 option={this.state.types} 
                                 onChange={this.handleChange}
                                 value={this.state.selectVal}
+                            />
+                            <span style={{marginLeft:'136px'}}><label>*</label>卡型号：</span>
+                            <Select 
+                                option={['射频卡', '磁条卡']} 
+                                value={this.state.type}
+                                onChange={obj => this.setState({type:obj.value})}
                             />
                             </div>
                         <div>

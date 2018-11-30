@@ -42,12 +42,12 @@ export default class extends Component {
                     <span>类&emsp;型：</span><Select  option={['抵扣','折扣券']} style={{width:'153px'}} value={this.state.type} onChange={obj => {this.setState({type:obj.value})}} />
                  </div>
                  <div>
-                    <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth' onChange={}/>
+                    <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
                  </div>
               </div>
               <div  className='storespecialofferstop_two'>
                  <div>
-                    <span>优惠名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth' onChange={}/>
+                    <span>优惠名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
                  </div>
                  <div>    
                     <span>状&emsp;&emsp;态：</span><Select  option={['已使用','未使用']}  style={{width:'153px'}} value={this.state.status} onChange={obj => {this.setState({status:obj.value})}}/>
