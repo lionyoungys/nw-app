@@ -6,17 +6,19 @@ import Table from '../../../UI/Table';
 import Select from '../../../UI/Select';
 import Nodata from '../../../UI/nodata';
 import AppendDisActivity from '../StoreSpecialOffers/AppendDisActivity'
+import SalePromotionDetail from './SalePromotionDetail'
 export default class extends Component {   
     constructor(props) {
         super(props);  
         this.state = {
             appendShow: false,
+            proDetailShow:false,
         }
         this.onClose = this.onClose.bind(this); 
     }  
     onClose() {
 
-        this.setState({ appendShow: false })
+        this.setState({ appendShow: false, proDetailShow:false })
     }
     render(){
         return (
@@ -45,7 +47,7 @@ export default class extends Component {
                  <div>    
                     <button  onClick={this.M1Read} className='e-btn-b' >重置</button> &emsp; 
                     <button  onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ appendShow: true })}>新增</button>  &emsp;
-                    <button  onClick={this.M1Read} className='e-btn'>查询</button>  
+                    <button onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ proDetailShow: true })}>查询</button>  
                  </div>
               </div>            
            </div>    
@@ -72,6 +74,9 @@ export default class extends Component {
                     </div>
                 {
                     this.state.appendShow && <AppendDisActivity onClose={this.onClose} />
+                }
+                {
+                    this.state.proDetailShow && <SalePromotionDetail onClose={this.onClose} />
                 }
         </div> 
         );
