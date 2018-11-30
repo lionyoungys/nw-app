@@ -135,7 +135,9 @@ export default class extends Component {
                         </div>
                         <div>
                             <div>可折金额：&yen;{data.dis_amount}</div>
-                            <div>折后价：&yen;{0 != gateway && 999 != gateway ? data.total_amount : data.pay_amount}</div>
+                            <div>折后价：&yen;{
+                                0 != gateway && 999 != gateway ? ('function' === typeof this.props.calculate ? this.props.calculate(data.total_amount) : data.total_amount) : data.pay_amount
+                            }</div>
                         </div>
                         <div>
                             <div>折扣率：{discount}%</div>

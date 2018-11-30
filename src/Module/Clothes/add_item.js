@@ -737,6 +737,7 @@ export default class extends Component {
                             type:(this.state.payCard.card_name || this.state.type),
                             number:(this.state.payCard.recharge_number || this.state.number)
                         }}
+                        calculate={this.calculate}
                         M1Read={this.PAYM1read}
                         callback={this.paymentCallback}
                     />
