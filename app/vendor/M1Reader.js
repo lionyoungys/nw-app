@@ -15,12 +15,11 @@
     ,   config = {
         ALL: 0x52,    //寻卡：所有卡
         ACTIVE: 0x26,    //寻卡：激活卡
-        KeyModelA: 0x60,    //A密钥
-        KeyModelB: 0x61,    //B密钥
-        KeyA: 'A6C2D6A69286',    //A密钥值
-        KeyB: 'FFFFFFFFFFFF',    //B密钥值
-        writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB6FF',    //写入密钥值
-        KeyAList:['CBFBCFFEB6FF', 'A6C2D6A69286'],    //A密钥值列表,0:平台密钥;1:菜篮子密钥
+        KeyModelA: 0x60,    //验证A模块常量
+        KeyModelB: 0x61,    //验证B模块常量
+        writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB6FF',    //写入平台密钥值:写入密钥值的规则:前12位(A密钥) + FF078069(8位填充值,无用途) + 后12位(B密钥);
+        KeyAList:['A6C2D6A69286', 'B88736B38429', 'CBFBCFFEB6FF'],    //A密钥值列表:0:菜篮子密钥,1:菜篮子正章定制版密钥,2:平台密钥设置密钥;
+        KeyBList:['FFFFFFFFFFFF'],    //B密钥值列表
         Blocks:[
             {sn:4, cid:5, mid:6},    //默认数据对应块:卡号,卡ID,店铺ID,密钥key:7
             {sn:8, phone:9, balance:10, discount:13, name:14, end:21, type:22, cooperator:28, birthday:29, cid:30, passwd:32, mid:33, mname:36},    //菜篮子数据对应块:卡号,电话,余额,折扣率,姓名,截至日期,卡类型,合作单位,生日,卡编号,店密码,企业代码,店铺简称
@@ -103,6 +102,26 @@
             tool.data2Buf(key)
         ) < 0) throw '扇区密钥验证失败';
     }
+    /**
+     * 所读扇区验证
+     * @param {*number} model 所读区域:值为1=A或2=B
+     * @return {*string} 成功返回密钥值,失败返回空字符串
+     */
+    r.KMVerify = function(model) {
+        var keys = (!isNaN(model) && 1 == model) ? config.KeyAList : config.KeyBList
+        ,   len = keys.length
+        ,   ret = '';
+        for (var i = 0;i < len;++i) {
+            try {
+                this.authorization(model, keys[i], config.Blocks[0].sn);
+                ret = keys[i];
+                break;
+            } catch (e) {
+                console.log(keys[i], i, e);
+            }
+        }
+        return ret;
+    }
 
     /**
      * 读取卡数据
@@ -148,17 +167,16 @@
      */
     r.get = function () {
         var obj = {empty:true, hasUpdate:false, error:false}
-        ,   verify = true
-        ,   temp
-        ,   k;
-        try {
-            this.authorization(1, config.KeyA, config.Blocks[0].sn);
-        } catch (e) {
-            obj.error = true;    //读卡失败
+        ,   key = this.KMVerify(1);
+        if ('' == key) {
+            obj.error = true;
             return obj;
         }
+        var verify = true
+        ,   temp
+        ,   k;
         for (k in config.Blocks[0]) {
-            temp = this.read(1, config.KeyA, config.Blocks[0][k]);
+            temp = this.read(1, key, config.Blocks[0][k]);
             if ('' == temp) {
                 verify = false;
                 break;
@@ -173,42 +191,13 @@
             return obj;
         }
         for (k in config.Blocks[1]) {
-            obj[k] = this.read(1, config.KeyA, config.Blocks[1][k]);
+            obj[k] = this.read(1, key, config.Blocks[1][k]);
         }
         obj.empty = false;
         SDT.YW_Buzzer(this.ID, 1, 1, 1);
+        console.log(obj);
         return obj;
     }
-    /*r.get = function() {
-        var len = config.KeyAList.length
-        ,   index = null;
-        for (var i = 0;i < len;++i) {
-            try {
-                this.authorization(1, config.KeyAList[i], config.Blocks[i].sn);
-                index = i;
-                break;
-            } catch (e) {}
-        }
-        var obj = {empty:true, hasUpdate:false, error:false};
-        if (null !== index) {
-            for (var k in config.Blocks[index]) {
-                obj[k] = this.read(1, config.KeyAList[index], config.Blocks[index][k]);
-            }
-            obj.hasUpdate = (0 === index);
-            obj.empty = false;
-            return obj;
-        }
-        try {
-            this.authorization(2, config.KeyB, config.Blocks[0].sn);
-        } catch (e) {
-            obj.error = true;
-            return obj;
-        }
-        for (var k in config.Blocks[0]) {    //读取块B为空白卡
-            obj[k] = this.read(2, config.KeyB, config.Blocks[0][k]);
-        }
-        return obj;
-    }*/
 
     /**
      * 逻辑设置卡数据
@@ -220,43 +209,18 @@
         if ('string' !== typeof data.sn) throw 'sn格式错误';
         if ('string' !== typeof data.cid) throw 'cid格式错误';
         if ('string' !== typeof data.mid) throw 'mid格式错误';
-        try {
-            this.authorization(1, config.KeyA, config.Blocks[0].sn);
-        } catch (e) {
+        var key = key = this.KMVerify(1);
+        if ('' == key) {
             return false;
         }
         var tempArr = [];
         for (var k in config.Blocks[0]) {
-            if (!this.write(1, config.KeyA, config.Blocks[0][k], data[k])) tempArr.push(k);
+            if (!this.write(1, key, config.Blocks[0][k], data[k])) tempArr.push(k);
         }
         if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
         SDT.YW_Buzzer(this.ID, 2, 1, 2);
         return true;
     }
-    /*r.set = function(data) {
-        if ('object' !== typeof data) throw '参数格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.sn)) throw 'sn格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.cid)) throw 'cid格式错误';
-        if ('string' !== typeof data.sn && isNaN(data.mid)) throw 'mid格式错误';
-        var verify = false;
-        try {
-            this.authorization(1, config.KeyA, config.Blocks[1].sn);
-            verify = true;
-        } catch (e) {verify = false;}
-        if (verify) {
-            console.log('verify', verify);
-            if (!this.write(1, config.KeyA, 7, config.writeKey)) return false;
-        } else {
-            console.log('verify', verify);
-            if (!this.write(2, config.KeyB, 7, config.writeKey)) return false;
-        }
-        var tempArr = [];
-        console.log('写入数值');
-        for (var k in config.Blocks[0]) {
-            if (!this.write(1, config.KeyAList[0], config.Blocks[0][k], data[k])) tempArr.push(k);
-        }
-        if (tempArr.length > 0) throw tempArr.toString() + '写入失败';
-        return true;
-    }*/
+
     window.M1Reader = r;
 })(window);
