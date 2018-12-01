@@ -30,33 +30,21 @@ export default class extends Component {
                 -1 !== obj.help_num.indexOf(this.state.value)
             ) {
                 return (
-                    <div key={obj.id} data-index={index} onClick={this.handleClick}>
-                        <div>{obj.item_name}</div>
-                        <div>{obj.dispose_type}</div>
-                        <div>{obj.materials}</div>
-                        <div>{obj.grade}</div>
-                        <div>{obj.item_cycle}</div>
-                        <div>{obj.item_off_price}</div>
-                    </div>
+                    <i key={obj.id} data-index={index} onClick={this.handleClick}>{obj.item_name}</i>
                 );
             }
         });
         return (
             <Window title='编辑衣物信息' height='454' width='648' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'>
-                    <span>价格</span>
+                    <span>{this.props.category}</span>
                     <div>
                         <input type='text' className='e-input' placeholder='助记码/名称' value={this.state.value} onChange={this.handleChange}/>
                         &nbsp;&nbsp;
                         <button type='button' className='e-btn' onClick={this.props.onCancel}>取消</button>
                     </div>
                 </div>
-                <div className='clothes-item-body'>
-                    <div className='clothes-item-header'>
-                        <div>名称</div><div>处理类别</div><div>材料</div><div>档次</div><div>交活天数</div><div>价格</div>
-                    </div>
-                    <div className='clothes-items'>{html}</div>
-                </div>
+                <div className='clothes-editor-body'>{html}</div>
             </Window>
         );
     }
