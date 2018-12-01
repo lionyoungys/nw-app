@@ -20,7 +20,11 @@ export default class extends React.Component {
         }
         return (
             <div className='ui-window'>
-                <div className='ui-window-head'><i onClick={this.props.onClose}>首页</i>{this.props.title}</div>
+                <div className='ui-window-head'>
+                    <i onClick={this.props.onBack || this.props.onClose}>返回上一级</i>
+                    {this.props.title}
+                    <span onClick={this.props.onClose}></span>
+                </div>
                 <div className='ui-window-body'>
                     <div style={style}>{this.props.children}</div>
                 </div>
