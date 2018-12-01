@@ -44,7 +44,8 @@ export default class extends Component {
             current:null,
             takeclothindex:null,
             merchant:{},
-            payCard:{}
+            payCard:{},
+            calculate:2,    //计算方式
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
@@ -56,9 +57,28 @@ export default class extends Component {
         this.M1Read = this.M1Read.bind(this); 
         this.PAYM1read = this.PAYM1read.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+        this.calculate = this.calculate.bind(this);
     }; 
     componentDidMount(){
         this.input.focus();
+        api.post('calculate', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+            if (ver) {
+                this.setState({calculate:res.result.money_type});
+            } else {handle()}
+        });
+    }
+
+    //价格计算方式
+    calculate(value) {
+        if (0 == this.state.calculate) {
+            return Math.floor(value);
+        } else if (1 == this.state.calculate) {
+            return Math.round(value * 10) / 10;
+        } else if (2 == this.state.calculate) {
+            return value;
+        } else {
+            return value;
+        }
     }
   
     takecloth() {
@@ -416,11 +436,12 @@ export default class extends Component {
                             amount:amount,
                             dis_amount:dis_amount,
                             balance:this.state.payCard.balance || this.state.balance || 0,
-                            pay_amount:pay_amount,
-                            special_pay_amount:order.debt,
+                            pay_amount:this.calculate(pay_amount),
+                            special_pay_amount:this.calculate(order.debt),
                             type:(this.state.payCard.card_name || this.state.card_name),
                             number:(this.state.payCard.recharge_number || this.state.recharge_number)
                         }}
+                        calculate={this.calculate}
                         callback={this.paymentCallback}
                     />
                 }

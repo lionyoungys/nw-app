@@ -95,34 +95,7 @@ export default class extends Component {
               <td>{item.clothing_color}</td>
               <td>{item.grid_num}</td>
               <td >
-                {                                       
-                    item.status==0?'待收衣'
-                    :item.status==3?'清洗中'
-                    :item.status==4?'清洗完成'
-                    :item.status==5?'已撤单'
-                    :item.status==10?'收衣成功'
-                    :item.status==100?'待清洗'
-                    :item.status==101?'已清洗'
-                    :item.status==102?'待烘干'
-                    :item.status==103?'已烘干'
-                    :item.status==104?'待熨烫'
-                    :item.status==105?'已熨烫'
-                    :item.status==106?'待质检'
-                    :item.status==107?'已质检'
-                    :item.status==108?'待上挂'
-                    :item.status==109?'已上挂'
-                    :item.status==110?'待核审'
-                    :item.status==111?'待送洗'
-                    :item.status==112?'待入厂'
-                    :item.status==113?'已入厂'
-                    :item.status==114?'待回店'
-                    :item.status==115?'已回店'
-                    :item.status==116?'已退回'
-                    :item.status==200?'已取消'
-                    :item.status==210?'待配送'
-                    :item.status==211?'已送达'
-                    :item.status=212?'已取走':'待撤单'
-                }
+                {item.status.getItemStatusName()}
               </td>
               <td>{item.user_name}</td>
               <td>{item.user_mobile}</td>
