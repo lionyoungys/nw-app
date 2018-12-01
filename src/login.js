@@ -26,8 +26,14 @@ class Main extends Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
     handleLogin() {
-        console.log(333);
-        console.log({mid:this.state.shop_id,mobile:this.state.phone,passwd:this.state.passwd, version:nw.App.manifest.version}, )
+        console.log({mid:this.state.shop_id,mobile:this.state.phone,passwd:this.state.passwd, version:nw.App.manifest.version})
+        if ('' == this.state.shop_id) {
+            return tool.ui.fail({title:'商户号不能为空', msg:'请输入商户号'});
+        } else if ('' == this.state.phone) {
+            return tool.ui.fail({title:'手机号不能为空', msg:'请输入手机号'});
+        } else if ('' == this.state.passwd) {
+            return tool.ui.fail({title:'密码不能为空', msg:'请输入密码'});
+        }
         api.post(
             'login', 
             {mid:this.state.shop_id,mobile:this.state.phone,passwd:this.state.passwd, version:nw.App.manifest.version}, 
