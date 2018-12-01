@@ -54,7 +54,7 @@ export default class extends Component {
         var arr = ['发卡店', '发卡店ID', '卡类型', '卡号', '卡ID', '姓名', '手机号', '折扣率', '余额'].map((item, index) => <span key={index} >{item}</span>);
         var count = [this.props.data.mname, this.props.data.mid, this.props.data.card_name, this.props.data.recharge_number, this.props.data.id, this.props.data.user_name, this.props.data.user_mobile, this.props.data.discount+'%', this.props.data.balance].map((item, index) => <span key={index} >{item}</span>);
         return (
-            <Window title='换卡' onClose={this.props.onClose} width='567' height='382'>
+            <Window title='换卡' onBack={this.props.onBack} onClose={this.props.onClose} width='567' height='382'>
                 <p className='loss-rep-title'>原卡信息</p>
                 <div className="Hangon-left loss-rep-left">
                     <div className="Hangon-left-title">

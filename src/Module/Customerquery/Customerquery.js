@@ -240,7 +240,7 @@ export default class extends Component {
             {
                 this.state.show
                 &&
-                <Window title='客户信息详情'  onClose={()=>this.setState({show:false})}>
+                <Window title='客户信息详情' onBack={()=>this.setState({show:false})} onClose={this.props.closeView}>
                     <div className="customer-query-detail-top">
                         <div className='e-block'>
                             <div>

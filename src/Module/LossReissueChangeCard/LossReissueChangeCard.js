@@ -133,7 +133,8 @@ export default class extends Component {
                             made_price:user.made_price
                         }} 
                         refresh={this.query}
-                        onClose={() => this.setState({ clickNum: null})}
+                        onBack={() => this.setState({ clickNum: null})}
+                        onClose={this.props.closeView}
                     />
                 }
             </Window>

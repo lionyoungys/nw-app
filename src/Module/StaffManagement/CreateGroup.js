@@ -95,7 +95,7 @@ export default class extends React.Component {
             );
         });
         return (
-            <Window title={1 == status ? '新增组' : '编辑组'} onClose={this.props.onClose}>
+            <Window title={1 == status ? '新增组' : '编辑组'} onBack={this.props.onBack} onClose={this.props.onClose}>
                 <div className='create-group-head'>
                     <button type='button' className='e-btn' onClick={this.handleClick}>{1 == status ? '新增组' : '修改组'}</button>
                     <input type='text' className='e-input' value={this.state.value} onChange={this.handleChange}/>

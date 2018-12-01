@@ -19,7 +19,7 @@ export default class extends Component {
         return ( 
             <Window title='员工管理' onClose={this.props.closeView} padding={true}>
                 <TabFields option={['员工', '权限']} checked={this.state.index} onChange={this.handleChange} style={{padding:'42px 12px 12px',height:'100%'}}>
-                    {this.state.index ? <StaffAuthority/> : <Addstaff/>}
+                    {this.state.index ? <StaffAuthority closeView={this.props.closeView}/> : <Addstaff closeView={this.props.closeView}/>}
                 </TabFields> 
             </Window> 
         );            

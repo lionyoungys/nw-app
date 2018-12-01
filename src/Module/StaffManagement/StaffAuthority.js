@@ -181,8 +181,9 @@ export default class extends Component {
                         status={this.state.show} 
                         checked={this.state.authSelectList} 
                         value={this.state.authname} 
-                        callback={this.sure} 
-                        onClose={() => this.setState({show:0})}
+                        callback={this.sure}
+                        onBack={() => this.setState({show:0})}
+                        onClose={this.props.closeView}
                     />
                 }      
             </div>        
