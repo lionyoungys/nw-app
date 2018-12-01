@@ -8,6 +8,7 @@ import React from 'react';
 import Window from '../../UI/Window';
 import Select from '../../UI/Select';
 import {Recharge} from '../../UI/Payment';
+import CardList from '../Clothes/CardList';
 import './App.css';
 
 const token = 'token'.getData();
@@ -36,7 +37,8 @@ export default class extends React.Component {
             amount:'',
             give:'',
             selectVal:'',
-            discountt:''//新折扣
+            discountt:'',//新折扣
+            cardList:[]
         
         }
         this.M1Read = this.M1Read.bind(this);
@@ -137,20 +139,24 @@ export default class extends React.Component {
             obj.number = this.state.number;
         }
         obj.callback = (res) => {
-            this.setState({
-                cid:res.id,
-                user_mobile:res.user_mobile,
-                user_name:res.user_name,
-                sex:res.sex,
-                birthday:res.birthday,
-                balance:res.balance,
-                integrals:res.integrals,
-                card_name:res.card_name,
-                discount:res.discount,
-                time:res.time,
-                recharge_number:res.recharge_number,
-                address:res.address,
-            });
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({
+                    cid:res.id,
+                    user_mobile:res.user_mobile,
+                    user_name:res.user_name,
+                    sex:res.sex,
+                    birthday:res.birthday,
+                    balance:res.balance,
+                    integrals:res.integrals,
+                    card_name:res.card_name,
+                    discount:res.discount,
+                    time:res.time,
+                    recharge_number:res.recharge_number,
+                    address:res.address,
+                });
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -224,6 +230,29 @@ export default class extends React.Component {
                         }}
                         callback={this.callback}
                         onClose={() => this.setState({show:false})}
+                    />
+                }
+                {
+                    this.state.cardList.length > 1
+                    &&
+                    <CardList
+                        data={this.state.cardList}
+                        onClose={() => this.setState({cardList:[]})}
+                        callback={res => this.setState({
+                            cardList:[],
+                            cid:res.id,
+                            user_mobile:res.user_mobile,
+                            user_name:res.user_name,
+                            sex:res.sex,
+                            birthday:res.birthday,
+                            balance:res.balance,
+                            integrals:res.integrals,
+                            card_name:res.card_name,
+                            discount:res.discount,
+                            time:res.time,
+                            recharge_number:res.recharge_number,
+                            address:res.address
+                        })}
                     />
                 }
             </Window>
