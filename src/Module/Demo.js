@@ -64,7 +64,7 @@ export default class extends React.Component {
             }
         } else {
             if ('全选' === value) {
-                return this.setState({values:this.option});
+                return this.setState({values:tool.clone(this.option)});
             } else {
                 this.state.values.push(value);
             }
