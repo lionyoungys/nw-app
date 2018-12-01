@@ -160,7 +160,7 @@ export default class extends React.Component {
             <Window title='充值' onClose={this.props.closeView} width='632' height='430'>
                 <div className='recharge recharge-first'>
                     <div>
-                        <label htmlFor='card_id' className='e-label'>卡号：</label>
+                        <label htmlFor='card_id' className='e-label'>卡号/手机号：</label>
                         <input id='card_id' className='e-input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;
                         <button type='button' className='e-btn' data-query='1' onClick={this.M1Read}>查询</button>&nbsp;
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
