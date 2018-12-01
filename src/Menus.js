@@ -15,7 +15,7 @@ const Menus = [
             // {value: '交期预警', view: 'delivery_warning', id: 11},
             {value: '撤单处理', view: 'its_processing', id: 12, className:'cancel'},
             // {value: '赔付', view: 'pay', id: 13},
-            {value: 'demo', view: 'demo', className:'default'},
+            //{value: 'demo', view: 'demo', className:'default'},
             //{value: 'table_demo', view: 'table_demo', className:'default'},
             // {value:'编辑商品价格', view:'edit_shop_prices'},
             // {value:'编辑洗护价格', view:'edit_cleaning_prices'},

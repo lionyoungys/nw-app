@@ -35,8 +35,9 @@ export default class extends Component {
         this.onClose = this.onClose.bind(this);
         this.query = this.query.bind(this);
         this.reset = this.reset.bind(this);
-        this.record = this.record.bind(this);   
-        this.log = this.log.bind(this) ;  
+        this.record = this.record.bind(this);  //查看使用记录 
+        this.log = this.log.bind(this) ;  //查看日志
+        this.startuser = this.startuser.bind(this) //启用优惠券
     }  
     onClose(){
         this.setState({newincrease:false})
@@ -117,6 +118,28 @@ export default class extends Component {
                 }
             });
     }
+    // 启用优惠券
+    startuser (e){
+        var id = e.target.dataset.id;
+        console.log(id)
+        api.post('start_using', {
+            token:token,
+            cid:id
+        }, (res,ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    tool.ui.success({callback:(close, event) => {
+                        close();                       
+                        this.query();
+                    }});
+                }else{
+                    tool.ui.error({callback:(close, event) => {
+                        close();                       
+                        this.query();
+                    }});
+                }
+            });
+    }
     render(){        
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index}>
@@ -130,7 +153,7 @@ export default class extends Component {
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
             <td>
                 {item.status==0?
-                <span><span onClick={this.mod} data-write={index} className='e-blue'>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
             }
