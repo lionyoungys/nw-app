@@ -372,6 +372,7 @@
     margin: 0 24px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    overflow-y: auto;
 }
-.clothes-cate-body>i{margin: 0 24px 16px 0}
+.clothes-cate-body>i{margin: 0 21px 16px 0}
 .clothes-cate-body>i:nth-child(6n){margin-right: 0}

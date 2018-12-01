@@ -725,7 +725,7 @@ export default class extends Component {
                 {
                     2 === this.state.show
                     &&
-                    <Item onClose={this.handleClose} onCancel={this.handleCancel} data={this.state.item[this.state.categoryIndex]} callback={this.add}/>
+                    <Item onClose={this.handleClose} category={this.state.category[this.state.categoryIndex].name} onCancel={this.handleCancel} data={this.state.item[this.state.categoryIndex]} callback={this.add}/>
                 }
                 {
                     3 === this.state.show

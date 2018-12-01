@@ -30,31 +30,21 @@ export default class extends Component {
                 -1 !== obj.help_num.indexOf(this.state.value)
             ) {
                 return (
-                    <div key={obj.id} data-index={index} onClick={this.handleClick}>
-                        <div>{obj.item_name}</div>
-                        <div>{obj.dispose_type}</div>
-                        <div>{obj.materials}</div>
-                        <div>{obj.grade}</div>
-                        <div>{obj.item_cycle}</div>
-                        <div>{obj.item_off_price}</div>
-                    </div>
+                    <i className='e-option' key={obj.id} data-index={index} onClick={this.handleClick}>{obj.item_name}</i>
                 );
             }
         });
         return (
-            <Dish title='编辑衣物信息' onClose={this.props.onClose} height='435'>
-                <div className='clothes-cate-top' style={{marginBottom:'20px'}}>
-                    <span>价格</span>
+            <Dish title='编辑衣物信息' onClose={this.props.onClose}>
+                <div className='clothes-cate-top'>
+                    <span>{this.props.category}</span>
                     <div>
-                        <input type='text' placeholder='助记码/名称' className='e-input' value={this.state.value} onChange={this.handleChange}/>&nbsp;&nbsp;<button type='button' className='e-btn-b' onClick={this.props.onCancel}>返回</button>
+                        <input type='text' placeholder='助记码/名称' className='e-input' value={this.state.value} onChange={this.handleChange}/>
+                        &nbsp;&nbsp;
+                        <button type='button' className='e-btn-b' onClick={this.props.onCancel}>返回</button>
                     </div>
                 </div>
-                <div className='clothes-item-body'>
-                    <div className='clothes-item-header'>
-                        <div>名称</div><div>处理类别</div><div>材料</div><div>档次</div><div>交活天数</div><div>价格</div>
-                    </div>
-                    <div className='clothes-items'>{html}</div>
-                </div>
+                <div className='clothes-cate-body'>{html}</div>
             </Dish>
         );
     }
