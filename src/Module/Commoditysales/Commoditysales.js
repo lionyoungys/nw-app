@@ -8,6 +8,7 @@ import MathUI from '../../UI/MathUI';
 import Pay from '../../UI/Payment';
 import Deduct from '../Clothes/Deduct';
 import Recharge from '../Recharge/App';
+import CardList from '../Clothes/CardList';
 import './Commoditysales.css';
 
 const token = 'token'.getData();
@@ -31,6 +32,7 @@ export default class extends Component {
             rechargeShow:false,
             payShow:false,
             enterAble:true,//点击enter是否搜索
+            cardList:[]
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
@@ -262,7 +264,11 @@ export default class extends Component {
             obj.number = value;
         }
         obj.callback = (res) => {
-            this.setState({card:res});
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({card:res});
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -420,6 +426,7 @@ export default class extends Component {
                         callback={this.paymentCallback}
                     />
                 }
+                {this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({card:obj,cardList:[]})}/>}
             </Window>  
         );
     }
