@@ -820,7 +820,7 @@ export default class extends Component {
                 {
                     17 === this.state.show
                     &&
-                    <Recharge closeView={this.handleClose} card={this.state.card}/>
+                    <Recharge closeView={this.onClose} onBack={this.handleClose} card={this.state.card}/>
                 }
                 {
                     this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>

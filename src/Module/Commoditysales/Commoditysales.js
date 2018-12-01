@@ -403,7 +403,7 @@ export default class extends Component {
                     </div>                           
                </div> 
                 {this.state.show && <Deduct callback={() => this.setState({show: false})} onClose={() => this.setState({show:false})}/>}    
-                {this.state.rechargeShow && <Recharge closeView={() => this.setState({rechargeShow:false})}/>}
+                {this.state.rechargeShow && <Recharge onBack={() => this.setState({rechargeShow:false})} closeView={this.onClose}/>}
                 {/*  @param {object} data {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价}
  * @param {function} M1Read 读卡方法
  * @param {function} query 卡号查询 回调参数:卡号

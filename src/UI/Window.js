@@ -1,7 +1,7 @@
 /**
  * 弹窗组件
  * @author Edwin Young
- * @desc 界面弹出层  title:标题;onClose:关闭事件;children:内部内容;width:宽;height:高;className:追加自定义class;style:自定义样式;
+ * @desc 界面弹出层  title:标题;onBack:返回上级事件;onClose:关闭事件;children:内部内容;width:宽;height:高;className:追加自定义class;style:自定义样式;
  */
 
 import React from 'react';

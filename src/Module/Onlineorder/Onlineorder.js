@@ -71,7 +71,7 @@ export default class extends Component {
                     <BlueTab tabs={tabs} checked={this.state.checked} onChange={(i) => this.onChange(i)}>                        
                         <input type="text" className="e-input" placeholder="订单号,姓名,手机号" ref={input =>this.input = input} value={this.state.number} onChange={e => this.setState({number:e.target.value})}/><button className="e-btn" onClick={this.headclick}>查询</button>                       
                     </BlueTab> 
-                    <V callParent={this.callParent} onRef={this.onRef} />
+                    <V callParent={this.callParent} onRef={this.onRef} closeView={this.props.closeView}/>
                 </Window>
             </div>
         )

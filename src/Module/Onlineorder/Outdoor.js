@@ -169,10 +169,12 @@ export default class extends Component {
                     id={this.state.id} 
                     phone={this.state.phone} 
                     name={this.state.name} 
-                    closeView={() => {
+                    onBack={() => {
                         this.query();
                         this.setState({app:false});
-                    }}/>
+                    }}
+                    closeView={this.props.closeView}
+                />
             }
               
             {                

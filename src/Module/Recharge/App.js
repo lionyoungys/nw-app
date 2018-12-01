@@ -163,7 +163,7 @@ export default class extends React.Component {
     render() {
         let card = this.state.cards.length > 0 ? this.state.cards[this.state.index] : {};
         return (
-            <Window title='充值' onClose={this.props.closeView} >
+            <Window title='充值' onClose={this.props.closeView} onBack={this.props.onBack} >
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号/手机号：</label>

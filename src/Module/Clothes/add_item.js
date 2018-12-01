@@ -570,14 +570,24 @@ export default class extends Component {
     }
     handleClose() {this.setState({show:0, update:false})}
     handleCancel() {this.setState({show:1})}
-    onClose() {
+    onClose(isBack) {
         if (this.state.data.length > 0) {
             tool.ui.warn({msg:'还有衣物没有处理，是否退出', button:['是（Y）', '否（N）'],callback:(close, event) => {
-                '是（Y）' == event && this.props.closeView();
+                if ('是（Y）' == event) {
+                    if (isBack && 'function' === typeof this.props.onBack) {
+                        this.props.onBack();
+                    } else {
+                        this.props.closeView();
+                    }
+                }
                 close();
             }});
         } else {
-            this.props.closeView();
+            if (isBack && 'function' === typeof this.props.onBack) {
+                this.props.onBack();
+            } else {
+                this.props.closeView();
+            }
         }
     }
 
@@ -625,7 +635,7 @@ export default class extends Component {
         });
         amount = this.calculate(amount);
         return (
-            <Window title='收衣' onClose={this.onClose}>
+            <Window title='收衣' onClose={() => this.onClose(false)} onBack={() => this.onClose(true)}>
                 <div className='clothes-table' style={{paddingTop:'16px'}}>
                     <Table>
                         <thead><tr>
