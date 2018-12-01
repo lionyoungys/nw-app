@@ -12,21 +12,18 @@ export default class extends Component {
         super(props);        
     }
     render() {
-        // let data = tool.isArray(this.props.data) ? this.props.data : []
-        // ,   html = data.map((obj, index) => 
-        //         <tr key={'index_' + index} data-index={index} className='e-row e-hover-bule'>
-        //             <td>编号</td>
-        //             <td>客户姓名</td>
-        //             <td>客户手机号</td>
-        //             <td>操作人</td>
-        //             <td>状态</td>
-        //             <td>订单号</td>
-        //             <td>使用时间</td>
-        //         </tr>
-        //     );
+        let data = tool.isArray(this.props.data) ? this.props.data : []
+        ,   html = data.map((obj, index) => 
+                <tr key={'index_' + index} data-index={index} className=' e-hover-bule'>
+                    <td>{index+1}</td>
+                    <td>{obj.operation}</td>
+                    <td>{obj.content}</td>
+                    <td>{obj.time}</td>                   
+                </tr>
+            );
         return (
             <Dish title='日志' onClose={this.props.onClose}>
-                <div style={{height:'100%',overflow:'auto'}} className="record_tab">
+                <div style={{height:'100%',overflow:'auto'}} className="record_tr record_tab">
                     <Table>
                         <thead>
                             <th>编号</th>
@@ -35,7 +32,7 @@ export default class extends Component {
                             <th>操作时间</th>                           
                         </thead>
                         <tbody>
-                           {/* {html} */}
+                           {html}
                         </tbody>                     
                     </Table>                   
                 </div>

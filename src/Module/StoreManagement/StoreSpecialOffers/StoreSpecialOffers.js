@@ -8,7 +8,12 @@ import './storespecialoffers.css'
 import Table from '../../../UI/Table';
 import Select from '../../../UI/Select';
 import Nodata from '../../../UI/nodata';
-import AppendCoupon from './AppendCoupon'
+import AppendCoupon from './AppendCoupon';
+import Log from './Log';
+import Record from './Record';
+// import { CLIENT_RENEG_LIMIT } from 'tls';
+
+
 const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
@@ -23,12 +28,15 @@ export default class extends Component {
             creator:'',     //创建人
             arr:[],
             nodatas:true,
-            count:''
+            count:'',
+            record_list:[],
+            log_list:[],
         } 
         this.onClose = this.onClose.bind(this);
         this.query = this.query.bind(this);
         this.reset = this.reset.bind(this);
-        
+        this.record = this.record.bind(this);   
+        this.log = this.log.bind(this) ;  
     }  
     onClose(){
         this.setState({newincrease:false})
@@ -64,7 +72,52 @@ export default class extends Component {
     reset(){
         this.setState({discountname:'',creator:''});
     }
-    render(){
+    // 记录弹框
+    record (e){
+        var id = e.target.dataset.id;  //优惠券编码      
+        api.post('recordList', {
+            token:token,
+            cid:id
+           } ,(res,ver) => {
+                if (ver && res) {
+                    console.log(res)    
+                    if(res.result.data.length>0){
+                        this.setState({record_list:res.result.data})
+                    }else{
+                        tool.ui.error({title:'提示', msg:'暂无记录', button:['确定'],callback:(close, value) => {                            
+                            close();
+                        }});                 
+                    }                           
+                }else{
+                    handle();
+                }
+            });
+    }
+    // 日志
+    log (e){
+       // console.log(1)
+        var id = e.target.dataset.id;
+        console.log(id)
+        api.post('logList', {
+            token:token,
+            cid:id
+        }, (res,ver) => {
+                if (ver && res) {
+                    console.log(res)
+                    if(res.result.cou_log.length>0){
+                        this.setState({log_list:res.result.cou_log});
+                        
+                    }else{
+                        tool.ui.error({title:'提示', msg:'暂无日志', button:['确定'],callback:(close, value) => {                          
+                            close();
+                        }});
+                    }                  
+                }else{
+                    handle();
+                }
+            });
+    }
+    render(){        
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index}>
             <td>{index}</td>
@@ -77,9 +130,9 @@ export default class extends Component {
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
             <td>
                 {item.status==0?
-                <span><span onClick={this.mod} data-write={index} className='e-blue'>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>日志</span></span>
-                :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>日志</span></span>
-                : <span  onClick={this.delete} data-write={index} className='e-blue'>日志</span>  
+                <span><span onClick={this.mod} data-write={index} className='e-blue'>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
             }
             </td>
         </tr>
@@ -138,6 +191,12 @@ export default class extends Component {
                     </div>
                     {
                         this.state.newincrease && <AppendCoupon onClose={this.onClose} />
+                    }
+                    {
+                        this.state.record_list.length>0 && <Record data = {this.state.record_list} onClose={() => this.setState({record_list:[]})} />
+                    }
+                    {
+                        this.state.log_list.length >0 && <Log  data = {this.state.log_list} onClose={() => this.setState({log_list:[]})} />
                     }
         </div> 
         );

@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './LatticeQuery.css';
 import Window from '../../UI/Window';
-
+import Table from '../../UI/Table';
 
 export default class extends Component {
     constructor(props) {
@@ -118,7 +118,7 @@ export default class extends Component {
                     </div>
                 </div> 
                 <div className="lattice bothpayout-detail" id="bothpayout-detail">               
-                    <table>
+                    <Table>
                         <thead>
                             <tr>
                                 <th>流水号</th>
@@ -135,7 +135,7 @@ export default class extends Component {
                         <tbody>
                            {lists}
                         </tbody>
-                    </table>                       
+                    </Table>                       
                 </div>
             </Window>
         );

@@ -91,9 +91,11 @@ export default class extends React.Component {
                 &emsp;
                 <Select option={['麻辣香锅', '水煮鱼', '西芹淮山炒百合']} disabled={true} value={this.state.selectVal} onChange={obj => {console.log(obj);this.setState({selectVal:obj.value})}}/>
                 &emsp;
+
                 <MultiSelect value={this.state.values.toString()}>
                     {this.option.map(value => <span key={tool.UUID()} data-checked={-1 === value.inArray(this.state.values) ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
                 </MultiSelect>
+
                 <MathUI onAdd={() => this.setState({number:this.state.number+1})} onSub={() => this.setState({number:this.state.number-1})}>{this.state.number}</MathUI><br/>
                 <textarea className='e-textarea' rows='10' cols='50'></textarea>
                 <br/>

@@ -31,10 +31,23 @@
     margin-top: 10px;
     height: 283px;
 }
-/* ????????? */
+/* 目录，日志 */
 .record_tab{width: 100%;height: 100%;}
-.record_tab table {width: 100%;height: 100%}
-.record_tab table thead{height: 39rpx;background: #f5f7fa;}
-.record_tab table thead tr{height: 39rpx;}
-.record_tab table thead th{color:#636464;font-size:12px;line-height: 39px;}
-.record_tab table thead th:last-child{background: none}
+.record_tab .ui-table table {width: 100%;height: 100%}
+.record_tab .ui-table table thead{height: 39px;background: #f5f7fa;}
+.record_tab .ui-table table thead tr{height: 39rpx;}
+.record_tab .ui-table table thead th{
+    color:#636464;
+    font-size:12px;
+    line-height: 39px;
+    background:url(./images/thead-border.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1px 20px;
+}
+.record_tab .ui-table table thead th:last-child{background: none}
+
+.record_tr{
+    color: #333;   
+}
+
