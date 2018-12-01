@@ -43,7 +43,8 @@ export default class extends Component {
             current:null,
             takeclothindex:null,
             merchant:{},
-            payCard:{}
+            payCard:{},
+            calculate:2,    //计算方式
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);

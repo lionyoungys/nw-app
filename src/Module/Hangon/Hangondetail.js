@@ -110,7 +110,7 @@ export default class extends Component {
                             {
                                 name:data.clothing_name,
                                 color:data.clothing_color,
-                                number:data.grid_num,
+                                number:this.state.gridnam-this.state.clothnu,
                                 sn:data.clothing_number,
                                 user:data.user_name
                             }, 

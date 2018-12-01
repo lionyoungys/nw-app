@@ -37,7 +37,7 @@ export default class extends Component {
                     <span>优惠名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
                  </div>
                  <div>    
-                    <span>状&emsp;&emsp;态：</span><Select  option={['未取走','已取走','已撤单']}  style={{width:'153px'}}/>
+                    <span>状&emsp;&emsp;态：</span><Select  option={['未开始','进行中','已结束']}  style={{width:'153px'}}/>
                  </div>
               </div>
               <div className='storespecialofferstop_three'>

@@ -43,6 +43,7 @@ export default class extends React.Component {
         this.callback = this.callback.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
     componentDidMount() {
         api.post('cardType', {token:token,limit:200}, (res, ver,handle) => {
@@ -69,7 +70,9 @@ export default class extends React.Component {
         if (isNaN(this.state.amount) || this.state.amount < 0) return tool.ui.error({msg:'充值金额不正确！',callback:close => close()});
         this.setState({show:true})
     }
-
+    onKeyPress(e){
+        13 == (e.keyCode || e.which) && this.M1Read();
+    }   
     callback(obj) {
         if ('' == this.state.cid && '' == this.state.recharge_number) return tool.ui.error({msg:'会员卡不存在',callback:close => close()});
         let card = this.state.cards[this.state.index];
@@ -158,7 +161,7 @@ export default class extends React.Component {
                 <div className='recharge recharge-first'>
                     <div>
                         <label htmlFor='card_id' className='e-label'>卡号/手机号：</label>
-                        <input id='card_id' className='recharge_input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})}/>&nbsp;&nbsp;
+                        <input id='card_id' className='recharge_input' type='text' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;&nbsp;
                        
                         <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>&nbsp;&nbsp;
                         <button type='button' className='e-btn-b' data-query='1' onClick={this.M1Read}>查询</button>
