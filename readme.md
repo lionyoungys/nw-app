@@ -37,6 +37,9 @@ src/Module               -->    界面开发界面模块文件夹
 
 
 
+#应用程序主界面全局访问变量：MainView
+
+
 
 src/Module下界面组件的继承方法
 changeView(obj);    

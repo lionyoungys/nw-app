@@ -43,17 +43,18 @@ class Main extends Component {
         this.changeView = this.changeView.bind(this);    //界面跳转方法  
         this.menuReload = this.menuReload.bind(this);    //菜单重新加载
         this.openWeb = this.openWeb.bind(this);
-
+        this.closeView = this.closeView.bind(this);
     }
     
     componentDidMount() {
+        window.MainView = this;    //创建应用程序主界面对象
         EventApi.win.on('new-win-policy', function(frame, url, policy) {
             if (-1 !== url.indexOf('http')) {
                 policy.ignore();    // 不打开窗口
                 nw.Shell.openExternal(url);    //在系统默认浏览器打开
             }
         });
-        this.menuReload();     
+        this.menuReload();
     }   
 
     componentDidCatch(error) {
@@ -129,6 +130,9 @@ class Main extends Component {
     openWeb(e) {
         open(('string' === typeof e ? e : e.target.dataset.url), {});
     }
+    closeView() {
+        this.setState({view:null,param:null});
+    }
 
     render() {
         let View = null === this.state.view ? null : ('undefined' !== typeof router[this.state.view] ? router[this.state.view] : null);
@@ -155,7 +159,7 @@ class Main extends Component {
                 {/* 界面顶部菜单栏 */}
                 <div className='main-top'><div>{tabs}</div></div>
                 <Container menus={this.state.menus[this.state.MenuIndex]} changeView={this.changeView}>
-                    {null === View ? null : <View changeView={this.changeView} closeView={() => this.setState({view:null,param:null})} menuReload={this.menuReload}/>}
+                    {null === View ? null : <View changeView={this.changeView} closeView={this.closeView} menuReload={this.menuReload}/>}
                 </Container>
             </div>
         );
