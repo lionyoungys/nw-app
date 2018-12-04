@@ -20,7 +20,8 @@ export default class extends Component {
         super(props); 
         this.state={
             newincrease:false,
-            type:'满减', //类型
+            detaiCouShow:false,
+            type:'现金券', //类型
             status:'未启用',   //状态
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
@@ -31,8 +32,11 @@ export default class extends Component {
             count:'',
             record_list:[],
             log_list:[],
+            cid:'',
         } 
         this.onClose = this.onClose.bind(this);
+        this.editCouClose = this.editCouClose.bind(this);
+        this.editCoupon = this.editCoupon.bind(this);
         this.query = this.query.bind(this);
         this.reset = this.reset.bind(this);
         this.record = this.record.bind(this);  //查看使用记录 
@@ -40,12 +44,18 @@ export default class extends Component {
         this.startuser = this.startuser.bind(this) //启用优惠券
     }  
     onClose(){
-        this.setState({newincrease:false})
+
+        this.setState({ newincrease: false})
+    }
+    editCouClose(){
+
+        this.setState({ detaiCouShow: false });
+        this.query();
     }
     query(){
         let params={
             token:token,
-            type:this.state.type=='满减'?'1':this.state.type=='折扣'?'2':'3',
+            type:this.state.type=='现金券'?'1':'2',
             name:this.state.discountname,
             creater:this.state.creator,
             start_time:this.state.start_time,
@@ -140,11 +150,18 @@ export default class extends Component {
                 }
             });
     }
+    //修改优惠券
+    editCoupon(e){
+
+        var id = e.target.dataset.id;
+        console.log(id);
+        this.setState({ cid: id, detaiCouShow:true})
+    }
     render(){        
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index}>
             <td>{index}</td>
-            <td>{item.type==1?'满减':item.type==2?'折扣':'补偿巻'}</td>
+            <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
             <td>{item.remarks}</td>
             <td>{item.stock}\{item.surplus}</td>
@@ -153,7 +170,7 @@ export default class extends Component {
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
             <td>
                 {item.status==0?
-                <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.delete} data-write={index} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
             }
@@ -165,7 +182,7 @@ export default class extends Component {
            <div className='storespecialofferstopbg'>
               <div className='storespecialofferstop_one'>
                  <div> 
-                    <span>类&emsp;型：</span><Select  option={['满减','折扣','补偿券']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})} />
+                    <span>类&emsp;型：</span><Select  option={['现金券','折扣券']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})} />
                  </div>
                  <div>
                     <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth' onChange={e=>this.setState({creator:e.target.value})} value={this.state.creator}/>
@@ -220,6 +237,9 @@ export default class extends Component {
                     }
                     {
                         this.state.log_list.length >0 && <Log  data = {this.state.log_list} onClose={() => this.setState({log_list:[]})} />
+                    }
+                    {
+                    this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} />
                     }
         </div> 
         );

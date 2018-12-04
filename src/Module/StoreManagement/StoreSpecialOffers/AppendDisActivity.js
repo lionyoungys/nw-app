@@ -1,5 +1,5 @@
 /**
- * 新增满减活动/折扣活动
+ * 新增满减活动/折扣活动、袋洗/件洗
  * ranchong
  */
 import React, { Component } from 'react';
@@ -21,8 +21,8 @@ export default class extends Component {
             totalPrice: '',//满减金额
             subPrice: '',//减去金额
             customMobile: '',//自定义手机号
-            notiContent: '可减去',//可减去/可享受
-            notiContentUnit: '元',//元/折
+            notiContent: '可减去',//可减去/可享受/可以洗
+            notiContentUnit: '元',//元/折/袋/件
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -66,7 +66,7 @@ export default class extends Component {
                     <div> <span>使用门店:</span><Select option={['折扣券', '优惠券', '代金券']} value={this.state.useMer} onChange={obj => { console.log(obj); this.setState({ useMer: obj.value }) }} /></div>
                     <div> <span>开始时间:</span><input type='date' className='e-date' placeholder='请选择开始时间' /></div>
                     <div> <span>结束时间:</span><input type='date' className='e-date' placeholder='请选择结束时间' /></div>
-                    <div> <span><b>*结束时间:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '40px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
+                        <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '40px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
                     {this.state.notiContent} <input type='number' className='e-input' style={{ width: '40px' }} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                 </div>
                 <div className="app_cou_offer_user">

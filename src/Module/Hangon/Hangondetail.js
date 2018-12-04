@@ -92,6 +92,7 @@ export default class extends Component {
         });
     }
     putOn(){
+        console.log(this.state.gridnam+'-'+this.state.clothnu);
         //console.log(this.state.clothnums[this.state.clothindex])
         let puton={
             token:'token'.getData(),
@@ -110,7 +111,7 @@ export default class extends Component {
                             {
                                 name:data.clothing_name,
                                 color:data.clothing_color,
-                                number:this.state.gridnam-this.state.clothnu,
+                                number:this.state.gridnam+'-'+this.state.clothnu,
                                 sn:data.clothing_number,
                                 user:data.user_name
                             }, 

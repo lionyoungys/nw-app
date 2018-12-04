@@ -44,6 +44,7 @@ export default class extends Component {
         );
     }
     on_start (e){
+        console.log(e.target.value)
         if(e.target.value != this.state.get_type){
            var u = e.target.value;
            console.log(u)
