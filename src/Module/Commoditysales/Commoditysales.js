@@ -32,7 +32,8 @@ export default class extends Component {
             rechargeShow:false,
             payShow:false,
             enterAble:true,//点击enter是否搜索
-            cardList:[]
+            cardList:[],
+            calculate:2,    //计算方式
         };
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
@@ -50,6 +51,7 @@ export default class extends Component {
         this.searchBySN = this.searchBySN.bind(this);
         this.changeEnterAble = this.changeEnterAble.bind(this);
         this.blurWithMsg = this.blurWithMsg.bind(this);
+        this.calculate = this.calculate.bind(this);
     };
     //进入页面获取数据
     componentDidMount(){
@@ -78,7 +80,27 @@ export default class extends Component {
                 handle();
             }
         }, () => done());
+        api.post('calculate', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
+            if (ver) {
+                this.setState({calculate:res.result.money_type});
+            } else {handle()}
+        });
     }
+
+    //价格计算方式
+    calculate(value) {
+        if (0 == this.state.calculate) {
+            return Math.floor(value);
+        } else if (1 == this.state.calculate) {
+            return Math.round(value * 10) / 10;
+        } else if (2 == this.state.calculate) {
+            return value;
+        } else {
+            return value;
+        }
+    }
+
+   
    
     query(e){
         var searchNum;
@@ -335,7 +357,8 @@ export default class extends Component {
                 <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
                 <td data-index={index} onClick={this.deleteYes}>删除</td>
             </tr> 
-        );         
+        );   
+        pay_amount = this.calculate(pay_amount);           
         return (       
             <Window title='商品销售' onClose={this.onClose}>
                <div className="commoditysales-div">                 
@@ -422,6 +445,7 @@ export default class extends Component {
                             type:(this.state.card.card_name || ''),
                             number:(this.state.card.recharge_number || '')
                         }}
+                        calculate={this.calculate}
                         M1Read={this.M1read}
                         query={this.M1read}
                         callback={this.paymentCallback}
