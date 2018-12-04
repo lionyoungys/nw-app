@@ -415,7 +415,7 @@ export default class extends Component {
             mphone:this.state.mphone,
             ad:this.state.ad,
             number:this.state.payCard.recharge_number || this.state.number,
-            balance:balance,
+            balance:( isNaN(balance) ? 0 : (Math.round(balance * 100) / 100) ),
             pay_amount:object.pay_amount,
             change:object.change,
             gateway:gateway,
