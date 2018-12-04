@@ -100,6 +100,7 @@ export default class extends Component {
             judgeIndex = false;
         }
         if (sel_index == -1) return this.blurWithMsg('商品不在库中！');//没有在数组中
+        if (this.state.allComList[sel_index].stock == 0) return this.blurWithMsg('商品库存为0 不可销售！');
         //从大数组找出具体数据
         let search = this.state.allComList[sel_index];
         let handleList = this.state.searchList;
