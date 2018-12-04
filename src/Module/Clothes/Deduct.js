@@ -4,6 +4,7 @@
  */
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
+import CardList from './CardList';
 
 const token = 'token'.getData();
 export default class extends Component {
@@ -18,6 +19,7 @@ export default class extends Component {
             value:'',
             amount:'',
             cause:'',
+            cardList:[]
         };
         this.loadingHandle = null;
         this.handleChange = this.handleChange.bind(this);
@@ -48,13 +50,17 @@ export default class extends Component {
             obj.number = value;
         }
         obj.callback = (res) => {
-            this.setState({
-                number:res.recharge_number,
-                cid:res.id,
-                phone:res.user_mobile,
-                name:res.user_name,
-                balance:res.balance
-            });
+            if (res.cardList.length > 1) {
+                this.setState({cardList:res.cardList});
+            } else {
+                this.setState({
+                    number:res.recharge_number,
+                    cid:res.id,
+                    phone:res.user_mobile,
+                    name:res.user_name,
+                    balance:res.balance
+                });
+            }
         }
         EventApi.M1Read(obj);
     }
@@ -90,6 +96,22 @@ export default class extends Component {
                         <button type='button' className='e-btn' onClick={this.handleClick}>确认</button>
                     </div>
                 </div>
+                {
+                    this.state.cardList.length > 1
+                    &&
+                    <CardList
+                        data={this.state.cardList}
+                        onClose={() => this.setState({cardList:[]})}
+                        callback={res => this.setState({
+                            cardList:[],
+                            number:res.recharge_number,
+                            cid:res.id,
+                            phone:res.user_mobile,
+                            name:res.user_name,
+                            balance:res.balance
+                        })}
+                    />
+                }
             </Window>
         );
     }
