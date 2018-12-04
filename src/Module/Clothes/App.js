@@ -464,12 +464,12 @@ export default class extends Component {
     }
     handlePrinter(param) {
         var limit = false;
-        EventApi.print('order', param, 'printer'.getData(), () => {
+        EventApi.print('order2', param, 'printer'.getData(), () => {
             tool.ui.success({msg:'本页已打印完成，请撕纸', button:['再次打印', '确认'], callback:(close, event) => {
                 if (limit) return;
                 console.log(event);
                 limit = true;
-                EventApi.print('order2', param, 'printer'.getData());
+                //EventApi.print('order2', param, 'printer'.getData());
                 if (0 == event) {
                     this.handlePrinter(param);
                 }

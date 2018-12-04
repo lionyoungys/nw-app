@@ -123,9 +123,9 @@ export default class extends Component {
                     pay_amount:data.pay_amount,
                     gateway:data.pay_gateway
                 }
-                EventApi.print('order', params, 'printer'.getData(), () => {
+                EventApi.print('order2', params, 'printer'.getData(), () => {
                     tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
-                        EventApi.print('order2', params, 'printer'.getData());
+                        //EventApi.print('order2', params, 'printer'.getData());
                         close();
                     }});
                 });
