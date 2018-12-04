@@ -85,7 +85,7 @@ export default class extends Component {
         var searchNum;
         let sel_index;
         var judgeIndex = true;
-        console.log(typeof e);
+        console.log(typeof e,e);
         if ("object" === typeof e) {
             searchNum = e.target.dataset.id || e.target.parentNode.dataset.id;
             console.log('点击商品'+searchNum);
@@ -100,7 +100,9 @@ export default class extends Component {
             sel_index = searchNum.inObjArray(this.state.allComList, 'goods_number');
             judgeIndex = false;
         }
+        console.log(sel_index,this.state.allComList);
         if (sel_index == -1) return this.blurWithMsg('商品不在库中！');//没有在数组中
+        if (this.state.allComList[sel_index].stock == 0) return this.blurWithMsg('商品库存为0 不可销售！')
         //从大数组找出具体数据
         let search = this.state.allComList[sel_index];
         let handleList = this.state.searchList;
