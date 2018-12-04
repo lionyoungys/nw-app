@@ -121,8 +121,9 @@ export default class extends Component {
         ,   authCode = this.state.authCode
         ,   gateway = this.state.gateway
         ,   discount = data.discount || 100
-        ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount)
-        ,   change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
+        ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount);
+        amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(amount) ? 0 : amount) : amount);
+        var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway && 999 != gateway) discount = 100;
         return (
             <Dish title='收银' width='560' height='390' icon='icons-payment.png' onClose={this.props.onClose}>
