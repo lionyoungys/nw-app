@@ -817,18 +817,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     color: #666;
     margin-bottom: 14px;
 }
-.ui-payment-detail2{height: 38px;padding: 9px 0;}
-.ui-payment-detail3{height: 50px;padding: 10px;}
 .ui-payment-detail>div{
     height: 39px;
-    float: left;
-    border-right: 1px solid #d8dce5;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-.ui-payment-detail2>div{
-    height: 20px;
-    line-height: 20px;
     float: left;
     border-right: 1px solid #d8dce5;
     box-sizing: border-box;
@@ -838,6 +828,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-payment-detail>div:nth-child(2), .ui-payment-detail2>div:nth-child(2){width: 159px;padding-left: 18px}
 .ui-payment-detail>div:nth-child(3), .ui-payment-detail2>div:nth-child(3){width: 179px;padding-left: 28px;border-right: none;}
 .ui-payment-detail>div>div:first-child{margin-bottom: 15px}
+.ui-payment-detail2{height: 38px;padding: 9px 0;}
+.ui-payment-detail2>div{
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    border-right: 1px solid #d8dce5;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.ui-payment-detail3{height: 50px;padding: 10px;}
+.ui-payment-detail3>:first-child{margin-right: 40px}
 .ui-payment-pattern{
     height: 138px;
     width: 100%;

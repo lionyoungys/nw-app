@@ -152,8 +152,8 @@ export default class extends Component {
                         this.props.coupons
                         &&
                         <div className='ui-payment-detail3'>
-                            优惠券：<Select option={['无优惠券可使用']}/>
-                            <span style={{marginLeft:'40px'}}>促销活动：全场7折 满30减15</span>
+                            <span>优惠券：<Select option={['无优惠券可使用']}/></span>
+                            <span>促销活动：全场7折 满30减15</span>
                         </div>
                     }
                     <div className='ui-payment-head'>收款方式</div>
