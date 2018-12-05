@@ -136,7 +136,7 @@ class Items extends Component {
         ,   tmp;
         
         for (let i = 0;i < len;++i) {
-            this.props.data[i].server.map((obj, index) => {
+            this.props.data[this.props.checked[i]].server.map((obj, index) => {
                 if (
                     '' == this.state.value 
                     || 
@@ -144,7 +144,7 @@ class Items extends Component {
                     ||
                     -1 !== obj.help_num.indexOf(this.state.value)
                 ) {
-                    tmp = i + '_' + index;
+                    tmp = this.props.checked[i] + '_' + index;
                     html.push(
                         <i
                             key={obj.id}

@@ -8,6 +8,11 @@ import React from 'react';
 export default class extends React.Component {
     constructor(props) {
         super(props);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    handleClose() {
+        MainView.setState({MenuIndex:0, view:null, param:null});
     }
     render() {
         let style = this.props.style || {};
@@ -23,7 +28,7 @@ export default class extends React.Component {
                 <div className='ui-window-head'>
                     <i onClick={this.props.onBack || this.props.onClose}>返回上一级</i>
                     {this.props.title}
-                    <span onClick={this.props.onClose}></span>
+                    <span onClick={this.handleClose}></span>
                 </div>
                 <div className='ui-window-body'>
                     <div style={style}>{this.props.children}</div>
