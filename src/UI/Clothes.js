@@ -52,7 +52,7 @@ export default class extends Component {
         }
         let html = this.props.data.map((obj, index) =>
             <i
-                key={obj.id}
+                key={tool.UUID()}
                 className='e-option'
                 data-hover='none'
                 data-checked={-1 == index.inArray(this.state.checked) ? '' : 'checked'}
@@ -103,7 +103,7 @@ class Items extends Component {
         let len = this.props.checked.length
         ,   arr = [];
         for (let i = 0;i < len;++i) {
-            this.props.data[i].server.map((obj, index) => {
+            this.props.data[i].item_type.map((obj, index) => {
                 arr.push(i + '_' + index);
             });
         }
@@ -119,7 +119,7 @@ class Items extends Component {
             ,   tmp;
             for (let i = 0;i < len;++i) {
                 tmp = this.state.checked[i].split('_');
-                arr.push(this.props.data[tmp[0]].server[tmp[1]].item_name);
+                arr.push(this.props.data[tmp[0]].item_type[tmp[1]].item_name);
             }
             this.props.callback(arr);
         }
@@ -136,7 +136,7 @@ class Items extends Component {
         ,   tmp;
         
         for (let i = 0;i < len;++i) {
-            this.props.data[this.props.checked[i]].server.map((obj, index) => {
+            this.props.data[this.props.checked[i]].item_type.map((obj, index) => {
                 if (
                     '' == this.state.value 
                     || 
@@ -147,7 +147,7 @@ class Items extends Component {
                     tmp = this.props.checked[i] + '_' + index;
                     html.push(
                         <i
-                            key={obj.id}
+                            key={tool.UUID()}
                             className='e-option'
                             data-hover='none'
                             data-checked={-1 == tmp.inArray(this.state.checked) ? '' : 'checked'}

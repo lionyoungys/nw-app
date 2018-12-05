@@ -5,15 +5,31 @@
  */
 (function(window){
     window.printer = {
-        sell_goods: function() {
+        sell_goods: function(printer_name, param, callback) {
             new PrintUtil(printer_name, function(err, msg) {
                 if (err) return alert(msg);
                 this.align('c')
-                    .text('试试看能否正确扫描条码')
-                    .barcode(code)
-                    .line()
-                    .text(code)
-                    .line(3)
+                    .text('mname'.getData())
+                    .text('商品售卖单')
+                    .align('l')
+                    .text('订单号：' + param.ordersn)
+                    .barcode(param.ordersn)
+                    .text('打印时间：' + this.now())
+                    .dashed();
+                var items = param.items
+                ,   len = items.length;
+                for (var i = 0;i < len;++i) {
+                    this.text('商品名称：' + items[i].item_name)
+                        .text('单价：￥' + items[i].raw_price + '  ' + (1 == items[i].has_discount ? '打折' : '不打折'));
+                }
+                this.text('总件数：' + len)
+                    .text('总金额：' + param.total_amount)
+                    .text('付款方式：' + param.gateway)
+                    .text('折扣率：' + param.discount + '%')
+                    .text('折后价：￥' + param.pay_amount + '  实收金额：' + param.pay_amount)
+                    .text('操作员：' + param.operator)
+                    .text('店铺地址：' + param.addr)
+                    .text('服务热线：' + param.phone)
                     .print(callback);
             });
         },
