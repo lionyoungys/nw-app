@@ -54,7 +54,8 @@ export default class extends Component {
             <i
                 key={obj.id}
                 className='e-option'
-                data-checked={-1 == obj.index.inArray(this.state.checked) ? '' : 'checked'}
+                data-hover='none'
+                data-checked={-1 == index.inArray(this.state.checked) ? '' : 'checked'}
                 data-index={index}
                 onClick={this.handleCheck}
             >{obj.name}</i>
@@ -64,13 +65,13 @@ export default class extends Component {
                 <div className='clothes-cate-top'>
                     <span>衣物类别</span>
                     <span>
-                        <button type='button' className='e-btn-b larger' onClick={this.handleCheckAll}>全选</button>
+                        <button type='button' className='e-btn-b' onClick={this.handleCheckAll}>全选</button>
                         &emsp;
-                        <button type='button' className='e-btn larger' onClick={this.handleConfirm}>确认</button>
+                        <button type='button' className='e-btn' onClick={this.handleConfirm}>确认</button>
                     </span>
                 </div>
                 <div className='clothes-cate-body'>{html}</div>
-                {this.state.show && <Items checked={this.state.checked} data={this.props.data} onClose={this.handleClose}/>}
+                {this.state.show && <Items checked={this.state.checked} data={this.props.data} onClose={this.handleClose} callback={this.props.callback}/>}
             </Dish>
         );
     }
@@ -83,6 +84,7 @@ class Items extends Component {
         this.handleCheck = this.handleCheck.bind(this);
         this.handleCheckAll = this.handleCheckAll.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleConfirm = this.handleConfirm.bind(this);
     }
 
     handleCheck(e) {
@@ -110,6 +112,19 @@ class Items extends Component {
 
     handleChange(e) {this.setState({value:e.target.value})}
 
+    handleConfirm() {
+        let len = this.state.checked.length;
+        if (len > 0 && 'function' == typeof this.props.callback) {
+            let arr = []
+            ,   tmp;
+            for (let i = 0;i < len;++i) {
+                tmp = this.state.checked[i].split('_');
+                arr.push(this.props.data[tmp[0]].server[tmp[1]].item_name);
+            }
+            this.props.callback(arr);
+        }
+    }
+
     render() {
         if ('undefined' === typeof this.props.data || !(this.props.data instanceof Array)) {
             return null;
@@ -134,9 +149,10 @@ class Items extends Component {
                         <i
                             key={obj.id}
                             className='e-option'
+                            data-hover='none'
                             data-checked={-1 == tmp.inArray(this.state.checked) ? '' : 'checked'}
                             data-index={tmp}
-                            onClick={this.handleClick}
+                            onClick={this.handleCheck}
                         >{obj.item_name}</i>
                     );
                 }
@@ -148,8 +164,10 @@ class Items extends Component {
                     <span>衣物列表</span>
                     <span>
                         <input type='text' placeholder='助记码/名称' className='e-input' value={this.state.value} onChange={this.handleChange}/>
-                        &nbsp;&nbsp;
+                        &emsp;
                         <button type='button' className='e-btn-b' onClick={this.handleCheckAll}>全选</button>
+                        &emsp;
+                        <button type='button' className='e-btn' onClick={this.handleConfirm}>确认</button>
                     </span>
                 </div>
                 <div className='clothes-cate-body'>{html}</div>

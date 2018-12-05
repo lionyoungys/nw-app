@@ -201,10 +201,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-.e-option:hover, .e-option[data-checked=checked]{
+.e-option:hover, 
+.e-option[data-checked=checked], 
+.e-option[data-hover=none][data-checked=checked]:hover{
     color: #3fbfdc;
     border-color: #3fbfdc;
     background-color: #fff;
+}
+.e-option[data-hover=none]:hover{
+    color: #000;
+    background-color: #f5f8fa;
+    border-color: #e6ebf5;
 }
 /* 支付选项 标签内需包含一个i表签配合展示icon */
 .e-payment-option{
