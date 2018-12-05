@@ -5,6 +5,18 @@
  */
 (function(window){
     window.printer = {
+        sell_goods: function() {
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                this.align('c')
+                    .text('试试看能否正确扫描条码')
+                    .barcode(code)
+                    .line()
+                    .text(code)
+                    .line(3)
+                    .print(callback);
+            });
+        },
         order: function(printer_name, param, callback) {
             this.OrderPageFactory(printer_name, param, true, callback);
         },

@@ -475,6 +475,26 @@
     }
 
     /**
+     * 获取数组中指定索引对象的属性值
+     * @param {*number} index 数组索引
+     * @param {*mixed} type 数组中指定对象的属性
+     * @param {*function} TypeObject 当指针为空时返回的对象类型
+     * @return {*object}
+     */
+    Array.prototype.getObjectType = function(index, type, TypeObject) {
+        var object = 'object' == typeof this[index] ? this[index] : {};
+        if ('undefined' == typeof object[type] || null == object[type]) {
+            if ('function' == typeof TypeObject) {
+                return new TypeObject();
+            } else {
+                return new String();
+            }
+        } else {
+            return object[type];
+        }
+    }
+
+    /**
      * 通过对象交集设置数组中匹配的值
      * @param {object} obj 判断对象
      * @param {object} setObj 设置对象

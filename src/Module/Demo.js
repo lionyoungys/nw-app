@@ -17,7 +17,7 @@ import Clothes from '../UI/Clothes';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20, data:[], checked:[], show:false}
+        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20, data:[], checked:[], show:false, string:new String(1111)}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -92,6 +92,7 @@ export default class extends React.Component {
                 <button type='button' className='e-btn-b' onClick={this.handleClickForError}>失败弹窗</button><br/>
                 <button type='button' className='e-btn larger' onClick={() => this.setState({dish:true})}>盘子里的菜</button><br/>
                 <button type='button' className='e-btn larger' onClick={() => this.setState({show:true})}>衣物选择组件</button>&emsp;选中的:{this.state.checked.toString()}<br/>
+                <p><input type='text' value={this.state.string} onChange={e => this.setState({string:e.target.value})}/> </p>
                 <label><input type='checkbox' className='e-checkbox' value='111' onClick={e => console.log(e.target)}/> 你好</label><br/>
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
