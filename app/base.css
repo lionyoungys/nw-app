@@ -569,12 +569,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     height: 28px;
     position: relative;
     line-height: 1;
+    background-color: #fff;
 }
 .ui-select>.e-input, .ui-multi-select>.e-input{
     width: 100%;
     height: 100%;
     padding-right: 20px;
-    background-color: #fff;
 }
 .ui-select>i, .ui-multi-select>i{
     position: absolute;
@@ -806,7 +806,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     padding-left: 6px;
     margin-bottom: 14px;
 }
-.ui-payment-detail, .ui-payment-detail2{
+.ui-payment-detail, .ui-payment-detail2, .ui-payment-detail3{
     height: 74px;
     width: 100%;
     border: 1px solid #e6ebf5;
@@ -818,6 +818,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     margin-bottom: 14px;
 }
 .ui-payment-detail2{height: 38px;padding: 9px 0;}
+.ui-payment-detail3{height: 50px;padding: 10px;}
 .ui-payment-detail>div{
     height: 39px;
     float: left;

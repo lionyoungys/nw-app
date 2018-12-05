@@ -7,6 +7,7 @@
 import React, {Component} from 'react';
 import Dish from './Dish';
 import Triangle from './Triangle';
+import Select from '../UI/Select';
 
 const style = {marginBottom:'8px', fontSize:'12px'};
 /**
@@ -127,7 +128,7 @@ export default class extends Component {
         var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway && 999 != gateway) discount = 100;
         return (
-            <Dish title='收银' width='560' height='390' icon='icons-payment.png' onClose={this.props.onClose}>
+            <Dish title='收银' width='560' height={this.props.coupons ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
                     <div className='ui-payment-head'>核对信息</div>
                     <div className='ui-payment-detail'>
@@ -146,6 +147,15 @@ export default class extends Component {
                             <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{data.balance}</span></div>
                         </div>
                     </div>
+                    {this.props.coupons && <div className='ui-payment-head'>优惠信息</div>}
+                    {
+                        this.props.coupons
+                        &&
+                        <div className='ui-payment-detail3'>
+                            优惠券：<Select option={['无优惠券可使用']}/>
+                            <span style={{marginLeft:'40px'}}>促销活动：全场7折 满30减15</span>
+                        </div>
+                    }
                     <div className='ui-payment-head'>收款方式</div>
                     <div className='ui-payment-pattern'>
                         <div>
