@@ -201,7 +201,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-.e-option:hover{
+.e-option:hover, .e-option[data-checked=checked]{
     color: #3fbfdc;
     border-color: #3fbfdc;
     background-color: #fff;
@@ -595,7 +595,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     left: 0;
     width: 100%;
     padding-top: 4px;
-    z-index:10;
+    z-index:999;
 }
 .ui-select.ui-select-up>section, .ui-multi-select.ui-select-up>section{
     top: auto;
@@ -616,6 +616,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
     box-shadow: 1px 1px 1px #d9d9d9;
     overflow-y: auto;
     max-height:140px;
+    z-index: 999;
 }
 .ui-select>section>div>div{
     height: 28px;

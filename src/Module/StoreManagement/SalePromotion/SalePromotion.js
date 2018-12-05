@@ -7,26 +7,148 @@ import Select from '../../../UI/Select';
 import Nodata from '../../../UI/nodata';
 import AppendDisActivity from '../StoreSpecialOffers/AppendDisActivity'
 import SalePromotionDetail from './SalePromotionDetail'
+const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
         super(props);  
         this.state = {
             appendShow: false,
             proDetailShow:false,
+            type:'现金券', //类型
+            status:'未启用',   //状态
+            start_time:tool.date('Y-m-d'),
+            end_time:tool.date('Y-m-d'),
+            discountname:'',//优惠名称
+            creator:'',     //创建人
+            arr:[],
+            nodatas:true,
+            count:'',
+            id:''//点击的id
         }
         this.onClose = this.onClose.bind(this); 
+        this.query = this.query.bind(this);
+        this.reset = this.reset.bind(this);
+        this.editCoupon = this.editCoupon.bind(this);
+        this.log = this.log.bind(this);
+        this.startuser =this.log.bind(this);
     }  
+     // 日志
+     log (e){
+        e.stopPropagation();
+        // console.log(1)
+         var id = e.target.dataset.id;
+         console.log(id)
+         api.post('logList', {
+             token:token,
+             cid:id
+         }, (res,ver) => {
+                 if (ver && res) {
+                     console.log(res)
+                     if(res.result.cou_log.length>0){
+                         this.setState({log_list:res.result.cou_log});
+                         
+                     }else{
+                         tool.ui.error({title:'提示', msg:'暂无日志', button:['确定'],callback:(close, value) => {                          
+                             close();
+                         }});
+                     }                  
+                 }else{
+                     handle();
+                 }
+             });
+     }
+     // 启用优惠券
+     startuser (e){
+        e.stopPropagation();
+         var id = e.target.dataset.id;
+         console.log(id)
+         api.post('start_using', {
+             token:token,
+             cid:id
+         }, (res,ver) => {
+                 if (ver && res) {
+                     console.log(res)
+                     tool.ui.success({callback:(close, event) => {
+                         close();                       
+                         this.query();
+                     }});
+                 }else{
+                     tool.ui.error({callback:(close, event) => {
+                         close();                       
+                         this.query();
+                     }});
+                 }
+             });
+     }
+     //修改优惠券
+     editCoupon(e){
+        e.stopPropagation();
+         var id = e.target.dataset.id;
+         console.log(id);
+         this.setState({ cid: id, detaiCouShow:true})
+     }
     onClose() {
 
         this.setState({ appendShow: false, proDetailShow:false })
     }
+    reset(){
+
+    }
+    query(){
+        let params={
+            token:token,
+            type:this.state.type=='现金券'?'1':'2',
+            name:this.state.discountname,
+            operator:this.state.creator,
+            start_time:this.state.start_time,
+            end_time:this.state.end_time,
+            status:this.state.status=='未启用'?'1':this.state.status=='已启用'?"2":'3'
+        }
+        console.log(params)
+        api.post('salePromotion', params, (res,ver) => {
+            if (ver && res) {
+                console.log(res)    
+                if(res.result.data.length>0){
+                    this.setState({arr:res.result.data,
+                        // ,count:res.result.count,page:page,
+                        nodatas:false
+                    })
+                }else{
+                    this.setState({nodatas:true,arr:[],count:0})
+                }         
+               
+                //console.log(this.state.checkedArr)
+            }else{
+                handle();
+            }
+        });
+    }
     render(){
+        let list =this.state.arr.map((item,index)=>
+        <tr key={'item'+index} onClick={() => this.setState({ proDetailShow: true,id:item.id })}>
+            <td>{index}</td>
+            <td>{item.type==1?'现金券':'折扣券'}</td>
+            <td>{item.name}</td>
+            <td>{item.remarks}</td>
+            <td>{item.stock}\{item.surplus}</td>
+            <td>{item.start_time}</td>
+            <td>{item.end_time}</td>
+            <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
+            <td>
+                {item.status==0?
+                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
+            }
+            </td>
+        </tr>
+        );
         return (
          <div >
            <div className='storespecialofferstopbg'>
               <div className='storespecialofferstop_one'>
                  <div> 
-                    <span>类&emsp;型：</span><Select  option={['未取走','已取走','已撤单']} style={{width:'153px'}}/>
+                    <span>类&emsp;型：</span><Select   option={['现金券','折扣券']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})}/>
                  </div>
                  <div>
                     <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
@@ -37,17 +159,19 @@ export default class extends Component {
                     <span>优惠名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
                  </div>
                  <div>    
-                    <span>状&emsp;&emsp;态：</span><Select  option={['未开始','进行中','已结束']}  style={{width:'153px'}}/>
+                    <span>状&emsp;&emsp;态：</span><Select  option={['未启用','已启用','已过期']}  style={{width:'153px'}} value={this.state.status} onChange={obj => this.setState({status:obj.value})}/>
                  </div>
               </div>
               <div className='storespecialofferstop_three'>
                  <div >
-                    <label>开始时间：</label><input type="date"  className='e-date storespecialofferstop_datewidth'/> - <input type="date"  className='e-date storespecialofferstop_datewidth'/>
+                    <label>开始时间：</label><input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/> 
+                    - <input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                  </div>
                  <div>    
-                    <button  onClick={this.M1Read} className='e-btn-b' >重置</button> &emsp; 
+                    <button  onClick={this.M1Read} className='e-btn-b' onClick={this.reset}>重置</button> &emsp; 
                     <button  onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ appendShow: true })}>新增</button>  &emsp;
-                    <button onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ proDetailShow: true })}>查询</button>  
+                    {/* () => this.setState({ proDetailShow: true }) */}
+                    <button onClick={this.M1Read} className='e-btn' onClick={this.query}>查询</button>  
                  </div>
               </div>            
            </div>    
@@ -67,8 +191,8 @@ export default class extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {list}
-                            {this.state.nodatas && <Nodata />} */}
+                            {list}
+                            {/* {this.state.nodatas && <Nodata />} */}
                         </tbody>
                     </Table>
                     </div>
@@ -76,7 +200,7 @@ export default class extends Component {
                     this.state.appendShow && <AppendDisActivity onClose={this.onClose} />
                 }
                 {
-                    this.state.proDetailShow && <SalePromotionDetail onClose={this.onClose} />
+                    this.state.proDetailShow && <SalePromotionDetail onClose={this.onClose} id={this.state.id}/>
                 }
         </div> 
         );

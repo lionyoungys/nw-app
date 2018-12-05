@@ -71,7 +71,7 @@ export default class extends Component {
                             this.query()
                         }});                               
                 }else{
-                        tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                        tool.ui.error({title:'提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                             close();
                         }});
                     }   
@@ -96,7 +96,7 @@ export default class extends Component {
                     this.query()
                 }});                               
             }else{
-                tool.ui.error({title:'提示',msg:res.msg,button:'确定',callback:(close, event) => {
+                tool.ui.error({title:'提示',msg:res.msg,button:['确定'],callback:(close, event) => {
                     close();
                 }});
             }   

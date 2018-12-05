@@ -69,9 +69,9 @@ export default class extends Component {
     take_forshipping (e){
         var id = e.target.dataset.id;
         this.setState({id:id})
-        tool.ui.error({title:'提示',msg:'配送操作不可返回，是否确认提交',button:'确定',callback:(close, event) => {
+        tool.ui.error({title:'提示',msg:'配送操作不可返回，是否确认提交',button:['确定'],callback:(close, event) => {
             console.log(event)
-            if(event=='click'){
+            if(event=='确定'){
             api.post('dispatching', {
             token:'token'.getData(),
             oid:this.state.id,

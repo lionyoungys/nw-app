@@ -7,7 +7,6 @@ import React, {Component} from 'react';
 import Table from '../../../UI/Table';
 import Dish from '../../../UI/Dish';
 
-
 export default class extends Component {
     constructor(props) {
         super(props);        
@@ -16,7 +15,7 @@ export default class extends Component {
         let data = tool.isArray(this.props.data) ? this.props.data : []
         ,   html = data.map((obj, index) => 
                 <tr key={'index_' + index} data-index={index} className='record_tr e-hover-bule'>
-                    <td>{obj.id}</td>
+                    <td>{index+1}</td>
                     <td>{obj.uname}</td>
                     <td>{obj.user_mobile}</td>
                     <td>{obj.operation}</td>

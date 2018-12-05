@@ -91,6 +91,7 @@ export default class extends Component {
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
             if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
+            obj.pay_amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(obj.pay_amount) ? 0 : obj.pay_amount) : obj.pay_amount);
             if (obj.amount < 0 || obj.pay_amount > obj.amount) {
                 this.waiting = false;
                 return;

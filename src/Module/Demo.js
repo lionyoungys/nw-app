@@ -12,11 +12,12 @@ import Select from '../UI/Select';
 import MultiSelect from '../UI/MultiSelect';
 import MathUI from '../UI/MathUI';
 import Triangle from '../UI/Triangle';
+import Clothes from '../UI/Clothes';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20}
+        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20, data:[], checked:[], show:false}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -24,6 +25,16 @@ export default class extends React.Component {
         this.handleEat2 = this.handleEat2.bind(this);
         this.handleChoose = this.handleChoose.bind(this);
         this.option = ['全选', '麻辣香锅', '水煮鱼', '三文鱼刺身', '金枪鱼寿司', '波仔鲜芦笋', '金枪鱼饭团', '明太子', '海胆', '小米海参'];
+    }
+
+    componentDidMount() {
+        api.post('clothes', {token:'token'.getData(), page:1, limit:10000}, (res, ver, handle) => {    //获取衣物列表
+            if (ver) {
+                this.setState({data:res.result.type});
+            } else {
+                handle()
+            }
+        });
     }
     handleClickForSuccess() {
         tool.ui.success({callback:close => close()})
@@ -80,6 +91,7 @@ export default class extends React.Component {
                 <button type='button' className='e-btn' disabled>样式禁用</button>&nbsp;
                 <button type='button' className='e-btn-b' onClick={this.handleClickForError}>失败弹窗</button><br/>
                 <button type='button' className='e-btn larger' onClick={() => this.setState({dish:true})}>盘子里的菜</button><br/>
+                <button type='button' className='e-btn larger' onClick={() => this.setState({show:true})}>衣物选择组件</button>&emsp;选中的:{this.state.checked.toString()}<br/>
                 <label><input type='checkbox' className='e-checkbox' value='111' onClick={e => console.log(e.target)}/> 你好</label><br/>
                 <label><input type='radio' className='e-radio' value='222' name='r'/> 你好</label>&emsp;
                 <label><input type='radio' className='e-radio' value='333' name='r'/> 不好</label><br/>
@@ -118,6 +130,7 @@ export default class extends React.Component {
                     callback={value => this.setState({current:value})}
                 />
                 <Empty>暂无数据</Empty>
+                {this.state.show && <Clothes data={this.state.data} onClose={() => this.setState({show:false})} callback={checked => this.setState({checked:checked, show:false})}/>}
            </Window>
         );
     }

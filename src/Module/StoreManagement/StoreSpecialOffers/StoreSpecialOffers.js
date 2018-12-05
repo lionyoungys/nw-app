@@ -11,6 +11,7 @@ import Nodata from '../../../UI/nodata';
 import AppendCoupon from './AppendCoupon';
 import Log from './Log';
 import Record from './Record';
+import CouponDetail from './CouponDetail';
 // import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
@@ -33,22 +34,32 @@ export default class extends Component {
             record_list:[],
             log_list:[],
             cid:'',
+            on_coupon:false,   
+            coupon_Name:'' , //优惠券名称
+            coupon_Type:'' , //优惠类型
+            coupon_Method:'' , //优惠方案
+            cloType:'' ,// 货品品类
+            cloCode:'' , //品类编码
+            useMer:'' , // 使用门店
+            useRole:'' ,  // 使用规则
+            useNumber:'', // 总数量
+            startime:'', // 开始时间 
+            endtime:'', // 结束时间
         } 
         this.onClose = this.onClose.bind(this);
         this.editCouClose = this.editCouClose.bind(this);
         this.editCoupon = this.editCoupon.bind(this);
         this.query = this.query.bind(this);
         this.reset = this.reset.bind(this);
-        this.record = this.record.bind(this);  //查看使用记录 
-        this.log = this.log.bind(this) ;  //查看日志
-        this.startuser = this.startuser.bind(this) //启用优惠券
+        this.record = this.record.bind(this);   //查看使用记录 
+        this.log = this.log.bind(this) ;   //查看日志
+        this.startuser = this.startuser.bind(this);         //启用优惠券
+        this.ondetail = this.ondetail.bind(this);      // 优惠券详情
     }  
     onClose(){
-
-        this.setState({ newincrease: false})
+        this.setState({ newincrease: false,on_coupon:false})
     }
     editCouClose(){
-
         this.setState({ detaiCouShow: false });
         this.query();
     }
@@ -85,6 +96,7 @@ export default class extends Component {
     }
     // 记录弹框
     record (e){
+        e.stopPropagation()
         var id = e.target.dataset.id;  //优惠券编码      
         api.post('recordList', {
             token:token,
@@ -107,6 +119,7 @@ export default class extends Component {
     // 日志
     log (e){
        // console.log(1)
+       e.stopPropagation()
         var id = e.target.dataset.id;
         console.log(id)
         api.post('logList', {
@@ -130,6 +143,7 @@ export default class extends Component {
     }
     // 启用优惠券
     startuser (e){
+        e.stopPropagation()
         var id = e.target.dataset.id;
         console.log(id)
         api.post('start_using', {
@@ -152,15 +166,49 @@ export default class extends Component {
     }
     //修改优惠券
     editCoupon(e){
-
+        e.stopPropagation()
         var id = e.target.dataset.id;
         console.log(id);
         this.setState({ cid: id, detaiCouShow:true})
     }
-    render(){        
+    // 优惠券详情
+    ondetail (e){            
+        var index = e.target.dataset.index || e.target.parentNode.dataset.index;
+        var id = this.state.arr[index].id;      
+        console.log(id)   
+        api.post('CouponDetail',{
+            token: token,
+            cid: this.state.arr[index].id,
+
+        }, (res,ver) => {
+                if (ver && res) {
+                    console.log(res)
+                        this.setState({
+                            on_coupon:true,
+                            coupon_Name:res.result.coupon.name,
+                            coupon_Type:res.result.coupon.type == 1?'满减':res.result.coupon.type==2?'折扣':'补偿',
+                            coupon_Method:res.result.coupon.remarks,
+                            cloType:res.result.coupon.name,
+                            cloCode:res.result.coupon.code,
+                            useMer:res.result.coupon.mname,
+                            useRole:res.result.coupon.remarks,
+                            useNumber:res.result.coupon.stock,
+                            startime:res.result.coupon.start_time,
+                            endtime:res.result.coupon.end_time
+                        })                    
+                }else{
+                    tool.ui.error({callback:(close, event) => {
+                        close();                       
+                        this.query();
+                    }});
+                }
+            });     
+    }
+    render(){   
+        console.log(this.state.on_coupon)     
         let list =this.state.arr.map((item,index)=>
-        <tr key={'item'+index}>
-            <td>{index}</td>
+        <tr key={'item'+index}  data-index={index} onClick={this.ondetail}>
+            <td>{item.id}</td>
             <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
             <td>{item.remarks}</td>
@@ -240,6 +288,22 @@ export default class extends Component {
                     }
                     {
                     this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} />
+                    }
+                    {
+                        this.state.on_coupon && <CouponDetail 
+                             coupon_Name={this.state.coupon_Name}
+                             coupon_Type={this.state.coupon_Type}
+                             coupon_Method={this.state.coupon_Method}
+                             cloType={this.state.cloType}
+                             cloCode={this.state.cloCode}
+                             useMer={this.state.useMer}
+                             useRole={this.state.useRole}
+                             useNumber={this.state.useNumber}
+                             startime={this.state.startime}
+                             endtime={this.state.endtime}
+
+                             onClose={this.onClose}     
+                        />
                     }
         </div> 
         );

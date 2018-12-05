@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import './AppendCoupon.css'
 import Dish from '../../../UI/Dish'
 import Select from '../../../UI/Select'
+import MultiSelect from '../../../UI/MultiSelect';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -17,10 +18,9 @@ export default class extends Component {
             getType:'6',
             cloTypeArr:[], 
             merArr:[],
-            merNameArr:[],
+            merNameArr: [],
+            merSelectArr:[],
             useRole: '', //使用规则
-            useMerIndex:[],//使用门店id
-            useMer: '',//使用门店
             startime: tool.date('Y-m-d'), //开始时间
             endtime: tool.date('Y-m-d'), //结束时间
             totalPrice:'',//满减金额
@@ -32,6 +32,7 @@ export default class extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.changeCouponType = this.changeCouponType.bind(this);
         this.selectMemPart = this.selectMemPart.bind(this);
+        this.handleChoose = this.handleChoose.bind(this);
     }
     componentDidMount() {
         
@@ -49,13 +50,24 @@ export default class extends Component {
                 
                 if (cid) {//存在优惠券id
                     
+                    //根据选择店铺id进行处理
+                    let selectMerArrID = res.result.mids;
+                    let selectMerArr = [];
+                    let MerArr = res.result.merchant;
+                    if (selectMerArrID.length) {
+                        for (let index = 0; index < selectMerArrID.length; index++) {
+                            let sel_index = selectMerArrID[index].inObjArray(MerArr, 'id');
+                            if (-1 != sel_index) selectMerArr.push(MerArr[sel_index]);
+                        }
+                    }
+                    console.log(selectMerArr);
                     this.setState({
                         couponName: res.result.coupon.name,
                         couponType: res.result.coupon.type == '1' ? "现金券":'折扣券',
-                        cloType: res.result.item.join(','),
-                        merNameArr: res.result.merchant.typeArray('mname'),
-                        merArr: res.result.merchant,
-                        useMerIndex: res.result.mids,
+                        cloType: res.result.item.toString(),
+                        merArr: MerArr,
+                        merNameArr: MerArr.typeArray('mname'),
+                        merSelectArr: selectMerArr,
                         startime: tool.date('Y-m-d', res.result.coupon.start_time),
                         endtime: tool.date('Y-m-d', res.result.coupon.end_time),
                         totalPrice: res.result.coupon.full_money,
@@ -69,9 +81,10 @@ export default class extends Component {
                     })
 
                 }else{
+
                     let typeArr = res.result.item_name;
                     typeArr.push('全选');
-                    this.setState({ cloTypeArr: typeArr, merArr: res.result.merchant, merNameArr: res.result.merchant.typeArray('mname') })
+                    this.setState({ cloTypeArr: typeArr, merArr: res.result.merchant, merNameArr: res.result.merchant.typeArray('mname')})
                 }
             }
         });
@@ -99,21 +112,34 @@ export default class extends Component {
             }
         }
     }
+    //选择店铺处理
+    handleChoose(e) {
+        let value = e.target.innerText;
+        if (e.target.dataset.checked == 'checked') {
+            let index = value.inObjArray(this.state.merSelectArr, 'mname');
+            if (-1 != index) this.state.merSelectArr.splice(index, 1);
+        } else {
+            let disIndex = value.inObjArray(this.state.merArr, 'mname');
+            if (-1 != disIndex) this.state.merSelectArr.push(this.state.merArr[disIndex]);
+        }
+        this.setState({ merSelectArr: this.state.merSelectArr });
+    }
     handleClick() {
 
-        if (this.state.couponName == '' || this.state.useMer == '' || this.state.startime == '' || this.state.endtime == '' || this.state.totalPrice == '' || this.state.subPrice == '' || this.state.get_type =='') {
+        if (this.state.couponName == '' || this.state.merSelectArr.length ==0 || this.state.startime == '' || this.state.endtime == '' || this.state.totalPrice == '' || this.state.subPrice == '' || this.state.get_type =='') {
             return tool.ui.error({
                 msg: '内容不能为空！', callback: (close, event) => {
                     close();
                 }
             });
         } 
-        console.log(this.state.merArr[this.state.useMerIndex].id);
+        let arr = this.state.merSelectArr.typeArray('id');
+        console.log(this.state.merSelectArr, this.state.merSelectArr.typeArray('id'), this.state.merSelectArr.typeArray('id').toString(), arr.toString());
         api.post('addCoupon', {
             token: 'token'.getData(),
             name: this.state.couponName,
             type: this.state.couponType == '现金券' ? 1 : 2,
-            mid: this.state.merArr[this.state.useMerIndex].id,
+            mid: this.state.merSelectArr.typeArray('id').toString(),
             item_name: this.state.cloType,
             start_time: this.state.startime,
             end_time: this.state.endtime,
@@ -147,13 +173,18 @@ export default class extends Component {
             <div className="app_cou_content">
                 <div className="app_cou_left">
                     <div> <span><b>*</b>优惠券名称:</span><input type='text' className='e-input' placeholder='请输入优惠券名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
-                        <div> <span>优惠类型:</span><Select option={['现金券', '折扣券']} value={this.state.couponType} onChange={obj=>this.changeCouponType(obj)} /></div>
-                        <div> <span>衣物品类:</span><Select option={this.state.cloTypeArr} value={this.state.cloType} onChange={obj => { console.log(obj); this.setState({ cloType: obj.value }) }} /></div>
-                        <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
+                    <div> <span>优惠类型:</span><Select option={['现金券', '折扣券']} value={this.state.couponType} onChange={obj=>this.changeCouponType(obj)} /></div>
+                    <div> <span>衣物品类:</span><Select option={this.state.cloTypeArr} value={this.state.cloType} onChange={obj => { console.log(obj); this.setState({ cloType: obj.value }) }} /></div>
+                    <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
                     {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                 </div>
                 <div className="app_cou_right">
-                        <div> <span>使用门店:</span><Select option={this.state.merNameArr} value={this.state.useMer} onChange={obj => { console.log(obj); this.setState({ useMerIndex: obj.index,useMer:obj.value}) }} /></div>
+                        
+                        <div> <span>使用门店:</span>
+                            <MultiSelect value={this.state.merSelectArr.typeArray('mname').toString()}>
+                                {this.state.merNameArr.map(value => <span key={tool.UUID()} data-checked={-1 === value.inObjArray(this.state.merSelectArr, 'mname') ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
+                            </MultiSelect>
+                        </div>
                         <div> <span>开始时间:</span><input type='date' className='e-date' placeholder='请选择开始时间' value={this.state.startime}/></div>
                         <div> <span>结束时间:</span><input type='date' className='e-date' placeholder='请选择结束时间' value={this.state.endtime}/></div>
                     

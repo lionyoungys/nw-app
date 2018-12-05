@@ -26,6 +26,7 @@ export default class extends Component {
 
     // 获取数据
     componentDidMount() {
+        console.log(this.props.id);
         // api.post('', { token: 'token'.getData() }, (res, ver, handle) => {
         //     console.log(res);
         //     if (ver && res) {

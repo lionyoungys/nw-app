@@ -79,8 +79,8 @@ export default class extends Component {
         }); 
     }
     delete(){
-        tool.ui.error({title:'提示',msg:'是否删除',button:'确定',callback:(close, event) => {
-                if(event=='click'){
+        tool.ui.error({title:'提示',msg:'是否删除',button:['确定'],callback:(close, event) => {
+                if(event=='确定'){
                     api.post('gooddelType', {
                     token:'token'.getData(),
                     id:this.state.id
