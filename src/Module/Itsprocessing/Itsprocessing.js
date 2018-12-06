@@ -55,12 +55,13 @@ export default class extends Component {
             }
         });
     }
-    //点击确认
+    //点击确认18120546336635
     doCompensate() {
 
         if (this.state.returnCloth.length == 0) return tool.ui.error({title: '提示', msg: '待退衣物不能为空！', button: ['确定'], callback: (close, event) => { close(); }});
         // if (this.state.orderNum !== this.state.orderNum_save) return tool.ui.error({ title: '提示', msg: '订单号/流水号已改变，请重新获取数据！', button: '确定', callback: (close, event) => { close(); } });
         if (this.state.orderNum.length == 0) return tool.ui.error({ title: '提示', msg: '订单号/流水号不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (this.state.cause.length == 0) return tool.ui.error({ title: '提示', msg: '撤单原因不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCard.length > 0 ) return tool.ui.error({ title: '提示', msg: '订单非卡支付，只能现金退款！', button: ['确定'], callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCash * 1 > (this.state.maxReturn * 1)) return tool.ui.error({ title: '提示', msg: '现金退款金额不能大于最大退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
@@ -88,7 +89,7 @@ export default class extends Component {
     handleAllArr(index) {
         console.log('点击了片区' + index);
         console.log(this.state.returnCloth.concat(this.state.comeinCloth));
-        if (index == 1) {
+        if (index == 2) {
             if (this.state.comeinCloth.length == 0) return;
             let allArr = this.state.returnCloth.concat(this.state.comeinCloth);
             this.setState({ returnCloth: allArr, comeinCloth: [] });
@@ -192,7 +193,7 @@ export default class extends Component {
                 </div> 
                 <div className="Itsprocessing-footer">
                     <div className="Itsprocessing-footer-left">                     
-                        <span>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
+                        <span><b>*</b>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
                     </div>                 
                     <div className="Itsprocessing-footer-div">
                         <span>退款金额：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>

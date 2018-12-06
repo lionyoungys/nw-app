@@ -8,6 +8,8 @@
     text-align: right;
     margin-right: 15px;
     display: inline-block;
+    vertical-align: top;
+    margin-top: 8px;
 }
 .app_cou_content b{
 
@@ -74,4 +76,20 @@
 
     float: right;
     margin-right: 20px;
+}
+.app_cou_content .app-cou-sel-clo {
+
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    color: #5a5e66;
+    outline: none;
+    display: inline-block;
+    overflow-y: scroll;
 }

@@ -87,7 +87,7 @@ export default class extends Component {
                 this.setState({
                     typeLists: res.result.list,
                     typeList: res.result.list.typeArray('name'),
-                    goods_type:res.result.list[0].name
+                    goods_type:res.result.list.getObjectType(0, 'name', String)
                 })
             } else {
                 handle();

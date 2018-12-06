@@ -208,7 +208,7 @@ export default class extends Component {
         console.log(this.state.on_coupon)     
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index}  data-index={index} onClick={this.ondetail}>
-            <td>{item.id}</td>
+            <td>{index+1}</td>
             <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
             <td>{item.remarks}</td>

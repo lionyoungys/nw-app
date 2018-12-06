@@ -85,7 +85,7 @@ export default class extends Component {
     }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res)
-                this.setState({list:res.result.list,count:res.result.count,image_url:res.result.list[0].url,image_id:res.result.list[0].id})
+                this.setState({list:res.result.list,count:res.result.count,image_url:res.result.list.getObjectType(0, 'url', String),image_id:res.result.list.getObjectType(0, 'id', String)})
             }else{
                 handle();
             }
@@ -119,12 +119,14 @@ export default class extends Component {
                 console.log(res);
                 var tmp = res.result.grid.typeArray('name');
                 tmp.unshift('任意格架');
+                //let cate_type=res.result.cate_type.length > 0 ? res.result.cate_type : [{name:''}];
+                
                 this.setState({
-                    cate_name:res.result.cate_type[0].name,
-                    disposetype:res.result.dispose_type[0].name,
-                    gradename:res.result.grade[0].grade,
-                    materialsname:res.result.materials[0].name,
-                    gridname:res.result.grid[0].name,
+                    cate_name:res.result.cate_type.getObjectType(0, 'name', String),
+                    disposetype:res.result.dispose_type.getObjectType(0, 'name', String),
+                    gradename:res.result.grade.getObjectType(0, 'grade', String),
+                    materialsname:res.result.materials.getObjectType(0, 'name', String),
+                    gridname:res.result.grid.getObjectType(0, 'name', String),
                     cate_type:res.result.cate_type.typeArray('name'),
                     cate_types:res.result.cate_type,
                     dispose_type:res.result.dispose_type.typeArray('name'),
@@ -162,14 +164,15 @@ export default class extends Component {
             item_online_price: '',//线上价格
             image_id: '',//图片id
             image_url: '',//图片url
+            help_num:'',//助记码
             // online: 1,//在线接单
             has_discount: 1,//允许折扣
             transfer: 1,//价格可调
             min_transfer:'0',//可调下线
-            disposetype:this.state.dispose_types[0].name,
-            gradename:this.state.grade[0].grade,
+            disposetype:this.state.dispose_types.getObjectType(0, 'name', String),
+            gradename:this.state.grade.getObjectType(0, 'grade', String),
             gridname:'X',
-            materialsname:this.state.materialss[0].name       
+            materialsname:this.state.materialss.getObjectType(0, 'name', String)       
         })
     }
     handleClick(e){
@@ -298,6 +301,7 @@ export default class extends Component {
                 materialsname: good.materials,
                 gridname: good.grid,
                 image_url: good.image_url,
+                help_num:good.help_num,
                 // online: good.state,//在线接单
                 transfer: good.transfer,//价格可调
                 has_discount:good.has_discount,//允许折扣
@@ -395,7 +399,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} onChange={value => this.setState({gradename:value.value})} selected="无"  value={this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} onChange={value => this.setState({materialsname:value.value})} selected="无" value={this.state.materialsname}/></div>
                                 <div><span><i>*</i> 洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
-                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
+                                <div><span> 助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>
@@ -439,7 +443,7 @@ export default class extends Component {
                                 <div><span>档次：</span><Select option={this.state.grade} selected={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename} onChange={value => this.setState({gradename:value.value})} value={this.state.gradename==null||this.state.gradename==''?'无':this.state.gradename}/></div>
                                 <div><span>材料：</span><Select option={this.state.materials} selected={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname} onChange={value => this.setState({materialsname:value.value})} value={this.state.materialsname==null||this.state.materialsname==''?'无':this.state.materialsname}/></div>
                                 <div><span><i>*</i>洗护周期：</span><input className='e-input addnewprice-input' type="number" value={this.state.item_cycle} onChange={e=>this.setState({item_cycle:e.target.value})}/>天</div>
-                                <div><span><i>*</i> 助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
+                                <div><span>助记码：</span><input className='e-input addnewprice-input' type="text" value={this.state.help_num} onChange={e=>this.setState({help_num:e.target.value})}/></div>
                             </div>
                             <div className="addnewprice-one-right">
                                 <img src={this.state.image_url}></img>

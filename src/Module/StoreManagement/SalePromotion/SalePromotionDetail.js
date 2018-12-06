@@ -27,19 +27,25 @@ export default class extends Component {
     // 获取数据
     componentDidMount() {
         console.log(this.props.id);
-        // api.post('', { token: 'token'.getData() }, (res, ver, handle) => {
-        //     console.log(res);
-        //     if (ver && res) {
-        //         this.setState({
-        //             // list: res.result.info,
-        //             // starttime: res.result.dateStartTime,
-        //             // endtime: res.result.dateEndTime,
-        //             // mlist: res.result.info
-        //         });
-        //     } else {
-        //         handle();
-        //     }
-        // });
+        api.post('salePromotionDetail', { 
+            token: 'token'.getData(),
+            aid: this.props.id
+         }, (res, ver, handle) => {
+            console.log(res);
+            if (ver && res) {
+                this.setState({
+                   promoName:res.result.activity.name,
+                   promoType:res.result.activity.type,
+                   promoMethod:res.result.activity.full_money,
+                   useRole:res.result.activity.remarks,
+                   startime:res.result.activity.start_time,
+                   endtime:res.result.activity.end_time,
+
+                });
+            } else {
+                handle();
+            }
+        });
     }
     render() {
         return (

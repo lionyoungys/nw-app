@@ -77,6 +77,7 @@ export default class extends Component {
                 <td>{item.clothing_color}</td>
                 <td>{item.grid_num}</td>
                 <td>{item.status.getItemStatusName()}</td>
+                <td>{item.deal_time}</td>
                 <td>{item.user_name}</td>
                 <td>{item.user_mobile}</td>
                 <td>{item.card_number}</td>
@@ -144,6 +145,7 @@ export default class extends Component {
                                 <th>颜色</th>
                                 <th>衣挂号</th>
                                 <th>状态</th>
+                                <th>取衣时间</th>
                                 <th>姓名</th>
                                 <th>手机</th>
                                 <th>卡号</th>

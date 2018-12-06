@@ -7,6 +7,7 @@ import './AppendCoupon.css'
 import Dish from '../../../UI/Dish'
 import Select from '../../../UI/Select'
 import MultiSelect from '../../../UI/MultiSelect';
+import Clothes from '../../../UI/Clothes';
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -15,8 +16,8 @@ export default class extends Component {
             couponName: '',//优惠券名称
             couponType: '满减', //活动类型  
             couponTypeID:1,       
-            cloType: '全选', //衣物品类 
-            getType: '1',
+            cloSelTypeArr: [], //已选择衣物品类 
+            getType: '1',//是否与优惠券通用
             cloTypeArr: [],
             merArr: [],
             merNameArr: [],
@@ -26,9 +27,9 @@ export default class extends Component {
             endtime: tool.date('Y-m-d'), //结束时间
             totalPrice: '',//满减金额
             subPrice: '',//减去金额
-            customMobile: '',//自定义手机号
             notiContent: '可减去',//可减去/可享受/可以洗
             notiContentUnit: '元',//元/折/袋/件
+            SelectCloShow: false,
         };
         this.handleClick = this.handleClick.bind(this);
         this.changeCouponType = this.changeCouponType.bind(this);
@@ -42,10 +43,13 @@ export default class extends Component {
             this.setState({ cid: cid });
         }
         console.log(cid, 1111);
-        api.post(cid ? 'CouponDetail' : 'addCoupon_getDate', {
+        var pram = pram = {
             token: 'token'.getData(),
-            cid: cid,
-        }, (res, ver) => {
+            aid: cid
+        }
+        console.log(pram);
+        
+        api.post(cid ? 'salePromotionDetail' : 'addCoupon_getDate', pram, (res, ver) => {
             console.log(res)
             if (ver && res) {
 
@@ -61,31 +65,28 @@ export default class extends Component {
                             if (-1 != sel_index) selectMerArr.push(MerArr[sel_index]);
                         }
                     }
-                    console.log(selectMerArr);
+                    // console.log(selectMerArr);
                     this.setState({
                         couponName: res.result.coupon.name,
                         couponType: res.result.coupon.type == '1' ? "现金券" : '折扣券',
-                        cloType: res.result.item.toString(),
+                        cloSelTypeArr: res.result.item,
+                        cloTypeArr: res.result.item_name,
                         merArr: MerArr,
                         merNameArr: MerArr.typeArray('mname'),
                         merSelectArr: selectMerArr,
                         startime: tool.date('Y-m-d', res.result.coupon.start_time),
                         endtime: tool.date('Y-m-d', res.result.coupon.end_time),
                         totalPrice: res.result.coupon.full_money,
-                        subPrice: res.result.coupon.type == '1' ? res.result.coupon.money : res.result.coupon.discount,
-                        notiContent: res.result.coupon.type == '1' ? '可减去' : '可享受',//可减去/可享受
-                        notiContentUnit: res.result.coupon.type == '1' ? '元' : '折',//元/折
-                        customMobile: res.result.coupon.end_time,
+                        subPrice: res.result.coupon.type == '2' ? res.result.coupon.discount * 0.1 : res.result.coupon.money,
+                        notiContent: res.result.coupon.type == '1' ? '可减去' : (res.result.coupon.type == '2' ? '可享受' : '可以洗'),//可减去/可享受/可以洗
+                        notiContentUnit: res.result.coupon.type == '1' ? '元' : (res.result.coupon.type == '2' ? '折' : (res.result.coupon.type == '3' ? '件' : '袋')),//元/折/件/袋
                         getType: res.result.coupon.whether,
-                        customMobile: res.result.coupon.user_mobile,
                         useRole: res.result.coupon.remarks,
                     })
 
                 } else {
 
-                    let typeArr = res.result.item_name;
-                    typeArr.push('全选');
-                    this.setState({ cloTypeArr: typeArr, merArr: res.result.merchant, merNameArr: res.result.merchant.typeArray('mname') })
+                    this.setState({ cloTypeArr: res.result.item_name, merArr: res.result.merchant, merNameArr: res.result.merchant.typeArray('mname') })
                 }
             }
         });
@@ -130,7 +131,7 @@ export default class extends Component {
     }
     handleClick() {
 
-        if (this.state.couponName == '' || this.state.merSelectArr.length == 0 || this.state.startime == '' || this.state.endtime == '' || this.state.totalPrice == '' || this.state.subPrice == '' || this.state.get_type == '') {
+        if (this.state.couponName == '' || this.state.merSelectArr.length == 0 || this.state.cloSelTypeArr.length == 0  || this.state.startime == '' || this.state.endtime == '' || this.state.totalPrice == '' || this.state.subPrice == '' || this.state.get_type == '') {
             return tool.ui.error({
                 msg: '内容不能为空！', callback: (close, event) => {
                     close();
@@ -138,21 +139,23 @@ export default class extends Component {
             });
         }
         var pra = {
+            
             token: 'token'.getData(),
+            aid: this.state.cid ? this.state.cid : '',
             name: this.state.couponName,
             type: this.state.couponTypeID,
             mid: this.state.merSelectArr.typeArray('id').toString(),
-            item_name: this.state.cloType,
+            item_name: this.state.cloSelTypeArr.toString(),
             start_time: this.state.startime,
             end_time: this.state.endtime,
             full_money: this.state.totalPrice,
             discount: this.state.couponType == '折扣' ? this.state.subPrice * 10 : 100,
-            money: this.state.couponType != '折扣' ? this.state.subPrice : '',
+            money: this.state.couponType != '折扣' ? this.state.subPrice : '0',
             remarks: this.state.useRole,
             whether: this.state.getType * 1,
         }
         console.log(pra);
-        api.post('addSalePromotion', pra, (res, ver) => {
+        api.post(this.state.cid ? 'SalePromotionEdit' :'addSalePromotion', pra, (res, ver) => {
             if (ver && res) {
                 console.log(res);
                 tool.ui.success({
@@ -177,7 +180,7 @@ export default class extends Component {
                     <div className="app_cou_left">
                         <div> <span><b>*</b>优惠券名称:</span><input type='text' className='e-input' placeholder='请输入优惠券名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
                         <div> <span>促销类型:</span><Select option={['满减', '折扣','袋洗', '多件洗']} value={this.state.couponType} onChange={obj => this.changeCouponType(obj)} /></div>
-                        <div> <span>衣物品类:</span><Select option={this.state.cloTypeArr} value={this.state.cloType} onChange={obj => { console.log(obj); this.setState({ cloType: obj.value }) }} /></div>
+                        <div> <span>衣物品类:</span><div className='app-cou-sel-clo' placeholder='请选择衣物品类' onClick={() => this.setState({ SelectCloShow: true })}>{this.state.cloSelTypeArr.toString()}</div></div>
                         <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
                     {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                     </div>
@@ -208,6 +211,7 @@ export default class extends Component {
                         <button type='button' className='e-btn' onClick={this.handleClick}>提交</button>
                     </div>
                 </div>
+                {this.state.SelectCloShow && <Clothes data={this.state.cloTypeArr} onClose={() => this.setState({ SelectCloShow: false })} callback={checked => this.setState({ cloSelTypeArr: checked, SelectCloShow: false })} />}
             </Dish>
         );
     }

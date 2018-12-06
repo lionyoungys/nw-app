@@ -100,7 +100,7 @@
 }
 .Itsprocessing-footer span{
     float: left;
-    width: 61px;
+    width: 70px;
     height: 20px;
     line-height: 20px;
     color: #333;
@@ -108,6 +108,9 @@
     text-align: right;
     display: block;
     margin-left: 10px;
+}
+.Itsprocessing-footer b{
+    color: red;
 }
 
 .Itsprocessing-footer-text{
