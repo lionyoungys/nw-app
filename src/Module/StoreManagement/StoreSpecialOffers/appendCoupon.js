@@ -187,8 +187,8 @@ export default class extends Component {
                                 {this.state.merNameArr.map(value => <span key={tool.UUID()} data-checked={-1 === value.inObjArray(this.state.merSelectArr, 'mname') ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
                             </MultiSelect>
                         </div>
-                        <div> <span>开始时间:</span><input type='date' className='e-date' placeholder='请选择开始时间' value={this.state.startime}/></div>
-                        <div> <span>结束时间:</span><input type='date' className='e-date' placeholder='请选择结束时间' value={this.state.endtime}/></div>
+                        <div> <span>开始时间:</span><input type='date' className='e-date' placeholder='请选择开始时间' value={this.state.startime} onChange={e => this.setState({ startime: e.target.value })} /></div>
+                        <div> <span>结束时间:</span><input type='date' className='e-date' placeholder='请选择结束时间' value={this.state.endtime} onChange={e => this.setState({ endtime: e.target.value })}/></div>
                     
                 </div>
                 <div className="app_cou_offer_user">

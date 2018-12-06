@@ -10,6 +10,10 @@
     margin-top: 14px;
     height: 25px;
     box-sizing: border-box;
+    width: 580px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 .sale_pro_content a{
 
