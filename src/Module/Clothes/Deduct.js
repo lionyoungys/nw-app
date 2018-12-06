@@ -39,8 +39,12 @@ export default class extends Component {
             'deduct', 
             {token:token,id:this.state.cid,recharge_number:this.state.number,money:this.state.amount,cause:this.state.cause}, 
             (res, ver, handle) => {
-                if (!ver) return handle();
-                'function' === typeof this.props.callback && this.props.callback(this.state);
+                if (ver) {
+                    tool.ui.success({button:['取消', '确定'], callback:close=>close()});
+                    'function' === typeof this.props.callback && this.props.callback(this.state);
+                } else {
+                    handle();
+                }
             }
         );
     }
