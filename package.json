@@ -11,7 +11,7 @@
     "fyr_build": "E:/nwJs/nwjs-v0.14.7-win-x64/shuxier30 ./app",
     "wj_start": "webpack && C:/Users/wangjun/Desktop/nwjs-sdk-v0.14.7-win-x64/nw ./app",
     "wj_build": "C:/Users/wangjun/Desktop/nwjs-v0.14.7-win-x64/nw ./app",
-    "rc_start": "webpack && E:/nwjs-sdk-v0.14.7-win-x64/nw ./app",
+    "rc_start": "webpack && E:/pc-framework/nwjs-sdk-v0.14.7-win-ia32/shuxier30 ./app",
     "rc_build": "E:/nwjs-v0.14.7-win-x64/nw ./app"
   },
   "dependencies": {

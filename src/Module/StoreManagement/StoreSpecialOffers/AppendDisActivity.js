@@ -65,23 +65,22 @@ export default class extends Component {
                             if (-1 != sel_index) selectMerArr.push(MerArr[sel_index]);
                         }
                     }
-                    // console.log(selectMerArr);
                     this.setState({
-                        couponName: res.result.coupon.name,
-                        couponType: res.result.coupon.type == '1' ? "现金券" : '折扣券',
+                        couponName: res.result.activity.name,
+                        couponType: res.result.activity.type == '1' ? '满减' : (res.result.activity.type == '2' ? '折扣' : (res.result.activity.type == '3' ? '多件洗' : '袋洗')),
                         cloSelTypeArr: res.result.item,
                         cloTypeArr: res.result.item_name,
                         merArr: MerArr,
                         merNameArr: MerArr.typeArray('mname'),
                         merSelectArr: selectMerArr,
-                        startime: tool.date('Y-m-d', res.result.coupon.start_time),
-                        endtime: tool.date('Y-m-d', res.result.coupon.end_time),
-                        totalPrice: res.result.coupon.full_money,
-                        subPrice: res.result.coupon.type == '2' ? res.result.coupon.discount * 0.1 : res.result.coupon.money,
-                        notiContent: res.result.coupon.type == '1' ? '可减去' : (res.result.coupon.type == '2' ? '可享受' : '可以洗'),//可减去/可享受/可以洗
-                        notiContentUnit: res.result.coupon.type == '1' ? '元' : (res.result.coupon.type == '2' ? '折' : (res.result.coupon.type == '3' ? '件' : '袋')),//元/折/件/袋
-                        getType: res.result.coupon.whether,
-                        useRole: res.result.coupon.remarks,
+                        startime: tool.date('Y-m-d', res.result.activity.start_time),
+                        endtime: tool.date('Y-m-d', res.result.activity.end_time),
+                        totalPrice: res.result.activity.full_money,
+                        subPrice: res.result.activity.type == '2' ? res.result.activity.discount * 0.1 : res.result.activity.money,
+                        notiContent: res.result.activity.type == '1' ? '可减去' : (res.result.activity.type == '2' ? '可享受' : '可以洗'),//可减去/可享受/可以洗
+                        notiContentUnit: res.result.activity.type == '1' ? '元' : (res.result.activity.type == '2' ? '折' : (res.result.activity.type == '3' ? '件' : '袋')),//元/折/件/袋
+                        getType: res.result.activity.whether,
+                        useRole: res.result.activity.remarks,
                     })
 
                 } else {
