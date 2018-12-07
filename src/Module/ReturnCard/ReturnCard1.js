@@ -54,7 +54,9 @@ export default class extends React.Component {
         }
         console.log(obj)
         obj.callback = (res) => { 
-            if(res.cardList.length<1){
+            if(res.cardList.length > 1){
+                this.setState({cardList:res.cardList});
+            }else{
                 this.setState({
                     cid:res.id,
                     user_mobile:res.user_mobile,
@@ -73,8 +75,6 @@ export default class extends React.Component {
                     shop:shopname ,
                     card_number:res.recharge_number,        
                 });
-            }else{
-                this.setState({cardList:res.cardList})
             }                                              
         }
         EventApi.M1Read(obj);
