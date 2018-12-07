@@ -22,6 +22,7 @@ export default class extends Component {
             endtime: '', //结束时间
             totalPrice: '',//满减金额
             subPrice: '',//减去金额
+            comFromIndex:'',//来自哪个页面
         };
     }
 
@@ -29,7 +30,8 @@ export default class extends Component {
     componentDidMount() {
         console.log(this.props.id,this.props.index);
         let index = this.props.index;
-        api.post(this.props.index == 1 ? 'CouponDetail':'salePromotionDetail', { 
+        this.setState({ comFromIndex:index});
+        api.post(index == 1 ? 'CouponDetail':'salePromotionDetail', { 
             token: 'token'.getData(),
             aid: index == 1 ? '' : this.props.id,
             cid: index == 1 ? this.props.id :'',
@@ -72,10 +74,10 @@ export default class extends Component {
             <Dish title='促销活动详情' onClose={this.props.onClose} width="650" height="450">
                 <div className="sale_pro_content">
                     <div>
-                        <img src='images/sale_pro_name.png' /><span>促销活动:&emsp;<a>{this.state.promoName}</a></span>
+                        <img src='images/sale_pro_name.png' /><span>{this.state.comFromIndex == '1' ? '优惠券名称':'活动名称'}:&emsp;<a>{this.state.promoName}</a></span>
                     </div>
                     <div>
-                        <img src='images/sale_pro_type.png' /><span>促销类型:&emsp;{this.state.promoType}</span>
+                        <img src='images/sale_pro_type.png' /><span>{this.state.comFromIndex == '1' ? '优惠类型' : '促销类型'}:&emsp;{this.state.promoType}</span>
                     </div>
                     <div>
                         <img src='images/sale_pro_method.png' /><span>促销方案:&emsp;总价满足 {this.state.totalPrice} 元；{this.state.notiContent} {this.state.subPrice} {this.state.notiContentUnit}</span>

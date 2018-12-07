@@ -177,7 +177,7 @@ export default class extends Component {
             <Dish title='新增优惠券' onClose={this.props.onClose} width="690" height="400">
                 <div className="app_cou_content">
                     <div className="app_cou_left">
-                        <div> <span><b>*</b>优惠券名称:</span><input type='text' className='e-input' placeholder='请输入优惠券名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
+                        <div> <span><b>*</b>活动名称:</span><input type='text' className='e-input' placeholder='请输入活动名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
                         <div> <span>促销类型:</span><Select option={['满减', '折扣','袋洗', '多件洗']} value={this.state.couponType} onChange={obj => this.changeCouponType(obj)} /></div>
                         <div> <span>衣物品类:</span><div className='app-cou-sel-clo' placeholder='请选择衣物品类' onClick={() => this.setState({ SelectCloShow: true })}>{this.state.cloSelTypeArr.toString()}</div></div>
                         <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
