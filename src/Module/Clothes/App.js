@@ -428,6 +428,12 @@ export default class extends Component {
             debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
         };
         this.handlePrinter(param);
+        let needle_printer = 'needle_printer'.getData();
+        if (needle_printer.length > 0) {
+            EventApi.print('zhengzhang', param, needle_printer, () => {
+                tool.ui.success({msg:'打印成功', callback:close => close()});
+            });
+        }
         let printer = 'clean_tag_printer'.getData();
         if (printer) {
             let code_arr = this.state.code_arr

@@ -34,13 +34,20 @@ export default class extends Component {
                     unit:'glue_tag_printer_unit'.getData() || 'pt',
                     id:'glue_tag_printer'
                 },    //不干胶标签打印机
+                {
+                    name:'needle_printer'.getData(), 
+                    width:'needle_printer_width'.getData() || '58',
+                    font_size:'needle_printer_font_size'.getData() || '11',
+                    unit:'needle_printer_unit'.getData() || 'pt',
+                    id:'needle_printer'
+                },    //针式打印机
                 {name:'m1_reader'.getData(), id:'m1_reader'},    //射频读卡器
                 {name:'open_case_printer'.getData(), id:'open_case_printer'}    //钱箱连接打印机
             ],
             M1data:['SDT-HA'],
             data:['无']    //打印机列表
         }
-        this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '射频读卡器', '钱箱'];
+        this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '针式打印机', '射频读卡器', '钱箱'];
         this.units = ['pt', 'px'];
         this.style = {marginLeft:'84px'};
         this.selectStyle = {width:'416px'};
@@ -118,8 +125,8 @@ export default class extends Component {
     }
 
     render() {
-        let show = this.state.checked < 3
-        ,   isM1 = 3 == this.state.checked
+        let show = this.state.checked < 4
+        ,   isM1 = 4 == this.state.checked
         ,   printer = this.state.printers[this.state.checked];
         return (
             <Window title='设备管理' onClose={this.props.closeView} width="500" height='240'>
@@ -146,7 +153,7 @@ export default class extends Component {
                     (<button style={this.style} type='button' className='e-btn larger' onClick={this.M1Read}>测试读卡</button>)
                     :
                     (
-                        4 == this.state.checked
+                        5 == this.state.checked
                         ?
                         (<div style={this.style}>
                             <button type='button' className='e-btn larger' onClick={this.printerSetting}>打印机设置</button>
