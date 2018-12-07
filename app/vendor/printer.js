@@ -235,6 +235,54 @@
                     .text('查询电话:' + param.mphone)
                     .line(3).print(callback);
             });
+        },
+        zhengzhang:function(printer_name, param, callback) {
+            var rows = 10;
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                var items, put_codes;
+                try {
+                    items = JSON.parse(param.items);
+                } catch (e) {
+                    items = [];
+                }
+                try {
+                    put_codes = JSON.parse(param.put_codes);
+                } catch (e) {
+                    put_codes = [];
+                }
+                var len = items.length
+                ,   pLen = put_codes.length
+                ,   count = Math.ceil(len / rows)
+                ,   tmp;
+                for (var i = 0;i < count;++i) {
+                    this.line(5)
+                        .text(this.space_cn(7) + 'mname'.getData())
+                        .text( this.space_cn(10) + this.padding(param.name, 5) + this.space_cn(5) + param.phone + this.space_cn(5) + (param.number || '') + this.space_cn(5) + (param.balance || '') )
+                        .text( this.space_cn(10) + this.padding(param.uaddr, 15) + this.space_cn(5) + this.now().split(' ')[0] + this.space_cn(4) + (param.time || '').split(' ')[0] )
+                        .line(3);
+                    for (var j = 0;j < rows;++j) {
+                        tmp = j + i * rows;
+                        if (items[tmp]) {
+                            this.text(
+                                this.space_cn(8) + this.padding(items[tmp].clothing_color, 4) + this.space_cn(4) + 
+                                this.padding(items[tmp].clothing_name, 8) + this.padding(items[tmp].sign, 4) + 
+                                this.padding('1', 4) + this.padding(items[tmp].raw_price, 4) + this.space_cn(1) + 
+                                this.padding(items[tmp].raw_price, 4) + this.space_cn(1) + this.padding(items[tmp].remark, 8)
+                            ); 
+                        } else {
+                            this.line();
+                        }
+                    }
+                    var gateway = param.gateway || '';
+                    this.text(this.space_cn(9) + this.padding(param.total, 5) + this.space_cn(10) + (param.pay_amount || ''))
+                        .text(this.space_cn(9) + this.padding((param.discount + '%'), 5) + this.space_cn(-1 === gateway.indexOf('现金') ? 22 : 8) + (param.pay_amount || '') )
+                        .line(3)
+                        .text(this.space_cn(22) + this.padding(param.mphone, 10) + this.space_cn(6) + 'aname'.getData())
+                        .line(2)
+                        .print(callback);
+                }
+            });
         }
     };
 })(window);
