@@ -352,7 +352,12 @@ export default class extends Component {
         this.state.data.setByIntersection({parent:this.state.data[this.state.currentIndex].DATATAG},{raw_price:value});
         this.setState({show:0, data:this.state.data});
     }
-    showUpdatePrice(e) {this.setState({show:12,currentIndex:e.target.parentNode.dataset.index})}
+    showUpdatePrice(e) {
+        let index = e.target.parentNode.dataset.index;
+        if ('1' == this.state.data[index].transfer) {
+            this.setState({show:12,currentIndex:index});
+        }
+    }
     setUser(obj) {
         obj.show = 0;
         console.log(obj);
