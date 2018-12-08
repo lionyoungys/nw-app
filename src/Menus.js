@@ -60,7 +60,7 @@ const Menus = [
             {value:'衣物查询', view:'clothes_query', id: 15, className:'clothes-query'},
             {value:'格架查询', view:'lattice_query', id: 14, className:'shelf-query'},
             {value:'订单查询', view:'orderquery', className:'order-query'},
-            {value:'商品查询', view:'shopquery', className:'order-query'},
+            {value:'商品订单', view:'shopquery', className:'goods-order'},
             {value:'交班', view:'Succession', id: 16, className:'hand-over'},
             {value:'前台情况', view:'foreground_statistics', id: 18, className:'front-status'},           
             {value:'未付款统计', view:'unpaid_statistics', id: 19, className:'no-payment'},
