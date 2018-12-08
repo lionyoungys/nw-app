@@ -5,6 +5,37 @@
  */
 (function(window){
     window.printer = {
+        sell_goods: function(printer_name, param, callback) {
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                this.align('c')
+                    .text('mname'.getData())
+                    .text('商品售卖单')
+                    .align('l')
+                    .text('订单号：' + param.ordersn)
+                    .barcode(param.ordersn, {width:3})
+                    .text('打印时间：' + this.now())
+                    .dashed();
+                var items = param.work
+                ,   len = items.length
+                ,   total = new Big(0);
+                for (var i = 0;i < len;++i) {
+                    this.text('商品名称：' + items[i].name)
+                        .text('单价：￥' + items[i].raw_price + '  ' + (1 == items[i].has_discount ? '打折' : '不打折'));
+                    total = total.add(items[i].raw_price);
+                }
+                this.text('总件数：' + len)
+                    .text('总金额：' + total.toString())
+                    .text('付款方式：' + param.pay_gateway)
+                    .text('折扣率：' + (param.discount * 100) + '%')
+                    .text('折后价：￥' + param.rmb + '  实收金额：' + param.pay_amount)
+                    .text('操作员：' + param.operator)
+                    .text('店铺地址：' + param.maddress)
+                    .text('服务热线：' + param.phone_number)
+                    .line(3)
+                    .print(callback);
+            });
+        },
         order: function(printer_name, param, callback) {
             this.OrderPageFactory(printer_name, param, true, callback);
         },
