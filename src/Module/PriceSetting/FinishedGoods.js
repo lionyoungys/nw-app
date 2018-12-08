@@ -46,6 +46,7 @@ export default class extends Component {
     };  
     componentDidMount() {
         this.query();
+        this.getGoodTypeList();
     }
     query(){
         let done;
@@ -72,9 +73,9 @@ export default class extends Component {
             name:'',
             stock:'',
             discount:0,
-            price:'' 
+            price:'', 
+            typeindex:0
         });
-        this.getGoodTypeList();
     } 
     //获取商品类别列表
     getGoodTypeList(){
@@ -159,19 +160,20 @@ export default class extends Component {
 
     mod(e){
 
-        if (this.state.typeLists.length == 0 || this.state.typeList.length == 0) 
-        this.getGoodTypeList();
+        // if (this.state.typeLists.length == 0 || this.state.typeList.length == 0) 
         let write = e.target.dataset.write;
         this.setState({
             show2:true,
             goodindex:write,
+            typeindex:this.state.index,
             upgoods_type:this.state.itemLists[this.state.index].goods[write].goods_type,
             name:this.state.itemLists[this.state.index].goods[write].name,
             stock:this.state.itemLists[this.state.index].goods[write].stock,
             price:this.state.itemLists[this.state.index].goods[write].price,
             discount:this.state.itemLists[this.state.index].goods[write].has_discount,
-            goods_number:this.state.itemLists[this.state.index].goods[write].goods_number
+            goods_number:this.state.itemLists[this.state.index].goods[write].goods_number,
         });
+        console.log(write);
     }
     modYES(){
         if(''==this.state.name)
