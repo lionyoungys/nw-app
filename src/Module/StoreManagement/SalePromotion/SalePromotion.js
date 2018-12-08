@@ -16,7 +16,7 @@ export default class extends Component {
             proDetailShow:false,
             detaiCouShow:false,
             type:'满减', //类型
-            status:'未启用',   //状态
+            status:'未开启',   //状态
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
             discountname:'',//优惠名称
@@ -133,7 +133,7 @@ export default class extends Component {
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index} onClick={() => this.setState({ proDetailShow: true,id:item.id })}>
             <td>{index}</td>
-            <td>{item.item_name}</td>
+            <td>{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
             <td>{item.item_name}</td>
             <td>{item.mname}</td>
@@ -141,9 +141,9 @@ export default class extends Component {
             <td>{item.end_time}</td>
             <td>{item.status}</td>
             <td>
-                {item.status=='未开始'?
+                {item.status=='未开启'?
                         <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                :item.status=='进行中'?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
             }
             </td>

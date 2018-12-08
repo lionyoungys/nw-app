@@ -94,8 +94,7 @@ export default class extends Component {
                             <span>&nbsp;&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>
                         </div>
                         <div>
-                        <span>&nbsp;&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>
-                           
+                        <span>&nbsp;&emsp;&emsp;电话：</span><input type='text' className='e-input'  onChange={e => this.setState({user_mobile:e.target.value})}/>                         
                         </div>
                         <div>
                         <span>&nbsp;&emsp;&emsp;颜色：</span><input type='text' className='e-input' onChange={e => this.setState({clothing_color:e.target.value})}/>

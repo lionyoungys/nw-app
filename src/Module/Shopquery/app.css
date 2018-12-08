@@ -1,0 +1,33 @@
+
+/* 商品查询 */
+.shopquery{
+    width: auto;
+    background: #f5f8fa;
+    border: 1px solid #e0e4ea;
+    margin: 12px 16px;
+    padding-top: 2px;
+    height: 110px;
+}
+.shopquery .shopquery-top{
+    height: 110px;
+    width: 508px;
+    float: left;
+    padding-left: 20px;
+}
+.shopquery .shopquery-top>div{
+    width: auto;float: left;
+    margin-top: 18px;
+}
+.shopquery_btn{
+    float: right;
+    width: auto;
+}
+.shopquery_btn>button{
+    float: left;
+    margin-right: 30px;
+    margin-top: 40px;
+}
+.shopquery_btn>button.clear_btn{
+    background: #fff;color: #333;
+}
+.shopquery_btn>button.clear_btn:hover{background: #3fc0db;color: #fff}

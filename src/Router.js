@@ -77,8 +77,7 @@ import check from './Module/check/App'; // 质检
 import out_of_factory from './Module/out_of_factory/App'; // 出厂
 import TableDemo from './Module/TableDemo';
 
-
-
+import shopquery from './Module/Shopquery/app'; // 商品查询
 
 //路由对象
 export default {
@@ -158,4 +157,6 @@ export default {
     ironing:ironing , // 熨烫
     check:check , //质检
     outoffactory:out_of_factory , // 出厂
+
+    shopquery:shopquery , //商品查询
 };

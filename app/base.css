@@ -1111,6 +1111,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-table{
     position: relative;
     overflow-y: auto;
+    z-index: 1;
 }
 .ui-table>section{
     position: absolute;
