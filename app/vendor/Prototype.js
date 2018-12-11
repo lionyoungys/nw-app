@@ -263,18 +263,13 @@
     String.prototype.add = 
     Number.prototype.add = function() {
         var len = arguments.length
-        ,   that = parseFloat(this);
-        if (isNaN(that)) that = 0;
-        if (len < 1) return that;
-        var precision = 1000000
-        ,   value = Math.floor(that * precision)
-        ,   temp;
-        
-        for (var i = 0;i < len;++i) {
-            temp = parseFloat(arguments[i]);
-            value += Math.floor( (isNaN(temp) ? 0 : temp) * precision);
+        ,   val = new Big( isNaN(this) ? 0 : this );
+        if (len > 0) {
+            for (var i = 0;i < len;++i) {
+                val = val.add( isNaN(arguments[i]) ? 0 : arguments[i] );
+            }
         }
-        return (value / precision);
+        return val.toFixed(2);
     }
     /**
      * 数值减法
@@ -286,13 +281,13 @@
     String.prototype.sub = 
     Number.prototype.sub = function() {
         var len = arguments.length
-        ,   precision = 1000000
-        ,   value = Math.floor(parseFloat(this) * precision);
-        if (len < 1) return this;
-        for (var i = 0;i < len;++i) {
-            value -= Math.floor(parseFloat(arguments[i]) * precision);
+        ,   val = new Big( isNaN(this) ? 0 : this );
+        if (len > 0) {
+            for (var i = 0;i < len;++i) {
+                val = val.sub( isNaN(arguments[i]) ? 0 : arguments[i] );
+            }
         }
-        return (value / precision);
+        return val.toFixed(2);
     }
     /**
      * 数值乘法
@@ -304,19 +299,13 @@
     String.prototype.mul = 
     Number.prototype.mul = function() {
         var len = arguments.length
-        ,   precision = 1000000  
-        ,   value = parseFloat(this)
-        ,   tempVal;
-        if (isNaN(value)) value = 0;
-        if (len < 1) return value;
-        for (var i = 0;i < len;++i) {
-            tempVal = parseFloat(arguments);
-            if (isNaN(tempVal)) tempVal = 0;
-            value = Math.floor(value * precision);
-            value *= Math.floor(tempVal * precision);
-            value /= (precision * precision);
+        ,   val = new Big( isNaN(this) ? 0 : this );
+        if (len > 0) {
+            for (var i = 0;i < len;++i) {
+                val = val.mul( isNaN(arguments[i]) ? 0 : arguments[i] );
+            }
         }
-        return value;
+        return val.toFixed(2);
     }
     /**
      * 数值除法
@@ -325,7 +314,24 @@
      */
     String.prototype.div = 
     Number.prototype.div = function () {
-        return this
+        var len = arguments.length
+        ,   val = new Big( isNaN(this) ? 0 : this );
+        if (len > 0) {
+            for (var i = 0;i < len;++i) {
+                val = val.div( isNaN(arguments[i]) ? 0 : arguments[i] );
+            }
+        }
+        return val.toFixed(2);
+    }
+    /**
+     * 防止字符串使用toFixed原型函数时报错处理
+     */
+    String.prototype.toFixed = function (val) {
+        var _this = parseFloat(this);
+        if (isNaN(_this)) {
+            _this = 0;
+        }
+        return _this.toFixed(isNaN(val) ? 0 : val);
     }
     /**
     * 数值/字符串保留2位小数
