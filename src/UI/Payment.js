@@ -127,6 +127,24 @@ export default class extends Component {
         amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(amount) ? 0 : amount) : amount);
         var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway && 999 != gateway) discount = 100;
+        //优惠信息判断
+        let activity = tool.isArray(this.props.activity) ? tool.clone(this.props.activity) : []
+        ,   coupons = tool.isArray(this.props.coupons) ? tool.clone(this.props.coupons) : []
+        ,   ac_show = (this.props.activity || this.props.coupons) ? true : false;
+        if (ac_show) {
+            let a_len = activity.length
+            ,   c_len = coupons.length;
+            if (a_len < 1) {
+                activity.unshift('无促销活动可参加');
+            } else {
+                activity.unshift(a_len + '个促销活动可参加');
+            }
+            if (c_len < 1) {
+                coupons.unshift('无优惠券可使用');
+            } else {
+                coupons.unshift(c_len + '张优惠券可使用');
+            }
+        }
         return (
             <Dish title='收银' width='560' height={this.props.coupons ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
@@ -147,13 +165,13 @@ export default class extends Component {
                             <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{data.balance}</span></div>
                         </div>
                     </div>
-                    {this.props.coupons && <div className='ui-payment-head'>优惠信息</div>}
+                    {ac_show && <div className='ui-payment-head'>优惠信息</div>}
                     {
-                        this.props.coupons
+                        ac_show
                         &&
                         <div className='ui-payment-detail3'>
-                            <span>优惠券：<Select option={['无优惠券可使用']}/></span>
-                            <span>促销活动：全场7折 满30减15</span>
+                            <span>优惠券：<Select option={coupons}/></span>
+                            <span>促销活动：<Select option={activity}/></span>
                         </div>
                     }
                     <div className='ui-payment-head'>收款方式</div>
