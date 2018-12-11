@@ -7,6 +7,7 @@
 (function(window) {
     var t = {
         ui: {},    //ui组件对象
+        api: {},    //数据访问对象
         include:function (moduleName){    //引入模块方法
             if ('node-adodb' === moduleName) {
                 var ADODB = require('node-adodb');
