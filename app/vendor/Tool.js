@@ -7,6 +7,7 @@
 (function(window) {
     var t = {
         ui: {},    //ui组件对象
+        api: {},    //数据访问对象
         include:function (moduleName){    //引入模块方法
             if ('node-adodb' === moduleName) {
                 var ADODB = require('node-adodb');
@@ -391,6 +392,92 @@
             clearTimeout(timeout);
         }, 'number' === typeof object.second ? object.second *1000 :2000 );
         this.center(content);
+    }
+
+    /**
+     * 根据接口返回的计算方式及优惠信息计算价格
+     * @return {object} calculator
+     */
+    t.api.calculator = function() {
+        var TYPE = 2
+        ,   memory = {
+            total:0,    //总金额
+            amount:0,    //折后金额
+            calc_amount,    //经过价格计算方式计算后的值
+            dis_amount:0,    //可折金额
+            no_dis_amount:0    //不可折金额
+        };
+        //请求接口获取价格计算方式
+        api.post('calculate', {token:'token'.getData()}, (res, ver) => {
+            if (ver) {
+                TYPE = res.result.money_type;
+                console.log('TYPE', TYPE);
+            }
+        });
+
+        /**
+         * 根据传入的值及当前的计算方式,进行计算处理
+         * @param {mixd} value 数值
+         * @return {Number} 计算后的值
+         */
+        this.calc = function (value) {    //根据商户选择的计算方式计算处理总金额;
+            if (isNaN(value)) {
+                return 0;
+            } else {
+                if (0 == TYPE) {
+                    return Math.floor(value);
+                } else if (1 == TYPE) {
+                    return Math.round(value * 10) / 10;
+                } else if (2 == TYPE) {
+                    return value;
+                } else {
+                    return value;
+                }
+            }
+        }
+        
+        /**
+         * 计算优惠券使用规则,存入暂存
+         * @param {Array} items 项目列表数据
+         * @param {Object} coupon 优惠券数据
+         * @param {Object} this
+         */
+        this.coupon = function (items, coupon) {    //根据商户所选择的优惠券计算金额
+
+        }
+
+        /**
+         * 计算活动使用规则,存入暂存
+         * @param {Array} items 项目列表数据
+         * @param {Object} activity 活动数据
+         * @param {Object} this
+         */
+        this.activity = function (items, activity) {    //根据商户所选的活动计算金额
+
+        }
+
+        /**
+         * 获取当前暂存的值
+         * @return {Object} memory 获取当前暂存的值
+         */
+        this.get = function () {
+            var obj = {};
+            for (var k in memory) {
+                obj[k] = memory[k];
+                memory[k] = 0;
+            }
+            return obj;
+        }
+
+        /**
+         * 清除当前暂存的值
+         * @return {void}
+         */
+        this.clean = function () {
+            for (var k in memory) {
+                memory[k] = 0;
+            }
+        }
     }
     window.tool = t;
 })(window);
