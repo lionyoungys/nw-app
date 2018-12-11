@@ -146,7 +146,7 @@ export default class extends Component {
             }
         }
         return (
-            <Dish title='收银' width='560' height={this.props.coupons ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
+            <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
                     <div className='ui-payment-head'>核对信息</div>
                     <div className='ui-payment-detail'>
