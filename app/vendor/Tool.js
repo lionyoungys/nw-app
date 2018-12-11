@@ -400,10 +400,10 @@
      */
     t.api.calculator = function() {
         var TYPE = 2
-        ,   memory = {
+        ,   memory = {    //暂存对象
             total:0,    //总金额
             amount:0,    //折后金额
-            calc_amount,    //经过价格计算方式计算后的值
+            calc_amount:0,    //经过价格计算方式计算折后金额的值
             dis_amount:0,    //可折金额
             no_dis_amount:0    //不可折金额
         };
@@ -411,6 +411,7 @@
         api.post('calculate', {token:'token'.getData()}, (res, ver) => {
             if (ver) {
                 TYPE = res.result.money_type;
+                console.log(res);
                 console.log('TYPE', TYPE);
             }
         });
@@ -435,6 +436,16 @@
                 }
             }
         }
+
+        this.setMemory = function (items) {
+            if (tool.isArray(items) && 0 == memory.total) {
+                var len = items.length;
+                if (len > 0) {
+                    for (var i = 0;i < len;++i) {
+                    }
+                }
+            }
+        }
         
         /**
          * 计算优惠券使用规则,存入暂存
@@ -443,7 +454,16 @@
          * @param {Object} this
          */
         this.coupon = function (items, coupon) {    //根据商户所选择的优惠券计算金额
+            if (tool.isArray(items)) {
+                var len = items.length;
+                if (len > 0 && 0 == memory.total) {
+                    for (var i = 0;i < len;++i) {
 
+                    }
+                    memory.calc_amount = this.calc(memory.amount);
+                }
+            }
+            return this;
         }
 
         /**
@@ -453,7 +473,16 @@
          * @param {Object} this
          */
         this.activity = function (items, activity) {    //根据商户所选的活动计算金额
+            if (tool.isArray(items)) {
+                var len = items.length;
+                if (len > 0) {
+                    for (var i = 0;i < len;++i) {
 
+                    }
+                    memory.calc_amount = this.calc(memory.amount);
+                }
+            }
+            return this;
         }
 
         /**

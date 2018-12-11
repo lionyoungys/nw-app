@@ -282,7 +282,9 @@
      * @return {number}
      */
     String.prototype.subtract = 
-    Number.prototype.subtract = function() {
+    Number.prototype.subtract =
+    String.prototype.sub = 
+    Number.prototype.sub = function() {
         var len = arguments.length
         ,   precision = 1000000
         ,   value = Math.floor(parseFloat(this) * precision);
@@ -292,8 +294,15 @@
         }
         return (value / precision);
     }
+    /**
+     * 数值乘法
+     * @param {number} 数值列表
+     * @return {number}
+     */
     String.prototype.multiply = 
-    Number.prototype.multiply = function() {
+    Number.prototype.multiply = 
+    String.prototype.mul = 
+    Number.prototype.mul = function() {
         var len = arguments.length
         ,   precision = 1000000  
         ,   value = parseFloat(this)
@@ -308,6 +317,15 @@
             value /= (precision * precision);
         }
         return value;
+    }
+    /**
+     * 数值除法
+     * @param {number} 数值列表
+     * @return {number}
+     */
+    String.prototype.div = 
+    Number.prototype.div = function () {
+        return this
     }
     /**
     * 数值/字符串保留2位小数
