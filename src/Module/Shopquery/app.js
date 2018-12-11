@@ -12,29 +12,49 @@ import './app.css';
 
 export default class extends Component {
     constructor(props) {
-        super(props);                
+        super(props);   
+        this.state = {
+            count:0,
+            page:1,
+            number:'',
+            name:'',
+            order_from:['线上','线下','全部'],
+            order_name:'',
+            order_state:['送件完成','清洗完成','上挂中','已取件','清洗中','全部'],
+            state_name:'',
+        }   ;
+        this.limit = 10; 
+        this.query = this.query.bind(this) ;  
+        this.serch = this.serch.bind(this);     
     };
-    render() {  
-        
+    // 初始查询
+    query(){
+      console.log(1)
+    };
+    // 条件查询
+    serch (){
+        console.log(2)
+    }
+    render() {         
         return (
-            <Window title='商品查询' onClose={this.props.closeView}> 
+            <Window title='商品订单' onClose={this.props.closeView}> 
                 <div className='shopquery'> 
                     <div className="shopquery-top">
                         <div>
-                            <span>&nbsp;&nbsp;&nbsp;订单号：</span><input type='text' className='e-input'/>
+                            <span>&nbsp;&nbsp;&nbsp;订单号：</span><input type='text' className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} />
                         </div> 
                         <div>
-                            <span>&nbsp;&emsp;&emsp;客户姓名：</span><input type='text' className='e-input'/>
+                            <span>&nbsp;&emsp;&emsp;客户姓名：</span><input type='text' className='e-input' value={this.state.name} onChange={e => this.setState({name:e.target.value})}/>
                         </div>
                         <div>
-                            <span>订单来源：</span><Select  />                         
+                            <span>订单来源：</span><Select  option={this.state.order_from} value={this.state.order_name} onChange={value => this.setState({order_name:value.value})}/>                         
                         </div>
                         <div>
-                            <span>&nbsp;&emsp;&emsp;订单状态：</span><Select />
+                            <span>&nbsp;&emsp;&emsp;订单状态：</span><Select option={this.state.order_state} value={this.state.state_name} onChange={value => this.setState({state_name:value.value})}/>
                         </div>
                     </div>
                     <div className='shopquery_btn'>
-                            <button className='e-btn' >查询</button>
+                            <button className='e-btn' onClick = {this.serch} >查询</button>
                             <button className='e-btn clear_btn'>清空</button>
                     </div>  
                 </div>
@@ -53,10 +73,65 @@ export default class extends Component {
                                <th>操作</th>
                             </tr>
                       </thead>
-                      <tbody>                          
+                      <tbody>  
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>                      
+                            <tr>
+                                <td></td> 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td> 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td> 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                       </tbody>
                   </Table>
-                  <Page   />
+                  <Page   current={this.state.page} total={this.state.count} fetch={this.limit} callback={page => this.query(page)}/>
                 </div>                                                                      
             </Window>
         );
