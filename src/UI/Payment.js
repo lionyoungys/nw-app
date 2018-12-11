@@ -125,8 +125,26 @@ export default class extends Component {
         amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(amount) ? 0 : amount) : amount);
         var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway && 999 != gateway) discount = 100;
+        //优惠信息判断
+        let activity = tool.isArray(this.props.activity) ? tool.clone(this.props.activity) : []
+        ,   coupons = tool.isArray(this.props.coupons) ? tool.clone(this.props.coupons) : []
+        ,   ac_show = (this.props.activity || this.props.coupons) ? true : false;
+        if (ac_show) {
+            let a_len = activity.length
+            ,   c_len = coupons.length;
+            if (a_len < 1) {
+                activity.unshift('无促销活动可参加');
+            } else {
+                activity.unshift(a_len + '个促销活动可参加');
+            }
+            if (c_len < 1) {
+                coupons.unshift('无优惠券可使用');
+            } else {
+                coupons.unshift(c_len + '张优惠券可使用');
+            }
+        }
         return (
-            <Window title='收银' width='632' height='420' onClose={this.props.onClose}>
+            <Window title='收银' width='632' height={ac_show ? '500' : '410'} onClose={this.props.onClose}>
                 <div className='ui-payment-title'>核对信息</div>
                 <div className='ui-payment-order'>
                     <div>
@@ -144,6 +162,15 @@ export default class extends Component {
                         <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}><span>卡余额：</span>&yen;{data.balance}</div>
                     </div>
                 </div>
+                {ac_show && <div className='ui-payment-title'>优惠信息</div>}
+                {
+                    ac_show
+                    &&
+                    <div className='ui-payment-reduce'>
+                        <span>优惠券：<Select option={coupons}/></span>
+                        <span>促销活动：<Select option={activity}/></span>
+                    </div>
+                }
                 {/* <div className='ui-payment-title2'>活动优惠</div>
                 <div className='ui-payment-reduce'>
                     <div><span>优惠：</span><Select option={this.state.option}/></div>
