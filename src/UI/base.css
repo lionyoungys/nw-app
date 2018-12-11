@@ -376,16 +376,16 @@
     text-align: right;
 }
 .ui-payment-reduce{
-    height: 88px;
+    height: 40px;
     margin: 0 10px;
+    padding: 8px 10px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-size: 12px;
     border: 1px solid #8db2e3;
 }
-.ui-payment-reduce>div{display: -webkit-flex;display: flex}
-.ui-payment-reduce>:first-child{margin: 14px 0}
-.ui-payment-reduce>div>:first-child{width: 106px;text-align: right;color: #063781}
+.ui-payment-reduce>span{display: -webkit-inline-flex;display: inline-flex;align-items: center}
+.ui-payment-reduce>:first-child{margin-right: 40px}
 .ui-payment-pay{
     height: 180px;
     margin: 0 10px;
