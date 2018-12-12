@@ -12,19 +12,29 @@ import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 const state = 52, word = '质检';
 const token = 'token'.getData();
+import Goback from '../goback/App';//反流
 // import { stat } from 'fs';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
         //this.props.onRef(this);
-        this.state = {value:'',data:[],checked:[],all:false,loading:null,uploadShow:false,lightboxShow:false,index:null};
+        this.state = {
+            value:'',data:[],
+            checked:[],
+            all:false,
+            loading:null,
+            uploadShow:false,
+            lightboxShow:false,
+            index:null,
+            back: false,
+        };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
         this.query = this.query.bind(this);
-       // this.goBack = this.goBack.bind(this);
+       this.goBack = this.goBack.bind(this);
         
         this.onUpload = this.onUpload.bind(this);       
         this.onDelete = this.onDelete.bind(this);  // 删除
@@ -143,10 +153,13 @@ export default class extends React.Component {
         });
     }
     //反流
-    // goBack() {
-    //     if (this.state.checked.length != 1) return alert('返流项目需选中单个项目返流');
-    //     this.props.changeView({view:'go_back',param:{state:state,id:this.state.checked[0]}});
-    // }
+    goBack() {
+        if (this.state.checked != '') {
+            this.setState({ back: true })
+        } else {
+            return alert('返流项目需选中单个项目返流'); return alert('返流项目需选中单个项目返流');
+        }
+    }
 
     onUpload(file) {    //文件上传
         let done;
@@ -226,7 +239,19 @@ export default class extends React.Component {
             <div className='clean'>
                 <div className='e-box'>
                     <table className='e-table border check'>
-                        <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>上传图片</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>衣物编码</th>
+                                <th>名称</th>
+                                <th>颜色</th>
+                                <th>瑕疵</th>
+                                <th>品牌</th>
+                                <th>洗后预估</th>
+                                <th>工艺加价</th>
+                                <th>单价</th>
+                                <th>上传图片</th>
+                            </tr>
+                        </thead>
                         <tbody>{html}</tbody>
                     </table>
                 </div>
@@ -257,9 +282,12 @@ export default class extends React.Component {
                         &emsp;&nbsp;
                         <button type='button' className='e-btn confirm btn-both' onClick={this.handleCleaned}>已{word}</button>
                         &emsp;
-                        {/* <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button> */}
+                        <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button>
                     </div>                   
-                </div>              
+                </div>  
+                    {
+                        this.state.back && <Goback />
+                    }                
             </div>
         </Window>
         );

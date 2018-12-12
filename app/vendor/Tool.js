@@ -505,6 +505,43 @@
             }
             return amount;
         }
+
+        /**
+         * 将满足条件的指定数量项目数据打包处理,打包金额赋值于第一件项目的价格上
+         * @param {Array} names 满足名称的数组
+         * @param {Number} amount 打包金额
+         * @param {Number} count 打包数量
+         * @return {void}
+         */
+        this.packData = function (names, amount, count) {
+            if (tool.isArray(names) && names.length > 0) {
+                if (isNaN(amount)) {
+                    amount = 0;
+                }
+                if (isNaN(count)) {
+                    count = size;
+                }
+                var indexs = [];
+                for (var i = 0;i < size;++i) {
+                    if (-1 != data[i].clothing_name.inArray(names)) {    //提取满足打包数据条件的项目,同时合计数满足打包数量
+                        indexs.push(i);
+                        if (indexs.length >= count) {
+                            break;
+                        }
+                    }
+                }
+                var len = indexs.length;
+                for (var j = 0;j < len;++j) {    //将打包金额赋值于第一件满足条件的项目上,其余条件内项目相关价格置零
+                    if (0 == j) {
+                        data[indexs[j]].raw_price = amount;
+                    } else {
+                        data[indexs[j]].raw_price = 0;
+                    }
+                    data[indexs[j]].addition_price = 0;
+                    data[indexs[j]].addition_no_price = 0;
+                }
+            }
+        }
         
         /**
          * 计算优惠券使用规则,存入暂存
@@ -579,28 +616,16 @@
                         }
                     }
                 } else if (3 == activity.type && activity.money >= size) {    //多件洗
-                    var indexs = [];
-                    for (var i = 0;i < size;++i) {
-                        if (-1 != data[i].clothing_name.inArray(activity.item_name)) {    //提取满足多件洗条件的项目,同时合计件数满足活动数量
-                            indexs.push(i);
-                            if (indexs.length == activity.money) {
-                                break;
-                            }
-                        }
-                    }
-                    var len = indexs.length;
-                    for (var j = 0;j < len;++j) {    //将多件洗的活动金额赋值与第一件满足条件的衣物,其余条件内衣物相关价格置零
-                        if (0 == j) {
-                            data[indexs[j]].raw_price = activity.full_money;
-                        } else {
-                            data[indexs[j]].raw_price = 0;
-                        }
-                        data[indexs[j]].addition_price = 0;
-                        data[indexs[j]].addition_no_price = 0;
+                    this.packData(activity.item_name, activity.full_money, activity.money);
+                    memory.amount = 0;
+                    for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
+                        memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 } else if (4 == activity.type) {    //袋洗
-                    for (var i = 0;i < size;++i) {
-                        
+                    this.packData(activity.item_name, activity.full_money);
+                    memory.amount = 0;
+                    for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
+                        memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 }
                 memory.calc_amount = this.calc(memory.amount);

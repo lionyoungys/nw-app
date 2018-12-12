@@ -11,15 +11,14 @@ import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import Goback from '../goback/App';
-
 const state = 50, word = '烘干';
+
 // import { stat } from 'fs';
 const token = 'token'.getData();
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        // this.props.onRef(this);
         this.state = {
             value:'',
             data:[],
@@ -31,6 +30,7 @@ export default class extends React.Component {
             index:null,
             back:false,
             name:'' ,//衣物名称
+            num:'',
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
@@ -48,11 +48,9 @@ export default class extends React.Component {
 
         this.onback = this.onback.bind(this);
     }
-
     onKeyPress(e){
         13 == (e.keyCode || e.which) && this.onSearch();
-    }   
-    
+    }       
     componentDidMount() {
         this.input.focus();
         this.query()
@@ -126,7 +124,7 @@ export default class extends React.Component {
      // 单选
     handleChecked(value,checked) {
         if (checked) {
-            let index = value.inArray(this.state.checked);
+            let index = value.inArray(this.state.checked);           
             if (-1 !== index) {
                 this.state.checked.splice(index, 1);
                 this.setState({checked:this.state.checked,all:false});               
@@ -138,9 +136,9 @@ export default class extends React.Component {
     }
 
     onback(e){
-        let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
+        let id = e.target.dataset.id || e.target.parentNode.dataset.id ;
         this.setState({name:id});
-        console.log(this.state.name)
+        //console.log(this.state.name);       
     }
 
     // 已烘干操作
@@ -169,12 +167,11 @@ export default class extends React.Component {
         });
     }
     
-    goBack() {
-        //console.log(1);       
-        if(this.state.checked!=''){
-            this.setState({back:true})
+    goBack() {   
+        if(this.state.checked.length>1){
+            return alert('返流项目需选中单个项目返流');           
         }else{
-            return alert('返流项目需选中单个项目返流'); return alert('返流项目需选中单个项目返流');
+            this.setState({back:true})
         }
     }
 
@@ -293,10 +290,9 @@ export default class extends React.Component {
                     </div>                   
                 </div> 
                 {
-                   this.state.back && <Goback  onClose={() => this.setState({back:false})}  
-                   
-                   wid = {JSON.stringify(this.state.checked)}
-                   name ={this.state.name}                  
+                   this.state.back && <Goback  onClose={() => this.setState({back:false})}                     
+                       wid = {this.state.checked}
+                       name = {this.state.name}                                                                     
                    /> 
                 }              
             </div>            
