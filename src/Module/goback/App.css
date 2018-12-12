@@ -30,7 +30,7 @@
     border: 1px solid #ccc;
     resize: none;
 }
-.go-back-box span.e-radio{
+.go-back-box span.e-checkbox{
     margin-top: 8px;
     margin-right: 6px;
 }
@@ -42,3 +42,63 @@
    height: 75px;
 }
 .textarea .ui-select{width: 400px}
+
+.go-back-box span.e-checkbox{
+    border: none;
+    background: url(./images/gaiban-n.png);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    padding-left: 16px;
+    color: #333;
+    cursor: pointer;
+    line-height: 16px;
+}
+.go-back-box span.e-checkbox.checked{
+    background: url(./images/gaiban-y.png);
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+.textarea b{
+    font-size: 14px;
+    color: #555;
+    float: right;
+    display: block;
+    margin-right: -111px;
+    cursor: pointer;
+}
+.textarea b:hover{
+    text-decoration: underline;
+}
+.upload-item{display: block;margin-top: 30px}
+.upload-item>:first-child{margin-right: 30px}
+
+.m-img-box {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+.m-img-box img{width: 75px}
+.m-img-box.upload {
+    background: url(./images/upload-img.png) no-repeat 50%;
+    background-size: 100%;
+}
+.go-back-box>.m-img-box {
+    margin-right: 10px;
+}
+.go-back-box>.m-img-box:last-child {
+    margin-right: 0;
+}
+.m-img-delete {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(./images/cancel-tag.png) no-repeat 50%;
+}
+.go-back-box a.up{
+    color: #ff7b56;
+    line-height: 20px;
+    margin-top: 52px;
+}

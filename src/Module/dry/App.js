@@ -136,9 +136,8 @@ export default class extends React.Component {
     }
 
     onback(e){
-        let id = e.target.dataset.id || e.target.parentNode.dataset.id ;
-        this.setState({name:id});
-        //console.log(this.state.name);       
+        let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
+        this.setState({num:index});     
     }
 
     // 已烘干操作
@@ -217,7 +216,7 @@ export default class extends React.Component {
     render() {
         let html = this.state.data.map((obj,index) =>
             <tr key={obj.id} className={obj.state==false ? null : 'disabled'}>
-                <td data-id={obj.clothing_name} onClick={this.onback}>
+                <td data-id={obj.clothing_name} data-index={obj.id} onClick={this.onback}>
                     {
                         obj.state == false
                         ?
@@ -291,8 +290,7 @@ export default class extends React.Component {
                 </div> 
                 {
                    this.state.back && <Goback  onClose={() => this.setState({back:false})}                     
-                       wid = {this.state.checked}
-                       name = {this.state.name}                                                                     
+                       wid = {this.state.num}                                                                                        
                    /> 
                 }              
             </div>            

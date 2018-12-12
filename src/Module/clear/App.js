@@ -160,6 +160,7 @@ export default class extends React.Component {
             (res, ver, notice) => {
                 done();
                 if (ver) {
+                    console.log(res.result)
                     this.state.data[index].img.push(res.result);
                     this.setState({data:this.state.data});
                 } else {
@@ -168,7 +169,6 @@ export default class extends React.Component {
             }, 
             () => {done()}
         );
-
     }
     
     onDelete(url, index) {    //文件删除
@@ -188,21 +188,7 @@ export default class extends React.Component {
     lightboxShow(e) {
         this.setState({lightboxShow:true, index:e.target.dataset.index});
     }
-    // handleClick() {    //退回      
-    //      if (this.state.checked.length < 1) return;
-    //      api.post('into_factory', {  
-    //         itemids:this.state.checked.toString(),
-    //         moduleid:22,type:2,        
-    //         token:'token'.getData(),
-    //     }, (res, ver) => {
-    //         if (ver && res) {
-    //             this.setState({checked:[],all:false});
-    //             this.query();
-    //         }else{
-    //             alert(res.msg);
-    //         }
-    //     });
-    // }
+
     render() {
         let html = this.state.data.map( (obj, index) =>
             <tr key={obj.id} className={!(obj.state == false) ? null : 'disabled'}>

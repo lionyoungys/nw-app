@@ -128,23 +128,11 @@ export default class extends Component {
         var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
         if (0 != gateway && 999 != gateway) discount = 100;
         //优惠信息判断
-        let activity = tool.isArray(this.props.activity) ? tool.clone(this.props.activity) : []
+        let ac_show = (this.props.activities || this.props.coupons) ? true : false
+        ,   activities = tool.isArray(this.props.activities) ? tool.clone(this.props.activities) : []
         ,   coupons = tool.isArray(this.props.coupons) ? tool.clone(this.props.coupons) : []
-        ,   ac_show = (this.props.activity || this.props.coupons) ? true : false;
-        if (ac_show) {
-            let a_len = activity.length
-            ,   c_len = coupons.length;
-            if (a_len < 1) {
-                activity.unshift('无促销活动可参加');
-            } else {
-                activity.unshift(a_len + '个促销活动可参加');
-            }
-            if (c_len < 1) {
-                coupons.unshift('无优惠券可使用');
-            } else {
-                coupons.unshift(c_len + '张优惠券可使用');
-            }
-        }
+        ,   act_index = isNaN(this.props.act_index) ? 0 : this.props.act_index
+        ,   cou_index = isNaN(this.props.cou_index) ? 0 :this.props.cou_index;
         return (
             <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
@@ -170,8 +158,8 @@ export default class extends Component {
                         ac_show
                         &&
                         <div className='ui-payment-detail3'>
-                            <span>优惠券：<Select option={coupons}/></span>
-                            <span>促销活动：<Select option={activity}/></span>
+                            <span>优惠券：<Select option={coupons} value={coupons[cou_index] ? coupons[cou_index].name : ''} pair={['id', 'name']} onChange={this.props.handleSelectCoupon}/></span>
+                            <span>促销活动：<Select option={activities} value={activities[act_index] ? activities[act_index].name : ''} pair={['id', 'name']} onChange={this.props.handleSelectActivity}/></span>
                         </div>
                     }
                     <div className='ui-payment-head'>收款方式</div>

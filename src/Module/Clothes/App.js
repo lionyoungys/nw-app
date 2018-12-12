@@ -41,6 +41,10 @@ export default class extends Component {
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
             calculate:2,    //计算方式
+            activities:[],    //活动列表
+            coupons:[],    //优惠券列表
+            act_index:0,    //选中的活动
+            cou_index:0,    //选中的优惠券
         };
         this.date = tool.date('Y-m-d');
         this.DATACODE = tool.code();
@@ -536,18 +540,21 @@ export default class extends Component {
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
+                    let r = res.result;
                     this.setState({
-                        oid:res.result.order_id, 
-                        sn:res.result.ordersn, 
-                        mphone:res.result.merchant.phone_number, 
-                        maddr:res.result.merchant.maddress,
-                        ad:res.result.merchant.mdesc,
-                        code_arr:res.result.orderItemInfo
+                        oid:r.order_id, 
+                        sn:r.ordersn, 
+                        mphone:r.merchant.phone_number, 
+                        maddr:r.merchant.maddress,
+                        ad:r.merchant.mdesc,
+                        code_arr:r.orderItemInfo
                     });
                     if ('boolean' === typeof isTake && isTake) {
                         this.print();
                         return this.props.closeView();
                     }
+                    //获取满足当前条件的优惠券及活动列表信息
+                    tool.api.getAC({user_mobile:this.state.phone, oid:r.order_id, token:'token'.getData()}, obj => this.setState(obj));
                     this.setState({show:14});
                 } else {
                     handle();
@@ -582,7 +589,7 @@ export default class extends Component {
         );
     }
     paymentClose() {
-        this.setState({payCard:{}});
+        this.setState({payCard:{}, coupons:[], activities:[], act_index:0, cou_index:0});
         this.delOrder(() => this.setState({oid:null, show:0}));
     }
     handleClose() {this.setState({show:0, update:false})}
@@ -652,6 +659,18 @@ export default class extends Component {
             );
         });
         amount = this.calculate(amount);
+        
+        if (this.state.cou_index > 0 || this.state.act_index > 0) {
+            this.calculator.setData(this.state.data);
+            if (this.state.cou_index > 0) {    //判断使用
+                this.calculator.coupon(this.state.coupons[this.state.cou_index]);
+            }
+            if (this.state.act_index > 0) {
+                this.calculator.activity(this.state.activities[this.state.act_index]);
+            }
+            let result = this.calculator.get();
+            amount = result.calc_amount;
+        }
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>
@@ -808,7 +827,21 @@ export default class extends Component {
                             type:(this.state.payCard.card_name || this.state.type),
                             number:(this.state.payCard.recharge_number || this.state.number)
                         }}
-                        // coupons={[]}
+                        coupons={this.state.coupons}
+                        activities={this.state.activities}
+                        act_index={this.state.act_index}
+                        cou_index={this.state.cou_index}
+                        handleSelectCoupon={obj => {
+                            if (0 == this.state.act_index || 1 == this.state.activities[this.state.act_index].whether) {
+                                this.setState({cou_index:obj.index});
+                            }
+                        }}
+                        handleSelectActivity={obj => {
+                            if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == this.state.activities[obj.index].whether)) {
+                                this.setState({act_index:obj.index});
+                            }
+                        }}
+                        calculator={this.calculator}
                         calculate={this.calculate}
                         M1Read={this.PAYM1read}
                         callback={this.paymentCallback}

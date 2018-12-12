@@ -410,7 +410,7 @@
             no_dis_amount:0    //不可折金额
         };
         //请求接口获取价格计算方式
-        api.post('calculate', {token:'token'.getData()}, (res, ver) => {
+        api.post('calculate', {token:'token'.getData()}, function(res, ver) {
             if (ver) {
                 TYPE = res.result.money_type;
                 console.log(res);
@@ -487,10 +487,13 @@
         this.setDec = function (index, amount) {
             if (amount > data[index].raw_price) {    //判断当前阶段金额是否大于项目金额
                 amount = amount.sub(data[index].raw_price);
+                data[index].raw_price = 0;
                 if (amount > data[index].addition_no_price) {    //判断当前阶段金额是否大于项目不可折附加费
                     amount = amount.sub(data[index].addition_no_price);
+                    data[index].addition_no_price = 0;
                     if (amount > data[index].addition_price) {    //判断当前阶段金额是否大于项目可折附加费
                         amount = amount.sub(data[index].addition_price);
+                        data[index].addition_price = 0;
                     } else {
                         data[index].addition_price = data[index].addition_price.sub(amount);
                         amount = 0;
@@ -545,7 +548,6 @@
         
         /**
          * 计算优惠券使用规则,存入暂存
-         * @param {Array} items 项目列表数据
          * @param {Object} coupon 优惠券数据
          * @param {Object} this
          */
@@ -584,7 +586,6 @@
 
         /**
          * 计算活动使用规则,存入暂存
-         * @param {Array} items 项目列表数据
          * @param {Object} activity 活动数据
          * @param {Object} this
          */
@@ -657,6 +658,35 @@
                 memory[k] = 0;
             }
         }
+    }
+    /**
+     * 获取活动及优惠券数据处理
+     * @param {Object} param 请求参数
+     * @param {Function} callback 回调函数
+     * @return {void}
+     */
+    t.api.getAC = function (param, callback) {
+        console.log(param);
+        api.post('order_ac_query', param, function(res, ver) {
+            console.log(res);
+            if (ver && 'function' == typeof callback) {
+                var act = res.result.activity
+                ,   cou = res.result.coupon
+                ,   a_len = act.length
+                ,   c_len = cou.length;
+                if (a_len < 1) {
+                    act.unshift({id:'_act_', name:'无促销活动可参加'});
+                } else {
+                    act.unshift({id:'_act_', name:a_len + '个促销活动可参加'});
+                }
+                if (c_len < 1) {
+                    cou.unshift({id:'_cou_', name:'无优惠券可使用'});
+                } else {
+                    cou.unshift({id:'_cou_', name:c_len + '张优惠券可使用'});
+                }
+                callback({coupons:cou, activities:act});
+            }
+        });
     }
     window.tool = t;
 })(window);
