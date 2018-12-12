@@ -400,6 +400,8 @@
      */
     t.api.calculator = function() {
         var TYPE = 2
+        ,   data = []    //项目列表数据
+        ,   size = 0    //data数据大小
         ,   memory = {    //暂存对象
             total:0,    //总金额
             amount:0,    //折后金额
@@ -437,24 +439,71 @@
             }
         }
 
-        this.setMemory = function (items, handle) {
-            if (tool.isArray(items) && 0 == memory.total) {
-                var len = items.length;
-                if (len > 0) {
-                    for (var i = 0;i < len;++i) {
-                        //总额 = 原价 + 可折附加费 + 不可折附加费
-                        memory.total = memory.total.add(items[i].raw_price, items[i].addition_price, items[i].addition_no_price);
-                        //可折金额 = 原价可打折的情况 + 可折附加费
-                        memory.dis_amount = memory.dis_amount.add( (1 == items[i].has_discount ? items[i].raw_price : 0), items[i].addition_price );
-                        //不可折金额 = 原价不可打折的情况 + 不可折附加费
-                        memory.no_dis_amount = memory.no_dis_amount.add( (1 == items[i].has_discount ? 0 : items[i].raw_price), items[i].addition_no_price );
-                        //在不打折的情况下,折后金额 = 总额;在打折的情况下,折后金额 = 可折金额 * 折扣率 + 不可折金额;
-                        memory.amount = memory.total;
-                        memory.calc_amount = this.calc(memory.amount);
-                        'function' == typeof handle && handle(items[i]);
-                    }
+        /**
+         * 设置项目数据
+         * @param {Array} items 项目数据
+         * @return {Object} this
+         */
+        this.setData = function (items) {
+            var len = items.length;
+            if (tool.isArray(items) && len > 0) {
+                data = tool.clone(items);
+                size = len;
+                for (var i = 0;i < len;++i) {
+                    //总额 = 原价 + 可折附加费 + 不可折附加费
+                    memory.total = memory.total.add(items[i].raw_price, items[i].addition_price, items[i].addition_no_price);
+                    //可折金额 = 原价可打折的情况 + 可折附加费
+                    memory.dis_amount = memory.dis_amount.add( (1 == items[i].has_discount ? items[i].raw_price : 0), items[i].addition_price );
+                    //不可折金额 = 原价不可打折的情况 + 不可折附加费
+                    memory.no_dis_amount = memory.no_dis_amount.add( (1 == items[i].has_discount ? 0 : items[i].raw_price), items[i].addition_no_price );
+                    //在不打折的情况下,折后金额 = 总额;在打折的情况下,折后金额 = 可折金额 * 折扣率 + 不可折金额;
+                    memory.amount = memory.total;
+                    memory.calc_amount = this.calc(memory.amount);
                 }
             }
+            return this;
+        }
+
+        //通过索引获取指定项目的可折金额及不可折金额
+        this.getAmount = function(index) {
+            var has_discount = (1 == data[index].has_discount);
+            return {
+                total:this.getTotal(index),
+                dis_amount:data[index].addition_price.add(has_discount ? data[index].raw_price : 0),
+                no_dis_amount:data[index].addition_no_price.add(has_discount ? 0 : data[index].raw_price)
+            };
+        }
+        //通过索引获取指定项目的总额
+        this.getTotal = function (index) {
+            return data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price);
+        }
+
+        /**
+         * 通过data索引,减少指定项目金额,当减少金额过多时返回过多的值
+         * @param {Number} index 数组索引
+         * @param {Number} amount 减少的金额
+         * @return {mixd} 
+         */
+        this.setDec = function (index, amount) {
+            if (amount > data[index].raw_price) {    //判断当前阶段金额是否大于项目金额
+                amount = amount.sub(data[index].raw_price);
+                if (amount > data[index].addition_no_price) {    //判断当前阶段金额是否大于项目不可折附加费
+                    amount = amount.sub(data[index].addition_no_price);
+                    if (amount > data[index].addition_price) {    //判断当前阶段金额是否大于项目可折附加费
+                        amount = amount.sub(data[index].addition_price);
+                    } else {
+                        data[index].addition_price = data[index].addition_price.sub(amount);
+                        amount = 0;
+                    }
+                } else {
+                    data[index].addition_no_price = data[index].addition_no_price.sub(amount);
+                    amount = 0;
+                }
+            } else {
+                data[index].raw_price = data[index].raw_price.sub(amount);
+                amount = 0;
+            }
+            return amount;
         }
         
         /**
@@ -463,8 +512,36 @@
          * @param {Object} coupon 优惠券数据
          * @param {Object} this
          */
-        this.coupon = function (items, coupon) {    //根据商户所选择的优惠券计算金额
-            this.setMemory(items);
+        this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
+            if (tool.isObject(coupon) && memory.calc_amount > 0 && coupon.full_money >= memory.total) {    //0 < 总金额 >= 优惠券满足金额
+                if (1 == coupon.type) {    //现金券:抵价金额 > 0;
+                    var balance = coupon.money;    //优惠券抵扣余额
+                    if (balance > 0) {
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {
+                            if (balance > 0 && -1 != data[i].clothing_name.inArray(coupon.item_name)) {
+                                balance = this.setDec(i, balance);
+                            }
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
+                    }
+                } else if (2 == coupon.type) {    //折扣券:优惠折扣 < 10折
+                    var discount = coupon.discount;
+                    if (discount < 100 && 0 != discount) {
+                        discount = discount.div(100);    //优惠券折扣率,小数计算
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {
+                            if (-1 != data[i].clothing_name.inArray(coupon.item_name)) {
+                                data[i].raw_price = data[i].raw_price.mul(discount);
+                                data[i].addition_price = data[i].addition_price.mul(discount);
+                                data[i].addition_no_price = data[i].addition_no_price.mul(discount);
+                            }
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
+                    }
+                }
+                memory.calc_amount = this.calc(memory.amount);
+            }
             return this;
         }
 
@@ -474,8 +551,60 @@
          * @param {Object} activity 活动数据
          * @param {Object} this
          */
-        this.activity = function (items, activity) {    //根据商户所选的活动计算金额
-            this.setMemory(items);
+        this.activity = function (activity) {    //根据商户所选的活动计算金额
+            if (tool.isObject(activity) && memory.calc_amount > 0) {
+                if (1 == activity.type && activity.full_money >= memory.total) {    //满减
+                    var balance = activity.money;    //优惠券抵扣余额
+                    if (balance > 0) {
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {
+                            if (balance > 0 && -1 != data[i].clothing_name.inArray(activity.item_name)) {
+                                balance = this.setDec(i, balance);
+                            }
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
+                    }
+                } else if (2 == activity.type && activity.full_money >= memory.total) {    //折扣
+                    var discount = activity.discount;
+                    if (discount < 100 && 0 != discount) {
+                        discount = discount.div(100);    //优惠券折扣率,小数计算
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {
+                            if (-1 != data[i].clothing_name.inArray(activity.item_name)) {
+                                data[i].raw_price = data[i].raw_price.mul(discount);
+                                data[i].addition_price = data[i].addition_price.mul(discount);
+                                data[i].addition_no_price = data[i].addition_no_price.mul(discount);
+                            }
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
+                    }
+                } else if (3 == activity.type && activity.money >= size) {    //多件洗
+                    var indexs = [];
+                    for (var i = 0;i < size;++i) {
+                        if (-1 != data[i].clothing_name.inArray(activity.item_name)) {    //提取满足多件洗条件的项目,同时合计件数满足活动数量
+                            indexs.push(i);
+                            if (indexs.length == activity.money) {
+                                break;
+                            }
+                        }
+                    }
+                    var len = indexs.length;
+                    for (var j = 0;j < len;++j) {    //将多件洗的活动金额赋值与第一件满足条件的衣物,其余条件内衣物相关价格置零
+                        if (0 == j) {
+                            data[indexs[j]].raw_price = activity.full_money;
+                        } else {
+                            data[indexs[j]].raw_price = 0;
+                        }
+                        data[indexs[j]].addition_price = 0;
+                        data[indexs[j]].addition_no_price = 0;
+                    }
+                } else if (4 == activity.type) {    //袋洗
+                    for (var i = 0;i < size;++i) {
+                        
+                    }
+                }
+                memory.calc_amount = this.calc(memory.amount);
+            }
             return this;
         }
 
@@ -485,6 +614,7 @@
          */
         this.get = function () {
             var obj = {};
+            data = [];
             for (var k in memory) {
                 obj[k] = memory[k];
                 memory[k] = 0;
@@ -497,6 +627,7 @@
          * @return {void}
          */
         this.clean = function () {
+            data = [];
             for (var k in memory) {
                 memory[k] = 0;
             }

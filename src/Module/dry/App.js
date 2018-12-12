@@ -30,6 +30,7 @@ export default class extends React.Component {
             lightboxShow:false,
             index:null,
             back:false,
+            name:'' ,//衣物名称
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
@@ -44,6 +45,8 @@ export default class extends React.Component {
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+
+        this.onback = this.onback.bind(this);
     }
 
     onKeyPress(e){
@@ -126,12 +129,18 @@ export default class extends React.Component {
             let index = value.inArray(this.state.checked);
             if (-1 !== index) {
                 this.state.checked.splice(index, 1);
-                this.setState({checked:this.state.checked,all:false});
+                this.setState({checked:this.state.checked,all:false});               
             }
         } else {
             this.state.checked.push(value);
             this.setState({checked:this.state.checked});
         }
+    }
+
+    onback(e){
+        let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
+        this.setState({name:id});
+        console.log(this.state.name)
     }
 
     // 已烘干操作
@@ -211,7 +220,7 @@ export default class extends React.Component {
     render() {
         let html = this.state.data.map((obj,index) =>
             <tr key={obj.id} className={obj.state==false ? null : 'disabled'}>
-                <td>
+                <td data-id={obj.clothing_name} onClick={this.onback}>
                     {
                         obj.state == false
                         ?
@@ -220,6 +229,7 @@ export default class extends React.Component {
                             checked={-1 !== obj.id.inArray(this.state.checked)}
                             value={obj.id}
                             onClick={this.handleChecked}
+                            
                         >{obj.clothing_number}</OptionBox>
                         :
                         obj.clothing_number
@@ -283,7 +293,11 @@ export default class extends React.Component {
                     </div>                   
                 </div> 
                 {
-                   this.state.back && <Goback /> 
+                   this.state.back && <Goback  onClose={() => this.setState({back:false})}  
+                   
+                   wid = {JSON.stringify(this.state.checked)}
+                   name ={this.state.name}                  
+                   /> 
                 }              
             </div>            
         </Window>

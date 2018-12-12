@@ -10,7 +10,6 @@ import './ReturnCard.css';
 const token = 'token'.getData();
 const shopname = 'mname'.getData();
 
-
 export default class extends React.Component {
     constructor(props) {
         super(props);

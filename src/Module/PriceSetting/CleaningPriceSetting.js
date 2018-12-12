@@ -256,7 +256,9 @@ export default class extends Component {
             item_cycle:this.state.item_cycle,
             item_online_price:this.state.item_online_price,
             image_id:this.state.image_id,
-            min_transfer:this.state.min_transfer
+            min_transfer:this.state.min_transfer,
+            item_forecast:this.state.washestimate,
+            item_flaw:this.state.defect
         }
         api.post('addItem', params, (res, ver,handle) => {         
             if (ver) {
@@ -414,6 +416,9 @@ export class Mod extends Component {
             image_url:goods.image_url,//图片url
             id:goods.id,//服务id
             cate_id:goods.cate_id,//衣物类别id
+            defect:goods.item_forecast,//瑕疵
+            washestimate:goods.item_flaw,//洗后预估
+
         }
         this.modYES = this.modYES.bind(this);
         this.onchange = this.onchange.bind(this);
@@ -466,7 +471,9 @@ export class Mod extends Component {
             item_cycle:this.state.item_cycle,
             item_online_price:this.state.item_online_price,
             image_id:this.state.image_id,
-            min_transfer:this.state.min_transfer
+            min_transfer:this.state.min_transfer,
+            item_forecast:this.state.washestimate,
+            item_flaw:this.state.defect
         }
         console.log(mod)
         api.post('modItem',mod, (res, ver,handle) => {
@@ -521,8 +528,8 @@ export class Mod extends Component {
 
                 </div >
                 <div className='addnewprice-four'>
-                    <div ><span>瑕疵：&emsp;&emsp;</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
-                    <div ><span>洗后预估：</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>   
+                <div ><span>瑕疵：&emsp;&emsp;</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({defect:e.target.value})} value={this.state.defect}/></div>
+                    <div ><span>洗后预估：</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({washestimate:e.target.value})} value={this.state.washestimate}/></div>  
                 </div>
                 <div className="addnewprice-btn">
                     <button className="e-btn" onClick={this.modYES}>确定</button>
