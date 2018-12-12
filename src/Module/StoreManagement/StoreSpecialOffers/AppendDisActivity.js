@@ -17,7 +17,7 @@ export default class extends Component {
             couponType: '满减', //活动类型  
             couponTypeID:1,       
             cloSelTypeArr: [], //已选择衣物品类 
-            getType: '1',//是否与优惠券通用
+            getType: '0',//是否与优惠券通用
             cloTypeArr: [],
             merArr: [],
             merNameArr: [],

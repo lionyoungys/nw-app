@@ -171,6 +171,8 @@ export default class extends Component {
     }
     render() {
         return (
+            console.log(this.state.merNameArr, this.state.merSelectArr),
+            
             <Dish title='新增优惠券' onClose={this.props.onClose} width="690" height="450">
             <div className="app_cou_content">
                 <div className="app_cou_left">

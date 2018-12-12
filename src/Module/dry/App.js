@@ -1,6 +1,6 @@
 /**
  * 烘干界面组件
- * @author yangyunlong
+ * @author fanyerong
  */
 
 import React from 'react';
@@ -10,6 +10,8 @@ import OptionBox from '../../Elem/OptionBox';        //新增
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
+import Goback from '../goback/App';
+
 const state = 50, word = '烘干';
 // import { stat } from 'fs';
 const token = 'token'.getData();
@@ -26,14 +28,15 @@ export default class extends React.Component {
             loading:null,
             uploadShow:false,
             lightboxShow:false,
-            index:null
+            index:null,
+            back:false,
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleCleaned = this.handleCleaned.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
         this.query = this.query.bind(this);
-        // this.goBack = this.goBack.bind(this);
+        this.goBack = this.goBack.bind(this);
 
         this.onUpload = this.onUpload.bind(this);       
         this.onDelete = this.onDelete.bind(this);  // 删除
@@ -157,10 +160,14 @@ export default class extends React.Component {
         });
     }
     
-    // goBack() {
-    //     if (this.state.checked.length != 1) return alert('返流项目需选中单个项目返流');
-    //     //this.props.changeView({view:'go_back',param:{state:state,id:this.state.checked[0]}});
-    // }
+    goBack() {
+        //console.log(1);       
+        if(this.state.checked!=''){
+            this.setState({back:true})
+        }else{
+            return alert('返流项目需选中单个项目返流'); return alert('返流项目需选中单个项目返流');
+        }
+    }
 
     onUpload(file) {    //文件上传
         let done;
@@ -237,7 +244,7 @@ export default class extends React.Component {
                 <div className='right1 topdiv'>
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                     <input type="text" className='e-input' value={this.state.value} onChange={e=>this.setState({value:e.target.value.trim()})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
-             </div> 
+                </div> 
             <div className='clean'>               
                 <div className='e-box'>
                     <table className='e-table border'>
@@ -272,10 +279,13 @@ export default class extends React.Component {
                         &emsp;&nbsp;
                         <button type='button' className='e-btn confirm btn-both' onClick={this.handleCleaned}>已{word}</button>
                         &emsp;
-                        {/* <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button> */}
+                        <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button>
                     </div>                   
-                </div>               
-            </div> 
+                </div> 
+                {
+                   this.state.back && <Goback /> 
+                }              
+            </div>            
         </Window>
         );
     }

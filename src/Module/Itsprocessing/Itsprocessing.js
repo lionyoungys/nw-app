@@ -21,6 +21,7 @@ export default class extends Component {
             returnCash:'',//退现金金额
             returnCard:'',//退卡金额
             maxReturn:'0',//最大退款金额
+            payStatus: true,//是否付款
         }
         this.searchOrder = this.searchOrder.bind(this);
         this.doCompensate = this.doCompensate.bind(this);
@@ -63,9 +64,9 @@ export default class extends Component {
         if (this.state.orderNum.length == 0) return tool.ui.error({ title: '提示', msg: '订单号/流水号不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
         if (this.state.cause.length == 0) return tool.ui.error({ title: '提示', msg: '撤单原因不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCard.length > 0 ) return tool.ui.error({ title: '提示', msg: '订单非卡支付，只能现金退款！', button: ['确定'], callback: (close, event) => { close(); } });
-        if (!this.state.cardPay && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (!this.state.cardPay && this.state.payStatus && this.state.returnCash.length == 0) return tool.ui.error({ title: '提示', msg: '现金退款不能为空！', button: ['确定'], callback: (close, event) => { close(); } });
         if (!this.state.cardPay && this.state.returnCash * 1 > (this.state.maxReturn * 1)) return tool.ui.error({ title: '提示', msg: '现金退款金额不能大于最大退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
-        if (this.state.cardPay && this.state.returnCash.length == 0 && this.state.returnCard.length == 0 ) return tool.ui.error({ title: '提示', msg: '请填写至少一种退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
+        if (this.state.cardPay && this.state.payStatus && this.state.returnCash.length == 0 && this.state.returnCard.length == 0 ) return tool.ui.error({ title: '提示', msg: '请填写至少一种退款金额！', button: ['确定'], callback: (close, event) => { close(); } });
         if (this.state.cardPay && (this.state.returnCash *1+ this.state.returnCard*1) >(this.state.maxReturn *1)) return tool.ui.error({ title: '提示', msg: '现金与退卡金额不能大于最大金额！', button: ['确定'], callback: (close, event) => { close(); } });
         let params = {
             token: 'token'.getData(), 
@@ -195,12 +196,12 @@ export default class extends Component {
                     <div className="Itsprocessing-footer-left">                     
                         <span><b>*</b>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
                     </div>                 
-                    <div className="Itsprocessing-footer-div">
-                        <span>退款金额：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
+                       <div className="Itsprocessing-footer-div" style={{ visibility: this.state.payStatus ? 'visible':'hidden'}}>
+                        <span>现金退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
                     </div>
                     <div className="Itsprocessing-footer-div">
-                        <span>卡退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> <b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
-                    </div>
+                        <div style={{ visibility: this.state.payStatus ? 'visible' : 'hidden',display:'inline-block' }}><span >卡退款：</span><input  type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> </div><b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
+                    </div> 
                 </div> 
             </div>
             </Window> 

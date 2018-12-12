@@ -1,6 +1,9 @@
 
-.addnewprice-one,.addnewprice-two{
+.addnewprice-one{
     margin:11px 11px 0;
+}
+.addnewprice-two{
+    margin:0px 11px 0;
 }
 .addnewprice-two i{
     color: red
@@ -9,7 +12,7 @@
     height: 252px;
 }
 .addnewprice-two{
-    height: 116px;
+    height: 100px;
 }
 .e-input.addnewprice-input{
     width: 112px;
@@ -33,16 +36,32 @@
     min-width:99px;
     width:99px;
 }
-.addnewprice-one,.addnewprice-two{
+.addnewprice-one,.addnewprice-two.addnewprice-three{
     color:#70737c;
     font-size:12px;
 }
 
 .addnewprice-one-left > div,.addnewprice-two >div{
     height: 31px;
-    width:260px;
+    width:280px;
     line-height: 31px;
     float:left;
+}
+.addnewprice-three>div{
+    height: 21px;
+    width:280px;
+    display: inline-block;
+}
+.addnewprice-four{
+   margin-left: 40px;
+}
+.addnewprice-four div span{
+    height: 32px;
+    width: 92px;
+    color:#70737c;
+    font-size:12px;
+    text-align: right;
+    line-height: 32px;
 }
 .addnewprice-two >div{
     margin-top: 4px;

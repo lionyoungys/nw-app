@@ -45,6 +45,7 @@ export default class extends Component {
         this.date = tool.date('Y-m-d');
         this.DATACODE = tool.code();
         this.counter = 1;    //编码累加计数属性
+        this.calculator = new tool.api.calculator();    //获取价格计算器对象
         this.M1read = this.M1read.bind(this);    //读卡
         this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码

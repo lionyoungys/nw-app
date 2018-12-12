@@ -275,8 +275,7 @@ export default class extends React.Component {
                             <button type='button' className='e-btn confirm btn-both' onClick={this.handleCleaned}>已{word}</button>
                             &emsp;
                             {/* <button className='e-btn confirm' onClick={this.handleClick}>退回</button> */}
-                        </div>
-                        
+                        </div>                       
                     </div>               
             </div>
         </Window>

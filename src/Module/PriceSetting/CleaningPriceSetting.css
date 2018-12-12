@@ -118,3 +118,10 @@
 }
 .right_table thead tr th,td{color:#4d4d4d}
 .right_table tbody tr td{color:#333}
+.auto_setting{
+    margin-left: 20px;
+    width: auto;
+}
+.largelong{
+    width: 393px;
+}

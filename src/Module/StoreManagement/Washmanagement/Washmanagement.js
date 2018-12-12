@@ -96,8 +96,7 @@ export default class extends Component {
                     {list}
                     <div style={{paddingBottom:'20px'}}><button className="e_btn_store" onClick={this.btn_up}>确定</button></div>
                     
-                </div>
-                                  
+                </div>           
             </div>
         );
     }

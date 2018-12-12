@@ -215,6 +215,9 @@ export default class extends Component {
             item_online_price:'',//线上价格
             image_id:'',//图片id
             image_url:'',//图片url
+            defect:'',//瑕疵
+            washestimate:'',//洗后预估
+
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd=this.handleAdd.bind(this);
@@ -265,7 +268,7 @@ export default class extends Component {
     }
     render() {
         return (
-            <Dish title='新增洗护价格' onClose={this.props.onClose} width="690" height="475">
+            <Dish title='新增洗护价格' onClose={this.props.onClose} width="690" height="512">
                 <div className="addnewprice-one">
                     <div className="addnewprice-one-left">
                         <div>
@@ -356,10 +359,17 @@ export default class extends Component {
                         <div><input type="checkbox" checked={this.state.transfer == 1 ? true : false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
                     </div>
                 </div>
-                
+                <div className='addnewprice-three'>
+                <div className='auto_setting'><b>收衣界面自动填充设置</b></div>
+
+                </div >
+                <div className='addnewprice-four'>
+                    <div ><span>瑕疵：&emsp;&emsp;</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({defect:e.target.value})} value={this.state.defect}/></div>
+                    <div ><span>洗后预估：</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({washestimate:e.target.value})} value={this.state.washestimate}/></div>   
+                </div>
                 <div className="addnewprice-btn">
                     <button className="e-btn" onClick={this.handleAdd}>确定</button>
-                    <button className="e-btn-b" onClick={()=>this.setState({show:false})}>取消</button>
+                    <button className="e-btn-b" onClick={this.props.onClose}>取消</button>
                 </div>
                 {
                     this.state.show
@@ -472,7 +482,7 @@ export class Mod extends Component {
     render() {
 
         return (
-            <Dish title='编辑洗护价格' onClose={this.props.onClose} width="690" height="475">
+            <Dish title='编辑洗护价格' onClose={this.props.onClose} width="690" height="512">
                 <div className="addnewprice-one">
                     <div className="addnewprice-one-left">
                         <div><span><i>*</i>衣物类别：</span><Select option={this.props.data.cate_type} pair={['id', 'name']} selected={this.state.cate_name} onChange={this.onchange} value={this.state.cate_name}/></div>
@@ -504,9 +514,16 @@ export class Mod extends Component {
                             <div><input type="checkbox" checked={this.state.has_discount == 1 ? true : false} onChange={e=>this.setState({has_discount:e.target.checked?1:0})} />允许折扣</div>
                             <div><input type="checkbox" checked={this.state.transfer == 1 ? true: false} onChange={e=>this.setState({transfer:e.target.checked?1:0})} />价格可调</div>
                     </div>
+                  
                 </div>
-                
-                
+                <div className='addnewprice-three'>
+                <div className='auto_setting'><b>收衣界面自动填充设置</b></div>
+
+                </div >
+                <div className='addnewprice-four'>
+                    <div ><span>瑕疵：&emsp;&emsp;</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>
+                    <div ><span>洗后预估：</span><input className='e-input largelong' type="text"  onChange={e=>this.setState({item_name:e.target.value})} value={this.state.item_name}/></div>   
+                </div>
                 <div className="addnewprice-btn">
                     <button className="e-btn" onClick={this.modYES}>确定</button>
                     <button className="e-btn" onClick={this.deleteYES}>删除</button>

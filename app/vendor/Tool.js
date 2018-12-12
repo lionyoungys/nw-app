@@ -428,7 +428,7 @@
                 if (0 == TYPE) {
                     return Math.floor(value);
                 } else if (1 == TYPE) {
-                    return Math.round(value * 10) / 10;
+                    return Math.round(value);
                 } else if (2 == TYPE) {
                     return value;
                 } else {
@@ -437,11 +437,21 @@
             }
         }
 
-        this.setMemory = function (items) {
+        this.setMemory = function (items, handle) {
             if (tool.isArray(items) && 0 == memory.total) {
                 var len = items.length;
                 if (len > 0) {
                     for (var i = 0;i < len;++i) {
+                        //总额 = 原价 + 可折附加费 + 不可折附加费
+                        memory.total = memory.total.add(items[i].raw_price, items[i].addition_price, items[i].addition_no_price);
+                        //可折金额 = 原价可打折的情况 + 可折附加费
+                        memory.dis_amount = memory.dis_amount.add( (1 == items[i].has_discount ? items[i].raw_price : 0), items[i].addition_price );
+                        //不可折金额 = 原价不可打折的情况 + 不可折附加费
+                        memory.no_dis_amount = memory.no_dis_amount.add( (1 == items[i].has_discount ? 0 : items[i].raw_price), items[i].addition_no_price );
+                        //在不打折的情况下,折后金额 = 总额;在打折的情况下,折后金额 = 可折金额 * 折扣率 + 不可折金额;
+                        memory.amount = memory.total;
+                        memory.calc_amount = this.calc(memory.amount);
+                        'function' == typeof handle && handle(items[i]);
                     }
                 }
             }
@@ -454,15 +464,7 @@
          * @param {Object} this
          */
         this.coupon = function (items, coupon) {    //根据商户所选择的优惠券计算金额
-            if (tool.isArray(items)) {
-                var len = items.length;
-                if (len > 0 && 0 == memory.total) {
-                    for (var i = 0;i < len;++i) {
-
-                    }
-                    memory.calc_amount = this.calc(memory.amount);
-                }
-            }
+            this.setMemory(items);
             return this;
         }
 
@@ -473,15 +475,7 @@
          * @param {Object} this
          */
         this.activity = function (items, activity) {    //根据商户所选的活动计算金额
-            if (tool.isArray(items)) {
-                var len = items.length;
-                if (len > 0) {
-                    for (var i = 0;i < len;++i) {
-
-                    }
-                    memory.calc_amount = this.calc(memory.amount);
-                }
-            }
+            this.setMemory(items);
             return this;
         }
 

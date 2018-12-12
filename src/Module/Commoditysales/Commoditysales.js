@@ -36,6 +36,7 @@ export default class extends Component {
             cardList:[],
             calculate:2,    //计算方式
         };
+        this.calculator = new tool.api.calculator();    //获取价格计算器对象
         this.handleClick = this.handleClick.bind(this);
         this.query = this.query.bind(this);
         this.deleteYes = this.deleteYes.bind(this);
