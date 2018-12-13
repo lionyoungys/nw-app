@@ -661,14 +661,9 @@ export default class extends Component {
         amount = this.calculate(amount);
         
         if (this.state.cou_index > 0 || this.state.act_index > 0) {
-            this.calculator.setData(this.state.data);
-            if (this.state.cou_index > 0) {    //判断使用
-                this.calculator.coupon(this.state.coupons[this.state.cou_index]);
-            }
-            if (this.state.act_index > 0) {
-                this.calculator.activity(this.state.activities[this.state.act_index]);
-            }
-            let result = this.calculator.get();
+            let result = this.calculator.setData(this.state.data)
+                                        .matchAC(this.state.activities[this.state.act_index], this.state.coupons[this.state.cou_index])
+                                        .get();
             amount = result.calc_amount;
         }
         return (

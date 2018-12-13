@@ -545,6 +545,35 @@
                 }
             }
         }
+
+        /**
+         * 匹配促销活动,优惠券的优先级
+         * @param {Object} activity 活动数据
+         * @param {Object} coupon 优惠券数据
+         * @return {Object} this
+         */
+        this.matchAC = function (activity, coupon) {
+            if (
+                tool.isObject(activity) 
+                && 
+                tool.isObject(coupon) 
+                && 
+                !isNaN(activity.type) 
+                && 
+                !isNaN(coupon.type)
+            ) {
+                if (1 == activity.type && 1 != coupon.type) {
+                    this.activity(activity).coupon(coupon);
+                } else {
+                    this.coupon(coupon).activity(activity);
+                }
+            } else if (tool.isObject(coupon) && !isNaN(coupon.type)) {
+                this.coupon(coupon);
+            } else if (tool.isObject(activity) && !isNaN(activity.type)) {
+                this.activity(activity);
+            }
+            return this;
+        }
         
         /**
          * 计算优惠券使用规则,存入暂存

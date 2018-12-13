@@ -76,8 +76,7 @@ import ironing from './Module/ironing/App'; // 熨烫
 import check from './Module/check/App'; // 质检
 import out_of_factory from './Module/out_of_factory/App'; // 出厂
 import TableDemo from './Module/TableDemo';
-import go_back from './Module/goback/App'; // 返流
-
+import backFlow from './Module/backFlow/backFlow'; // 返流审核
 import shopquery from './Module/Shopquery/app'; // 商品查询
 
 //路由对象
@@ -158,7 +157,7 @@ export default {
     ironing:ironing , // 熨烫
     check:check , //质检
     outoffactory:out_of_factory , // 出厂
-    goback:go_back , // 反流
+    backFlow: backFlow , // 返流
 
 
     shopquery:shopquery , //商品查询
