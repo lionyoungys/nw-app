@@ -581,7 +581,7 @@
          * @param {Object} this
          */
         this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
-            if (tool.isObject(coupon) && memory.calc_amount > 0 && coupon.full_money >= memory.total) {    //0 < 总金额 >= 优惠券满足金额
+            if (tool.isObject(coupon) && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //0 < 总金额 >= 优惠券满足金额
                 if (1 == coupon.type) {    //现金券:抵价金额 > 0;
                     var balance = coupon.money;    //优惠券抵扣余额
                     if (balance > 0) {
@@ -620,7 +620,7 @@
          */
         this.activity = function (activity) {    //根据商户所选的活动计算金额
             if (tool.isObject(activity) && memory.calc_amount > 0) {
-                if (1 == activity.type && activity.full_money >= memory.total) {    //满减
+                if (1 == activity.type && memory.total >= activity.full_money) {    //满减
                     var balance = activity.money;    //优惠券抵扣余额
                     if (balance > 0) {
                         memory.amount = 0;
@@ -631,7 +631,7 @@
                             memory.amount = memory.amount.add(this.getTotal(i));
                         }
                     }
-                } else if (2 == activity.type && activity.full_money >= memory.total) {    //折扣
+                } else if (2 == activity.type && memory.total >= activity.full_money) {    //折扣
                     var discount = activity.discount;
                     if (discount < 100 && 0 != discount) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
@@ -645,7 +645,7 @@
                             memory.amount = memory.amount.add(this.getTotal(i));
                         }
                     }
-                } else if (3 == activity.type && activity.money >= size) {    //多件洗
+                } else if (3 == activity.type && size >= activity.money) {    //多件洗
                     this.packData(activity.item_name, activity.full_money, activity.money);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {    //遍历所有项目重新取值

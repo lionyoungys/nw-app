@@ -664,8 +664,10 @@ export default class extends Component {
             let result = this.calculator.setData(this.state.data)
                                         .matchAC(this.state.activities[this.state.act_index], this.state.coupons[this.state.cou_index])
                                         .get();
+            console.log('result', result);
             amount = result.calc_amount;
         }
+        console.log(amount);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>

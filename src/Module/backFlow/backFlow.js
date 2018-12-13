@@ -2,6 +2,7 @@ import React from 'react';
 import Window from '../../UI/Window';
 import OptionBox from '../../Elem/OptionBox';
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
+import Empty from '../../Elem/Empty';
 import './backFlow.css';
 // import { stat } from 'fs';
 const token = 'token'.getData();
@@ -40,7 +41,7 @@ export default class extends React.Component {
     query() {
         let done;
         tool.ui.loading(handle => done = handle);
-        api.post('clear', {
+        api.post('backFlowList', {
             token: 'token'.getData(),
         }, (res, ver) => {
             if (ver && res) {
@@ -67,7 +68,7 @@ export default class extends React.Component {
                 this.input.focus()
             }
         } else {
-            api.post('take_laundry', {
+            api.post('backFlowList', {
                 token: 'token'.getData(),
                 clothing_number: this.state.value
             }, (res, ver) => {
@@ -118,11 +119,11 @@ export default class extends React.Component {
         if (this.state.checked.length < 1 && id == '') return;
         let pram = {
             wid: id ? id : JSON.stringify(this.state.checked),
-            //moduleid:state,         
+            status: 1,
             token: 'token'.getData(),
         }
         console.log(pram);
-        api.post('clean_btn', pram , (res, ver) => {
+        api.post('returnBack', pram , (res, ver) => {
             // console.log(res)
             if (ver && res) {
                 tool.ui.success({
@@ -157,13 +158,12 @@ export default class extends React.Component {
         let index = e.target.dataset.index;    
         if (this.state.checked.length < 1 && id == '') return;
         let pram = {
-            itemids: id ? id : this.state.checked.toString(),
-            moduleid: 22,
-            type: 2,
+            wid: id ? id : this.state.checked.toString(),
+            status : 2,
             token: 'token'.getData(),
         }
         console.log(pram);
-        api.post('into_factory', pram, (res, ver) => {
+        api.post('returnBack', pram, (res, ver) => {
             if (ver && res) {
                 if (id == '') {
                     this.setState({ checked: [], all: false });
@@ -230,6 +230,7 @@ export default class extends React.Component {
                                 <tr><th>衣物编码</th><th>名称</th><th>返流原因</th><th>返流类型</th><th>返流步骤</th><th>照片</th><th>操作</th></tr>
                             </thead>
                             <tbody>{html}</tbody>
+                            <Empty show={this.state.data.length < 1} />
                         </table>
                     </div>
 

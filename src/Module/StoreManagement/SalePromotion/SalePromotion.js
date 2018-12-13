@@ -132,15 +132,15 @@ export default class extends Component {
     render(){
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index} onClick={() => this.setState({ proDetailShow: true,id:item.id })}>
-            <td>{index}</td>
-            <td>{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
+            <td >{index}</td>
+            <td >{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
             <td>{item.item_name}</td>
-            <td>{item.mname}</td>
-            <td>{item.start_time}</td>
-            <td>{item.end_time}</td>
-            <td>{item.status}</td>
-            <td>
+            <td style={{lineHeight: '18px',margin:'0 5px'}}>{item.mname}</td>
+            <td>{tool.date('Y-m-d', item.start_time)}</td>
+            <td>{tool.date('Y-m-d', item.end_time)}</td>
+            <td >{item.status}</td>
+            <td style={{ minWidth: '120px' }}>
                 {item.status=='未开启'?
                         <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 :item.status=='进行中'?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
