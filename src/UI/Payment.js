@@ -8,6 +8,7 @@ import React, {Component} from 'react';
 import Dish from './Dish';
 import Triangle from './Triangle';
 import Select from '../UI/Select';
+import CardList from './CardList';
 
 const style = {marginBottom:'8px', fontSize:'12px'};
 /**
@@ -20,15 +21,21 @@ export default class extends Component {
     constructor(props) {
         super(props);
         let zero = ( 0 == parseFloat(this.props.data.total_amount || 0) );
+        this.template = {id:'', recharge_number:'', card_name:'', discount:100, balance:0};
         this.state = {
             zero: zero, 
             gateway: ( zero ? 1 : 999 ),
             authCode:['','','',''], 
             amount:'', 
             number:'',
-            coupon:'', 
+            card:this.template,
+            cards:[],
             passwd:'',
-            option:[],
+            activities:[],
+            coupons:[],
+            act_index:0,
+            cou_index:0,
+            ac_show:false,    //判断是否展示优惠券及活动信息:当传入优惠券或活动字段时展示,否则隐藏
             show:false
         };
         this.input = [];
@@ -38,12 +45,52 @@ export default class extends Component {
         this.setAuthCode = this.setAuthCode.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
-        this.query = this.query.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+        this.M1Read = this.M1Read.bind(this);
+        this.handleSelectCoupon = this.handleSelectCoupon.bind(this);
+        this.handleSelectActivity = this.handleSelectActivity.bind(this);
     }
 
     componentDidMount() {
         this.input[3].onkeydown = ( e => {'Enter' === e.code && this.onConfirm()} )
+        let phone = this.props.phone
+        ,   oid = this.props.oid;
+        if ('string' == typeof phone && !isNaN(oid)) {
+            //获取满足当前条件的优惠券及活动列表信息
+            api.post('order_ac_query', {user_mobile:phone, oid:oid, token:'token'.getData()}, function(res, ver) {
+                console.log('ui/payment/api:order_ac_query', res);
+                if (ver) {
+                    var act = res.result.activity
+                    ,   cou = res.result.coupon
+                    ,   a_len = act.length
+                    ,   c_len = cou.length;
+                    if (a_len < 1) {
+                        act.unshift({id:'_act_', name:'无促销活动可参加'});
+                    } else {
+                        act.unshift({id:'_act_', name:a_len + '个促销活动可参加'});
+                    }
+                    if (c_len < 1) {
+                        cou.unshift({id:'_cou_', name:'无优惠券可使用'});
+                    } else {
+                        cou.unshift({id:'_cou_', name:c_len + '张优惠券可使用'});
+                    }
+                    this.setState({coupons:cou, activities:act, ac_show:true});
+                }
+            });
+        }
+    }
+
+    M1Read() {
+        if ('' != this.state.number) {
+            let obj = {number:this.state.number, callback: res => {
+                if (res.cardList.length > 1) {
+                    this.setState({cards:res.cardList});
+                } else {
+                    this.setState({card:res});
+                }
+            }};
+            EventApi.M1Read(obj);
+        }
     }
 
     handleGateway(e) {
@@ -51,8 +98,6 @@ export default class extends Component {
         this.setState({gateway:gateway});
         1 == gateway && EventApi.open_case();
     }
-
-    query() {'' != this.state.number && 'function' === typeof this.props.M1Read && this.props.M1Read(this.state.number)}
 
     handleChange(e) {
         let value = e.target.value;
@@ -70,7 +115,7 @@ export default class extends Component {
         }
     }
     onKeyPress(e){
-        13 == (e.keyCode || e.which) && this.query();
+        13 == (e.keyCode || e.which) && this.M1Read();
     }
     handleClick() {
         if (0 == this.state.gateway || 999 == this.state.gateway) {    //会员卡支付
@@ -80,6 +125,17 @@ export default class extends Component {
         }
     }
 
+    handleSelectCoupon(obj) {
+        if (0 == this.state.act_index || 1 == this.state.activities[this.state.act_index].whether) {
+            this.setState({cou_index:obj.index});
+        }
+    }
+
+    handleSelectActivity(obj) {
+        if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == this.state.activities[obj.index].whether)) {
+            this.setState({act_index:obj.index});
+        }
+    }
     onConfirm() {
         this.setState({show:false});
         if ('function' !== typeof this.props.callback || this.waiting) return;
@@ -92,7 +148,7 @@ export default class extends Component {
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
             if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
-            obj.pay_amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(obj.pay_amount) ? 0 : obj.pay_amount) : obj.pay_amount);
+            obj.pay_amount = ('object' === typeof this.props.calculator ? this.props.calculator.calc(isNaN(obj.pay_amount) ? 0 : obj.pay_amount) : obj.pay_amount);
             if (obj.amount < 0 || obj.pay_amount > obj.amount) {
                 this.waiting = false;
                 return;
@@ -119,38 +175,56 @@ export default class extends Component {
     }
 
     render() {
-        let data = this.props.data || {}
-        ,   authCode = this.state.authCode
-        ,   gateway = this.state.gateway
-        ,   discount = data.discount || 100
-        ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount);
-        amount = ('function' === typeof this.props.calculate ? this.props.calculate(isNaN(amount) ? 0 : amount) : amount);
-        var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
-        if (0 != gateway && 999 != gateway) discount = 100;
-        //优惠信息判断
-        let ac_show = (this.props.activities || this.props.coupons) ? true : false
-        ,   activities = tool.isArray(this.props.activities) ? tool.clone(this.props.activities) : []
-        ,   coupons = tool.isArray(this.props.coupons) ? tool.clone(this.props.coupons) : []
-        ,   act_index = isNaN(this.props.act_index) ? 0 : this.props.act_index
-        ,   cou_index = isNaN(this.props.cou_index) ? 0 :this.props.cou_index;
+        let gateway = this.state.gateway    //支付方式
+        ,   authCode = this.state.authCode    //支付码
+        ,   items = this.props.items || []    //项目列表
+        ,   card = this.props.card || this.template    //会员卡信息
+        ,   useing_card = (0 == gateway || 999 == gateway)    //是否使用会员卡支付
+        ,   ac_show = this.state.ac_show
+        ,   activities = this.state.activities
+        ,   coupons = this.state.coupons
+        ,   act_index = this.state.act_index
+        ,   cou_index = this.state.cou_index;
+        if (this.state.card.id) {
+            card = this.state.card;
+        }
+        let discount = useing_card ? card.discount : 100    //折扣率
+
+        this.props.calculator.setData(items);    //设置项目数据
+
+        if ((act_index > 0 || cou_index > 0)) {    //判断是否使用促销活动或优惠券
+            discount = 100;    //当使用优惠券或促销活动时,会员卡折扣无效
+            this.calculator.matchAC(activities[act_index], coupons[cou_index])
+        }
+        let data = this.calculator.get()
+        ,   total = data.total    //总额
+        ,   amount = this.calculator.discount(discount).calc_amount    //支付金额
+        ,   dis_amount = data.dis_amount    //可折金额
+        ,   no_dis_amount = data.no_dis_amount    //不可折金额
+        ,   change = (isNaN(this.state.amount) ? 0 : this.state.amount).sub(amount);    //找零
+
+        // let data = this.props.data || {}
+        // ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount);
+        // var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
+        // if (data.special_pay_amount) {
+        //     amount = data.special_pay_amount;
+        // }
         return (
             <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
                     <div className='ui-payment-head'>核对信息</div>
                     <div className='ui-payment-detail'>
                         <div>
-                            <div>不可折金额：&yen;{data.amount}</div>
-                            <div>原价：&yen;{data.total_amount}</div>
+                            <div>不可折金额：&yen;{no_dis_amount}</div>
+                            <div>原价：&yen;{total}</div>
                         </div>
                         <div>
-                            <div>可折金额：&yen;{data.dis_amount}</div>
-                            <div>折后价：&yen;{
-                                0 != gateway && 999 != gateway ? ('function' === typeof this.props.calculate ? this.props.calculate(data.total_amount) : data.total_amount) : data.pay_amount
-                            }</div>
+                            <div>可折金额：&yen;{dis_amount}</div>
+                            <div>折后价：&yen;{amount}</div>
                         </div>
                         <div>
                             <div>折扣率：{discount}%</div>
-                            <div style={(0 == gateway || 999 == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{data.balance}</span></div>
+                            <div style={useing_card ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{card.balance}</span></div>
                         </div>
                     </div>
                     {ac_show && <div className='ui-payment-head'>优惠信息</div>}
@@ -158,8 +232,8 @@ export default class extends Component {
                         ac_show
                         &&
                         <div className='ui-payment-detail3'>
-                            <span>优惠券：<Select option={coupons} value={coupons[cou_index] ? coupons[cou_index].name : ''} pair={['id', 'name']} onChange={this.props.handleSelectCoupon}/></span>
-                            <span>促销活动：<Select option={activities} value={activities[act_index] ? activities[act_index].name : ''} pair={['id', 'name']} onChange={this.props.handleSelectActivity}/></span>
+                            <span>优惠券：<Select option={coupons} value={coupons[cou_index] ? coupons[cou_index].name : ''} pair={['id', 'name']} onChange={this.handleSelectCoupon}/></span>
+                            <span>促销活动：<Select option={activities} value={activities[act_index] ? activities[act_index].name : ''} pair={['id', 'name']} onChange={this.handleSelectActivity}/></span>
                         </div>
                     }
                     <div className='ui-payment-head'>收款方式</div>
@@ -173,24 +247,29 @@ export default class extends Component {
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
                             <Triangle className='ui-payment-triangle vip'/>
-                            <div style={data.type ? {display:'none'} : null}>
+                            <div style={card.id ? {display:'none'} : null}>
                                 <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示卡号或手机号</div>
-                                <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
-                                <button type='button' className='e-btn' onClick={this.query}>查询</button>
+                                <input 
+                                    type='input' 
+                                    ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} 
+                                    className='e-input' 
+                                    value={this.state.number} 
+                                    onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
+                                <button type='button' className='e-btn' onClick={this.M1Read}>查询</button>
                             </div>
-                            <div className='ui-payment-pattern-handle-vip' style={data.type ? null : {display:'none'}}>
-                                <div><span>卡号：{data.number}</span>卡类型：{data.type}</div>
-                                <div><span>余额：{data.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
+                            <div className='ui-payment-pattern-handle-vip' style={card.id ? null : {display:'none'}}>
+                                <div><span>卡号：{card.recharge_number}</span>卡类型：{card.card_name}</div>
+                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
                             <Triangle className='ui-payment-triangle ic'/>
-                            <div style={data.type ? {display:'none'} : {textAlign:'center'}}>
+                            <div style={card.id ? {display:'none'} : {textAlign:'center'}}>
                                 <button type='button' className='e-btn' onClick={this.props.M1Read}>读卡</button>
                             </div>
-                            <div className='ui-payment-pattern-handle-vip' style={data.type ? null : {display:'none'}}>
-                            <div><span>卡号：{data.number}</span>卡类型：{data.type}</div>
-                                <div><span>余额：{data.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
+                            <div className='ui-payment-pattern-handle-vip' style={card.id ? null : {display:'none'}}>
+                                <div><span>卡号：{card.recharge_number}</span>卡类型：{card.id}</div>
+                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
@@ -218,11 +297,6 @@ export default class extends Component {
                             <input type='text' className='e-input' value={authCode[2]} onChange={this.setAuthCode} data-index='2' ref={input => this.input[2] = input}/>
                             <input type='text' className='e-input' value={authCode[3]} onChange={this.setAuthCode} data-index='3' ref={input => this.input[3] = input}/>
                         </div>
-                        {/* <div className='ui-payment-amount'>
-                            <div>应收：<span>&yen;{amount}</span></div>
-                            <div>找零：<span>&yen;{change}</span></div>
-                            <div>欠费：<span>&yen;{change > 0 ? 0 : (change * -1)}</span></div>
-                        </div> */}
                     </div>
                     <div className='ui-payment-confirm'>
                         <button type='button' className='e-btn larger' onClick={this.handleClick}>立即收款</button>
@@ -238,6 +312,11 @@ export default class extends Component {
                             <button type='button' className='e-btn' onClick={this.onConfirm}>确认</button>
                         </div>
                     </Dish>
+                }
+                {
+                    this.state.cards.length > 1 
+                    && 
+                    <CardList data={this.state.cards} onClose={() => this.setState({cards:[]})} callback={obj => this.setState({card:obj,cards:[]})}/>
                 }
             </Dish>
         );

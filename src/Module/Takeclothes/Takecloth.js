@@ -8,6 +8,7 @@ import Payment from '../../UI/Payment';
 import CardList from '../Clothes/CardList';
 import './Takeclothes.css';
 import Nodata from '../../UI/nodata'
+import Table from '../../UI/Table';
 const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
@@ -19,6 +20,7 @@ export default class extends Component {
             count:'',
             cardList:[],
             list:[],
+            clist:[],
             nopay:{},
             checked:[],
             Show:'block',
@@ -92,6 +94,7 @@ export default class extends Component {
                     if(res.result.list.length>0){
                         this.setState({
                             list:res.result.list,
+                            clist:res.result.clist,
                             count:res.result.count,   
                             nodatas:false,     
                             merchant:res.result.merchant,
@@ -356,61 +359,151 @@ export default class extends Component {
         ,   tempChecked
         ,   tmpCheckedCount;
 
-        let takeclothes=this.state.list.map((item,index)=> {
+        let takeclothes=this.state.clist.map((item,index)=> {
             tempChecked = this.state.checked[index] || [];
             tmpCheckedCount = 0;
             return (
                 <div style={{background:'#ffffff'}}>
                 <div className="Takeclothesdetail-title">
                 <div className="Takeclothesdetail-title-left">
-                <div>订单号：{item.ordersn}</div>
-                <div>收衣时间:{item.collect}</div>
-                </div>
-                <div className="Takeclothesdetail-title-right">
-                <div>姓名：{item.user_name}</div>
-                <div>手机号：{item.user_mobile}</div>
-                <div>卡号：{item.card_number}</div>
+                <div>姓名：{item.name}</div>
+                <div>手机号：{item.mobile}</div>
                 </div>
             </div>
             <div className="Takeclothes-tab Takeclothesdetail-tab">
-                <table cellPadding="0" cellSpacing="0" border="0">
-                    <thead>
-                        <tr>
+                    <Table>
+                        <thead>
+                            <tr>
                             <th>序号</th>
+                            <th>订单编号</th>
                             <th>衣物编码</th>
                             <th>衣物名称</th>
                             <th>颜色</th>
-                            <th>颜色瑕疵</th>
+                            <th>瑕疵</th>
                             <th>衣挂号</th>
                             <th>洗护状态</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            item.item.map((item1,index2) => {
+                            <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {   
+                                   
+                                item.order.map((item1,index2) => {
                                 if (4 != item1.status) ++tmpCheckedCount;
                                 return (
                                     <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
-                                        <td><input type="checkbox" class="e-checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item.pay_state == 1 ? true : false) && (item1.status == 4 ? false : true)) == true ? 'inline' : 'none' }} /><span>{index2 + 1}</span></td>
-                                        <td>{item1.clothing_number}</td>
-                                        <td>{item1.clothing_name}</td>
-                                        <td>{item1.clothing_color}</td>
-                                        <td>{item1.remark}</td>
-                                        <td>{item1.grid_num}</td>
-                                        <td>{item1.status.getItemStatusName()}</td>
+                                        <td><input type="checkbox" class="e-checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item1.pay_state == 1 ? true : false) && (item1.pay_state == 4 ? false : true)) == true ? 'true' : 'none' }} /><span>{index2 + 1}</span></td>
+                                        <td>{item1.ordersn}</td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                                 {item2.clothing_number} 
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                                
+                                                 {item2.clothing_name} 
+                                                 
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                               
+                                                 {item2.clothing_color}
+                                               
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                    
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                                
+                                                {item2.remark}
+                                               
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                                
+                                                {item2.grid_num}
+                                               
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div>
+                                                 
+                                                {item2.status.getItemStatusName()}
+                                                
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                        <td>
+                                        {       
+                                            item1.item.map((item2,index3) => {
+                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            return ( 
+                                            <div data-id={item.id} data-index={index} onClick={this.paymore}>
+                                                {item1.pay_state==1?'单件取衣':'立即付款'}
+                                            </div>);
+                                            }
+                                            )
+                                        }
+                                        </td>
+                                       
                                     </tr>
                                 );
-                            })
-                        }
-                    </tbody>
-                </table> 
+                            })    
+                            }
+                            {/* {this.state.nodatas && <Nodata />} */}
+                        </tbody>
+                    </Table>
             </div>
             <div className="Takeclothesdetail-footer">
-                <div className="Takeclothesdetail-footer-left" style={{display:item.pay_state==1?'block':'none'}}>
+                <div className="Takeclothesdetail-footer-left" >
                 <input type="checkbox" class="e-checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
                 <div className="Takeclothesdetail-footer-right">
-                            <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button> 
-                            <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length != 0 ? true : false)) == true ? 'block' : 'none' }}>取衣</button>
+                            {/* <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button>  */}
+                            <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: ((tempChecked.length != 0 ? true : false)) == true ? 'block' : 'none' }}>取衣</button>
                             <button className="take-no" style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length == 0 ? true : false)) == true ? 'block' : 'none' } }>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
                     <div style={{display:item.pay_state!=1?'block':'none'}}>

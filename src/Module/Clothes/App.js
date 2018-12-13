@@ -553,8 +553,6 @@ export default class extends Component {
                         this.print();
                         return this.props.closeView();
                     }
-                    //获取满足当前条件的优惠券及活动列表信息
-                    tool.api.getAC({user_mobile:this.state.phone, oid:r.order_id, token:'token'.getData()}, obj => this.setState(obj));
                     this.setState({show:14});
                 } else {
                     handle();
@@ -659,15 +657,12 @@ export default class extends Component {
             );
         });
         amount = this.calculate(amount);
-        
         if (this.state.cou_index > 0 || this.state.act_index > 0) {
             let result = this.calculator.setData(this.state.data)
                                         .matchAC(this.state.activities[this.state.act_index], this.state.coupons[this.state.cou_index])
                                         .get();
-            console.log('result', result);
             amount = result.calc_amount;
         }
-        console.log(amount);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>
@@ -814,33 +809,14 @@ export default class extends Component {
                     &&
                     <Payment 
                         onClose={this.paymentClose}
-                        data={{
-                            total_amount:total,
-                            dis_amount:dis_amount,
-                            amount:no_dis_amount,
-                            discount:(this.state.payCard.discount || this.state.discount || 100),
-                            pay_amount:amount,
-                            balance:(this.state.payCard.balance || this.state.balance || 0),
-                            type:(this.state.payCard.card_name || this.state.type),
-                            number:(this.state.payCard.recharge_number || this.state.number)
-                        }}
-                        coupons={this.state.coupons}
-                        activities={this.state.activities}
-                        act_index={this.state.act_index}
-                        cou_index={this.state.cou_index}
-                        handleSelectCoupon={obj => {
-                            if (0 == this.state.act_index || 1 == this.state.activities[this.state.act_index].whether) {
-                                this.setState({cou_index:obj.index});
-                            }
-                        }}
-                        handleSelectActivity={obj => {
-                            if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == this.state.activities[obj.index].whether)) {
-                                this.setState({act_index:obj.index});
-                            }
+                        items={this.state.data}
+                        card={{
+                            recharge_number:this.state.number,
+                            card_name:this.state.type,
+                            discount:(this.state.discount || 100),
+                            balance:(this.state.balance || 0),
                         }}
                         calculator={this.calculator}
-                        calculate={this.calculate}
-                        M1Read={this.PAYM1read}
                         callback={this.paymentCallback}
                     />
                 }

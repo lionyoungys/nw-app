@@ -135,8 +135,8 @@ export default class extends Component {
             <td >{index}</td>
             <td >{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
-            <td>{item.item_name}</td>
-            <td style={{lineHeight: '18px',margin:'0 5px'}}>{item.mname}</td>
+            <td >{item.item_name}</td>
+            <td style={{ maxWidth: '130px', lineHeight: '18px', margin: '0 5px'}}>{item.mname}</td>
             <td>{tool.date('Y-m-d', item.start_time)}</td>
             <td>{tool.date('Y-m-d', item.end_time)}</td>
             <td >{item.status}</td>
@@ -150,39 +150,38 @@ export default class extends Component {
         </tr>
         );
         return (
-         <div >
-           <div className='storespecialofferstopbg'>
-              <div className='storespecialofferstop_one'>
-                 <div> 
-                    <span>类&emsp;型：</span><Select   option={['满减','折扣','多件洗','袋洗']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})}/>
-                 </div>
-                 <div>
-                    <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
-                 </div>
-              </div>
-              <div  className='storespecialofferstop_two'>
-                 <div>
-                    <span>活动名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth'/>
-                 </div>
-                 <div>    
-                    <span>状&emsp;&emsp;态：</span><Select  option={['未开启','进行中','已过期']}  style={{width:'153px'}} value={this.state.status} onChange={obj => this.setState({status:obj.value})}/>
-                 </div>
-              </div>
-              <div className='storespecialofferstop_three'>
-                 <div >
-                    <label>开始时间：</label><input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/> 
-                    - <input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
-                 </div>
-                 <div>    
-                    <button  onClick={this.M1Read} className='e-btn-b' onClick={this.reset}>重置</button> &emsp; 
-                    <button  onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ appendShow: true })}>新增</button>  &emsp;
-                    {/* () => this.setState({ proDetailShow: true }) */}
-                    <button onClick={this.M1Read} className='e-btn' onClick={this.query}>查询</button>  
-                 </div>
-              </div>            
-           </div>    
-                   <div className='storespecialoffersbottom'>
-                    <Table>
+            <div style={{ height: '100%' }}>
+                <div className='storespecialofferstopbg'>
+                    <div className='storespecialofferstop_one'>
+                        <div>
+                            <span>类&emsp;型：</span><Select option={['满减', '折扣', '多件洗', '袋洗']} style={{ width: '153px' }} value={this.state.type} onChange={obj => this.setState({ type: obj.value })} />
+                        </div>
+                        <div>
+                            <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth' />
+                        </div>
+                    </div>
+                    <div className='storespecialofferstop_two'>
+                        <div>
+                            <span>活动名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth' />
+                        </div>
+                        <div>
+                            <span>状&emsp;&emsp;态：</span><Select option={['未开启', '进行中', '已过期']} style={{ width: '153px' }} value={this.state.status} onChange={obj => this.setState({ status: obj.value })} />
+                        </div>
+                    </div>
+                    <div className='storespecialofferstop_three'>
+                        <div >
+                            <label>开始时间：</label><input type="date" className='e-date storespecialofferstop_datewidth' value={this.state.start_time} onChange={e => this.setState({ start_time: e.target.value })} />
+                            - <input type="date" className='e-date storespecialofferstop_datewidth' value={this.state.end_time} onChange={e => this.setState({ end_time: e.target.value })} />
+                        </div>
+                        <div>
+                            <button onClick={this.M1Read} className='e-btn-b' onClick={this.reset}>重置</button> &emsp;
+                            <button onClick={this.M1Read} className='e-btn' onClick={() => this.setState({ appendShow: true })}>新增</button>  &emsp;
+                            <button onClick={this.M1Read} className='e-btn' onClick={this.query}>查询</button>
+                        </div>
+                    </div>
+                </div>    
+                <div className='storespecialoffersbottom'>
+                    <Table style={{height:'100%'}}>
                         <thead>
                             <tr>
                                 <th>编号</th>                             
@@ -201,17 +200,18 @@ export default class extends Component {
                             {/* {this.state.nodatas && <Nodata />} */}
                         </tbody>
                     </Table>
-                    </div>
+
+                </div>
                 {
                     this.state.appendShow && <AppendDisActivity onClose={this.onClose} />
                 }
                 {
-                    this.state.proDetailShow && <SalePromotionDetail onClose={this.onClose} id={this.state.id}/>
+                    this.state.proDetailShow && <SalePromotionDetail onClose={this.onClose} id={this.state.id} />
                 }
                 {
                     this.state.detaiCouShow && <AppendDisActivity data={this.state.cid} onClose={this.editCouClose} />
                 }
-        </div> 
+        </div>
         );
     }
-    }
+}

@@ -193,7 +193,7 @@ export default class extends Component {
         </tr>
     );
         return (
-         <div >
+        <div style={{ height: '100%' }}>
            <div className='storespecialofferstopbg'>
               <div className='storespecialofferstop_one'>
                  <div> 
@@ -223,42 +223,42 @@ export default class extends Component {
                  </div>
               </div>            
            </div>    
-                   <div className='storespecialoffersbottom'>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>编号</th>                             
-                                <th>优惠类型 </th>
-                                <th>优惠卷名称 </th>
-                                <th >优惠方案</th>
-                                <th >总数量\已用 </th>  
-                                <th >开始时间 </th>   
-                                <th >结束时间 </th>                            
-                                <th >状态 </th>   
-                                <th >操作 </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {list}
-                            {/* {this.state.nodatas && <Nodata />} */}
-                        </tbody>
-                    </Table>
-                    </div>
-                    {
-                        this.state.newincrease && <AppendCoupon onClose={this.onClose} />
-                    }
-                    {
-                        this.state.record_list.length>0 && <Record data = {this.state.record_list} onClose={() => this.setState({record_list:[]})} />
-                    }
-                    {
-                        this.state.log_list.length >0 && <Log  data = {this.state.log_list} onClose={() => this.setState({log_list:[]})} />
-                    }
-                    {
-                    this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} />
-                    }
-                    {
-                    this.state.on_coupon && <SalePromotionDetail id={this.state.id} index ='1' onClose={this.onClose}  />
-                    }
+            <div className='storespecialoffersbottom'>
+                <Table style={{ height: '100%' }}>
+                    <thead>
+                        <tr>
+                            <th>编号</th>                             
+                            <th>优惠类型 </th>
+                            <th>优惠卷名称 </th>
+                            <th >优惠方案</th>
+                            <th >总数量\已用 </th>  
+                            <th >开始时间 </th>   
+                            <th >结束时间 </th>                            
+                            <th >状态 </th>   
+                            <th >操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {list}
+                        {/* {this.state.nodatas && <Nodata />} */}
+                    </tbody>
+                </Table>
+                </div>
+                {
+                    this.state.newincrease && <AppendCoupon onClose={this.onClose} />
+                }
+                {
+                    this.state.record_list.length>0 && <Record data = {this.state.record_list} onClose={() => this.setState({record_list:[]})} />
+                }
+                {
+                    this.state.log_list.length >0 && <Log  data = {this.state.log_list} onClose={() => this.setState({log_list:[]})} />
+                }
+                {
+                this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} />
+                }
+                {
+                this.state.on_coupon && <SalePromotionDetail id={this.state.id} index ='1' onClose={this.onClose}  />
+                }
         </div> 
         );
     }

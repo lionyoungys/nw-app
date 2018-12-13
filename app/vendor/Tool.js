@@ -418,6 +418,62 @@
             }
         });
 
+
+        /**
+         * 设置项目数据
+         * @param {Array} items 项目数据
+         * @return {Object} this
+         */
+        this.setData = function (items) {
+            var len = items.length;
+            if (tool.isArray(items) && len > 0) {
+                this.clean();    //清除暂存
+                data = tool.clone(items);
+                size = len;
+                var amount;
+                for (var i = 0;i < len;++i) {
+                    amount = this.getAmount(index);
+                    memory.total = memory.total.add(amount.total);
+                    memory.dis_amount = memory.dis_amount.add(amount.dis_amount);
+                    memory.no_dis_amount = memory.no_dis_amount.add(amount.no_dis_amount);
+                    //在不打折的情况下,折后金额 = 总额;在打折的情况下,折后金额 = 可折金额 * 折扣率 + 不可折金额;
+                    memory.amount = memory.total;
+                    memory.calc_amount = this.calc(memory.amount);
+                }
+            }
+            return this;
+        }
+
+        //通过索引获取指定项目的可折金额及不可折金额
+        this.getAmount = function(index) {
+            var has_discount = (1 == data[index].has_discount);
+            return {
+                total:this.getTotal(index),
+                dis_amount:data[index].addition_price.add(has_discount ? data[index].raw_price : 0),    //可折金额 = 原价可打折的情况 + 可折附加费
+                no_dis_amount:data[index].addition_no_price.add(has_discount ? 0 : data[index].raw_price)    //不可折金额 = 原价不可打折的情况 + 不可折附加费
+            };
+        }
+        //通过索引获取指定项目的总额
+        this.getTotal = function (index) {
+            //总额 = 原价 + 可折附加费 + 不可折附加费
+            return data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price);
+        }
+
+        /**
+         * 通过折扣率计算折后价格
+         * @param {Number} dis 折扣率:取值范围1~100;例:100时为100%;
+         * @return {Object} obj
+         */
+        this.discount = function (dis) {
+            var obj = tool.clone(memory);
+            if (dis > 0 && dis < 100 && obj.dis_amount > 0) {
+                dis = dis.div(100);
+                obj.amount = obj.no_dis_amount.add(obj.dis_amount.mul(dis));
+                obj.calc_amount = this.calc(obj.amount);
+            }
+            return obj;
+        }
+
         /**
          * 根据传入的值及当前的计算方式,进行计算处理
          * @param {mixd} value 数值
@@ -437,45 +493,6 @@
                     return value;
                 }
             }
-        }
-
-        /**
-         * 设置项目数据
-         * @param {Array} items 项目数据
-         * @return {Object} this
-         */
-        this.setData = function (items) {
-            var len = items.length;
-            if (tool.isArray(items) && len > 0) {
-                data = tool.clone(items);
-                size = len;
-                for (var i = 0;i < len;++i) {
-                    //总额 = 原价 + 可折附加费 + 不可折附加费
-                    memory.total = memory.total.add(items[i].raw_price, items[i].addition_price, items[i].addition_no_price);
-                    //可折金额 = 原价可打折的情况 + 可折附加费
-                    memory.dis_amount = memory.dis_amount.add( (1 == items[i].has_discount ? items[i].raw_price : 0), items[i].addition_price );
-                    //不可折金额 = 原价不可打折的情况 + 不可折附加费
-                    memory.no_dis_amount = memory.no_dis_amount.add( (1 == items[i].has_discount ? 0 : items[i].raw_price), items[i].addition_no_price );
-                    //在不打折的情况下,折后金额 = 总额;在打折的情况下,折后金额 = 可折金额 * 折扣率 + 不可折金额;
-                    memory.amount = memory.total;
-                    memory.calc_amount = this.calc(memory.amount);
-                }
-            }
-            return this;
-        }
-
-        //通过索引获取指定项目的可折金额及不可折金额
-        this.getAmount = function(index) {
-            var has_discount = (1 == data[index].has_discount);
-            return {
-                total:this.getTotal(index),
-                dis_amount:data[index].addition_price.add(has_discount ? data[index].raw_price : 0),
-                no_dis_amount:data[index].addition_no_price.add(has_discount ? 0 : data[index].raw_price)
-            };
-        }
-        //通过索引获取指定项目的总额
-        this.getTotal = function (index) {
-            return data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price);
         }
 
         /**
@@ -665,57 +682,33 @@
 
         /**
          * 获取当前暂存的值
-         * @return {Object} memory 获取当前暂存的值
+         * @param {boolean} clean 是否清除暂存计算的值
+         * @return {Object} obj 获取当前暂存的值
          */
-        this.get = function () {
+        this.get = function (clean) {
+            clean = 'boolean' == typeof clean ? clean : true;
             var obj = {};
             data = [];
             for (var k in memory) {
                 obj[k] = memory[k];
-                memory[k] = 0;
+                if (clean) {
+                    memory[k] = 0;
+                }
             }
             return obj;
         }
 
         /**
          * 清除当前暂存的值
-         * @return {void}
+         * @return {Object} this
          */
         this.clean = function () {
             data = [];
             for (var k in memory) {
                 memory[k] = 0;
             }
+            return this;
         }
-    }
-    /**
-     * 获取活动及优惠券数据处理
-     * @param {Object} param 请求参数
-     * @param {Function} callback 回调函数
-     * @return {void}
-     */
-    t.api.getAC = function (param, callback) {
-        console.log(param);
-        api.post('order_ac_query', param, function(res, ver) {
-            console.log(res);
-            if (ver && 'function' == typeof callback) {
-                var act = res.result.activity
-                ,   cou = res.result.coupon
-                ,   a_len = act.length
-                ,   c_len = cou.length;
-                if (a_len < 1) {
-                    act.unshift({id:'_act_', name:'无促销活动可参加'});
-                } else {
-                    act.unshift({id:'_act_', name:a_len + '个促销活动可参加'});
-                }
-                if (c_len < 1) {
-                    cou.unshift({id:'_cou_', name:'无优惠券可使用'});
-                } else {
-                    cou.unshift({id:'_cou_', name:c_len + '张优惠券可使用'});
-                }
-                callback({coupons:cou, activities:act});
-            }
-        });
     }
     window.tool = t;
 })(window);
