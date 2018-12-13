@@ -80,7 +80,47 @@ export default class extends Component {
             return value;
         }
     }
-  
+    singletakecloth(e){
+        e.stopPropagation();
+        var index = e.target.dataset.index;
+        console.log(index);
+        tool.ui.warn({
+            title: '取衣', msg: '该客户确定要取走衣物？', callback: (close, event) => {
+                console.log(event);
+                if (event == '确定') {
+                    this.setState({ takeclothindex: index });
+                    console.log('网络申请');
+                    let takeclothes = {
+                        token: 'token'.getData(),
+                        ids: JSON.stringify(this.state.checked[this.state.takeclothindex])
+                    }
+                    console.log(takeclothes)
+                    api.post('takeItem',
+                        takeclothes
+                        , (res, ver) => {
+
+                            if (ver && res) {
+                                tool.ui.success({
+                                    callback: (close) => {
+                                        this.takecloth();
+                                        close();
+                                        this.setState({checked: [] })
+                                    }
+                                });
+                            } else {
+                                tool.ui.error({
+                                    msg: res.msg, callback: (close) => {
+                                        close();
+                                    }
+                                });
+                            }
+                        }
+                    );
+                }
+                close();
+            }
+        })
+    }
     takecloth() {
         if(this.state.number=='')
         return tool.ui.error({msg:'请输入关键词',callback:close => close()});
@@ -477,16 +517,20 @@ export default class extends Component {
                                             )
                                         }
                                         </td>
-                                        <td>
-                                        {       
-                                            item1.item.map((item2,index3) => {
+                                        <td >
+                                        {item1.pay_state==1?
+                                           
+                                            (item1.item.map((item2,index3) => {
                                             if (4 != item2.status) ++tmpCheckedCount;
                                             return ( 
-                                            <div data-id={item.id} data-index={index} onClick={this.paymore}>
-                                                {item1.pay_state==1?'单件取衣':'立即付款'}
+                                            <div data-id={item2.id} data-index={index3} onClick={this.singletakecloth}>
+                                                单件取衣
                                             </div>);
                                             }
                                             )
+                                            
+                                        ):<span onClick={this.paymore}>
+                                        立即收款</span>
                                         }
                                         </td>
                                        
@@ -506,10 +550,10 @@ export default class extends Component {
                             <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: ((tempChecked.length != 0 ? true : false)) == true ? 'block' : 'none' }}>取衣</button>
                             <button className="take-no" style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length == 0 ? true : false)) == true ? 'block' : 'none' } }>取衣</button>
                     {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
-                    <div style={{display:item.pay_state!=1?'block':'none'}}>
-                        {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
-                                <div style={{ display: 'none' }}><span style={{ color: '#000000' }}>价格:</span> ￥{item.debt}</div><div><span style={{ color: '#000000' }}>衣服件数{item.item_count}件 </span></div>
-                    </div>
+                    {/* <div style={{display:item.pay_state!=1?'block':'none'}}> */}
+                        {/* {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
+                                <div style={{ display: 'none' }}><span style={{ color: '#000000' }}>价格:</span> ￥{item.debt}</div><div><span style={{ color: '#000000' }}>衣服件数{item.item_count}件 </span></div> */}
+                    {/* </div> */}
                 </div>                       
             </div>
                     <div style={{ height: '0px', width: '850px', background: '#cce8ff', margin: '20px auto 0px'}}></div>

@@ -25,6 +25,7 @@ export default class extends React.Component {
             openshow:false,
             tstate:0,
             get_type:'',
+            aa:0,
         }
         this.textwhy = this.textwhy.bind(this);
         this.updatebrandYES = this.updatebrandYES.bind(this);
@@ -46,6 +47,7 @@ export default class extends React.Component {
             token:'token'.getData(),
             wid:this.props.wid,
         }, (res, ver) => {
+            console.log(this.props.wid)
             console.log(res)
             if (ver && res) {
                 done();
@@ -55,9 +57,10 @@ export default class extends React.Component {
                     name:res.result.clothing_name,
                     module:res.result.status,
                     img:res.result.img,
+                    clothing_number:res.result.clothing_number
                 })
             }else{
-                tool.ui.error({title:'错误提示',msg:res.msg,button:['确定'],callback:(close, event) => {
+                tool.ui.error({title:'错误提示',msg:res.msg,button:'确定',callback:(close, event) => {
                     close();
                 }});
             }
@@ -97,10 +100,11 @@ export default class extends React.Component {
     
     del(e) {
         let url = e.target.dataset.url;         
-        //this.setState({index:index})
-          console.log(url)  ;
+        let index = e.target.dataset.id;
+        this.setState({aa:index})
+          console.log(index) ;
           if(this.state.img.length<2){
-            tool.ui.error({title:'提示',msg:'至少添加一张图片',button:'确定',callback:(close, event) => {
+            tool.ui.error({title:'提示',msg:'至少添加一张图片',button:['确定'],callback:(close, event) => {
                 close();               
             }});
           }else{
@@ -114,13 +118,12 @@ export default class extends React.Component {
                 (response, verify) => {
                     console.log(response);                                    
                     if (verify) {
-                        this.state.img.splice(url, 1);
-                        this.setState({img:this.state.img})
+                        this.state.img.splice(index, 1);
+                        this.setState({img:this.state.img});
                     }      
                 }
             );
-          }
-        
+          }        
     }
     open (e){
         console.log(1)
@@ -147,7 +150,7 @@ export default class extends React.Component {
         } 
     }
     // 确定返流操作
-    backYES (){
+    backYES (){       
         if(this.state.value==''){
             tool.ui.error({title:'提示',msg:'请添加返流原因',button:'确定',callback:(close, event) => {
                 close();               
@@ -182,8 +185,7 @@ export default class extends React.Component {
         
     }
     render() {
-        //console.log(this.state.data)
-        //let data = this.state.data;
+        console.log(this.state.img)
         let step = this.state.module.map((obj, index) =>
            <span key={obj} className="back_f">
                 <label className="radiobox">
@@ -197,7 +199,8 @@ export default class extends React.Component {
                 <i 
                     className='m-img-delete'
                     onClick={this.del}
-                    data-url={obj}                   
+                    data-url={obj} 
+                    data-id={index}                 
                 ></i>
             </div>
         );
@@ -225,7 +228,7 @@ export default class extends React.Component {
                         <i onClick={this.props.onClose}></i>
                     </div>
                     <div className='go-back-title'><span>衣物名称:{this.state.name}</span></div>
-                    <div className='go-back-title'><span>衣物编码:{JSON.stringify(this.state.number)}</span></div>
+                    <div className='go-back-title'><span>衣物编码:{this.state.clothing_number}</span></div>
                     <div className='go-back-box up_photo'>
                         <span><a>*</a>上传照片:</span>  
                         {images}
@@ -270,7 +273,7 @@ export default class extends React.Component {
                 }
                 {
                     this.state.openshow &&
-                    <Dish title='查看图片' onClose={() => this.setState({openshow:false})} width="215" height='215'>
+                    <Dish title='查看图片' onClose={() => this.setState({openshow:false})} width="252" height='215'>
                        <img src={this.state.url} className="open_img"/>
                     </Dish>
                 }

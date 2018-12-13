@@ -158,7 +158,7 @@ export default class extends React.Component {
     }
     //反流
     goBack() {   
-        if(this.state.checked.length>1){
+        if(this.state.checked.length<1){
             tool.ui.warn({
                 title: '警告', msg: '返流项目需选中单个项目返流。<br/>', callback: (close, event) => {
                     if (event == '取消' || 'close') {

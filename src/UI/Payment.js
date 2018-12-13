@@ -36,6 +36,10 @@ export default class extends Component {
             ac_show:false,    //判断是否展示优惠券及活动信息:当传入优惠券或活动字段时展示,否则隐藏
             show:false
         };
+        this.data = {};    //计算结果数据对象
+        this.card = {};    //选中使用的卡信息
+        this.coupon = null;    //选中的优惠券
+        this.activity = null;    //选中的活动
         this.input = [];
         this.waiting = false;
         this.handleGateway = this.handleGateway.bind(this);
@@ -140,23 +144,35 @@ export default class extends Component {
         }
     }
     onConfirm() {
-        this.setState({show:false});
         if ('function' !== typeof this.props.callback || this.waiting) return;
         this.waiting = true;
         let authCode = this.state.authCode
-        ,   obj = {gateway:this.state.gateway,amount:parseFloat(this.state.amount || 0), pay_amount:parseFloat(this.props.data.total_amount || 0), change:0};
-        if (999 == obj.gateway) obj.gateway = 0;
+        ,   obj = {
+            gateway:this.state.gateway, 
+            amount:parseFloat(this.state.amount || 0), 
+            pay_amount:parseFloat(this.data.total || 0), 
+            change:0, 
+            card:this.card,    //会员卡使用数据
+            data:this.data,    //价格计算数据
+            coupon:this.coupon,    //优惠券使用数据
+            activity:this.activity    //活动使用数据
+        };
+        if (999 == obj.gateway) {
+            obj.gateway = 0;
+        }
         if (0 == obj.gateway) {    //会员卡支付
-            obj.pay_amount = this.props.data.pay_amount;
+            obj.pay_amount = this.data.calc_amount;
             obj.passwd = this.state.passwd;
         } else if (1 == obj.gateway) {
-            if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
-            obj.pay_amount = ('object' === typeof this.props.calculator ? this.props.calculator.calc(isNaN(obj.pay_amount) ? 0 : obj.pay_amount) : obj.pay_amount);
+            //if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
+            obj.pay_amount = this.data.calc_amount;
             if (obj.amount < 0 || obj.pay_amount > obj.amount) {
                 this.waiting = false;
                 return;
             }
-            if (obj.amount != obj.pay_amount) obj.change = obj.amount.subtract(obj.pay_amount);
+            if (obj.amount != obj.pay_amount) {
+                obj.change = obj.amount.sub(obj.pay_amount);
+            }
         } else {
             if (
                 4 === authCode[0].length && !isNaN(authCode[0])
@@ -195,26 +211,30 @@ export default class extends Component {
 
         if (useing_ac) {    //判断是否使用促销活动或优惠券 
             this.props.calculator.matchAC(activities[act_index], coupons[cou_index])
+            if (tool.isObject(activities[act_index])) {
+                this.activity = activities[act_index];
+            }
+            if (tool.isObject(coupons[cou_index])) {
+                this.coupon = coupons[cou_index];
+            }
         }
 
-        let data = this.props.calculator.get(false)
-        ,   total = data.total    //总额
-        ,   amount = data.calc_amount
+        this.data = this.props.calculator.get(false)
+        let total = this.data.total    //总额
+        ,   amount = this.data.calc_amount
         ,   isZero = (0 == amount)    //判断金额是否为零,为零时只能现金支付
         ,   gateway = (isZero ? 1 : this.state.gateway)    //支付方式
         ,   useing_card = (0 == gateway || 999 == gateway)    //是否使用会员卡支付
         ,   discount = ( useing_ac ? 100 : (useing_card ? card.discount : 100) )    //折扣率:当使用优惠券或促销活动时,会员卡折扣无效
-        ,   dis_amount = data.dis_amount    //可折金额
-        ,   no_dis_amount = data.no_dis_amount;    //不可折金额
-        amount = this.props.calculator.discount(discount).calc_amount    //支付金额
+        ,   dis_amount = this.data.dis_amount    //可折金额
+        ,   no_dis_amount = this.data.no_dis_amount    //不可折金额
+        ,   dis_obj = this.props.calculator.discount(discount);    //折扣对象
+        this.data.amount = dis_obj.amount;
+        this.data.calc_amount = dis_obj.calc_amount;
+        this.card = card;
+        this.card.discount = discount;
+        amount = dis_obj.calc_amount    //支付金额
         let change = (isNaN(this.state.amount) || '' == this.state.amount ? amount : this.state.amount).sub(amount);    //找零
-
-        // let data = this.props.data || {}
-        // ,   amount = 0 == gateway ? data.pay_amount : (data.special_pay_amount || data.total_amount);
-        // var change = '' == this.state.amount || 1 != gateway ? 0 : this.state.amount.subtract(amount);
-        // if (data.special_pay_amount) {
-        //     amount = data.special_pay_amount;
-        // }
         return (
             <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>

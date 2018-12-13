@@ -30,7 +30,10 @@ export default class extends Component {
             price:'',
             goods_type:'',//类别
             goods_number:'',//商品编码
-            upgoods_type:''//修改类别
+            upgoods_type:'',//修改类别
+            sellwayList:'',//渠道
+            sell_way:'',
+            sell_id:'',
         }
         this.limit = 1000;
         this.handleClick=this.handleClick.bind(this);
@@ -43,10 +46,31 @@ export default class extends Component {
         this.mod=this.mod.bind(this);
         this.modYES=this.modYES.bind(this);
         this.query=this.query.bind(this);
+        this.goodsSellWay=this.goodsSellWay.bind(this);
     };  
     componentDidMount() {
         this.query();
         this.getGoodTypeList();
+        this.goodsSellWay();
+    }
+    goodsSellWay(){
+        let done;
+        tool.ui.loading(handle => done = handle);
+        api.post('goodsSellWay', {
+            token: 'token'.getData(),
+        }, (res, ver,handle) => {
+            done();
+            if (ver && res) {
+                console.log(res)
+                this.setState({ sellwayList: res.result,
+                    sell_way:res.result.getObjectType(0, 'name', String).toString(),
+                    sell_id:res.result.getObjectType(0, 'id', String).toString()
+                 })
+                 console.log(res.result.getObjectType(0, 'name', String).toString());
+            } else {
+                handle();
+            }
+        }, () => done());
     }
     query(){
         let done;
@@ -74,7 +98,8 @@ export default class extends Component {
             stock:'',
             discount:0,
             price:'', 
-            typeindex:0
+            typeindex:0,
+            goods_number:''
         });
     } 
     //获取商品类别列表
@@ -113,7 +138,8 @@ export default class extends Component {
             price:this.state.price,
             stock:this.state.stock,
             has_discount:this.state.discount,
-            goods_number:this.state.goods_number
+            goods_number:this.state.goods_number,
+            sell_id:this.state.sell_id
         }
         console.log(this.state.typeLists[this.state.typeindex].id)
         api.post('addGoods',params, (res, ver,handle) => {
@@ -172,6 +198,7 @@ export default class extends Component {
             price:this.state.itemLists[this.state.index].goods[write].price,
             discount:this.state.itemLists[this.state.index].goods[write].has_discount,
             goods_number:this.state.itemLists[this.state.index].goods[write].goods_number,
+            sell_way:this.state.itemLists[this.state.index].goods[write].sell_way
         });
         console.log(write);
     }
@@ -190,7 +217,8 @@ export default class extends Component {
             price: this.state.price,
             stock: this.state.stock,
             has_discount: this.state.discount,
-            goods_number:this.state.goods_number
+            goods_number:this.state.goods_number,
+            sell_id:this.state.sell_id
         } 
         console.log(params);
         api.post('modGoods', params, (res, ver,handle) => {
@@ -225,6 +253,7 @@ export default class extends Component {
                         <td>{item.has_discount=='1'?'是':'否'}</td>
                         <td>{item.stock}</td>
                         <td>{item.price}</td>
+                        <td>{item.sell_way}</td>
                         <td> <span onClick={this.mod} data-write={index} className='e-blue'>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.delete} data-write={index} className='e-blue'>删除</span></td>
                     </tr>
             );
@@ -242,7 +271,7 @@ export default class extends Component {
                     <div>
                         <Table>
                             <thead>
-                                <tr><th>商品条码</th><th>商品名称</th><th>允许折扣</th><th>库存</th><th>单价</th><th>操作</th></tr>
+                                <tr><th>商品条码</th><th>商品名称</th><th>允许折扣</th><th>库存</th><th>单价</th><th>渠道</th><th>操作</th></tr>
                             </thead>
                             <tbody>
                                 {itemList}
@@ -276,7 +305,7 @@ export default class extends Component {
                 {
                     this.state.show
                     &&
-                    <Dish title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="312">
+                    <Dish title='新增商品价格' onClose={() => this.setState({show:false})} width="510" height="325">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList}  onChange={this.onchange} value={this.state.goods_type}/></div>
@@ -297,6 +326,9 @@ export default class extends Component {
                                 <div className="addnewprice-div-nor"><span>商品条码：</span><input  type="number"  className='e-input' onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
                             </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-select"><span>渠道：</span><Select option={this.state.sellwayList} pair={['id', 'name']} onChange={obj => this.setState({sell_way:obj.value,sell_id:obj.key})} value={this.state.sell_way}/></div>
+                            </div>
                             <div className="addnewprice-money">
                                 <input type='checkbox' className='e-checkbox' value={this.state.discount} className='e-input' onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
                             </div>
@@ -308,7 +340,7 @@ export default class extends Component {
                    {
                     this.state.show2
                     &&
-                    <Dish title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="312">
+                    <Dish title='编辑商品价格' onClose={() => this.setState({show2:false})} width="510" height="325">
                         <div className="addnewprice">
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList}  onChange={this.onchange} value={this.state.upgoods_type}/></div>
@@ -328,6 +360,9 @@ export default class extends Component {
                             <div className="addnewprice-div">
                                 <div className="addnewprice-div-nor"><span>商品条码：</span><input className='e-input'  type="number" onChange={e=>this.setState({goods_number:e.target.value})} value={this.state.goods_number}/>&nbsp;请扫描商品条码</div>
                 
+                            </div>
+                            <div className="addnewprice-div">
+                                <div className="addnewprice-div-select"><span>渠道：</span><Select option={this.state.sellwayList} pair={['id','name']} onChange={obj=>this.setState({sell_id:obj.key,sell_way:obj.value})} value={this.state.sell_way}/></div>
                             </div>
                             <div className="addnewprice-money">
                                 <input type="checkbox" checked = {this.state.discount == 0? false : true} onChange={e=>this.setState({discount:e.target.checked?1:0})} />允许折扣

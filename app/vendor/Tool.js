@@ -481,16 +481,16 @@
          */
         this.calc = function (value) {    //根据商户选择的计算方式计算处理总金额;
             if (isNaN(value)) {
-                return 0;
+                return '0.00';
             } else {
                 if (0 == TYPE) {
-                    return Math.floor(value);
+                    return Math.floor(value).toFixed(2);
                 } else if (1 == TYPE) {
-                    return Math.round(value);
+                    return Math.round(value).toFixed(2);
                 } else if (2 == TYPE) {
-                    return value;
+                    return value.toFixed(2);
                 } else {
-                    return value;
+                    return value.toFixed(2);
                 }
             }
         }

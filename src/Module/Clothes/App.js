@@ -373,24 +373,13 @@ export default class extends Component {
             number:卡号;balance:余额;
             name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
         */
-        let total = 0    //总金额
-        ,   amount = 0    //折后金额
-        ,   dis_amount = 0
-        ,   no_dis_amount = 0
-        ,   discount = this.state.payCard.discount || this.state.discount || 100;
-        this.state.data.map(obj => {
-            total = total.add(obj.raw_price, obj.addition_no_price, obj.addition_price);
-            amount = amount.add( 
-                (1 == obj.has_discount ? (Math.floor(obj.raw_price * discount) / 100) : obj.raw_price), 
-                obj.addition_no_price, 
-                (Math.floor(obj.addition_price * discount) / 100)
-            );
-            dis_amount = dis_amount.add((1 == obj.has_discount ? obj.raw_price : 0), obj.addition_price);
-            no_dis_amount = no_dis_amount.add((1 == obj.has_discount ? 0 : obj.raw_price), obj.addition_no_price);
-        });
-        total = this.calculate(total);
+        let total = obj.data.total    //总金额
+        ,   amount = obj.data.amount    //折后金额
+        ,   dis_amount = obj.data.dis_amount
+        ,   no_dis_amount = obj.data.no_dis_amount
+        ,   discount = obj.card.discount;
         let gateway = object.gateway
-        ,   balance = this.state.payCard.balance || this.state.balance;
+        ,   balance = obj.card.balance;
         if ('undefined' !== typeof gateway) {
             if (0 == gateway) {
                 gateway = '会员卡支付';
@@ -421,7 +410,7 @@ export default class extends Component {
             addr:this.state.maddr,
             mphone:this.state.mphone,
             ad:this.state.ad,
-            number:this.state.payCard.recharge_number || this.state.number,
+            number:obj.card.recharge_number,
             balance:( isNaN(balance) ? 0 : (Math.round(balance * 100) / 100) ),
             pay_amount:object.pay_amount,
             change:object.change,
@@ -559,17 +548,18 @@ export default class extends Component {
     }
     paymentCallback(obj) {
         if (null == this.state.oid) return;
-        let cid = this.state.payCard.id || this.state.cid;
+        let cid = obj.card.id || '';
         if (0 == obj.gateway && null == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid, oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
-                    this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
+                    obj.debt = 0;
+                    this.print(obj);
                     tool.ui.success({callback:close => {
                         close();
                         this.props.closeView();
