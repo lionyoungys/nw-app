@@ -168,7 +168,15 @@ export default class extends React.Component {
     
     goBack() {   
         if(this.state.checked.length>1){
-            return alert('返流项目需选中单个项目返流');           
+            return 
+            tool.ui.warn({
+                title: '警告', msg: '返流项目需选中单个项目返流。<br/>', callback: (close, event) => {
+                    if (event == '取消' || 'close') {
+                        close(); 
+                    }else{
+                        close(); 
+                    }
+            }});          
         }else{
             this.setState({back:true})
         }
@@ -289,9 +297,11 @@ export default class extends React.Component {
                     </div>                   
                 </div> 
                 {
-                   this.state.back && <Goback  onClose={() => this.setState({back:false})}                     
-                       wid = {this.state.num}                                                                                        
-                   /> 
+                   this.state.back && <Goback  
+                      onClose={() => this.setState({back:false})}                     
+                       wid = {this.state.num} 
+                       callback={e => this.query()}
+                    /> 
                 }              
             </div>            
         </Window>

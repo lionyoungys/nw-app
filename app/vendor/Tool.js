@@ -432,7 +432,7 @@
                 size = len;
                 var amount;
                 for (var i = 0;i < len;++i) {
-                    amount = this.getAmount(index);
+                    amount = this.getAmount(i);
                     memory.total = memory.total.add(amount.total);
                     memory.dis_amount = memory.dis_amount.add(amount.dis_amount);
                     memory.no_dis_amount = memory.no_dis_amount.add(amount.no_dis_amount);

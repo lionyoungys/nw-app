@@ -28,7 +28,9 @@ export default class extends React.Component {
             uploadShow:false,
             lightboxShow:false,
             index:null,
-            back: false,
+            back:false,
+            name:'' ,//衣物名称
+            num:'',
         };
         this.onSearch = this.onSearch.bind(this);
         this.handleAllChecked = this.handleAllChecked.bind(this);
@@ -43,6 +45,8 @@ export default class extends React.Component {
         this.uploadShow = this.uploadShow.bind(this);
         this.lightboxShow = this.lightboxShow.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+
+        this.onback = this.onback.bind(this);
     }
 
     componentDidMount() {
@@ -154,11 +158,18 @@ export default class extends React.Component {
         });
     }
     //反流
-    goBack() {
-        if (this.state.checked != '') {
-            this.setState({ back: true })
-        } else {
-            return alert('返流项目需选中单个项目返流'); return alert('返流项目需选中单个项目返流');
+    goBack() {   
+        if(this.state.checked.length>1){
+            tool.ui.warn({
+                title: '警告', msg: '返流项目需选中单个项目返流。<br/>', callback: (close, event) => {
+                    if (event == '取消' || 'close') {
+                        close(); 
+                    }else{
+                        close(); 
+                    }
+            }});            
+        }else{
+            this.setState({back:true})
         }
     }
     onUpload(file) {    //文件上传
@@ -199,11 +210,14 @@ export default class extends React.Component {
     lightboxShow(e) {
         this.setState({lightboxShow:true, index:e.target.dataset.index});
     }
-
+    onback(e){
+        let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
+        this.setState({num:index});     
+    }
     render() {
         let html = this.state.data.map( (obj, index) =>
             <tr key={obj.id} className={obj.state == false ? null : 'disabled'}>
-                <td>
+                <td data-id={obj.clothing_name} data-index={obj.id} onClick={this.onback} >
                     {
                         obj.state == false
                         ?
@@ -274,9 +288,12 @@ export default class extends React.Component {
                         <button type='button' className='e-btn confirm' onClick={this.goBack}>返流</button>
                     </div>
                 </div>   
-                    {
-                        this.state.back && <Goback />
-                    }                
+                {
+                   this.state.back && <Goback  onClose={() => this.setState({back:false})}                     
+                       wid = {this.state.num}  
+                       callback={e => this.query()}                                                                                      
+                   /> 
+                }                 
             </div>
             </Window>
         );

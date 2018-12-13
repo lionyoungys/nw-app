@@ -41,10 +41,6 @@ export default class extends Component {
             payCard:{},
             update:false,    //用于判断衣物为添加还是修改
             calculate:2,    //计算方式
-            activities:[],    //活动列表
-            coupons:[],    //优惠券列表
-            act_index:0,    //选中的活动
-            cou_index:0,    //选中的优惠券
         };
         this.date = tool.date('Y-m-d');
         this.DATACODE = tool.code();
@@ -540,6 +536,10 @@ export default class extends Component {
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
+                    if ('boolean' === typeof isTake && isTake) {
+                        this.print();
+                        return this.props.closeView();
+                    }
                     let r = res.result;
                     this.setState({
                         oid:r.order_id, 
@@ -547,13 +547,9 @@ export default class extends Component {
                         mphone:r.merchant.phone_number, 
                         maddr:r.merchant.maddress,
                         ad:r.merchant.mdesc,
-                        code_arr:r.orderItemInfo
+                        code_arr:r.orderItemInfo,
+                        show:14
                     });
-                    if ('boolean' === typeof isTake && isTake) {
-                        this.print();
-                        return this.props.closeView();
-                    }
-                    this.setState({show:14});
                 } else {
                     handle();
                 }
@@ -657,12 +653,6 @@ export default class extends Component {
             );
         });
         amount = this.calculate(amount);
-        if (this.state.cou_index > 0 || this.state.act_index > 0) {
-            let result = this.calculator.setData(this.state.data)
-                                        .matchAC(this.state.activities[this.state.act_index], this.state.coupons[this.state.cou_index])
-                                        .get();
-            amount = result.calc_amount;
-        }
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>
@@ -809,15 +799,17 @@ export default class extends Component {
                     &&
                     <Payment 
                         onClose={this.paymentClose}
-                        items={this.state.data}
+                        callback={this.paymentCallback}
+                        oid={this.state.oid}
+                        phone={this.state.phone}
                         card={{
                             recharge_number:this.state.number,
                             card_name:this.state.type,
                             discount:(this.state.discount || 100),
                             balance:(this.state.balance || 0),
                         }}
+                        items={this.state.data}
                         calculator={this.calculator}
-                        callback={this.paymentCallback}
                     />
                 }
                 {

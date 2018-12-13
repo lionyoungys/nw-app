@@ -50,7 +50,7 @@ export default class extends React.Component {
                 }else{
                     close(); 
                 }
-     }});
+        }});
     }
     handleEat() {
         tool.ui.error({title:'品尝失败', msg:'我姐竟然不给吃！', button:['吃另一盘'],callback:(close, value) => {

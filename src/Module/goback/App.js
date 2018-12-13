@@ -2,12 +2,13 @@
  * 返流界面组件
  * @author yangyunlong
  */
-
+//const {dialog} = window.require('nw').remote;
 import React from 'react';
 import OptionBox from '../../Elem/OptionBox';
 import Select from '../../UI/Select';
 import Dish from '../../UI/Dish';
 import './App.css';
+const fs = window.require('fs');
 
 export default class extends React.Component {
     constructor(props) {
@@ -19,14 +20,26 @@ export default class extends React.Component {
             backwhy:['衣物未清洗干净需重新去渍','衣物未烘干完全需重新烘干','衣物未熨烫平整需重新熨烫','衣物操作中污染需重新清洗','衣物操作中褶皱需重新熨烫'],
             value:'',
             alert:false,
-            images:[],
+            img:[],
+            index:'',
+            openshow:false,
+            tstate:0,
+            get_type:'',
         }
         this.textwhy = this.textwhy.bind(this);
         this.updatebrandYES = this.updatebrandYES.bind(this);
         this.upload = this.upload.bind(this);        
         this.del = this.del.bind(this);
+        this.query = this.query.bind(this);
+        this.open = this.open.bind(this);
+        this.backYES = this.backYES.bind(this);
+        this.on_start = this.on_start.bind(this);
+        this.backReturn = this.backReturn.bind(this);
     }
     componentDidMount (){
+        this.query()
+    }
+    query(){
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('back_data', {           
@@ -41,7 +54,7 @@ export default class extends React.Component {
                     number:num,
                     name:res.result.clothing_name,
                     module:res.result.status,
-                    images:res.result.img
+                    img:res.result.img,
                 })
             }else{
                 tool.ui.error({title:'错误提示',msg:res.msg,button:['确定'],callback:(close, event) => {
@@ -61,38 +74,130 @@ export default class extends React.Component {
         })
         
     }
-    upload() {
-        if (this.state.images.length > 2) return;
-        dialog.showOpenDialog({
-            filters: [{name: 'Images', extensions: ['jpg','png','jpeg','bmp','JPG','PNG','JPEG','BMP']}],
-            properties: ['openFile']
-        },(filePaths) => {
-            if (filePaths instanceof Array) {
-                
-            }
-        });
-    }
+    upload(e) {        
+        var value = e.target.value;        
+       // console.log(value);       
+        if (this.state.img.length > 2) {return false} ;       
+                api.post(
+                    'item_img_upload',
+                    {
+                        token:'token'.getData(),
+                        wid:this.props.wid,
+                        pic:fs.createReadStream(value)
+                    },
+                    (response, verify) => {
+                        console.log(response)    
+                        if (verify) {                                                   
+                            this.state.img.push(response.result);
+                            this.setState({img:this.state.img});
+                        }
+                    }
+                );
+    }         
+    
     del(e) {
-        let url = e.target.dataset.url;
-        axios.post(api.U('go_back_delete'), api.D({token:this.props.token,url:url}))
-        .then(response => {
-            if (api.V(response.data)) {
-                this.state.data.back_img.splice(url.inArray(this.state.data.back_img), 1);
-                this.setState({data:this.state.data});
-            }
-        });
+        let url = e.target.dataset.url;         
+        //this.setState({index:index})
+          console.log(url)  ;
+          if(this.state.img.length<2){
+            tool.ui.error({title:'提示',msg:'至少添加一张图片',button:'确定',callback:(close, event) => {
+                close();               
+            }});
+          }else{
+            api.post(
+                'item_img_delete',
+                {
+                    token:'token'.getData(),
+                    wid:this.props.wid,
+                    pic:url
+                },
+                (response, verify) => {
+                    console.log(response);                                    
+                    if (verify) {
+                        this.state.img.splice(url, 1);
+                        this.setState({img:this.state.img})
+                    }      
+                }
+            );
+          }
+        
+    }
+    open (e){
+        console.log(1)
+        var url = e.target.dataset.url;
+        this.setState({
+            openshow:true,
+            url:url
+        })
+    }
+    // 正常非正常返流
+    
+    on_start (e){
+        if (e.target.value != this.state.tstate) {
+            '0' == this.state.tstate ? this.setState({tstate: '1'}) : this.setState({tstate: '0'});
+        }
+    }
+    backReturn (e){
+        console.log(e.target.value);
+        this.setState({get_type:e.target.value});
+        if(e.target.value != this.state.get_type){
+           var u = e.target.value;
+           console.log(u);
+           this.setState({get_type:u})
+        } 
+    }
+    // 确定返流操作
+    backYES (){
+        if(this.state.value==''){
+            tool.ui.error({title:'提示',msg:'请添加返流原因',button:'确定',callback:(close, event) => {
+                close();               
+            }});
+        }else{
+            api.post(
+                'returnBack',
+                {
+                    token:'token'.getData(),
+                    wid:this.props.wid,
+                    backflow_type:this.state.tstate,
+                    status:this.state.get_type,
+                    backflow_cause:this.state.value,
+                    pic:JSON.stringify(this.state.img),
+                },
+                (response, verify) => {
+                   if(verify){
+                       console.log(response)
+                    tool.ui.success({callback:(close, event) => {
+                        close();
+                        this.props.callback();
+                        // this.props.onClose();
+                    }});
+                   }else{
+                        tool.ui.error({title:'错误提示',msg:response.msg,button:'确定',callback:(close, event) => {
+                            close();
+                        }});
+                   }
+                }
+            );
+        }
+        
     }
     render() {
-        var step = this.state.module.map( (obj, index) =><span>
-                <OptionBox type='checkbox'></OptionBox>{obj.name}&emsp;</span>
+        //console.log(this.state.data)
+        //let data = this.state.data;
+        let step = this.state.module.map((obj, index) =>
+           <span key={obj} className="back_f">
+                <label className="radiobox">
+                    <input type="radio" name="take" onClick={this.backReturn} value={obj.id} checked={this.state.get_type == obj.id?true:false}/> {obj.name}
+                </label>
+            </span>
         );
-        var images = this.state.images.map(obj =>
+        let images =this.state.img.map((obj, index) =>
             <div key={obj} className='m-img-box'>
-                <img src={obj}/>
+                <img src={obj} onClick = {this.open} data-url={obj}/>
                 <i 
                     className='m-img-delete'
                     onClick={this.del}
-                    data-url={obj}
+                    data-url={obj}                   
                 ></i>
             </div>
         );
@@ -124,7 +229,7 @@ export default class extends React.Component {
                     <div className='go-back-box up_photo'>
                         <span><a>*</a>上传照片:</span>  
                         {images}
-                        {this.state.images.length > 2 ? null : (<div className='m-img-box upload' onClick={this.upload}></div>)} 
+                        {this.state.img.length > 2 ? null : (<div className='ui-img-upload-window-add upload' ><input type='file' onChange={this.upload} accept='.jpg,.jpeg,.png,.bmp'/></div>)} 
                         <a className="up">最多可上传三张图片</a>                    
                     </div>
                     <div className='go-back-box'>
@@ -136,15 +241,19 @@ export default class extends React.Component {
                     </div>
                     <div className='go-back-box'>
                         <span><a>*</a>返流类型:</span>
-                        <OptionBox type='checkbox'></OptionBox>是&emsp;
-                        <OptionBox type='checkbox'></OptionBox>否&emsp;
+                        <label className="radiobox">
+                            <input type="radio" name="take_order" value='0' checked={this.state.tstate==0?true:false} onClick={this.on_start}/> 正常返流
+                        </label>&emsp;
+                        <label className="radiobox">
+                            <input type="radio" name="take_order" onClick={this.on_start} checked={this.state.tstate==1?true:false} value='1'/> 非正常返流
+                        </label>
                     </div>
                     <div className='go-back-box'>
                         <span><a>*</a>返流步骤:</span>
                         {step}
                     </div>
                     <div className="btn_back">
-                        <button className='e-btn ' type='button' >确认</button>
+                        <button className='e-btn ' type='button' onClick={this.backYES} >确认</button>
                     </div>
                 </div>
                 {
@@ -157,6 +266,12 @@ export default class extends React.Component {
                         <div className="addbrand-footer">
                             <button onClick = {this.updatebrandYES}>保 存</button>
                         </div>
+                    </Dish>
+                }
+                {
+                    this.state.openshow &&
+                    <Dish title='查看图片' onClose={() => this.setState({openshow:false})} width="215" height='215'>
+                       <img src={this.state.url} className="open_img"/>
                     </Dish>
                 }
             </div>
