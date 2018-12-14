@@ -601,6 +601,7 @@
         this.moneyOff = function (amount, names) {
             if (amount > 0 && tool.isArray(names)) {
                 var total = 0    //可优惠项目的总金额
+                ,   lastAmount = amount
                 ,   indexs = [];    //可抵扣的金额
                 for (var i = 0;i < size;++i) {
                     if (-1 != data[i].clothing_name.inArray(names)) {
@@ -611,17 +612,17 @@
                 ,   len2 = len - 1
                 ,   lastIndex = indexs[len2];
                 for (var j = 0;j < len;++j) {    //获取可优惠项目的总额
-                    total.add(this.getTotal(indexs[j]));
+                    total = total.add(this.getTotal(indexs[j]));
                 }
 
                 //根据公式计算
                 var tmp;
                 for (var k = 0;k < len2;++k) {
                     tmp = this.round(this.getTotal(indexs[k]), total).mul(amount);
-                    amount = amount.sub(tmp);
+                    lastAmount = lastAmount.sub(tmp);
                     this.setDec(indexs[k], tmp);
                 }
-                this.setDec(lastIndex, amount);
+                this.setDec(lastIndex, lastAmount);
             }
             return this;
         }

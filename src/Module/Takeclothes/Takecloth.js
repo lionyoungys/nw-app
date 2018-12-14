@@ -170,7 +170,7 @@ export default class extends Component {
                         ids: JSON.stringify(this.state.checked[this.state.takeclothindex])
                     }
                     console.log(takeclothes)
-                    api.post('takeItem',
+                    api.post('manytakeItem',
                         takeclothes
                         , (res, ver) => {
 
@@ -522,13 +522,13 @@ export default class extends Component {
                                             (item1.item.map((item2,index3) => {
                                             if (4 != item2.status) ++tmpCheckedCount;
                                             return ( 
-                                            <div data-id={item2.id} data-index={index3} onClick={this.singletakecloth}>
+                                            <div data-id={item2.id} data-index={index3} onClick={this.singletakecloth} >
                                                 单件取衣
                                             </div>);
                                             }
                                             )
                                             
-                                        ):<span onClick={this.paymore}>
+                                        ):<span onClick={this.paymore} className='takeclothred'>
                                         立即收款</span>
                                         }
                                         </td>

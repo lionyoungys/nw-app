@@ -36,6 +36,7 @@ export default class extends Component {
             ac_show:false,    //判断是否展示优惠券及活动信息:当传入优惠券或活动字段时展示,否则隐藏
             show:false
         };
+        this.gateway = 0;    //选中的支付方式
         this.data = {};    //计算结果数据对象
         this.card = {};    //选中使用的卡信息
         this.coupon = null;    //选中的优惠券
@@ -125,7 +126,7 @@ export default class extends Component {
         13 == (e.keyCode || e.which) && this.M1Read();
     }
     handleClick() {
-        if (0 == this.state.gateway || 999 == this.state.gateway) {    //会员卡支付
+        if (0 == this.gateway || 999 == this.gateway) {    //会员卡支付
             this.setState({show:true});
         } else {
             this.onConfirm();
@@ -148,7 +149,7 @@ export default class extends Component {
         this.waiting = true;
         let authCode = this.state.authCode
         ,   obj = {
-            gateway:this.state.gateway, 
+            gateway:this.gateway, 
             amount:parseFloat(this.state.amount || 0), 
             pay_amount:parseFloat(this.data.total || 0), 
             change:0, 
@@ -229,6 +230,7 @@ export default class extends Component {
         ,   dis_amount = this.data.dis_amount    //可折金额
         ,   no_dis_amount = this.data.no_dis_amount    //不可折金额
         ,   dis_obj = this.props.calculator.discount(discount);    //折扣对象
+        this.gateway = gateway;
         this.data.amount = dis_obj.amount;
         this.data.calc_amount = dis_obj.calc_amount;
         this.card = card;
@@ -299,7 +301,7 @@ export default class extends Component {
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
-                            <Triangle className='ui-payment-triangle cash'/>
+                            <Triangle className={'ui-payment-triangle ' + isZero ? 'vip' : 'cash'}/>
                             <div>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                                 &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>

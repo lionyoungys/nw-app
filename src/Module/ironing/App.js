@@ -267,8 +267,7 @@ export default class extends React.Component {
                             onUpload={this.onUpload}
                             imgs={this.state.data[this.state.index].img}
                         />
-                    }
-                    
+                    }                   
                 <div className='clean-top'>
                     <div className='left'>
                         <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>
