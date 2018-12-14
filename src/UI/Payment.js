@@ -140,7 +140,11 @@ export default class extends Component {
     }
 
     handleSelectActivity(obj) {
-        if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == this.state.activities[obj.index].whether)) {
+        let whether = this.state.activities[obj.index].whether;
+        if ('undefined' == typeof whether) {
+            whether = 1;
+        }
+        if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == whether)) {
             this.setState({act_index:obj.index});
         }
     }
@@ -301,7 +305,7 @@ export default class extends Component {
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
-                            <Triangle className={'ui-payment-triangle ' + isZero ? 'vip' : 'cash'}/>
+                            <Triangle className={'ui-payment-triangle ' + (isZero ? 'vip' : 'cash')}/>
                             <div>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
                                 &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
