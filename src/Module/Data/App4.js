@@ -133,14 +133,14 @@ export default class extends React.Component {
         console.log(data_table);
         fs.writeFileSync(
             this.file, 
-            JSON.stringify( data_table.data.slice( data_table.count, this.limit.add(data_table.count) ) ), 
+            JSON.stringify( data_table.data.slice( data_table.count, Number( this.limit.add(data_table.count) ) ) ), 
             'utf8'
         );
         
         api.post(data_table.api, {token:token, db_id:this.state.ID, data:fs.createReadStream(this.file)}, res => {
             console.log(res);
             if (2000 == res.code) {
-                this.state.data_tables[index].count = this.state.data_tables[index].count.add(res.msg);
+                this.state.data_tables[index].count = Number(this.state.data_tables[index].count.add(res.msg));
                 this.setState({data_tables:this.state.data_tables});
                 this.handleImport();
             } else {
@@ -190,8 +190,8 @@ export default class extends React.Component {
         ,   count = 0
         ,   total = 0;
         for (let i = 0;i < this.len;++i) {
-            total = total.add(this.state.data_tables[i].total);
-            count = count.add(this.state.data_tables[i].count);
+            total = Number(total.add(this.state.data_tables[i].total));
+            count = Number(count.add(this.state.data_tables[i].count));
             html.push(
                 <div className='data-import-row' key={this.state.data_tables[i].name}>
                     <span>{this.state.data_tables[i].name}</span>
