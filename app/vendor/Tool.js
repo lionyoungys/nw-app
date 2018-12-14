@@ -257,6 +257,26 @@
             return true;
         }
     }
+    /**
+     * 通过支付网关编码获取支付方式名称
+     * @param {mixd} code 支付网关编码
+     * @return {string} 支付方式名称
+     */
+    t.getGatewayName = function (code) {
+        var ret = '未付款';
+        if ('string' != typeof code && 'number' != typeof code) {
+            //默认未付款
+        } else if ('_' == code || '0' == code) {
+            ret = '会员卡支付';
+        } else if ('1' == code) {
+            ret = '现金支付';
+        } else if ('2' == code) {
+            ret = '微信支付';
+        } else if ('3' == code) {
+            ret = '支付宝支付';
+        }
+        return ret;
+    }
     //ui对象实现
 
     /**

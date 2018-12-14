@@ -22,7 +22,7 @@ export default class extends Component {
         super(props);
         this.template = {id:'', recharge_number:'', card_name:'', discount:100, balance:0};
         this.state = {
-            gateway: 999,
+            gateway: '_',
             authCode:['','','',''], 
             amount:'', 
             number:'',
@@ -36,7 +36,6 @@ export default class extends Component {
             ac_show:false,    //判断是否展示优惠券及活动信息:当传入优惠券或活动字段时展示,否则隐藏
             show:false
         };
-        this.gateway = 0;    //选中的支付方式
         this.data = {};    //计算结果数据对象
         this.card = {};    //选中使用的卡信息
         this.coupon = null;    //选中的优惠券
@@ -126,7 +125,7 @@ export default class extends Component {
         13 == (e.keyCode || e.which) && this.M1Read();
     }
     handleClick() {
-        if (0 == this.gateway || 999 == this.gateway) {    //会员卡支付
+        if (0 == this.data.gateway || '_' == this.data.gateway) {    //会员卡支付
             this.setState({show:true});
         } else {
             this.onConfirm();
@@ -149,53 +148,54 @@ export default class extends Component {
         }
     }
     onConfirm() {
-        if ('function' !== typeof this.props.callback || this.waiting) return;
-        this.waiting = true;
-        let authCode = this.state.authCode
-        ,   obj = {
-            gateway:this.gateway, 
-            amount:parseFloat(this.state.amount || 0), 
-            pay_amount:parseFloat(this.data.total || 0), 
-            change:0, 
-            card:this.card,    //会员卡使用数据
-            data:this.data,    //价格计算数据
-            coupon:this.coupon,    //优惠券使用数据
-            activity:this.activity    //活动使用数据
-        };
-        if (999 == obj.gateway) {
-            obj.gateway = 0;
-        }
-        if (0 == obj.gateway) {    //会员卡支付
-            obj.pay_amount = this.data.calc_amount;
-            obj.passwd = this.state.passwd;
-        } else if (1 == obj.gateway) {
-            //if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
-            obj.pay_amount = this.data.calc_amount;
-            if (obj.amount < 0 || obj.pay_amount > obj.amount) {
-                this.waiting = false;
-                return;
+        if ('function' == typeof this.props.callback && !this.waiting) {
+            this.waiting = true;
+            let authCode = this.state.authCode
+            ,   obj = {
+                gateway:this.data.gateway, 
+                amount:parseFloat(this.state.amount || 0), 
+                pay_amount:parseFloat(this.data.total || 0), 
+                change:0, 
+                card:this.card,    //会员卡使用数据
+                data:this.data,    //价格计算数据
+                coupon:this.coupon,    //优惠券使用数据
+                activity:this.activity    //活动使用数据
+            };
+            if ('_' == obj.gateway) {
+                obj.gateway = 0;
             }
-            if (obj.amount != obj.pay_amount) {
-                obj.change = obj.amount.sub(obj.pay_amount);
-            }
-        } else {
-            if (
-                4 === authCode[0].length && !isNaN(authCode[0])
-                &&
-                4 === authCode[1].length && !isNaN(authCode[1])
-                &&
-                4 === authCode[2].length && !isNaN(authCode[1])
-                &&
-                6 === authCode[3].length && !isNaN(authCode[1])
-            ) {
-                obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
+            if (0 == obj.gateway) {    //会员卡支付
+                obj.pay_amount = this.data.calc_amount;
+                obj.passwd = this.state.passwd;
+            } else if (1 == obj.gateway) {
+                //if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
+                obj.pay_amount = this.data.calc_amount;
+                if (obj.amount < 0 || obj.pay_amount > obj.amount) {
+                    this.waiting = false;
+                    return;
+                }
+                if (obj.amount != obj.pay_amount) {
+                    obj.change = obj.amount.sub(obj.pay_amount);
+                }
             } else {
-                this.waiting = false;
-                return;
+                if (
+                    4 === authCode[0].length && !isNaN(authCode[0])
+                    &&
+                    4 === authCode[1].length && !isNaN(authCode[1])
+                    &&
+                    4 === authCode[2].length && !isNaN(authCode[1])
+                    &&
+                    6 === authCode[3].length && !isNaN(authCode[1])
+                ) {
+                    obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
+                } else {
+                    this.waiting = false;
+                    return;
+                }
             }
+            this.props.callback(obj);
+            this.waiting = false;
         }
-        this.props.callback(obj);
-        this.waiting = false;
     }
 
     render() {
@@ -224,34 +224,32 @@ export default class extends Component {
             }
         }
 
-        this.data = this.props.calculator.get(false)
-        let total = this.data.total    //总额
-        ,   amount = this.data.calc_amount
+        this.data = this.props.calculator.get(false);    //初始化data值
+        let amount = this.data.calc_amount
         ,   isZero = (0 == amount)    //判断金额是否为零,为零时只能现金支付
         ,   gateway = (isZero ? 1 : this.state.gateway)    //支付方式
-        ,   useing_card = (0 == gateway || 999 == gateway)    //是否使用会员卡支付
+        ,   useing_card = (0 == gateway || '_' == gateway)    //是否使用会员卡支付
         ,   discount = ( useing_ac ? 100 : (useing_card ? card.discount : 100) )    //折扣率:当使用优惠券或促销活动时,会员卡折扣无效
-        ,   dis_amount = this.data.dis_amount    //可折金额
-        ,   no_dis_amount = this.data.no_dis_amount    //不可折金额
         ,   dis_obj = this.props.calculator.discount(discount);    //折扣对象
-        this.gateway = gateway;
-        this.data.amount = dis_obj.amount;
-        this.data.calc_amount = dis_obj.calc_amount;
-        this.card = card;
-        this.card.discount = discount;
         amount = dis_obj.calc_amount    //支付金额
         let change = (isNaN(this.state.amount) || '' == this.state.amount ? amount : this.state.amount).sub(amount);    //找零
+        //赋值数据于data
+        this.data.amount = amount;
+        this.data.calc_amount = dis_obj.calc_amount;
+        this.data.gateway = gateway;
+        this.data.card = card;
+        this.data.card.discount = discount;
         return (
             <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
                     <div className='ui-payment-head'>核对信息</div>
                     <div className='ui-payment-detail'>
                         <div>
-                            <div>不可折金额：&yen;{no_dis_amount}</div>
-                            <div>原价：&yen;{total}</div>
+                            <div>不可折金额：&yen;{this.data.no_dis_amount}</div>
+                            <div>原价：&yen;{this.data.total}</div>
                         </div>
                         <div>
-                            <div>可折金额：&yen;{dis_amount}</div>
+                            <div>可折金额：&yen;{this.data.dis_amount}</div>
                             <div>折后价：&yen;{amount}</div>
                         </div>
                         <div>
@@ -271,13 +269,13 @@ export default class extends Component {
                     <div className='ui-payment-head'>收款方式</div>
                     <div className='ui-payment-pattern'>
                         <div>
-                            <span className={'e-payment-option vip' + (999 == gateway ? ' checked' : '')} style={isZero ? {display:'none'} : null} data-gateway='999' onClick={this.handleGateway}><i></i>电子卡</span>
+                            <span className={'e-payment-option vip' + ('_' == gateway ? ' checked' : '')} style={isZero ? {display:'none'} : null} data-gateway='_' onClick={this.handleGateway}><i></i>电子卡</span>
                             <span className={'e-payment-option ic' + (0 == gateway ? ' checked' : '')} style={isZero ? {display:'none'} : null} data-gateway='0' onClick={this.handleGateway}><i></i>ic卡</span>
                             <span className={'e-payment-option cash' + (1 == gateway ? ' checked' : '')} data-gateway='1' onClick={this.handleGateway}><i></i>现金</span>
                             <span className={'e-payment-option wechat' + (2 == gateway ? ' checked' : '')} style={isZero ? {display:'none'} : null} data-gateway='2' onClick={this.handleGateway}><i></i>微信</span>
                             <span className={'e-payment-option alipay' + (3 == gateway ? ' checked' : '')} style={isZero ? {display:'none'} : null} data-gateway='3' onClick={this.handleGateway}><i></i>支付宝</span>
                         </div>
-                        <div className='ui-payment-pattern-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                        <div className='ui-payment-pattern-handle' style={{display:('_' == gateway ? 'block' : 'none')}}>
                             <Triangle className='ui-payment-triangle vip'/>
                             <div style={card.id ? {display:'none'} : null}>
                                 <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示卡号或手机号</div>
@@ -300,7 +298,7 @@ export default class extends Component {
                                 <button type='button' className='e-btn' onClick={this.M1Read}>读卡</button>
                             </div>
                             <div className='ui-payment-pattern-handle-vip' style={card.id ? null : {display:'none'}}>
-                                <div><span>卡号：{card.recharge_number}</span>卡类型：{card.id}</div>
+                                <div><span>卡号：{card.recharge_number}</span>卡类型：{card.card_name}</div>
                                 <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
                             </div>
                         </div>
@@ -638,7 +636,7 @@ export class UpdateCard extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.patterns = [
-            {no:999, name_en:'vip', name_zh:'电子卡'},
+            {no:'_', name_en:'vip', name_zh:'电子卡'},
             {no:0, name_en:'ic', name_zh:'IC卡'},
             {no:0, name_en:'cash', name_zh:'现金'},
             {no:0, name_en:'wechat', name_zh:'微信'},
@@ -650,7 +648,7 @@ export class UpdateCard extends Component {
         'function' === typeof this.props.onChange && this.props.onChange(Number(e.target.dataset.no));
     }
     render() {
-        let checked = isNaN(this.props.checked) ? 999 : this.props.checked
+        let checked = isNaN(this.props.checked) ? '_' : this.props.checked
         ,   patterns = this.patterns.map((obj) => {
             return (
                 <span className={'e-payment-option ' + obj.name_en + (obj.no == checked ? ' checked' : '')} style={this.props.zero ? {display:'none'} : null} data-no={obj.no} onClick={this.handleChange}><i></i>电子卡</span>
@@ -659,7 +657,7 @@ export class UpdateCard extends Component {
         return (
             <div className='ui-payment-pattern'>
                 <div>{patterns}</div>
-                <div className='ui-payment-handle' style={{display:(999 == gateway ? 'block' : 'none')}}>
+                <div className='ui-payment-handle' style={{display:('_' == gateway ? 'block' : 'none')}}>
                     <div style={data.type ? {display:'none'} : null}>
                         <div style={style}>请客户打开微信公众号【速洗达洗衣公众平台】出示付款码</div>
                         <input type='input' ref={input => {!this.state.show && 0 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.number} onChange={e => this.setState({number:e.target.value})} onKeyPress={this.onKeyPress}/>&nbsp;
