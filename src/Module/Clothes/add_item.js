@@ -226,7 +226,7 @@ export default class extends Component {
                 addition_price: 0,
                 addition_no_price: 0,
                 addition_discount: '',
-                forecast:'',
+                forecast:item.item_forecast,
                 work_number:1,
                 sign:'',
                 min_discount: item.min_discount,    //最低折扣率
