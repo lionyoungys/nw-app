@@ -151,8 +151,12 @@ export default class extends React.Component {
     }
     // 确定返流操作
     backYES (){       
-        if(this.state.value==''){
-            tool.ui.error({title:'提示',msg:'请添加返流原因',button:'确定',callback:(close, event) => {
+        if(this.state.img.length < 0 ){
+            tool.ui.error({title:'提示',msg:'请添加返流图片',button:['确定'],callback:(close, event) => {
+                close();               
+            }});
+        } else if (this.state.value==''){
+            tool.ui.error({title:'提示',msg:'请添加返流说明',button:['确定'],callback:(close, event) => {
                 close();               
             }});
         }else{
@@ -172,7 +176,7 @@ export default class extends React.Component {
                     tool.ui.success({callback:(close, event) => {
                         close();
                         this.props.callback();
-                        // this.props.onClose();
+                        this.props.onClose();
                     }});
                    }else{
                         tool.ui.error({title:'错误提示',msg:response.msg,button:'确定',callback:(close, event) => {

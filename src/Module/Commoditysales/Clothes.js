@@ -18,7 +18,8 @@ export default class extends Component {
                                   <th>商品名称</th>
                                   <th>折扣率</th>
                                   <th>库存</th>
-                                  <th>单价</th>                                                                 
+                                  <th>单价</th>       
+                                  <th>渠道</th>                                                           
                               </tr>
                           </thead>
                           <tbody>

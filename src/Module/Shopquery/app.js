@@ -15,7 +15,7 @@ export default class extends Component {
         super(props);   
         this.state = {
             count:0,
-            page:0,
+            page:1,
             number:'',
             from_name:'',            
             order_name:'线下',
@@ -29,7 +29,7 @@ export default class extends Component {
     };   
     // 条件查询
     query (page){
-        page = page || this.state.page;
+        page = page || this.state.page; 
         let aa = {
             token: 'token'.getData(),
             page: page, 
@@ -46,8 +46,8 @@ export default class extends Component {
                  if(res.result.order.length>0){
                     this.setState({
                         shoplist:res.result.order,
-                        page:res.result.page,
                         count:res.result.count,
+                        page:page,
                         nodatas:false,
                     })
                  }else{
@@ -64,7 +64,7 @@ export default class extends Component {
         })       
     }
     serch (){
-        this.query()       
+        this.query()    ;   
     }
     render() {  
        // console.log();
@@ -78,7 +78,7 @@ export default class extends Component {
                <td><span>姓名:{item.user_name}</span><span>电话：{item.user_mobile}</span></td>
                <td><span>{item.ostatus}</span></td>
                <td>{item.work.map((item,index)=><span>{item.preferential_price}</span>)}</td>
-               <td>代购</td>
+               <td>{item.work.map((item,index)=><span>{item.sell_name}</span>)}</td>
             </tr>
         )       
         return (

@@ -357,6 +357,7 @@ export default class extends Component {
                     <td>{item.has_discount == '1' ? '是' : '否'}</td>
                     <td>{item.stock}</td>
                     <td>{item.price}</td>
+                    <td>{item.sell_way}</td>
                 </tr>
             );
         }  
@@ -367,6 +368,7 @@ export default class extends Component {
                 <td>{item.has_discount == '1' ? '是' : '否'}</td>
                 <td>{item.price}</td>
                 <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
+                <td>{item.sell_way}</td>
                 <td data-index={index} onClick={this.deleteYes}>删除</td>
             </tr> 
         );
@@ -394,6 +396,7 @@ export default class extends Component {
                                             <th>允许折扣</th>
                                             <th>单价</th>
                                             <th>数量</th>
+                                            <th>渠道</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -411,6 +414,7 @@ export default class extends Component {
                                             <th>允许折扣</th>
                                             <th>库存</th>
                                             <th>单价</th>
+                                            <th>渠道</th>
                                         </tr>
                                     </thead>
                                     <tbody>

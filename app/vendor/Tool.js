@@ -591,6 +591,41 @@
             }
             return this;
         }
+
+        /**
+         * 满减计算处理
+         * @param {number} amount 减价金额
+         * @param {array} names 减价衣物的名称数组
+         * @param {object} this
+         */
+        this.moneyOff = function (amount, names) {
+            if (amount > 0) {
+                var total = 0    //可优惠衣物的总金额
+                ,   indexs = [];    //可抵扣的金额
+                for (var i = 0;i < size;++i) {
+                    if (-1 != data[i].clothing_name.inArray(names)) {
+                        indexs.push(i);
+                    }
+                }
+                var len = (indexs.length - 1)
+                ,   lastIndex = indexs[len + 1];
+                for (var j = 0;j < len;++j) {
+                    total.add(this.getTotal(indexs[j]));
+                }
+                //根据公式计算
+
+            }
+            return this;
+        }
+
+        /**
+         * 数值于小数点后第三位进行四舍五入处理
+         * @param {number} val 进行处理的值
+         * @param {number} val
+         */
+        this.round = function (val) {
+            return Math.round(val.mul(100)).div(100);
+        }
         
         /**
          * 计算优惠券使用规则,存入暂存

@@ -4,8 +4,7 @@ import OptionBox from '../../Elem/OptionBox';
 import ImageLightbox from '../../Elem/ImageLightbox';   //新增
 import Empty from '../../Elem/Empty';
 import './backFlow.css';
-// import { stat } from 'fs';
-const token = 'token'.getData();
+const Token = 'token'.getData();
 
 export default class extends React.Component {
     constructor(props) {
@@ -23,7 +22,6 @@ export default class extends React.Component {
         this.handleAllChecked = this.handleAllChecked.bind(this);
         this.handleAgree = this.handleAgree.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
-        this.handleRefuse = this.handleRefuse.bind(this);
         this.query = this.query.bind(this);
         this.lightboxClick = this.lightboxClick.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
@@ -42,7 +40,7 @@ export default class extends React.Component {
         let done;
         tool.ui.loading(handle => done = handle);
         api.post('backFlowList', {
-            token: 'token'.getData(),
+            token: Token,
         }, (res, ver) => {
             if (ver && res) {
                 console.log(res);
@@ -69,7 +67,7 @@ export default class extends React.Component {
             }
         } else {
             api.post('backFlowList', {
-                token: 'token'.getData(),
+                token: Token,
                 clothing_number: this.state.value
             }, (res, ver) => {
                 if (ver && res) {
@@ -93,7 +91,7 @@ export default class extends React.Component {
                 len = data.length,
                 checked = [];
             for (let i = 0; i < len; ++i) {
-                if (data[i].state == false) checked.push(data[i].id);
+                checked.push(data[i].id);
             }
             this.setState({ checked: checked, all: true });
         }
@@ -107,24 +105,37 @@ export default class extends React.Component {
                 this.setState({ checked: this.state.checked, all: false });
             }
         } else {
+            
             this.state.checked.push(value);
+            if (this.state.checked.length == this.state.data.length) {
+                this.setState({ all: true });
+            }
             this.setState({ checked: this.state.checked });
         }
     }
-    // 已同意
+    // 已同意/拒绝
     handleAgree(e) {
         //item_cleaned
-        let id = e.target.dataset.id;
+        let id = e.target.dataset.id || '';
         let index = e.target.dataset.index;
-        if (this.state.checked.length < 1 && id == '') return;
+        let status = e.target.dataset.status;
+        console.log(id, this.state.checked);
+        if (id == '' && this.state.checked.length < 1) {//非单点
+            tool.ui.error({
+                title: '错误提示', msg: '请选择返流衣物', button: ['确定'], callback: (close, event) => {
+                    close();
+                }
+            });
+            return;
+        }
         let pram = {
-            wid: id ? id : JSON.stringify(this.state.checked),
-            status: 1,
-            token: 'token'.getData(),
+            wid: JSON.stringify(id != '' ? [id] : this.state.checked),
+            status: status,
+            token: Token,
         }
         console.log(pram);
-        api.post('returnBack', pram , (res, ver) => {
-            // console.log(res)
+        api.post('BackHandele', pram , (res, ver) => {
+            console.log(res)
             if (ver && res) {
                 tool.ui.success({
                     callback: (close, event) => {
@@ -136,49 +147,20 @@ export default class extends React.Component {
                             //删除单一个
                             let sel_index = id.inArray(this.state.checked);
                             if (- 1 !== sel_index){
-                                this.setState({ checked: checked.splice(sel_index, 1)});
+                                this.state.checked.splice(sel_index, 1);
+                                this.setState({ checked: this.state.checked});
                             }
-                            this.state.data[index].state = true;
-                            this.setState({ data: this.state.data });
+                            this.state.data.splice(index, 1);
+                            this.setState({ data: this.state.data});
                         }
                     }
                 });
             } else {
                 tool.ui.error({
-                    title: '错误提示', msg: res.msg, button: '确定', callback: (close, event) => {
+                    title: '错误提示', msg: res.msg, button:['确定'], callback: (close, event) => {
                         close();
                     }
                 });
-            }
-        });
-    }
-
-    handleRefuse(e) {    //拒绝 
-        let id = e.target.dataset.id;
-        let index = e.target.dataset.index;    
-        if (this.state.checked.length < 1 && id == '') return;
-        let pram = {
-            wid: id ? id : this.state.checked.toString(),
-            status : 2,
-            token: 'token'.getData(),
-        }
-        console.log(pram);
-        api.post('returnBack', pram, (res, ver) => {
-            if (ver && res) {
-                if (id == '') {
-                    this.setState({ checked: [], all: false });
-                    this.query();
-                } else {
-                    //删除单一个
-                    let sel_index = id.inArray(this.state.checked);
-                    if (- 1 !== sel_index) {
-                        this.setState({ checked: checked.splice(sel_index, 1) });
-                    }
-                    this.state.data[index].state = true;
-                    this.setState({ data: this.state.data });
-                }
-            }else{
-                alert(res.msg);
             }
         });
     }
@@ -191,29 +173,25 @@ export default class extends React.Component {
             <tr key={obj.id} className={!(obj.state == false) ? null : 'disabled'}>
                 <td>
                     {
-                        (obj.state == false)
-                            ?
                             <OptionBox
                                 type='checkbox'
                                 checked={-1 !== obj.id.inArray(this.state.checked)}
                                 value={obj.id}
                                 onClick={this.handleChecked}
                             >{obj.clothing_number}</OptionBox>
-                            :
-                            obj.clothing_number
                     }
                 </td>
                 <td>{obj.clothing_name}</td>
-                <td>{obj.clothing_color}</td>
-                <td>{obj.remark}</td>
-                <td>{obj.sign}</td>
+                <td>{obj.backflow_cause}</td>
+                <td>{obj.backflow_type == 0 ?'正常返流':'异常返流'}</td>
+                <td>{obj.backflow_status}</td>
                 <td>
-                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxClick}>{obj.img.length}张</span>
+                    <span className='e-orange e-pointer' data-index={index} onClick={this.lightboxClick}>{obj.url.length}张</span>
                 </td>
                 <td>
-                    <a style={{ display: obj.state ? 'none' :'inline-block'}} data-index={index} data-id={obj.id} onClick={this.handleRefuse}>打回</a>
+                    <a data-index={index} data-id={obj.id} data-status={'2'} onClick={this.handleAgree}>打回</a>
                     &emsp;
-                    <b style={{ display: obj.state ? 'none' : 'inline-block' }} className='photo-btn back-flow-agreBtn' disabled={obj.state} data-index={index} data-id={obj.id} onClick={this.handleAgree}>同意</b>
+                    <b className='photo-btn back-flow-agreBtn' disabled={obj.state} data-index={index} data-id={obj.id} data-status={'1'} onClick={this.handleAgree}>同意</b>
                 </td>
             </tr>
         );
@@ -237,9 +215,9 @@ export default class extends React.Component {
                     <ImageLightbox
                         show={this.state.lightboxShow}
                         images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].image)
+                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].url)
                                 ?
-                                this.state.data[this.state.index].image : []
+                                this.state.data[this.state.index].url : []
                         }
                         onClose={() => this.setState({ lightboxShow: false })}
                     />
@@ -251,9 +229,9 @@ export default class extends React.Component {
                                 &nbsp;
                             共<b className='e-orange'>&nbsp;{this.state.data.length}&nbsp;</b>件
                             </OptionBox>
-                            <button type='button' className='e-btn confirm btn-both' onClick={this.handleAgree}>全部同意</button>
+                            <button type='button' className='e-btn confirm btn-both' data-status={'1'} onClick={this.handleAgree}>全部同意</button>
                             &emsp;
-                            <button type='button' className='e-btn confirm' onClick={this.handleRefuse}>全部打回</button>
+                            <button type='button' className='e-btn confirm' data-status={'2'} onClick={this.handleAgree}>全部打回</button>
                         </div>
                     </div>
                 </div>

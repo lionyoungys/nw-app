@@ -67,6 +67,7 @@ export default class extends React.Component {
                 this.setState({
                     data:res.result,
                     value:'',
+                    checked:[]
                 })
             }
         },()=>done());
@@ -158,17 +159,16 @@ export default class extends React.Component {
     }
     //反流
     goBack() {   
-        if(this.state.checked.length<1){
-            tool.ui.warn({
-                title: '警告', msg: '返流项目需选中单个项目返流。<br/>', callback: (close, event) => {
-                    if (event == '取消' || 'close') {
-                        close(); 
-                    }else{
-                        close(); 
-                    }
-            }});            
-        }else{
-            this.setState({back:true})
+        if(this.state.checked.length==0){
+            tool.ui.error({title:'提示',msg:'选择返流项目',button:['确定'],callback:(close, event) => {
+                close();               
+            }});                  
+        }else if (this.state.checked.length>1){
+            tool.ui.error({title:'提示',msg:'项目只能单件返流',button:['确定'],callback:(close, event) => {
+                close();               
+            }});
+        }else if(this.state.checked.length==1){
+           this.setState({back:true})
         }
     }
     onback(e){
@@ -279,16 +279,7 @@ export default class extends React.Component {
                             onUpload={this.onUpload}
                             imgs={this.state.data[this.state.index].img}
                         />
-                    }
-                    <ImageLightbox
-                        show={this.state.lightboxShow}
-                        images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].image)
-                            ? 
-                            this.state.data[this.state.index].image : []
-                        }
-                        onClose={() => this.setState({lightboxShow:false})}
-                    />
+                    }                   
                 <div className='clean-top'>
                     <div className='left'>
                         <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>
