@@ -10,7 +10,6 @@ import Deduct from '../Clothes/Deduct';
 import Recharge from '../Recharge/App';
 import './Commoditysales.css';
 import Table from '../../UI/Table';
-import CardList from '../Clothes/CardList';
 
 const token = 'token'.getData();
 export default class extends Component {
@@ -18,7 +17,6 @@ export default class extends Component {
         super(props);  
         this.state={
             oid:null,
-            card:{},
             index:0,
             list: [],//所有数据
             allComList: [],//所有商品的数组
@@ -33,8 +31,6 @@ export default class extends Component {
             rechargeShow:false,
             payShow:false,
             enterAble:true,//点击enter是否搜索
-            cardList:[],
-            calculate:2,    //计算方式
         };
         this.calculator = new tool.api.calculator();    //获取价格计算器对象
         this.handleClick = this.handleClick.bind(this);
@@ -46,14 +42,12 @@ export default class extends Component {
         this.payment = this.payment.bind(this);    
         this.delOrder = this.delOrder.bind(this);  
         this.onClose = this.onClose.bind(this);
-        this.M1read = this.M1read.bind(this);   
         this.paymentClose = this.paymentClose.bind(this); 
         this.paymentCallback = this.paymentCallback.bind(this);
         this.judgeEnterPress = this.judgeEnterPress.bind(this);
         this.searchBySN = this.searchBySN.bind(this);
         this.changeEnterAble = this.changeEnterAble.bind(this);
         this.blurWithMsg = this.blurWithMsg.bind(this);
-        this.calculate = this.calculate.bind(this);
     };
     //进入页面获取数据
     componentDidMount(){
@@ -82,25 +76,8 @@ export default class extends Component {
                 handle();
             }
         }, () => done());
-        api.post('calculate', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
-            if (ver) {
-                this.setState({calculate:res.result.money_type});
-            } else {handle()}
-        });
     }
 
-    //价格计算方式
-    calculate(value) {
-        if (0 == this.state.calculate) {
-            return Math.floor(value);
-        } else if (1 == this.state.calculate) {
-            return Math.round(value * 10) / 10;
-        } else if (2 == this.state.calculate) {
-            return value;
-        } else {
-            return value;
-        }
-    }
 
    
     query(e){
@@ -283,32 +260,18 @@ export default class extends Component {
         }
         'function' === typeof callback && callback();
     }
-    M1read(value) {
-        let obj = {};
-        if ('string' === typeof value && '' != value) {
-            obj.number = value;
-        }
-        obj.callback = (res) => {
-            if (res.cardList.length > 1) {
-                this.setState({cardList:res.cardList});
-            } else {
-                this.setState({card:res});
-            }
-        }
-        EventApi.M1Read(obj);
-    }
     paymentClose() {
-        this.delOrder(() => this.setState({oid:null, payShow:false, card:{}}));
+        this.delOrder(() => this.setState({oid:null, payShow:false}));
     }
     paymentCallback(obj) {
         if (null == this.state.oid) return;
-        let cid = this.state.card.id || null;
-        if (0 == obj.gateway && null == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let cid = obj.card.id || '';
+        if (0 == obj.gateway && '' == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid || '', oid:this.state.oid, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid, oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
@@ -335,7 +298,7 @@ export default class extends Component {
     }
     render() {  
         let noDisAmount = this.state.total.subtract(this.state.disAmount)
-        ,   discount = this.state.card.discount || 100
+        ,   discount = 100
         ,   pay_amount = noDisAmount.add( (this.state.disAmount * discount / 100) );
         let tabs=this.state.list.map((item,index)=>
                 <span key={'item'+index} data-index={index} 
@@ -361,18 +324,24 @@ export default class extends Component {
                 </tr>
             );
         }  
-        let searchList = this.state.searchList.map((item, index) =>
-            <tr key={'item' + index}>
-                <td>{item.goods_number}</td>
-                <td>{item.name}</td>
-                <td>{item.has_discount == '1' ? '是' : '否'}</td>
-                <td>{item.price}</td>
-                <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
-                <td>{item.sell_way}</td>
-                <td data-index={index} onClick={this.deleteYes}>删除</td>
-            </tr> 
-        );
-        pay_amount = this.calculate(pay_amount);     
+        let data = [];
+        let searchList = this.state.searchList.map((item, index) => {
+            for (let i = 0;i < item.count;++i) {
+                data.push({raw_price:item.price, addition_price:0, addition_no_price:0, has_discount:item.has_discount});
+            }
+            return (
+                <tr key={'item' + index}>
+                    <td>{item.goods_number}</td>
+                    <td>{item.name}</td>
+                    <td>{item.has_discount == '1' ? '是' : '否'}</td>
+                    <td>{item.price}</td>
+                    <td><MathUI  param={index} onSub={this.sub} onAdd={this.add}>{item.count}</MathUI ></td>
+                    <td>{item.sell_way}</td>
+                    <td data-index={index} onClick={this.deleteYes}>删除</td>
+                </tr> 
+            );
+        });
+        pay_amount = this.calculator.calc(pay_amount);     
         return (       
             <Window title='商品销售' onClose={this.onClose}>                
                 <div className="commoditysales-div"> 
@@ -451,23 +420,11 @@ export default class extends Component {
                     && 
                     <Pay 
                         onClose={this.paymentClose}
-                        data={{
-                            total_amount:this.state.total,
-                            dis_amount:this.state.disAmount,
-                            amount:noDisAmount,
-                            discount:discount,
-                            pay_amount:pay_amount,
-                            balance:(this.state.card.balance || 0),
-                            type:(this.state.card.card_name || ''),
-                            number:(this.state.card.recharge_number || '')
-                        }}
-                        calculate={this.calculate}
-                        M1Read={this.M1read}
-                        query={this.M1read}
                         callback={this.paymentCallback}
+                        items={data}
+                        calculator={this.calculator}
                     />
                 }
-                {this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({card:obj,cardList:[]})}/>}
             </Window>  
         );
     }

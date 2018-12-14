@@ -5,7 +5,6 @@
 
 import React, {Component} from 'react';
 import Window from '../../UI/Window';
-import CardList from './CardList';
 import Table from '../../UI/Table';
 import MathUI from '../../UI/MathUI';
 import Category from './Category';
@@ -38,16 +37,13 @@ export default class extends Component {
             cardList:[],
             data:[],    //本地存储数据
             card:{},    //卡数据
-            payCard:{},
-            update:false,    //用于判断衣物为添加还是修改
-            calculate:2,    //计算方式
+            update:false    //用于判断衣物为添加还是修改
         };
         this.date = tool.date('Y-m-d');
         this.DATACODE = tool.code();
         this.counter = 1;    //编码累加计数属性
         this.calculator = new tool.api.calculator();    //获取价格计算器对象
         this.M1read = this.M1read.bind(this);    //读卡
-        this.PAYM1read = this.PAYM1read.bind(this);    //会员读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
         this.add = this.add.bind(this);    //添加衣物
@@ -81,7 +77,6 @@ export default class extends Component {
         this.paymentClose = this.paymentClose.bind(this);
         this.delOrder = this.delOrder.bind(this);
         this.takeCost = this.takeCost.bind(this);
-        this.calculate = this.calculate.bind(this);
     }
 
     componentDidMount() {
@@ -124,23 +119,6 @@ export default class extends Component {
                 this.setState({price:res.result.list});
             } else {handle()}
         });
-        api.post('calculate', {token:token}, (res, ver, handle) => {    //获取洗后预估列表
-            if (ver) {
-                this.setState({calculate:res.result.money_type});
-            } else {handle()}
-        });
-    }
-    //价格计算方式
-    calculate(value) {
-        if (0 == this.state.calculate) {
-            return Math.floor(value);
-        } else if (1 == this.state.calculate) {
-            return Math.round(value * 10) / 10;
-        } else if (2 == this.state.calculate) {
-            return value;
-        } else {
-            return value;
-        }
     }
 
     M1read(value) {
@@ -164,20 +142,7 @@ export default class extends Component {
         }
         EventApi.M1Read(obj);
     }
-    PAYM1read(value) {
-        let obj = {};
-        if ('string' === typeof value && '' != value) {
-            obj.number = value;
-        }
-        obj.callback = (res) => {
-            if (res.cardList.length > 1) {
-                this.setState({cardList:res.cardList});
-            } else {
-                this.setState({payCard:res});
-            }
-        }
-        EventApi.M1Read(obj);
-    }
+
     add(index) {
         let item = this.state.item[this.state.categoryIndex][index]
         ,   time = this.state.time
@@ -364,8 +329,8 @@ export default class extends Component {
         console.log(obj);
         this.setState(obj);
     }
-    print(object) {
-        object = object || {};
+    print(obj) {
+        obj = obj || {};
         /*
             sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
             reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;
@@ -378,12 +343,12 @@ export default class extends Component {
         ,   dis_amount = obj.data.dis_amount
         ,   no_dis_amount = obj.data.no_dis_amount
         ,   discount = obj.card.discount;
-        let gateway = object.gateway
+        let gateway = obj.gateway
         ,   balance = obj.card.balance;
         if ('undefined' !== typeof gateway) {
             if (0 == gateway) {
                 gateway = '会员卡支付';
-                if (!isNaN(balance)) balance = balance.subtract(object.pay_amount);
+                if (!isNaN(balance)) balance = balance.subtract(obj.pay_amount);
             } else if (1 == gateway) {
                 gateway = '现金支付';
             } else if (2 == gateway) {
@@ -412,10 +377,10 @@ export default class extends Component {
             ad:this.state.ad,
             number:obj.card.recharge_number,
             balance:( isNaN(balance) ? 0 : (Math.round(balance * 100) / 100) ),
-            pay_amount:object.pay_amount,
-            change:object.change,
+            pay_amount:obj.pay_amount,
+            change:obj.change,
             gateway:gateway,
-            debt:('undefined' !== typeof object.pay_amount && 0 != object.pay_amount ? object.debt : total)
+            debt:('undefined' !== typeof obj.pay_amount && 0 != obj.pay_amount ? obj.debt : total)
         };
         this.handlePrinter(param);
         let needle_printer = 'needle_printer'.getData();
@@ -549,7 +514,8 @@ export default class extends Component {
     paymentCallback(obj) {
         if (null == this.state.oid) return;
         let cid = obj.card.id || '';
-        if (0 == obj.gateway && null == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        if (0 == obj.gateway && '' == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        console.log(cid);
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
@@ -573,7 +539,7 @@ export default class extends Component {
         );
     }
     paymentClose() {
-        this.setState({payCard:{}, coupons:[], activities:[], act_index:0, cou_index:0});
+        this.setState({coupons:[], activities:[], act_index:0, cou_index:0});
         this.delOrder(() => this.setState({oid:null, show:0}));
     }
     handleClose() {this.setState({show:0, update:false})}
@@ -606,7 +572,7 @@ export default class extends Component {
         ,   amount = 0    //折后金额
         ,   dis_amount = 0
         ,   no_dis_amount = 0
-        ,   discount = this.state.payCard.discount || ('' == this.state.discount ? 100 : this.state.discount)
+        ,   discount = ('' == this.state.discount ? 100 : this.state.discount)
         ,   tempDiscount
         ,   html = this.state.data.map((obj, index) => {
             tempDiscount = obj.min_discount;
@@ -642,7 +608,7 @@ export default class extends Component {
                 </tr>
             );
         });
-        amount = this.calculate(amount);
+        amount = this.calculator.calc(amount);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>
@@ -793,6 +759,7 @@ export default class extends Component {
                         oid={this.state.oid}
                         phone={this.state.phone}
                         card={{
+                            id:this.state.cid,
                             recharge_number:this.state.number,
                             card_name:this.state.type,
                             discount:(this.state.discount || 100),
@@ -822,9 +789,6 @@ export default class extends Component {
                     17 === this.state.show
                     &&
                     <Recharge closeView={this.onClose} onBack={this.handleClose} card={this.state.card}/>
-                }
-                {
-                    this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>
                 }
             </Window>
         );
