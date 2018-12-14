@@ -263,10 +263,10 @@
     String.prototype.add = 
     Number.prototype.add = function() {
         var len = arguments.length
-        ,   val = new Big( isNaN(this) ? 0 : this );
+        ,   val = new Big( isNaN(this) || '' == this ? 0 : this );
         if (len > 0) {
             for (var i = 0;i < len;++i) {
-                val = val.add( isNaN(arguments[i]) ? 0 : arguments[i] );
+                val = val.add( isNaN(arguments[i]) || '' == arguments[i] ? 0 : arguments[i] );
             }
         }
         return val.toFixed(2);
@@ -281,10 +281,10 @@
     String.prototype.sub = 
     Number.prototype.sub = function() {
         var len = arguments.length
-        ,   val = new Big( isNaN(this) ? 0 : this );
+        ,   val = new Big( isNaN(this) || '' == this ? 0 : this );
         if (len > 0) {
             for (var i = 0;i < len;++i) {
-                val = val.sub( isNaN(arguments[i]) ? 0 : arguments[i] );
+                val = val.sub( isNaN(arguments[i]) || '' == arguments[i] ? 0 : arguments[i] );
             }
         }
         return val.toFixed(2);
@@ -299,10 +299,10 @@
     String.prototype.mul = 
     Number.prototype.mul = function() {
         var len = arguments.length
-        ,   val = new Big( isNaN(this) ? 0 : this );
+        ,   val = new Big( isNaN(this) || '' == this ? 0 : this );
         if (len > 0) {
             for (var i = 0;i < len;++i) {
-                val = val.mul( isNaN(arguments[i]) ? 0 : arguments[i] );
+                val = val.mul( isNaN(arguments[i]) || '' == arguments[i] ? 0 : arguments[i] );
             }
         }
         return val.toFixed(2);
@@ -315,10 +315,10 @@
     String.prototype.div = 
     Number.prototype.div = function () {
         var len = arguments.length
-        ,   val = new Big( isNaN(this) ? 0 : this );
+        ,   val = new Big( isNaN(this) || '' == this ? 0 : this );
         if (len > 0) {
             for (var i = 0;i < len;++i) {
-                val = val.div( isNaN(arguments[i]) ? 0 : arguments[i] );
+                val = val.div( isNaN(arguments[i]) || '' == arguments[i] ? 0 : arguments[i] );
             }
         }
         return val.toFixed(2);
@@ -331,7 +331,7 @@
         if (isNaN(_this)) {
             _this = 0;
         }
-        return _this.toFixed(isNaN(val) ? 0 : val);
+        return _this.toFixed(isNaN(val) || '' == val ? 0 : val);
     }
     /**
     * 数值/字符串保留2位小数
