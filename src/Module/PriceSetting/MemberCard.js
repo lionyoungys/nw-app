@@ -87,7 +87,7 @@ export default class extends Component {
             if (ver && res) {
                 console.log(res)
                 this.setState({ show: false, card_type: '', discount: '', real_price:'',give_price:'',made_price:''})
-                handle({msg:'新增会员成功！'});
+                handle({msg:'新增卡类型成功！'});
                 this.componentDidMount();
             } else{
                 handle();

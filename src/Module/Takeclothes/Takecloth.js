@@ -59,6 +59,7 @@ export default class extends Component {
         this.PAYM1read = this.PAYM1read.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
         this.calculate = this.calculate.bind(this);
+        this.singletakecloth =this.singletakecloth.bind(this);
     }; 
     componentDidMount(){
         this.input.focus();
@@ -83,28 +84,26 @@ export default class extends Component {
     singletakecloth(e){
         e.stopPropagation();
         var index = e.target.dataset.index;
-        console.log(index);
+        var id = e.target.dataset.id;
+        console.log(id);
         tool.ui.warn({
             title: '取衣', msg: '该客户确定要取走衣物？', callback: (close, event) => {
                 console.log(event);
                 if (event == '确定') {
-                    this.setState({ takeclothindex: index });
                     console.log('网络申请');
                     let takeclothes = {
                         token: 'token'.getData(),
-                        ids: JSON.stringify(this.state.checked[this.state.takeclothindex])
+                        ids: id
                     }
                     console.log(takeclothes)
                     api.post('takeItem',
                         takeclothes
                         , (res, ver) => {
-
                             if (ver && res) {
                                 tool.ui.success({
-                                    callback: (close) => {
-                                        this.takecloth();
-                                        close();
-                                        this.setState({checked: [] })
+                                    callback: (close) => {      
+                                        close();    
+                                        this.takecloth();                                 
                                     }
                                 });
                             } else {
@@ -205,19 +204,19 @@ export default class extends Component {
         let index = e.target.dataset.index
         ,   tempChecked = this.state.checked[index] || []
         ,   tmpCheckedCount = 0;
-        this.state.list[index].item.map(obj => {
+        this.state.clist[index].order.map(obj => {
             if (4 != obj.status) ++tmpCheckedCount;
         });
         console.log(tmpCheckedCount);
-        console.log(this.state.list[index].item);
+        console.log(this.state.clist[index].order);
         if (tmpCheckedCount == tempChecked.length) {
             this.state.checked[index] = [];
         } else {
-            let len = this.state.list[index].item.length;
+            let len = this.state.clist[index].order.length;
             this.state.checked[index] = [];
             for (var i = 0;i < len;++i) {
-                if (4 != this.state.list[index].item[i].status) {
-                    this.state.checked[index].push(Number(this.state.list[index].item[i].id));
+                if (4 != this.state.clist[index].order[i].status) {
+                    this.state.checked[index].push(Number(this.state.clist[index].order[i].id));
                 }
             }
         }
