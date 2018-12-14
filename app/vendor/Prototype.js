@@ -339,7 +339,7 @@
         ,   val = new Big( isNaN(this) || '' == this ? 0 : this );
         if (len > 0) {
             for (var i = 0;i < len;++i) {
-                val = val.div( isNaN(arguments[i]) || '' == arguments[i] ? 0 : arguments[i] );
+                val = val.div( isNaN(arguments[i]) || '' == arguments[i] ? 1 : arguments[i] );
             }
         }
         return val.toFixed(2);
