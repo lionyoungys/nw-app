@@ -261,6 +261,15 @@
         }
         return ret;
     }
+
+    /**
+     * 判断是否为数值,增加空字符串判断
+     * @param {mixd} val 需要判断的值
+     * @return {boolean}
+     */
+    t.isNaN = function (val) {
+        return (isNaN(val) || '' == val);
+    }
     //ui对象实现
 
     /**
