@@ -13,11 +13,12 @@ import MultiSelect from '../UI/MultiSelect';
 import MathUI from '../UI/MathUI';
 import Triangle from '../UI/Triangle';
 import Clothes from '../UI/Clothes';
+import Photo from '../UI/Photo';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20, data:[], checked:[], show:false, string:new String(1111)}
+        this.state = {dish:false, selectVal:'麻辣香锅', values:[], number:0, total:100, current:1, fetch:20, data:[], checked:[], show:false, string:new String(1111), photo:false}
         this.handleClickForSuccess = this.handleClickForSuccess.bind(this);
         this.handleClickForError = this.handleClickForError.bind(this);
         this.handleCLickForWarn = this.handleCLickForWarn.bind(this);
@@ -90,6 +91,7 @@ export default class extends React.Component {
                 <button type='button' className='e-btn' onClick={this.handleCLickForWarn}>警告弹窗</button>&nbsp;
                 <button type='button' className='e-btn' disabled>样式禁用</button>&nbsp;
                 <button type='button' className='e-btn-b' onClick={this.handleClickForError}>失败弹窗</button><br/>
+                <button type='button' className='e-btn' onClick={() => this.setState({photo:true})}>图片弹窗</button><br/>
                 <button type='button' className='e-btn larger' onClick={() => this.setState({dish:true})}>盘子里的菜</button><br/>
                 <button type='button' className='e-btn larger' onClick={() => this.setState({show:true})}>衣物选择组件</button>&emsp;选中的:{this.state.checked.toString()}<br/>
                 <p><input type='text' value={this.state.string} onChange={e => this.setState({string:e.target.value})}/> </p>
@@ -132,6 +134,20 @@ export default class extends React.Component {
                 />
                 <Empty>暂无数据</Empty>
                 {this.state.show && <Clothes data={this.state.data} onClose={() => this.setState({show:false})} callback={checked => this.setState({checked:checked, show:false})}/>}
+                {
+                    this.state.photo
+                    &&
+                    <Photo 
+                        images={[
+                            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=475001989,366276207&fm=26&gp=0.jpg',
+                            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3420872422,1602230177&fm=26&gp=0.jpg',
+                            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1951101960,3872257815&fm=26&gp=0.jpg',
+                            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2376860606,2887384089&fm=26&gp=0.jpg',
+                            'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=984849569,2956369117&fm=26&gp=0.jpg'
+                        ]} 
+                        onClose={() => this.setState({photo:false})}
+                    />
+                }
            </Window>
         );
     }
