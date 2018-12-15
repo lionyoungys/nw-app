@@ -148,6 +148,10 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     background-position: -2px -2px;
     border: none;
 }
+.e-checkbox:disabled{
+
+    background-color: #ccc;
+}
 .e-radio{border-radius: 50%}
 .e-radio:checked{background-image: url(images/e-radio-checked.png);border: none}
 /* 输入框样式 */

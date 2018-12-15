@@ -96,16 +96,16 @@ export default class extends Component {
         this.setState({ couponType: type });
         if (type == '满减') {
             
-            this.setState({ notiContent: '可减去', notiContentUnit: '元', couponTypeID: 1, subPrice: ''});
+            this.setState({ notiContent: '可减去', notiContentUnit: '元', couponTypeID: 1, subPrice: '', });
         } else if (type == '折扣') {
             
             this.setState({ notiContent: '可享受', notiContentUnit: '折', couponTypeID: 2, subPrice: ''});
         } else if (type == '袋洗') {
 
-            this.setState({ notiContent: '可以洗', notiContentUnit: '袋', couponTypeID: 4 ,subPrice:'1'});
+            this.setState({ notiContent: '可以洗', notiContentUnit: '袋', couponTypeID: 4, subPrice: '1', getType: '0'});
         }else{
 
-            this.setState({ notiContent: '可以洗', notiContentUnit: '件', couponTypeID: 3, subPrice: ''});
+            this.setState({ notiContent: '可以洗', notiContentUnit: '件', couponTypeID: 3, subPrice: '', getType: '0'});
         }
     }
     selectMemPart(e) {
@@ -204,8 +204,8 @@ export default class extends Component {
                     <div className="app_cou_offer_user">
                         <div style={{ height: '26px' }}>发放用户:</div>
                         <div >
-                            <label><input type='checkbox' className='e-checkbox' value='0' checked={this.state.getType == '0' ? true : false} onClick={this.selectMemPart} /> 不与优惠券同时使用</label>
-                            <label><input type='checkbox' className='e-checkbox' value='1' checked={this.state.getType == '1' ? true : false} onClick={this.selectMemPart} /> 可以与优惠券同时使用</label>
+                            <label><input type='checkbox' className='e-checkbox' value='0' disabled={(this.state.couponTypeID == 4 || this.state.couponTypeID == 3) ? 'disabled' : ''} checked={this.state.getType == '0' ? true : false} onClick={this.selectMemPart} /> 不与优惠券同时使用</label>
+                            <label><input type='checkbox' className='e-checkbox' value='1' disabled={(this.state.couponTypeID == 4 || this.state.couponTypeID == 3) ? 'disabled' : ''} checked={this.state.getType == '1' ? true : false} onClick={this.selectMemPart} /> 可以与优惠券同时使用</label>
                             
                         </div>
                     </div>

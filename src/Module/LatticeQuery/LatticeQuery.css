@@ -235,29 +235,11 @@
     display:block;
     overflow-x: hidden;
 }
-.lattice table tbody{  
-    /* overflow-y: auto;
-    display: block;
-    overflow-x: hidden;
-    display: -webkit-box;
-    width: 100%;
-    height: 65%; */
-}
-.lattice table tbody tr{
-    /* width:100%;
-    height:40px;
-    border-bottom:1px solid #ebf0f6;
-    padding-bottom:3px;
-    display: inline-table; */
+.lattice{
+    width: 97%;
+    height: 41px;
+    margin: auto;
+    padding-bottom: 109px;
+    overflow-y: auto;
 }
 
-.lattice table tbody tr td{
-    /* width:10%;
-    height:40px;
-    color:#333;
-    font-size:12px;
-    text-align:center;
-    max-width:87px;
-    min-width: 10%; */
-}
-.lattice table tbody::-webkit-scrollbar{width: 0px}

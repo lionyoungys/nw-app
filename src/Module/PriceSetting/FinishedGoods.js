@@ -47,8 +47,13 @@ export default class extends Component {
         this.modYES=this.modYES.bind(this);
         this.query=this.query.bind(this);
         this.goodsSellWay=this.goodsSellWay.bind(this);
+        this.getGoodTypeList=this.getGoodTypeList.bind(this);
+        this.allquery = this.allquery.bind(this);
     };  
     componentDidMount() {
+        this.allquery();
+    }
+    allquery(){
         this.query();
         this.getGoodTypeList();
         this.goodsSellWay();
@@ -377,7 +382,7 @@ export default class extends Component {
                     </Dish>
                 }
                  {
-                     this.state.show1&&<CommodityClassifyManagement onclose={this.onclose} onrefresh={this.query}/>
+                     this.state.show1&&<CommodityClassifyManagement onclose={this.onclose} onrefresh={this.allquery}/>
                  }
             </div>
         );

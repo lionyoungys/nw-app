@@ -16,7 +16,7 @@ export default class extends Component {
             proDetailShow:false,
             detaiCouShow:false,
             type:'满减', //类型
-            status:'未开启',   //状态
+            status:'未开始',   //状态
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
             discountname:'',//优惠名称
@@ -84,7 +84,6 @@ export default class extends Component {
      }
      //修改优惠券
      editCoupon(e){
-        e.stopPropagation();
          var id = e.target.dataset.id;
          console.log(id);
          this.setState({ cid: id, detaiCouShow:true})
@@ -108,7 +107,7 @@ export default class extends Component {
             operator:this.state.creator,
             start_time:this.state.start_time,
             end_time:this.state.end_time,
-            status:this.state.status=='未开启'?'1':this.state.status=='进行中'?"2":'3'
+            status:this.state.status=='未开始'?'1':this.state.status=='进行中'?"2":'3'
         }
         console.log(params)
         api.post('salePromotion', params, (res,ver) => {
@@ -131,7 +130,7 @@ export default class extends Component {
     }
     render(){
         let list =this.state.arr.map((item,index)=>
-        <tr key={'item'+index} onClick={() => this.setState({ proDetailShow: true,id:item.id })}>
+        <tr key={'item'+index} >
             <td >{index}</td>
             <td >{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
@@ -141,10 +140,10 @@ export default class extends Component {
             <td>{tool.date('Y-m-d', item.end_time)}</td>
             <td >{item.status}</td>
             <td style={{ minWidth: '120px' }}>
-                {item.status=='未开启'?
-                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                :item.status=='进行中'?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
+                {item.status=='未开始'?
+                        <span><span onClick={this.editCoupon} data-write={index} className='e-blue' data-id={item.id}>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} data-id={item.id} className='e-blue'>详情</span></span>
+                :item.status=='进行中'?<span><span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue'>详情</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>中止</span></span>
+                : <span  onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue' data-id={item.id}>详情</span>  
             }
             </td>
         </tr>
@@ -165,7 +164,7 @@ export default class extends Component {
                             <span>活动名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth' />
                         </div>
                         <div>
-                            <span>状&emsp;&emsp;态：</span><Select option={['未开启', '进行中', '已过期']} style={{ width: '153px' }} value={this.state.status} onChange={obj => this.setState({ status: obj.value })} />
+                            <span>状&emsp;&emsp;态：</span><Select option={['未开始', '进行中', '已结束']} style={{ width: '153px' }} value={this.state.status} onChange={obj => this.setState({ status: obj.value })} />
                         </div>
                     </div>
                     <div className='storespecialofferstop_three'>
@@ -184,15 +183,15 @@ export default class extends Component {
                     <Table style={{height:'100%'}}>
                         <thead>
                             <tr>
-                                <th>编号</th>                             
-                                <th>促销类型 </th>
-                                <th>活动名称 </th>
-                                <th >适用品类</th>
-                                <th >适用门店 </th>  
-                                <th >开始时间 </th>   
-                                <th >结束时间 </th>                            
-                                <th >状态 </th>   
-                                <th >操作 </th>
+                                <th style={{minWidth:'50px'}}>编号</th>                             
+                                <th style={{minWidth:'80px'}}>促销类型 </th>
+                                <th style={{minWidth:'90px'}}>活动名称 </th>
+                                <th style={{minWidth:'80px'}}>适用品类</th>
+                                <th style={{minWidth:'74px'}}>适用门店 </th>  
+                                <th style={{minWidth:'75px'}}>开始时间 </th>   
+                                <th style={{minWidth:'75px'}}>结束时间 </th>                            
+                                <th style={{minWidth:'65px'}}>状态 </th>   
+                                <th style={{minWidth:'120px'}}>操作 </th>
                             </tr>
                         </thead>
                         <tbody>

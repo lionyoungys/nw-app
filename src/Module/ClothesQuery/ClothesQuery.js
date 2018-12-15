@@ -77,7 +77,7 @@ export default class extends Component {
                 <td>{item.clothing_color}</td>
                 <td>{item.grid_num}</td>
                 <td>{item.status.getItemStatusName()}</td>
-                <td>{item.deal_time}</td>
+                <td>{item.deal_time == '1970-01-01'?'':item.deal_time}</td>
                 <td>{item.user_name}</td>
                 <td>{item.user_mobile}</td>
                 <td>{item.card_number}</td>

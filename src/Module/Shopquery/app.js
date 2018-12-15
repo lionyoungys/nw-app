@@ -95,7 +95,7 @@ export default class extends Component {
                             <span>订单来源：</span><Select  option={['线下','线上']} value={this.state.order_name} onChange={value => this.setState({order_name:value.value})}/>                         
                         </div>
                         <div>
-                            <span>&nbsp;&emsp;&emsp;订单状态：</span><Select value={this.state.statename} />
+                            <span>&nbsp;&emsp;&emsp;订单状态：</span><i className="succs">{this.state.statename}</i>
                         </div>
                     </div>
                     <div className='shopquery_btn'>

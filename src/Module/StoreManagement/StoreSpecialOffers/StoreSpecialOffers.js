@@ -186,7 +186,7 @@ export default class extends Component {
             <td>
                 {item.status==0?
                         <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                :item.status==1?<span><span onClick={this.mod} data-write={index} className='e-blue'>停用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
+                :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
                 : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
             }
             </td>
@@ -227,15 +227,15 @@ export default class extends Component {
                 <Table style={{ height: '100%' }}>
                     <thead>
                         <tr>
-                            <th>编号</th>                             
-                            <th>优惠类型 </th>
-                            <th>优惠卷名称 </th>
-                            <th >优惠方案</th>
-                            <th >总数量\已用 </th>  
-                            <th >开始时间 </th>   
-                            <th >结束时间 </th>                            
-                            <th >状态 </th>   
-                            <th >操作 </th>
+                            <th style={{minWidth:'50px'}}>编号</th>                             
+                            <th style={{minWidth:'80px'}}>优惠类型 </th>
+                            <th style={{minWidth:'90px'}}>优惠卷名称 </th>
+                            <th style={{minWidth:'80px'}}>优惠方案</th>
+                            <th style={{minWidth:'74px'}}>总数量\已用 </th>  
+                            <th style={{minWidth:'75px'}}>开始时间 </th>   
+                            <th style={{minWidth:'75px'}}>结束时间 </th>                            
+                            <th style={{minWidth:'65px'}}>状态 </th>   
+                            <th style={{minWidth:'120px'}}>操作 </th>
                         </tr>
                     </thead>
                     <tbody>

@@ -17,6 +17,7 @@
 .shopquery .shopquery-top>div{
     width: auto;float: left;
     margin-top: 18px;
+    line-height:28px;
 }
 .shopquery_btn{
     float: right;
@@ -32,3 +33,20 @@
 }
 .shopquery_btn>button.clear_btn:hover{background: #3fc0db;color: #fff}
 .orderquery-div.shopquery-div{padding: 0 16px 194px;}
+
+.shopquery .shopquery-top>div i.succs{
+    width: 166px;
+    height: 28px;
+    line-height: 28px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d7dee4;
+    border-radius: 4px;
+    padding: 0 8px;
+    color: #5a5e66;
+    outline: none;
+    display:inline-block;
+    float: right;
+    font-style:normal;
+}
