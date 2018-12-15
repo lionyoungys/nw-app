@@ -43,6 +43,8 @@ export default class extends Component {
         this.DATACODE = tool.code();
         this.counter = 1;    //编码累加计数属性
         this.calculator = new tool.api.calculator();    //获取价格计算器对象
+        this.data = {};    //计算结果数据对象
+        this.submitting = false;    //是否为数据提交中
         this.M1read = this.M1read.bind(this);    //读卡
         this.setCode = this.setCode.bind(this);    //设置衣物编码
         this.showCode = this.showCode.bind(this);    //展示设置衣物编码
@@ -346,7 +348,7 @@ export default class extends Component {
             balance = obj.card.balance;
             number = obj.card.recharge_number;
         }
-        if ('0' == obj.gateway) {
+        if (!isNaN(obj.gateway) && '0' == obj.gateway) {
             balance = balance.sub(obj.calc_amount);
         }
         let param = {
@@ -397,12 +399,6 @@ export default class extends Component {
                     user_name:this.state.name,
                     tell:this.state.phone,
                 }, printer);
-                // EventApi.print('code', {
-                //     sn:this.state.code_arr[i].clothing_number, 
-                //     name:this.state.code_arr[i].clothing_name, 
-                //     color:this.state.code_arr[i].clothing_color,
-                //     number:this.state.code_arr[i].grid_num
-                // }, printer);
             }
         }
     }
@@ -452,7 +448,10 @@ export default class extends Component {
     "sign":衣物品牌
     "card_type":卡类型
     "address":住址 */
-    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型     
+    //uid:'',phone:'',name:'',number:'',addr:'',time:'',type:'',balance:0,discount:'',    //type:卡类型 
+        if (this.submitting) {
+            return;
+        }    
         if (undefined == this.state.phone || ''== this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (undefined == this.state.name || '' == this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         let len = this.state.data.length;
@@ -474,16 +473,14 @@ export default class extends Component {
             delete data[i].DATATAG;
             delete data[i].parent;
         }
+        this.submitting = true;
         api.post(
             'get_clothes',
             {token:token, uid:this.state.cid || '', amount:amount, craft_price:craft_price, discount:this.state.discount, items:JSON.stringify(data)},
             (res, ver, handle) => {
+                this.submitting = false;
                 console.log(res);
                 if (ver) {
-                    if ('boolean' === typeof isTake && isTake) {
-                        this.print();
-                        return this.props.closeView();
-                    }
                     let r = res.result;
                     this.setState({
                         oid:r.order_id, 
@@ -491,13 +488,18 @@ export default class extends Component {
                         mphone:r.merchant.phone_number, 
                         maddr:r.merchant.maddress,
                         ad:r.merchant.mdesc,
-                        code_arr:r.orderItemInfo,
-                        show:14
+                        code_arr:r.orderItemInfo
                     });
+                    if ('boolean' === typeof isTake && isTake) {
+                        this.print();
+                        return this.props.closeView();
+                    }
+                    this.setState({show:14});
                 } else {
                     handle();
                 }
-            }
+            },
+            () => {this.submitting = false}
         );
         
     }
@@ -508,7 +510,7 @@ export default class extends Component {
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.cash_amount,authcode:obj.authcode, cid:obj.card.id, oid:this.state.oid, passwd:obj.passwd},
+            {token:token,gateway:obj.gateway,pay_amount:obj.cash,authcode:obj.authcode, cid:obj.card.id, oid:this.state.oid, passwd:obj.passwd},
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
@@ -597,6 +599,8 @@ export default class extends Component {
             );
         });
         amount = this.calculator.calc(amount);
+        this.data = this.calculator.setData(this.state.data).setDiscount(discount).get();
+        //console.log(this.data);
         return (
             <Window title='收衣' onClose={this.onClose}>
                 <div className='clothes-top'>

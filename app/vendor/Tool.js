@@ -277,6 +277,14 @@
         }
         return ret;
     }
+    /**
+     * 判断是否为数值,增加空字符串判断
+     * @param {mixd} val 需要判断的值
+     * @return {boolean}
+     */
+    t.isNaN = function (val) {
+        return (isNaN(val) || '' == val);
+    }
     //ui对象实现
 
     /**
@@ -422,12 +430,17 @@
         var TYPE = 2
         ,   data = []    //项目列表数据
         ,   size = 0    //data数据大小
+        ,   has_act = false    //是否参与促销活动
+        ,   has_cou = false    //是否使用优惠券
         ,   memory = {    //暂存对象
             total:0,    //总金额
             amount:0,    //折后金额
             calc_amount:0,    //经过价格计算方式计算折后金额的值
             dis_amount:0,    //可折金额
-            no_dis_amount:0    //不可折金额
+            no_dis_amount:0,    //不可折金额
+            discount:100,    //会员折扣
+            cash:0,    //现金使用
+            change:0    //找零金额
         };
         //请求接口获取价格计算方式
         api.post('calculate', {token:'token'.getData()}, function(res, ver) {
@@ -452,6 +465,15 @@
                 size = len;
                 var amount;
                 for (var i = 0;i < len;++i) {
+                    if (tool.isNaN(data[i].raw_price)) {
+                        data[i].raw_price = 0;
+                    }
+                    if (tool.isNaN(data[i].addition_no_price)) {
+                        data[i].addition_no_price = 0;
+                    }
+                    if (tool.isNaN(data[i].addition_price)) {
+                        data[i].addition_price = 0;
+                    }
                     amount = this.getAmount(i);
                     memory.total = memory.total.add(amount.total);
                     memory.dis_amount = memory.dis_amount.add(amount.dis_amount);
@@ -481,17 +503,30 @@
 
         /**
          * 通过折扣率计算折后价格
-         * @param {Number} dis 折扣率:取值范围1~100;例:100时为100%;
-         * @return {Object} obj
+         * @param {number} discount 折扣率:取值范围1~100;例:100时为100%;1时为1%;
+         * @return {object} this
          */
-        this.discount = function (dis) {
-            var obj = tool.clone(memory);
-            if (dis > 0 && dis < 100 && obj.dis_amount > 0) {
-                dis = dis.div(100);
-                obj.amount = obj.no_dis_amount.add(obj.dis_amount.mul(dis));
-                obj.calc_amount = this.calc(obj.amount);
+        this.setDiscount = function (discount) {
+            if (!isNaN(discount) && discount > 0 && discount < 100 && memory.dis_amount > 0 && !has_act && !has_cou) {
+                memory.discount = discount;
+                memory.amount = memory.no_dis_amount.add(memory.dis_amount.mul(discount).div(100));
+                memory.calc_amount = this.calc(memory.amount);
+            } else {
+                memory.discount = 100;
             }
-            return obj;
+            return this;
+        }
+        /**
+         * 通过设置现金金额赋值现金使用金额及找零金额
+         * @param {mixd} cash 现金金额
+         * @return {object} this
+         */
+        this.setCash = function (cash) {
+            if (!isNaN(cash) && cash > 0) {
+                memory.cash = cash;
+                memory.change = cash.sub(memory.calc_amount);
+            }
+            return this;
         }
 
         /**
@@ -656,43 +691,6 @@
         this.round = function (val, val2) {
             return Math.round(val.mul(100).div(val2)).div(100);
         }
-        
-        /**
-         * 计算优惠券使用规则,存入暂存
-         * @param {Object} coupon 优惠券数据
-         * @param {Object} this
-         */
-        this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
-            if (tool.isObject(coupon) && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //0 < 总金额 >= 优惠券满足金额
-                if (1 == coupon.type) {    //现金券:抵价金额 > 0;
-                    //var balance = coupon.money;    //优惠券抵扣余额
-                    this.moneyOff(coupon.money, coupon.item_name);
-                    memory.amount = 0;
-                    for (var i = 0;i < size;++i) {
-                        // if (balance > 0 && -1 != data[i].clothing_name.inArray(coupon.item_name)) {
-                        //     balance = this.setDec(i, balance);
-                        // }
-                        memory.amount = memory.amount.add(this.getTotal(i));
-                    }
-                } else if (2 == coupon.type) {    //折扣券:优惠折扣 < 10折
-                    var discount = coupon.discount;
-                    if (discount < 100 && 0 != discount) {
-                        discount = discount.div(100);    //优惠券折扣率,小数计算
-                        memory.amount = 0;
-                        for (var i = 0;i < size;++i) {
-                            if (-1 != data[i].clothing_name.inArray(coupon.item_name)) {
-                                data[i].raw_price = data[i].raw_price.mul(discount);
-                                data[i].addition_price = data[i].addition_price.mul(discount);
-                                data[i].addition_no_price = data[i].addition_no_price.mul(discount);
-                            }
-                            memory.amount = memory.amount.add(this.getTotal(i));
-                        }
-                    }
-                }
-                memory.calc_amount = this.calc(memory.amount);
-            }
-            return this;
-        }
 
         /**
          * 计算活动使用规则,存入暂存
@@ -702,6 +700,7 @@
         this.activity = function (activity) {    //根据商户所选的活动计算金额
             if (tool.isObject(activity) && memory.calc_amount > 0) {
                 if (1 == activity.type && memory.total >= activity.full_money) {    //满减
+                    has_act = true;
                     //var balance = activity.money;    //优惠券抵扣余额
                     this.moneyOff(activity.money, activity.item_name);
                     memory.amount = 0;
@@ -712,6 +711,7 @@
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 } else if (2 == activity.type && memory.total >= activity.full_money) {    //折扣
+                    has_act = true;
                     var discount = activity.discount;
                     if (discount < 100 && 0 != discount) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
@@ -726,19 +726,69 @@
                         }
                     }
                 } else if (3 == activity.type && size >= activity.money) {    //多件洗
+                    has_act = true;
                     this.packData(activity.item_name, activity.full_money, activity.money);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 } else if (4 == activity.type) {    //袋洗
+                    has_act = true;
                     this.packData(activity.item_name, activity.full_money);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
+                } else {
+                    has_act = false;
                 }
                 memory.calc_amount = this.calc(memory.amount);
+            } else {
+                has_act = false;
+            }
+            return this;
+        }
+
+        
+        /**
+         * 计算优惠券使用规则,存入暂存
+         * @param {Object} coupon 优惠券数据
+         * @param {Object} this
+         */
+        this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
+            if (tool.isObject(coupon) && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //0 < 总金额 >= 优惠券满足金额
+                if (1 == coupon.type) {    //现金券:抵价金额 > 0;
+                    //var balance = coupon.money;    //优惠券抵扣余额
+                    has_cou = true;
+                    this.moneyOff(coupon.money, coupon.item_name);
+                    memory.amount = 0;
+                    for (var i = 0;i < size;++i) {
+                        // if (balance > 0 && -1 != data[i].clothing_name.inArray(coupon.item_name)) {
+                        //     balance = this.setDec(i, balance);
+                        // }
+                        memory.amount = memory.amount.add(this.getTotal(i));
+                    }
+                } else if (2 == coupon.type) {    //折扣券:优惠折扣 < 10折
+                    has_cou = true;
+                    var discount = coupon.discount;
+                    if (discount < 100 && 0 != discount) {
+                        discount = discount.div(100);    //优惠券折扣率,小数计算
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {
+                            if (-1 != data[i].clothing_name.inArray(coupon.item_name)) {
+                                data[i].raw_price = data[i].raw_price.mul(discount);
+                                data[i].addition_price = data[i].addition_price.mul(discount);
+                                data[i].addition_no_price = data[i].addition_no_price.mul(discount);
+                            }
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
+                    }
+                } else {
+                    has_cou = false;
+                }
+                memory.calc_amount = this.calc(memory.amount);
+            } else {
+                has_cou = false;
             }
             return this;
         }
@@ -746,17 +796,12 @@
         /**
          * 获取当前暂存的值
          * @param {boolean} clean 是否清除暂存计算的值
-         * @return {Object} obj 获取当前暂存的值
+         * @return {object} 获取当前暂存的值
          */
         this.get = function (clean) {
-            clean = 'boolean' == typeof clean ? clean : true;
-            var obj = {};
-            data = [];
-            for (var k in memory) {
-                obj[k] = memory[k];
-                if (clean) {
-                    memory[k] = 0;
-                }
+            var obj = tool.clone(memory);    //复制暂存对象
+            if (clean) {    //是否清除暂存
+                this.clean();
             }
             return obj;
         }
@@ -767,9 +812,13 @@
          */
         this.clean = function () {
             data = [];
+            size = 0;
+            has_act = false;
+            has_cou = false;
             for (var k in memory) {
                 memory[k] = 0;
             }
+            memory.discount = 100;
             return this;
         }
     }

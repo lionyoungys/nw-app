@@ -271,7 +271,7 @@ export default class extends Component {
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid, oid:this.state.oid, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.cash,authcode:obj.authcode || '', cid:cid, oid:this.state.oid, passwd:obj.passwd || ''},
             (res, ver, handle) => {
                 console.log(res);
                 loadingEnd();
@@ -327,7 +327,7 @@ export default class extends Component {
         let data = [];
         let searchList = this.state.searchList.map((item, index) => {
             for (let i = 0;i < item.count;++i) {
-                data.push({raw_price:item.price, addition_price:0, addition_no_price:0, has_discount:item.has_discount});
+                data.push({raw_price:item.price, has_discount:item.has_discount});
             }
             return (
                 <tr key={'item' + index}>

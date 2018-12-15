@@ -152,18 +152,13 @@ export default class extends Component {
     onConfirm() {
         if ('function' == typeof this.props.callback && !this.waiting) {
             this.waiting = true;
-            this.data.cash_amount = this.state.amount;    //现金金额
             this.data.passwd = this.state.passwd;    //密码
             this.data.authcode = '';
             if ('_' == this.data.gateway) {
                 this.data.gateway = '0';
             }
-            if ('0' == this.state.act_index) {    //判断是否使用活动
-                this.data.activity = this.activity;
-            }
-            if ('0' == this.state.cou_index) {    //判断是否使用优惠券
-                this.data.coupon = this.coupon;
-            }
+            this.data.activity = ('0' != this.state.act_index) ? this.activity : null;        //判断是否使用活动
+            this.data.coupon = ('0' != this.state.cou_index) ? this.coupon : null;    //判断是否使用优惠券
             let authCode = this.state.authCode;
             if ('1' == this.data.gateway && this.data.change < 0) {
                 this.waiting = false;
@@ -198,16 +193,13 @@ export default class extends Component {
         ,   activities = this.state.activities
         ,   coupons = this.state.coupons
         ,   act_index = this.state.act_index
-        ,   cou_index = this.state.cou_index
-        ,   useing_ac = (act_index > 0 || cou_index > 0);
+        ,   cou_index = this.state.cou_index;
+
         if (this.state.card.id) {
             card = this.state.card;
         }
 
-        this.props.calculator.setData(items);    //设置项目数据
-
-        if (useing_ac) {    //判断是否使用促销活动或优惠券 
-            this.props.calculator.matchAC(activities[act_index], coupons[cou_index])
+        if (act_index > 0 || cou_index > 0) {    //判断是否使用促销活动或优惠券 
             if (tool.isObject(activities[act_index])) {
                 this.activity = activities[act_index];
             }
@@ -215,22 +207,16 @@ export default class extends Component {
                 this.coupon = coupons[cou_index];
             }
         }
-
-        this.data = this.props.calculator.get(false);    //初始化data值
-        let amount = this.data.calc_amount
-        ,   isZero = (0 == amount)    //判断金额是否为零,为零时只能现金支付
-        ,   gateway = (isZero ? 1 : this.state.gateway)    //支付方式
-        ,   useing_card = (0 == gateway || '_' == gateway)    //是否使用会员卡支付
-        ,   discount = ( useing_ac ? 100 : (useing_card ? card.discount : 100) )    //折扣率:当使用优惠券或促销活动时,会员卡折扣无效
-        ,   dis_obj = this.props.calculator.discount(discount);    //折扣对象
-        amount = dis_obj.calc_amount    //支付金额
+        this.data = this.props.calculator.setData(items)
+                                         .matchAC(activities[act_index], coupons[cou_index])
+                                         .setCash(this.state.amount)
+                                         .get();    //设置项目数据
+        let isZero = (0 == this.data.calc_amount)    //判断金额是否为零,为零时只能现金支付
+        ,   gateway = (isZero ? 1 : this.state.gateway);    //支付方式
+        this.data = this.props.calculator.setDiscount('1' == gateway ? 100 : card.discount).get();
         //赋值数据于data
-        this.data.amount = dis_obj.amount;
-        this.data.calc_amount = amount;
-        this.data.change = (this.state.amount || amount).sub(amount);    //找零
         this.data.gateway = gateway;
         this.data.card = card;
-        this.data.card.discount = discount;
         return (
             <Dish title='收银' width='560' height={ac_show ? '480' : '390'} icon='icons-payment.png' onClose={this.props.onClose}>
                 <div className='ui-payment'>
@@ -242,11 +228,11 @@ export default class extends Component {
                         </div>
                         <div>
                             <div>可折金额：&yen;{this.data.dis_amount}</div>
-                            <div>折后价：&yen;{amount}</div>
+                            <div>折后价：&yen;{this.data.calc_amount}</div>
                         </div>
                         <div>
-                            <div>折扣率：{discount}%</div>
-                            <div style={useing_card ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{card.balance}</span></div>
+                            <div>折扣率：{this.data.discount}%</div>
+                            <div style={(0 == gateway || '_' == gateway) ? null : {display:'none'}}>卡余额：<span className='e-red e-fb'>&yen;{card.balance}</span></div>
                         </div>
                     </div>
                     {ac_show && <div className='ui-payment-head'>优惠信息</div>}
@@ -281,7 +267,7 @@ export default class extends Component {
                             </div>
                             <div className='ui-payment-pattern-handle-vip' style={card.id ? null : {display:'none'}}>
                                 <div><span>卡号：{card.recharge_number}</span>卡类型：{card.card_name}</div>
-                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
+                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{card.discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(0 == gateway ? 'block' : 'none')}}>
@@ -291,7 +277,7 @@ export default class extends Component {
                             </div>
                             <div className='ui-payment-pattern-handle-vip' style={card.id ? null : {display:'none'}}>
                                 <div><span>卡号：{card.recharge_number}</span>卡类型：{card.card_name}</div>
-                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{discount}%</span></div>
+                                <div><span>余额：{card.balance}</span>折扣率：<span className='e-red e-fb'>{card.discount}%</span></div>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle' style={{display:(1 == gateway ? 'block' : 'none')}}>
