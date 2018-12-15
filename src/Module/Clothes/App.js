@@ -30,7 +30,7 @@ export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            oid:null,uid:'',phone:'',name:'',number:'',cid:null,addr:'',time:'',type:'',balance:0,discount:'',consume:0,    //type:卡类型
+            oid:null,uid:'',phone:'',name:'',number:'',cid:'',addr:'',time:'',type:'',balance:0,discount:'',consume:0,    //type:卡类型
             mphone:'',maddr:'', ad:'',sn:'',code_arr:[],
             category:[],item:[],brand:[],color:[],problem:[],forecast:[],price:[],
             show:0, categoryIndex:0,currentIndex:0,
@@ -505,7 +505,8 @@ export default class extends Component {
     }
     paymentCallback(obj) {
         if (null == this.state.oid) return;
-        if (0 == obj.gateway && '' == obj.card.id) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+        let cid = obj.card.id || '';
+        if (0 == obj.gateway && '' == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
@@ -613,7 +614,7 @@ export default class extends Component {
                                 ref={input => this.phoneInput = input}
                                 style={{marginRight:'72px'}}
                                 value={this.state.phone} 
-                                onChange={e => this.setState({phone:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                                onChange={e => this.setState({phone:e.target.value,cid:'',balance:0,discount:100,type:''})}
                             />
                             <sup className='e-red'>*</sup>姓名：
                             <input 
@@ -622,7 +623,7 @@ export default class extends Component {
                                 ref={input => this.nameInput = input}
                                 style={{marginRight:'40px'}}
                                 value={this.state.name} 
-                                onChange={e => this.setState({name:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                                onChange={e => this.setState({name:e.target.value,cid:'',balance:0,discount:100,type:''})}
                             />
                             卡号：
                             <input 
@@ -630,7 +631,7 @@ export default class extends Component {
                                 className='e-input' 
                                 ref={input => this.numberInput = input}
                                 value={this.state.number} 
-                                onChange={e => this.setState({number:e.target.value,cid:null,balance:0,discount:100,type:''})}
+                                onChange={e => this.setState({number:e.target.value,cid:'',balance:0,discount:100,type:''})}
                             />
                         </div>
                         &nbsp;地址：<input type='text' className='e-input' style={{width:'500px',marginRight:'52px'}} value={this.state.addr} onChange={e => this.setState({addr:e.target.value,cid:null,balance:0,discount:100,type:''})}/>

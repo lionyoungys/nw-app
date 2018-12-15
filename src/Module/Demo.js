@@ -140,7 +140,6 @@ export default class extends React.Component {
                     <Photo 
                         images={[
                             'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=475001989,366276207&fm=26&gp=0.jpg',
-                            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3420872422,1602230177&fm=26&gp=0.jpg',
                             'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1951101960,3872257815&fm=26&gp=0.jpg',
                             'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2376860606,2887384089&fm=26&gp=0.jpg',
                             'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=984849569,2956369117&fm=26&gp=0.jpg'
