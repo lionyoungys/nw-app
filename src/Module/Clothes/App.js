@@ -330,7 +330,7 @@ export default class extends Component {
         this.setState(obj);
     }
     print(obj) {
-        obj = obj || {};
+        obj = obj || this.calculator.setData(this.state.data).get();
         /*
             sn:订单编号;items:项目json字符串;total:总金额;dis_amount:可折金额;amount:不可折金额;gateway:支付方式;discount:折扣;real_amount:折后价;
             reduce:优惠;reduce_cause:优惠原因;coupon:现金券;coupon_name:现金券名称;
@@ -338,49 +338,39 @@ export default class extends Component {
             number:卡号;balance:余额;
             name:客户姓名;phone:客户电话;time:取衣时间;addr:店铺地址;mphone:店铺电话;ad:店铺广告;
         */
-        let total = obj.data.total    //总金额
-        ,   amount = obj.data.amount    //折后金额
-        ,   dis_amount = obj.data.dis_amount
-        ,   no_dis_amount = obj.data.no_dis_amount
-        ,   discount = obj.card.discount;
-        let gateway = obj.gateway
-        ,   balance = obj.card.balance;
-        if ('undefined' !== typeof gateway) {
-            if (0 == gateway) {
-                gateway = '会员卡支付';
-                if (!isNaN(balance)) balance = balance.subtract(obj.pay_amount);
-            } else if (1 == gateway) {
-                gateway = '现金支付';
-            } else if (2 == gateway) {
-                gateway = '微信支付';
-            } else {
-                gateway = '支付宝支付';
-            }
-        } else {
-            gateway = '未付款';
+        let number = ''
+        ,   discount = 100
+        ,   balance = 0;
+        if (obj.card) {
+            discount = obj.card.discount;
+            balance = obj.card.balance;
+            number = obj.card.recharge_number;
+        }
+        if ('0' == obj.gateway) {
+            balance = balance.sub(obj.calc_amount);
         }
         let param = {
             sn:this.state.sn,
             items:JSON.stringify(this.state.data),
             put_codes:JSON.stringify(this.state.code_arr),
-            total:total,
+            total:obj.total,
             uaddr:this.state.addr,
-            dis_amount:dis_amount,
-            amount:no_dis_amount,
+            dis_amount:obj.dis_amount,
+            amount:obj.no_dis_amount,
             discount: discount,
-            real_amount:amount,
+            real_amount:obj.calc_amount,
             name:this.state.name,
             phone:this.state.phone,
             time:this.state.time,
             addr:this.state.maddr,
             mphone:this.state.mphone,
             ad:this.state.ad,
-            number:obj.card.recharge_number,
-            balance:( isNaN(balance) ? 0 : (Math.round(balance * 100) / 100) ),
-            pay_amount:obj.pay_amount,
-            change:obj.change,
-            gateway:gateway,
-            debt:('undefined' !== typeof obj.pay_amount && 0 != obj.pay_amount ? obj.debt : total)
+            number:number,
+            balance:balance,
+            pay_amount:isNaN(obj.gateway) ? 0 : obj.calc_amount,
+            change:obj.change || 0,
+            gateway:tool.getGatewayName(obj.gateway),
+            debt:isNaN(obj.gateway) ? obj.total : 0
         };
         this.handlePrinter(param);
         let needle_printer = 'needle_printer'.getData();
@@ -513,14 +503,12 @@ export default class extends Component {
     }
     paymentCallback(obj) {
         if (null == this.state.oid) return;
-        let cid = obj.card.id || '';
-        if (0 == obj.gateway && '' == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
-        console.log(cid);
+        if (0 == obj.gateway && '' == obj.card.id) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.amount,authcode:obj.authcode || '', cid:cid, oid:this.state.oid, passwd:obj.passwd || ''},
+            {token:token,gateway:obj.gateway,pay_amount:obj.cash_amount,authcode:obj.authcode, cid:obj.card.id, oid:this.state.oid, passwd:obj.passwd},
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {

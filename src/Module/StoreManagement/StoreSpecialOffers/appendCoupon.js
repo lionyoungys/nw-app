@@ -132,6 +132,13 @@ export default class extends Component {
                 }
             });
         } 
+        if (this.state.subPrice * 1 ==0) {
+            return tool.ui.error({
+                msg: '参数设置可享金额/折扣大于0！', callback: (close, event) => {
+                    close();
+                }
+            });
+        }
         let arr = this.state.merSelectArr.typeArray('id');
         console.log(this.state.cid);
         var pram = {

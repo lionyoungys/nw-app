@@ -5,7 +5,7 @@ import Data from './Module/Data/App';
 import Data2 from './Module/Data/App2';
 import Clothes from './Module/Clothes/App' //收衣界面
 import Hangon from './Module/Hangon/Hangon'; //上挂
-import Takeclothes from './Module/Takeclothes/Takecloth'; //取衣
+import Takeclothes from './Module/Takeclothes/Takeclothe'; //取衣
 import Commoditysales from './Module/Commoditysales/Commoditysales'; //商品销售
 
 import RevokeData from './Module/RevokeData/RevokeData'; //撤单统计

@@ -96,16 +96,16 @@ export default class extends Component {
         this.setState({ couponType: type });
         if (type == '满减') {
             
-            this.setState({ notiContent: '可减去', notiContentUnit: '元', couponTypeID:1});
+            this.setState({ notiContent: '可减去', notiContentUnit: '元', couponTypeID: 1, subPrice: ''});
         } else if (type == '折扣') {
             
-            this.setState({ notiContent: '可享受', notiContentUnit: '折', couponTypeID: 2});
+            this.setState({ notiContent: '可享受', notiContentUnit: '折', couponTypeID: 2, subPrice: ''});
         } else if (type == '袋洗') {
 
-            this.setState({ notiContent: '可以洗', notiContentUnit: '袋', couponTypeID: 4 });
+            this.setState({ notiContent: '可以洗', notiContentUnit: '袋', couponTypeID: 4 ,subPrice:'1'});
         }else{
 
-            this.setState({ notiContent: '可以洗', notiContentUnit: '件', couponTypeID: 3});
+            this.setState({ notiContent: '可以洗', notiContentUnit: '件', couponTypeID: 3, subPrice: ''});
         }
     }
     selectMemPart(e) {
@@ -133,6 +133,13 @@ export default class extends Component {
         if (this.state.couponName == '' || this.state.merSelectArr.length == 0 || this.state.cloSelTypeArr.length == 0  || this.state.startime == '' || this.state.endtime == '' || this.state.totalPrice == '' || this.state.subPrice == '' || this.state.get_type == '') {
             return tool.ui.error({
                 msg: '内容不能为空！', callback: (close, event) => {
+                    close();
+                }
+            });
+        }
+        if (this.state.subPrice * 1 <= 0) {
+            return tool.ui.error({
+                msg: '参数设置可享金额/折扣大于0！', callback: (close, event) => {
                     close();
                 }
             });
@@ -174,14 +181,14 @@ export default class extends Component {
     }
     render() {
         return (
-            <Dish title='新增优惠券' onClose={this.props.onClose} width="690" height="400">
+            <Dish title='新增优惠活动' onClose={this.props.onClose} width="690" height="400">
                 <div className="app_cou_content">
                     <div className="app_cou_left">
                         <div> <span><b>*</b>活动名称:</span><input type='text' className='e-input' placeholder='请输入活动名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
                         <div> <span>促销类型:</span><Select option={['满减', '折扣','袋洗', '多件洗']} value={this.state.couponType} onChange={obj => this.changeCouponType(obj)} /></div>
                         <div> <span>衣物品类:</span><div className='app-cou-sel-clo' placeholder='请选择衣物品类' onClick={() => this.setState({ SelectCloShow: true })}>{this.state.cloSelTypeArr.toString()}</div></div>
                         <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
-                    {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
+                    {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} disabled={this.state.couponTypeID == 4 ? 'disabled' : ''} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                     </div>
                     <div className="app_cou_right">
 

@@ -124,13 +124,6 @@ export default class extends Component {
     onKeyPress(e){
         13 == (e.keyCode || e.which) && this.M1Read();
     }
-    handleClick() {
-        if (0 == this.data.gateway || '_' == this.data.gateway) {    //会员卡支付
-            this.setState({show:true});
-        } else {
-            this.onConfirm();
-        }
-    }
 
     handleSelectCoupon(obj) {
         if (0 == this.state.act_index || 1 == this.state.activities[this.state.act_index].whether) {
@@ -147,37 +140,36 @@ export default class extends Component {
             this.setState({act_index:obj.index});
         }
     }
+
+    handleClick() {
+        if (0 == this.data.gateway || '_' == this.data.gateway) {    //会员卡支付
+            this.setState({show:true});
+        } else {
+            this.onConfirm();
+        }
+    }
+
     onConfirm() {
         if ('function' == typeof this.props.callback && !this.waiting) {
             this.waiting = true;
-            let authCode = this.state.authCode
-            ,   obj = {
-                gateway:this.data.gateway, 
-                amount:parseFloat(this.state.amount || 0), 
-                pay_amount:parseFloat(this.data.total || 0), 
-                change:0, 
-                card:this.card,    //会员卡使用数据
-                data:this.data,    //价格计算数据
-                coupon:this.coupon,    //优惠券使用数据
-                activity:this.activity    //活动使用数据
-            };
-            if ('_' == obj.gateway) {
-                obj.gateway = 0;
+            this.data.cash_amount = this.state.amount;    //现金金额
+            this.data.passwd = this.state.passwd;    //密码
+            this.data.authcode = '';
+            if ('_' == this.data.gateway) {
+                this.data.gateway = '0';
             }
-            if (0 == obj.gateway) {    //会员卡支付
-                obj.pay_amount = this.data.calc_amount;
-                obj.passwd = this.state.passwd;
-            } else if (1 == obj.gateway) {
-                //if (this.props.data.special_pay_amount) obj.pay_amount = parseFloat(this.props.data.special_pay_amount);
-                obj.pay_amount = this.data.calc_amount;
-                if (obj.amount < 0 || obj.pay_amount > obj.amount) {
-                    this.waiting = false;
-                    return;
-                }
-                if (obj.amount != obj.pay_amount) {
-                    obj.change = obj.amount.sub(obj.pay_amount);
-                }
-            } else {
+            if ('0' == this.state.act_index) {    //判断是否使用活动
+                this.data.activity = this.activity;
+            }
+            if ('0' == this.state.cou_index) {    //判断是否使用优惠券
+                this.data.coupon = this.coupon;
+            }
+            let authCode = this.state.authCode;
+            if ('1' == this.data.gateway && this.data.change < 0) {
+                this.waiting = false;
+                return;
+                //if (this.props.data.special_pay_amount) this.data.pay_amount = parseFloat(this.props.data.special_pay_amount);
+            } else if ('2' == this.data.gateway || '3' == this.data.gateway) {
                 if (
                     4 === authCode[0].length && !isNaN(authCode[0])
                     &&
@@ -187,13 +179,13 @@ export default class extends Component {
                     &&
                     6 === authCode[3].length && !isNaN(authCode[1])
                 ) {
-                    obj.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
+                    this.data.authcode = (authCode[0] + authCode[1] + authCode[2] + authCode[3]);
                 } else {
                     this.waiting = false;
                     return;
                 }
             }
-            this.props.callback(obj);
+            this.props.callback(this.data);
             this.waiting = false;
         }
     }
@@ -232,10 +224,10 @@ export default class extends Component {
         ,   discount = ( useing_ac ? 100 : (useing_card ? card.discount : 100) )    //折扣率:当使用优惠券或促销活动时,会员卡折扣无效
         ,   dis_obj = this.props.calculator.discount(discount);    //折扣对象
         amount = dis_obj.calc_amount    //支付金额
-        let change = (isNaN(this.state.amount) || '' == this.state.amount ? amount : this.state.amount).sub(amount);    //找零
         //赋值数据于data
-        this.data.amount = amount;
-        this.data.calc_amount = dis_obj.calc_amount;
+        this.data.amount = dis_obj.amount;
+        this.data.calc_amount = amount;
+        this.data.change = (this.state.amount || amount).sub(amount);    //找零
         this.data.gateway = gateway;
         this.data.card = card;
         this.data.card.discount = discount;
@@ -306,7 +298,7 @@ export default class extends Component {
                             <Triangle className={'ui-payment-triangle ' + (isZero ? 'vip' : 'cash')}/>
                             <div>
                                 实收金额：<input type='input' ref={input => {!this.state.show && 1 == gateway && tool.is_object(input) && input.focus()}} className='e-input' value={this.state.amount} onChange={this.handleChange}/>&nbsp;&nbsp;元
-                                &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{change}</span>
+                                &emsp;&emsp;&emsp;&emsp;找零：<span style={{color:'red'}}>&yen;{this.data.change}</span>
                             </div>
                         </div>
                         <div className='ui-payment-pattern-handle ui-payment-wechat' style={{display:(2 == gateway || 3 == gateway ? 'block' : 'none')}}>

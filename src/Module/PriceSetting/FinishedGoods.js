@@ -131,6 +131,8 @@ export default class extends Component {
         return  tool.ui.error({msg:'请输入库存',callback:(close) => { close()}});
         if(''==this.state.price)
         return  tool.ui.error({msg:'请输入价格',callback:(close) => { close()}});
+        if(Number(this.state.stock<=0))
+        return  tool.ui.error({msg:'库存必须大于0',callback:(close) => { close();}});
         let params={
             token:'token'.getData(),
             fid:this.state.typeLists[this.state.typeindex].id,
@@ -198,7 +200,7 @@ export default class extends Component {
             price:this.state.itemLists[this.state.index].goods[write].price,
             discount:this.state.itemLists[this.state.index].goods[write].has_discount,
             goods_number:this.state.itemLists[this.state.index].goods[write].goods_number,
-            sell_way:this.state.itemLists[this.state.index].goods[write].sell_way
+            sell_way:this.state.itemLists[this.state.index].goods[write].sell_way==''?this.state.sell_way:this.state.itemLists[this.state.index].goods[write].sell_way
         });
         console.log(write);
     }
@@ -209,6 +211,8 @@ export default class extends Component {
         return  tool.ui.error({msg:'请输入库存',callback:(close) => { close();}});
         if(''==this.state.price)
         return  tool.ui.error({msg:'请输入价格',callback:(close) => { close();}});
+        if(Number(this.state.stock<=0))
+        return  tool.ui.error({msg:'库存必须大于0',callback:(close) => { close();}});
         let params = {
             token: 'token'.getData(),
             id: this.state.itemLists[this.state.index].goods[this.state.goodindex].id,
@@ -327,7 +331,7 @@ export default class extends Component {
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>渠道：</span><Select option={this.state.sellwayList} pair={['id', 'name']} onChange={obj => this.setState({sell_way:obj.value,sell_id:obj.key})} value={this.state.sell_way}/></div>
+                                <div className="addnewprice-div-select"><span><b>*</b>渠道：</span><Select option={this.state.sellwayList} pair={['id', 'name']} onChange={obj => this.setState({sell_way:obj.value,sell_id:obj.key})} value={this.state.sell_way}/></div>
                             </div>
                             <div className="addnewprice-money">
                                 <input type='checkbox' className='e-checkbox' value={this.state.discount} className='e-input' onChange={e=>this.setState({discount:e.target.checked?1:0})}/>允许折扣
@@ -346,15 +350,15 @@ export default class extends Component {
                                 <div className="addnewprice-div-select"><span>商品类别：</span><Select option={this.state.typeList}  onChange={this.onchange} value={this.state.upgoods_type}/></div>
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>名称：</span><input className='e-input'  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>名称：</span><input className='e-input'  type="text" onChange={e=>this.setState({name:e.target.value})} value={this.state.name}/></div>
         
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>库存：</span><input className='e-input'  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>库存：</span><input className='e-input'  type="number" onChange={e=>this.setState({stock:e.target.value})} value={this.state.stock}/></div>
                             
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-nor"><span>价格：</span><input className='e-input'  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
+                                <div className="addnewprice-div-nor"><span><b>*</b>价格：</span><input className='e-input'  type="number" onChange={e=>this.setState({price:e.target.value})} value={this.state.price}/></div>
                 
                             </div>
                             <div className="addnewprice-div">
@@ -362,7 +366,7 @@ export default class extends Component {
                 
                             </div>
                             <div className="addnewprice-div">
-                                <div className="addnewprice-div-select"><span>渠道：</span><Select option={this.state.sellwayList} pair={['id','name']} onChange={obj=>this.setState({sell_id:obj.key,sell_way:obj.value})} value={this.state.sell_way}/></div>
+                                <div className="addnewprice-div-select"><span><b>*</b>渠道：</span><Select option={this.state.sellwayList} pair={['id','name']} onChange={obj=>this.setState({sell_id:obj.key,sell_way:obj.value})} value={this.state.sell_way}/></div>
                             </div>
                             <div className="addnewprice-money">
                                 <input type="checkbox" checked = {this.state.discount == 0? false : true} onChange={e=>this.setState({discount:e.target.checked?1:0})} />允许折扣

@@ -71,7 +71,7 @@ export default class extends Component {
     }
     render() {
         return (
-            <Dish title='促销活动详情' onClose={this.props.onClose} width="650" height="450">
+            <Dish title={this.state.comFromIndex == '1' ? '优惠券详情' : '促销活动详情'} onClose={this.props.onClose} width="650" height="450">
                 <div className="sale_pro_content">
                     <div>
                         <img src='images/sale_pro_name.png' /><span>{this.state.comFromIndex == '1' ? '优惠券名称':'活动名称'}:&emsp;<a>{this.state.promoName}</a></span>

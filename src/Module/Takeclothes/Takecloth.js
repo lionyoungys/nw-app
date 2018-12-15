@@ -50,7 +50,7 @@ export default class extends Component {
         }; 
         this.takeClothes=this.takeClothes.bind(this);
         this.handleAllChecked=this.handleAllChecked.bind(this);
-        this.handleChecked=this.handleChecked.bind(this);
+        // this.handleChecked=this.handleChecked.bind(this);
         this.paymore = this.paymore.bind(this);
         this.paymentCallback = this.paymentCallback.bind(this);
         this.print = this.print.bind(this);
@@ -196,31 +196,12 @@ export default class extends Component {
             }
         })
     }
-    handleclick(e){
-        console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
-        this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
-    }
+    // handleclick(e){
+    //     console.log(e.target.dataset.index || e.target.parentNode.dataset.index);
+    //     this.setState({index:e.target.dataset.index || e.target.parentNode.dataset.index});
+    // }
     handleAllChecked(e) {
-        let index = e.target.dataset.index
-        ,   tempChecked = this.state.checked[index] || []
-        ,   tmpCheckedCount = 0;
-        this.state.clist[index].order.map(obj => {
-            if (4 != obj.status) ++tmpCheckedCount;
-        });
-        console.log(tmpCheckedCount);
-        console.log(this.state.clist[index].order);
-        if (tmpCheckedCount == tempChecked.length) {
-            this.state.checked[index] = [];
-        } else {
-            let len = this.state.clist[index].order.length;
-            this.state.checked[index] = [];
-            for (var i = 0;i < len;++i) {
-                if (4 != this.state.clist[index].order[i].status) {
-                    this.state.checked[index].push(Number(this.state.clist[index].order[i].id));
-                }
-            }
-        }
-        this.setState({checked:this.state.checked});
+      
     }
     M1Read(e) {
         let obj = {};
@@ -363,17 +344,12 @@ export default class extends Component {
         );
     }
     handleChecked(e) {          
-        let id = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id
-        ,   index = e.target.dataset.index || e.target.parentNode.dataset.index || e.target.parentNode.parentNode.dataset.index
-        ,   tempChecked = this.state.checked[index] || []
-        ,   pointer = id.inArray(tempChecked);
-        if (-1 === pointer) {
-            tempChecked.push(Number(id));
-            this.state.checked[index] = tempChecked;
-        } else {
-            this.state.checked[index].splice(pointer, 1);
-        }
-        this.setState({checked:this.state.checked});     
+         
+    }
+    hout(arr, key, func) {
+        return arr.item.map((obj, index) => 
+            <div key={'hout-' + index}>{'function' == typeof func ? func(obj[key]) : obj[key]}</div>
+        );
     }
     paymore (e){  
         var  is = e.target.dataset.isonline;
@@ -388,19 +364,11 @@ export default class extends Component {
             });   
         }                                      
     }
+    circulation(){
+        
+    }
     render() {
-        let order = null === this.state.current ? {} : this.state.list[this.state.current]
-        ,   discount = this.state.payCard.discount || this.state.discount || 100
-        ,   amount = order.amount || 0
-        ,   dis_amount = order.discount_amount || 0
-        ,   pay_amount = amount.add(Math.floor(dis_amount * discount) / 100)
-        ,   total_amount = amount.add(dis_amount)
-        ,   tempChecked
-        ,   tmpCheckedCount;
-
         let takeclothes=this.state.clist.map((item,index)=> {
-            tempChecked = this.state.checked[index] || [];
-            tmpCheckedCount = 0;
             return (
                 <div style={{background:'#ffffff'}}>
                 <div className="Takeclothesdetail-title">
@@ -428,32 +396,36 @@ export default class extends Component {
                             {   
                                    
                                 item.order.map((item1,index2) => {
-                                if (4 != item1.status) ++tmpCheckedCount;
                                 return (
                                     <tr key={'item'+index2} data-id={item1.id} data-index={index}  onClick={this.handleChecked}>
-                                        <td><input type="checkbox" class="e-checkbox" checked={-1 !== item1.id.inArray(tempChecked)} style={{ display: ((item1.pay_state == 1 ? true : false) && (item1.pay_state == 4 ? false : true)) == true ? 'true' : 'none' }} /><span>{index2 + 1}</span></td>
+                                        <td>
+                                            {
+                                                (item1.pay_state == 1 && item1.pay_state != 4) 
+                                                && 
+                                                <input type="checkbox" class="e-checkbox"/>
+                                            }
+                                            {index2 + 1}
+                                        </td>
                                         <td>{item1.ordersn}</td>
                                         <td>
-                                        {       
+                                        {/* {       
                                             item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
+                                    
                                             return ( 
                                             <div>
                                                  {item2.clothing_number} 
                                             </div>);
                                             }
                                             )
-                                        }
+                                        } */}
+                                        {this.hout(item1, 'clothing_number')}
                                         </td>
                                         <td>
                                         {       
-                                            item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            item1.item.map((item2,index3) => {                                           
                                             return ( 
-                                            <div>
-                                                
-                                                 {item2.clothing_name} 
-                                                 
+                                            <div>                                               
+                                                 {item2.clothing_name}                                                  
                                             </div>);
                                             }
                                             )
@@ -461,13 +433,10 @@ export default class extends Component {
                                         </td>
                                         <td>
                                         {       
-                                            item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            item1.item.map((item2,index3) => {                                          
                                             return ( 
-                                            <div>
-                                               
-                                                 {item2.clothing_color}
-                                               
+                                            <div>                                              
+                                                 {item2.clothing_color}                                               
                                             </div>);
                                             }
                                             )
@@ -477,12 +446,9 @@ export default class extends Component {
                                         <td>
                                         {       
                                             item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
                                             return ( 
-                                            <div>
-                                                
-                                                {item2.remark}
-                                               
+                                            <div>                                               
+                                                {item2.remark}                                              
                                             </div>);
                                             }
                                             )
@@ -490,37 +456,32 @@ export default class extends Component {
                                         </td>
                                         <td>
                                         {       
-                                            item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
+                                            item1.item.map((item2,index3) => {                                          
                                             return ( 
-                                            <div>
-                                                
-                                                {item2.grid_num}
-                                               
+                                            <div>                                               
+                                                {item2.grid_num}                                               
                                             </div>);
                                             }
                                             )
                                         }
                                         </td>
                                         <td>
-                                        {       
-                                            item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
+                                        {/* {       
+                                            item1.item.map((item2,index3) => {                                       
                                             return ( 
                                             <div>
                                                  
-                                                {item2.status.getItemStatusName()}
-                                                
+                                                {item2.status.getItemStatusName()}                                               
                                             </div>);
                                             }
                                             )
-                                        }
+                                        } */}
+                                        {this.hout(item1, 'status', val => {return val.getItemStatusName()})}
                                         </td>
                                         <td >
                                         {item1.pay_state==1?
                                            
                                             (item1.item.map((item2,index3) => {
-                                            if (4 != item2.status) ++tmpCheckedCount;
                                             return ( 
                                             <div data-id={item2.id} data-index={index3} onClick={this.singletakecloth} >
                                                 单件取衣
@@ -529,7 +490,7 @@ export default class extends Component {
                                             )
                                             
                                         ):<span onClick={this.paymore} className='takeclothred'>
-                                        立即收款</span>
+                                        立即付款</span>
                                         }
                                         </td>
                                        
@@ -543,16 +504,11 @@ export default class extends Component {
             </div>
             <div className="Takeclothesdetail-footer">
                 <div className="Takeclothesdetail-footer-left" >
-                <input type="checkbox" class="e-checkbox" data-index={index} onChange={this.handleAllChecked} checked={tempChecked.length == tmpCheckedCount} />全选/全不选</div>
+                <input type="checkbox" class="e-checkbox" data-index={index} onChange={this.handleAllChecked}  />全选</div>
                 <div className="Takeclothesdetail-footer-right">
-                            {/* <button className="e-btn Takeclothesdetail-footer-right-btn" data-id={item.id} data-index={index} data-isonline={item.is_online} onClick = {this.paymore} style={{display:item.pay_state!=1?'block':'none'}}>立即收款</button>  */}
-                            <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: ((tempChecked.length != 0 ? true : false)) == true ? 'block' : 'none' }}>取衣</button>
-                            <button className="take-no" style={{ display: ((item.pay_state == 1 ? true : false) && (tempChecked.length == 0 ? true : false)) == true ? 'block' : 'none' } }>取衣</button>
-                    {/* take-no 是灰色取不了衣服样式现在已隐藏 */}
-                    {/* <div style={{display:item.pay_state!=1?'block':'none'}}> */}
-                        {/* {item.lead!=1?<div><span style={{color:'#000000'}}>欠费金额:</span> ￥{item.debt}</div>:<div><span style={{color:'#000000'}}>未付款金额:</span> ￥{(parseFloat(item.debt)).changeTwoDecimal_f()}</div>}
-                                <div style={{ display: 'none' }}><span style={{ color: '#000000' }}>价格:</span> ￥{item.debt}</div><div><span style={{ color: '#000000' }}>衣服件数{item.item_count}件 </span></div> */}
-                    {/* </div> */}
+                            <button className="take-over" data-index={index} onClick={this.takeClothes} style={{ display: 'block'  }}>取衣</button>
+                            <button className="take-no" >取衣</button>
+                
                 </div>                       
             </div>
                     <div style={{ height: '0px', width: '850px', background: '#cce8ff', margin: '20px auto 0px'}}></div>
