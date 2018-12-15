@@ -509,9 +509,21 @@ export default class extends Component {
         if (0 == obj.gateway && '' == cid) return tool.ui.error({msg:'会员不存在！',callback:close => close()});
         let loadingEnd;
         tool.ui.loading(handle => loadingEnd = handle);
+        let param = {
+            token:token,
+            gateway:obj.gateway,
+            pay_amount:obj.cash,
+            authcode:obj.authcode, 
+            cid:obj.card.id,
+            oid:this.state.oid, 
+            passwd:obj.passwd,
+            coupon_id:obj.coupon ? obj.coupon.id : '',
+            activity_id:obj.activity ? obj.activity.id : ''
+        };
+        console.log(param);
         api.post(
             'orderPay', 
-            {token:token,gateway:obj.gateway,pay_amount:obj.cash,authcode:obj.authcode, cid:obj.card.id, oid:this.state.oid, passwd:obj.passwd},
+            param,
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
