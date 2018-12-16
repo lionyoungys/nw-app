@@ -1,7 +1,7 @@
 /**
  * 图片查看组件
  * @author Edwin Young
- * @desc  images:[图片地址, 图片地址]|[{key:图片地址, key:图片地址}];key:指向图片数值对象的键名
+ * @desc  images:[图片地址, 图片地址]|[{key:图片地址, key:图片地址}];keyName:指向图片数值对象的键名
  */
 import React from 'react';
 
@@ -43,7 +43,7 @@ export default class extends React.Component {
                     <div className='ui-photo-img'>
                         <img 
                             ref={img => this.img = img} 
-                            src={'string' == typeof this.props.key ? this.props.images[this.state.index][k] : this.props.images[this.state.index]}
+                            src={'string' == typeof this.props.keyName ? this.props.images[this.state.index][this.props.keyName] : this.props.images[this.state.index]}
                         />
                     </div>
                 </div>

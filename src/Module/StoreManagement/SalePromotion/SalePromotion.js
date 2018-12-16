@@ -134,7 +134,7 @@ export default class extends Component {
             <td >{index}</td>
             <td >{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
-            <td >{item.item_name}</td>
+            <td title={item.item_name}>{item.item_name.substring(0,20)}</td>
             <td style={{ maxWidth: '130px', lineHeight: '18px', margin: '0 5px'}}>{item.mname}</td>
             <td>{tool.date('Y-m-d', item.start_time)}</td>
             <td>{tool.date('Y-m-d', item.end_time)}</td>

@@ -6,7 +6,7 @@
 import React from 'react';
 import Window from '../../UI/Window';
 import OptionBox from '../../Elem/OptionBox';        //新增
-import ImageLightbox from '../../Elem/ImageLightbox';   //新增
+import Photo from '../../UI/Photo';
 import Select from '../../UI/Select';
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 import './App.css';
@@ -33,10 +33,9 @@ export default class extends React.Component {
             sel_id:'',
             sel_name:''
         };
-
         this.onSearch = this.onSearch.bind(this); //搜索
         this.handleAllChecked = this.handleAllChecked.bind(this); //全选
-         this.handleCleaned = this.handleCleaned.bind(this); //入厂
+        this.handleCleaned = this.handleCleaned.bind(this); //入厂
         this.handleChecked = this.handleChecked.bind(this); // 单选
         this.handleClick = this.handleClick.bind(this); //送洗
         this.onUpload = this.onUpload.bind(this);   //文件上传
@@ -134,6 +133,9 @@ export default class extends React.Component {
             }
         } else {
             this.state.checked.push(value);
+            if (this.state.checked.length == this.state.data.length) {
+                this.setState({ all: true });
+            }
             this.setState({checked:this.state.checked});
         }
     }
@@ -206,9 +208,15 @@ export default class extends React.Component {
         this.setState({uploadShow:true, index:e.target.dataset.index});
     }
     lightboxShow(e) {
-        this.setState({lightboxShow:true, index:e.target.dataset.index});
+        let index = e.target.dataset.index;
+        let imgArr = this.state.data[index].img;
+        if (!tool.isArray(imgArr) || imgArr.length < 1) {
+
+            tool.ui.hud({ msg: '没有图片！' });
+        } else {
+            this.setState({ lightboxShow: true, index: index });
+        }
     }
-    
     //送洗操作
     handleClick() {              
          if (this.state.checked.length < 1) return;
@@ -293,15 +301,14 @@ export default class extends React.Component {
                             imgs={this.state.data[this.state.index].img}
                         />
                     }
-                    <ImageLightbox
-                        show={this.state.lightboxShow}
-                        images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].image)
-                            ? 
-                            this.state.data[this.state.index].image : []
-                        }
-                        onClose={() => this.setState({lightboxShow:false})}
-                    />
+                    {
+                        this.state.lightboxShow
+                        &&
+                        <Photo
+                            images={this.state.data[this.state.index].img}
+                            onClose={() => this.setState({ lightboxShow: false })}
+                        />
+                    }
                     <div className='clean-top'>
                         <div className='left'>
                             <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>

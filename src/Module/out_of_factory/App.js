@@ -95,6 +95,9 @@ export default class extends React.Component {
             }
         } else {
             this.state.checked.push(value);
+            if (this.state.checked.length == this.state.data.length) {
+                this.setState({ all: true });
+            }
             this.setState({checked:this.state.checked});
         }
     }

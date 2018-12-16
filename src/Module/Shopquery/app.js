@@ -25,7 +25,8 @@ export default class extends Component {
         }   ;
         this.limit = 10;   
         this.query = this.query.bind(this);       
-        this.serch = this.serch.bind(this);     
+        this.serch = this.serch.bind(this); 
+        this.clear = this.clear.bind(this);    
     };   
     // 条件查询
     query (page){
@@ -66,18 +67,25 @@ export default class extends Component {
     serch (){
         this.query()    ;   
     }
+    // 清空数据
+    clear (){
+        this.setState({
+            number:'',
+            from_name:'',
+        })
+    }
     render() {  
        // console.log();
         var html = this.state.shoplist.map((item,index)=>
             <tr>
                <td><span>{item.ordersn}</span></td> 
                <td>{item.work.map((item,index)=><span>{item.name}</span>)}</td>
-               <td>{item.work.map((item,index)=><span>{item.raw_price}</span>)}</td>
+               <td>{item.work.map((item,index)=><span>{item.raw_price}元</span>)}</td>
                <td>{item.work.map((item,index)=><span>{item.work_number}</span>)}</td>
-               <td><span>{item.pay_amount}</span></td>
+               <td><span>{item.pay_amount}元</span></td>
                <td><span>姓名:{item.user_name}</span><span>电话：{item.user_mobile}</span></td>
-               <td><span>{item.ostatus}</span></td>
-               <td>{item.work.map((item,index)=><span>{item.preferential_price}</span>)}</td>
+               <td><span>{item.ostatus=='99'?'完成':''}</span></td>
+               <td>{item.work.map((item,index)=><span>{item.preferential_price}元</span>)}</td>
                <td>{item.work.map((item,index)=><span>{item.sell_name}</span>)}</td>
             </tr>
         )       
@@ -100,7 +108,7 @@ export default class extends Component {
                     </div>
                     <div className='shopquery_btn'>
                             <button className='e-btn' onClick = {this.serch} >查询</button>
-                            <button className='e-btn clear_btn'>清空</button>
+                            <button className='e-btn clear_btn' onClick={this.clear}>清空</button>
                     </div>  
                 </div>
                  <div className="orderquery-div shopquery-div">

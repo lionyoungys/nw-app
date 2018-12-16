@@ -551,7 +551,7 @@ export default class extends Component {
                         callback={this.paymentCallback}
                     />
                 }
-                {this.state.nodatas&&<Nodata/>}
+                {this.state.nodatas&&<Nodata />}
                 {
                     this.state.cardList.length > 1 && <CardList data={this.state.cardList} onClose={() => this.setState({cardList:[]})} callback={obj => this.setState({payCard:obj,cardList:[]})}/>
                 }

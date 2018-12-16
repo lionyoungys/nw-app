@@ -1,7 +1,7 @@
 import React from 'react';
 import Window from '../../UI/Window';
 import OptionBox from '../../Elem/OptionBox';
-import ImageLightbox from '../../Elem/ImageLightbox';   //新增
+import Photo from '../../UI/Photo';
 import Empty from '../../Elem/Empty';
 import './backFlow.css';
 const Token = 'token'.getData();
@@ -166,7 +166,14 @@ export default class extends React.Component {
     }
     lightboxClick(e) {
 
-        this.setState({ lightboxShow: true, index: e.target.dataset.index });
+        let index = e.target.dataset.index;
+        let imgArr = this.state.data[index].url;
+        if (!tool.isArray(imgArr) || imgArr.length < 1) {
+            
+            tool.ui.hud({ msg: '没有返流图片！' });
+        }else{
+            this.setState({ lightboxShow: true, index: index });
+        }
     }
     render() {
         let html = this.state.data.map((obj, index) =>
@@ -211,16 +218,14 @@ export default class extends React.Component {
                             <Empty show={this.state.data.length < 1} />
                         </table>
                     </div>
-
-                    <ImageLightbox
-                        show={this.state.lightboxShow}
-                        images={
-                            null !== this.state.index && tool.isSet(this.state.data[this.state.index].url)
-                                ?
-                                this.state.data[this.state.index].url : []
-                        }
-                        onClose={() => this.setState({ lightboxShow: false })}
-                    />
+                    {
+                        this.state.lightboxShow
+                        &&
+                        <Photo
+                            images={this.state.data[this.state.index].url}
+                            onClose={() => this.setState({ lightboxShow: false })}
+                        />
+                    }
                     <div className='clean-top'>
                         <div className='left back-flow-left'>
                             <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>

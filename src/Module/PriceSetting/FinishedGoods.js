@@ -205,7 +205,8 @@ export default class extends Component {
             price:this.state.itemLists[this.state.index].goods[write].price,
             discount:this.state.itemLists[this.state.index].goods[write].has_discount,
             goods_number:this.state.itemLists[this.state.index].goods[write].goods_number,
-            sell_way:this.state.itemLists[this.state.index].goods[write].sell_way==''?this.state.sell_way:this.state.itemLists[this.state.index].goods[write].sell_way
+            sell_way:this.state.itemLists[this.state.index].goods[write].sell_way==''?'无':this.state.itemLists[this.state.index].goods[write].sell_way,
+            sell_id:this.state.itemLists[this.state.index].goods[write].sell_id
         });
         console.log(write);
     }
@@ -218,6 +219,8 @@ export default class extends Component {
         return  tool.ui.error({msg:'请输入价格',callback:(close) => { close();}});
         if(Number(this.state.stock<=0))
         return  tool.ui.error({msg:'库存必须大于0',callback:(close) => { close();}});
+        if(''==this.state.sell_id||'0'==this.state.sell_id)
+        return tool.ui.error({msg:'请选择渠道',callback:(close) => { close();}});
         let params = {
             token: 'token'.getData(),
             id: this.state.itemLists[this.state.index].goods[this.state.goodindex].id,

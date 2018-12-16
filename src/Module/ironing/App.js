@@ -7,7 +7,7 @@ import React from 'react';
 // import Search from '../UI/search/App';
 import Window from '../../UI/Window';
 import OptionBox from '../../Elem/OptionBox';        //新增
-import ImageLightbox from '../../Elem/ImageLightbox';   //新增
+import Photo from '../../UI/Photo';
 import UploadToast from '../UI/upload-toast/App';    //新增
 import ImgUploadWindow from '../../UI/ImgUploadWindow';
 const state = 51, word = '熨烫';
@@ -132,6 +132,9 @@ export default class extends React.Component {
             }
         } else {
             this.state.checked.push(value);
+            if (this.state.checked.length == this.state.data.length) {
+                this.setState({ all: true });
+            }
             this.setState({checked:this.state.checked});
         }
     }
@@ -207,8 +210,16 @@ export default class extends React.Component {
     uploadShow(e) {
         this.setState({uploadShow:true, index:e.target.dataset.index});
     }
+
     lightboxShow(e) {
-        this.setState({lightboxShow:true, index:e.target.dataset.index});
+        let index = e.target.dataset.index;
+        let imgArr = this.state.data[index].img;
+        if (!tool.isArray(imgArr) || imgArr.length < 1) {
+
+            tool.ui.hud({ msg: '没有图片！' });
+        } else {
+            this.setState({ lightboxShow: true, index: index });
+        }
     }
     onback(e){
         let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
@@ -267,7 +278,15 @@ export default class extends React.Component {
                             onUpload={this.onUpload}
                             imgs={this.state.data[this.state.index].img}
                         />
-                    }                   
+                    }     
+                    {
+                        this.state.lightboxShow
+                        &&
+                        <Photo
+                            images={this.state.data[this.state.index].img}
+                            onClose={() => this.setState({ lightboxShow: false })}
+                        />
+                    }              
                 <div className='clean-top'>
                     <div className='left'>
                         <OptionBox type='checkbox' checked={this.state.all} onClick={this.handleAllChecked}>全选</OptionBox>

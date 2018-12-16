@@ -21,9 +21,12 @@
     height: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 155px 16px 60px
+    padding: 155px 16px 48px
 }
 .customer-query-table>.ui-table{height: 100%}
+.customer-query-table>.ui-table table tbody tr{
+    padding-top: 147px;
+}
 .customer-query-table>.ui-table th{min-width: 130px;}
 .customer-query-page{
     position: absolute;
@@ -38,7 +41,7 @@
     -webkit-box-sizing: border-box;
     padding: 129px 16px 0;
 }
-.customer-query-detail-table>.ui-table{max-height: 100%;}
+.customer-query-detail-table>.ui-table{max-height: 100%;height: 100%}
 .Customerquery{
     width:870px;
     height:97px;

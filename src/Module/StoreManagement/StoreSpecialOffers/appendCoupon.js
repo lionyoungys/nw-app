@@ -191,7 +191,7 @@ export default class extends Component {
                 </div>
                 <div className="app_cou_right">
                         
-                        <div> <span>使用门店:</span>
+                        <div> <span>适用门店:</span>
                             <MultiSelect value={this.state.merSelectArr.typeArray('mname').toString()}>
                                 {this.state.merNameArr.map(value => <span key={tool.UUID()} data-checked={-1 === value.inObjArray(this.state.merSelectArr, 'mname') ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
                             </MultiSelect>

@@ -12,7 +12,6 @@ import AppendCoupon from './AppendCoupon';
 import Log from './Log';
 import Record from './Record';
 import SalePromotionDetail from '../SalePromotion/SalePromotionDetail';
-// import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
 const token = 'token'.getData();
@@ -179,7 +178,7 @@ export default class extends Component {
             <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
             <td>{item.remarks}</td>
-            <td>{item.stock}\{item.surplus}</td>
+            <td>{item.stock}\{item.receive}</td>
             <td>{item.start_time}</td>
             <td>{item.end_time}</td>
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>

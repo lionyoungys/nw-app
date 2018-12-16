@@ -187,20 +187,19 @@ export default class extends Component {
                         <div> <span><b>*</b>活动名称:</span><input type='text' className='e-input' placeholder='请输入活动名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
                         <div> <span>促销类型:</span><Select option={['满减', '折扣','袋洗', '多件洗']} value={this.state.couponType} onChange={obj => this.changeCouponType(obj)} /></div>
                         <div> <span>衣物品类:</span><div className='app-cou-sel-clo' placeholder='请选择衣物品类' onClick={() => this.setState({ SelectCloShow: true })}>{this.state.cloSelTypeArr.toString()}</div></div>
-                        <div> <span><b>*参数设置:</b></span>总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
-                    {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} disabled={this.state.couponTypeID == 4 ? 'disabled' : ''} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                     </div>
                     <div className="app_cou_right">
 
-                        <div> <span>使用门店:</span>
+                        <div> <span>适用门店:</span>
                             <MultiSelect value={this.state.merSelectArr.typeArray('mname').toString()}>
                                 {this.state.merNameArr.map(value => <span key={tool.UUID()} data-checked={-1 === value.inObjArray(this.state.merSelectArr, 'mname') ? '' : 'checked'} onClick={this.handleChoose}>{value}</span>)}
                             </MultiSelect>
                         </div>
                         <div> <span>开始时间:</span><input type='date' className='e-date' placeholder='请选择开始时间' value={this.state.startime} onChange={e => this.setState({ startime: e.target.value })} /></div>
                         <div> <span>结束时间:</span><input type='date' className='e-date' placeholder='请选择结束时间' value={this.state.endtime} onChange={e => this.setState({ endtime: e.target.value })}/></div>
-
                     </div>
+                    <div className="app_cou_bottom"> <span><b>*参数设置:</b></span>适用品类总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
+                    {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} disabled={this.state.couponTypeID == 4 ? 'disabled' : ''} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                     <div className="app_cou_offer_user">
                         <div style={{ height: '26px' }}>发放用户:</div>
                         <div >

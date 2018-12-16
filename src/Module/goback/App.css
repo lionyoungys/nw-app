@@ -61,11 +61,12 @@
 }
 .textarea b{
     font-size: 14px;
-    color: #555;
+    color: #f00;
     float: right;
     display: block;
     margin-right: -111px;
     cursor: pointer;
+    text-decoration: underline;
 }
 .textarea b:hover{
     text-decoration: underline;

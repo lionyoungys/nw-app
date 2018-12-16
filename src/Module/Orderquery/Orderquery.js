@@ -170,7 +170,7 @@ export default class extends Component {
           <td><span>{item.ordersn}</span></td>
           <td>{item.work.map((item,index)=><span>{item.clothing_number}</span>)}</td>
           <td>{item.work.map((item,index)=><span>{item.clothing_name}</span>)}</td>
-          <td>{item.work.map((item,index)=><span>{item.raw_price}</span>)}</td>
+          <td>{item.work.map((item,index)=><span>{item.raw_price}元</span>)}</td>
           {/* <td>{item.work.map((item,index)=><span >{item.status==3?'清洗中':item.status==4?'清洗完成':item.status==5?'已撤单':'已完成'}</span>)} */}
           <td>{item.work.map((item,index)=><span >{item.sta}</span>)}
           </td>

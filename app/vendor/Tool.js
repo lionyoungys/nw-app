@@ -657,25 +657,21 @@
             if (amount > 0 && tool.isArray(names)) {
                 var total = 0    //可优惠项目的总金额
                 ,   lastAmount = amount
-                ,   indexs = [];    //可抵扣的金额
-                for (var i = 0;i < size;++i) {
-                    if (-1 != data[i].clothing_name.inArray(names)) {
-                        indexs.push(i);
-                    }
-                }
+                ,   indexs = this.matchName(names);    //可抵扣的金额
+
                 var len = indexs.length
                 ,   len2 = len - 1
                 ,   lastIndex = indexs[len2];
-                for (var j = 0;j < len;++j) {    //获取可优惠项目的总额
-                    total = total.add(this.getTotal(indexs[j]));
+                for (var i = 0;i < len;++i) {    //获取可优惠项目的总额
+                    total = total.add(this.getTotal(indexs[i]));
                 }
 
                 //根据公式计算
                 var tmp;
-                for (var k = 0;k < len2;++k) {
-                    tmp = this.round(this.getTotal(indexs[k]), total).mul(amount);
+                for (var j = 0;j < len2;++j) {
+                    tmp = this.round(this.getTotal(indexs[j]), total).mul(amount);
                     lastAmount = lastAmount.sub(tmp);
-                    this.setDec(indexs[k], tmp);
+                    this.setDec(indexs[j], tmp);
                 }
                 this.setDec(lastIndex, lastAmount);
             }
@@ -683,13 +679,62 @@
         }
 
         /**
-         * 比例计算数值于小数点后第三位进行四舍五入处理
+         * 比例除法计算数值于小数点后第三位进行四舍五入处理
          * @param {number} val 进行处理的值
          * @param {number} val2 进行处理的值
          * @param {number} 
          */
         this.round = function (val, val2) {
             return Math.round(val.mul(100).div(val2)).div(100);
+        }
+
+        /**
+         * 根据传入的名称列表匹配符合的数据
+         * @param {array} names 名称列表
+         * @param {function} func 匹配时的处理函数
+         * @return {array} 匹配的数据索引数组
+         */
+        this.matchName = function (names, func) {
+            var indexs = [];
+            if (tool.isArray(names)) {
+                var isFunc = 'function' == typeof func    //判断是否为函数类型
+                ,   matched;    //用于判断是否匹配
+                for (var i = 0;i < size;++i) {
+                    matched = -1 != data[i].clothing_name.inArray(names);
+                    if (matched) {    //提取满足多件洗数据条件的项目
+                        indexs.push(i);
+                    }
+                    if (isFunc) {
+                        func(i, matched);
+                    }
+                }
+            }
+            return indexs;
+        }
+
+        /**
+         * 价格排序方法
+         * @param {array} arr 数据索引数组
+         * @return {array} 排序好的数组
+         */
+        this.sort = function (arr) {
+            var len = arr.length;
+            if (len < 2) {    //如果数组长度小于2无需判断直接返回即可 
+                return arr;
+            }
+        　　var pivotIndex = Math.floor(len / 2);    //取基准点 
+        　　var pivot = arr.splice(pivotIndex, 1)[0];    //取基准点的值,splice(index,1)函数可以返回数组中被删除的那个数
+        　　var left = [];    //存放比基准点小的数组
+        　　var right = [];    //存放比基准点大的数组 
+        　　for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
+        　　　　if (this.getTotal(arr[i]) < this.getTotal(pivot)) {
+        　　　　　　left.push(arr[i]);    //比基准点小的放在左边数组 
+        　　　　} else {
+        　　　　　　right.push(arr[i]);    //比基准点大的放在右边数组 
+        　　　　}
+        　　}
+            //递归执行以上操作,对左右两个数组进行操作，直到数组长度为<=1； 
+        　　return quickSort(left).concat([pivot], quickSort(right));
         }
 
         /**
@@ -701,43 +746,57 @@
             if (tool.isObject(activity) && memory.calc_amount > 0) {
                 if (1 == activity.type && memory.total >= activity.full_money) {    //满减
                     has_act = true;
-                    //var balance = activity.money;    //优惠券抵扣余额
                     this.moneyOff(activity.money, activity.item_name);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {
-                        // if (balance > 0 && -1 != data[i].clothing_name.inArray(activity.item_name)) {
-                        //     balance = this.setDec(i, balance);
-                        // }
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 } else if (2 == activity.type && memory.total >= activity.full_money) {    //折扣
                     has_act = true;
-                    var discount = activity.discount;
-                    if (discount < 100 && 0 != discount) {
-                        discount = discount.div(100);    //优惠券折扣率,小数计算
+                    if (activity.discount < 100 && 0 != activity.discount) {
+                        var discount = activity.discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
-                        for (var i = 0;i < size;++i) {
-                            if (-1 != data[i].clothing_name.inArray(activity.item_name)) {
+                        this.matchName(activity.item_name, function (i, matched) {
+                            if (matched) {
                                 data[i].raw_price = data[i].raw_price.mul(discount);
                                 data[i].addition_price = data[i].addition_price.mul(discount);
                                 data[i].addition_no_price = data[i].addition_no_price.mul(discount);
                             }
                             memory.amount = memory.amount.add(this.getTotal(i));
-                        }
+                        });
                     }
-                } else if (3 == activity.type && size >= activity.money) {    //多件洗
+                } else if (3 == activity.type && activity.money > 0 && size >= activity.money && activity.full_money > 0) {    //多件洗
                     has_act = true;
-                    this.packData(activity.item_name, activity.full_money, activity.money);
+                    var indexs = this.sort(this.matchName(activity.item_name))
+                    ,   amount = this.round(activity.full_money, activity.money)
+                    ,   len = activity.money.sub(1);
+                    for (var i = 0;i < len;++i) {
+                        data[indexs[i]].raw_price = amount;
+                        data[indexs[i]].addition_price = 0;
+                        data[indexs[i]].addition_no_price = 0;
+                    }
+                    data[len].raw_price = activity.full_money.sub( amount.mul(len) );
+                    data[len].addition_price = 0;
+                    data[len].addition_no_price = 0;
                     memory.amount = 0;
-                    for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
-                        memory.amount = memory.amount.add(this.getTotal(i));
+                    for (var j = 0;j < size;++j) {    //遍历所有项目重新取值
+                        memory.amount = memory.amount.add(this.getTotal(j));
                     }
                 } else if (4 == activity.type) {    //袋洗
                     has_act = true;
-                    this.packData(activity.item_name, activity.full_money);
-                    memory.amount = 0;
                     for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
-                        memory.amount = memory.amount.add(this.getTotal(i));
+                        if (-1 == data[i].clothing_name.inArray(activity.item_name)) {
+                            has_act = false;
+                            break;
+                        }
+                    }
+                    if (has_act) {
+                        memory.amount = activity.full_money;
+                        this.packData(activity.item_name, activity.full_money);
+                        memory.amount = 0;
+                        for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
+                            memory.amount = memory.amount.add(this.getTotal(i));
+                        }
                     }
                 } else {
                     has_act = false;
@@ -774,14 +833,14 @@
                     if (discount < 100 && 0 != discount) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
-                        for (var i = 0;i < size;++i) {
-                            if (-1 != data[i].clothing_name.inArray(coupon.item_name)) {
+                        this.matchName(coupon.item_name, function (i, matched) {
+                            if (matched) {
                                 data[i].raw_price = data[i].raw_price.mul(discount);
                                 data[i].addition_price = data[i].addition_price.mul(discount);
                                 data[i].addition_no_price = data[i].addition_no_price.mul(discount);
                             }
                             memory.amount = memory.amount.add(this.getTotal(i));
-                        }
+                        });
                     }
                 } else {
                     has_cou = false;

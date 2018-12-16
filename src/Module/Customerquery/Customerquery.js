@@ -112,7 +112,7 @@ export default class extends Component {
         
         var index = e.target.dataset.index || e.target.parentNode.dataset.index; 
         if ('' == this.state.list[index].recharge_number || null == this.state.list[index].recharge_number) return tool.ui.error({
-            title: '提示', msg: '无卡号用户不支持详情查询', button: '确定', callback: (close, event) => {
+            title: '提示', msg: '无卡号用户不支持详情查询', button: ['确定'], callback: (close, event) => {
                 close();
             }
         });
