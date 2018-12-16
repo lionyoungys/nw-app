@@ -792,11 +792,16 @@
                     }
                     if (has_act) {
                         memory.amount = activity.full_money;
-                        this.packData(activity.item_name, activity.full_money);
-                        memory.amount = 0;
-                        for (var i = 0;i < size;++i) {    //遍历所有项目重新取值
-                            memory.amount = memory.amount.add(this.getTotal(i));
+                        var amount = this.round(activity.full_money, size)
+                        ,   len = size.sub(1);
+                        for (var j = 0;j < len;++j) {
+                            data[j].raw_price = amount;
+                            data[j].addition_price = 0;
+                            data[j].addition_no_price = 0;
                         }
+                        data[len].raw_price = activity.full_money.sub( amount.mul(len) );
+                        data[len].addition_price = 0;
+                        data[len].addition_no_price = 0;
                     }
                 } else {
                     has_act = false;
