@@ -703,19 +703,20 @@
             if (len < 2) {    //如果数组长度小于2无需判断直接返回即可 
                 return arr;
             }
-        　　var pivotIndex = Math.floor(len / 2);    //取基准点 
-        　　var pivot = arr.splice(pivotIndex, 1)[0];    //取基准点的值,splice(index,1)函数可以返回数组中被删除的那个数
-        　　var left = [];    //存放比基准点小的数组
-        　　var right = [];    //存放比基准点大的数组 
-        　　for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
-        　　　　if (this.getTotal(arr[i]) < this.getTotal(pivot)) {
-        　　　　　　left.push(arr[i]);    //比基准点小的放在左边数组 
-        　　　　} else {
-        　　　　　　right.push(arr[i]);    //比基准点大的放在右边数组 
-        　　　　}
-        　　}
+            var pivotIndex = Math.floor(len / 2)    //取基准点 
+            ,   pivot = arr.splice(pivotIndex, 1)[0]    //取基准点的值,splice(index,1)函数可以返回数组中被删除的那个数
+            ,   left = []    //存放比基准点小的数组
+            ,   right = [];    //存放比基准点大的数组 
+            len = arr.length;    //因arr曾被删除过,重新计算长度
+            for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
+                if (this.getTotal(arr[i]) < this.getTotal(pivot)) {
+                    left.push(arr[i]);    //比基准点小的放在左边数组 
+                } else {
+                    right.push(arr[i]);    //比基准点大的放在右边数组 
+                }
+            }
             //递归执行以上操作,对左右两个数组进行操作，直到数组长度为<=1； 
-        　　return quickSort(left).concat([pivot], quickSort(right));
+            return this.sort(left).concat([pivot], this.sort(right));
         }
 
         /**
@@ -737,28 +738,32 @@
                     if (activity.discount < 100 && 0 != activity.discount) {
                         var discount = activity.discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
+                        var _this = this;
                         this.matchName(activity.item_name, function (i, matched) {
                             if (matched) {
                                 data[i].raw_price = data[i].raw_price.mul(discount);
                                 data[i].addition_price = data[i].addition_price.mul(discount);
                                 data[i].addition_no_price = data[i].addition_no_price.mul(discount);
                             }
-                            memory.amount = memory.amount.add(this.getTotal(i));
+                            memory.amount = memory.amount.add(_this.getTotal(i));
                         });
                     }
                 } else if (3 == activity.type && activity.money > 0 && size >= activity.money && activity.full_money > 0) {    //多件洗
                     has_act = true;
                     var indexs = this.sort(this.matchName(activity.item_name))
                     ,   amount = this.round(activity.full_money, activity.money)
-                    ,   len = activity.money.sub(1);
+                    ,   len = Number(activity.money.sub(1));
                     for (var i = 0;i < len;++i) {
                         data[indexs[i]].raw_price = amount;
                         data[indexs[i]].addition_price = 0;
                         data[indexs[i]].addition_no_price = 0;
                     }
-                    data[len].raw_price = activity.full_money.sub( amount.mul(len) );
-                    data[len].addition_price = 0;
-                    data[len].addition_no_price = 0;
+                    console.log(size, len);
+                    console.log(indexs);
+                    console.log(data);
+                    data[indexs[len]].raw_price = activity.full_money.sub( amount.mul(len) );
+                    data[indexs[len]].addition_price = 0;
+                    data[indexs[len]].addition_no_price = 0;
                     memory.amount = 0;
                     for (var j = 0;j < size;++j) {    //遍历所有项目重新取值
                         memory.amount = memory.amount.add(this.getTotal(j));
@@ -774,7 +779,7 @@
                     if (has_act) {
                         memory.amount = activity.full_money;
                         var amount = this.round(activity.full_money, size)
-                        ,   len = size.sub(1);
+                        ,   len = Number(size.sub(1));
                         for (var j = 0;j < len;++j) {
                             data[j].raw_price = amount;
                             data[j].addition_price = 0;
@@ -819,13 +824,14 @@
                     if (discount < 100 && 0 != discount) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
+                        var _this = this;
                         this.matchName(coupon.item_name, function (i, matched) {
                             if (matched) {
                                 data[i].raw_price = data[i].raw_price.mul(discount);
                                 data[i].addition_price = data[i].addition_price.mul(discount);
                                 data[i].addition_no_price = data[i].addition_no_price.mul(discount);
                             }
-                            memory.amount = memory.amount.add(this.getTotal(i));
+                            memory.amount = memory.amount.add(_this.getTotal(i));
                         });
                     }
                 } else {

@@ -57,7 +57,7 @@ export default class extends Component {
         this.input[3].onkeydown = ( e => {'Enter' === e.code && this.onConfirm()} )
         let phone = this.props.phone
         ,   oid = this.props.oid;
-        if ('string' == typeof phone && !isNaN(oid) && this.data.debt) {
+        if ('string' == typeof phone && !isNaN(oid) && 0 == this.data.debt) {
             //获取满足当前条件的优惠券及活动列表信息
             api.post('order_ac_query', {user_mobile:phone, oid:oid, token:'token'.getData()}, (res, ver) => {
                 console.log('ui/payment/api:order_ac_query', res);
