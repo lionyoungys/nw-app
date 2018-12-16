@@ -26,7 +26,7 @@ export default class extends Component {
         this.limit = 15;
         this.query = this.query.bind(this);                  
     };       
-    
+
     query(page) {
         console.log(page);
         api.post('clothestate', { 

@@ -168,7 +168,9 @@ export default class extends React.Component {
             }});                  
         }else if (this.state.checked.length>1){
             tool.ui.error({title:'提示',msg:'项目只能单件返流',button:['确定'],callback:(close, event) => {
-                close();               
+                this.setState({checked:[]})
+                close(); 
+                              
             }});
         }else if(this.state.checked.length==1){
            this.setState({back:true})

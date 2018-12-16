@@ -40,7 +40,6 @@ export default class extends Component {
         api.post('revocation', { token: 'token'.getData(), search_sn:this.state.orderNum }, (res, ver, handle) => {
             console.log(res);
             if (ver && res) {
-               
                 let ress = res.result.list;
                 if (ress.length == 0) {
                     tool.ui.error({

@@ -17,8 +17,8 @@ export default class extends Component {
             detaiCouShow:false,
             type:'满减', //类型
             status:'未开始',   //状态
-            start_time:tool.date('Y-m-d'),
-            end_time:tool.date('Y-m-d'),
+            start_time:'',
+            end_time:'',
             discountname:'',//优惠名称
             creator:'',     //创建人
             arr:[],

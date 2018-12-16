@@ -63,8 +63,7 @@ export default class extends Component {
                 if (ver) {
                     console.log(res)
                     tool.ui.success({msg:'操作成功', callback:close => close()});
-                    this.query();
-                    //this.setState({arr:res.result.info})                                                                                    
+                    this.query();                                                                                   
                 }else{
                     handle();                
                 }

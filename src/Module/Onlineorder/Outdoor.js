@@ -137,7 +137,7 @@ export default class extends Component {
             <td>{item.otime};订单来源:<i>{item.is_online==0? '线下' : '线上' }</i></td>
             <td>{item.work.map((item,index)=> <span>{item.clothing_name}</span>)}</td>
             <td>{item.work.map((item,index) =><span>{item.work_number}</span>)}</td>
-            <td>共{item.count}件,约<i>￥{item.total}</i></td>
+            <td>共{item.count}件,约<i>￥{item.total}元</i></td>
             <td index={index}>客户姓名：{item.user_name}<br/>客户电话：{item.user_mobile}<br/> 地址：{item.address}</td>
             <td>
                 <s data-id={item.id} onClick = {this.outdoor_no}>取消预约</s>

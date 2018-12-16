@@ -160,7 +160,7 @@ export default class extends Component {
                )
             }
             </td>
-            <td>共{item.count}件,约<i>￥{item.total}</i></td>
+            <td>共{item.count}件,约<i>￥{item.total}元</i></td>
             <td index={index}>客户姓名：{item.user_name}<br/>客户电话：{item.user_mobile}<br/>地址：{item.address}</td>
             <td>
                 <s data-id={item.id} onClick = {this.no_door}>取消预约</s>

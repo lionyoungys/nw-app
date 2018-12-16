@@ -20,10 +20,12 @@
     min-width: 140px;
 }
 .waiting>.ui-table.waiting-list thead tr>th:last-child{background: none}
-
+.waiting>.ui-table table tbody tr>td span{
+    display:block;
+}
 .waiting>.ui-table.waiting-list tbody tr>td span{
     width:100%;
-    display:inline-block;
+    display:block;
     text-align:center;    
     color:#333;
     word-break: break-all;

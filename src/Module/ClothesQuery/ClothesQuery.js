@@ -30,9 +30,12 @@ export default class extends Component {
             nodatas:true,
         }
         this.limit = 15;
-        this.query = this.query.bind(this)
-        this.clear = this.clear.bind(this)
+        this.query = this.query.bind(this);
+        this.clear = this.clear.bind(this);
     }; 
+    componentDidMount (){
+        this.query()
+    }
     clear(){
         this.setState({clothes:[],count:0,page:1})
     }  
