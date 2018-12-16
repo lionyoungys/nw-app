@@ -527,7 +527,6 @@ export default class extends Component {
             (res, ver, handle) => {
                 console.log(res);
                 if (ver) {
-                    obj.debt = 0;
                     this.print(obj);
                     tool.ui.success({callback:close => {
                         close();

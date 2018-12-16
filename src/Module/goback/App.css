@@ -176,3 +176,15 @@
     z-index:9;
     position: absolute;
 }
+.addbrand-div textarea{
+    width: 200px;
+    height:75px;
+    line-height: 18px;
+    padding-top: 5px;
+}
+.addbrand-footer.goback_s{
+  margin: 0 auto;
+}
+.brand-name.back_text1{
+    margin: 0 0 30px 50px;
+}

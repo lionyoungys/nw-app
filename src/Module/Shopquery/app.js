@@ -18,7 +18,7 @@ export default class extends Component {
             page:1,
             number:'',
             from_name:'',            
-            order_name:'线下',
+            order_name:'全部',
             statename:'完成',
             shoplist:[],
             nodatas:true, 
@@ -29,6 +29,9 @@ export default class extends Component {
         this.clear = this.clear.bind(this);    
     };   
     // 条件查询
+    componentDidMount (){
+        this.query();
+    }
     query (page){
         page = page || this.state.page; 
         let aa = {
@@ -100,7 +103,7 @@ export default class extends Component {
                             <span>&nbsp;&emsp;&emsp;客户姓名：</span><input type='text' className='e-input' value={this.state.from_name} onChange={e => this.setState({from_name:e.target.value})}/>
                         </div>
                         <div>
-                            <span>订单来源：</span><Select  option={['线下','线上']} value={this.state.order_name} onChange={value => this.setState({order_name:value.value})}/>                         
+                            <span>订单来源：</span><Select  option={['线下','线上','全部']} value={this.state.order_name} onChange={value => this.setState({order_name:value.value})}/>                         
                         </div>
                         <div>
                             <span>&nbsp;&emsp;&emsp;订单状态：</span><i className="succs">{this.state.statename}</i>

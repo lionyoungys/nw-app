@@ -440,7 +440,8 @@
             no_dis_amount:0,    //不可折金额
             discount:100,    //会员折扣
             cash:0,    //现金使用
-            change:0    //找零金额
+            change:0,    //找零金额
+            debt:0    //欠款金额为零时或完全等于支付总金额时为未支付订单
         };
         //请求接口获取价格计算方式
         api.post('calculate', {token:'token'.getData()}, function(res, ver) {
@@ -482,6 +483,23 @@
                     memory.amount = memory.total;
                     memory.calc_amount = this.calc(memory.amount);
                 }
+            }
+            return this;
+        }
+
+        /**
+         * 设置欠款项
+         * @param {object} obj 欠款信息:{debt:欠款金额, dis_amount:欠款可折金额, no_dis_amount:欠款不可折金额}
+         * @return {object} this
+         */
+        this.setDebt = function (obj) {
+            if (tool.isObject(obj) && !isNaN(obj.debt) && obj.debt > 0 && memory.total != obj.debt) {
+                memory.total = obj.debt;
+                memory.amount = obj.debt;
+                memory.calc_amount = this.calc(memory.amount);
+                memory.dis_amount = obj.dis_amount || 0;
+                memory.no_dis_amount = obj.no_dis_amount || 0;
+                memory.debt = obj.debt;
             }
             return this;
         }
@@ -579,43 +597,6 @@
                 amount = 0;
             }
             return amount;
-        }
-
-        /**
-         * 将满足条件的指定数量项目数据打包处理,打包金额赋值于第一件项目的价格上
-         * @param {Array} names 满足名称的数组
-         * @param {Number} amount 打包金额
-         * @param {Number} count 打包数量
-         * @return {void}
-         */
-        this.packData = function (names, amount, count) {
-            if (tool.isArray(names) && names.length > 0) {
-                if (isNaN(amount)) {
-                    amount = 0;
-                }
-                if (isNaN(count)) {
-                    count = size;
-                }
-                var indexs = [];
-                for (var i = 0;i < size;++i) {
-                    if (-1 != data[i].clothing_name.inArray(names)) {    //提取满足打包数据条件的项目,同时合计数满足打包数量
-                        indexs.push(i);
-                        if (indexs.length >= count) {
-                            break;
-                        }
-                    }
-                }
-                var len = indexs.length;
-                for (var j = 0;j < len;++j) {    //将打包金额赋值于第一件满足条件的项目上,其余条件内项目相关价格置零
-                    if (0 == j) {
-                        data[indexs[j]].raw_price = amount;
-                    } else {
-                        data[indexs[j]].raw_price = 0;
-                    }
-                    data[indexs[j]].addition_price = 0;
-                    data[indexs[j]].addition_no_price = 0;
-                }
-            }
         }
 
         /**
@@ -743,7 +724,7 @@
          * @param {Object} this
          */
         this.activity = function (activity) {    //根据商户所选的活动计算金额
-            if (tool.isObject(activity) && memory.calc_amount > 0) {
+            if (tool.isObject(activity) && 0 == memory.debt && memory.calc_amount > 0) {    //非欠款的情况下可使用
                 if (1 == activity.type && memory.total >= activity.full_money) {    //满减
                     has_act = true;
                     this.moneyOff(activity.money, activity.item_name);
@@ -820,7 +801,7 @@
          * @param {Object} this
          */
         this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
-            if (tool.isObject(coupon) && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //0 < 总金额 >= 优惠券满足金额
+            if (tool.isObject(coupon) && 0 == memory.debt && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //非欠款的情况下可使用 0 < 总金额 >= 优惠券满足金额
                 if (1 == coupon.type) {    //现金券:抵价金额 > 0;
                     //var balance = coupon.money;    //优惠券抵扣余额
                     has_cou = true;

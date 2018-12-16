@@ -57,7 +57,7 @@ export default class extends Component {
         this.input[3].onkeydown = ( e => {'Enter' === e.code && this.onConfirm()} )
         let phone = this.props.phone
         ,   oid = this.props.oid;
-        if ('string' == typeof phone && !isNaN(oid)) {
+        if ('string' == typeof phone && !isNaN(oid) && this.data.debt) {
             //获取满足当前条件的优惠券及活动列表信息
             api.post('order_ac_query', {user_mobile:phone, oid:oid, token:'token'.getData()}, (res, ver) => {
                 console.log('ui/payment/api:order_ac_query', res);
@@ -188,7 +188,7 @@ export default class extends Component {
     render() {
         let authCode = this.state.authCode    //支付码
         ,   items = this.props.items || []    //项目列表
-        ,   card = this.props.card || this.template    //会员卡信息
+        ,   card = tool.isObject(this.props.card) && this.props.card.id ? this.props.card : this.template    //会员卡信息
         ,   ac_show = this.state.ac_show
         ,   activities = this.state.activities
         ,   coupons = this.state.coupons
@@ -208,6 +208,7 @@ export default class extends Component {
             }
         }
         this.data = this.props.calculator.setData(items)
+                                         .setDebt(this.props.debt)    //欠款对象
                                          .matchAC(activities[act_index], coupons[cou_index])
                                          .setCash(this.state.amount)
                                          .get();    //设置项目数据

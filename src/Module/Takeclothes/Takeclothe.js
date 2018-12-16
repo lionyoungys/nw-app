@@ -6,19 +6,27 @@ import React, { Component } from 'react';
 import Window from '../../UI/Window';
 import Nodata from '../../UI/nodata'
 import Table from '../../UI/Table';
+import Payment from '../../UI/Payment';
+
 
 export default class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clist: [],//接口返回数组 
-            count: 0
+            clist: [],    //接口返回数组 
+            count: 0,
+            index:null,
+            oindex:null,
+            show_payment:false
         }
         this.token = 'token'.getData();
+        this.oid = null;
+        this.calculator = new tool.api.calculator();    //获取价格计算器对象
         this.M1Read = this.M1Read.bind(this);
         this.query = this.query.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
-     
+        this.handlePay = this.handlePay.bind(this);
+        this.handlePaymentCallback = this.handlePaymentCallback.bind(this);
     };
     componentDidMount() { this.input.focus(); }
     M1Read() { EventApi.M1Read({ callback: res => this.query(res.recharge_number) }) }
@@ -37,15 +45,71 @@ export default class extends Component {
     onKeyPress(e) {
         13 == (e.keyCode || e.which) && this.query();
     }
+
+    handlePay(e) {
+        let data = e.target.dataset;
+        this.setState({show_payment:true, index:data.pindex, oindex:data.oindex});
+    }
+
+    handlePaymentCallback(obj) {
+        if (null != this.oid) {
+            if (0 == obj.gateway && '' == obj.card.id) {
+                return tool.ui.error({msg:'会员不存在！',callback:close => close()});
+            }
+            let loadingEnd;
+            tool.ui.loading(handle => loadingEnd = handle);
+            let param = {
+                token:this.token,
+                gateway:obj.gateway,
+                pay_amount:obj.cash,
+                authcode:obj.authcode, 
+                cid:obj.card.id,
+                oid:this.oid, 
+                passwd:obj.passwd,
+                coupon_id:obj.coupon ? obj.coupon.id : '',
+                activity_id:obj.activity ? obj.activity.id : ''
+            };
+            console.log(param);
+            api.post('orderPay', param, (res, ver, handle) => {
+                    console.log(res);
+                    loadingEnd();
+                    if (ver) {
+                        //this.print({change:obj.change, debt:0, pay_amount:obj.pay_amount, gateway:obj.gateway});
+                        tool.ui.success({callback:close => {
+                            close();
+                            this.setState({show_payment:null});
+                            this.query();
+                        }}); 
+                    } else {
+                        handle();
+                    }
+                },
+                () => loadingEnd()
+            );
+        }
+    }
     
     render() {
+        let phone, items, debt = {debt:0, dis_amount:0, no_dis_amount:0};
+        if (this.state.show_payment) {
+            let data = this.state.clist[this.state.index]
+            ,   order = data.order[this.state.oindex];
+            phone = data.mobile;
+            this.oid = order.id;
+            items = order.item;
+            debt.debt = order.debt;
+            debt.dis_amount = order.discount_amount;
+            debt.no_dis_amount = order.amount;
+        }
         let P = this.state.clist.map((data, index) =>
             <Person
                 key={'p_' + index}
+                index={index}
                 name={data.name}
                 phone={data.mobile}
                 orders={data.order}
-                onrefresh={this.query}
+                query={this.query}
+                handlePay={this.handlePay}
             />
         );
         return (
@@ -63,13 +127,24 @@ export default class extends Component {
                         onKeyPress={this.onKeyPress}
                     />
                 </div>
-                <div className="Takeclothes-div-title" style={{ display: this.state.title }}>已为您找到<b>{this.state.clist.length}</b>条数据</div>
+                <div className="Takeclothes-div-title">已为您找到<b>{this.state.count}</b>条数据</div>
                 <div className="Takeclothes-tab-div">
                     <div>{P}</div>
                 </div>
-                {/* {total_amount:原价,dis_amount:可折金额,amount:不可折金额,discount:折扣率,pay_amount:折后价} */}
 
                 {this.state.count < 1 && <Nodata />}
+                {
+                    this.state.show_payment 
+                    && 
+                    <Payment 
+                        onClose={() => this.setState({show_payment:false})}
+                        callback={this.handlePaymentCallback}
+                        oid={this.oid}
+                        phone={phone}
+                        debt={debt}
+                        items={items}
+                        calculator={this.calculator}
+                    />}
             </Window>
         )
     }
@@ -120,7 +195,7 @@ class Person extends Component {
                             if (ver) {
                                 tool.ui.success({callback: (close) => {
                                         close();
-                                       this.props.onrefresh();
+                                       this.props.query();
                                        this.setState({checked:[]})
                                 }});
                             } else {
@@ -151,9 +226,16 @@ class Person extends Component {
                     data-index={index} 
                     onClick={this.singleTakeClothes}
                 >单件取衣</div>
-            )
+            );
         } else {
-            return <span className='takeclothred'>立即付款</span>;
+            return (
+                <span 
+                    className='takeclothred' 
+                    data-oindex={oindex} 
+                    data-pindex={this.props.index} 
+                    onClick={this.props.handlePay}
+                >立即付款</span>
+            );
         }
     }
     handleAllChecked(){

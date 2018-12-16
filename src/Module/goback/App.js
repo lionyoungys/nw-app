@@ -267,10 +267,10 @@ export default class extends React.Component {
                     this.state.alert && 
                     <Dish title='定义返流原因' onClose={() => this.setState({alert:false})} width="389" height='194'>
                         <div className="addbrand-div">
-                            <div className="brand-name">返流原因</div>
-                            <input  type="text" className="brand-text" value={this.state.value} onChange={e => this.setState({value:e.target.value})}/>
+                            <div className="brand-name back_text1">返流原因</div>
+                            <textarea  type="text" className="brand-text" value={this.state.value} onChange={e => this.setState({value:e.target.value})} placeholder='最多可输入二百字'></textarea>
                         </div>
-                        <div className="addbrand-footer">
+                        <div className="addbrand-footer goback_s">
                             <button onClick = {this.updatebrandYES}>保 存</button>
                         </div>
                     </Dish>
