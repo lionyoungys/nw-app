@@ -90,7 +90,7 @@ class Person extends Component {
     }
     singleTakeClothes(e) {
         let checkid=[];
-        if(this.state.checked.length!=0){
+        if('all'==e.target.dataset.all){
             for(var i=0;i<this.state.checked.length;i++){
                 for(var j=0;j<this.props.orders[this.state.checked[i]].item.length;j++){
                     checkid.push(this.props.orders[this.state.checked[i]].item[j].id)
@@ -242,7 +242,7 @@ class Person extends Component {
                         全选&emsp;已选中{len}件&nbsp;,&nbsp;共{orders.length}件
                     </div>
                     <div className="Takeclothesdetail-footer-right">
-                        <button className="take-over" onClick={this.singleTakeClothes} style={{display:len!=0?'block':'none'}}>取衣</button>
+                        <button className="take-over" onClick={this.singleTakeClothes} data-all={'all'} style={{display:len!=0?'block':'none'}}>取衣</button>
                         <button className="take-no" style={{display:len==0?'block':'none'}}>取衣</button>
                     </div>
                 </div>
