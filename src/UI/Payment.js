@@ -37,7 +37,6 @@ export default class extends Component {
             show:false
         };
         this.data = {};    //计算结果数据对象
-        this.card = {};    //选中使用的卡信息
         this.coupon = null;    //选中的优惠券
         this.activity = null;    //选中的活动
         this.input = [];
@@ -143,7 +142,9 @@ export default class extends Component {
 
     handleClick() {
         if (0 == this.data.gateway || '_' == this.data.gateway) {    //会员卡支付
-            this.setState({show:true});
+            if (this.data.card.id) {
+                this.setState({show:true});
+            }
         } else {
             this.onConfirm();
         }
