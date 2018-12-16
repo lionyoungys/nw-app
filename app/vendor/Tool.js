@@ -709,7 +709,7 @@
             ,   right = [];    //存放比基准点大的数组 
             len = arr.length;    //因arr曾被删除过,重新计算长度
             for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
-                if (this.getTotal(arr[i]) < this.getTotal(pivot)) {
+                if (this.getTotal(arr[i]) > this.getTotal(pivot)) {
                     left.push(arr[i]);    //比基准点小的放在左边数组 
                 } else {
                     right.push(arr[i]);    //比基准点大的放在右边数组 
