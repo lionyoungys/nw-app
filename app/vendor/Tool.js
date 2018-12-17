@@ -575,6 +575,7 @@
          * @return {mixd} 
          */
         this.setDec = function (index, amount) {
+            amount = parseFloat(amount);
             if (amount > data[index].raw_price) {    //判断当前阶段金额是否大于项目金额
                 amount = amount.sub(data[index].raw_price);
                 data[index].raw_price = 0;
@@ -709,7 +710,7 @@
             ,   right = [];    //存放比基准点大的数组 
             len = arr.length;    //因arr曾被删除过,重新计算长度
             for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
-                if (this.getTotal(arr[i]) > this.getTotal(pivot)) {
+                if (parseFloat(this.getTotal(arr[i])) > this.getTotal(pivot)) {
                     left.push(arr[i]);    //比基准点小的放在左边数组 
                 } else {
                     right.push(arr[i]);    //比基准点大的放在右边数组 
@@ -726,14 +727,14 @@
          */
         this.activity = function (activity) {    //根据商户所选的活动计算金额
             if (tool.isObject(activity) && 0 == memory.debt && memory.calc_amount > 0) {    //非欠款的情况下可使用
-                if (1 == activity.type && memory.total >= activity.full_money) {    //满减
+                if (1 == activity.type && parseFloat(memory.total) >= activity.full_money) {    //满减
                     has_act = true;
                     this.moneyOff(activity.money, activity.item_name);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
-                } else if (2 == activity.type && memory.total >= activity.full_money) {    //折扣
+                } else if (2 == activity.type && parseFloat(memory.total) >= activity.full_money) {    //折扣
                     has_act = true;
                     if (activity.discount < 100 && 0 != activity.discount) {
                         var discount = activity.discount.div(100);    //优惠券折扣率,小数计算
@@ -806,7 +807,7 @@
          * @param {Object} this
          */
         this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
-            if (tool.isObject(coupon) && 0 == memory.debt && memory.calc_amount > 0 && memory.total >= coupon.full_money) {    //非欠款的情况下可使用 0 < 总金额 >= 优惠券满足金额
+            if (tool.isObject(coupon) && 0 == memory.debt && memory.calc_amount > 0 && parseFloat(memory.total) >= coupon.full_money) {    //非欠款的情况下可使用 0 < 总金额 >= 优惠券满足金额
                 if (1 == coupon.type) {    //现金券:抵价金额 > 0;
                     //var balance = coupon.money;    //优惠券抵扣余额
                     has_cou = true;

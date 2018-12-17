@@ -32,7 +32,7 @@ export default class extends Component {
         this.reset = this.reset.bind(this);
         this.editCoupon = this.editCoupon.bind(this);
         this.log = this.log.bind(this);
-        this.startuser =this.log.bind(this);
+        this.startuser =this.startuser.bind(this);
         this.suspend = this.suspend.bind(this);
     }  
      // 日志
@@ -81,14 +81,13 @@ export default class extends Component {
              }
          });
      }
-     // 启用优惠券
+     // 启用促销活动
      startuser (e){
-        e.stopPropagation();
          var id = e.target.dataset.id;
          console.log(id)
-         api.post('start_using', {
+         api.post('startSalePromotion', {
              token:token,
-             cid:id
+             aid:id
          }, (res,ver) => {
                  if (ver && res) {
                      console.log(res)
@@ -97,10 +96,10 @@ export default class extends Component {
                          this.query();
                      }});
                  }else{
-                     tool.ui.error({callback:(close, event) => {
-                         close();                       
-                         this.query();
-                     }});
+                     tool.ui.error({msg:res.msg,callback:(close) => {
+                             close();
+                             this.query();
+                      }});
                  }
              });
      }
@@ -164,7 +163,7 @@ export default class extends Component {
             <td >{item.status}</td>
             <td style={{ minWidth: '120px' }}>
                 {item.status=='未开始'?
-                        <span><span onClick={this.editCoupon} data-write={index} className='e-blue' data-id={item.id}>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} data-id={item.id} className='e-blue'>详情</span></span>
+                    <span><span className='e-blue' onClick={this.startuser} data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} className='e-blue' data-id={item.id}>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} data-id={item.id} className='e-blue'>详情</span></span>
                 :item.status=='进行中'?<span><span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue'>详情</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.suspend} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>中止</span></span>
                 : <span  onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue' data-id={item.id}>详情</span>  
             }
