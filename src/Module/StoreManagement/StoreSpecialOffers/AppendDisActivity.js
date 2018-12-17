@@ -167,6 +167,7 @@ export default class extends Component {
                 tool.ui.success({
                     callback: (close, event) => {
                         close();
+                        'function' == typeof this.props.onClose && this.props.onClose();
                     }
                 });
             } else {

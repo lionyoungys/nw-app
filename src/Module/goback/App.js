@@ -151,12 +151,16 @@ export default class extends React.Component {
     }
     // 确定返流操作
     backYES (){       
-        if(this.state.img.length < 0 ){
+        if(this.state.img.length == 0 ){
             tool.ui.error({title:'提示',msg:'请添加返流图片',button:['确定'],callback:(close, event) => {
                 close();               
             }});
         } else if (this.state.value==''){
             tool.ui.error({title:'提示',msg:'请添加返流说明',button:['确定'],callback:(close, event) => {
+                close();               
+            }});
+        }else if(this.state.get_type==''){
+            tool.ui.error({title:'提示',msg:'请选择返流步骤',button:['确定'],callback:(close, event) => {
                 close();               
             }});
         }else{
@@ -189,7 +193,7 @@ export default class extends React.Component {
         
     }
     render() {
-        console.log(this.state.img)
+        //console.log(this.state.img)
         let step = this.state.module.map((obj, index) =>
            <span key={obj} className="back_f">
                 <label className="radiobox">

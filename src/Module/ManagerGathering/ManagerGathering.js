@@ -52,6 +52,15 @@ export default class extends Component {
       );
     }
     payment(){
+
+        if ('' == this.state.gathering || '' == this.state.balance ) {
+
+            return tool.ui.error({ title: '提示', msg: '请输入上缴金额与本次余额！', button: ['确定'], callback: (close, event) => { close(); } });
+        }
+        if (this.state.gathering *1 <= 0 || this.state.balance *1 < 0) {
+
+            return tool.ui.error({ title: '提示', msg: '本次上缴应大于0,本次金额应大于等于0！', button: ['确定'], callback: (close, event) => { close(); } });
+        }
         api.post('doManagerGathering',{
             token:'token'.getData(),
             gathering:this.state.gathering,
