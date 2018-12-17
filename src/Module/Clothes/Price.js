@@ -53,7 +53,7 @@ export default class extends Component {
             <Dish title='编辑衣物信息' width='648' height='452' onClose={this.props.onClose}>
                 <div className='clothes-editor-top'><span>工艺加价</span></div>
                 <div className='clothes-price-data'>
-                    <div><div>衣物编码</div><div>工艺加价</div><div>操作</div></div>
+                    <div><div>衣物编码</div><div>工艺加价</div><div style={{color:'#000'}}>操作</div></div>
                     {html}
                 </div>
                 {

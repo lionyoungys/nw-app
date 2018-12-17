@@ -65,6 +65,8 @@ export default class extends Component {
                     ,   cou = res.result.coupon
                     ,   a_len = act.length
                     ,   c_len = cou.length;
+                    act.unshift({id:'empty_act', name:'不参加促销活动'});
+                    cou.unshift({id:'empty_cou', name:'不使用优惠券'});
                     if (a_len < 1) {
                         act.unshift({id:'_act_', name:'无促销活动可参加'});
                     } else {
@@ -125,7 +127,7 @@ export default class extends Component {
     }
 
     handleSelectCoupon(obj) {
-        if (0 == this.state.act_index || 1 == this.state.activities[this.state.act_index].whether) {
+        if (this.state.act_index < 2 || 1 == this.state.activities[this.state.act_index].whether) {
             this.setState({cou_index:obj.index});
         }
     }
@@ -135,7 +137,7 @@ export default class extends Component {
         if ('undefined' == typeof whether) {
             whether = 1;
         }
-        if (0 == this.state.cou_index || (0 != this.state.cou_index && 1 == whether)) {
+        if (this.state.cou_index < 2 || (this.state.cou_index > 1 && 1 == whether)) {
             this.setState({act_index:obj.index});
         }
     }
@@ -158,8 +160,8 @@ export default class extends Component {
             if ('_' == this.data.gateway) {
                 this.data.gateway = '0';
             }
-            this.data.activity = ('0' != this.state.act_index) ? this.activity : null;        //判断是否使用活动
-            this.data.coupon = ('0' != this.state.cou_index) ? this.coupon : null;    //判断是否使用优惠券
+            this.data.activity = (this.state.act_index > 1) ? this.activity : null;        //判断是否使用活动
+            this.data.coupon = (this.state.cou_index > 1) ? this.coupon : null;    //判断是否使用优惠券
             let authCode = this.state.authCode;
             if ('1' == this.data.gateway && this.data.change < 0) {
                 this.waiting = false;
@@ -199,15 +201,13 @@ export default class extends Component {
         if (this.state.card.id) {
             card = this.state.card;
         }
-
-        if (act_index > 0 || cou_index > 0) {    //判断是否使用促销活动或优惠券 
-            if (tool.isObject(activities[act_index])) {
-                this.activity = activities[act_index];
-            }
-            if (tool.isObject(coupons[cou_index])) {
-                this.coupon = coupons[cou_index];
-            }
+        if (act_index > 1) {    //判断是否使用促销活动
+            this.activity = activities[act_index];
         }
+        if (cou_index > 1) {    //判断是否使用优惠券 
+            this.coupon = coupons[cou_index];
+        }
+        
         this.data = this.props.calculator.setData(items)
                                          .setDebt(this.props.debt)    //欠款对象
                                          .matchAC(activities[act_index], coupons[cou_index])
