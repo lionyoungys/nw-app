@@ -211,7 +211,7 @@ export default class extends Component {
                     </div>
                     <div className="app_cou_use_role">
                         <div>使用规则:</div>
-                        <textarea className='e-textarea' placeholder='请输入优惠券使用规则' rows='10' cols='50' value={this.state.useRole} onChange={e => this.setState({ useRole: e.target.value })}></textarea>
+                        <textarea className='e-textarea' placeholder='请输入活动使用规则' rows='10' cols='50' value={this.state.useRole} onChange={e => this.setState({ useRole: e.target.value })}></textarea>
                     </div>
                     <div className='app_cou_btn'>
                         <button type='button' className='e-btn' onClick={this.handleClick}>提交</button>

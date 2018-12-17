@@ -128,41 +128,50 @@ export default class extends React.Component {
             });
             return;
         }
-        let pram = {
-            wid: JSON.stringify(id != '' ? [id] : this.state.checked),
-            status: status,
-            token: Token,
-        }
-        console.log(pram);
-        api.post('BackHandele', pram , (res, ver) => {
-            console.log(res)
-            if (ver && res) {
-                tool.ui.success({
-                    callback: (close, event) => {
-                        close();
-                        if (id =='') {
-                            this.setState({ checked: [], all: false });
-                            this.query();
-                        }else{
-                            //删除单一个
-                            let sel_index = id.inArray(this.state.checked);
-                            if (- 1 !== sel_index){
-                                this.state.checked.splice(sel_index, 1);
-                                this.setState({ checked: this.state.checked});
+        tool.ui.warn({
+            msg: status == '2' ? '是否确定打回返流?' : '是否确定同意返流？', button: ['取消', '确定'], callback: (close, event) => {
+                close();
+                if ('取消' == event) return;
+                let pram = {
+                    wid: JSON.stringify(id != '' ? [id] : this.state.checked),
+                    status: status,
+                    token: Token,
+                }
+                console.log(pram);
+                api.post('BackHandele', pram, (res, ver) => {
+                    console.log(res)
+                    if (ver && res) {
+                        tool.ui.success({
+                            callback: (close, event) => {
+                                close();
+                                if (id == '') {
+                                    this.setState({ checked: [], all: false });
+                                    this.query();
+                                } else {
+                                    //删除单一个
+                                    let sel_index = id.inArray(this.state.checked);
+                                    if (- 1 !== sel_index) {
+                                        this.state.checked.splice(sel_index, 1);
+                                        this.setState({ checked: this.state.checked });
+                                    }
+                                    this.state.data.splice(index, 1);
+                                    this.setState({ data: this.state.data });
+                                }
                             }
-                            this.state.data.splice(index, 1);
-                            this.setState({ data: this.state.data});
-                        }
+                        });
+                    } else {
+                        tool.ui.error({
+                            title: '错误提示', msg: res.msg, button: ['确定'], callback: (close, event) => {
+                                close();
+                            }
+                        });
                     }
                 });
-            } else {
-                tool.ui.error({
-                    title: '错误提示', msg: res.msg, button:['确定'], callback: (close, event) => {
-                        close();
-                    }
-                });
+
+
             }
         });
+        
     }
     lightboxClick(e) {
 

@@ -60,6 +60,7 @@ export default class extends Component {
                 <td>{item.amount}</td>
                 <td>{item.real_amount}</td>
                 <td>{item.discount}</td>
+                <td>{item.reduce_price}</td>
                 <td>{item.pay_type}</td>
                 <td>{item.user_mobile}</td>
                 <td>{item.user_name}</td>
@@ -100,6 +101,7 @@ export default class extends Component {
                                 <th>金额</th>
                                 <th>实收金额</th>
                                 <th>折扣率</th>
+                                <th>优惠</th>
                                 <th>收款类型</th>
                                 <th>客户电话</th>
                                 <th>客户姓名</th>

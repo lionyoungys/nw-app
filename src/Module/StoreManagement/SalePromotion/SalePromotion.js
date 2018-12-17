@@ -15,8 +15,8 @@ export default class extends Component {
             appendShow: false,
             proDetailShow:false,
             detaiCouShow:false,
-            type:'满减', //类型
-            status:'未开始',   //状态
+            type:'全部', //类型
+            status:'全部',   //状态
             start_time:'',
             end_time:'',
             discountname:'',//优惠名称
@@ -112,7 +112,8 @@ export default class extends Component {
      }
     onClose() {
 
-        this.setState({ appendShow: false, proDetailShow:false })
+        this.setState({ appendShow: false, proDetailShow:false });
+        this.query();
     }
     reset(){
 
@@ -124,12 +125,12 @@ export default class extends Component {
     query(){
         let params={
             token:token,
-            type:this.state.type=='满减'?'1':this.state.type=='折扣'?'2':this.state.type=='多件洗'?'3':'4',
+            type:this.state.type=='全部'?'':this.state.type=='满减'?'1':this.state.type=='折扣'?'2':this.state.type=='多件洗'?'3':'4',
             name:this.state.discountname,
             operator:this.state.creator,
             start_time:this.state.start_time,
             end_time:this.state.end_time,
-            status:this.state.status=='未开始'?'1':this.state.status=='进行中'?"2":'3'
+            status:this.state.status=='全部'?'':this.state.status=='未开始'?'1':this.state.status=='进行中'?"2":'3'
         }
         console.log(params)
         api.post('salePromotion', params, (res,ver) => {
@@ -153,7 +154,7 @@ export default class extends Component {
     render(){
         let list =this.state.arr.map((item,index)=>
         <tr key={'item'+index} >
-            <td >{index}</td>
+            <td >{item.id}</td>
             <td >{item.type=='1'?'满减':item.type=='2'?'折扣':item.type=='3'?'多件洗':'袋洗'}</td>
             <td>{item.name}</td>
             <td title={item.item_name}>{item.item_name.substring(0,20)}</td>
@@ -175,7 +176,7 @@ export default class extends Component {
                 <div className='storespecialofferstopbg'>
                     <div className='storespecialofferstop_one'>
                         <div>
-                            <span>类&emsp;型：</span><Select option={['满减', '折扣', '多件洗', '袋洗']} style={{ width: '153px' }} value={this.state.type} onChange={obj => this.setState({ type: obj.value })} />
+                            <span>类&emsp;型：</span><Select option={['全部','满减', '折扣', '多件洗', '袋洗']} style={{ width: '153px' }} value={this.state.type} onChange={obj => this.setState({ type: obj.value })} />
                         </div>
                         <div>
                             <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth' />
@@ -186,7 +187,7 @@ export default class extends Component {
                             <span>活动名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth' />
                         </div>
                         <div>
-                            <span>状&emsp;&emsp;态：</span><Select option={['未开始', '进行中', '已结束']} style={{ width: '153px' }} value={this.state.status} onChange={obj => this.setState({ status: obj.value })} />
+                            <span>状&emsp;&emsp;态：</span><Select option={['全部','未开始', '进行中', '已结束']} style={{ width: '153px' }} value={this.state.status} onChange={obj => this.setState({ status: obj.value })} />
                         </div>
                     </div>
                     <div className='storespecialofferstop_three'>

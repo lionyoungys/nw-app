@@ -56,6 +56,7 @@ export default class extends Component {
           <td>{item.pay_type}</td>
           <td>{item.amount}</td>
           <td>{item.real_amount}</td>
+            <td>{item.reduce_price}</td>  
           <td>{item.work_number}</td>
         </tr>)
         var list = this.state.list.map((item, index) => <tr key={'item'+index}>
@@ -93,6 +94,7 @@ export default class extends Component {
                                     <th>收银类型</th>
                                     <th>金额</th>
                                     <th>实收金额</th>
+                                    <th>优惠金额</th>
                                     <th>衣物数量</th>                            
                                 </tr>
                             </thead>

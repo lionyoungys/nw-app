@@ -1,5 +1,5 @@
 /**
- * 优惠活动
+ * 优惠券列表
  */
 
 
@@ -21,8 +21,8 @@ export default class extends Component {
         this.state={
             newincrease:false,
             detaiCouShow:false,
-            type:'现金券', //类型
-            status:'未启用',   //状态
+            type:'全部', //类型
+            status:'全部',   //状态
             start_time:'',
             end_time:'',
             discountname:'',//优惠名称
@@ -56,7 +56,8 @@ export default class extends Component {
         this.startuser = this.startuser.bind(this);         //启用优惠券
     }  
     onClose(){
-        this.setState({ newincrease: false,on_coupon:false})
+        this.setState({ newincrease: false,on_coupon:false});
+        this.query();
     }
     editCouClose(){
         this.setState({ detaiCouShow: false });
@@ -65,12 +66,12 @@ export default class extends Component {
     query(){
         let params={
             token:token,
-            type:this.state.type=='现金券'?'1':'2',
+            type:this.state.type=='全部'?'':this.state.type=='现金券'?'1':'2',
             name:this.state.discountname,
             creater:this.state.creator,
             start_time:this.state.start_time,
             end_time:this.state.end_time,
-            status:this.state.status=='未启用'?'0':this.state.status=='已启用'?"1":'2'
+            status:this.state.status=='全部'?'':this.state.status=='未启用'?'0':this.state.status=='已启用'?"1":'2'
         }
         console.log(params)
         api.post('discountsearch', params, (res,ver) => {
@@ -156,9 +157,10 @@ export default class extends Component {
                         this.query();
                     }});
                 }else{
-                    tool.ui.error({callback:(close, event) => {
-                        close();                       
-                        this.query();
+                    console.log(res)
+                    tool.ui.error({msg:res.msg,callback:(close) => {
+                            close();
+                            this.query();
                     }});
                 }
             });
@@ -174,7 +176,7 @@ export default class extends Component {
         console.log(this.state.on_coupon)     
         let list =this.state.arr.map((item,index)=>
             <tr key={'item' + index} data-index={index} onClick={() => this.setState({ on_coupon: true, id: item.id })}>
-            <td>{index+1}</td>
+            <td>{item.id}</td>
             <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
             <td>{item.remarks}</td>
@@ -196,7 +198,7 @@ export default class extends Component {
            <div className='storespecialofferstopbg'>
               <div className='storespecialofferstop_one'>
                  <div> 
-                    <span>类&emsp;型：</span><Select  option={['现金券','折扣券']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})} />
+                    <span>类&emsp;型：</span><Select  option={['全部','现金券','折扣券']} style={{width:'153px'}} value={this.state.type} onChange={obj => this.setState({type:obj.value})} />
                  </div>
                  <div>
                     <span>创建人：</span><input type="text" className='e-input storespecialofferstop_inputwidth' onChange={e=>this.setState({creator:e.target.value})} value={this.state.creator}/>
@@ -207,7 +209,7 @@ export default class extends Component {
                     <span>优惠名称：</span><input type="text" className='e-input storespecialofferstop_inputwidth' onChange={e=>this.setState({discountname:e.target.value})} value={this.state.discountname}/>
                  </div>
                  <div>    
-                    <span>状&emsp;&emsp;态：</span><Select  option={['未启用','已启用','已过期']}  style={{width:'153px'}} value={this.state.status} onChange={obj => this.setState({status:obj.value})}/>
+                    <span>状&emsp;&emsp;态：</span><Select  option={['全部','未启用','已启用','已过期']}  style={{width:'153px'}} value={this.state.status} onChange={obj => this.setState({status:obj.value})}/>
                  </div>
               </div>
               <div className='storespecialofferstop_three'>

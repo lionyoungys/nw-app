@@ -176,7 +176,7 @@ export default class extends Component {
           <td>{item.work.map((item,index)=><span >{item.sta}</span>)}
           </td>
           <td><span>保值费:{item.keep_price}<br/>工艺加价:{item.craft_price}<br/>运费:{item.freight_price}</span></td>
-          <td>合计:{item.total}元<br/>共:{item.count}件</td>
+          <td>合计:{item.total}元<br/>优惠:{item.dis_price}<br/>共:{item.count}件</td>
           <td>订单来源:<j>{item.is_online=='0'?'线下':'线上'}</j><br/>姓名:{item.user_name}<br/>地址:{item.address}</td>
           <td>
                 <i>{item.ostatus}</i>
