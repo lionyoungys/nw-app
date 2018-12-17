@@ -85,7 +85,7 @@ export default class extends Component {
                 <td>{item.user_mobile}</td>
                 <td>{item.card_number}</td>
             </tr>
-       );
+        );
         return (
             <Window title='衣物查询' onClose={this.props.closeView} width='901' height='623'>
                 <div className='clothesquery_top'> 

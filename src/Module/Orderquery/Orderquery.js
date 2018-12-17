@@ -113,12 +113,12 @@ export default class extends Component {
                     total:data.total,
                     dis_amount:data.dis_amount,
                     amount:data.amount,
-                    discount: data.discount ? data.discount : 10,
+                    discount: data.work.discount ? data.work.discount : 10,
                     real_amount:data.pay_amount,
                     name:data.user_name,
                     phone:data.user_mobile,
                     time:data.deal_time,    //取衣时间
-                    addr:data.maddress,      //店铺地址
+                    addr:data.address,      //店铺地址
                     mphone:data.phone_number,   //店铺电话
                     ad:data.ad ? data.ad : '',    //店铺广告
                     number:data.card_number,
@@ -126,6 +126,7 @@ export default class extends Component {
                     pay_amount:data.pay_amount,
                     gateway:data.pay_gateway
                 }
+                console.log(111,params)
                 EventApi.print('order', params, 'printer'.getData(), () => {
                     tool.ui.success({msg:'本页已打印完成，请撕纸', callback:close => {
                         //EventApi.print('order2', params, 'printer'.getData());
