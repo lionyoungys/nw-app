@@ -26,18 +26,25 @@ export default class extends Component {
         this.limit = 15;
         this.query = this.query.bind(this);                  
     };       
+    componentDidMount() {
+        
+        this.query();
+    }
 
     query(page) {
-        console.log(page);
-        api.post('clothestate', { 
-            token: 'token'.getData(), 
-            start_time: this.state.startdate, 
-            end_time:this.state.enddate,
-            page:page, 
-            limit:this.limit,
-         }, (res, ver, handle) => {
+       
+        let pram = {
+            token: 'token'.getData(),
+            start_time: this.state.startdate,
+            end_time: this.state.enddate,
+            page: page || this.state.page,
+            limit: this.limit,
+        };
+        // console.log(page, pram);
+        api.post('clothestate', pram, (res, ver, handle) => {
+             console.log(res);
             if (ver && res) {
-                console.log(res);
+                
                 this.setState({
                     list: res.result.list,
                     page:page,
@@ -47,7 +54,6 @@ export default class extends Component {
                     count: res.result.count,                   
                 });  
             } else {
-                console.log(res);
                 handle();
             }
         });

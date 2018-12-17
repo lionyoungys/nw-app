@@ -104,7 +104,7 @@ export default class extends Component {
                         grid_num:obj.grid_num,
                         sign:obj.sign,
                         remark:obj.remark,
-                    };
+                    };                   
                 });
                 var params = {
                     sn:data.ordersn,
@@ -113,7 +113,7 @@ export default class extends Component {
                     total:data.total,
                     dis_amount:data.dis_amount,
                     amount:data.amount,
-                    discount: data.work.discount ? data.work.discount : 10,
+                    discount: data.work[0].discount ? data.work[0].discount : 10,
                     real_amount:data.pay_amount,
                     name:data.user_name,
                     phone:data.user_mobile,
