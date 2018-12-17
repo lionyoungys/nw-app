@@ -45,7 +45,7 @@ export default class extends React.Component {
         tool.ui.loading(handle => done = handle);
         api.post('back_data', {           
             token:'token'.getData(),
-            wid:this.props.wid,
+            wid:parseInt(this.props.wid)
         }, (res, ver) => {
             console.log(this.props.wid)
             console.log(res)
@@ -85,7 +85,7 @@ export default class extends React.Component {
                     'item_img_upload',
                     {
                         token:'token'.getData(),
-                        wid:this.props.wid,
+                        wid:parseInt(this.props.wid),
                         pic:fs.createReadStream(value)
                     },
                     (response, verify) => {
@@ -112,7 +112,7 @@ export default class extends React.Component {
                 'item_img_delete',
                 {
                     token:'token'.getData(),
-                    wid:this.props.wid,
+                    wid:parseInt(this.props.wid),
                     pic:url
                 },
                 (response, verify) => {
@@ -168,7 +168,7 @@ export default class extends React.Component {
                 'returnBack',
                 {
                     token:'token'.getData(),
-                    wid:this.props.wid,
+                    wid:parseInt(this.props.wid),
                     backflow_type:this.state.tstate,
                     status:this.state.get_type,
                     backflow_cause:this.state.value,
@@ -189,8 +189,7 @@ export default class extends React.Component {
                    }
                 }
             );
-        }
-        
+        }        
     }
     render() {
         //console.log(this.state.img)

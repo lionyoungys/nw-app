@@ -44,7 +44,7 @@ export default class extends React.Component {
         this.lightboxShow = this.lightboxShow.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
 
-        this.onback = this.onback.bind(this);
+        
     }
 
     componentDidMount() {
@@ -176,10 +176,7 @@ export default class extends React.Component {
            this.setState({back:true})
         }
     }
-    onback(e){
-        let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
-        this.setState({num:index});     
-    }
+    
 
     onUpload(file) {    //文件上传
         let done;
@@ -229,7 +226,7 @@ export default class extends React.Component {
     render() {
         let html = this.state.data.map( (obj, index) =>
             <tr key={obj.id} className={obj.state ==  false ? null : 'disabled'}>
-                <td data-id={obj.clothing_name} data-index={obj.id} onClick={this.onback}>
+                <td data-id={obj.clothing_name} data-index={obj.id} >
                     {
                         obj.state == false
                         ?
@@ -313,7 +310,7 @@ export default class extends React.Component {
                 </div>  
                 {
                    this.state.back && <Goback  onClose={() => this.setState({back:false})}                     
-                       wid = {this.state.num}   
+                       wid = {this.state.checked}  
                        callback={e => this.query()}                                                                                     
                    /> 
                 }             

@@ -46,7 +46,7 @@ export default class extends React.Component {
         this.lightboxShow = this.lightboxShow.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
 
-        this.onback = this.onback.bind(this);
+       // this.onback = this.onback.bind(this);
     }
     onKeyPress(e){
         13 == (e.keyCode || e.which) && this.onSearch();
@@ -139,10 +139,10 @@ export default class extends React.Component {
         }
     }
 
-    onback(e){
-        let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
-        this.setState({num:index});     
-    }
+    // onback(e){
+    //     let index = e.target.dataset.index || e.target.parentNode.dataset.index ;
+    //     this.setState({num:index});     
+    // }
 
     // 已烘干操作
     handleCleaned() {
@@ -234,7 +234,7 @@ export default class extends React.Component {
     render() {
         let html = this.state.data.map((obj,index) =>
             <tr key={obj.id} className={obj.state==false ? null : 'disabled'}>
-                <td data-id={obj.clothing_name} data-index={obj.id} onClick={this.onback}>
+                <td data-id={obj.clothing_name} data-index={obj.id} >
                     {
                         obj.state == false
                         ?
@@ -308,7 +308,7 @@ export default class extends React.Component {
                 {
                    this.state.back && <Goback  
                       onClose={() => this.setState({back:false})}                     
-                       wid = {this.state.num} 
+                       wid = {this.state.checked} 
                        callback={e => this.query()}
                     /> 
                 }              
