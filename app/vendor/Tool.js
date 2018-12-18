@@ -493,7 +493,7 @@
          * @return {object} this
          */
         this.setDebt = function (obj) {
-            if (tool.isObject(obj) && !isNaN(obj.debt) && obj.debt > 0 && memory.total != obj.debt) {
+            if (tool.isObject(obj) && !isNaN(obj.debt) && obj.debt > 0 && memory.total != parseFloat(obj.debt)) {
                 memory.total = obj.debt;
                 memory.amount = obj.debt;
                 memory.calc_amount = this.calc(memory.amount);
@@ -509,14 +509,14 @@
             var has_discount = (1 == data[index].has_discount);
             return {
                 total:this.getTotal(index),
-                dis_amount:data[index].addition_price.add(has_discount ? data[index].raw_price : 0),    //可折金额 = 原价可打折的情况 + 可折附加费
-                no_dis_amount:data[index].addition_no_price.add(has_discount ? 0 : data[index].raw_price)    //不可折金额 = 原价不可打折的情况 + 不可折附加费
+                dis_amount:parseFloat( data[index].addition_price.add(has_discount ? data[index].raw_price : 0) ),    //可折金额 = 原价可打折的情况 + 可折附加费
+                no_dis_amount:parseFloat( data[index].addition_no_price.add(has_discount ? 0 : data[index].raw_price) )    //不可折金额 = 原价不可打折的情况 + 不可折附加费
             };
         }
         //通过索引获取指定项目的总额
         this.getTotal = function (index) {
             //总额 = 原价 + 可折附加费 + 不可折附加费
-            return data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price);
+            return parseFloat( data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price) );
         }
 
         /**
@@ -710,7 +710,7 @@
             ,   right = [];    //存放比基准点大的数组 
             len = arr.length;    //因arr曾被删除过,重新计算长度
             for (var i = 0; i < len;++i){    //遍历数组，进行判断分配 
-                if (parseFloat(this.getTotal(arr[i])) > this.getTotal(pivot)) {
+                if (this.getTotal(arr[i]) > this.getTotal(pivot)) {
                     left.push(arr[i]);    //比基准点小的放在左边数组 
                 } else {
                     right.push(arr[i]);    //比基准点大的放在右边数组 
@@ -736,7 +736,7 @@
                     }
                 } else if (2 == activity.type && parseFloat(memory.total) >= activity.full_money) {    //折扣
                     has_act = true;
-                    if (activity.discount < 100 && 0 != activity.discount) {
+                    if (activity.discount < 100 && activity.discount > 0) {
                         var discount = activity.discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
                         var _this = this;
@@ -822,7 +822,7 @@
                 } else if (2 == coupon.type) {    //折扣券:优惠折扣 < 10折
                     has_cou = true;
                     var discount = coupon.discount;
-                    if (discount < 100 && 0 != discount) {
+                    if (discount < 100 && discount > 0) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
                         memory.amount = 0;
                         var _this = this;
