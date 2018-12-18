@@ -65,9 +65,10 @@ export default class extends Component {
                             if (-1 != sel_index) selectMerArr.push(MerArr[sel_index]);
                         }
                     }
+                    let activityType = res.result.activity.type;
                     this.setState({
                         couponName: res.result.activity.name,
-                        couponType: res.result.activity.type == '1' ? '满减' : (res.result.activity.type == '2' ? '折扣' : (res.result.activity.type == '3' ? '多件洗' : '袋洗')),
+                        couponType: activityType == '1' ? '满减' : (activityType == '2' ? '折扣' : (activityType == '3' ? '多件洗' : '袋洗')),
                         cloSelTypeArr: res.result.item,
                         cloTypeArr: res.result.item_name,
                         merArr: MerArr,
@@ -76,11 +77,13 @@ export default class extends Component {
                         startime: tool.date('Y-m-d', res.result.activity.start_time),
                         endtime: tool.date('Y-m-d', res.result.activity.end_time),
                         totalPrice: res.result.activity.full_money,
-                        subPrice: res.result.activity.type == '2' ? res.result.activity.discount * 0.1 : res.result.activity.money,
-                        notiContent: res.result.activity.type == '1' ? '可减去' : (res.result.activity.type == '2' ? '可享受' : '可以洗'),//可减去/可享受/可以洗
-                        notiContentUnit: res.result.activity.type == '1' ? '元' : (res.result.activity.type == '2' ? '折' : (res.result.activity.type == '3' ? '件' : '袋')),//元/折/件/袋
+                        subPrice: activityType == '2' ? res.result.activity.discount * 0.1 : res.result.activity.money,
+                        notiContent: activityType == '1' ? '可减去' : (activityType == '2' ? '可享受' : '可以洗'),//可减去/可享受/可以洗
+                        notiContentUnit: activityType == '1' ? '元' : (activityType == '2' ? '折' : (activityType == '3' ? '件' : '袋')),//元/折/件/袋
                         getType: res.result.activity.whether,
                         useRole: res.result.activity.remarks,
+                        couponTypeID: activityType,
+                        
                     })
 
                 } else {

@@ -11,7 +11,7 @@ export default class extends Component {
             list:[],
             checkedArr:[]    
         };
-        this.map = {'111':'car', '112':'into', '100':'washer', '102':'dry', '104':'iron', '106':'check', '114':'out', '115':'audit'};
+        this.map = {'111':'car', '112':'into', '100':'washer', '102':'dry', '104':'iron', '106':'check', '114':'out', '110':'audit'};
         this.query = this.query.bind(this);
         this.handleChecked = this.handleChecked.bind(this);  
         this.btn_up = this.btn_up.bind(this);     

@@ -1066,8 +1066,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-option-iron[data-checked=checked]>i{background-position: -62px -19px;}
 .ui-option-check>i{width: 18px;height: 21px;background-position: -87px 0;left: 18px;margin-top: -10.5px;}
 .ui-option-check[data-checked=checked]>i{background-position: -87px -22px;}
-.ui-option-audit>i{width: 18px;height: 18px;background-position: -103px 0;left: 22px;margin-top: -9px;}
-.ui-option-audit[data-checked=checked]>i{background-position: -103px -18px;}
+.ui-option-audit>i{width: 18px;height: 18px;background-position: -106px 0;left: 22px;margin-top: -9px;}
+.ui-option-audit[data-checked=checked]>i{background-position: -106px -19px;}
 .ui-option-into>i{width: 22px;height: 23px;background-position: -125px 0;left: 16px;margin-top: -11.5px;}
 .ui-option-into[data-checked=checked]>i{background-position: -125px -24px;}
 .ui-option-out>i{width: 22px;height: 23px;background-position: -148px 0;left: 16px;margin-top: -11.5px;}
