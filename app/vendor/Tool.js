@@ -754,14 +754,14 @@
                     var indexs = this.sort(this.matchName(activity.item_name))
                     ,   amount = this.round(activity.full_money, activity.money)
                     ,   len = Number(activity.money.sub(1));
+                    console.log(size, len);
+                    console.log(indexs);
+                    console.log(data);
                     for (var i = 0;i < len;++i) {
                         data[indexs[i]].raw_price = amount;
                         data[indexs[i]].addition_price = 0;
                         data[indexs[i]].addition_no_price = 0;
                     }
-                    console.log(size, len);
-                    console.log(indexs);
-                    console.log(data);
                     data[indexs[len]].raw_price = activity.full_money.sub( amount.mul(len) );
                     data[indexs[len]].addition_price = 0;
                     data[indexs[len]].addition_no_price = 0;
