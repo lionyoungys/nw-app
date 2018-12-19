@@ -54,7 +54,10 @@ export default class extends Component {
         this.record = this.record.bind(this);   //查看使用记录 
         this.log = this.log.bind(this) ;   //查看日志
         this.startuser = this.startuser.bind(this);         //启用优惠券
-    }  
+    }
+    componentDidMount() {
+        this.query();
+    }
     onClose(){
         this.setState({ newincrease: false,on_coupon:false});
         this.query();

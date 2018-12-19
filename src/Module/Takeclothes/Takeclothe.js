@@ -221,10 +221,10 @@ class Person extends Component {
             return order.item.map((obj, index) => 
                 <div 
                     key={'bout_' + index} 
-                    className='takeclothgreen'
+                    className={obj.operate==1?'takeclothgreen':'takeclothgray'}
                     data-oindex={oindex} 
                     data-index={index} 
-                    onClick={this.singleTakeClothes}
+                    onClick={obj.operate==1?this.singleTakeClothes:''}
                 >单件取衣</div>
             );
         } else {

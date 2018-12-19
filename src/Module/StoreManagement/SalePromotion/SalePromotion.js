@@ -34,8 +34,12 @@ export default class extends Component {
         this.log = this.log.bind(this);
         this.startuser =this.startuser.bind(this);
         this.suspend = this.suspend.bind(this);
-    }  
-     // 日志
+    }
+    componentDidMount() {
+        this.query();
+    }
+
+    // 日志
      log (e){
         e.stopPropagation();
         // console.log(1)
@@ -115,7 +119,14 @@ export default class extends Component {
         this.query();
     }
     reset(){
-
+        this.setState({
+            type:'全部',
+            status:'全部',
+            start_time:'',
+            end_time:'',
+            discountname:'',//优惠名称
+            creator:'',     //创建人
+        });
     }
     editCouClose() {
         this.setState({ detaiCouShow: false });

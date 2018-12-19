@@ -128,8 +128,15 @@ export default class extends Component {
     }
 
     handleSelectCoupon(obj) {
-        if (this.state.act_index < 2 || 1 == this.state.activities[this.state.act_index].whether) {
+        let whether = this.state.activities[this.state.act_index].whether;
+        if ('undefined' == typeof whether) {
+            whether = 1;
+        }
+
+        if (obj.index < 2 || 1 == whether) {
             this.setState({cou_index:obj.index});
+        } else {
+            tool.ui.error({msg:'当前促销活动，不可与优惠券使用', button:['确认'], callback:close => close()});
         }
     }
 
@@ -140,6 +147,9 @@ export default class extends Component {
         }
         if (this.state.cou_index < 2 || (this.state.cou_index > 1 && 1 == whether)) {
             this.setState({act_index:obj.index});
+        } else {
+            //该促销活动，不可与优惠券使用
+            tool.ui.error({msg:'该促销活动，不可与优惠券使用', button:['确认'], callback:close => close()});
         }
     }
 
