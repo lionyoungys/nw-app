@@ -20,7 +20,7 @@ export default class extends Component {
             cardPay:false,//是否卡付款
             returnCash:'',//退现金金额
             returnCard:'',//退卡金额
-            maxReturn:'0',//最大退款金额
+            maxReturn:'1',//最大退款金额
             payStatus: '1',//是否付款
         }
         this.searchOrder = this.searchOrder.bind(this);
@@ -48,7 +48,7 @@ export default class extends Component {
                         }
                     });
                 }
-                this.setState({ cardPay: res.result.card == 1 ? true : false, comeinCloth: ress, returnCloth: [], maxReturn: '0', payStatus: res.result.pay_state })
+                this.setState({ cardPay: res.result.card == 1 ? true : false, comeinCloth: ress, returnCloth: [], maxReturn: '1', payStatus: res.result.pay_state })
                 
             } else {
                 handle();
@@ -195,11 +195,11 @@ export default class extends Component {
                     <div className="Itsprocessing-footer-left">                     
                         <span><b>*</b>撤单原因：</span><textarea className="Itsprocessing-footer-text" onChange={e => this.setState({ cause: e.target.value })}></textarea>
                     </div>                 
-                       <div className="Itsprocessing-footer-div" style={{ visibility: this.state.payStatus == '1' ? 'visible':'hidden'}}>
+                       <div className="Itsprocessing-footer-div" style={{ visibility: (this.state.payStatus == '1' || this.state.maxReturn == '0') ? 'visible' :'hidden'}}>
                         <span>现金退款：</span><input type="number" className='e-input' onChange={e => this.setState({ returnCash: e.target.value })}/><s>元</s>
                     </div>
                     <div className="Itsprocessing-footer-div">
-                        <div style={{ visibility: this.state.payStatus == '1' ? 'visible' : 'hidden',display:'inline-block' }}><span >卡退款：</span><input  type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> </div><b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
+                           <div style={{ visibility: (this.state.payStatus == '0' || this.state.maxReturn == '0') ? 'hidden':'visible',display:'inline-block' }}><span >卡退款：</span><input  type="number" className='e-input' onChange={e => this.setState({ returnCard: e.target.value })} /><s>元</s> </div><b className="no-save" onClick={this.props.closeView}>取消</b><b className="sure-save" onClick={this.doCompensate}>确定</b>
                     </div> 
                 </div> 
             </div>
