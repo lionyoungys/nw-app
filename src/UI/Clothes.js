@@ -102,9 +102,10 @@ class Items extends Component {
     handleCheckAll() {
         let len = this.props.checked.length
         ,   arr = [];
+        console.log(this.props.checked);
         for (let i = 0;i < len;++i) {
-            this.props.data[i].item_type.map((obj, index) => {
-                arr.push(i + '_' + index);
+            this.props.data[this.props.checked[i]].item_type.map((obj, index) => {
+                arr.push(this.props.checked[i] + '_' + index);
             });
         }
         this.setState({checked:arr});
