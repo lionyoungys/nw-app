@@ -19,7 +19,7 @@ export default class extends Component {
                     <td>{obj.uname}</td>
                     <td>{obj.user_mobile}</td>
                     <td>{obj.operation}</td>
-                    <td>{obj.status==0?'未使用':'已使用'}</td>
+                    <td>{obj.status==0?'未使用':obj.status==1?'已使用':'未激活'}</td>
                     <td>{obj.ordersn}</td>
                     <td>{obj.time}</td>
                 </tr>

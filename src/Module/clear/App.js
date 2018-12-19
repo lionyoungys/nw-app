@@ -236,7 +236,7 @@ export default class extends React.Component {
                     <button className="e-btn hangon-btn" onClick={this.onSearch}>查询</button>
                     <input type="text" className='e-input' value={this.state.value} onChange={e=>this.setState({value:e.target.value})} autoFocus={true}  placeholder='请输入或扫描衣物编码' ref={input => this.input = input} onKeyPress={this.onKeyPress}/>                       
             </div>         
-            <div className='clean'>                   
+            <div className='clean '>                   
                     <div className='e-box'>
                         <table className='e-table border'>
                             <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>洗后预估</th><th>工艺加价</th><th>单价</th><th>上传图片</th></tr></thead>

@@ -46,7 +46,7 @@ export default class extends React.Component {
                     tmp_arr.push({key:res.result[i].id, value:res.result[i].mname});
                 }
                 console.log(tmp_arr)
-                this.setState({select_shop:tmp_arr});
+                this.setState({select_shop:tmp_arr,sel_id:res.result.getObjectType(0, 'id', String).toString()});
                 //this.setState({select_shop:res.result.typeArray('mname'), })           
             }
         });
@@ -155,7 +155,7 @@ export default class extends React.Component {
                 </div>
                 <div className="clean laundry">
                    <div className="e-box">
-                        <table className='out-factory'>
+                        <table className='out-factory e-table border'>
                             <thead><tr><th>衣物编码</th><th>名称</th><th>颜色</th><th>瑕疵</th><th>品牌</th><th>衣挂号</th><th>洗后预估</th><th>单价</th><th>送返门店</th></tr></thead>
                             <Tbody  data={this.state.data} onChecked={this.onChecked} checked={this.state.checked}/>
                         </table>

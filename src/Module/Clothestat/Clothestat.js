@@ -32,7 +32,7 @@ export default class extends Component {
     }
 
     query(page) {
-       
+        page = page || this.state.page;
         let pram = {
             token: 'token'.getData(),
             start_time: this.state.startdate,

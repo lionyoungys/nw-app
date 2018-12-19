@@ -105,9 +105,9 @@ export default class extends React.Component {
     render() {      
         return (
             <Window title='入厂' onClose={this.props.closeView}>
-                <div className="clean">
+                <div className="laundry clean into">
                     <div className='e-box'>
-                        <table className="in-factory">
+                        <table className="e-table border in-factory">
                             <thead>
                                 <tr>
                                     <th>衣物编码</th>

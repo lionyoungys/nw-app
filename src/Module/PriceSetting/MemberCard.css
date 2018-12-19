@@ -4,6 +4,10 @@
     right: 10px;
     z-index: 1;
 }
+.price-setting-btn-area .e-btn.larger, .e-btn-b.larger{
+
+    width: 110px;
+}
 .price-setting-page-area{
     position: absolute;
     left: 10px;

@@ -160,11 +160,11 @@ export default class extends Component {
             <td style={{ maxWidth: '130px', lineHeight: '18px', margin: '0 5px'}}>{item.mname}</td>
             <td>{tool.date('Y-m-d', item.start_time)}</td>
             <td>{tool.date('Y-m-d', item.end_time)}</td>
-            <td >{item.status}</td>
+            <td >{item.status=='1'?'未开始':item.status=='2'?'进行中':'已结束'}</td>
             <td style={{ minWidth: '120px' }}>
-                {item.status=='未开始'?
+                {item.status=='1'?
                     <span><span className='e-blue' onClick={this.startuser} data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} className='e-blue' data-id={item.id}>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} data-id={item.id} className='e-blue'>详情</span></span>
-                :item.status=='进行中'?<span><span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue'>详情</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.suspend} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>中止</span></span>
+                :item.status=='2'?<span><span onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue'>详情</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.suspend} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>中止</span></span>
                 : <span  onClick={() => this.setState({ proDetailShow: true,id:item.id })} data-write={index} className='e-blue' data-id={item.id}>详情</span>  
             }
             </td>

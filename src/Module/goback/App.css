@@ -79,7 +79,7 @@
     height: 80px;
     position: relative;
 }
-.m-img-box img{width: 75px}
+.m-img-box img{width: 75px;height: 75px;}
 .upload {
     background: url(./images/upload-img.png) no-repeat;
     background-position: left center;
