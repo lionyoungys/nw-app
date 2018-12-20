@@ -160,7 +160,7 @@ class Login extends Component {
         console.log(this.state.remember)
     }
     login() {
-           api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd}, (res, ver) => {
+           api.post('login', {mid:this.state.merchant,mobile:this.state.name,passwd:this.state.passwd,version:nw.App.manifest.version}, (res, ver) => {
             if (ver && res) {
                 //return console.log(res);
                 var aname = res.aname;
