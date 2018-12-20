@@ -139,6 +139,13 @@ export default class extends Component {
                 }
             });
         }
+        if (this.state.getType == '6') {
+            return tool.ui.error({
+                msg: '请选择发放用户！', callback: (close, event) => {
+                    close();
+                }
+            });
+        }
         let arr = this.state.merSelectArr.typeArray('id');
         console.log(this.state.cid);
         var pram = {

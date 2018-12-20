@@ -95,7 +95,14 @@ export default class extends Component {
         });
     }
     reset(){
-        this.setState({discountname:'',creator:''});
+        this.setState({
+            type:'全部', //类型
+            status:'全部',   //状态
+            start_time:'',
+            end_time:'',
+            discountname:'',//优惠名称
+            creator:'',     //创建人
+        });
     }
     // 记录弹框
     record (e){

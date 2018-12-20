@@ -31,6 +31,7 @@ export default class extends Component {
                     mstatus:res.result.mstatus,
                     maddress:res.result.maddress,
                     get_type:res.result.money_type,
+                    info: res.result.mdesc,
                 });        
          }
          else{
@@ -52,12 +53,14 @@ export default class extends Component {
         } 
     }
     storesave(){
-        api.post('modInfo', {
-            token:'token'.getData(),
-            phone_number:this.state.phone_number,
-            mdesc:this.state.info,
-            money_type:this.state.get_type,
-        },(res, ver) => {
+        let parm = {
+            token: 'token'.getData(),
+            phone_number: this.state.phone_number,
+            mdesc: this.state.info,
+            money_type: this.state.get_type,
+        };
+        console.log(parm);
+        api.post('modInfo', parm ,(res, ver) => {
             if (ver && res) {
                 console.log(res);
                 tool.ui.success({callback:(close, event) => {
