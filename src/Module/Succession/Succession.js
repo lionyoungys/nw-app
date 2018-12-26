@@ -15,7 +15,8 @@ export default class extends Component {
             endtime:'',
             mlist:[{}]
         };    
-        this.successionHandle = this.successionHandle.bind(this);        
+        this.successionHandle = this.successionHandle.bind(this);
+        this.handlePrint = this.handlePrint.bind(this);      
     }; 
     // 获取数据
     componentDidMount(){
@@ -34,7 +35,7 @@ export default class extends Component {
         });       
     }
     // 交班网络请求
-     successionHandle() {
+    successionHandle() {
          api.post('successionHandle', {token: 'token'.getData() }, (res, ver, handle) => {
              console.log(res);
              handle();
@@ -44,15 +45,23 @@ export default class extends Component {
                 }                          
                 if (ver) { 
                     this.setState({list:res.result})                  
-                   let arrr = [{name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'}];
-                   for(let k in this.state.mlist){
-                       arrr.push({name:this.state.mlist[k].name,amount:this.state.mlist[k].amount,real_amount:this.state.mlist[k].real_amount,count:this.state.mlist[k].work_number})
-                   }
-                   console.log({data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime});
-                   EventApi.print('shift', {data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime}, 'printer'.getData());
+                    let arrr = [{name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'}];
+                    for(let k in this.state.mlist){
+                        arrr.push({name:this.state.mlist[k].name,amount:this.state.mlist[k].amount,real_amount:this.state.mlist[k].real_amount,count:this.state.mlist[k].work_number})
+                    }
+                    console.log({data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime});
+                    EventApi.print('shift', {data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime}, 'printer'.getData());
                 }
            });
-     }
+    }
+    handlePrint() {
+        let arrr = [{name:'收银类型', amount:'金额', real_amount:'实收额', count:'衣物数量'}];
+        for(let k in this.state.mlist){
+            arrr.push({name:this.state.mlist[k].name,amount:this.state.mlist[k].amount,real_amount:this.state.mlist[k].real_amount,count:this.state.mlist[k].work_number})
+        }
+        console.log({data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime});
+        EventApi.print('shift', {data:JSON.stringify(arrr), start:this.state.starttime, end:this.state.endtime}, 'printer'.getData());
+    }
     render() {
         var arr = this.state.list.map((item,index) =><tr>
           <td>{item.name}</td>
@@ -70,7 +79,9 @@ export default class extends Component {
                     <a>统计时间：{this.state.starttime} 至 {this.state.endtime}</a>
                     <a>操作员：{'aname'.getData()}</a>
                     </div>
-                    <button className='e-btn' onClick={this.successionHandle}>交班</button>
+                    <button className='e-btn' onClick={this.successionHandle} style={{marginLeft:'30px'}}>交班</button>
+                    &emsp;
+                    <button className='e-btn' onClick={this.handlePrint} style={{marginLeft:0}}>打印</button>
                 </div>
                 <table className='ui-table-base succession-tab'>
                     <thead>
