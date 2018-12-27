@@ -111,7 +111,7 @@ export default class extends Component {
                       </div>
                <div className='man-que-tab clo-tab'>
                    <div className='man-que-tab-one clo-sta-tab-one'> 
-                       <div class="Takeclothes-div-title operating-detail clo-title">类别合计</div>
+                       <div class="Takeclothes-div-title operating-detail clo-title">衣物合计</div>
                         <Table>
                           <thead>
                               <tr>

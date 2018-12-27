@@ -283,7 +283,7 @@
      * @return {boolean}
      */
     t.isNaN = function (val) {
-        return (isNaN(val) || '' == val);
+        return (isNaN(val) || null == val || '' == val);
     }
     //ui对象实现
 

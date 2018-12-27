@@ -43,14 +43,14 @@
 }
 .man-que-tab-one{
 
-    height: 35%;
+    height: 40%;
     width: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding-bottom: 10px;
 }
 .man-que-tab-two{
-    height: 65%;
+    height: 60%;
     width: 100%;
 }
 .man-que-tab-one>.ui-table{

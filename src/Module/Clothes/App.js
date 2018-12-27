@@ -37,7 +37,8 @@ export default class extends Component {
             cardList:[],
             data:[],    //本地存储数据
             card:{},    //卡数据
-            update:false    //用于判断衣物为添加还是修改
+            update:false,    //用于判断衣物为添加还是修改
+            item_index:null    //添加附件时，值为被添加附件的衣物索引
         };
         this.date = tool.date('Y-m-d');
         this.DATACODE = tool.code();
@@ -79,6 +80,7 @@ export default class extends Component {
         this.paymentClose = this.paymentClose.bind(this);
         this.delOrder = this.delOrder.bind(this);
         this.takeCost = this.takeCost.bind(this);
+        this.getTimeCode = this.getTimeCode.bind(this);
     }
 
     componentDidMount() {
@@ -123,6 +125,33 @@ export default class extends Component {
         });
     }
 
+    getTimeCode() {
+        if (null == this.state.item_index) {
+            let timeCode = (this.DATACODE + this.counter);
+            ++this.counter;
+            return timeCode;
+        } else {
+            let timeCode = (this.state.data[this.state.item_index].DATATAG + '-')
+            ,   tcLen = timeCode.length
+            ,   len = this.state.data.length
+            ,   number = 1
+            ,   index
+            ,   value;
+            for (let i = 0;i < len;++i) {
+                index = this.state.data[i].DATATAG.indexOf(timeCode);
+                if (-1 != index) {
+                    value = this.state.data[i].DATATAG.substr(tcLen);
+                    console.log(this.state.data[i].DATATAG, tcLen, value);
+                    if (!tool.isNaN(value) && value >= number) {
+                        number = (Number(value) + 1);
+                    }
+                }
+            }
+            ++this.state.data[this.state.item_index].accessory;
+            this.setState({item_index:null, data:this.state.data});
+            return timeCode + number;
+        }
+    }
     M1read(value) {
         let obj = {};
         if ('string' === typeof value && '' != value) {
@@ -174,7 +203,7 @@ export default class extends Component {
                 }
             );
         } else {
-            let timeCode = (this.DATACODE + this.counter)
+            let timeCode = this.getTimeCode()
             ,   data = {
                 DATATAG:timeCode,
                 clothing_number: timeCode, 
@@ -198,9 +227,9 @@ export default class extends Component {
                 has_discount: item.has_discount,    //是否打折
                 transfer:item.transfer,
                 min_transfer:item.min_transfer,
+                accessory:null == this.state.item_index ? 0 : null,
                 parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
-            ++this.counter;
             this.state.data.push(data);
             let itemTime = tool.date('Y-m-d', day);
             if ('' == time || time < itemTime) time = itemTime;
@@ -222,7 +251,7 @@ export default class extends Component {
                 {clothing_id:'', clothing_name:value.name, raw_price:value.price, deal_time:day, has_discount:has_discount}
             );
         } else {
-            let timeCode = (this.DATACODE + this.counter)
+            let timeCode = this.getTimeCode()
             ,   data = {
                 DATATAG:timeCode,
                 clothing_number: timeCode, 
@@ -244,9 +273,9 @@ export default class extends Component {
                 sign:'',
                 min_discount: 1,    //最低折扣率
                 has_discount: value.discount ? 1 : 0,    //是否打折
+                accessory:null == this.state.item_index ? 0 : null,
                 parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
-            ++this.counter;
             this.state.data.push(data);
         }
         this.setState({show:4, data:this.state.data, currentIndex:(this.state.data.length - 1), update:false});
@@ -270,6 +299,15 @@ export default class extends Component {
         ,   number = this.state.data[index].DATATAG;
         this.state.data.splice(index, 1);
         this.state.data.spliceByKeyVal('parent', number);
+        number = (number + '-');    //匹配附件前缀
+        let len = this.state.data.length;
+        for (let i = 0;i < len; ++i) {
+            if (-1 != this.state.data[i].DATATAG.indexOf(number)) {
+                this.state.data.splice(i, 1);
+                --i;
+                --len;
+            }
+        }
         this.setState({data:this.state.data});
     }
     copy(e) {
@@ -470,6 +508,7 @@ export default class extends Component {
             data[i].card_type = this.state.type;
             data[i].address = this.state.addr;
             data[i].card_number = this.state.number;
+            delete data[i].accessory;
             delete data[i].DATATAG;
             delete data[i].parent;
         }
@@ -603,6 +642,12 @@ export default class extends Component {
                     <td onClick={this.showUpdatePrice}>{parseFloat(obj.raw_price).toFixed(2)}</td>
                     <td><MathUI param={index} onAdd={this.clone} onSub={this.destory}>{count + 1}</MathUI></td>
                     <td>
+                        <span 
+                            className='e-blue' 
+                            onClick={() => this.setState({show:1, item_index:index})} 
+                            style={null == obj.accessory ? {display:'none'} : null}
+                        >附件（{obj.accessory}）</span>
+                        &emsp;
                         <span className='e-blue' onClick={this.copy}>复制</span>
                         &emsp;
                         <span className='e-red' onClick={this.del}>删除</span>
@@ -656,7 +701,7 @@ export default class extends Component {
                         <thead><tr>
                             <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'106px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
                             {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
-                            <th style={{minWidth:'77px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'80px'}}>数量</th><th style={{minWidth:'80px'}}>操作</th>
+                            <th style={{minWidth:'60px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'70px'}}>数量</th><th style={{minWidth:'107px'}}>操作</th>
                         </tr></thead>
                         <tbody>{html}</tbody>
                     </Table>

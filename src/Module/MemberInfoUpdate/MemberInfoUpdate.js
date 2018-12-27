@@ -40,11 +40,13 @@ export default class extends Component {
         this.setState({sex:value.value});
     }
     query(){
-        console.log(this.state.recharge_number)
+        console.log(this.state.recharge_number);
         api.post('readCard', {token:'token'.getData(),cardNumber:this.state.recharge_number}, (res, ver,handle) => {
+            console.log(res)
             if (ver && res) {
-                console.log(res)
-                this.setState({recharge_number:res.result[0].card_number,
+                
+                this.setState({
+                    recharge_number: res.result[0].recharge_number,
                     user_mobile:res.result[0].user_mobile,
                     user_name:res.result[0].user_name,
                     sex:res.result[0].sex,

@@ -18,6 +18,7 @@ export default class extends Component {
             nodatas:false,
             page: 1,
             count: 0,
+            cloCount:0,
         }  ;
         this.limit = 10; 
         this.query = this.query.bind(this);
@@ -32,15 +33,16 @@ export default class extends Component {
         }, (res, ver,handle) => {
             if (ver && res) {
                 console.log(res);
-                if(res.result.list.length>0){
+                if(res.result.list.length > 0){
                     this.setState({
                         list:res.result.list,
                         nodatas:false,
                         count:res.result.count,
+                        cloCount: res.result.work_number || '0',
                         page:page
                     })
                 }else{
-                    this.setState({nodatas:true,list:[],count:'0'})
+                    this.setState({ nodatas: true, list: [], count: '0', cloCount:'0'})
                 }
                   
             }else{
@@ -71,7 +73,7 @@ export default class extends Component {
             <Window title='前台情况' onClose={this.props.closeView}>   
                 <div className="ope-inc-head for-sta-head">
                     <a>统计时间：{tool.date('Y-m-d') +'  00：00：00'} 至{tool.date('Y-m-d  H：i：s')}</a>
-                    <a>衣物件数：{this.state.list.length}件</a>
+                    <a>衣物件数：{this.state.cloCount}件</a>
                 </div>
                 <div class="ui-check-res ReportLossQuery">已为您找到<b>{this.state.count}</b>条记录</div>
                 <div className='ui-table-base for-sta-tab'> 

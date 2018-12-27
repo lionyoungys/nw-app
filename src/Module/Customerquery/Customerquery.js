@@ -43,8 +43,10 @@ export default class extends Component {
                 console.log(res)
                 if (res.result.cardsType.length > 0) {
                     
-                    this.setState({card_name:res.result.cardsType[0].card_type ,types: res.result.cardsType.typeArray('card_type')});
-                    this.state.types.push('全部')
+                    let name = res.result.cardsType[0].card_type,
+                        types = res.result.cardsType.typeArray('card_type');
+                    types.unshift('全部');
+                    this.setState({ card_name: '全部' , types: types });
                     this.query();
                 }
             }else{
