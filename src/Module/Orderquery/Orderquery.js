@@ -63,8 +63,8 @@ export default class extends Component {
                         online:res.result.is_online.typeArray('name'),  
                         nodatas:false,                    
                     }) 
-                    this.state.orderostatus.push('全部');
-                    this.state.online.push('全部'); 
+                    this.state.orderostatus.unshift('全部');
+                    this.state.online.unshift('全部');
                     console.log(this.state.orderostatus,this.state.online)   
                     this.setState({orderostatus:this.state.orderostatus,online:this.state.online})                                                
                 }else{
