@@ -75,12 +75,12 @@ export default class extends Component {
         let clothes = this.state.clothes.map((item,index)=>
             <tr key={'item'+index}>
                 <td>{item.serialsn==null?item.ordersn:item.serialsn}</td>
-                <td>{item.clothing_number}</td>
-                <td>{item.clothing_name}</td>
-                <td>{item.clothing_color}</td>
-                <td>{item.grid_num}</td>
-                <td>{item.status.getItemStatusName()}</td>
-                <td>{item.deal_time == '1970-01-01'?'':item.deal_time}</td>
+                <td><span>{item.clothing_number}</span></td>
+                <td><span>{item.clothing_name}</span></td>
+                <td><span>{item.clothing_color}</span></td>
+                <td><span>{item.grid_num}</span></td>
+                <td><span>{item.status.getItemStatusName()}</span></td>
+                <td><span>{item.deal_time == '1970-01-01'?'':item.deal_time}</span></td>
                 <td>{item.user_name}</td>
                 <td>{item.user_mobile}</td>
                 <td>{item.card_number}</td>
@@ -137,7 +137,7 @@ export default class extends Component {
                     已为您找到
                     <label>{this.state.count}</label>条数据
                 </div>
-                <div className='clo-que-tab'>
+                <div className='clo-que-tab clothes_f'>
                     <Table>
                         <thead>
                             <tr>

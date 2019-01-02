@@ -76,6 +76,24 @@
     padding: 0px 16px 255px;
 }
 .clo-que-tab>.ui-table{
-
     height: 100%;
+}
+.clo-que-tab.clothes_f table tbody{overflow-x: auto}
+.clo-que-tab.clothes_f table tbody tr td:nth-child(1){width:125px}
+.clo-que-tab.clothes_f table tbody tr td:nth-child(2){min-height: 25px;width:113px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(3){min-height: 25px;width:78px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(4){min-height: 25px;width:78px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(5){min-height: 25px;width:78px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(6){min-height: 25px;width:78px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(7){min-height: 25px;width:113px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(8){min-height: 25px;width:78px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(9){min-height: 25px;width:100px }
+.clo-que-tab.clothes_f table tbody tr td:nth-child(10){min-height: 25px;width:100px }
+
+.clo-que-tab.clothes_f table tbody tr td span{
+    width: 100%;
+    min-height: 25px;
+    display: block;
+    word-break: break-all;
+    text-align: center;
 }
