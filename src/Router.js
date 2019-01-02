@@ -65,6 +65,7 @@ import Orderquery from './Module/Orderquery/Orderquery';    // 订单查询
 import OpenCashBox from './Module/OpenCashBox';    //开钱箱界面
 import Data6 from './Module/Data/App6';    //金熨斗数据导入6.0版本
 import Data4 from './Module/Data/App4';    //金熨斗数据导入4.0版本
+import DataZZ from './Module/Data/AppZZ';
 
 
 // 3.1新增 工厂端
@@ -88,6 +89,7 @@ export default {
     debt_pay:Debtpay,// 欠款补交
     commodity_sales:Commoditysales ,//商品销售
     data:Data,
+    data_zz:DataZZ,
     data2:Data2,
     data6:Data6,
     data4:Data4,

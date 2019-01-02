@@ -119,7 +119,7 @@ const Menus = [
             {value:'价格设置', view:'price_setting', id: 45, className:'price'},
             {value:'参数设置', view:'Parameter_Settings', id: 46, className:'param'},
             {value:'设备与打印机', view:'equipment_management', id: 47, className:'printer'},
-            //{value:'数据导入2',  view:'data', id: 48},
+            {value:'数据导入zz',  view:'data_zz', id: 48},
             {value:'数据导入',  view:'data2', className:'data'},
             {value:'金熨斗v4.0数据导入',  view:'data4', className:'data4'},
             //{value:'金熨斗v6.0数据导入',  view:'data6', className:'data4'},
