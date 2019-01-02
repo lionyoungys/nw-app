@@ -18,7 +18,7 @@
         KeyModelA: 0x60,    //验证A模块常量
         KeyModelB: 0x61,    //验证B模块常量
         writeKey: 'CBFBCFFEB6FFFF078069CBFBCFFEB6FF',    //写入平台密钥值:写入密钥值的规则:前12位(A密钥) + FF078069(8位填充值,无用途) + 后12位(B密钥);
-        KeyAList:['A6C2D6A69286', 'B88736B38429', 'CBFBCFFEB6FF'],    //A密钥值列表:0:菜篮子密钥,1:菜篮子正章定制版密钥,2:平台密钥设置密钥;
+        KeyAList:['A6C2D6A69286', 'B88736B38429', 'FFFFFFFFFFFF', 'CBFBCFFEB6FF'],    //A密钥值列表:0:菜篮子密钥,1:菜篮子正章定制版密钥,2:平台密钥设置密钥;
         KeyBList:['FFFFFFFFFFFF'],    //B密钥值列表
         Blocks:[
             {sn:4, cid:5, mid:6},    //默认数据对应块:卡号,卡ID,店铺ID,密钥key:7
