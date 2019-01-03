@@ -35,6 +35,9 @@ export default class extends Component {
     };  
     componentDidMount() {
         this.query();
+        this.needtype();
+    } 
+    needtype(){
         api.post('needInfo', {token:'token'.getData()}, (res, ver, handle) => {
             if (ver) {
                 console.log(res);
@@ -43,9 +46,8 @@ export default class extends Component {
             }else{
                 handle();
             }
-        }); 
-    } 
-   
+        });
+    }
     query(){
         let done;
         tool.ui.loading(handle => done = handle);
@@ -79,8 +81,8 @@ export default class extends Component {
             });
         } 
     }
-    showCate(){this.setState({show_cate:true});}
-    showAdd(){this.setState({show_add:true});}
+    showCate(){this.setState({show_cate:true}); this.needtype()}
+    showAdd(){this.setState({show_add:true}); this.needtype()}
     handleClick(e){
         this.setState({index:e.target.dataset.index});
     } 
@@ -92,7 +94,8 @@ export default class extends Component {
     }
 
     handleCheckItem(e){
-        this.setState({goods_index: (e.target.dataset.index || e.target.parentNode.dataset.index), show_mod:true});     
+        this.setState({goods_index: (e.target.dataset.index || e.target.parentNode.dataset.index), show_mod:true});
+        this.needtype();
     }
   
     render() {
