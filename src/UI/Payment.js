@@ -226,7 +226,7 @@ export default class extends Component {
                                          .get();    //设置项目数据
         let isZero = (0 == this.data.calc_amount)    //判断金额是否为零,为零时只能现金支付
         ,   gateway = (isZero ? 1 : this.state.gateway);    //支付方式
-        this.data = this.props.calculator.setDiscount('1' == gateway ? 100 : card.discount).get();
+        this.data = this.props.calculator.setDiscount(('1' == gateway || '2' == gateway || '3' == gateway) ? 100 : card.discount).get();
         //赋值数据于data
         this.data.gateway = gateway;
         this.data.card = card;
