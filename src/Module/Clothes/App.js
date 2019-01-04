@@ -299,24 +299,34 @@ export default class extends Component {
         ,   number = this.state.data[index].DATATAG;
         this.state.data.splice(index, 1);
         this.state.data.spliceByKeyVal('parent', number);
-        number = (number + '-');    //匹配附件前缀
         let len = this.state.data.length;
-        for (let i = 0;i < len; ++i) {
-            if (-1 != this.state.data[i].DATATAG.indexOf(number)) {
-                this.state.data.splice(i, 1);
-                --i;
-                --len;
+        if (-1 == number.indexOf('-')) {    //删除的不为附件的情况下
+            number = (number + '-');    //匹配附件前缀
+            for (let i = 0;i < len; ++i) {    //清除该项目下的所有附件
+                if (-1 != this.state.data[i].DATATAG.indexOf(number)) {
+                    this.state.data.splice(i, 1);
+                    --i;
+                    --len;
+                }
+            }
+        } else {    //删除附件的情况下
+            number = number.split('-')[0];
+            for (let i = 0;i < len;++i) {
+                if (number == this.state.data[i].DATATAG) {
+                    --this.state.data[i].accessory;
+                    break;
+                }
             }
         }
+        
         this.setState({data:this.state.data});
     }
     copy(e) {
-        let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index])
-        ,   timeCode = (this.DATACODE + this.counter);
-        item.DATATAG = timeCode;
-        item.clothing_number = timeCode;
+        let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index]);
+        item.DATATAG = this.getTimeCode();
+        item.clothing_number = item.DATATAG;
+        item.accessory = 0;
         item.parent = null;
-        ++this.counter;
         this.state.data.push(item);
         this.setState({data:this.state.data});
     }
@@ -646,7 +656,7 @@ export default class extends Component {
                             className='e-blue' 
                             onClick={() => this.setState({show:1, item_index:index})} 
                             style={null == obj.accessory ? {display:'none'} : null}
-                        >附件（{obj.accessory}）</span>
+                        >附件({obj.accessory})</span>
                         &emsp;
                         <span className='e-blue' onClick={this.copy}>复制</span>
                         &emsp;
