@@ -583,7 +583,7 @@ export default class extends Component {
         this.setState({coupons:[], activities:[], act_index:0, cou_index:0});
         this.delOrder(() => this.setState({oid:null, show:0}));
     }
-    handleClose() {this.setState({show:0, update:false})}
+    handleClose() {this.setState({show:0, update:false, item_index:null})}
     handleCancel() {this.setState({show:1})}
     tempUser() {
         if ('' === this.state.number && '' === this.state.phone && '' === this.state.name) return;
@@ -701,7 +701,7 @@ export default class extends Component {
                         <thead><tr>
                             <th style={{minWidth:'106px'}}>衣物编码</th><th style={{minWidth:'106px'}}>衣物名称</th><th style={{minWidth:'73px'}}>颜色</th>
                             {/*<th style={{minWidth:'76px'}}>瑕疵</th>*/}<th style={{minWidth:'74px'}}>品牌</th><th style={{minWidth:'80px'}}>洗后预估</th>
-                            <th style={{minWidth:'60px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'70px'}}>数量</th><th style={{minWidth:'107px'}}>操作</th>
+                            <th style={{minWidth:'60px'}}>工艺加价</th><th style={{minWidth:'57px'}}>单价</th><th style={{minWidth:'64px'}}>数量</th><th style={{minWidth:'113px'}}>操作</th>
                         </tr></thead>
                         <tbody>{html}</tbody>
                     </Table>
