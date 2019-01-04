@@ -468,7 +468,8 @@
     Array.prototype.spliceByKeyVal = function(key, value, obj) {
         var len = this.length
         ,   firstIndex = null    //匹配的首个索引
-        ,   lastIndex = null;    //匹配的末个索引
+        ,   lastIndex = null    //匹配的末个索引
+        ,   count = 0;    //删除的个数
         if ('object' === typeof obj) {
             obj.first = obj.first || false;
             obj.last = obj.last || false;
@@ -481,6 +482,7 @@
                     this.splice(i, 1);
                     --i;
                     --len;
+                    ++count;
                 } else {
                     if (obj.first && null === firstIndex) firstIndex = i;
                     if (obj.last) lastIndex = i;
@@ -488,14 +490,19 @@
             }
         }
         var delFirst = obj.first && null !== firstIndex;
-        if (delFirst) this.splice(firstIndex, 1);
+        if (delFirst) {
+            this.splice(firstIndex, 1);
+            ++count;
+        }
         if (obj.last && null !== lastIndex && firstIndex !== lastIndex) {
             if (delFirst) {
                 this.splice( (lastIndex - 1), 1 );
             } else {
                 this.splice(lastIndex, 1);
             }
+            ++count;
         }
+        return count;
     }
 
     /**

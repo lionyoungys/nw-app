@@ -125,8 +125,26 @@ export default class extends Component {
         });
     }
 
-    getTimeCode() {
-        if (null == this.state.item_index) {
+    getTimeCode(duplicate) {
+        if ('string' == typeof duplicate && -1 != duplicate.indexOf('-')) {
+            let arr = duplicate.split('-')
+            ,   len = this.state.data.length
+            ,   tcLen = (arr[0] + '-').length
+            ,   value;
+            arr[1] = (Number(arr[1]) + 1);
+            for (let i = 0;i < len;++i) {
+                if (arr[0] == this.state.data[i].DATATAG) {
+                    ++this.state.data[i].accessory;
+                } else if (-1 != this.state.data[i].DATATAG.indexOf(arr[0] + '-')) {
+                    value = this.state.data[i].DATATAG.substr(tcLen);
+                    if (!tool.isNaN(value) && value >= arr[1]) {
+                        arr[1] = (Number(value) + 1);
+                    }
+                }
+            }
+            this.setState({data:this.state.data});
+            return arr[0] + '-' + arr[1];
+        } else if (null == this.state.item_index) {
             let timeCode = (this.DATACODE + this.counter);
             ++this.counter;
             return timeCode;
@@ -135,11 +153,9 @@ export default class extends Component {
             ,   tcLen = timeCode.length
             ,   len = this.state.data.length
             ,   number = 1
-            ,   index
             ,   value;
             for (let i = 0;i < len;++i) {
-                index = this.state.data[i].DATATAG.indexOf(timeCode);
-                if (-1 != index) {
+                if (-1 != this.state.data[i].DATATAG.indexOf(timeCode)) {
                     value = this.state.data[i].DATATAG.substr(tcLen);
                     console.log(this.state.data[i].DATATAG, tcLen, value);
                     if (!tool.isNaN(value) && value >= number) {
@@ -283,22 +299,33 @@ export default class extends Component {
     showItem(e) {this.setState({show:1,currentIndex:e.target.parentNode.dataset.index,update:true})}
     clone(param) {
         let data = tool.clone(this.state.data[param]);
-        data.clothing_number = (this.DATACODE + this.counter);
+        data.DATATAG = this.getTimeCode(data.DATATAG);
+        data.clothing_number = data.DATATAG;
         data.parent = this.state.data[param].DATATAG;
         data.addition_remark = data.addition_price = data.addition_discount = '';
-        ++this.counter;
         this.state.data.push(data);
         this.setState({data:this.state.data});
     }
     destory(param) {
-        this.state.data.spliceByKeyVal('parent', this.state.data[param].DATATAG, {last:true});
+        let number = this.state.data[param].DATATAG
+        ,   count = this.state.data.spliceByKeyVal('parent', number, {last:true});
+        if (-1 != number.indexOf('-')) {
+            let len = this.state.data.length;
+            number = number.split('-')[0];
+            for (let i = 0;i < len;++i) {
+                if (number == this.state.data[i].DATATAG) {
+                    this.state.data[i].accessory -= count;
+                    break;
+                }
+            }
+        }
         this.setState({data:this.state.data});
     }
     del(e) {
         let index = e.target.parentNode.parentNode.dataset.index
         ,   number = this.state.data[index].DATATAG;
         this.state.data.splice(index, 1);
-        this.state.data.spliceByKeyVal('parent', number);
+        let count = this.state.data.spliceByKeyVal('parent', number);
         let len = this.state.data.length;
         if (-1 == number.indexOf('-')) {    //删除的不为附件的情况下
             number = (number + '-');    //匹配附件前缀
@@ -313,7 +340,7 @@ export default class extends Component {
             number = number.split('-')[0];
             for (let i = 0;i < len;++i) {
                 if (number == this.state.data[i].DATATAG) {
-                    --this.state.data[i].accessory;
+                    this.state.data[i].accessory -= (count + 1);
                     break;
                 }
             }
@@ -323,9 +350,9 @@ export default class extends Component {
     }
     copy(e) {
         let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index]);
-        item.DATATAG = this.getTimeCode();
+        item.DATATAG = this.getTimeCode(item.DATATAG);
         item.clothing_number = item.DATATAG;
-        item.accessory = 0;
+        item.accessory = (-1 == item.DATATAG.indexOf('-') ? 0 : null);
         item.parent = null;
         this.state.data.push(item);
         this.setState({data:this.state.data});
