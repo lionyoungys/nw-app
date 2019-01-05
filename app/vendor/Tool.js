@@ -524,10 +524,22 @@
          * @return {object} this
          */
         this.setDiscount = function (discount) {
-            if (!tool.isNaN(discount) && discount > 0 && discount < 100 && memory.dis_amount > 0 && has_discount) {
+            if (!tool.isNaN(discount) && discount > 0 && discount < 100 && has_discount) {
                 memory.discount = discount;
-                memory.amount = memory.no_dis_amount.add(memory.dis_amount.mul(discount).div(100));
-                memory.calc_amount = this.calc(memory.amount);
+                if (memory.debt > 0) {    //欠款时直接计算可折金额和不可折金额
+                    if (memory.dis_amount > 0) {
+                        memory.amount = memory.no_dis_amount.add(memory.dis_amount.mul(discount).div(100));
+                        memory.calc_amount = this.calc(memory.amount);
+                    }
+                } else {    //非欠款时遍历项目并计算其中可折金额及不可折金额并进行折扣计算
+                    memory.amount = 0;
+                    var amount;
+                    for (var i = 0;i < len;++i) {
+                        amount = this.getAmount(i);
+                        memory.amount = parseFloat( memory.amount.add(amount.no_dis_amount, amount.dis_amount.mul(discount).div(100)) );
+                        memory.calc_amount = this.calc(memory.amount);
+                    }
+                }
             } else {
                 memory.discount = 100;
             }
@@ -805,18 +817,18 @@
         this.coupon = function (coupon) {    //根据商户所选择的优惠券计算金额
             if (tool.isObject(coupon) && 0 == memory.debt && memory.calc_amount > 0 && parseFloat(memory.total) >= coupon.full_money) {    //非欠款的情况下可使用 0 < 总金额 >= 优惠券满足金额
                 if (1 == coupon.type) {    //现金券:抵价金额 > 0;
-                    //var balance = coupon.money;    //优惠券抵扣余额
-                    has_discount = false;
+                    if ('0' == coupon.whether) {
+                        has_discount = false;
+                    }
                     this.moneyOff(coupon.money, coupon.item_name);
                     memory.amount = 0;
                     for (var i = 0;i < size;++i) {
-                        // if (balance > 0 && -1 != data[i].clothing_name.inArray(coupon.item_name)) {
-                        //     balance = this.setDec(i, balance);
-                        // }
                         memory.amount = memory.amount.add(this.getTotal(i));
                     }
                 } else if (2 == coupon.type) {    //折扣券:优惠折扣 < 10折
-                    has_discount = false;
+                    if ('0' == coupon.whether) {
+                        has_discount = false;
+                    }
                     var discount = coupon.discount;
                     if (discount < 100 && discount > 0) {
                         discount = discount.div(100);    //优惠券折扣率,小数计算
