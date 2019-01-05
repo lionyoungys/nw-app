@@ -205,7 +205,7 @@ export default class extends Component {
                     <div className="app_cou_bottom"> <span><b>*参数设置:</b></span>适用品类总价满足 <input type='number' className='e-input' style={{ width: '50px' }} value={this.state.totalPrice} onChange={e => this.setState({ totalPrice: e.target.value })} /> 元；
                     {this.state.notiContent} <input type='number' className='e-input' style={{ width: '50px' }} disabled={this.state.couponTypeID == 4 ? 'disabled' : ''} value={this.state.subPrice} onChange={e => this.setState({ subPrice: e.target.value })} /> {this.state.notiContentUnit}</div>
                     <div className="app_cou_offer_user">
-                        <div style={{ height: '26px' }}>发放用户:</div>
+                        <div style={{ height: '26px' }}>使用限制:</div>
                         <div >
                             <label><input type='checkbox' className='e-checkbox' value='0' disabled={(this.state.couponTypeID == 4 || this.state.couponTypeID == 3) ? 'disabled' : ''} checked={this.state.getType == '0' ? true : false} onClick={this.selectMemPart} /> 不与优惠券同时使用</label>
                             <label><input type='checkbox' className='e-checkbox' value='1' disabled={(this.state.couponTypeID == 4 || this.state.couponTypeID == 3) ? 'disabled' : ''} checked={this.state.getType == '1' ? true : false} onClick={this.selectMemPart} /> 可以与优惠券同时使用</label>
