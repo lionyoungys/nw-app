@@ -458,13 +458,12 @@
          * @return {Object} this
          */
         this.setData = function (items) {
-            var len = items.length;
-            if (tool.isArray(items) && len > 0) {
-                this.clean();    //清除暂存
+            this.clean();    //清除暂存
+            size = items.length;
+            if (tool.isArray(items) && size > 0) {
                 data = tool.clone(items);
-                size = len;
                 var amount;
-                for (var i = 0;i < len;++i) {
+                for (var i = 0;i < size;++i) {
                     if (tool.isNaN(data[i].raw_price)) {
                         data[i].raw_price = 0;
                     }
@@ -534,7 +533,7 @@
                 } else {    //非欠款时遍历项目并计算其中可折金额及不可折金额并进行折扣计算
                     memory.amount = 0;
                     var amount;
-                    for (var i = 0;i < len;++i) {
+                    for (var i = 0;i < size;++i) {
                         amount = this.getAmount(i);
                         memory.amount = parseFloat( memory.amount.add(amount.no_dis_amount, amount.dis_amount.mul(discount).div(100)) );
                         memory.calc_amount = this.calc(memory.amount);
