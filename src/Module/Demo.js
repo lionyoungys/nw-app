@@ -29,6 +29,8 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
+        new QRCode(this.div, {text: "bitch, don't scan me!", width: 80, height: 80, correctLevel : QRCode.CorrectLevel.H});
+        new QRCode(this.div2, {text: "http://www.suxida.com.cn/", width: 80, height: 80, correctLevel : QRCode.CorrectLevel.H});
         api.post('clothes', {token:'token'.getData(), page:1, limit:10000}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
                 this.setState({data:res.result.type});
@@ -84,10 +86,6 @@ export default class extends React.Component {
         this.setState({values:this.state.values});
     }
     render() {
-        /*'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=475001989,366276207&fm=26&gp=0.jpg',
-                            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1951101960,3872257815&fm=26&gp=0.jpg',
-                            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2376860606,2887384089&fm=26&gp=0.jpg',
-                            'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=984849569,2956369117&fm=26&gp=0.jpg' */
         let arr = [
             { id: 're', name: 'df', img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=475001989,366276207&fm=26&gp=0.jpg'},
             { id: 're', name: 'df', img: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1951101960,3872257815&fm=26&gp=0.jpg'},
@@ -95,6 +93,9 @@ export default class extends React.Component {
         ];
         return (
             <Window title='偷窥厨房的窗口' onClose={this.props.closeView} padding={true}>
+                <div ref={div => this.div = div}></div>
+                <p></p>
+                <div ref={div => this.div2 = div}></div>
                 <Triangle/>
                 <button type='button' className='e-btn' onClick={this.handleClickForSuccess}>成功弹窗</button>&nbsp;
                 <button type='button' className='e-btn' onClick={this.handleCLickForWarn}>警告弹窗</button>&nbsp;
