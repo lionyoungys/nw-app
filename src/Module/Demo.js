@@ -29,7 +29,9 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
+        //文字二维码仅支持英文字符
         new QRCode(this.div, {text: "bitch, don't scan me!", width: 80, height: 80, correctLevel : QRCode.CorrectLevel.H});
+        //URL地址扫描
         new QRCode(this.div2, {text: "http://www.suxida.com.cn/", width: 80, height: 80, correctLevel : QRCode.CorrectLevel.H});
         api.post('clothes', {token:'token'.getData(), page:1, limit:10000}, (res, ver, handle) => {    //获取衣物列表
             if (ver) {
