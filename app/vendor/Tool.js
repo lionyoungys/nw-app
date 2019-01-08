@@ -842,6 +842,8 @@
                             memory.amount = memory.amount.add(_this.getTotal(i));
                         });
                     }
+                } else if (3 == coupon.type) {    //免洗券
+                    //免洗券逻辑处理
                 }
                 memory.calc_amount = this.calc(memory.amount);
             }
