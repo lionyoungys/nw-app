@@ -196,9 +196,9 @@ export default class extends Component {
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
             <td>
                 {item.status==0?
-                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span></span>
-                : <span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>  
+                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
+                :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
+                : <span><span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span> &nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span> </span>
             }
             </td>
         </tr>
@@ -227,8 +227,9 @@ export default class extends Component {
                     <label>开始时间：</label><input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.start_time} onChange={e=>this.setState({start_time:e.target.value})}/> 
                     - <input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                  </div>
-                 <div>    
-                    <button   className='e-btn-b' onClick={this.reset}>重置</button> &emsp; 
+                 <div>
+                     <button   className='e-btn' >常用卷</button>&emsp;
+                     <button   className='e-btn-b' onClick={this.reset}>重置</button> &emsp;
                     <button   className='e-btn' onClick={() =>this.setState({newincrease:true})}>新增</button>  &emsp;
                     <button   className='e-btn' onClick={this.query}>查询</button>  
                  </div>

@@ -517,6 +517,14 @@
             return parseFloat( data[index].raw_price.add(data[index].addition_no_price, data[index].addition_price) );
         }
 
+        //通过索引免费指定项目
+        this.free = function (index) {
+            data[index].raw_price = 0;
+            data[index].addition_price = 0;
+            data[index].addition_no_price = 0;
+            return this;
+        }
+
         /**
          * 通过折扣率计算折后价格
          * @param {number} discount 折扣率:取值范围1~100;例:100时为100%;1时为1%;
@@ -844,6 +852,17 @@
                     }
                 } else if (3 == coupon.type) {    //免洗券
                     //免洗券逻辑处理
+                    if ('0' == coupon.whether) {
+                        has_discount = false;
+                    }
+                    memory.amount = 0;
+                    var _this = this;
+                    this.matchName(coupon.item_name, function (i, matched) {
+                        if (matched) {
+                            _this.free(i);
+                        }
+                        memory.amount = memory.amount.add(_this.getTotal(i));
+                    });
                 }
                 memory.calc_amount = this.calc(memory.amount);
             }
