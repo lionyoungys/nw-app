@@ -466,12 +466,18 @@
                 for (var i = 0;i < size;++i) {
                     if (tool.isNaN(data[i].raw_price)) {
                         data[i].raw_price = 0;
+                    } else {
+                        data[i].raw_price = parseFloat(data[i].raw_price);
                     }
                     if (tool.isNaN(data[i].addition_no_price)) {
                         data[i].addition_no_price = 0;
+                    } else {
+                        data[i].addition_no_price = parseFloat(data[i].addition_no_price);
                     }
                     if (tool.isNaN(data[i].addition_price)) {
                         data[i].addition_price = 0;
+                    } else {
+                        data[i].addition_price = parseFloat(data[i].addition_price);
                     }
                     amount = this.getAmount(i);
                     memory.total = memory.total.add(amount.total);
@@ -597,6 +603,7 @@
             if (amount > data[index].raw_price) {    //判断当前阶段金额是否大于项目金额
                 amount = amount.sub(data[index].raw_price);
                 data[index].raw_price = 0;
+                console.log(amount, data[index].addition_no_price, amount > data[index].addition_no_price);
                 if (amount > data[index].addition_no_price) {    //判断当前阶段金额是否大于项目不可折附加费
                     amount = amount.sub(data[index].addition_no_price);
                     data[index].addition_no_price = 0;
@@ -615,6 +622,7 @@
                 data[index].raw_price = data[index].raw_price.sub(amount);
                 amount = 0;
             }
+            console.log(data[index]);
             return amount;
         }
 
