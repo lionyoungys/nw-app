@@ -121,7 +121,7 @@ export default class extends Component {
                     <Table>
                         <thead>
                             <tr>
-                                <th>流水号</th>
+                                <th>流水号/订单号</th>
                                 <th>衣物编码</th>
                                 <th>衣物名称</th>
                                 <th>颜色</th>

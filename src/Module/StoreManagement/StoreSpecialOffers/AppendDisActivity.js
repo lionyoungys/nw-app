@@ -18,6 +18,7 @@ export default class extends Component {
             couponTypeID:1,       
             cloSelTypeArr: [], //已选择衣物品类 
             getType: '0',//是否与优惠券通用
+            useWithCard:false,//允许与折扣卡同时使用
             cloTypeArr: [],
             merArr: [],
             merNameArr: [],
@@ -34,6 +35,7 @@ export default class extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.changeCouponType = this.changeCouponType.bind(this);
         this.selectMemPart = this.selectMemPart.bind(this);
+        this.selectWithCard = this.selectWithCard.bind(this);
         this.handleChoose = this.handleChoose.bind(this);
     }
     componentDidMount() {
@@ -119,6 +121,10 @@ export default class extends Component {
             this.setState({ getType: u })
         }
     }
+    selectWithCard(e) {
+        console.log(e)
+        this.setState({ useWithCard: e })
+    }
     //选择店铺处理
     handleChoose(e) {
         let value = e.target.innerText;
@@ -185,7 +191,7 @@ export default class extends Component {
     }
     render() {
         return (
-            <Dish title='新增优惠活动' onClose={this.props.onClose} width="690" height="400">
+            <Dish title='新增优惠活动' onClose={this.props.onClose} width="690" height="440">
                 <div className="app_cou_content">
                     <div className="app_cou_left">
                         <div> <span><b>*</b>活动名称:</span><input type='text' className='e-input' placeholder='请输入活动名称' value={this.state.couponName} onChange={e => this.setState({ couponName: e.target.value })} /></div>
@@ -215,6 +221,9 @@ export default class extends Component {
                     <div className="app_cou_use_role">
                         <div>使用规则:</div>
                         <textarea className='e-textarea' placeholder='请输入活动使用规则' rows='10' cols='50' value={this.state.useRole} onChange={e => this.setState({ useRole: e.target.value })}></textarea>
+                        <div style={{marginLeft:'86px',marginTop:'80px', height: '26px' }}>
+                            <label><input type='checkbox' className='e-checkbox' checked={this.state.useWithCard} onClick={e=>this.selectWithCard(e.target.checked)} />允许与折扣卡同时使用</label>
+                        </div>
                     </div>
                     <div className='app_cou_btn'>
                         <button type='button' className='e-btn' onClick={this.handleClick}>提交</button>

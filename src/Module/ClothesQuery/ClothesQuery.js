@@ -16,7 +16,7 @@ export default class extends Component {
         this.state = {show:false,
             start_time:tool.date('Y-m-d'),
             end_time:tool.date('Y-m-d'),
-            status:'未取走',
+            status:'全部',
             serialsn:'',
             user_name:'',
             cardNumber:'',
@@ -46,7 +46,7 @@ export default class extends Component {
             token:'token'.getData(),
             start_time:this.state.start_time,
             end_time:this.state.end_time,
-            status:this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
+            status:this.state.status=='全部'?'':this.state.status=='未取走'?'3':this.state.status=='已取走'?'4':'5',
             serialsn:this.state.serialsn,
             user_name:this.state.user_name,
             cardNumber:this.state.cardNumber,
@@ -91,7 +91,7 @@ export default class extends Component {
                 <div className='clothesquery_top'> 
                     <div className='clothesquery_top_one'>
                         <div>
-                            <span>&nbsp;衣物状态：</span><Select  option={['未取走','已取走','已撤单']} value={this.state.status} onChange={value => this.setState({status:value.value})}/>
+                            <span>&nbsp;衣物状态：</span><Select  option={['全部','未取走','已取走','已撤单']} value={this.state.status} onChange={value => this.setState({status:value.value})}/>
                         </div> 
                         <div>
                             <span>&nbsp;&emsp;&emsp;姓名：</span><input type='text' className='e-input' onChange={e => this.setState({user_name:e.target.value})}/>

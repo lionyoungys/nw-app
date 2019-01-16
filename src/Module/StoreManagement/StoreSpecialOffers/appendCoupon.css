@@ -77,13 +77,21 @@
 .app_cou_use_role textarea{
 
     float: left;
-    width: 540px;
+    width: 565px;
     height: 70px;
+}
+.app_cou_btn{
+
+    margin-bottom: 10px;
+    height: 40px;
+    position: absolute;
+    bottom: -5px;
+    right: 29px;
+    
 }
 .app_cou_btn button{
 
     float: right;
-    margin-right: 20px;
 }
 .app_cou_content .app-cou-sel-clo {
 
@@ -100,4 +108,15 @@
     outline: none;
     display: inline-block;
     overflow-y: scroll;
+}
+.link_img_ewm{
+
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }

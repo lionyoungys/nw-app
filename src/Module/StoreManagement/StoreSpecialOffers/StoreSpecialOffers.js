@@ -11,9 +11,8 @@ import Nodata from '../../../UI/nodata';
 import AppendCoupon from './AppendCoupon';
 import Log from './Log';
 import Record from './Record';
+import FindLink from './FindLink'
 import SalePromotionDetail from '../SalePromotion/SalePromotionDetail';
-
-
 const token = 'token'.getData();
 export default class extends Component {   
     constructor(props) {
@@ -21,6 +20,7 @@ export default class extends Component {
         this.state={
             newincrease:false,
             detaiCouShow:false,
+            link:false,//查看链接
             type:'全部', //类型
             status:'全部',   //状态
             start_time:'',
@@ -45,6 +45,7 @@ export default class extends Component {
             startime:'', // 开始时间 
             endtime:'', // 结束时间
             id:'',//选中行id
+            url:'',//选中链接
         } 
         this.onClose = this.onClose.bind(this);
         this.editCouClose = this.editCouClose.bind(this);
@@ -54,6 +55,7 @@ export default class extends Component {
         this.record = this.record.bind(this);   //查看使用记录 
         this.log = this.log.bind(this) ;   //查看日志
         this.startuser = this.startuser.bind(this);         //启用优惠券
+        this.link = this.link.bind(this);
     }
     componentDidMount() {
         this.query();
@@ -182,6 +184,21 @@ export default class extends Component {
         console.log(id);
         this.setState({ cid: id, detaiCouShow:true})
     }
+    //查看链接
+    link(e){
+        e.stopPropagation();
+        let url = e.target.dataset.id;
+        // console.log('1111'+e.target.dataset.id);
+        if (!tool.isSet(url)){
+
+            return tool.ui.error({
+                title: '提示', msg: '暂无链接查询', button: ['确定'], callback: (close, value) => {
+                    close();
+                }
+            });
+        } 
+        this.setState({url:url, link:true})
+    }
     render(){   
         console.log(this.state.on_coupon)     
         let list =this.state.arr.map((item,index)=>
@@ -196,9 +213,9 @@ export default class extends Component {
             <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
             <td>
                 {item.status==0?
-                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
-                :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
-                : <span><span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span> &nbsp;&nbsp;<span   data-write={index} className='e-blue' data-id={item.id}>查看链接</span> </span>
+                        <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span  onClick={this.link}  data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
+                :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span  onClick={this.link} data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
+                            : <span><span onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span> &nbsp;&nbsp;<span onClick={this.link} data-url={item.id} className='e-blue' data-id={item.id}>查看链接</span> </span>
             }
             </td>
         </tr>
@@ -228,9 +245,9 @@ export default class extends Component {
                     - <input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                  </div>
                  <div>
-                     <button   className='e-btn' >常用卷</button>&emsp;
-                     <button   className='e-btn-b' onClick={this.reset}>重置</button> &emsp;
-                    <button   className='e-btn' onClick={() =>this.setState({newincrease:true})}>新增</button>  &emsp;
+                     <button   className='e-btn' >常用卷</button>&nbsp;
+                     <button   className='e-btn-b' onClick={this.reset}>重置</button> &nbsp;
+                    <button   className='e-btn' onClick={() =>this.setState({newincrease:true})}>新增</button>  &nbsp;
                     <button   className='e-btn' onClick={this.query}>查询</button>  
                  </div>
               </div>            
@@ -270,6 +287,9 @@ export default class extends Component {
                 }
                 {
                 this.state.on_coupon && <SalePromotionDetail id={this.state.id} index ='1' onClose={this.onClose}  />
+                }
+                {
+                    this.state.link && <FindLink url={this.state.url} onClose={() => this.setState({ link: false })}/>
                 }
         </div> 
         );
