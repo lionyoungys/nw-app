@@ -41,7 +41,19 @@ export default class extends Component {
         this.setTypeName = this.setTypeName.bind(this);
     }
     componentDidMount() {
-
+        console.log(this.props.data_id)
+        if(this.props.data_id=='1'){
+            this.setState({couponName:"5元现金卷",couponType:"现金卷",totalPrice:'30'});
+        }else if(this.props.data_id=='2'){
+            this.setState({couponName:"10元现金卷",couponType:"现金卷",totalPrice:'30'});
+        }else if(this.props.data_id=='3'){
+            this.setState({couponName:"20元现金卷",couponType:"现金卷",totalPrice:'30'});
+        }else if(this.props.data_id=='4'){
+            this.setState({couponName:"7折折扣卷",couponType:"折扣卷",notiPre: '总价满足', notiContent: ' 元；可享受', notiContentUnit: ' 折',totalPrice:'50',subPrice:'7'});
+        }else if(this.props.data_id=='5'){
+            this.setState({couponName:"8折折扣卷",couponType:"折扣卷",notiPre: '总价满足', notiContent: ' 元；可享受', notiContentUnit: ' 折',totalPrice:'50',subPrice:'8'});
+        }
+        else {   ;
         let cid =  this.props.data || '';
         if (cid) {
             this.setState({cid:cid});
@@ -93,7 +105,7 @@ export default class extends Component {
                 }
             }
         });
-
+        }
     }
     changeCouponType(obj){
         let type = obj.value;

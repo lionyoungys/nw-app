@@ -46,6 +46,7 @@ export default class extends Component {
             endtime:'', // 结束时间
             id:'',//选中行id
             url:'',//选中链接
+            numberid:''//编号
         } 
         this.onClose = this.onClose.bind(this);
         this.editCouClose = this.editCouClose.bind(this);
@@ -56,17 +57,25 @@ export default class extends Component {
         this.log = this.log.bind(this) ;   //查看日志
         this.startuser = this.startuser.bind(this);         //启用优惠券
         this.link = this.link.bind(this);
+        this.commonRoll = this.commonRoll.bind(this); //常用卷
+        this.immediateUse = this.immediateUse.bind(this);//立即使用
     }
     componentDidMount() {
         this.query();
     }
     onClose(){
         this.setState({ newincrease: false,on_coupon:false});
-        this.query();
     }
     editCouClose(){
         this.setState({ detaiCouShow: false });
         this.query();
+    }
+    //立即使用
+    immediateUse(e){
+        e.stopPropagation();
+        let id=e.target.dataset.id;
+        console.log(id);
+        this.setState({ newincrease: true,numberid:id});
     }
     query(){
         let params={
@@ -184,6 +193,18 @@ export default class extends Component {
         console.log(id);
         this.setState({ cid: id, detaiCouShow:true})
     }
+    //常用卷
+    commonRoll(){
+         console.log("bbbbbb");
+         this.setState({arr:[
+                 {id:1,type:1,name:'5元现金卷',remarks:'满30可立减xx元',stock:'0',receive:'0',start_time:'',end_time:'',status:'3'},
+                 {id:2,type:1,name:'10元现金卷',remarks:'满30可立减xx元',stock:'0',receive:'0',start_time:'',end_time:'',status:'3'},
+                 {id:3,type:1,name:'20元现金卷',remarks:'满30可立减xx元',stock:'0',receive:'0',start_time:'',end_time:'',status:'3'},
+                 {id:4,type:2,name:'7折折扣卷',remarks:'满50打7折',stock:'0',receive:'0',start_time:'',end_time:'',status:'3'},
+                 {id:5,type:2,name:'8折折扣卷',remarks:'满50打8折',stock:'0',receive:'0',start_time:'',end_time:'',status:'3'}
+
+             ]});
+    }
     //查看链接
     link(e){
         e.stopPropagation();
@@ -202,7 +223,7 @@ export default class extends Component {
     render(){   
         console.log(this.state.on_coupon)     
         let list =this.state.arr.map((item,index)=>
-            <tr key={'item' + index} data-index={index} onClick={() => this.setState({ on_coupon: true, id: item.id })}>
+            <tr key={'item' + index} data-index={index} onClick={item.status==3?"":() => this.setState({ on_coupon: true, id: item.id })}>
             <td>{item.id}</td>
             <td>{item.type==1?'现金券':'折扣券'}</td>
             <td>{item.name}</td>
@@ -210,13 +231,14 @@ export default class extends Component {
             <td>{item.stock}\{item.receive}</td>
             <td>{item.start_time}</td>
             <td>{item.end_time}</td>
-            <td>{item.status==0?'未启用':item.status==1?'已启用':'已过期'}</td>
+            <td>{item.status==0?'未启用':item.status==1?'已启用':item.status==2?'已过期':'未启用'}</td>
             <td>
                 {item.status==0?
                         <span><span onClick={this.startuser} data-write={index} className='e-blue' data-id={item.id}>启用</span>&nbsp;&nbsp;<span onClick={this.editCoupon} data-write={index} data-id={item.id} className='e-blue'>修改</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span  onClick={this.link}  data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
                 :item.status==1?<span><span  onClick={this.record} data-write={index} className='e-blue' data-id={item.id} data-status={item.status} data-type={item.type}>记录</span>&nbsp;&nbsp;<span  onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span>&nbsp;&nbsp;<span  onClick={this.link} data-write={index} className='e-blue' data-id={item.id}>查看链接</span></span>
-                            : <span><span onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span> &nbsp;&nbsp;<span onClick={this.link} data-url={item.id} className='e-blue' data-id={item.id}>查看链接</span> </span>
-            }
+                : item.status==2? <span><span onClick={this.log} data-write={index} className='e-blue' data-id={item.id}>日志</span> &nbsp;&nbsp;<span onClick={this.link} data-url={item.id} className='e-blue' data-id={item.id}>查看链接</span> </span>
+                :<span className='e-blue' onClick={this.immediateUse} data-id={item.id}>立即使用</span>
+                }
             </td>
         </tr>
     );
@@ -245,7 +267,7 @@ export default class extends Component {
                     - <input type="date"  className='e-date storespecialofferstop_datewidth' value = {this.state.end_time} onChange={e=>this.setState({end_time:e.target.value})}/>
                  </div>
                  <div>
-                     <button   className='e-btn' >常用卷</button>&nbsp;
+                     <button   className='e-btn' onClick={this.commonRoll}>常用卷</button>&nbsp;
                      <button   className='e-btn-b' onClick={this.reset}>重置</button> &nbsp;
                     <button   className='e-btn' onClick={() =>this.setState({newincrease:true})}>新增</button>  &nbsp;
                     <button   className='e-btn' onClick={this.query}>查询</button>  
@@ -274,7 +296,7 @@ export default class extends Component {
                 </Table>
                 </div>
                 {
-                    this.state.newincrease && <AppendCoupon onClose={this.onClose} />
+                    this.state.newincrease && <AppendCoupon onClose={this.onClose} data_id={this.state.numberid}/>
                 }
                 {
                     this.state.record_list.length>0 && <Record data = {this.state.record_list} onClose={() => this.setState({record_list:[]})} />
