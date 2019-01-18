@@ -43,6 +43,7 @@ export default class extends React.Component {
                 {name:'其他收费', api:'new_merchant_other', total:0, count:0, data:[]},
                 {name:'退赔类别', api:'new_merchant_compensate_type', total:0, count:0, data:[]},
                 {name:'特殊处理', api:'new_merchant_addition', total:0, count:0, data:[]},
+                {name:'系统参数', api:'new_system_param', total:0, count:0, data:[]},
                 {name:'导轨信息表A', api:'new_merchant_grid_num_a', total:0, count:0, data:[]},
                 {name:'导轨信息表B', api:'new_merchant_grid_num_b', total:0, count:0, data:[]},
                 {name:'导轨信息表C', api:'new_merchant_grid_num_c', total:0, count:0, data:[]},
