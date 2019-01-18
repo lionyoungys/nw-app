@@ -88,7 +88,7 @@ export default class extends Component {
         }
         let lists = this.state.list.map((item,index) =>
            <tr key={index}>
-              <td>{item.serialsn}</td>
+              <td>{item.serialsn==null||item.serialsn==''?item.ordersn:item.ordersn==null||item.ordersn==''?item.serialsn:item.ordersn}</td>
               <td>{item.clothing_number}</td>
               <td>{item.clothing_name}</td>
               <td>{item.clothing_color}</td>

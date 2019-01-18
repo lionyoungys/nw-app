@@ -296,7 +296,7 @@ export default class extends Component {
                 </Table>
                 </div>
                 {
-                    this.state.newincrease && <AppendCoupon onClose={this.onClose} data_id={this.state.numberid} onQuery={this.query}/>
+                    this.state.newincrease && <AppendCoupon onClose={this.onClose} data_id={this.state.numberid} />
                 }
                 {
                     this.state.record_list.length>0 && <Record data = {this.state.record_list} onClose={() => this.setState({record_list:[]})} />
@@ -305,7 +305,7 @@ export default class extends Component {
                     this.state.log_list.length >0 && <Log  data = {this.state.log_list} onClose={() => this.setState({log_list:[]})} />
                 }
                 {
-                this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} onQuery={this.query}/>
+                this.state.detaiCouShow && <AppendCoupon data={this.state.cid} onClose={this.editCouClose} />
                 }
                 {
                 this.state.on_coupon && <SalePromotionDetail id={this.state.id} index ='1' onClose={this.onClose}  />
