@@ -41,7 +41,9 @@ export default class extends Component {
         this.setTypeName = this.setTypeName.bind(this);
     }
     componentDidMount() {
-        console.log(this.props.data_id)
+        if (this.props.data_id==undefined){
+            this.setState({totalPrice:'',subPrice:'',couponName:'',couponType: '现金券'});
+        } else
         if(this.props.data_id=='1'){
             this.setState({couponName:"5元现金卷",couponType:"现金卷",totalPrice:'30'});
         }else if(this.props.data_id=='2'){
@@ -53,19 +55,18 @@ export default class extends Component {
         }else if(this.props.data_id=='5'){
             this.setState({couponName:"8折折扣卷",couponType:"折扣卷",notiPre: '总价满足', notiContent: ' 元；可享受', notiContentUnit: ' 折',totalPrice:'50',subPrice:'8'});
         }
-        else {   ;
         let cid =  this.props.data || '';
         if (cid) {
             this.setState({cid:cid});
         }
-        console.log(cid,1111);
+        console.log(cid);
         api.post(cid ?'CouponDetail' :'addCoupon_getDate', {
             token: 'token'.getData(),
             cid:cid,
         }, (res, ver) => {
             console.log(res)
             if (ver && res) {
-                
+                console.log("aa"+cid);
                 if (cid) {//存在优惠券id
                     
                     //根据选择店铺id进行处理
@@ -96,16 +97,14 @@ export default class extends Component {
                         notiContentUnit: coupon.type == '1' ? ' 元' : coupon.type == '2' ? ' 折':'',//元/折
                         customMobile: coupon.user_mobile,
                         getType: coupon.send_type,
-                        useRole: coupon.remarks, 
+                        useRole: coupon.remarks,
                     })
                     this.setTypeName(coupon.send_type);
-
                 }else{
                     this.setState({ cloTypeArr: res.result.item_name, merArr: res.result.merchant, merNameArr: res.result.merchant.typeArray('mname')})
                 }
             }
         });
-        }
     }
     changeCouponType(obj){
         let type = obj.value;
@@ -250,7 +249,7 @@ export default class extends Component {
                 tool.ui.success({
                     callback: (close, event) => {
                         close();
-                        'function' == typeof this.props.onClose && this.props.onClose();
+                        'function' == typeof this.props.onClose && this.props.onClose()&&this.props.onQuery;
                     }
                 });
             } else {
