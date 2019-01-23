@@ -41,13 +41,20 @@ export default class extends Component {
                     unit:'needle_printer_unit'.getData() || 'pt',
                     id:'needle_printer'
                 },    //针式打印机
+                {
+                    name:'a4_printer'.getData(), 
+                    width:'a4_printer_width'.getData() || '58',
+                    font_size:'a4_printer_font_size'.getData() || '11',
+                    unit:'a4_printer_unit'.getData() || 'pt',
+                    id:'a4_printer'
+                },    //a4纸打印机
                 {name:'m1_reader'.getData(), id:'m1_reader'},    //射频读卡器
                 {name:'open_case_printer'.getData(), id:'open_case_printer'}    //钱箱连接打印机
             ],
             M1data:['SDT-HA'],
             data:['无']    //打印机列表
         }
-        this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '针式打印机', '射频读卡器', '钱箱'];
+        this.tabs = ['小票打印机', '水洗标签打印机', '不干胶标签打印机', '针式打印机', 'A4纸打印机', '射频读卡器', '钱箱'];
         this.units = ['pt', 'px'];
         this.style = {marginLeft:'84px'};
         this.selectStyle = {width:'416px'};
@@ -98,11 +105,13 @@ export default class extends Component {
 
     print() {
         if (1 == this.state.checked) {
-            EventApi.print('code3',null, this.state.printers[this.state.checked].name)
+            EventApi.print('code3',null, this.state.printers[this.state.checked].name);
         } else if (2 == this.state.checked) {
-            EventApi.print('test2',null, this.state.printers[this.state.checked].name)
+            EventApi.print('test2',null, this.state.printers[this.state.checked].name);
+        } else if (4 == this.state.checked) {
+            EventApi.print('a4',null, this.state.printers[this.state.checked].name);
         } else {
-            EventApi.print('test',null, this.state.printers[this.state.checked].name)
+            EventApi.print('test',null, this.state.printers[this.state.checked].name);
         }
     }
     open() {EventApi.open_case()}
@@ -125,8 +134,8 @@ export default class extends Component {
     }
 
     render() {
-        let show = this.state.checked < 4
-        ,   isM1 = 4 == this.state.checked
+        let show = this.state.checked < 5
+        ,   isM1 = 5 == this.state.checked
         ,   printer = this.state.printers[this.state.checked];
         return (
             <Window title='设备管理' onClose={this.props.closeView} width="500" height='240'>
@@ -153,7 +162,7 @@ export default class extends Component {
                     (<button style={this.style} type='button' className='e-btn larger' onClick={this.M1Read}>测试读卡</button>)
                     :
                     (
-                        5 == this.state.checked
+                        6 == this.state.checked
                         ?
                         (<div style={this.style}>
                             <button type='button' className='e-btn larger' onClick={this.printerSetting}>打印机设置</button>

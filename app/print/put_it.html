@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>质检打印</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        #container{
+            width: 7.8cm;
+            height: 2.8cm;
+            margin: auto;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            overflow: hidden;
+        }
+        #container>div{
+            height: 100%;
+            width: 50%;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        #container>div:first-child{float: left;border-right: 1px dashed #000}
+        #container>div:last-child{float: right}
+        .img{
+            width: 100%;
+            height: .8cm;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            padding: 0 .2cm
+        }
+        .img>img{width: 100%; height:.8cm}
+        .sn{padding-top: .2cm}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <div style="text-align:center" id="mname"></div>
+            <div>衣物编号:</div>
+            <div class="img"><img id="sn_code"/></div>
+            <div class="sn"></div>
+        </div>
+        <div>
+            <div style="text-align:center" id="name"></div>
+            <div style="text-align:right" id="put_sn"></div>
+            <div class="img"><img id="put_sn_code"/></div>
+            <div class="sn"></div>
+        </div>
+    </div>
+    <script src="JsBarcode.min.js"></script>
+    <script src="common.js"></script>
+    <script>
+    //name:衣物名称,color:衣物颜色,number:衣物格架号,sn:衣物编码,user:用户名
+    _.init(function() {
+        _.inner('#mname', '测试店铺');
+        _.barcode('#sn_code', '231456745631542987');
+        _.inner('#name', '衬衫');
+        _.inner('#put_sn', '1151541');
+        _.barcode('#put_sn_code', '1151541');
+        _.inner('.sn', '231456745631542987');
+    });
+    </script>
+</body>
+</html>

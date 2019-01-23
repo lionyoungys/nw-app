@@ -3,7 +3,7 @@
     const { execFileSync } = window.require('child_process');
     var e = {
         win:nw.Window.get(),
-        printPageNames:['code2', 'code3', 'test2', 'put_it_on'],
+        printPageNames:['code2', 'code3', 'test2', 'put_it_on', 'put_it', 'a4', 'a4_demo'],
         printPageQueue:[],    //打印队列
         printPageLock:false,      //打印线程锁
     };

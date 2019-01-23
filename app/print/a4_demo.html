@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A4单据打印</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        .a4{
+            width: 20cm;
+            height:29cm;
+            background-color: #f9f9f9;
+            position: relative;
+            margin: 0 auto;
+            padding-top: 1cm;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            overflow: hidden;
+            text-align: center;
+        }
+        p {padding: .2cm .4cm;text-align: center}
+        #merchant, #total{float: left}
+        #now, #received_by{float: right}
+        table{margin: 0 auto;min-width: 16cm;max-width: 20cm;}
+        table th, table td{
+            min-width: 1cm;
+            border: 1px solid #000;
+        }
+        table th{background:#ccc}
+        table tr>th:nth-child(2), table tr>td:nth-child(2){min-width: 3cm}
+        td>div{
+            font-size: 16px;
+            line-height: .8;
+        }
+        td>div:first-child{padding: .08cm .2cm 0}
+        td>div:last-child{padding: 0 0 .08cm}
+        td>div>img{
+            width: 3.8cm;
+            height: .4cm;
+        }
+        footer{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 0 2cm;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="a4">
+        <h3>出厂衣物清单</h3>
+        <p><span id="merchant">门店:测试门店</span>出厂批次号:<span id="batch">190116144509</span><span id="now">打印日期:2019-01-15 14:29:23</span></p>
+        <table>
+            <thead><tr><th>条码</th><th>名称</th><th>附件</th><th>数量</th><th>颜色</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><img/></td>
+                    <td>羽绒衫棉服短</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>红色</td>
+                </tr>
+            </tbody>
+        </table>
+        <footer>
+            <span id="total">总件数:25</span>
+            第1页,共1页
+            <span id="received_by">接收人:______________</span>
+        </footer>
+    </div>
+    <script src="JsBarcode.min.js"></script>
+    <script src="common.js"></script>
+    <script>
+        _.init(function() {
+            var barcodeConfig = {height:16, margin:0, displayValue:false}
+            ,   tbody = _.first('tbody')
+            ,   html = '';
+            for (var i = 0;i < 28;++i) {
+                html += '<tr><td><div><img/></div><div>10061201021401</div></td>' + 
+                    '<td>羽绒衫棉服短</td>' + 
+                    '<td></td><td>1</td><td>红色</td></tr>';
+            }
+            _.inner(tbody, html);
+            _.barcode('img', '10061201021401', barcodeConfig);
+            /*_.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
+            _.barcode('#code', _.GET.sn);
+            _.inner('#sn', '编码：' + _.GET.sn);
+            _.inner('#name', _.GET.name + ' ' + _.GET.color);
+            _.inner('#number', '衣挂号：' + _.GET.number);*/
+        });
+    </script>
+</body>
+</html>

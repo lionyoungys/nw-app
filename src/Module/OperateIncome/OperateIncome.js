@@ -46,8 +46,8 @@ export default class extends Component {
             <Window title='经营日报' onClose={this.props.closeView}>  
                 <div className="ope-inc-head">
                     <a>统计时间：{this.state.startdate} 至 {this.state.enddate}</a>
-                    {/* <button className='e-btn' onClick={this.print}>打印</button> */}
                     <a>操作员：{'aname'.getData()}</a>
+                    <button className='e-btn'>打印</button>
                 </div>
                 {/* 表格部分 欠费衣物信息*/}
                 <div className='ope-inc-tab'>

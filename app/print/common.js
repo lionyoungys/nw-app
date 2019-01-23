@@ -38,7 +38,7 @@
             }
             if ('function' === typeof func) window.onload = func;
         },
-        barcode:function(elem, code) {'function' === typeof JsBarcode && JsBarcode(elem, code, {displayValue:false, height:30, margin:0})},    //依赖JsBarcode
+        barcode:function(elem, code, config) {'function' === typeof JsBarcode && JsBarcode(elem, code, config ? config : {displayValue:false, height:30, margin:0})},    //依赖JsBarcode
         first:function(name) {return document.querySelector(name)},
         all:function(name) {return document.querySelectorAll(name)},
         create:function(nodeName, className, inner) {
