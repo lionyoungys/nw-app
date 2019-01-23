@@ -134,7 +134,7 @@ export default class extends Component {
             arr[1] = (Number(arr[1]) + 1);
             for (let i = 0;i < len;++i) {
                 if (arr[0] == this.state.data[i].DATATAG) {
-                    ++this.state.data[i].accessory;
+                    ++this.state.data[i].acc_count;
                 } else if (-1 != this.state.data[i].DATATAG.indexOf(arr[0] + '-')) {
                     value = this.state.data[i].DATATAG.substr(tcLen);
                     if (!tool.isNaN(value) && value >= arr[1]) {
@@ -163,7 +163,7 @@ export default class extends Component {
                     }
                 }
             }
-            ++this.state.data[this.state.item_index].accessory;
+            ++this.state.data[this.state.item_index].acc_count;
             this.setState({item_index:null, data:this.state.data});
             return timeCode + number;
         }
@@ -243,7 +243,7 @@ export default class extends Component {
                 has_discount: item.has_discount,    //是否打折
                 transfer:item.transfer,
                 min_transfer:item.min_transfer,
-                accessory:null == this.state.item_index ? 0 : null,
+                acc_count:null == this.state.item_index ? 0 : null,
                 parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
             this.state.data.push(data);
@@ -289,7 +289,7 @@ export default class extends Component {
                 sign:'',
                 min_discount: 1,    //最低折扣率
                 has_discount: value.discount ? 1 : 0,    //是否打折
-                accessory:null == this.state.item_index ? 0 : null,
+                acc_count:null == this.state.item_index ? 0 : null,
                 parent:null    //判断是否为子级数据，值为复制父级数据的DATATAG
             };
             this.state.data.push(data);
@@ -314,7 +314,7 @@ export default class extends Component {
             number = number.split('-')[0];
             for (let i = 0;i < len;++i) {
                 if (number == this.state.data[i].DATATAG) {
-                    this.state.data[i].accessory -= count;
+                    this.state.data[i].acc_count -= count;
                     break;
                 }
             }
@@ -340,7 +340,7 @@ export default class extends Component {
             number = number.split('-')[0];
             for (let i = 0;i < len;++i) {
                 if (number == this.state.data[i].DATATAG) {
-                    this.state.data[i].accessory -= (count + 1);
+                    this.state.data[i].acc_count -= (count + 1);
                     break;
                 }
             }
@@ -352,7 +352,7 @@ export default class extends Component {
         let item = tool.clone(this.state.data[e.target.parentNode.parentNode.dataset.index]);
         item.DATATAG = this.getTimeCode(item.DATATAG);
         item.clothing_number = item.DATATAG;
-        item.accessory = (-1 == item.DATATAG.indexOf('-') ? 0 : null);
+        item.acc_count = (-1 == item.DATATAG.indexOf('-') ? 0 : null);
         item.parent = null;
         this.state.data.push(item);
         this.setState({data:this.state.data});
@@ -491,8 +491,7 @@ export default class extends Component {
             }});
         });
     }
-    takeCost() {       
-        //console.log(this.state.phone--this.state.name);    
+    takeCost() {        
         if (undefined == this.state.phone || '' == this.state.phone) return tool.ui.error({msg:'手机不能为空',callback:close => close()});
         if (undefined == this.state.name || ''==this.state.name) return tool.ui.error({msg:'姓名不能为空',callback:close => close()});
         if (this.state.data.length < 1) return  tool.ui.error({msg:'请添加洗衣项目',callback:close => close()});
@@ -535,7 +534,9 @@ export default class extends Component {
         ,   pay_amount = 0
         ,   amount = 0
         ,   craft_price = 0
+        ,   tmpNo;
         for (let i = 0;i < len;++i) {
+            //p_clothing_number
             data[i].raw_price = data[i].raw_price || 0;
             pay_amount = pay_amount.add(data[i].raw_price, data[i].addition_price, data[i].addition_no_price);
             amount = amount.add(data[i].raw_price);
@@ -545,9 +546,25 @@ export default class extends Component {
             data[i].card_type = this.state.type;
             data[i].address = this.state.addr;
             data[i].card_number = this.state.number;
-            delete data[i].accessory;
-            delete data[i].DATATAG;
+            data[i].p_clothing_number = '';
+            //寻找父级编码
+            if (-1 != data[i].DATATAG.indexOf('-')) {
+                tmpNo = data[i].DATATAG.split('-')[0];
+                if (tmpNo.length > 0) {
+                    for (let j = 0;j < len;++j) {
+                        if (data[j].DATATAG == tmpNo) {
+                            data[i].p_clothing_number = data[j].clothing_number;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            delete data[i].acc_count;
             delete data[i].parent;
+        }
+        for (let i = 0;i < len;++i) {
+            delete data[i].DATATAG;
         }
         this.submitting = true;
         api.post(
@@ -682,8 +699,8 @@ export default class extends Component {
                         <span 
                             className='e-blue' 
                             onClick={() => this.setState({show:1, item_index:index})} 
-                            style={null == obj.accessory ? {display:'none'} : null}
-                        >附件({obj.accessory})</span>
+                            style={null == obj.acc_count ? {display:'none'} : null}
+                        >附件({obj.acc_count})</span>
                         &emsp;
                         <span className='e-blue' onClick={this.copy}>复制</span>
                         &emsp;
