@@ -54,12 +54,12 @@
     <script>
     //name:衣物名称,color:衣物颜色,number:衣物格架号,sn:衣物编码,user:用户名
     _.init(function() {
-        _.inner('#mname', '测试店铺');
-        _.barcode('#sn_code', '231456745631542987');
-        _.inner('#name', '衬衫');
-        _.inner('#put_sn', '1151541');
-        _.barcode('#put_sn_code', '1151541');
-        _.inner('.sn', '231456745631542987');
+        _.inner('#mname', localStorage.getItem('mname'));
+        _.barcode('#sn_code', _.GET.clothing_number);
+        _.inner('#name', _.GET.clothing_name);
+        _.inner('#put_sn', _.GET.grid_num);
+        _.barcode('#put_sn_code', _.GET.grid_num);
+        _.inner('.sn', _.GET.clothing_number);
     });
     </script>
 </body>

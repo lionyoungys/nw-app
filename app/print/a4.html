@@ -68,7 +68,7 @@
         </table>
         <footer>
             <span id="total">总件数:25</span>
-            第1页,共1页
+            第<span id="page">1</span>页,共<span id="count">1</span>页
             <span id="received_by">接收人:______________</span>
         </footer>
     </div>
@@ -76,21 +76,33 @@
     <script src="common.js"></script>
     <script>
         _.init(function() {
-            var barcodeConfig = {height:16, margin:0, displayValue:false}
+            _.inner('#merchant', '门店:' + _.GET.mname);
+            _.inner('#batch', _.GET.no);
+            _.now();
+            _.inner('#total', '总件数:' + _.GET.total);
+            _.inner('#page', _.GET.page);
+            _.inner('#count', _.GET.count);
+
+            var items = [];
+            try {
+                items = JSON.parse(_.GET.items);
+            } catch (error) {
+                items = [];
+            }
+            console.log(items);
+            var len = items.length
             ,   tbody = _.first('tbody')
             ,   html = '';
-            for (var i = 0;i < 28;++i) {
-                html += '<tr><td><div><img/></div><div>10061201021401</div></td>' + 
-                    '<td>羽绒衫棉服短</td>' + 
-                    '<td></td><td>1</td><td>红色</td></tr>';
+            for (var i = 0;i < len;++i) {
+                html += '<tr><td><div><img id="img_' + items[i].id + '"/></div><div>' + items[i].clothing_number + '</div></td>' + 
+                    '<td>' + items[i].clothing_name + '</td>' + 
+                    '<td>' + items[i].acc_count + '</td><td>1</td><td>' + items[i].clothing_color + '</td></tr>';
             }
             _.inner(tbody, html);
-            _.barcode('img', '10061201021401', barcodeConfig);
-            /*_.page('clean_tag_printer_width', 'clean_tag_printer_font_size', 'clean_tag_printer_unit');
-            _.barcode('#code', _.GET.sn);
-            _.inner('#sn', '编码：' + _.GET.sn);
-            _.inner('#name', _.GET.name + ' ' + _.GET.color);
-            _.inner('#number', '衣挂号：' + _.GET.number);*/
+            var barcodeConfig = {height:16, margin:0, displayValue:false};
+            for (var j = 0;j < len;++j) {
+                _.barcode('#img_' + items[j].id, items[j].clothing_number, barcodeConfig);
+            }
         });
     </script>
 </body>
