@@ -109,7 +109,7 @@ export default class extends Component {
         } else if (2 == this.state.checked) {
             EventApi.print('test2',null, this.state.printers[this.state.checked].name);
         } else if (4 == this.state.checked) {
-            EventApi.print('a4',null, this.state.printers[this.state.checked].name);
+            EventApi.print('a4_demo',null, this.state.printers[this.state.checked].name);
         } else {
             EventApi.print('test',null, this.state.printers[this.state.checked].name);
         }
