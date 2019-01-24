@@ -17,7 +17,7 @@ export default class extends Component {
             result:[],
             startdate: tool.date('Y-m-d') +'  00：00：00', enddate: tool.date('Y-m-d  H：i：s'),
         };        
-                  
+        this.handlePrint = this.handlePrint.bind(this);
     }; 
     // 获取数据
     componentDidMount() {
@@ -30,7 +30,9 @@ export default class extends Component {
             }
         });
     }
-    // 交班网络请求
+    handlePrint() {
+        EventApi.print('daily', {list:this.state.result}, 'printer'.getData());
+    }
    
     render() {
         var arr = this.state.result.map((item,index) =><tr>
@@ -46,8 +48,9 @@ export default class extends Component {
             <Window title='经营日报' onClose={this.props.closeView}>  
                 <div className="ope-inc-head">
                     <a>统计时间：{this.state.startdate} 至 {this.state.enddate}</a>
+                    {/* <button className='e-btn' onClick={this.print}>打印</button> */}
                     <a>操作员：{'aname'.getData()}</a>
-                    <button className='e-btn'>打印</button>
+                    <button className='e-btn' onClick={this.handlePrint}>打印</button>
                 </div>
                 {/* 表格部分 欠费衣物信息*/}
                 <div className='ope-inc-tab'>

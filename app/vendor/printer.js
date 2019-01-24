@@ -119,20 +119,26 @@
             new PrintUtil(printer_name, function(err, msg) {
                 if (err) return alert(msg);
                 this.align('c')
-                    .text(param.mname + '入厂单凭证')
-                    .dashed()
+                    .text('卡柏洗衣连锁' + param.mname)
+                    .text('送洗衣物清单')
+                    .line()
                     .align('l')
-                    .text('订单号:' + param.oid)
-                    .text('打印时间：' + this.now())
+                    .text('配送流水号:' + param.oid)
+                    .text('打印日期：' + this.now())
                     .dashed()
-                    .text('送洗门店:' + param.mname)
-                    .text('入厂门店:' + param.ename)
-                    .text('总件数:' + param.count)
-                    .text('操作员:' + param.operator)
-                    .text('接收人签字:')
-                    .dashed()
-                    .text('店铺地址:' + param.maddress)
-                    .text('服务热线:' + param.phone_number)
+                    .text('编号    名称    颜色    服务    档次')
+                    .dashed();
+                if (typeof param.items != 'object' || !(param.items instanceof Array)) {
+                    param.items = [];
+                }
+                var items = param.items
+                ,   len = items.length;
+                for (var i = 0;i < len;++i) {
+                    this.text( (items[i].clothing_number || '') + '  ' + (items[i].clothing_name || '') + '  ' + (items[i].color || '')  + '  ' + (items[i].grade || '') )
+                        .text(items[i].raw_price || '');
+                }
+                this.align('c')
+                    .text('衣物总件数:' + len)
                     .line(3)
                     .print(callback);
             });
@@ -313,6 +319,40 @@
                         .line(2)
                         .print(callback);
                 }
+            });
+        },
+        //营业统计打印
+        business_statistics: function(printer_name, param, callback) {
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                this.align('c')
+                    .text('营业统计')
+                    .align('r')
+                    .text('统计时间:' + param.start + '~' + param.end)
+                    .align('l')
+                    .text('收银类型  金额  实收  衣物数量');
+                var len = param.list.length;
+                for (var i = 0;i < len;++i) {
+                    this.text(param.list[i].pay_type + '  ' + param.list[i].amount + '  ' + param.list[i].real_amount + '  ' + param.list[i].work_number);
+                }
+                this.line(3).print(callback);
+            });
+        },
+        //营业日报打印
+        daily:function(printer_name, param, callback) {
+            new PrintUtil(printer_name, function(err, msg) {
+                if (err) return alert(msg);
+                this.align('c')
+                    .text('营业日报')
+                    .align('r')
+                    .text('统计时间:' + this.now())
+                    .align('l')
+                    .text('收银类型  金额  实收  衣物数量');
+                var len = param.list.length;
+                for (var i = 0;i < len;++i) {
+                    this.text(param.list[i].name + '  ' + param.list[i].amount + '  ' + param.list[i].real_amount + '  ' + param.list[i].work_number);
+                }
+                this.line(3).print(callback);
             });
         }
     };

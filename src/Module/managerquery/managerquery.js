@@ -22,7 +22,8 @@ export default class extends Component {
             selectVal:'店员'
         };
         this.limit = 10;       
-        this.query = this.query.bind(this);   
+        this.query = this.query.bind(this);
+        this.handlePrint = this.handlePrint.bind(this);   
     };
     componentDidMount() { this.query()}
     query(page){
@@ -50,6 +51,10 @@ export default class extends Component {
                 handle();
             }
         },()=>done());
+    }
+
+    handlePrint() {
+        EventApi.print('business_statistics', {start:this.state.startdate, end:this.state.enddate, list:this.state.result}, 'printer'.getData());
     }
     render() {
         var arr = this.state.result.map((item,index) =><tr>
@@ -83,7 +88,7 @@ export default class extends Component {
                                 <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date" style={{width:'110px'}}/></div>
                                 <div>
                                     <button className="e-btn managerquery_btn" onClick={() => this.query(this.state.page)}>查询</button>
-                                    <button className="e-btn managerquery_btn">打印</button> 
+                                    <button className="e-btn managerquery_btn" onClick={this.handlePrint}>打印</button>
                                 </div>    
                             </div>
                 </div>   
