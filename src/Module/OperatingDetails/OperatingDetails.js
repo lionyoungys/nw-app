@@ -81,11 +81,10 @@ export default class extends Component {
                             '现金退卡','现金退款','赠券','赠券补交','赠券充值','赠券发卡','赠券其他','赠券退卡','支付宝','支付宝补交',
                             '支付宝充值','支付宝发卡','支付宝其他','支付宝退卡','支付宝退款','现金销售商品','微信销售商品','支付宝销售商品','刷卡销售商品'
                             ]} onChange={value => this.setState({pay_type:value.value})} value={this.state.pay_type}/></div>                           
-                                <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date" style={{width:'110px'}}/></div>
-                                <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date" style={{width:'110px'}}/></div>
+                                <div>开始日期：<input type="date" value={this.state.startdate} onChange={e => this.setState({startdate:e.target.value})} className="e-date"/></div>
+                                <div>结束日期：<input type="date" value={this.state.enddate} onChange={e => this.setState({enddate:e.target.value})} className="e-date"/></div>
                                 <div> 
                                     <button className="e-btn managerquery_btn" onClick={() => this.query(1)}>查询</button>
-                                    <button className="e-btn managerquery_btn">打印</button> 
                                 </div>
                             </div>
                        
