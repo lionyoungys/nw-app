@@ -48,6 +48,9 @@ body{font-size: 12px;font-family:"Microsoft YaHei"}
     padding: 0 16px;
     cursor: default;
 }
+/* 浮动样式 */
+.e-left{float: left;}
+.e-right{float: right;}
 /* 鼠标悬停样式 */
 .e-hover-bule:hover{background-color: #3fbfdc;}
 .e-hover-dark:hover{background-color: #5a5e66}
@@ -1072,6 +1075,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#aaa;font-siz
 .ui-option-into[data-checked=checked]>i{background-position: -125px -24px;}
 .ui-option-out>i{width: 22px;height: 23px;background-position: -148px 0;left: 16px;margin-top: -11.5px;}
 .ui-option-out[data-checked=checked]>i{background-position: -148px -24px;}
+.ui-option-scan>i{width: 18px;height: 18px;background-position: -190px 0;left: 16px;margin-top: -9px;}
+.ui-option-scan[data-checked=checked]>i{background-position: -190px -19px;}
+.ui-option-wait>i{width: 18px;height: 23px;background-position: -171px 0;left: 16px;margin-top: -11.5px;}
+.ui-option-wait[data-checked=checked]>i{background-position: -171px -24px;}
 /* 图片上传弹窗组件样式 */
 .ui-img-upload-window{
     width: 100%;
