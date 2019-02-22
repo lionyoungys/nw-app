@@ -4,7 +4,9 @@
  */
 (function (window) {
     //camera对象
-    var c = function () {
+    var c = function (videoNode) {
+        this._video = videoNode;
+        this._canvas = null;
         //旧版本浏览器可能根本没有实现mediaDevices，判断并设置空对象
         if ('undefined' == typeof navigator.mediaDevices) {
             navigator.mediaDevices = {};
@@ -23,25 +25,36 @@
                 }
             }
         }
-        this.video = function (videoNode) {
+        this.play = function () {
             var promise = navigator.mediaDevices.getUserMedia({video: true,audio: false});
             //video配置
             //{mandatory:{minAspectRatio:1.40,maxAspectRatio:1.78,minFrameRate:15,maxFrameRate:25,minWidth:1280,minHeight:720}}
             promise.then(stream => {
                 // 旧的浏览器可能没有srcObject
-                if ('srcObject' in videoNode) {
-                    videoNode.srcObject = stream;
+                if ('srcObject' in this._video) {
+                    this._video.srcObject = stream;
                 } else {
                     // 防止在新的浏览器里使用它，因为它已经不再支持了
-                    videoNode.src = window.URL.createObjectURL(stream);
+                    this._video.src = window.URL.createObjectURL(stream);
                 }
-                videoNode.onloadedmetadata = function (e) {
-                    videoNode.play();
+                this._video.onloadedmetadata = function (e) {
+                    this.play();
                 };
             }).catch(err => {
                 alert('未发现摄像设备');
                 console.error(err.name + ': ' + err.message);
             })
+        }
+        this.shoot = function () {
+            if (null == this._canvas) {
+                //绘制canvas图形
+                this._canvas = document.createElement('canvas');
+            }
+            this._canvas.width = this._video.offsetWidth;
+            this._canvas.height = this._video.offsetHeight;
+            this._canvas.getContext('2d').drawImage(this._video, 0, 0, this._video.offsetWidth, this._video.offsetHeight);
+            //把canvas图像转为base64数据格式
+            return this._canvas.toDataURL('image/png');
         }
     }
 
