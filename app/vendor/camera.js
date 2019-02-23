@@ -45,7 +45,7 @@
                 console.error(err.name + ': ' + err.message);
             })
         }
-        this.shoot = function () {
+        this.shoot = function (callback) {
             if (null == this._canvas) {
                 //绘制canvas图形
                 this._canvas = document.createElement('canvas');
@@ -54,7 +54,11 @@
             this._canvas.height = this._video.offsetHeight;
             this._canvas.getContext('2d').drawImage(this._video, 0, 0, this._video.offsetWidth, this._video.offsetHeight);
             //把canvas图像转为base64数据格式
-            return this._canvas.toDataURL('image/png');
+            if ('function' == typeof callback) {
+                this._canvas.toBlob(callback, 'image/png');
+            } else {
+                return this._canvas.toDataURL('image/png');
+            }
         }
     }
 
